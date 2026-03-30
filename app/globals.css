@@ -1,106 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=Cinzel:wght@400;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ─── Google Fonts ─────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Cinzel:wght@400;500;600;700&display=swap');
-
 /* ─── Design Tokens ──────────────────────────────────── */
 :root {
-  /* Gold Palette */
+  /* Galderma-inspired Bright Color Palette */
+  --primary-50: #f0f9ff;
+  --primary-100: #e0f2fe;
+  --primary-500: #0ea5e9;
+  --primary-600: #0284c7;
+  --primary-700: #0369a1;
+  
+  /* Teal accent like Galderma */
+  --teal-50: #f0fdfa;
+  --teal-100: #ccfbf1;
+  --teal-500: #14b8a6;
+  --teal-600: #0d9488;
+  --teal-700: #0f766e;
+  
+  /* Gold accents (kept for brand identity) */
   --gold-100: #fdf8f0;
   --gold-200: #f5e6d0;
   --gold-300: #e8c98a;
   --gold-400: #C9A96E;
   --gold-500: #a07840;
   --gold-600: #7a5a2e;
+  
+  /* French Sophistication - Champagne & Cream tones */
+  --champagne-50: #FFFBF5;
+  --champagne-100: #FDF6E9;
+  --champagne-200: #F5ECD6;
+  --champagne-300: #EBDEB8;
+  --cream-50: #FEFDFB;
+  --cream-100: #FCFAF5;
+  --sage-100: #F0F4F1;
+  --sage-200: #E8F0E9;
+  --rose-50: #FFF5F5;
+  --rose-100: #FEE2E2;
 
-  /* Silk Palette */
-  --silk-50:  #FEFBF9;
-  --silk-100: #FDF6F2;
-  --silk-200: #FAEBE0;
-  --silk-300: #F5DBCC;
-  --silk-500: #E6A98D;
-  --silk-700: #C66B4A;
-  --silk-900: #854836;
+  /* Bright surfaces - Galderma style */
+  --surface-0: #ffffff;
+  --surface-1: #fafafa;
+  --surface-2: #f5f5f5;
+  --surface-3: #e5e5e5;
 
-  /* Surface Colors */
-  --surface-0:  #0d0a08;
-  --surface-1:  #111009;
-  --surface-2:  #160f0b;
-  --surface-3:  #1a120e;
+  /* Text colors for light theme */
+  --text-primary: #1a1a1a;
+  --text-secondary: #525252;
+  --text-muted: #737373;
+  --text-inverse: #ffffff;
 
-  /* Text Colors */
-  --text-primary:   #f5e6d0;
-  --text-secondary: #9ca3af;
-  --text-muted:     #4b5563;
-
-  /* Font Families */
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-accent:  'Cinzel', serif;
   --font-body:    'DM Sans', system-ui, sans-serif;
 
-  /* Border Radius */
+  /* French Beauty Salon Typography - Luxury Scale */
+  --text-xs:   0.875rem;   /* 14px - minimum for luxury */
+  --text-sm:   1rem;       /* 16px */
+  --text-base: 1.125rem;    /* 18px - comfortable reading */
+  --text-lg:   1.25rem;     /* 20px */
+  --text-xl:   1.5rem;      /* 24px */
+  --text-2xl:  2rem;        /* 32px */
+  --text-3xl:  2.5rem;      /* 40px */
+  --text-4xl:  3rem;        /* 48px */
+  --text-5xl:  4rem;        /* 64px */
+  --text-6xl:  5rem;        /* 80px */
+
   --radius-sm:  8px;
   --radius-md:  16px;
   --radius-lg:  24px;
   --radius-xl:  32px;
 
-  /* Shadows */
-  --shadow-gold: 0 0 40px rgba(201, 169, 110, 0.15);
-  --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.4);
-  --shadow-elegant: 0 8px 32px rgba(0, 0, 0, 0.3);
-
-  /* ═════════════════════════════════════════════════════
-     BEAUTY SALON TYPOGRAPHY STANDARDS
-     Based on luxury beauty industry best practices
-     ═════════════════════════════════════════════════════ */
-
-  /* Hero Typography */
-  --text-hero-lg: clamp(3rem, 8vw, 6rem);      /* Main hero headlines */
-  --text-hero-md: clamp(2.5rem, 6vw, 4.5rem);  /* Secondary hero */
-  --text-hero-sm: clamp(2rem, 5vw, 3.5rem);    /* Section heroes */
-
-  /* Display Typography */
-  --text-display-1: clamp(2.25rem, 4vw, 3.5rem); /* Major section titles */
-  --text-display-2: clamp(1.875rem, 3.5vw, 2.75rem); /* Page titles */
-  --text-display-3: clamp(1.5rem, 3vw, 2.25rem); /* Card titles */
-
-  /* Body Typography */
-  --text-body-xl: 1.25rem;    /* 20px - Large body text */
-  --text-body-lg: 1.125rem;   /* 18px - Featured body */
-  --text-body-md: 1rem;       /* 16px - Standard body */
-  --text-body-sm: 0.875rem;   /* 14px - Small body */
-  --text-body-xs: 0.8125rem;  /* 13px - Fine print */
-
-  /* UI Typography */
-  --text-button: 0.875rem;    /* 14px - Buttons */
-  --text-label: 0.75rem;      /* 12px - Labels */
-  --text-caption: 0.6875rem;  /* 11px - Captions */
-
-  /* Line Heights */
-  --leading-tight: 1.15;
-  --leading-snug: 1.35;
-  --leading-normal: 1.6;
-  --leading-relaxed: 1.75;
-
-  /* Letter Spacing */
-  --tracking-tighter: -0.03em;
-  --tracking-tight: -0.015em;
-  --tracking-normal: 0;
-  --tracking-wide: 0.025em;
-  --tracking-wider: 0.05em;
-  --tracking-widest: 0.1em;
-
-  /* French Design - Elegant Spacing */
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-  --space-3xl: 4rem;
-  --space-4xl: 6rem;
+  --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 8px 32px rgba(0, 0, 0, 0.12);
+  
+  /* French Sophistication - Section Spacing */
+  --section-padding-y: 6rem;    /* 96px */
+  --section-padding-y-lg: 8rem; /* 128px */
 }
 
 /* ─── Reset & Base ───────────────────────────────────── */
@@ -116,298 +94,82 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+  font-size: 16px;
 }
 
 body {
   font-family: var(--font-body);
-  font-size: var(--text-body-md);
+  font-size: var(--text-base);
   background-color: var(--surface-0);
   color: var(--text-secondary);
-  line-height: var(--leading-normal);
+  line-height: 1.6;
   min-height: 100vh;
-  letter-spacing: var(--tracking-normal);
 }
 
-/* ═════════════════════════════════════════════════════
-   TYPOGRAPHY SYSTEM - Beauty Salon Standards
-   ═════════════════════════════════════════════════════ */
-
-/* Headings */
+/* ─── Typography - French Luxury Standards ─────── */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  font-weight: 600;
-  line-height: var(--leading-tight);
+  font-weight: 500;
+  line-height: 1.2;
   color: var(--text-primary);
-  letter-spacing: var(--tracking-tight);
+  letter-spacing: 0.01em;
 }
 
-h1 {
-  font-size: var(--text-display-1);
-  font-weight: 700;
-}
+h1 { font-size: clamp(var(--text-4xl), 6vw, var(--text-6xl)); font-weight: 600; }
+h2 { font-size: clamp(var(--text-3xl), 4vw, var(--text-4xl)); }
+h3 { font-size: clamp(var(--text-2xl), 3vw, var(--text-3xl)); }
+h4 { font-size: var(--text-xl); font-weight: 600; }
+h5 { font-size: var(--text-lg); font-weight: 600; }
+h6 { font-size: var(--text-base); font-weight: 600; }
 
-h2 {
-  font-size: var(--text-display-2);
-  font-weight: 600;
-}
-
-h3 {
-  font-size: var(--text-display-3);
-  font-weight: 600;
-}
-
-h4 {
-  font-size: var(--text-body-xl);
-  font-weight: 600;
-}
-
-h5 {
-  font-size: var(--text-body-lg);
-  font-weight: 600;
-}
-
-h6 {
-  font-size: var(--text-body-md);
-  font-weight: 600;
-}
-
-/* Paragraphs */
 p {
-  font-size: var(--text-body-md);
-  line-height: var(--leading-relaxed);
+  font-size: var(--text-base);
+  line-height: 1.8;
   color: var(--text-secondary);
+  margin-bottom: 1.5em;
 }
 
-p.lead {
-  font-size: var(--text-body-xl);
-  line-height: var(--leading-relaxed);
+/* Ensure readable paragraph width */
+.prose p,
+article p {
+  max-width: 65ch;
+}
+
+/* Small text - minimum 14px for luxury positioning */
+.text-xs, small {
+  font-size: var(--text-xs);
+  line-height: 1.6;
+}
+
+/* Utility classes for consistent spacing */
+.section-padding {
+  padding-top: var(--section-padding-y);
+  padding-bottom: var(--section-padding-y);
+}
+
+.section-padding-lg {
+  padding-top: var(--section-padding-y-lg);
+  padding-bottom: var(--section-padding-y-lg);
+}
+
+/* Lead paragraphs */
+.lead {
+  font-size: var(--text-lg);
+  line-height: 1.7;
   color: var(--text-secondary);
-}
-
-/* Links */
-a {
-  color: var(--gold-400);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-a:hover {
-  color: var(--gold-300);
-}
-
-/* Hero Typography Classes */
-.text-hero-lg {
-  font-family: var(--font-display);
-  font-size: var(--text-hero-lg);
-  font-weight: 700;
-  line-height: var(--leading-tight);
-  letter-spacing: var(--tracking-tighter);
-}
-
-.text-hero-md {
-  font-family: var(--font-display);
-  font-size: var(--text-hero-md);
-  font-weight: 600;
-  line-height: var(--leading-tight);
-  letter-spacing: var(--tracking-tight);
-}
-
-.text-hero-sm {
-  font-family: var(--font-display);
-  font-size: var(--text-hero-sm);
-  font-weight: 600;
-  line-height: var(--leading-snug);
-  letter-spacing: var(--tracking-tight);
-}
-
-/* Display Typography Classes */
-.text-display-1 {
-  font-family: var(--font-display);
-  font-size: var(--text-display-1);
-  font-weight: 700;
-  line-height: var(--leading-tight);
-  letter-spacing: var(--tracking-tight);
-}
-
-.text-display-2 {
-  font-family: var(--font-display);
-  font-size: var(--text-display-2);
-  font-weight: 600;
-  line-height: var(--leading-tight);
-  letter-spacing: var(--tracking-tight);
-}
-
-.text-display-3 {
-  font-family: var(--font-display);
-  font-size: var(--text-display-3);
-  font-weight: 600;
-  line-height: var(--leading-snug);
-  letter-spacing: var(--tracking-normal);
-}
-
-/* Body Typography Classes */
-.text-body-xl { font-size: var(--text-body-xl); line-height: var(--leading-relaxed); }
-.text-body-lg { font-size: var(--text-body-lg); line-height: var(--leading-normal); }
-.text-body-md { font-size: var(--text-body-md); line-height: var(--leading-normal); }
-.text-body-sm { font-size: var(--text-body-sm); line-height: var(--leading-normal); }
-.text-body-xs { font-size: var(--text-body-xs); line-height: var(--leading-normal); }
-
-/* UI Typography */
-.text-button {
-  font-size: var(--text-button);
-  font-weight: 600;
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-}
-
-.text-label {
-  font-size: var(--text-label);
-  font-weight: 500;
-  letter-spacing: var(--tracking-wider);
-  text-transform: uppercase;
-}
-
-.text-caption {
-  font-size: var(--text-caption);
-  font-weight: 500;
-  letter-spacing: var(--tracking-wide);
-}
-
-/* ═════════════════════════════════════════════════════
-   FRENCH DESIGN REFINEMENTS
-   ═════════════════════════════════════════════════════ */
-
-/* Elegant Section Divider */
-.elegant-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin: var(--space-2xl) 0;
-}
-
-.elegant-divider::before,
-.elegant-divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201, 169, 110, 0.3), transparent);
-}
-
-.elegant-divider .diamond {
-  width: 8px;
-  height: 8px;
-  background: var(--gold-400);
-  transform: rotate(45deg);
-}
-
-/* French Card Style */
-.french-card {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(201, 169, 110, 0.15);
-  border-radius: var(--radius-lg);
-  padding: var(--space-xl);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.french-card:hover {
-  border-color: rgba(201, 169, 110, 0.3);
-  box-shadow: var(--shadow-elegant);
-  transform: translateY(-4px);
-}
-
-/* Elegant Button */
-.btn-elegant {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.875rem 2rem;
-  font-family: var(--font-body);
-  font-size: var(--text-button);
-  font-weight: 600;
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-  color: var(--surface-0);
-  background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
-  border: none;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-decoration: none;
-}
-
-.btn-elegant:hover {
-  background: linear-gradient(135deg, var(--gold-300), var(--gold-400));
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-gold);
-}
-
-/* Outline Button */
-.btn-outline {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.75rem;
-  font-family: var(--font-body);
-  font-size: var(--text-button);
-  font-weight: 600;
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-  color: var(--gold-400);
-  background: transparent;
-  border: 1px solid rgba(201, 169, 110, 0.4);
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-decoration: none;
-}
-
-.btn-outline:hover {
-  color: var(--gold-200);
-  border-color: var(--gold-400);
-  background: rgba(201, 169, 110, 0.1);
-}
-
-/* French Section Header */
-.section-header {
-  text-align: center;
-  margin-bottom: var(--space-3xl);
-}
-
-.section-header .subtitle {
-  font-family: var(--font-accent);
-  font-size: var(--text-label);
-  font-weight: 500;
-  letter-spacing: var(--tracking-widest);
-  text-transform: uppercase;
-  color: var(--gold-400);
-  margin-bottom: var(--space-sm);
-}
-
-.section-header h2 {
-  margin-bottom: var(--space-md);
-}
-
-.section-header p {
-  max-width: 600px;
-  margin: 0 auto;
-  font-size: var(--text-body-lg);
 }
 
 /* ─── Selection ──────────────────────────────────────── */
 ::selection {
-  background-color: rgba(201, 169, 110, 0.3);
-  color: #f5e6d0;
+  background-color: var(--teal-100);
+  color: var(--teal-700);
 }
 
 /* ─── Scrollbar ──────────────────────────────────────── */
-::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--surface-1); }
-::-webkit-scrollbar-thumb { background: var(--gold-500); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--gold-400); }
+::-webkit-scrollbar-thumb { background: var(--teal-500); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--teal-600); }
 
 /* ─── Utility classes ────────────────────────────────── */
 .font-display { font-family: var(--font-display); }
@@ -417,14 +179,15 @@ a:hover {
 .text-gold {
   background: linear-gradient(135deg, #f5e6d0, #C9A96E);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .gold-shimmer {
   background: linear-gradient(90deg, #C9A96E 0%, #f5e6d0 50%, #C9A96E 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shimmer 3s linear infinite;
 }
@@ -434,14 +197,94 @@ a:hover {
   100% { background-position: 200% center; }
 }
 
+.text-teal {
+  color: var(--teal-600);
+}
+
 .glass {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .gold-border {
   border: 1px solid rgba(201, 169, 110, 0.25);
+}
+
+/* Elegant shadows for bright theme */
+.elegant-shadow {
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+/* French Sophistication - Gold Divider */
+.gold-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-400), transparent);
+  margin: 2rem 0;
+}
+
+/* French Decorative Flourish */
+.french-flourish {
+  position: relative;
+  text-align: center;
+}
+
+.french-flourish::before,
+.french-flourish::after {
+  content: '✦';
+  color: var(--gold-400);
+  font-size: 0.75rem;
+  margin: 0 1rem;
+  opacity: 0.6;
+}
+
+/* Champagne Background */
+.bg-champagne {
+  background-color: var(--champagne-50);
+}
+
+.bg-cream {
+  background-color: var(--cream-50);
+}
+
+.bg-sage {
+  background-color: var(--sage-100);
+}
+
+.bg-rose {
+  background-color: var(--rose-50);
+}
+
+/* Elegant Button Hover */
+.btn-elegant {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-elegant::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-elegant:hover::after {
+  opacity: 1;
+}
+
+/* Card Hover Effect */
+.card-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
 }
 
 /* ─── Animations ─────────────────────────────────────── */
@@ -451,34 +294,24 @@ a:hover {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(201, 169, 110, 0.2); }
-  50%       { box-shadow: 0 0 40px rgba(201, 169, 110, 0.5); }
+  0%, 100% { box-shadow: 0 0 20px rgba(20, 184, 166, 0.2); }
+  50%       { box-shadow: 0 0 40px rgba(20, 184, 166, 0.4); }
 }
 
-@keyframes fadeIn {
+@keyframes fade-in {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px); }
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideInLeft {
-  from { opacity: 0; transform: translateX(-20px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes slideInRight {
-  from { opacity: 0; transform: translateX(20px); }
-  to { opacity: 1; transform: translateX(0); }
 }
 
 .animate-float      { animation: float 4s ease-in-out infinite; }
 .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
-.animate-fade-in    { animation: fadeIn 0.5s ease-out; }
-.animate-slide-up   { animation: slideUp 0.5s ease-out; }
+.animate-fade-in    { animation: fade-in 0.3s ease-out; }
+.animate-slide-up   { animation: slide-up 0.4s ease-out; }
 
 /* ─── Page transitions ───────────────────────────────── */
 @keyframes fadeSlideUp {
@@ -489,15 +322,18 @@ a:hover {
 main { animation: fadeSlideUp 0.5s ease-out; }
 
 /* ─── Input overrides ────────────────────────────────── */
-input, select, textarea {
+input, select, textarea { 
   font-family: var(--font-body);
-  font-size: var(--text-body-md);
+  font-size: var(--text-base);
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(0.7);
+  filter: invert(0.3);
   cursor: pointer;
 }
+
+/* ─── Framer Motion viewport fix ─────────────────────── */
+[data-framer-appear-id] { will-change: transform, opacity; }
 
 /* ─── Tooltip Styles ─────────────────────────────────── */
 .tooltip {
@@ -510,88 +346,49 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   bottom: 100%;
   left: 50%;
   transform: translateX(-50%) translateY(-8px);
-  padding: 0.5rem 1rem;
-  background: rgba(13, 10, 8, 0.95);
-  border: 1px solid rgba(201, 169, 110, 0.3);
-  border-radius: var(--radius-sm);
-  font-size: var(--text-body-xs);
-  font-weight: 500;
-  color: var(--text-primary);
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  font-size: var(--text-xs);
   white-space: nowrap;
+  border-radius: 6px;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.2s ease;
-  pointer-events: none;
+  transition: opacity 0.2s, visibility 0.2s;
   z-index: 100;
+  pointer-events: none;
 }
 
 .tooltip:hover::after {
   opacity: 1;
   visibility: visible;
-  transform: translateX(-50%) translateY(-4px);
 }
 
-/* ─── Framer Motion viewport fix ─────────────────────── */
-[data-framer-appear-id] { will-change: transform, opacity; }
-
-/* ─── Cookie Consent Banner Styles ───────────────────── */
-.cookie-banner {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 9999;
-  padding: var(--space-lg);
-  background: linear-gradient(180deg, rgba(13, 10, 8, 0.98), rgba(13, 10, 8, 0.99));
-  border-top: 1px solid rgba(201, 169, 110, 0.2);
-  backdrop-filter: blur(20px);
-}
-
-/* ─── Image Placeholder ──────────────────────────────── */
+/* ─── Image Placeholders ─────────────────────────────── */
 .image-placeholder {
-  position: relative;
-  background: linear-gradient(135deg, var(--surface-2), var(--surface-3));
-  overflow: hidden;
+  background: linear-gradient(135deg, var(--surface-2) 0%, var(--surface-3) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--teal-600);
+  font-size: var(--text-sm);
 }
 
-.image-placeholder::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    45deg,
-    transparent 40%,
-    rgba(201, 169, 110, 0.05) 50%,
-    transparent 60%
-  );
-  animation: placeholderShimmer 2s infinite;
+/* ─── Focus States for Accessibility ─────────────────── */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--teal-500);
+  outline-offset: 2px;
 }
 
-@keyframes placeholderShimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+/* ─── Print Styles ───────────────────────────────────── */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
 }
 
-.image-placeholder .placeholder-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: var(--gold-600);
-  opacity: 0.5;
-}
-
-/* RTL Support */
-[dir="rtl"] {
-  text-align: right;
-}
-
-[dir="rtl"] .tooltip::after {
-  left: auto;
-  right: 50%;
-  transform: translateX(50%) translateY(-8px);
-}
-
-[dir="rtl"] .tooltip:hover::after {
-  transform: translateX(50%) translateY(-4px);
-}

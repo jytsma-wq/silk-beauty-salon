@@ -152,22 +152,22 @@ export default function MariamChatbot({ locale }: MariamChatbotProps) {
               transition={{ duration: 0.2 }}
               className="absolute bottom-full left-0 mb-3 w-64 p-4 rounded-2xl shadow-2xl border"
               style={{ 
-                background: 'linear-gradient(180deg, #1a0a10 0%, #0d0608 100%)',
-                borderColor: 'rgba(236, 72, 153, 0.2)'
+                background: 'white',
+                borderColor: 'rgba(20, 184, 166, 0.2)'
               }}
             >
               {/* Arrow */}
               <div 
                 className="absolute -bottom-2 left-6 w-4 h-4 rotate-45 border-r border-b"
                 style={{ 
-                  background: '#0d0608',
-                  borderColor: 'rgba(236, 72, 153, 0.2)'
+                  background: 'white',
+                  borderColor: 'rgba(20, 184, 166, 0.2)'
                 }}
               />
               <div className="flex items-start gap-3">
                 <div 
-                  className="w-10 h-10 rounded-full flex-shrink-0 overflow-hidden ring-2 ring-pink-400/30"
-                  style={{ background: 'linear-gradient(135deg, #ec4899, #be185d)' }}
+                  className="w-10 h-10 rounded-full flex-shrink-0 overflow-hidden ring-2 ring-teal-400/30"
+                  style={{ background: 'linear-gradient(135deg, #14b8a6, #0d9488)' }}
                 >
                   {/* Mariam Profile Photo Placeholder */}
                   <img 
@@ -177,8 +177,8 @@ export default function MariamChatbot({ locale }: MariamChatbotProps) {
                   />
                 </div>
                 <div>
-                  <p className="text-pink-100 text-sm font-medium mb-1">{tooltip}</p>
-                  <p className="text-pink-400/60 text-xs">AI Beauty Consultant</p>
+                  <p className="text-gray-800 text-sm font-medium mb-1">{tooltip}</p>
+                  <p className="text-teal-600/70 text-xs">AI Beauty Consultant</p>
                 </div>
               </div>
             </motion.div>
@@ -189,17 +189,17 @@ export default function MariamChatbot({ locale }: MariamChatbotProps) {
         <motion.button
           onClick={() => setOpen(true)}
           onMouseEnter={() => setShowTooltip(true)}
-          className="relative w-16 h-16 rounded-full shadow-2xl border-2 border-pink-400/30 overflow-hidden group"
+          className="relative w-16 h-16 rounded-full shadow-2xl border-2 border-teal-400/30 overflow-hidden group"
           style={{ 
-            background: 'linear-gradient(135deg, #ec4899, #be185d)',
+            background: 'linear-gradient(135deg, #14b8a6, #0d9488)',
           }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           animate={{ 
             boxShadow: [
-              '0 0 20px rgba(236, 72, 153, 0.3)', 
-              '0 0 40px rgba(236, 72, 153, 0.6)', 
-              '0 0 20px rgba(236, 72, 153, 0.3)'
+              '0 0 20px rgba(20, 184, 166, 0.3)', 
+              '0 0 40px rgba(20, 184, 166, 0.5)', 
+              '0 0 20px rgba(20, 184, 166, 0.3)'
             ] 
           }}
           transition={{ boxShadow: { duration: 2, repeat: Infinity } }}
@@ -216,7 +216,7 @@ export default function MariamChatbot({ locale }: MariamChatbotProps) {
             <motion.span
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
-              className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-[#0d0a08]"
+              className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white"
             />
           )}
         </motion.button>
@@ -230,20 +230,20 @@ export default function MariamChatbot({ locale }: MariamChatbotProps) {
             animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20, x: -20 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="fixed bottom-24 left-6 z-50 w-[360px] sm:w-[400px] max-h-[520px] rounded-3xl overflow-hidden shadow-2xl border border-pink-500/20"
-            style={{ background: 'linear-gradient(180deg, #1a0a10 0%, #0d0608 100%)' }}
+            className="fixed bottom-24 left-6 z-50 w-[360px] sm:w-[400px] max-h-[520px] rounded-3xl overflow-hidden shadow-2xl border"
+            style={{ background: 'white', borderColor: 'rgba(20, 184, 166, 0.15)' }}
           >
             {/* Header */}
             <div
               className="px-5 py-4 flex items-center justify-between"
-              style={{ background: 'linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(190, 24, 93, 0.15))' }}
+              style={{ background: 'linear-gradient(135deg, rgba(20, 184, 166, 0.1), rgba(13, 148, 136, 0.05))' }}
             >
               <div className="flex items-center gap-3">
                 <div className="relative">
                   {/* Profile Photo in Header */}
                   <div 
-                    className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-pink-400/30"
-                    style={{ background: 'linear-gradient(135deg, #ec4899, #be185d)' }}
+                    className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-teal-400/30"
+                    style={{ background: 'linear-gradient(135deg, #14b8a6, #0d9488)' }}
                   >
                     <img 
                       src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face"
@@ -254,20 +254,20 @@ export default function MariamChatbot({ locale }: MariamChatbotProps) {
                   <motion.div
                     animate={{ scale: [1, 1.2, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
-                    className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-green-400 rounded-full border-2 border-[#1a0a10]"
+                    className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-green-400 rounded-full border-2 border-white"
                   />
                 </div>
                 <div>
-                  <p className="text-white text-base font-bold">Mariam</p>
+                  <p className="text-gray-900 text-base font-bold">Mariam</p>
                   <div className="flex items-center gap-1.5">
-                    <Sparkles size={10} className="text-pink-400" />
-                    <p className="text-pink-300/70 text-xs">AI Beauty Consultant</p>
+                    <Sparkles size={10} className="text-teal-500" />
+                    <p className="text-teal-600/70 text-xs">AI Beauty Consultant</p>
                   </div>
                 </div>
               </div>
               <button 
                 onClick={() => setOpen(false)} 
-                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/70 hover:text-white transition-all"
+                className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-500 hover:text-gray-700 transition-all"
               >
                 <X size={16} />
               </button>
@@ -275,7 +275,7 @@ export default function MariamChatbot({ locale }: MariamChatbotProps) {
 
             {/* Quick Actions Bar */}
             {showQuickActions && messages.length === 0 && (
-              <div className="px-4 py-2 border-b border-pink-500/10 flex gap-2 overflow-x-auto">
+              <div className="px-4 py-2 border-b border-gray-100 flex gap-2 overflow-x-auto">
                 {quickActions.map((action, i) => (
                   action.action ? (
                     <a
@@ -283,7 +283,7 @@ export default function MariamChatbot({ locale }: MariamChatbotProps) {
                       href={action.action}
                       target={action.action.startsWith('http') ? '_blank' : undefined}
                       rel={action.action.startsWith('http') ? 'noopener noreferrer' : undefined}
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-pink-500/10 text-pink-300 text-xs whitespace-nowrap hover:bg-pink-500/20 transition-colors"
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-teal-50 text-teal-700 text-xs whitespace-nowrap hover:bg-teal-100 transition-colors"
                     >
                       <action.icon size={12} />
                       {action.label}
@@ -292,7 +292,7 @@ export default function MariamChatbot({ locale }: MariamChatbotProps) {
                     <button
                       key={i}
                       onClick={() => send(locale === 'ru' ? 'Какие у вас часы работы?' : locale === 'ka' ? 'რა საათები მუშაობთ?' : 'What are your opening hours?')}
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-pink-500/10 text-pink-300 text-xs whitespace-nowrap hover:bg-pink-500/20 transition-colors"
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-teal-50 text-teal-700 text-xs whitespace-nowrap hover:bg-teal-100 transition-colors"
                     >
                       <action.icon size={12} />
                       {action.label}
@@ -303,26 +303,26 @@ export default function MariamChatbot({ locale }: MariamChatbotProps) {
             )}
 
             {/* Messages Area */}
-            <div className="h-64 overflow-y-auto px-4 py-4 space-y-3">
+            <div className="h-64 overflow-y-auto px-4 py-4 space-y-3 bg-gray-50">
               {messages.length === 0 && (
                 <div>
                   {/* Mariam's Greeting */}
                   <div className="flex gap-2 mb-4">
-                    <div className="w-8 h-8 rounded-full flex-shrink-0 overflow-hidden ring-1 ring-pink-400/30">
+                    <div className="w-8 h-8 rounded-full flex-shrink-0 overflow-hidden ring-1 ring-teal-400/30">
                       <img 
                         src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face"
                         alt="Mariam"
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <div className="bg-pink-500/10 border border-pink-500/20 rounded-2xl rounded-tl-none px-4 py-3 text-pink-100 text-sm max-w-[85%]">
+                    <div className="bg-white border border-gray-200 rounded-2xl rounded-tl-none px-4 py-3 text-gray-700 text-sm max-w-[85%] shadow-sm">
                       {greeting}
                     </div>
                   </div>
 
                   {/* Suggested Questions */}
                   <div className="space-y-2 ml-10">
-                    <p className="text-pink-400/60 text-xs mb-2 flex items-center gap-1">
+                    <p className="text-teal-600 text-xs mb-2 flex items-center gap-1">
                       <Star size={10} />
                       {locale === 'ru' ? 'Частые вопросы:' : locale === 'ka' ? 'ხშირი კითხვები:' : 'Suggested questions:'}
                     </p>
@@ -333,7 +333,7 @@ export default function MariamChatbot({ locale }: MariamChatbotProps) {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: i * 0.1 }}
                         onClick={() => send(s)}
-                        className="block w-full text-left px-4 py-2.5 rounded-xl border border-pink-500/20 text-pink-200/80 text-sm hover:bg-pink-500/10 hover:border-pink-400/40 transition-all"
+                        className="block w-full text-left px-4 py-2.5 rounded-xl border border-gray-200 text-gray-600 text-sm bg-white hover:bg-teal-50 hover:border-teal-300 transition-all"
                       >
                         {s}
                       </motion.button>
@@ -346,7 +346,7 @@ export default function MariamChatbot({ locale }: MariamChatbotProps) {
               {messages.map((m, i) => (
                 <div key={i} className={`flex gap-2 ${m.role === 'user' ? 'flex-row-reverse' : ''}`}>
                   {m.role === 'assistant' && (
-                    <div className="w-8 h-8 rounded-full flex-shrink-0 overflow-hidden ring-1 ring-pink-400/30">
+                    <div className="w-8 h-8 rounded-full flex-shrink-0 overflow-hidden ring-1 ring-teal-400/30">
                       <img 
                         src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face"
                         alt="Mariam"
@@ -358,9 +358,9 @@ export default function MariamChatbot({ locale }: MariamChatbotProps) {
                     className={`px-4 py-3 rounded-2xl text-sm max-w-[85%] ${
                       m.role === 'user'
                         ? 'text-white rounded-tr-none'
-                        : 'bg-pink-500/10 border border-pink-500/20 text-pink-100 rounded-tl-none'
+                        : 'bg-white border border-gray-200 text-gray-700 rounded-tl-none'
                     }`}
-                    style={m.role === 'user' ? { background: 'linear-gradient(135deg, #ec4899, #be185d)' } : {}}
+                    style={m.role === 'user' ? { background: 'linear-gradient(135deg, #14b8a6, #0d9488)' } : {}}
                   >
                     {m.content}
                   </div>
@@ -370,16 +370,16 @@ export default function MariamChatbot({ locale }: MariamChatbotProps) {
               {/* Loading Indicator */}
               {loading && (
                 <div className="flex gap-2">
-                  <div className="w-8 h-8 rounded-full flex-shrink-0 overflow-hidden ring-1 ring-pink-400/30">
+                  <div className="w-8 h-8 rounded-full flex-shrink-0 overflow-hidden ring-1 ring-teal-400/30">
                     <img 
                       src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face"
                       alt="Mariam"
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="bg-pink-500/10 border border-pink-500/20 rounded-2xl rounded-tl-none px-4 py-3 flex items-center gap-2">
-                    <Loader2 size={14} className="text-pink-400 animate-spin" />
-                    <span className="text-pink-300/60 text-sm">
+                  <div className="bg-white border border-gray-200 rounded-2xl rounded-tl-none px-4 py-3 flex items-center gap-2">
+                    <Loader2 size={14} className="text-teal-500 animate-spin" />
+                    <span className="text-gray-400 text-sm">
                       {locale === 'ru' ? 'Печатаю...' : locale === 'ka' ? 'ვწერ...' : 'Typing...'}
                     </span>
                   </div>
@@ -390,19 +390,19 @@ export default function MariamChatbot({ locale }: MariamChatbotProps) {
             </div>
 
             {/* Input Area */}
-            <div className="px-4 py-4 border-t border-pink-500/10 flex gap-2">
+            <div className="px-4 py-4 border-t border-gray-100 flex gap-2 bg-white">
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && send(input)}
                 placeholder={locale === 'ru' ? 'Спросите меня о чем-нибудь...' : locale === 'ka' ? 'რაიმეს შესახებ მკითხეთ...' : 'Ask me anything...'}
-                className="flex-1 bg-pink-500/5 border border-pink-500/20 rounded-xl px-4 py-3 text-pink-100 text-sm outline-none focus:border-pink-400/50 transition-colors placeholder:text-pink-400/40"
+                className="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-700 text-sm outline-none focus:border-teal-400 transition-colors placeholder:text-gray-400"
               />
               <motion.button
                 onClick={() => send(input)}
                 disabled={!input.trim() || loading}
                 className="w-11 h-11 rounded-xl flex items-center justify-center transition-all disabled:opacity-40"
-                style={{ background: 'linear-gradient(135deg, #ec4899, #be185d)' }}
+                style={{ background: 'linear-gradient(135deg, #14b8a6, #0d9488)' }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

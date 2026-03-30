@@ -11,16 +11,6 @@ interface WhatsAppButtonProps {
 // WhatsApp number
 const WHATSAPP_NUMBER = '+995599123456';
 
-// Tooltip translations
-const TOOLTIPS: Record<string, string> = {
-  en: "Please contact us!",
-  ru: "Пожалуйста, свяжитесь с нами!",
-  ka: "გთხოვთ დაგვიკავშირდეთ!",
-  he: "צור איתנו קשר!",
-  ar: "يرجى الاتصال بنا!",
-  tr: "Lütfen bize ulaşın!",
-};
-
 // Translations
 const translations: Record<string, {
   title: string;
@@ -30,6 +20,7 @@ const translations: Record<string, {
   popular: string[];
   responseTime: string;
   available: string;
+  tooltip: string;
 }> = {
   en: {
     title: 'Chat on WhatsApp',
@@ -44,6 +35,7 @@ const translations: Record<string, {
     ],
     responseTime: 'We typically respond within 15 minutes',
     available: 'Available now',
+    tooltip: 'Please contact us',
   },
   ru: {
     title: 'Чат в WhatsApp',
@@ -58,6 +50,7 @@ const translations: Record<string, {
     ],
     responseTime: 'Обычно отвечаем в течение 15 минут',
     available: 'Сейчас на связи',
+    tooltip: 'Пожалуйста, свяжитесь с нами',
   },
   ka: {
     title: 'WhatsApp-ზე ჩატი',
@@ -72,9 +65,10 @@ const translations: Record<string, {
     ],
     responseTime: 'ვპასუხობთ 15 წუთში',
     available: 'ახლა ხელმისაწვდომია',
+    tooltip: 'გთხოვთ, დაგვიკავშირდეთ',
   },
   he: {
-    title: 'צ\'אט ב-WhatsApp',
+    title: "צ'אט ב-WhatsApp",
     subtitle: 'תגובה מהירה מובטחת',
     quickMessage: 'הודעה מהירה',
     send: 'שלח',
@@ -86,6 +80,7 @@ const translations: Record<string, {
     ],
     responseTime: 'נענה תוך 15 דקות',
     available: 'זמינים עכשיו',
+    tooltip: 'אנא צור איתנו קשר',
   },
   ar: {
     title: 'محادثة واتساب',
@@ -100,9 +95,10 @@ const translations: Record<string, {
     ],
     responseTime: 'نرد خلال 15 دقيقة',
     available: 'متاح الآن',
+    tooltip: 'يرجى الاتصال بنا',
   },
   tr: {
-    title: 'WhatsApp\'ta Sohbet',
+    title: "WhatsApp'ta Sohbet",
     subtitle: 'Hızlı yanıt garantisi',
     quickMessage: 'Hızlı mesaj',
     send: 'Gönder',
@@ -114,15 +110,15 @@ const translations: Record<string, {
     ],
     responseTime: '15 dakika içinde yanıt veriyoruz',
     available: 'Şimdi müsait',
+    tooltip: 'Lütfen bizimle iletişime geçin',
   },
 };
 
 export default function WhatsAppButton({ locale }: WhatsAppButtonProps) {
   const [open, setOpen] = useState(false);
   const [customMessage, setCustomMessage] = useState('');
-  const [showTooltip, setShowTooltip] = useState(true);
+  const [showTooltip, setShowTooltip] = useState(false);
   const t = translations[locale] || translations.en;
-  const tooltip = TOOLTIPS[locale] || TOOLTIPS.en;
 
   const handleWhatsAppClick = (message?: string) => {
     const encodedMessage = encodeURIComponent(message || customMessage || t.popular[0]);
@@ -132,7 +128,7 @@ export default function WhatsAppButton({ locale }: WhatsAppButtonProps) {
 
   return (
     <>
-      {/* Floating WhatsApp Button - Bottom Right with Tooltip */}
+      {/* Floating WhatsApp Button with Tooltip - Bottom Right */}
       <div className="fixed bottom-6 right-6 z-40">
         {/* Tooltip */}
         <AnimatePresence>
@@ -141,24 +137,21 @@ export default function WhatsAppButton({ locale }: WhatsAppButtonProps) {
               initial={{ opacity: 0, x: 10, scale: 0.95 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0, x: 10, scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-              className="absolute bottom-full right-0 mb-3 px-4 py-3 rounded-2xl shadow-2xl border whitespace-nowrap"
-              style={{ 
-                background: 'linear-gradient(180deg, #0d1f15 0%, #081410 100%)',
-                borderColor: 'rgba(37, 211, 102, 0.2)'
-              }}
+              className="absolute bottom-full right-0 mb-3 whitespace-nowrap"
             >
-              {/* Arrow */}
               <div 
-                className="absolute -bottom-2 right-6 w-4 h-4 rotate-45 border-r border-b"
+                className="px-4 py-3 rounded-2xl shadow-xl border"
                 style={{ 
-                  background: '#081410',
-                  borderColor: 'rgba(37, 211, 102, 0.2)'
+                  background: 'linear-gradient(135deg, rgba(37,211,102,0.95), rgba(18,140,126,0.95))',
+                  borderColor: 'rgba(255,255,255,0.1)'
                 }}
-              />
-              <div className="flex items-center gap-2">
-                <MessageCircle size={16} className="text-green-400" />
-                <p className="text-green-100 text-sm font-medium">{tooltip}</p>
+              >
+                <p className="text-white text-sm font-medium">{t.tooltip}</p>
+                {/* Arrow */}
+                <div 
+                  className="absolute bottom-0 right-6 w-3 h-3 rotate-45 translate-y-1.5"
+                  style={{ background: 'rgb(18,140,126)' }}
+                />
               </div>
             </motion.div>
           )}
@@ -168,8 +161,8 @@ export default function WhatsAppButton({ locale }: WhatsAppButtonProps) {
         <motion.button
           onClick={() => setOpen(true)}
           onMouseEnter={() => setShowTooltip(true)}
-          onMouseLeave={() => setShowTooltip(false)}
-          className="w-16 h-16 rounded-full flex items-center justify-center shadow-2xl"
+          onMouseLeave={() => !open && setTimeout(() => setShowTooltip(false), 2000)}
+          className="relative w-16 h-16 rounded-full flex items-center justify-center shadow-2xl"
           style={{ 
             background: 'linear-gradient(135deg, #25D366, #128C7E)',
           }}
@@ -211,13 +204,13 @@ export default function WhatsAppButton({ locale }: WhatsAppButtonProps) {
             animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20, x: 20 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="fixed bottom-24 right-6 z-50 w-[340px] sm:w-[380px] rounded-3xl overflow-hidden shadow-2xl border border-green-500/20"
-            style={{ background: 'linear-gradient(180deg, #0d1f15 0%, #081410 100%)' }}
+            className="fixed bottom-24 right-6 z-50 w-[340px] sm:w-[380px] rounded-3xl overflow-hidden shadow-2xl border"
+            style={{ background: 'white', borderColor: 'rgba(37, 211, 102, 0.2)' }}
           >
             {/* Header */}
             <div
               className="px-5 py-4 flex items-center justify-between"
-              style={{ background: 'linear-gradient(135deg, rgba(37, 211, 102, 0.2), rgba(18, 140, 126, 0.15))' }}
+              style={{ background: 'linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(18, 140, 126, 0.05))' }}
             >
               <div className="flex items-center gap-3">
                 <div className="relative">
@@ -229,36 +222,36 @@ export default function WhatsAppButton({ locale }: WhatsAppButtonProps) {
                   <motion.div
                     animate={{ scale: [1, 1.2, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
-                    className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-green-400 rounded-full border-2 border-[#0d1f15]"
+                    className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-green-400 rounded-full border-2 border-white"
                   />
                 </div>
                 <div>
-                  <p className="text-white text-base font-bold">{t.title}</p>
+                  <p className="text-gray-900 text-base font-bold">{t.title}</p>
                   <div className="flex items-center gap-1.5">
-                    <Clock size={10} className="text-green-400" />
-                    <p className="text-green-300/70 text-xs">{t.available}</p>
+                    <Clock size={10} className="text-green-500" />
+                    <p className="text-green-600/70 text-xs">{t.available}</p>
                   </div>
                 </div>
               </div>
               <button 
                 onClick={() => setOpen(false)} 
-                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/70 hover:text-white transition-all"
+                className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-500 hover:text-gray-700 transition-all"
               >
                 <X size={16} />
               </button>
             </div>
 
             {/* Content */}
-            <div className="p-5">
+            <div className="p-5 bg-gray-50">
               {/* Response Time */}
-              <div className="flex items-center gap-2 mb-4 p-3 rounded-xl bg-green-500/10 border border-green-500/20">
-                <Star size={14} className="text-green-400" />
-                <p className="text-green-200/80 text-xs">{t.responseTime}</p>
+              <div className="flex items-center gap-2 mb-4 p-3 rounded-xl bg-white border border-gray-200">
+                <Star size={14} className="text-green-500" />
+                <p className="text-gray-600 text-xs">{t.responseTime}</p>
               </div>
 
               {/* Quick Messages */}
               <div className="mb-4">
-                <p className="text-green-400/60 text-xs mb-2 flex items-center gap-1">
+                <p className="text-green-600 text-xs mb-2 flex items-center gap-1">
                   <MessageCircle size={10} />
                   {t.quickMessage}
                 </p>
@@ -270,10 +263,10 @@ export default function WhatsAppButton({ locale }: WhatsAppButtonProps) {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.05 }}
                       onClick={() => handleWhatsAppClick(msg)}
-                      className="w-full text-left px-4 py-3 rounded-xl border border-green-500/20 text-green-100/80 text-sm hover:bg-green-500/10 hover:border-green-400/40 transition-all flex items-center justify-between group"
+                      className="w-full text-left px-4 py-3 rounded-xl border border-gray-200 text-gray-600 text-sm bg-white hover:border-green-400 hover:text-green-700 transition-all flex items-center justify-between group"
                     >
                       <span className="line-clamp-1">{msg}</span>
-                      <ChevronRight size={14} className="text-green-400/40 group-hover:text-green-400 transition-colors" />
+                      <ChevronRight size={14} className="text-gray-300 group-hover:text-green-500 transition-colors" />
                     </motion.button>
                   ))}
                 </div>
@@ -281,14 +274,14 @@ export default function WhatsAppButton({ locale }: WhatsAppButtonProps) {
 
               {/* Custom Message */}
               <div className="space-y-2">
-                <p className="text-green-400/60 text-xs">— {locale === 'ru' ? 'или' : locale === 'ka' ? 'ან' : 'or'} —</p>
+                <p className="text-gray-400 text-xs">— {locale === 'ru' ? 'или' : locale === 'ka' ? 'ან' : 'or'} —</p>
                 <div className="flex gap-2">
                   <input
                     type="text"
                     value={customMessage}
                     onChange={(e) => setCustomMessage(e.target.value)}
                     placeholder={locale === 'ru' ? 'Введите сообщение...' : locale === 'ka' ? 'შეიყვანეთ შეტყობინება...' : 'Type your message...'}
-                    className="flex-1 bg-green-500/5 border border-green-500/20 rounded-xl px-4 py-3 text-green-100 text-sm outline-none focus:border-green-400/50 transition-colors placeholder:text-green-400/30"
+                    className="flex-1 bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-700 text-sm outline-none focus:border-green-400 transition-colors placeholder:text-gray-400"
                   />
                   <motion.button
                     onClick={() => customMessage && handleWhatsAppClick(customMessage)}
@@ -305,20 +298,20 @@ export default function WhatsAppButton({ locale }: WhatsAppButtonProps) {
             </div>
 
             {/* Footer Info */}
-            <div className="px-5 py-3 border-t border-green-500/10 flex items-center justify-center gap-4">
+            <div className="px-5 py-3 border-t border-gray-100 flex items-center justify-center gap-4 bg-white">
               <a 
                 href="tel:+995599123456" 
-                className="flex items-center gap-1.5 text-green-400/60 hover:text-green-400 text-xs transition-colors"
+                className="flex items-center gap-1.5 text-gray-500 hover:text-green-600 text-xs transition-colors"
               >
                 <Phone size={12} />
                 +995 599 123 456
               </a>
-              <span className="text-green-500/30">|</span>
+              <span className="text-gray-200">|</span>
               <a 
                 href="https://maps.google.com/?q=28+Rustaveli+Avenue+Batumi+Georgia" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-green-400/60 hover:text-green-400 text-xs transition-colors"
+                className="flex items-center gap-1.5 text-gray-500 hover:text-green-600 text-xs transition-colors"
               >
                 <MapPin size={12} />
                 Batumi, Georgia

@@ -118,9 +118,8 @@ export default function HeroSection({ locale }: { locale: string }) {
             {/* Main image - top right */}
             <div className="absolute top-0 right-0 w-72 h-80 rounded-3xl overflow-hidden border border-stone-800 shadow-2xl">
               <ImagePlaceholder
-                src={HERO_IMAGES[0].src}
                 alt={HERO_IMAGES[0].alt}
-                aspectRatio="4/5"
+                aspectRatio="portrait"
                 className="w-full h-full"
               />
             </div>
@@ -131,9 +130,8 @@ export default function HeroSection({ locale }: { locale: string }) {
               style={{ zIndex: 2 }}
             >
               <ImagePlaceholder
-                src={HERO_IMAGES[1].src}
                 alt={HERO_IMAGES[1].alt}
-                aspectRatio="1/1"
+                aspectRatio="square"
                 className="w-full h-full"
               />
             </div>
@@ -144,9 +142,8 @@ export default function HeroSection({ locale }: { locale: string }) {
               style={{ zIndex: 1 }}
             >
               <ImagePlaceholder
-                src={HERO_IMAGES[2].src}
                 alt={HERO_IMAGES[2].alt}
-                aspectRatio="1/1"
+                aspectRatio="square"
                 className="w-full h-full"
               />
             </div>

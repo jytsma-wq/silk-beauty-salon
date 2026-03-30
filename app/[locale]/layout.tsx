@@ -6,7 +6,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import MariamChatbot from '@/components/interactive/MariamChatbot';
 import WhatsAppButton from '@/components/interactive/WhatsAppButton';
-import CookieConsent from '@/components/layout/CookieConsent';
+import CookieConsent from '@/components/shared/CookieConsent';
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
