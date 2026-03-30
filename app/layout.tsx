@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Cormorant_Garamond, DM_Sans, Cinzel } from 'next/font/google';
 import './globals.css';
 
@@ -24,31 +24,96 @@ const cinzel = Cinzel({
   display: 'swap',
 });
 
+export const metadataBase = new URL('https://silkbeautybatumi.ge');
+
 export const metadata: Metadata = {
+  metadataBase,
   title: {
-    template: '%s | Silk Beauty Salon Batumi',
-    default: 'Silk Beauty Salon | Premium Aesthetic Medicine & Beauty in Batumi, Georgia',
+    template: '%s | Silk Beauty Salon',
+    default: 'Silk Beauty Salon | World-class Aesthetic Medicine, Lash Extensions, Hair & Nail Design in Batumi, Georgia',
   },
   description:
-    'Silk Beauty Salon in Batumi — world-class injectables, lash extensions, microblading, hair, nails & skincare by certified international specialists.',
+    'World-class aesthetic medicine, lash extensions, hair, and nail design in Batumi, Georgia. Silk Beauty Salon offers premium beauty services by certified international specialists.',
   keywords: [
     'beauty salon Batumi',
+    'aesthetic clinic Batumi',
     'lip fillers Batumi',
     'botox Batumi',
+    'dermal fillers Georgia',
     'Russian volume lashes Batumi',
     'microblading Batumi',
     'aesthetic medicine Georgia',
     'HydraFacial Batumi',
     'nail salon Batumi',
     'hair salon Batumi',
+    'medical spa Batumi',
+    'anti-aging treatments Georgia',
+    'beauty tourism Batumi',
   ],
+  authors: [{ name: 'Silk Beauty Salon' }],
+  creator: 'Silk Beauty Salon',
+  publisher: 'Silk Beauty Salon',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   openGraph: {
-    title: 'Silk Beauty Salon | Batumi, Georgia',
-    description: 'Premium aesthetic medicine, injectables, and luxury beauty services in Batumi.',
     type: 'website',
     locale: 'en_US',
+    url: 'https://silkbeautybatumi.ge',
+    siteName: 'Silk Beauty Salon',
+    title: 'Silk Beauty Salon | World-class Aesthetic Medicine in Batumi',
+    description: 'World-class aesthetic medicine, lash extensions, hair, and nail design in Batumi, Georgia.',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Silk Beauty Salon - World-class Aesthetic Medicine in Batumi',
+      },
+    ],
   },
-  robots: { index: true, follow: true },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Silk Beauty Salon | World-class Aesthetic Medicine in Batumi',
+    description: 'World-class aesthetic medicine, lash extensions, hair, and nail design in Batumi, Georgia.',
+    images: ['/og-image.jpg'],
+    creator: '@silkbeautybatumi',
+  },
+  verification: {
+    google: 'google-site-verification-code',
+  },
+  alternates: {
+    canonical: '/',
+    languages: {
+      'en-US': '/en',
+      'ka-GE': '/ka',
+      'ru-RU': '/ru',
+      'he-IL': '/he',
+      'ar-SA': '/ar',
+      'tr-TR': '/tr',
+      'x-default': '/en',
+    },
+  },
+  category: 'beauty_salon',
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0d0a08' },
+  ],
+  colorScheme: 'light dark',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

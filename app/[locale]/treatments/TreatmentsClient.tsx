@@ -3,16 +3,9 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import { Clock, AlertTriangle, CheckCircle, Info, ChevronDown, ChevronUp } from 'lucide-react';
-import PageHero from '@/components/shared/PageHero';
+import { Clock, ArrowRight } from 'lucide-react';
+import EditorialSection from '@/components/layout/EditorialSection';
 import { treatments, treatmentCategories } from '@/lib/treatments';
-
-const TREATMENT_IMAGES = [
-  'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1920&q=90',
-  'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1920&q=90',
-  'https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=1920&q=90',
-  'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1920&q=90',
-];
 
 interface TreatmentsClientProps {
   locale: string;
@@ -20,15 +13,24 @@ interface TreatmentsClientProps {
 
 export function TreatmentsClient({ locale }: TreatmentsClientProps) {
   const [activeCategory, setActiveCategory] = useState('all');
-  const [expandedTreatment, setExpandedTreatment] = useState<string | null>(null);
 
   const filtered = activeCategory === 'all'
     ? treatments
     : treatments.filter((t) => t.category === activeCategory);
 
-  const headerTitle = locale === 'en' ? 'All Treatments' : locale === 'ru' ? 'Все процедуры' : locale === 'ka' ? 'ყველა პროცედურა' : locale === 'he' ? 'כל הטיפולים' : locale === 'ar' ? 'جميع العلاجات' : 'Tüm Tedaviler';
+  const headerTitle = locale === 'en' ? 'Treatments' : locale === 'ru' ? 'Процедуры' : locale === 'ka' ? 'პროცედურები' : locale === 'he' ? 'טיפולים' : locale === 'ar' ? 'العلاجات' : 'Tedaviler';
   
-  const headerSub = locale === 'en' ? 'Every service performed by internationally certified specialists with medical-grade products.' : locale === 'ru' ? 'Каждая услуга выполняется сертифицированными специалистами с медицинскими продуктами.' : locale === 'ka' ? 'ყოველი მომსახურება სრულდება საერთაშორისოდ სერტიფიცირებული სპეციალისტების მიერ.' : locale === 'he' ? 'כל שירות מבוצע על ידי מומחים מוסמכים בינלאומיים עם מוצרים ברמה רפואית.' : locale === 'ar' ? 'كل خدمة يؤديها متخصصون معتمدون دولياً بمنتجات طبية.' : 'Her hizmet uluslararası sertifikalı uzmanlar tarafından tıbbi sınıf ürünlerle sunulur.';
+  const headerSub = locale === 'en' 
+    ? 'Every service performed by internationally certified specialists with medical-grade products.' 
+    : locale === 'ru' 
+    ? 'Каждая услуга выполняется сертифицированными специалистами.' 
+    : locale === 'ka' 
+    ? 'ყოველი მომსახურება სრულდება სერტიფიცირებული სპეციალისტების მიერ.' 
+    : locale === 'he' 
+    ? 'כל שירות מבוצע על ידי מומחים מוסמכים בינלאומיים.' 
+    : locale === 'ar' 
+    ? 'كل خدمة يؤديها متخصصون معتمدون دولياً.' 
+    : 'Her hizmet uluslararası sertifikalı uzmanlar tarafından sunulur.';
   
   const bookNowLabel = locale === 'en' ? 'Book Now' : locale === 'ru' ? 'Записаться' : locale === 'ka' ? 'დაჯავშნა' : locale === 'he' ? 'הזמן עכשיו' : locale === 'ar' ? 'احجز الآن' : 'Randevu Al';
 
@@ -42,172 +44,138 @@ export function TreatmentsClient({ locale }: TreatmentsClientProps) {
     ...catLabels,
   ];
 
-  const toggleTreatment = (id: string) => {
-    setExpandedTreatment(expandedTreatment === id ? null : id);
-  };
-
   return (
-    <div style={{ background: 'linear-gradient(180deg, #0d0a08 0%, #111009 100%)' }}>
-      <PageHero pageKey="treatments" images={TREATMENT_IMAGES} />
-
-      <div className="container mx-auto max-w-7xl px-6 pt-8 pb-20">
-        {/* Header */}
-        <div className="text-center mb-16 -mt-10 relative z-10">
-          <h1
-            className="font-display font-bold mb-4"
-            style={{
-              fontSize: 'clamp(2rem, 5vw, 4rem)',
-              background: 'linear-gradient(135deg, #f5e6d0, #C9A96E)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-            }}
-          >
+    <div className="bg-surface-0 min-h-screen">
+      {/* Hero Section */}
+      <EditorialSection variant="hero" background="white" animate={true}>
+        <div className="max-w-4xl">
+          <h1 className="font-display text-hero-md text-surface-900 tracking-tight">
             {headerTitle}
           </h1>
-          <p className="text-stone-500 max-w-xl mx-auto">
+          <p className="font-sans text-body-lg text-surface-600 mt-6 max-w-2xl">
             {headerSub}
           </p>
         </div>
+      </EditorialSection>
 
-        {/* Category filters */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
-          {allCategories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setActiveCategory(cat.id)}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                activeCategory === cat.id
-                  ? 'text-stone-900'
-                  : 'border border-stone-800 text-stone-400 hover:border-amber-400/40 hover:text-amber-300'
-              }`}
-              style={activeCategory === cat.id ? { background: 'linear-gradient(135deg, #C9A96E, #a07840)' } : {}}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Grid */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          <AnimatePresence>
-            {filtered.map((t) => (
-              <motion.div
-                key={t.id}
-                layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                className="relative rounded-2xl border border-stone-800 hover:border-amber-400/30 transition-all duration-300 group overflow-hidden"
-                style={{ background: 'rgba(255,255,255,0.02)' }}
-              >
-                {/* Header */}
-                <div className="p-5 pb-0">
-                  {t.badge && (
-                    <span className="absolute top-4 right-4 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-400/10 text-amber-400 border border-amber-400/20">
-                      {t.badge}
-                    </span>
-                  )}
-
-                  <p className="text-amber-400/50 text-xs tracking-widest uppercase mb-2 capitalize">{t.category}</p>
-                  <h3 className="text-stone-100 font-display text-lg font-bold mb-2 group-hover:text-white transition-colors pr-16">
-                    {t.name[locale as keyof typeof t.name] || t.name.en}
-                  </h3>
-                  <p className="text-stone-500 text-sm leading-relaxed mb-4">{t.description[locale as keyof typeof t.description] || t.description.en}</p>
-
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-1.5 text-stone-600 text-sm">
-                      <Clock size={12} />
-                      <span>{t.duration} min</span>
-                    </div>
-                    <div className="text-right">
-                      <span className="text-amber-400 font-bold text-lg">{t.price} GEL</span>
-                      {t.priceNote && <span className="text-stone-600 text-xs block">{t.priceNote}</span>}
-                    </div>
-                  </div>
-
-                  {/* Products Used */}
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {t.products.map((p) => (
-                      <span key={p} className="px-2 py-0.5 rounded bg-stone-800/50 text-stone-400 text-xs">
-                        {p}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Expandable Details */}
-                <button
-                  onClick={() => toggleTreatment(t.id)}
-                  className="w-full px-5 py-3 flex items-center justify-between text-stone-500 hover:text-amber-400 transition-colors border-t border-stone-800/50"
-                >
-                  <span className="text-xs flex items-center gap-1">
-                    <Info size={12} />
-                    {locale === 'en' ? 'Details & Safety' : locale === 'ru' ? 'Детали и безопасность' : locale === 'ka' ? 'დეტალები და უსაფრთხოება' : locale === 'he' ? 'פרטים ובטיחות' : locale === 'ar' ? 'التفاصيل والسلامة' : 'Detaylar ve Güvenlik'}
-                  </span>
-                  {expandedTreatment === t.id ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-                </button>
-
-                <AnimatePresence>
-                  {expandedTreatment === t.id && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-5 pb-5 pt-2 space-y-3 bg-stone-900/20">
-                        {/* Contra-indications */}
-                        <div className="flex gap-2">
-                          <AlertTriangle size={14} className="text-amber-400 flex-shrink-0 mt-0.5" />
-                          <div>
-                            <p className="text-stone-400 text-xs font-medium mb-1">
-                              {locale === 'en' ? 'Contra-indications' : locale === 'ru' ? 'Противопоказания' : locale === 'ka' ? 'უკუჩვენებები' : locale === 'he' ? 'התוויות נגד' : locale === 'ar' ? 'موانع الاستعمال' : 'Kontrendikasyonlar'}
-                            </p>
-                            <p className="text-stone-500 text-xs">{t.contraIndications}</p>
-                          </div>
-                        </div>
-
-                        {/* Recovery */}
-                        <div className="flex gap-2">
-                          <CheckCircle size={14} className="text-green-400 flex-shrink-0 mt-0.5" />
-                          <div>
-                            <p className="text-stone-400 text-xs font-medium mb-1">
-                              {locale === 'en' ? 'Recovery Time' : locale === 'ru' ? 'Время восстановления' : locale === 'ka' ? 'აღდგენის დრო' : locale === 'he' ? 'זמן התאוששות' : locale === 'ar' ? 'وقت التعافي' : 'İyileşme Süresi'}
-                            </p>
-                            <p className="text-stone-500 text-xs">{t.recovery}</p>
-                          </div>
-                        </div>
-
-                        {/* Longevity */}
-                        <div className="flex gap-2">
-                          <Clock size={14} className="text-blue-400 flex-shrink-0 mt-0.5" />
-                          <div>
-                            <p className="text-stone-400 text-xs font-medium mb-1">
-                              {locale === 'en' ? 'Results Last' : locale === 'ru' ? 'Результат держится' : locale === 'ka' ? 'შედეგი გრძელდება' : locale === 'he' ? 'תוצאות נמשכות' : locale === 'ar' ? 'مدة النتائج' : 'Sonuçların Süresi'}
-                            </p>
-                            <p className="text-stone-500 text-xs">{t.longevity}</p>
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                {/* Book Button */}
-                <div className="p-5 pt-0">
-                  <Link
-                    href={`/${locale}/contact?service=${t.id}`}
-                    className="mt-2 w-full block text-center py-2.5 rounded-full text-xs font-semibold tracking-widest uppercase border border-stone-700 text-stone-400 hover:border-amber-400/50 hover:text-amber-300 transition-all"
+      {/* Main Content - Two Column Layout */}
+      <EditorialSection variant="compact" background="white" animate={true} delay={0.1}>
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
+          
+          {/* Left: Sticky Filter Categories */}
+          <aside className="lg:w-64 lg:flex-shrink-0">
+            <div className="lg:sticky lg:top-32">
+              <h2 className="font-accent text-label uppercase tracking-widest text-surface-900 mb-6">
+                {locale === 'en' ? 'Categories' : locale === 'ru' ? 'Категории' : locale === 'ka' ? 'კატეგორიები' : locale === 'he' ? 'קטגוריות' : locale === 'ar' ? 'الفئات' : 'Kategoriler'}
+              </h2>
+              
+              <nav className="space-y-3">
+                {allCategories.map((cat) => (
+                  <button
+                    key={cat.id}
+                    onClick={() => setActiveCategory(cat.id)}
+                    className={`block text-left text-label uppercase tracking-widest transition-colors duration-300 ${
+                      activeCategory === cat.id
+                        ? 'text-gold-500'
+                        : 'text-surface-600 hover:text-gold-500'
+                    }`}
                   >
-                    {bookNowLabel}
-                  </Link>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
-      </div>
+                    {cat.label}
+                  </button>
+                ))}
+              </nav>
+            </div>
+          </aside>
+
+          {/* Right: Treatment Cards Grid */}
+          <div className="flex-1">
+            <motion.div 
+              layout 
+              className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
+            >
+              <AnimatePresence mode="popLayout">
+                {filtered.map((t, index) => (
+                  <motion.div
+                    key={t.id}
+                    layout
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ 
+                      duration: 0.5, 
+                      delay: index * 0.05,
+                      ease: [0.16, 1, 0.3, 1]
+                    }}
+                    className="group relative border border-surface-200 bg-surface-0 overflow-hidden hover:border-gold-300 transition-all duration-500"
+                  >
+                    {/* Card Content */}
+                    <div className="p-8">
+                      {/* Category Label */}
+                      <p className="font-accent text-caption uppercase tracking-widest text-gold-500 mb-3">
+                        {t.category}
+                      </p>
+                      
+                      {/* Title */}
+                      <h3 className="font-display text-display-2 text-surface-900 mb-3 group-hover:text-gold-600 transition-colors duration-300">
+                        {t.name[locale as keyof typeof t.name] || t.name.en}
+                      </h3>
+                      
+                      {/* Description */}
+                      <p className="font-sans text-body-sm text-surface-600 leading-relaxed mb-6 line-clamp-2">
+                        {t.description[locale as keyof typeof t.description] || t.description.en}
+                      </p>
+
+                      {/* Meta Row */}
+                      <div className="flex items-center justify-between pt-4 border-t border-surface-100">
+                        <div className="flex items-center gap-2 text-surface-500">
+                          <Clock size={14} strokeWidth={1.5} />
+                          <span className="text-caption">{t.duration} min</span>
+                        </div>
+                        <span className="font-display text-body-lg text-gold-600">
+                          {t.price} GEL
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Hover Reveal - Subtle zoom effect on image or overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-gold-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                    {/* Book Button - Appears on hover */}
+                    <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                      <Link
+                        href={`/${locale}/contact?service=${t.id}`}
+                        className="flex items-center justify-center gap-2 w-full py-3 bg-gold-500 text-white font-sans text-button uppercase tracking-widest hover:bg-gold-600 transition-colors duration-300"
+                      >
+                        {bookNowLabel}
+                        <ArrowRight size={14} strokeWidth={1.5} />
+                      </Link>
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </motion.div>
+
+            {/* Empty State */}
+            {filtered.length === 0 && (
+              <div className="text-center py-20">
+                <p className="font-sans text-body-md text-surface-500">
+                  {locale === 'en' 
+                    ? 'No treatments found in this category.' 
+                    : locale === 'ru' 
+                    ? 'В этой категории нет процедур.' 
+                    : locale === 'ka' 
+                    ? 'ამ კატეგორიაში პროცედურები არ მოიძებნა.' 
+                    : locale === 'he' 
+                    ? 'לא נמצאו טיפולים בקטגוריה זו.' 
+                    : locale === 'ar' 
+                    ? 'لم يتم العثور على علاجات في هذه الفئة.' 
+                    : 'Bu kategoride tedavi bulunamadı.'}
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      </EditorialSection>
     </div>
   );
 }

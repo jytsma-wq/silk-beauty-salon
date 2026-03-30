@@ -214,7 +214,7 @@ export default function VirtualConsultation({ locale }: VirtualConsultationProps
   return (
     <>
       {/* CTA Section */}
-      <section className="py-20 px-6 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #0d0a08 0%, #1a0f10 50%, #0d0a08 100%)' }}>
+      <section className="py-20 px-6 relative overflow-hidden bg-gradient-to-b from-amber-50/50 to-white">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -222,7 +222,7 @@ export default function VirtualConsultation({ locale }: VirtualConsultationProps
             viewport={{ once: true }}
             className="relative z-10"
           >
-            <div className="rounded-3xl border border-pink-500/20 overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(190, 24, 93, 0.05))' }}>
+            <div className="rounded-3xl border border-amber-200/50 overflow-hidden bg-gradient-to-br from-white to-amber-50/30 shadow-lg">
               <div className="flex flex-col lg:flex-row items-center">
                 {/* Left Content */}
                 <div className="flex-1 p-8 lg:p-12">
@@ -231,39 +231,35 @@ export default function VirtualConsultation({ locale }: VirtualConsultationProps
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                   >
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-500/20 border border-pink-500/30 mb-6">
-                      <Sparkles size={14} className="text-pink-400" />
-                      <span className="text-pink-300 text-sm font-medium">{t.free}</span>
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100 border border-amber-200 mb-6">
+                      <Sparkles size={14} className="text-amber-500" />
+                      <span className="text-amber-600 text-sm font-medium">{t.free}</span>
                     </div>
                     
-                    <h2 className="font-display text-3xl lg:text-4xl font-bold mb-4" style={{
-                      background: 'linear-gradient(135deg, #f9a8d4, #ec4899)',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                    }}>
+                    <h2 className="font-display text-3xl lg:text-4xl font-bold mb-4 text-gray-900">
                       {t.title}
                     </h2>
                     
-                    <p className="text-stone-400 text-lg mb-6 max-w-lg">
+                    <p className="text-gray-600 text-lg mb-6 max-w-lg">
                       {t.subtitle}
                     </p>
 
                     <div className="flex flex-wrap gap-4 mb-8">
-                      <div className="flex items-center gap-2 text-stone-500">
-                        <Clock size={16} className="text-pink-400" />
+                      <div className="flex items-center gap-2 text-gray-500">
+                        <Clock size={16} className="text-amber-400" />
                         <span className="text-sm">{t.responseTime}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-stone-500">
-                        <Camera size={16} className="text-pink-400" />
+                      <div className="flex items-center gap-2 text-gray-500">
+                        <Camera size={16} className="text-amber-400" />
                         <span className="text-sm">{t.privacy}</span>
                       </div>
                     </div>
 
                     <motion.button
                       onClick={() => setIsOpen(true)}
-                      className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-white font-semibold text-lg transition-all"
-                      style={{ background: 'linear-gradient(135deg, #ec4899, #be185d)' }}
-                      whileHover={{ scale: 1.02, boxShadow: '0 20px 40px rgba(236, 72, 153, 0.3)' }}
+                      className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-stone-900 font-semibold text-lg transition-all"
+                      style={{ background: 'linear-gradient(135deg, #C9A96E, #a07840)' }}
+                      whileHover={{ scale: 1.02, boxShadow: '0 20px 40px rgba(201, 169, 110, 0.3)' }}
                       whileTap={{ scale: 0.98 }}
                     >
                       {t.submit}
@@ -278,15 +274,15 @@ export default function VirtualConsultation({ locale }: VirtualConsultationProps
                     <motion.div
                       animate={{ rotate: 360 }}
                       transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
-                      className="w-48 h-48 rounded-full border border-pink-500/20 flex items-center justify-center"
+                      className="w-48 h-48 rounded-full border border-amber-500/20 flex items-center justify-center"
                     >
                       <motion.div
                         animate={{ rotate: -360 }}
                         transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
-                        className="w-40 h-40 rounded-full border border-pink-500/30 flex items-center justify-center"
+                        className="w-40 h-40 rounded-full border border-amber-500/30 flex items-center justify-center"
                       >
-                        <div className="w-32 h-32 rounded-full bg-gradient-to-br from-pink-500/20 to-pink-600/20 flex items-center justify-center">
-                          <Camera size={48} className="text-pink-400" />
+                        <div className="w-32 h-32 rounded-full bg-gradient-to-br from-amber-500/20 to-amber-600/20 flex items-center justify-center">
+                          <Camera size={48} className="text-amber-400" />
                         </div>
                       </motion.div>
                     </motion.div>
@@ -295,17 +291,17 @@ export default function VirtualConsultation({ locale }: VirtualConsultationProps
                     <motion.div
                       animate={{ y: [-10, 10, -10] }}
                       transition={{ duration: 4, repeat: Infinity }}
-                      className="absolute -top-4 -right-4 w-16 h-16 rounded-full bg-pink-500/20 flex items-center justify-center"
+                      className="absolute -top-4 -right-4 w-16 h-16 rounded-full bg-amber-500/20 flex items-center justify-center"
                     >
-                      <Sparkles size={24} className="text-pink-400" />
+                      <Sparkles size={24} className="text-amber-400" />
                     </motion.div>
                     
                     <motion.div
                       animate={{ y: [10, -10, 10] }}
                       transition={{ duration: 3, repeat: Infinity }}
-                      className="absolute -bottom-4 -left-4 w-12 h-12 rounded-full bg-pink-500/20 flex items-center justify-center"
+                      className="absolute -bottom-4 -left-4 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"
                     >
-                      <Check size={20} className="text-pink-400" />
+                      <Check size={20} className="text-amber-400" />
                     </motion.div>
                   </div>
                 </div>
@@ -329,15 +325,15 @@ export default function VirtualConsultation({ locale }: VirtualConsultationProps
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="w-full max-w-lg rounded-3xl overflow-hidden border border-pink-500/20"
+              className="w-full max-w-lg rounded-3xl overflow-hidden border border-amber-500/20"
               style={{ background: 'linear-gradient(180deg, #1a0a10 0%, #0d0608 100%)' }}
               onClick={e => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="px-6 py-5 border-b border-pink-500/10 flex items-center justify-between" style={{ background: 'linear-gradient(135deg, rgba(236, 72, 153, 0.15), rgba(190, 24, 93, 0.1))' }}>
+              <div className="px-6 py-5 border-b border-amber-500/10 flex items-center justify-between" style={{ background: 'linear-gradient(135deg, rgba(201, 169, 110, 0.15), rgba(160, 120, 64, 0.1))' }}>
                 <div>
                   <h3 className="text-white font-display text-xl font-bold">{t.title}</h3>
-                  <p className="text-pink-400/60 text-sm">{t.free}</p>
+                  <p className="text-amber-400/60 text-sm">{t.free}</p>
                 </div>
                 <button onClick={resetForm} className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/70 hover:text-white transition-all">
                   <X size={18} />
@@ -345,17 +341,17 @@ export default function VirtualConsultation({ locale }: VirtualConsultationProps
               </div>
 
               {/* Progress Steps */}
-              <div className="px-6 py-4 border-b border-pink-500/10">
+              <div className="px-6 py-4 border-b border-amber-500/10">
                 <div className="flex items-center justify-between">
                   {[1, 2, 3].map((s) => (
                     <div key={s} className="flex items-center">
                       <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all ${
                         s <= step ? 'text-white' : 'bg-stone-800 text-stone-500'
-                      }`} style={s <= step ? { background: 'linear-gradient(135deg, #ec4899, #be185d)' } : {}}>
+                      }`} style={s <= step ? { background: 'linear-gradient(135deg, #C9A96E, #a07840)' } : {}}>
                         {s < step ? <Check size={14} /> : s}
                       </div>
                       {s < 3 && (
-                        <div className={`w-16 h-0.5 mx-2 transition-all ${s < step ? 'bg-pink-500' : 'bg-stone-800'}`} />
+                        <div className={`w-16 h-0.5 mx-2 transition-all ${s < step ? 'bg-amber-500' : 'bg-stone-800'}`} />
                       )}
                     </div>
                   ))}
@@ -386,8 +382,8 @@ export default function VirtualConsultation({ locale }: VirtualConsultationProps
                             onClick={() => toggleConcern(concern)}
                             className={`px-4 py-3 rounded-xl text-sm text-left transition-all ${
                               selectedConcerns.includes(concern)
-                                ? 'bg-pink-500/20 border-pink-500/50 text-pink-200'
-                                : 'bg-stone-800/50 border-stone-700/50 text-stone-400 hover:border-pink-500/30'
+                                ? 'bg-amber-500/20 border-amber-500/50 text-amber-200'
+                                : 'bg-stone-800/50 border-stone-700/50 text-stone-400 hover:border-amber-500/30'
                             } border`}
                           >
                             {selectedConcerns.includes(concern) && <Check size={12} className="inline mr-2" />}
@@ -409,9 +405,9 @@ export default function VirtualConsultation({ locale }: VirtualConsultationProps
                       <p className="text-stone-400 text-sm mb-4">{t.photoHint}</p>
                       
                       {!photoPreview ? (
-                        <label className="block border-2 border-dashed border-pink-500/30 rounded-2xl p-8 text-center cursor-pointer hover:border-pink-500/50 transition-all">
+                        <label className="block border-2 border-dashed border-amber-500/30 rounded-2xl p-8 text-center cursor-pointer hover:border-amber-500/50 transition-all">
                           <input type="file" accept="image/*" className="hidden" onChange={handlePhotoUpload} />
-                          <Camera size={40} className="mx-auto text-pink-400/50 mb-4" />
+                          <Camera size={40} className="mx-auto text-amber-400/50 mb-4" />
                           <p className="text-stone-300 mb-2">{t.dragDrop}</p>
                           <p className="text-stone-500 text-xs">{t.formats}</p>
                         </label>
@@ -444,7 +440,7 @@ export default function VirtualConsultation({ locale }: VirtualConsultationProps
                           type="text"
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          className="w-full bg-stone-800/50 border border-stone-700 rounded-xl px-4 py-3 text-white focus:border-pink-500/50 outline-none transition-all"
+                          className="w-full bg-stone-800/50 border border-stone-700 rounded-xl px-4 py-3 text-white focus:border-amber-500/50 outline-none transition-all"
                         />
                       </div>
                       <div>
@@ -454,7 +450,7 @@ export default function VirtualConsultation({ locale }: VirtualConsultationProps
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           placeholder="+995 5XX XXX XXX"
-                          className="w-full bg-stone-800/50 border border-stone-700 rounded-xl px-4 py-3 text-white focus:border-pink-500/50 outline-none transition-all"
+                          className="w-full bg-stone-800/50 border border-stone-700 rounded-xl px-4 py-3 text-white focus:border-amber-500/50 outline-none transition-all"
                         />
                       </div>
                       <div>
@@ -463,7 +459,7 @@ export default function VirtualConsultation({ locale }: VirtualConsultationProps
                           type="email"
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="w-full bg-stone-800/50 border border-stone-700 rounded-xl px-4 py-3 text-white focus:border-pink-500/50 outline-none transition-all"
+                          className="w-full bg-stone-800/50 border border-stone-700 rounded-xl px-4 py-3 text-white focus:border-amber-500/50 outline-none transition-all"
                         />
                       </div>
                       <div>
@@ -472,7 +468,7 @@ export default function VirtualConsultation({ locale }: VirtualConsultationProps
                           value={formData.message}
                           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                           rows={3}
-                          className="w-full bg-stone-800/50 border border-stone-700 rounded-xl px-4 py-3 text-white focus:border-pink-500/50 outline-none transition-all resize-none"
+                          className="w-full bg-stone-800/50 border border-stone-700 rounded-xl px-4 py-3 text-white focus:border-amber-500/50 outline-none transition-all resize-none"
                         />
                       </div>
                     </motion.div>
@@ -508,32 +504,32 @@ export default function VirtualConsultation({ locale }: VirtualConsultationProps
 
               {/* Footer */}
               {step < 4 && (
-                <div className="px-6 py-4 border-t border-pink-500/10 flex justify-between">
+                <div className="px-6 py-4 border-t border-amber-500/10 flex justify-between">
                   <button
                     onClick={() => step > 1 ? setStep(step - 1) : setIsOpen(false)}
                     className="px-6 py-2 rounded-xl text-stone-400 hover:text-white transition-all"
                   >
-                    {step === 1 ? (locale === 'ru' ? 'Отмена' : locale === 'ka' ? 'გაუქმება' : 'Cancel') : (locale === 'ru' ? 'Назад' : locale === 'ka' ? 'უკან' : 'Back')}
+                    {step === 1 ? (locale === 'ru' ? 'Отмена' : locale === 'ka' ? 'გაუქმება' : locale === 'he' ? 'ביטול' : locale === 'ar' ? 'إلغاء' : locale === 'tr' ? 'İptal' : 'Cancel') : (locale === 'ru' ? 'Назад' : locale === 'ka' ? 'უკან' : locale === 'he' ? 'חזרה' : locale === 'ar' ? 'رجوع' : locale === 'tr' ? 'Geri' : 'Back')}
                   </button>
                   
                   {step < 3 ? (
                     <motion.button
                       onClick={() => setStep(step + 1)}
                       disabled={step === 1 && selectedConcerns.length === 0}
-                      className="px-6 py-2 rounded-xl text-white font-medium flex items-center gap-2 disabled:opacity-50"
-                      style={{ background: 'linear-gradient(135deg, #ec4899, #be185d)' }}
+                      className="px-6 py-2 rounded-xl text-stone-900 font-medium flex items-center gap-2 disabled:opacity-50"
+                      style={{ background: 'linear-gradient(135deg, #C9A96E, #a07840)' }}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      {locale === 'ru' ? 'Далее' : locale === 'ka' ? 'შემდეგ' : 'Next'}
+                      {locale === 'ru' ? 'Далее' : locale === 'ka' ? 'შემდეგ' : locale === 'he' ? 'הבא' : locale === 'ar' ? 'التالي' : locale === 'tr' ? 'İleri' : 'Next'}
                       <ChevronRight size={16} />
                     </motion.button>
                   ) : (
                     <motion.button
                       onClick={handleSubmit}
                       disabled={isSubmitting || !formData.name || !formData.phone}
-                      className="px-6 py-2 rounded-xl text-white font-medium flex items-center gap-2 disabled:opacity-50"
-                      style={{ background: 'linear-gradient(135deg, #ec4899, #be185d)' }}
+                      className="px-6 py-2 rounded-xl text-stone-900 font-medium flex items-center gap-2 disabled:opacity-50"
+                      style={{ background: 'linear-gradient(135deg, #C9A96E, #a07840)' }}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
@@ -544,15 +540,15 @@ export default function VirtualConsultation({ locale }: VirtualConsultationProps
               )}
 
               {step === 4 && (
-                <div className="px-6 py-4 border-t border-pink-500/10 flex justify-center">
+                <div className="px-6 py-4 border-t border-amber-500/10 flex justify-center">
                   <motion.button
                     onClick={resetForm}
-                    className="px-8 py-2 rounded-xl text-white font-medium"
-                    style={{ background: 'linear-gradient(135deg, #ec4899, #be185d)' }}
+                    className="px-8 py-2 rounded-xl text-stone-900 font-medium"
+                    style={{ background: 'linear-gradient(135deg, #C9A96E, #a07840)' }}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    {locale === 'ru' ? 'Закрыть' : locale === 'ka' ? 'დახურვა' : 'Close'}
+                    {locale === 'ru' ? 'Закрыть' : locale === 'ka' ? 'დახურვა' : locale === 'he' ? 'סגור' : locale === 'ar' ? 'إغلاق' : locale === 'tr' ? 'Kapat' : 'Close'}
                   </motion.button>
                 </div>
               )}

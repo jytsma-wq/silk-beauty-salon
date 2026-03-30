@@ -33,7 +33,7 @@ export default async function LocaleLayout({
       <div className="flex min-h-screen flex-col">
         <Header />
         <main className="flex-grow">{children}</main>
-        <Footer locale={locale} />
+        <Footer />
         
         {/* Floating Chatbots - Appear on every page */}
         <MariamChatbot locale={locale} />

@@ -18,6 +18,9 @@ const translations = {
     mostPopular: 'Most Popular',
     bestValue: 'Best Value',
     limited: 'Limited availability',
+    treatments: 'treatments',
+    totalValue: 'Total Value:',
+    bundlePrice: 'Bundle Price:',
   },
   ru: {
     title: 'Пакеты процедур',
@@ -28,6 +31,9 @@ const translations = {
     mostPopular: 'Популярный',
     bestValue: 'Лучшая цена',
     limited: 'Ограниченное предложение',
+    treatments: 'процедур',
+    totalValue: 'Общая стоимость:',
+    bundlePrice: 'Цена пакета:',
   },
   ka: {
     title: 'სამკურნალო პაკეტები',
@@ -38,6 +44,9 @@ const translations = {
     mostPopular: 'პოპულარული',
     bestValue: 'საუკეთესო ფასი',
     limited: 'შეზღუდულია',
+    treatments: 'პროცედურა',
+    totalValue: 'სრული ღირებულება:',
+    bundlePrice: 'პაკეტის ფასი:',
   },
   he: {
     title: 'חבילות טיפול',
@@ -48,6 +57,9 @@ const translations = {
     mostPopular: 'הכי פופולרי',
     bestValue: 'הערך הטוב ביותר',
     limited: 'זמינות מוגבלת',
+    treatments: 'טיפולים',
+    totalValue: 'ערך כולל:',
+    bundlePrice: 'מחיר החבילה:',
   },
   ar: {
     title: 'حزم العلاج',
@@ -58,6 +70,9 @@ const translations = {
     mostPopular: 'الأكثر شعبية',
     bestValue: 'أفضل قيمة',
     limited: 'توفر محدود',
+    treatments: 'علاجات',
+    totalValue: 'القيمة الإجمالية:',
+    bundlePrice: 'سعر الحزمة:',
   },
   tr: {
     title: 'Tedavi Paketleri',
@@ -68,6 +83,9 @@ const translations = {
     mostPopular: 'En Popüler',
     bestValue: 'En İyi Değer',
     limited: 'Sınırlı kullanılabilirlik',
+    treatments: 'tedavi',
+    totalValue: 'Toplam Değer:',
+    bundlePrice: 'Paket Fiyatı:',
   },
 };
 
@@ -123,7 +141,7 @@ export default function TreatmentBundles({ locale }: TreatmentBundlesProps) {
   const t = translations[locale as keyof typeof translations] || translations.en;
 
   return (
-    <section className="py-24 px-6" style={{ background: 'linear-gradient(180deg, #0a0806 0%, #0d0a08 50%, #0a0806 100%)' }}>
+    <section className="py-24 px-6 bg-cream">
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
         <motion.div
@@ -178,7 +196,7 @@ export default function TreatmentBundles({ locale }: TreatmentBundlesProps) {
                           </span>
                         )}
                       </div>
-                      <p className="text-stone-500 text-sm">{bundle.treatments.length} {locale === 'ru' ? 'процедур' : locale === 'ka' ? 'პროცედურა' : 'treatments'}</p>
+                      <p className="text-stone-500 text-sm">{bundle.treatments.length} {t.treatments}</p>
                     </div>
                   </div>
                   
@@ -239,11 +257,11 @@ export default function TreatmentBundles({ locale }: TreatmentBundlesProps) {
 
               <div className="flex items-center justify-between p-4 rounded-xl bg-stone-800/30 mb-6">
                 <div>
-                  <p className="text-stone-500 text-sm">{locale === 'ru' ? 'Общая стоимость:' : locale === 'ka' ? 'სრული ღირებულება:' : 'Total Value:'}</p>
+                  <p className="text-stone-500 text-sm">{t.totalValue}</p>
                   <p className="text-stone-400 line-through">{selectedBundle.originalPrice} GEL</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-stone-500 text-sm">{locale === 'ru' ? 'Цена пакета:' : locale === 'ka' ? 'პაკეტის ფასი:' : 'Bundle Price:'}</p>
+                  <p className="text-stone-500 text-sm">{t.bundlePrice}</p>
                   <p className="text-amber-400 text-2xl font-bold">{selectedBundle.bundlePrice} GEL</p>
                 </div>
               </div>

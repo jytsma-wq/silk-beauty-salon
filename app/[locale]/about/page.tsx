@@ -18,25 +18,22 @@ export default async function AboutPage({
   const { locale } = await params;
 
   return (
-    <div style={{ background: 'linear-gradient(180deg, #0d0a08 0%, #111009 100%)' }}>
+    <div className="bg-gradient-to-b from-gray-50 to-white min-h-screen">
       {/* Page Hero Slider */}
       <PageHero pageKey="about" images={ABOUT_IMAGES} />
 
       {/* Content Section */}
       <section className="relative px-6 py-20 overflow-hidden -mt-20">
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full blur-3xl" style={{ background: '#C9A96E' }} />
+          <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full blur-3xl" style={{ background: '#14b8a6' }} />
         </div>
         <div className="container mx-auto max-w-5xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <h1
-                className="font-display font-bold mb-6"
+                className="font-display font-bold mb-6 text-gray-900"
                 style={{
                   fontSize: 'clamp(2rem, 4vw, 3rem)',
-                  background: 'linear-gradient(135deg, #f5e6d0, #C9A96E)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
                   lineHeight: 1.2,
                 }}
               >
@@ -47,7 +44,7 @@ export default async function AboutPage({
                 {locale === 'ar' && 'مولود في باتومي، بُني للعالم'}
                 {locale === 'tr' && "Batum'da Doğdu, Dünya İçin Yaratıldı"}
               </h1>
-              <p className="text-stone-400 leading-relaxed mb-5">
+              <p className="text-gray-600 leading-relaxed mb-5">
                 {locale === 'en' && 'Silk Beauty Salon was founded with one vision: to bring world-class aesthetic medicine and luxury beauty services to the heart of Batumi, Georgia.'}
                 {locale === 'ru' && 'Салон красоты Silk Beauty был основан с одной целью: принести эстетическую медицину и люксовые услуги мирового класса в самое сердце Батуми, Грузия.'}
                 {locale === 'ka' && 'Silk Beauty Salon დაარსდა ერთი ხედვით: მსოფლიო კლასის ესთეტიკური მედიცინისა და ლუქს სილამაზის მომსახურების მოტანა ბათუმის, საქართველოს გულში.'}
@@ -55,7 +52,7 @@ export default async function AboutPage({
                 {locale === 'ar' && 'تأسس صالون Silk Beauty برؤية واحدة: جلب الطب التجميلي وخدمات الجمال الفاخرة عالمية المستوى إلى قلب باتومي، جورجيا.'}
                 {locale === 'tr' && "Silk Beauty Salon tek bir vizyonla kuruldu: Dünya standartlarında estetik tıp ve lüks güzellik hizmetlerini Batum, Gürcistan'ın kalbine getirmek."}
               </p>
-              <p className="text-stone-400 leading-relaxed mb-8">
+              <p className="text-gray-600 leading-relaxed mb-8">
                 {locale === 'en' && "Our team of internationally certified specialists — trained across Europe, the Middle East, and beyond — believes that beauty is not a luxury. It's a form of self-expression, and everyone deserves the best."}
                 {locale === 'ru' && 'Наша команда сертифицированных специалистов, прошедших обучение по всей Европе и Ближнему Востоку, считает, что красота — это не роскошь. Это форма самовыражения, и каждый заслуживает лучшего.'}
                 {locale === 'ka' && 'ჩვენი საერთაშორისოდ სერტიფიცირებული სპეციალისტების გუნდი, რომლებიც გაწვრთნილნი არიან ევროპაში, ახლო აღმოსავლეთსა და მის ფარგლებს გარეთ, მიიჩნევს, რომ სილამაზე არ არის ლუქსი. ეს არის თვითგამოხატვის ფორმა და ყველას უღირს საუკეთესო.'}
@@ -65,8 +62,8 @@ export default async function AboutPage({
               </p>
               <Link
                 href={`/${locale}/contact`}
-                className="inline-block px-8 py-3 rounded-full text-sm font-semibold tracking-wide text-stone-900"
-                style={{ background: 'linear-gradient(135deg, #C9A96E, #a07840)' }}
+                className="inline-block px-8 py-3 rounded-full text-sm font-semibold tracking-wide text-white"
+                style={{ background: 'linear-gradient(135deg, #14b8a6, #0d9488)' }}
               >
                 {locale === 'en' && 'Book a Consultation'}
                 {locale === 'ru' && 'Записаться на консультацию'}
@@ -82,19 +79,18 @@ export default async function AboutPage({
               <img
                 src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=500&q=80"
                 alt="Silk Beauty Salon interior"
-                className="absolute top-0 right-0 w-3/4 h-72 object-cover rounded-2xl border border-stone-800"
+                className="absolute top-0 right-0 w-3/4 h-72 object-cover rounded-2xl border border-gray-200 shadow-lg"
               />
               <img
                 src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&q=80"
                 alt="Treatment in progress"
-                className="absolute bottom-0 left-0 w-2/3 h-56 object-cover rounded-2xl border border-stone-800"
+                className="absolute bottom-0 left-0 w-2/3 h-56 object-cover rounded-2xl border border-gray-200 shadow-lg"
               />
               <div
-                className="absolute bottom-8 right-4 p-4 rounded-2xl border border-amber-400/30 text-center backdrop-blur-sm"
-                style={{ background: 'rgba(13,10,8,0.8)' }}
+                className="absolute bottom-8 right-4 p-4 rounded-2xl border border-teal-200 text-center backdrop-blur-sm bg-white/90 shadow-lg"
               >
-                <div className="text-3xl font-display font-bold" style={{ color: '#C9A96E' }}>200+</div>
-                <div className="text-stone-400 text-xs mt-1">
+                <div className="text-3xl font-display font-bold text-teal-600">200+</div>
+                <div className="text-gray-500 text-xs mt-1">
                   {locale === 'en' && 'Happy Clients'}
                   {locale === 'ru' && 'Довольных клиентов'}
                   {locale === 'ka' && 'კმაყოფილი კლიენტი'}
@@ -109,15 +105,12 @@ export default async function AboutPage({
       </section>
 
       {/* Values */}
-      <section className="px-6 py-20" style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+      <section className="px-6 py-20 border-t border-gray-100">
         <div className="container mx-auto max-w-5xl">
           <h2
-            className="font-display font-bold text-center mb-16"
+            className="font-display font-bold text-center mb-16 text-gray-900"
             style={{
               fontSize: 'clamp(1.8rem, 4vw, 3rem)',
-              background: 'linear-gradient(135deg, #f5e6d0, #C9A96E)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
             }}
           >
             {locale === 'en' && 'What We Stand For'}
@@ -154,15 +147,14 @@ export default async function AboutPage({
               return (
                 <div
                   key={v.title}
-                  className="flex gap-5 p-6 rounded-2xl border border-stone-800"
-                  style={{ background: 'rgba(255,255,255,0.02)' }}
+                  className="flex gap-5 p-6 rounded-2xl border border-gray-200 bg-white shadow-sm"
                 >
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: 'rgba(201,169,110,0.1)' }}>
-                    <Icon size={20} className="text-amber-400" />
+                  <div className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center bg-teal-50">
+                    <Icon size={20} className="text-teal-500" />
                   </div>
                   <div>
-                    <h3 className="text-white font-semibold mb-2">{v.title}</h3>
-                    <p className="text-stone-500 text-sm leading-relaxed">{v.desc}</p>
+                    <h3 className="text-gray-900 font-semibold mb-2">{v.title}</h3>
+                    <p className="text-gray-500 text-sm leading-relaxed">{v.desc}</p>
                   </div>
                 </div>
               );

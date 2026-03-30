@@ -15,14 +15,14 @@ const PlaceholderBackground = () => (
   <div 
     className="absolute inset-0"
     style={{
-      background: 'linear-gradient(135deg, #160f0b 0%, #1a120e 50%, #0d0a08 100%)'
+      background: 'linear-gradient(135deg, #FFFBF5 0%, #FDF6E9 50%, #FFFBF5 100%)'
     }}
   >
     {/* Decorative elements */}
     <div className="absolute inset-0 overflow-hidden">
       <motion.div
         className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full blur-3xl"
-        style={{ background: 'rgba(201, 169, 110, 0.08)' }}
+        style={{ background: 'rgba(20, 184, 166, 0.15)' }}
         animate={{
           scale: [1, 1.3, 1],
           opacity: [0.3, 0.5, 0.3],
@@ -31,7 +31,7 @@ const PlaceholderBackground = () => (
       />
       <motion.div
         className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-3xl"
-        style={{ background: 'rgba(201, 169, 110, 0.05)' }}
+        style={{ background: 'rgba(201, 169, 110, 0.12)' }}
         animate={{
           scale: [1.2, 1, 1.2],
           opacity: [0.2, 0.4, 0.2],
@@ -46,13 +46,13 @@ const PlaceholderBackground = () => (
         <div 
           className="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center"
           style={{ 
-            background: 'linear-gradient(135deg, rgba(201, 169, 110, 0.2), rgba(160, 120, 64, 0.1))',
-            border: '1px solid rgba(201, 169, 110, 0.2)'
+            background: 'linear-gradient(135deg, rgba(20, 184, 166, 0.2), rgba(13, 148, 136, 0.1))',
+            border: '1px solid rgba(20, 184, 166, 0.3)'
           }}
         >
-          <Sparkles size={32} className="text-gold-400/50" />
+          <Sparkles size={32} className="text-teal-500" />
         </div>
-        <p className="text-stone-600 text-sm tracking-wider uppercase">Silk Beauty</p>
+        <p className="text-gray-500 text-sm tracking-wider uppercase">Silk Beauty</p>
       </div>
     </div>
   </div>
@@ -96,7 +96,7 @@ export default function PageHero({ pageKey, images = [] }: PageHeroProps) {
   const hasValidImages = validImages.length > 0;
 
   return (
-    <section className="relative h-[70vh] md:h-[80vh] w-full overflow-hidden">
+    <section className="relative h-screen w-full overflow-hidden">
       {/* Background Slides or Placeholder */}
       {hasValidImages ? (
         <AnimatePresence mode="wait">
@@ -108,14 +108,13 @@ export default function PageHero({ pageKey, images = [] }: PageHeroProps) {
             transition={{ duration: 1.2, ease: 'easeOut' }}
             className="absolute inset-0"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={validImages[currentSlide]}
               alt=""
               className="absolute inset-0 w-full h-full object-cover"
               onError={() => handleImageError(currentSlide)}
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+            <div className="absolute inset-0 bg-gradient-to-b from-gray-900/40 via-gray-800/20 to-gray-900/50" />
           </motion.div>
         </AnimatePresence>
       ) : (
@@ -180,14 +179,14 @@ export default function PageHero({ pageKey, images = [] }: PageHeroProps) {
         <>
           <button
             onClick={prevSlide}
-            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 p-2 md:p-3 rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-sm text-white/70 hover:text-white transition-all"
+            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 p-2 md:p-3 rounded-full bg-white/30 hover:bg-white/50 backdrop-blur-sm text-white/80 hover:text-white transition-all"
             aria-label="Previous slide"
           >
             <ChevronLeft size={20} />
           </button>
           <button
             onClick={nextSlide}
-            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 p-2 md:p-3 rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-sm text-white/70 hover:text-white transition-all"
+            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 p-2 md:p-3 rounded-full bg-white/30 hover:bg-white/50 backdrop-blur-sm text-white/80 hover:text-white transition-all"
             aria-label="Next slide"
           >
             <ChevronRight size={20} />
@@ -218,7 +217,7 @@ export default function PageHero({ pageKey, images = [] }: PageHeroProps) {
       )}
 
       {/* Bottom fade */}
-      <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-[#0d0a08] to-transparent pointer-events-none z-10" />
+      <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none z-10" />
     </section>
   );
 }

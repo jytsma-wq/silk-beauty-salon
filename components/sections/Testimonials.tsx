@@ -187,7 +187,7 @@ export default function Testimonials({ locale }: TestimonialsProps) {
   const currentTestimonial = testimonials[currentIndex];
 
   return (
-    <section className="py-24 px-6" style={{ background: '#0a0806' }}>
+    <section className="py-24 px-6 bg-gradient-to-b from-champagne to-white">
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
         <motion.div
@@ -196,26 +196,23 @@ export default function Testimonials({ locale }: TestimonialsProps) {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <p className="text-amber-400/60 text-xs tracking-[0.3em] uppercase mb-4">
+          <p className="text-teal-500 text-xs tracking-[0.3em] uppercase mb-4">
             {locale === 'en' ? 'Testimonials' : locale === 'ru' ? 'Отзывы' : locale === 'ka' ? 'მიმოხილვები' : locale === 'he' ? 'המלצות' : locale === 'ar' ? 'الشهادات' : 'Yorumlar'}
           </p>
-          <h2 className="font-display font-bold mb-4" style={{
+          <h2 className="font-display font-bold mb-4 text-gray-900" style={{
             fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-            background: 'linear-gradient(135deg, #f5e6d0, #C9A96E)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
           }}>
             {t.title}
           </h2>
-          <p className="text-stone-500">{t.subtitle}</p>
+          <p className="text-gray-500">{t.subtitle}</p>
         </motion.div>
 
         {/* Main Testimonial Carousel */}
         <div className="relative">
           {/* Quote Icon */}
           <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-10">
-            <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #C9A96E, #a07840)' }}>
-              <Quote size={20} className="text-stone-900" />
+            <div className="w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-teal-500 to-teal-600">
+              <Quote size={20} className="text-white" />
             </div>
           </div>
 
@@ -228,20 +225,20 @@ export default function Testimonials({ locale }: TestimonialsProps) {
               transition={{ duration: 0.5 }}
               className="pt-8"
             >
-              <div className="rounded-3xl border border-stone-800 p-8 md:p-12 text-center" style={{ background: 'rgba(255,255,255,0.02)' }}>
+              <div className="rounded-3xl border border-gray-200 p-8 md:p-12 text-center bg-white shadow-sm">
                 {/* Stars */}
                 <div className="flex justify-center gap-1 mb-6">
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
                       size={20}
-                      className={i < currentTestimonial.rating ? 'text-amber-400 fill-amber-400' : 'text-stone-700'}
+                      className={i < currentTestimonial.rating ? 'text-amber-400 fill-amber-400' : 'text-gray-200'}
                     />
                   ))}
                 </div>
 
                 {/* Review Text */}
-                <p className="text-stone-200 text-lg md:text-xl leading-relaxed mb-8 max-w-3xl mx-auto italic">
+                <p className="text-gray-700 text-lg md:text-xl leading-relaxed mb-8 max-w-3xl mx-auto italic">
                   "{currentTestimonial.review[locale as keyof typeof currentTestimonial.review] || currentTestimonial.review.en}"
                 </p>
 
@@ -250,12 +247,12 @@ export default function Testimonials({ locale }: TestimonialsProps) {
                   <div className="flex items-center gap-3 mb-2">
                     <span className="text-2xl">{currentTestimonial.flag}</span>
                     <div className="text-left">
-                      <p className="text-white font-semibold">{currentTestimonial.name}</p>
-                      <p className="text-stone-500 text-sm">{currentTestimonial.location}</p>
+                      <p className="text-gray-900 font-semibold">{currentTestimonial.name}</p>
+                      <p className="text-gray-500 text-sm">{currentTestimonial.location}</p>
                     </div>
                   </div>
-                  <p className="text-amber-400/60 text-sm mb-2">{currentTestimonial.treatment}</p>
-                  <div className="flex items-center gap-2 text-stone-600 text-xs">
+                  <p className="text-teal-600/70 text-sm mb-2">{currentTestimonial.treatment}</p>
+                  <div className="flex items-center gap-2 text-gray-400 text-xs">
                     <MessageCircle size={12} />
                     <span>{t.verified}</span>
                     <span>•</span>
@@ -270,7 +267,7 @@ export default function Testimonials({ locale }: TestimonialsProps) {
           <div className="flex items-center justify-center gap-4 mt-8">
             <button
               onClick={prevTestimonial}
-              className="p-3 rounded-full bg-stone-800/50 hover:bg-stone-700/50 text-stone-400 hover:text-white transition-all"
+              className="p-3 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-all"
               aria-label="Previous testimonial"
             >
               <ChevronLeft size={20} />
@@ -288,8 +285,8 @@ export default function Testimonials({ locale }: TestimonialsProps) {
                   }}
                   className={`transition-all duration-300 rounded-full ${
                     i === currentIndex
-                      ? 'w-6 h-2 bg-amber-400'
-                      : 'w-2 h-2 bg-stone-700 hover:bg-stone-600'
+                      ? 'w-6 h-2 bg-teal-500'
+                      : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
                   }`}
                   aria-label={`Go to testimonial ${i + 1}`}
                 />
@@ -298,7 +295,7 @@ export default function Testimonials({ locale }: TestimonialsProps) {
 
             <button
               onClick={nextTestimonial}
-              className="p-3 rounded-full bg-stone-800/50 hover:bg-stone-700/50 text-stone-400 hover:text-white transition-all"
+              className="p-3 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-all"
               aria-label="Next testimonial"
             >
               <ChevronRight size={20} />
@@ -320,22 +317,21 @@ export default function Testimonials({ locale }: TestimonialsProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="p-5 rounded-2xl border border-stone-800 hover:border-amber-400/20 transition-all duration-300"
-              style={{ background: 'rgba(255,255,255,0.02)' }}
+              className="p-5 rounded-2xl border border-gray-200 hover:border-teal-300 transition-all duration-300 bg-white shadow-sm"
             >
               <div className="flex items-center gap-2 mb-3">
                 {[...Array(testimonial.rating)].map((_, i) => (
                   <Star key={i} size={12} className="text-amber-400 fill-amber-400" />
                 ))}
               </div>
-              <p className="text-stone-400 text-sm leading-relaxed mb-4 line-clamp-4">
+              <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-4">
                 "{testimonial.review[locale as keyof typeof testimonial.review] || testimonial.review.en}"
               </p>
               <div className="flex items-center gap-2">
                 <span>{testimonial.flag}</span>
                 <div>
-                  <p className="text-white text-sm font-medium">{testimonial.name}</p>
-                  <p className="text-stone-600 text-xs">{testimonial.treatment}</p>
+                  <p className="text-gray-900 text-sm font-medium">{testimonial.name}</p>
+                  <p className="text-gray-400 text-xs">{testimonial.treatment}</p>
                 </div>
               </div>
             </motion.div>
@@ -348,7 +344,7 @@ export default function Testimonials({ locale }: TestimonialsProps) {
             href="https://g.page/r/silkbeautybatumi/review"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-amber-400/30 text-amber-400 hover:bg-amber-400/10 transition-all text-sm font-medium"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-teal-300 text-teal-600 hover:bg-teal-50 transition-all text-sm font-medium"
           >
             <MessageCircle size={16} />
             {t.writeReview}

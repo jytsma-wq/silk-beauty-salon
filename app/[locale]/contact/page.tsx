@@ -170,6 +170,8 @@ export default function ContactPage({ params }: ContactPageProps) {
       phoneLabel: 'Phone & WhatsApp',
       emailLabel: 'Email',
       hours: 'Hours',
+      loading: 'Loading...',
+      followUs: 'Follow Us',
       placeholder: {
         name: 'Your name',
         phone: '+995 599 ...',
@@ -193,6 +195,8 @@ export default function ContactPage({ params }: ContactPageProps) {
       phoneLabel: 'Телефон и WhatsApp',
       emailLabel: 'Email',
       hours: 'Часы работы',
+      loading: 'Загрузка...',
+      followUs: 'Подписывайтесь',
       placeholder: {
         name: 'Ваше имя',
         phone: '+995 599 ...',
@@ -216,6 +220,8 @@ export default function ContactPage({ params }: ContactPageProps) {
       phoneLabel: 'ტელეფონი და WhatsApp',
       emailLabel: 'ელ-ფოსტა',
       hours: 'სამუშაო საათები',
+      loading: 'იტვირთება...',
+      followUs: 'გამოგვყევით',
       placeholder: {
         name: 'თქვენი სახელი',
         phone: '+995 599 ...',
@@ -239,6 +245,8 @@ export default function ContactPage({ params }: ContactPageProps) {
       phoneLabel: 'טלפון ו-WhatsApp',
       emailLabel: 'אימייל',
       hours: 'שעות',
+      loading: 'טוען...',
+      followUs: 'עקבו אחרינו',
       placeholder: {
         name: 'השם שלך',
         phone: '+995 599 ...',
@@ -262,6 +270,8 @@ export default function ContactPage({ params }: ContactPageProps) {
       phoneLabel: 'الهاتف وواتساب',
       emailLabel: 'البريد الإلكتروني',
       hours: 'ساعات العمل',
+      loading: 'جارٍ التحميل...',
+      followUs: 'تابعونا',
       placeholder: {
         name: 'اسمك',
         phone: '+995 599 ...',
@@ -285,6 +295,8 @@ export default function ContactPage({ params }: ContactPageProps) {
       phoneLabel: 'Telefon ve WhatsApp',
       emailLabel: 'E-posta',
       hours: 'Çalışma Saatleri',
+      loading: 'Yükleniyor...',
+      followUs: 'Bizi Takip Edin',
       placeholder: {
         name: 'Adınız',
         phone: '+995 599 ...',
@@ -298,7 +310,7 @@ export default function ContactPage({ params }: ContactPageProps) {
   const serviceList = services[locale as keyof typeof services] || services.en;
 
   return (
-    <div style={{ background: 'linear-gradient(180deg, #0d0a08 0%, #111009 100%)' }}>
+    <div className="bg-gradient-to-b from-gray-50 to-white min-h-screen">
       {/* Page Hero Slider */}
       <PageHero pageKey="contact" images={CONTACT_IMAGES} />
 
@@ -306,12 +318,9 @@ export default function ContactPage({ params }: ContactPageProps) {
         {/* Header */}
         <div className="text-center mb-16 -mt-10 relative z-10">
           <h1
-            className="font-display font-bold"
+            className="font-display font-bold text-gray-900"
             style={{
               fontSize: 'clamp(2rem, 5vw, 4rem)',
-              background: 'linear-gradient(135deg, #f5e6d0, #C9A96E)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
             }}
           >
             {t.title}
@@ -325,62 +334,60 @@ export default function ContactPage({ params }: ContactPageProps) {
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="text-center py-20 rounded-3xl border border-stone-800"
-                style={{ background: 'rgba(255,255,255,0.02)' }}
+                className="text-center py-20 rounded-3xl border border-teal-200 bg-white shadow-sm"
               >
-                <CheckCircle2 size={48} className="text-amber-400 mx-auto mb-5" />
-                <h3 className="text-white font-display text-2xl font-bold mb-3">{t.success}</h3>
-                <p className="text-stone-400 max-w-sm mx-auto">
+                <CheckCircle2 size={48} className="text-teal-500 mx-auto mb-5" />
+                <h3 className="text-gray-900 font-display text-2xl font-bold mb-3">{t.success}</h3>
+                <p className="text-gray-500 max-w-sm mx-auto">
                   {t.successSub}
                 </p>
               </motion.div>
             ) : (
               <form
                 onSubmit={handleSubmit}
-                className="space-y-4 p-8 rounded-3xl border border-stone-800"
-                style={{ background: 'rgba(255,255,255,0.02)' }}
+                className="space-y-4 p-8 rounded-3xl border border-gray-200 bg-white shadow-sm"
               >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-stone-500 text-xs tracking-wide uppercase block mb-2">{t.fullName} *</label>
+                    <label className="text-gray-500 text-xs tracking-wide uppercase block mb-2">{t.fullName} *</label>
                     <input
                       required
                       value={form.name}
                       onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      className="w-full bg-stone-900/60 border border-stone-800 rounded-xl px-4 py-3 text-stone-200 text-sm outline-none focus:border-amber-400/50 transition-colors placeholder:text-stone-700"
+                      className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm outline-none focus:border-teal-400 transition-colors placeholder:text-gray-400"
                       placeholder={t.placeholder.name}
                     />
                   </div>
                   <div>
-                    <label className="text-stone-500 text-xs tracking-wide uppercase block mb-2">{t.phone} *</label>
+                    <label className="text-gray-500 text-xs tracking-wide uppercase block mb-2">{t.phone} *</label>
                     <input
                       required
                       value={form.phone}
                       onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                      className="w-full bg-stone-900/60 border border-stone-800 rounded-xl px-4 py-3 text-stone-200 text-sm outline-none focus:border-amber-400/50 transition-colors placeholder:text-stone-700"
+                      className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm outline-none focus:border-teal-400 transition-colors placeholder:text-gray-400"
                       placeholder={t.placeholder.phone}
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-stone-500 text-xs tracking-wide uppercase block mb-2">{t.email}</label>
+                  <label className="text-gray-500 text-xs tracking-wide uppercase block mb-2">{t.email}</label>
                   <input
                     type="email"
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="w-full bg-stone-900/60 border border-stone-800 rounded-xl px-4 py-3 text-stone-200 text-sm outline-none focus:border-amber-400/50 transition-colors placeholder:text-stone-700"
+                    className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm outline-none focus:border-teal-400 transition-colors placeholder:text-gray-400"
                     placeholder={t.placeholder.email}
                   />
                 </div>
 
                 <div>
-                  <label className="text-stone-500 text-xs tracking-wide uppercase block mb-2">{t.treatment} *</label>
+                  <label className="text-gray-500 text-xs tracking-wide uppercase block mb-2">{t.treatment} *</label>
                   <select
                     required
                     value={form.service}
                     onChange={(e) => setForm({ ...form, service: e.target.value })}
-                    className="w-full bg-stone-900/60 border border-stone-800 rounded-xl px-4 py-3 text-stone-200 text-sm outline-none focus:border-amber-400/50 transition-colors"
+                    className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm outline-none focus:border-teal-400 transition-colors"
                   >
                     <option value="" disabled>{t.selectTreatment}</option>
                     {serviceList.map((s) => <option key={s} value={s}>{s}</option>)}
@@ -388,22 +395,22 @@ export default function ContactPage({ params }: ContactPageProps) {
                 </div>
 
                 <div>
-                  <label className="text-stone-500 text-xs tracking-wide uppercase block mb-2">{t.date}</label>
+                  <label className="text-gray-500 text-xs tracking-wide uppercase block mb-2">{t.date}</label>
                   <input
                     type="date"
                     value={form.date}
                     onChange={(e) => setForm({ ...form, date: e.target.value })}
-                    className="w-full bg-stone-900/60 border border-stone-800 rounded-xl px-4 py-3 text-stone-200 text-sm outline-none focus:border-amber-400/50 transition-colors"
+                    className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm outline-none focus:border-teal-400 transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="text-stone-500 text-xs tracking-wide uppercase block mb-2">{t.message}</label>
+                  <label className="text-gray-500 text-xs tracking-wide uppercase block mb-2">{t.message}</label>
                   <textarea
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
                     rows={3}
-                    className="w-full bg-stone-900/60 border border-stone-800 rounded-xl px-4 py-3 text-stone-200 text-sm outline-none focus:border-amber-400/50 transition-colors resize-none placeholder:text-stone-700"
+                    className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm outline-none focus:border-teal-400 transition-colors resize-none placeholder:text-gray-400"
                     placeholder={t.placeholder.message}
                   />
                 </div>
@@ -411,11 +418,11 @@ export default function ContactPage({ params }: ContactPageProps) {
                 <button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="w-full py-4 rounded-xl text-stone-900 font-semibold tracking-wide text-sm transition-all disabled:opacity-70 flex items-center justify-center gap-2"
-                  style={{ background: 'linear-gradient(135deg, #C9A96E, #a07840)' }}
+                  className="w-full py-4 rounded-xl text-white font-semibold tracking-wide text-sm transition-all disabled:opacity-70 flex items-center justify-center gap-2"
+                  style={{ background: 'linear-gradient(135deg, #14b8a6, #0d9488)' }}
                 >
                   {status === 'loading'
-                    ? <><Loader2 size={16} className="animate-spin" /> Loading...</>
+                    ? <><Loader2 size={16} className="animate-spin" /> {t.loading}</>
                     : t.submit}
                 </button>
               </form>
@@ -431,35 +438,35 @@ export default function ContactPage({ params }: ContactPageProps) {
             ].map((item) => {
               const Icon = item.icon;
               return (
-                <div key={item.label} className="flex gap-4 p-5 rounded-2xl border border-stone-800" style={{ background: 'rgba(255,255,255,0.02)' }}>
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(201,169,110,0.1)' }}>
-                    <Icon size={16} className="text-amber-400" />
+                <div key={item.label} className="flex gap-4 p-5 rounded-2xl border border-gray-200 bg-white shadow-sm">
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-teal-50">
+                    <Icon size={16} className="text-teal-500" />
                   </div>
                   <div>
-                    <p className="text-stone-500 text-xs mb-1 uppercase tracking-wide">{item.label}</p>
-                    <p className="text-stone-200 text-sm whitespace-pre-line">{item.value}</p>
+                    <p className="text-gray-400 text-xs mb-1 uppercase tracking-wide">{item.label}</p>
+                    <p className="text-gray-700 text-sm whitespace-pre-line">{item.value}</p>
                   </div>
                 </div>
               );
             })}
 
             {/* Hours */}
-            <div className="p-5 rounded-2xl border border-stone-800" style={{ background: 'rgba(255,255,255,0.02)' }}>
+            <div className="p-5 rounded-2xl border border-gray-200 bg-white shadow-sm">
               <div className="flex items-center gap-2 mb-4">
-                <Clock size={14} className="text-amber-400" />
-                <span className="text-stone-500 text-xs uppercase tracking-wide">{t.hours}</span>
+                <Clock size={14} className="text-teal-500" />
+                <span className="text-gray-400 text-xs uppercase tracking-wide">{t.hours}</span>
               </div>
               {SALON_INFO.hours.map((h) => (
-                <div key={h.day} className="flex justify-between text-sm py-1.5 border-b border-stone-800 last:border-0">
-                  <span className="text-stone-400">{h.day}</span>
-                  <span className="text-stone-300">{h.hours}</span>
+                <div key={h.day} className="flex justify-between text-sm py-1.5 border-b border-gray-100 last:border-0">
+                  <span className="text-gray-500">{h.day}</span>
+                  <span className="text-gray-700">{h.hours}</span>
                 </div>
               ))}
             </div>
 
             {/* Social Media */}
-            <div className="p-5 rounded-2xl border border-stone-800" style={{ background: 'rgba(255,255,255,0.02)' }}>
-              <p className="text-stone-500 text-xs uppercase tracking-wide mb-4">Follow Us</p>
+            <div className="p-5 rounded-2xl border border-gray-200 bg-white shadow-sm">
+              <p className="text-gray-400 text-xs uppercase tracking-wide mb-4">{t.followUs}</p>
               <div className="flex items-center gap-4">
                 <a
                   href={SALON_INFO.facebook}
@@ -492,12 +499,12 @@ export default function ContactPage({ params }: ContactPageProps) {
             </div>
 
             {/* Map embed */}
-            <div className="rounded-2xl overflow-hidden border border-stone-800 h-52">
+            <div className="rounded-2xl overflow-hidden border border-gray-200 h-52">
               <iframe
-                src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2978.3!2d${SALON_INFO.coordinates.lng}!3d${SALON_INFO.coordinates.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDM4JzQ4LjUiTiA0McKwMzgnMTIuMSJF!5e0!3m2!1sen!2sge!4v1`}
+                src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2978.3!2d${SALON_INFO.coordinates.lng}!3d${SALON_INFO.coordinates.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDFCsDM4JzQ4LjUiTiA0McKwMzgnMTIuMSJF!5e0!3m2!1sen!2sge!4v1`}
                 width="100%"
                 height="100%"
-                style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg)' }}
+                style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

@@ -16,16 +16,13 @@ export default function LookbookMarquee() {
   const doubled = [...IMAGES, ...IMAGES];
 
   return (
-    <section className="py-20 overflow-hidden" style={{ background: '#0a0806' }}>
+    <section className="py-20 overflow-hidden bg-white">
       <div className="text-center mb-10">
-        <p className="text-amber-400/60 text-xs tracking-[0.3em] uppercase mb-3">Lookbook</p>
+        <p className="text-teal-500 text-xs tracking-[0.3em] uppercase mb-3">Lookbook</p>
         <h2
-          className="font-display font-bold"
+          className="font-display font-bold text-gray-900"
           style={{
             fontSize: 'clamp(1.8rem, 4vw, 3rem)',
-            background: 'linear-gradient(135deg, #f5e6d0, #C9A96E)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
           }}
         >
           Our Work
@@ -36,9 +33,9 @@ export default function LookbookMarquee() {
       <div className="relative">
         {/* Fade edges */}
         <div className="absolute left-0 top-0 bottom-0 w-32 z-10 pointer-events-none"
-          style={{ background: 'linear-gradient(to right, #0a0806, transparent)' }} />
+          style={{ background: 'linear-gradient(to right, white, transparent)' }} />
         <div className="absolute right-0 top-0 bottom-0 w-32 z-10 pointer-events-none"
-          style={{ background: 'linear-gradient(to left, #0a0806, transparent)' }} />
+          style={{ background: 'linear-gradient(to left, white, transparent)' }} />
 
         <div
           className="flex gap-4"
@@ -50,7 +47,7 @@ export default function LookbookMarquee() {
           {doubled.map((img, i) => (
             <div
               key={i}
-              className="flex-shrink-0 w-64 h-64 rounded-2xl overflow-hidden border border-stone-800"
+              className="flex-shrink-0 w-64 h-64 rounded-2xl overflow-hidden border border-gray-200 shadow-sm"
             >
               <img
                 src={img.src}

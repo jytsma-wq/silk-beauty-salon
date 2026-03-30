@@ -15,24 +15,31 @@ const HERO_IMAGES = [
 export default function HeroSection({ locale }: { locale: string }) {
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{ background: 'linear-gradient(160deg, #0d0a08 0%, #1a120e 50%, #0d0a08 100%)' }}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white"
     >
-      {/* Background grid */}
+      {/* Subtle champagne gradient background */}
       <div
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute inset-0"
         style={{
-          backgroundImage: `linear-gradient(rgba(201,169,110,0.5) 1px, transparent 1px),
-                            linear-gradient(90deg, rgba(201,169,110,0.5) 1px, transparent 1px)`,
-          backgroundSize: '60px 60px',
+          background: 'linear-gradient(160deg, #FFFBF5 0%, #FDF6E9 50%, #FFFBF5 100%)',
         }}
       />
 
-      {/* Glow orbs */}
-      <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full blur-[120px] opacity-10"
-        style={{ background: '#C9A96E' }} />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full blur-[100px] opacity-5"
-        style={{ background: '#a07840' }} />
+      {/* Elegant decorative pattern */}
+      <div
+        className="absolute inset-0 opacity-[0.04]"
+        style={{
+          backgroundImage: `radial-gradient(circle at 25% 25%, #14b8a6 1px, transparent 1px),
+                            radial-gradient(circle at 75% 75%, #C9A96E 1px, transparent 1px)`,
+          backgroundSize: '80px 80px',
+        }}
+      />
+
+      {/* Soft glow orbs - teal and gold */}
+      <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full blur-[100px] opacity-20"
+        style={{ background: 'linear-gradient(135deg, #14b8a6, #0d9488)' }} />
+      <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] rounded-full blur-[80px] opacity-15"
+        style={{ background: 'linear-gradient(135deg, #C9A96E, #a07840)' }} />
 
       <div className="container mx-auto max-w-7xl px-6 relative z-10 pt-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">

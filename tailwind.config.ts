@@ -33,96 +33,77 @@ const config: Config = {
           900: '#854836',
         },
         surface: {
-          0: '#0d0a08',
-          1: '#111009',
-          2: '#160f0b',
-          3: '#1a120e',
+          0: '#ffffff', // Changed to pure white for the Galderma aesthetic
+          1: '#fafafa',
+          2: '#f5f5f5',
+          3: '#e5e5e5',
         },
       },
       fontSize: {
-        // Hero sizes
-        'hero-lg': ['clamp(3rem, 8vw, 6rem)', { lineHeight: '1.15', letterSpacing: '-0.03em' }],
-        'hero-md': ['clamp(2.5rem, 6vw, 4.5rem)', { lineHeight: '1.15', letterSpacing: '-0.015em' }],
-        'hero-sm': ['clamp(2rem, 5vw, 3.5rem)', { lineHeight: '1.15', letterSpacing: '-0.015em' }],
+        // Refined Hero sizes for French elegance
+        'hero-lg': ['clamp(2.5rem, 5vw, 4.5rem)', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+        'hero-md': ['clamp(2rem, 4vw, 3.5rem)', { lineHeight: '1.15', letterSpacing: '-0.01em' }],
+        'hero-sm': ['clamp(1.75rem, 3.5vw, 2.75rem)', { lineHeight: '1.2', letterSpacing: '-0.01em' }],
         
-        // Display sizes
-        'display-1': ['clamp(2.25rem, 4vw, 3.5rem)', { lineHeight: '1.15', letterSpacing: '-0.015em' }],
-        'display-2': ['clamp(1.875rem, 3.5vw, 2.75rem)', { lineHeight: '1.15', letterSpacing: '-0.015em' }],
-        'display-3': ['clamp(1.5rem, 3vw, 2.25rem)', { lineHeight: '1.35', letterSpacing: '0' }],
+        // Refined Display sizes
+        'display-1': ['clamp(1.875rem, 3vw, 2.5rem)', { lineHeight: '1.2', letterSpacing: '-0.01em' }],
+        'display-2': ['clamp(1.5rem, 2.5vw, 2rem)', { lineHeight: '1.3', letterSpacing: '0' }],
+        'display-3': ['clamp(1.25rem, 2vw, 1.5rem)', { lineHeight: '1.4', letterSpacing: '0' }],
         
-        // Body sizes
-        'body-xl': ['1.25rem', { lineHeight: '1.75' }],
-        'body-lg': ['1.125rem', { lineHeight: '1.6' }],
-        'body-md': ['1rem', { lineHeight: '1.6' }],
-        'body-sm': ['0.875rem', { lineHeight: '1.6' }],
-        'body-xs': ['0.8125rem', { lineHeight: '1.6' }],
+        // Body sizes with increased line-height for breathability
+        'body-xl': ['1.125rem', { lineHeight: '1.8' }],
+        'body-lg': ['1.0625rem', { lineHeight: '1.8' }],
+        'body-md': ['1rem', { lineHeight: '1.75' }],
+        'body-sm': ['0.875rem', { lineHeight: '1.7' }],
+        'body-xs': ['0.75rem', { lineHeight: '1.6' }],
         
         // UI sizes
-        'button': ['0.875rem', { lineHeight: '1.4', letterSpacing: '0.025em' }],
-        'label': ['0.75rem', { lineHeight: '1.4', letterSpacing: '0.05em' }],
-        'caption': ['0.6875rem', { lineHeight: '1.4', letterSpacing: '0.025em' }],
+        'button': ['0.8125rem', { lineHeight: '1', letterSpacing: '0.05em' }],
+        'label': ['0.75rem', { lineHeight: '1', letterSpacing: '0.08em' }],
+        'caption': ['0.6875rem', { lineHeight: '1.4', letterSpacing: '0.04em' }],
       },
       spacing: {
         '18': '4.5rem',
         '22': '5.5rem',
         '30': '7.5rem',
+        'section': 'clamp(4rem, 8vw, 8rem)', // Added standard section spacing
       },
       borderRadius: {
         '4xl': '2rem',
         '5xl': '2.5rem',
       },
       boxShadow: {
-        'gold': '0 0 40px rgba(201, 169, 110, 0.15)',
-        'soft': '0 4px 24px rgba(0, 0, 0, 0.4)',
-        'elegant': '0 8px 32px rgba(0, 0, 0, 0.3)',
-        'glow': '0 0 30px rgba(201, 169, 110, 0.2)',
+        'gold': '0 4px 20px rgba(201, 169, 110, 0.08)',
+        'soft': '0 2px 15px rgba(0, 0, 0, 0.04)',
+        'elegant': '0 10px 40px rgba(0, 0, 0, 0.06)',
+        'glow': '0 0 20px rgba(201, 169, 110, 0.1)',
       },
       animation: {
-        'float':       'float 4s ease-in-out infinite',
-        'pulse-glow':  'pulse-glow 2s ease-in-out infinite',
-        'shimmer':     'shimmer 3s linear infinite',
-        'marquee':     'marquee 30s linear infinite',
-        'fade-in':     'fadeIn 0.5s ease-out',
-        'slide-up':    'slideUp 0.5s ease-out',
-        'slide-in-left': 'slideInLeft 0.5s ease-out',
-        'slide-in-right': 'slideInRight 0.5s ease-out',
+        'float': 'float 6s ease-in-out infinite',
+        'pulse-glow': 'pulse-glow 3s ease-in-out infinite',
+        'fade-in': 'fadeIn 0.8s ease-out',
+        'slide-up': 'slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
       },
       keyframes: {
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
-          '50%':      { transform: 'translateY(-12px)' },
+          '50%': { transform: 'translateY(-8px)' },
         },
         'pulse-glow': {
-          '0%, 100%': { boxShadow: '0 0 20px rgba(201,169,110,0.2)' },
-          '50%':      { boxShadow: '0 0 40px rgba(201,169,110,0.5)' },
-        },
-        shimmer: {
-          '0%':   { backgroundPosition: '0% center' },
-          '100%': { backgroundPosition: '200% center' },
-        },
-        marquee: {
-          from: { transform: 'translateX(0)' },
-          to:   { transform: 'translateX(-50%)' },
+          '0%, 100%': { boxShadow: '0 0 10px rgba(201,169,110,0.1)' },
+          '50%': { boxShadow: '0 0 25px rgba(201,169,110,0.2)' },
         },
         fadeIn: {
           from: { opacity: '0' },
           to: { opacity: '1' },
         },
         slideUp: {
-          from: { opacity: '0', transform: 'translateY(20px)' },
+          from: { opacity: '0', transform: 'translateY(30px)' },
           to: { opacity: '1', transform: 'translateY(0)' },
-        },
-        slideInLeft: {
-          from: { opacity: '0', transform: 'translateX(-20px)' },
-          to: { opacity: '1', transform: 'translateX(0)' },
-        },
-        slideInRight: {
-          from: { opacity: '0', transform: 'translateX(20px)' },
-          to: { opacity: '1', transform: 'translateX(0)' },
         },
       },
       transitionTimingFunction: {
-        'elegant': 'cubic-bezier(0.4, 0, 0.2, 1)',
+        'elegant': 'cubic-bezier(0.16, 1, 0.3, 1)',
       },
     },
   },

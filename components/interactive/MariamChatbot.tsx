@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send, Loader2, Sparkles, Phone, MapPin, Clock, Star } from 'lucide-react';
 import type { ChatMessage } from '@/types/types';
+import { sendMessage } from '@/app/actions/chat';
 
 // Suggested questions in multiple languages
 const SUGGESTED_QUESTIONS: Record<string, string[]> = {
@@ -87,7 +88,7 @@ export default function MariamChatbot({ locale }: MariamChatbotProps) {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [showQuickActions, setShowQuickActions] = useState(true);
-  const [showTooltip, setShowTooltip] = useState(true);
+  const [showTooltip, setShowTooltip] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
 
   const suggested = SUGGESTED_QUESTIONS[locale] || SUGGESTED_QUESTIONS.en;
@@ -115,17 +116,26 @@ export default function MariamChatbot({ locale }: MariamChatbotProps) {
     setShowQuickActions(false);
 
     try {
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: [...messages, userMsg], locale }),
-      });
-      const data = await res.json();
-      setMessages((prev) => [...prev, { role: 'assistant', content: data.reply }]);
-    } catch {
+      const result = await sendMessage(text, locale);
+      console.log('Server action result:', result);
+      if (result.success && result.reply) {
+        setMessages((prev) => [...prev, { role: 'assistant', content: result.reply }]);
+      } else {
+        throw new Error(result.reply || 'Empty response');
+      }
+    } catch (err) {
+      console.error('Chat error:', err);
+      const whatsappMessages: Record<string, string> = {
+        en: "I'm having trouble connecting right now. Please message us on WhatsApp at +995 599 123 456 for immediate assistance! 💬",
+        ru: "У меня проблемы с соединением. Пожалуйста, напишите нам в WhatsApp: +995 599 123 456! 💬",
+        ka: "კავშირის პრობლემა. მოგვწერეთ WhatsApp-ზე: +995 599 123 456! 💬",
+        he: "יש לי בעיית חיבור. אנא שלחו לנו הודעה ב-WhatsApp: +995 599 123 456! 💬",
+        ar: "لدي مشكلة في الاتصال. رجاءً أرسلوا لنا رسالة على واتساب: +995 599 123 456! 💬",
+        tr: "Bağlantı sorunu yaşıyorum. Lütfen WhatsApp'tan mesaj gönderin: +995 599 123 456! 💬",
+      };
       setMessages((prev) => [
         ...prev,
-        { role: 'assistant', content: locale === 'ru' ? 'Извините, у меня проблемы с соединением. Позвоните нам: +995 599 123 456!' : locale === 'ka' ? 'უკაცრავად, კავშირის პრობლემა. დაგვირეკეთ: +995 599 123 456!' : 'Sorry, I\'m having trouble connecting. Please call us at +995 599 123 456!' },
+        { role: 'assistant', content: whatsappMessages[locale] || whatsappMessages.en },
       ]);
     } finally {
       setLoading(false);
@@ -133,9 +143,9 @@ export default function MariamChatbot({ locale }: MariamChatbotProps) {
   }
 
   const quickActions = [
-    { icon: Phone, label: locale === 'ru' ? 'Позвонить' : locale === 'ka' ? 'დარეკვა' : 'Call', action: 'tel:+995599123456' },
-    { icon: MapPin, label: locale === 'ru' ? 'Локация' : locale === 'ka' ? 'მდებარეობა' : 'Location', action: 'https://maps.google.com/?q=28+Rustaveli+Avenue+Batumi+Georgia' },
-    { icon: Clock, label: locale === 'ru' ? 'Часы' : locale === 'ka' ? 'საათები' : 'Hours', action: null },
+    { icon: Phone, label: locale === 'ru' ? 'Позвонить' : locale === 'ka' ? 'დარეკვა' : locale === 'he' ? 'להתקשר' : locale === 'ar' ? 'اتصل' : locale === 'tr' ? 'Ara' : 'Call', action: 'tel:+995599123456' },
+    { icon: MapPin, label: locale === 'ru' ? 'Локация' : locale === 'ka' ? 'მდებარეობა' : locale === 'he' ? 'מיקום' : locale === 'ar' ? 'الموقع' : locale === 'tr' ? 'Konum' : 'Location', action: 'https://maps.google.com/?q=28+Rustaveli+Avenue+Batumi+Georgia' },
+    { icon: Clock, label: locale === 'ru' ? 'Часы' : locale === 'ka' ? 'საათები' : locale === 'he' ? 'שעות' : locale === 'ar' ? 'الساعات' : locale === 'tr' ? 'Saatler' : 'Hours', action: null },
   ];
 
   return (
@@ -178,7 +188,7 @@ export default function MariamChatbot({ locale }: MariamChatbotProps) {
                 </div>
                 <div>
                   <p className="text-gray-800 text-sm font-medium mb-1">{tooltip}</p>
-                  <p className="text-teal-600/70 text-xs">AI Beauty Consultant</p>
+                  <p className="text-teal-600/70 text-xs">{locale === 'ru' ? 'ИИ-консультант красоты' : locale === 'ka' ? 'AI სილამაზის კონსულტანტი' : locale === 'he' ? 'יועצת יופי AI' : locale === 'ar' ? 'مستشارة الجمال AI' : locale === 'tr' ? 'AI Güzellik Danışmanı' : 'AI Beauty Consultant'}</p>
                 </div>
               </div>
             </motion.div>
@@ -189,6 +199,7 @@ export default function MariamChatbot({ locale }: MariamChatbotProps) {
         <motion.button
           onClick={() => setOpen(true)}
           onMouseEnter={() => setShowTooltip(true)}
+          onMouseLeave={() => setShowTooltip(false)}
           className="relative w-16 h-16 rounded-full shadow-2xl border-2 border-teal-400/30 overflow-hidden group"
           style={{ 
             background: 'linear-gradient(135deg, #14b8a6, #0d9488)',
@@ -261,7 +272,7 @@ export default function MariamChatbot({ locale }: MariamChatbotProps) {
                   <p className="text-gray-900 text-base font-bold">Mariam</p>
                   <div className="flex items-center gap-1.5">
                     <Sparkles size={10} className="text-teal-500" />
-                    <p className="text-teal-600/70 text-xs">AI Beauty Consultant</p>
+                    <p className="text-teal-600/70 text-xs">{locale === 'ru' ? 'ИИ-консультант красоты' : locale === 'ka' ? 'AI სილამაზის კონსულტანტი' : locale === 'he' ? 'יועצת יופי AI' : locale === 'ar' ? 'مستشارة الجمال AI' : locale === 'tr' ? 'AI Güzellik Danışmanı' : 'AI Beauty Consultant'}</p>
                   </div>
                 </div>
               </div>
@@ -324,7 +335,7 @@ export default function MariamChatbot({ locale }: MariamChatbotProps) {
                   <div className="space-y-2 ml-10">
                     <p className="text-teal-600 text-xs mb-2 flex items-center gap-1">
                       <Star size={10} />
-                      {locale === 'ru' ? 'Частые вопросы:' : locale === 'ka' ? 'ხშირი კითხვები:' : 'Suggested questions:'}
+                      {locale === 'ru' ? 'Частые вопросы:' : locale === 'ka' ? 'ხშირი კითხვები:' : locale === 'he' ? 'שאלות נפוצות:' : locale === 'ar' ? 'أسئلة شائعة:' : locale === 'tr' ? 'Sık sorulan sorular:' : 'Suggested questions:'}
                     </p>
                     {suggested.slice(0, 4).map((s, i) => (
                       <motion.button
@@ -380,7 +391,7 @@ export default function MariamChatbot({ locale }: MariamChatbotProps) {
                   <div className="bg-white border border-gray-200 rounded-2xl rounded-tl-none px-4 py-3 flex items-center gap-2">
                     <Loader2 size={14} className="text-teal-500 animate-spin" />
                     <span className="text-gray-400 text-sm">
-                      {locale === 'ru' ? 'Печатаю...' : locale === 'ka' ? 'ვწერ...' : 'Typing...'}
+                      {locale === 'ru' ? 'Печатаю...' : locale === 'ka' ? 'ვწერ...' : locale === 'he' ? 'מקלידה...' : locale === 'ar' ? 'أكتب...' : locale === 'tr' ? 'Yazıyor...' : 'Typing...'}
                     </span>
                   </div>
                 </div>
@@ -395,7 +406,7 @@ export default function MariamChatbot({ locale }: MariamChatbotProps) {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && send(input)}
-                placeholder={locale === 'ru' ? 'Спросите меня о чем-нибудь...' : locale === 'ka' ? 'რაიმეს შესახებ მკითხეთ...' : 'Ask me anything...'}
+                placeholder={locale === 'ru' ? 'Спросите меня о чем-нибудь...' : locale === 'ka' ? 'რაიმეს შესახებ მკითხეთ...' : locale === 'he' ? 'תשאלו אותי משהו...' : locale === 'ar' ? 'اسألني أي شيء...' : locale === 'tr' ? 'Bana bir şey sor...' : 'Ask me anything...'}
                 className="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-700 text-sm outline-none focus:border-teal-400 transition-colors placeholder:text-gray-400"
               />
               <motion.button

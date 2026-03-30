@@ -145,7 +145,7 @@ export default async function SpecialistsPage({
   const followLabel = locale === 'en' ? 'Follow on Instagram' : locale === 'ru' ? 'Подписаться в Instagram' : locale === 'ka' ? 'გამოგვიეწერეთ Instagram-ზე' : locale === 'he' ? 'עקבו באינסטגרם' : locale === 'ar' ? 'تابعنا على انستغرام' : "Instagram'da Takip Et";
 
   return (
-    <div style={{ background: 'linear-gradient(180deg, #0d0a08 0%, #111009 100%)' }}>
+    <div className="bg-gradient-to-b from-gray-50 to-white min-h-screen">
       {/* Page Hero Slider */}
       <PageHero pageKey="specialists" images={SPECIALIST_IMAGES} />
 
@@ -153,17 +153,14 @@ export default async function SpecialistsPage({
         {/* Header */}
         <div className="text-center mb-20 -mt-10 relative z-10">
           <h1
-            className="font-display font-bold"
+            className="font-display font-bold text-gray-900"
             style={{
               fontSize: 'clamp(2rem, 5vw, 4rem)',
-              background: 'linear-gradient(135deg, #f5e6d0, #C9A96E)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
             }}
           >
             {titleLabel}
           </h1>
-          <p className="text-stone-500 mt-4 max-w-xl mx-auto">
+          <p className="text-gray-500 mt-4 max-w-xl mx-auto">
             {subtitleLabel}
           </p>
         </div>
@@ -173,8 +170,7 @@ export default async function SpecialistsPage({
           {specialists.map((s) => (
             <div
               key={s.name}
-              className="group flex flex-col sm:flex-row gap-6 p-6 rounded-3xl border border-stone-800 hover:border-amber-400/30 transition-all duration-500"
-              style={{ background: 'rgba(255,255,255,0.02)' }}
+              className="group flex flex-col sm:flex-row gap-6 p-6 rounded-3xl border border-gray-200 hover:border-teal-300 transition-all duration-500 bg-white shadow-sm"
             >
               {/* Photo */}
               <div className="relative flex-shrink-0">
@@ -186,8 +182,8 @@ export default async function SpecialistsPage({
                   />
                 </div>
                 <span
-                  className="absolute -bottom-2 -right-2 px-2 py-0.5 rounded-full text-xs font-bold text-stone-900"
-                  style={{ background: 'linear-gradient(135deg, #C9A96E, #a07840)' }}
+                  className="absolute -bottom-2 -right-2 px-2 py-0.5 rounded-full text-xs font-bold text-white"
+                  style={{ background: 'linear-gradient(135deg, #14b8a6, #0d9488)' }}
                 >
                   {s.badge[locale as keyof typeof s.badge] || s.badge.en}
                 </span>
@@ -195,15 +191,15 @@ export default async function SpecialistsPage({
 
               {/* Info */}
               <div className="flex-1">
-                <h2 className="text-white font-display text-xl font-bold mb-0.5">{s.name}</h2>
-                <p className="text-amber-400/70 text-sm mb-1">{s.role[locale as keyof typeof s.role] || s.role.en}</p>
-                <p className="text-stone-500 text-xs mb-3 border-b border-stone-800 pb-3">{s.specialty}</p>
-                <p className="text-stone-400 text-sm leading-relaxed mb-4">{s.bio[locale as keyof typeof s.bio] || s.bio.en}</p>
+                <h2 className="text-gray-900 font-display text-xl font-bold mb-0.5">{s.name}</h2>
+                <p className="text-teal-600/70 text-sm mb-1">{s.role[locale as keyof typeof s.role] || s.role.en}</p>
+                <p className="text-gray-400 text-xs mb-3 border-b border-gray-100 pb-3">{s.specialty}</p>
+                <p className="text-gray-500 text-sm leading-relaxed mb-4">{s.bio[locale as keyof typeof s.bio] || s.bio.en}</p>
                 <a
                   href={s.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs text-stone-500 hover:text-amber-400 transition-colors"
+                  className="inline-flex items-center gap-1.5 text-xs text-gray-500 hover:text-teal-600 transition-colors"
                 >
                   <Instagram size={12} />
                   {followLabel}

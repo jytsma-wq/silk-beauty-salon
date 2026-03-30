@@ -5,6 +5,94 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Send, Loader2, Sparkles } from 'lucide-react';
 import type { ChatMessage } from '@/types/types';
 
+const translations: Record<string, {
+  suggested: string[];
+  advisor: string;
+  online: string;
+  greeting: string;
+  placeholder: string;
+  error: string;
+}> = {
+  en: {
+    suggested: [
+      'What lip filler techniques do you offer?',
+      'How much does Botox cost?',
+      'Tell me about Russian Volume lashes',
+      'How do I book an appointment?',
+    ],
+    advisor: 'Silk Beauty Advisor',
+    online: 'Online now',
+    greeting: "Hi! I'm your Silk Beauty Advisor. How can I help you today? ✨",
+    placeholder: 'Ask about treatments…',
+    error: "Sorry, I'm having trouble connecting. Please call us at +995 599 123 456!",
+  },
+  ru: {
+    suggested: [
+      'Какие техники увеличения губ вы предлагаете?',
+      'Сколько стоит ботокс?',
+      'Расскажите о русском объеме ресниц',
+      'Как записаться на прием?',
+    ],
+    advisor: 'Beauty-советник Silk',
+    online: 'На связи',
+    greeting: 'Привет! Я ваш Beauty-советник Silk. Чем могу помочь? ✨',
+    placeholder: 'Спросите о процедурах…',
+    error: 'Извините, проблемы со связью. Позвоните нам: +995 599 123 456!',
+  },
+  ka: {
+    suggested: [
+      'რა ტექნიკას იყენებთ ტუჩების შესავსებად?',
+      'რამდენი ღირს ბოტოქსი?',
+      'მითხარით რუსული მოცულობის წამწამების შესახებ',
+      'როგორ დავჯავშნო ვიზიტი?',
+    ],
+    advisor: 'Silk Beauty მრჩეველი',
+    online: 'ხელმისაწვდომია',
+    greeting: 'გამარჯობა! მე თქვენი Silk Beauty მრჩეველი ვარ. როგორ შემიძლია დაგეხმაროთ? ✨',
+    placeholder: 'იკითხეთ პროცედურების შესახებ…',
+    error: 'უკაცრავად, კავშირის პრობლემა. დაგვირეკეთ: +995 599 123 456!',
+  },
+  he: {
+    suggested: [
+      'אילו טכניקות למילוי שפתיים יש לכם?',
+      'כמה עולה בוטוקס?',
+      'ספרו לי על ריסים נפח רוסי',
+      'איך אני מזמינה תור?',
+    ],
+    advisor: 'יועצת Silk Beauty',
+    online: 'זמינה עכשיו',
+    greeting: 'היי! אני יועצת ה-Silk Beauty שלך. איך אוכל לעזור? ✨',
+    placeholder: 'שאלי על טיפולים…',
+    error: 'מצטערת, יש בעיית חיבור. אנא התקשרי: +995 599 123 456!',
+  },
+  ar: {
+    suggested: [
+      'ما هي تقنيات حشو الشفاه التي تقدمونها؟',
+      'كم تكلفة البوتوكس؟',
+      'أخبروني عن الرموش الروسية',
+      'كيف أحجز موعد؟',
+    ],
+    advisor: 'مستشارة Silk Beauty',
+    online: 'متاحة الآن',
+    greeting: 'مرحباً! أنا مستشارة Silk Beauty. كيف يمكنني مساعدتك؟ ✨',
+    placeholder: 'اسألي عن العلاجات…',
+    error: 'عذراً، هناك مشكلة في الاتصال. اتصلي بنا: +995 599 123 456!',
+  },
+  tr: {
+    suggested: [
+      'Hangi dudak dolgusu tekniklerini sunuyorsunuz?',
+      'Botoks ne kadar?',
+      'Rus hacim kirpiklerinden bahsedin',
+      'Nasıl randevu alırım?',
+    ],
+    advisor: 'Silk Beauty Danışmanı',
+    online: 'Şimdi çevrimiçi',
+    greeting: 'Merhaba! Ben Silk Beauty Danışmanınızım. Size nasıl yardımcı olabilirim? ✨',
+    placeholder: 'Tedaviler hakkında sorun…',
+    error: 'Üzgünüm, bağlantı sorunu. Bizi arayın: +995 599 123 456!',
+  },
+};
+
 const SUGGESTED = [
   'What lip filler techniques do you offer?',
   'How much does Botox cost?',
@@ -18,6 +106,8 @@ export default function AIChatModal({ locale }: { locale: string }) {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
+
+  const t = translations[locale] || translations.en;
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -42,7 +132,7 @@ export default function AIChatModal({ locale }: { locale: string }) {
     } catch {
       setMessages((prev) => [
         ...prev,
-        { role: 'assistant', content: 'Sorry, I\'m having trouble connecting. Please call us at +995 599 123 456!' },
+        { role: 'assistant', content: t.error },
       ]);
     } finally {
       setLoading(false);
@@ -85,10 +175,10 @@ export default function AIChatModal({ locale }: { locale: string }) {
                   <Sparkles size={13} className="text-stone-900" />
                 </div>
                 <div>
-                  <p className="text-stone-100 text-sm font-semibold">Silk Beauty Advisor</p>
+                  <p className="text-stone-100 text-sm font-semibold">{t.advisor}</p>
                   <div className="flex items-center gap-1">
                     <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
-                    <p className="text-stone-500 text-xs">Online now</p>
+                    <p className="text-stone-500 text-xs">{t.online}</p>
                   </div>
                 </div>
               </div>
@@ -106,11 +196,11 @@ export default function AIChatModal({ locale }: { locale: string }) {
                       <Sparkles size={11} className="text-stone-900" />
                     </div>
                     <div className="bg-stone-800/60 rounded-xl rounded-tl-none px-3 py-2 text-stone-300 text-sm max-w-[85%]">
-                      Hi! I'm your Silk Beauty Advisor. How can I help you today? ✨
+                      {t.greeting}
                     </div>
                   </div>
                   <div className="space-y-2 ml-8">
-                    {SUGGESTED.map((s) => (
+                    {t.suggested.map((s) => (
                       <button
                         key={s}
                         onClick={() => send(s)}
@@ -163,7 +253,7 @@ export default function AIChatModal({ locale }: { locale: string }) {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && send(input)}
-                placeholder="Ask about treatments…"
+                placeholder={t.placeholder}
                 className="flex-1 bg-stone-800/60 border border-stone-700 rounded-xl px-3 py-2 text-stone-200 text-sm outline-none focus:border-amber-400/50 transition-colors placeholder:text-stone-600"
               />
               <button

@@ -175,11 +175,11 @@ function BeforeAfterSlider({ before, after, treatment, description, client }: Be
   };
 
   return (
-    <div className="rounded-2xl overflow-hidden border border-stone-800 hover:border-amber-400/30 transition-all duration-300">
+    <div className="rounded-2xl overflow-hidden border border-gray-200 hover:border-teal-300 transition-all duration-300 shadow-sm">
       {/* Treatment Label */}
-      <div className="px-4 py-3 bg-stone-900/50 border-b border-stone-800">
-        <h4 className="text-white font-medium text-sm">{treatment}</h4>
-        <p className="text-stone-500 text-xs">{client}</p>
+      <div className="px-4 py-3 bg-gray-50 border-b border-gray-200">
+        <h4 className="text-gray-900 font-medium text-sm">{treatment}</h4>
+        <p className="text-gray-500 text-xs">{client}</p>
       </div>
 
       {/* Slider Container */}
@@ -223,17 +223,17 @@ function BeforeAfterSlider({ before, after, treatment, description, client }: Be
         </div>
 
         {/* Labels */}
-        <div className="absolute top-3 left-3 px-2 py-1 rounded bg-black/60 text-white text-xs font-medium">
+        <div className="absolute top-3 left-3 px-2 py-1 rounded bg-teal-600/80 text-white text-xs font-medium">
           Before
         </div>
-        <div className="absolute top-3 right-3 px-2 py-1 rounded bg-amber-400/90 text-stone-900 text-xs font-medium">
+        <div className="absolute top-3 right-3 px-2 py-1 rounded bg-amber-400/90 text-gray-900 text-xs font-medium">
           After
         </div>
       </div>
 
       {/* Description */}
-      <div className="px-4 py-3 bg-stone-900/30">
-        <p className="text-stone-400 text-xs">{description}</p>
+      <div className="px-4 py-3 bg-gray-50">
+        <p className="text-gray-600 text-xs">{description}</p>
       </div>
     </div>
   );
@@ -314,7 +314,7 @@ export default function BeforeAfterGallery({ locale }: BeforeAfterGalleryProps) 
   ];
 
   return (
-    <section className="py-24 px-6" style={{ background: '#0a0806' }}>
+    <section className="py-24 px-6 bg-white">
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <motion.div
@@ -323,19 +323,16 @@ export default function BeforeAfterGallery({ locale }: BeforeAfterGalleryProps) 
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <p className="text-amber-400/60 text-xs tracking-[0.3em] uppercase mb-4">
+          <p className="text-teal-500 text-xs tracking-[0.3em] uppercase mb-4">
             {locale === 'en' ? 'Portfolio' : locale === 'ru' ? 'Портфолио' : locale === 'ka' ? 'პორტფოლიო' : locale === 'he' ? 'תיק עבודות' : locale === 'ar' ? 'معرض الأعمال' : 'Portfolyo'}
           </p>
-          <h2 className="font-display font-bold mb-4" style={{
+          <h2 className="font-display font-bold mb-4 text-gray-900" style={{
             fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-            background: 'linear-gradient(135deg, #f5e6d0, #C9A96E)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
           }}>
             {labels.title}
           </h2>
-          <p className="text-stone-500 flex items-center justify-center gap-2">
-            <MoveHorizontal size={16} className="text-amber-400/60" />
+          <p className="text-gray-500 flex items-center justify-center gap-2">
+            <MoveHorizontal size={16} className="text-teal-400" />
             {labels.subtitle}
           </p>
         </motion.div>
@@ -348,10 +345,10 @@ export default function BeforeAfterGallery({ locale }: BeforeAfterGalleryProps) 
               onClick={() => setActiveCategory(cat.id)}
               className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ${
                 activeCategory === cat.id
-                  ? 'text-stone-900'
-                  : 'border border-stone-800 text-stone-400 hover:border-amber-400/40 hover:text-amber-300'
+                  ? 'text-white'
+                  : 'border border-gray-300 text-gray-600 hover:border-teal-400 hover:text-teal-600'
               }`}
-              style={activeCategory === cat.id ? { background: 'linear-gradient(135deg, #C9A96E, #a07840)' } : {}}
+              style={activeCategory === cat.id ? { background: 'linear-gradient(135deg, #14b8a6, #0d9488)' } : {}}
             >
               {cat.label}
             </button>
@@ -388,7 +385,7 @@ export default function BeforeAfterGallery({ locale }: BeforeAfterGalleryProps) 
         </AnimatePresence>
 
         {/* Disclaimer */}
-        <p className="text-stone-600 text-xs text-center mt-8">
+        <p className="text-gray-400 text-xs text-center mt-8">
           {labels.disclaimer}
         </p>
       </div>

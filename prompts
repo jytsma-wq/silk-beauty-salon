@@ -1,1 +1,18 @@
-Now we are going to enhance the appearance of the website. 1/ inspect and change all fonts that are too small or big. Look what the standard size fonts are for a beauty salon website in general 2/ create for the chatbot: her name is Mariam, image of a woman in the chatbot circle, when you hoover on the chatbot this text appears; hello, my name is Mariam, Can I help you? 3/ WhatsApp: when hoover on the WhatsApp circle this text appears; please contact us. 4/ make the whole website breath French sophistication and allure. Look at the beauty salons in France to get inspiration. 5/ facebook, Instagram, tiktok logo in color in the footer. Visible! The are also on the contact page. 6/ make sure I have a lot off images on the website. I will put them or replace them later. 7/ inspect everything and compare the website with the websites of French beauty salon websites. 9/ create a comprehensive plan to achieve these goals. Also come up with improvements for the website. 10/ cookie settings 11/ look at this website; https://www.galdermaaesthetics.com/ replicate this style, especially the header and footer.  Go and make the plan
+Role: Senior Next.js developer working on a luxury beauty salon site called "Silk Beauty Salon" at silkbeautybatumi.ge.
+
+Task: Audit and fix all brand identity and URL inconsistencies across the codebase. The current code has "Galderma Aesthetics" and "example-clinic.com" as placeholders that were never replaced.
+
+Files to fix:
+1. app/layout.tsx — Replace metadataBase URL, all "Galderma Aesthetics" references, update title template to "Silk Beauty Salon", update all OG/Twitter metadata, fix alternates.languages to include: en, ka, ru, he, ar, tr with proper BCP-47 tags plus x-default.
+2. lib/seo-metadata.ts — Replace baseUrl, siteName, locales array (remove nl, add ka, ru, he, ar, tr).
+3. app/sitemap.ts — Replace baseUrl with https://silkbeautybatumi.ge, fix locales array.
+4. app/robots.ts — Verify sitemap URL points to correct domain.
+
+The correct brand data:
+— Site name: Silk Beauty Salon
+— Domain: https://silkbeautybatumi.ge
+— Locales: en, ka, ru, he, ar, tr
+— Twitter: @silkbeautybatumi
+— Description: World-class aesthetic medicine, lash extensions, hair, and nail design in Batumi, Georgia.
+
+Output the complete corrected files. Include the proper hreflang x-default pattern pointing to /en.

@@ -1,28 +1,26 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { buildWhatsAppLink } from '@/lib/whatsapp';
 
 const SLIDE_IMAGES = [
   {
     url: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=90',
-    overlay: 'from-black/70 via-black/50 to-black/70',
+    overlay: 'from-gray-900/50 via-gray-800/30 to-gray-900/50',
   },
   {
     url: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1920&q=90',
-    overlay: 'from-black/70 via-black/50 to-black/70',
+    overlay: 'from-gray-900/50 via-gray-800/30 to-gray-900/50',
   },
   {
     url: 'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1920&q=90',
-    overlay: 'from-black/70 via-black/50 to-black/70',
+    overlay: 'from-gray-900/50 via-gray-800/30 to-gray-900/50',
   },
   {
     url: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=1920&q=90',
-    overlay: 'from-black/70 via-black/50 to-black/70',
+    overlay: 'from-gray-900/50 via-gray-800/30 to-gray-900/50',
   },
 ];
 
@@ -159,68 +157,19 @@ export default function HeroSlider({ locale }: { locale: string }) {
         >
           {slideLabels[currentSlide]}
         </motion.p>
-
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex flex-wrap gap-4 justify-center"
-        >
-          <Link
-            href={`/${locale}/contact`}
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-semibold tracking-wide text-stone-900 transition-all hover:scale-105 active:scale-100 shadow-lg shadow-amber-900/20"
-            style={{ background: 'linear-gradient(135deg, #C9A96E, #a07840)' }}
-          >
-            {t('cta')}
-            <ArrowRight size={16} />
-          </Link>
-          <a
-            href={buildWhatsAppLink('Hello! I\'d like to book an appointment at Silk Beauty.')}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium text-stone-300 border border-stone-600 hover:border-amber-400/50 hover:text-stone-100 transition-all backdrop-blur-sm"
-          >
-            {t('whatsapp')}
-          </a>
-        </motion.div>
-
-        {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1 }}
-          className="flex gap-10 mt-16 pt-8 border-t border-stone-700/50"
-        >
-          {[
-            { value: '200+', label: 'Happy Clients' },
-            { value: '6+', label: 'Specialists' },
-            { value: '40+', label: 'Treatments' },
-          ].map((s, i) => (
-            <motion.div
-              key={s.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2 + i * 0.1 }}
-            >
-              <div className="text-2xl font-display font-bold" style={{ color: '#C9A96E' }}>{s.value}</div>
-              <div className="text-stone-500 text-xs mt-0.5">{s.label}</div>
-            </motion.div>
-          ))}
-        </motion.div>
       </div>
 
       {/* Navigation arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-sm text-white/70 hover:text-white transition-all"
+        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white/80 hover:text-white transition-all"
         aria-label="Previous slide"
       >
         <ChevronLeft size={24} />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-sm text-white/70 hover:text-white transition-all"
+        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white/80 hover:text-white transition-all"
         aria-label="Next slide"
       >
         <ChevronRight size={24} />
@@ -256,12 +205,12 @@ export default function HeroSlider({ locale }: { locale: string }) {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-6 h-10 rounded-full border-2 border-stone-600 flex justify-center pt-2"
+          className="w-6 h-10 rounded-full border-2 border-white/40 flex justify-center pt-2"
         >
           <motion.div
             animate={{ opacity: [0.5, 1, 0.5], y: [0, 4, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-1 h-2 bg-amber-400 rounded-full"
+            className="w-1 h-2 bg-teal-300 rounded-full"
           />
         </motion.div>
       </motion.div>

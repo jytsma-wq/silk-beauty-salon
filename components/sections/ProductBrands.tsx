@@ -312,7 +312,7 @@ export default function ProductBrands({ locale }: ProductBrandsProps) {
   ];
 
   return (
-    <section className="py-24 px-6" style={{ background: 'linear-gradient(180deg, #0d0a08 0%, #110f0b 100%)' }}>
+    <section className="py-24 px-6 bg-white">
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <motion.div

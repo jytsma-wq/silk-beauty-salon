@@ -123,7 +123,7 @@ export default function GiftCards({ locale }: GiftCardsProps) {
   const finalAmount = customAmount ? parseInt(customAmount) : selectedAmount;
 
   return (
-    <section className="py-24 px-6" style={{ background: 'linear-gradient(180deg, #0a0806 0%, #0f0a08 50%, #0a0806 100%)' }}>
+    <section className="py-24 px-6 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
         <motion.div
@@ -132,20 +132,17 @@ export default function GiftCards({ locale }: GiftCardsProps) {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 mb-6">
-            <Gift size={14} className="text-purple-400" />
-            <span className="text-purple-400 text-sm font-medium">{t.perfectGift}</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100 border border-amber-200 mb-6">
+            <Gift size={14} className="text-amber-600" />
+            <span className="text-amber-700 text-sm font-medium">{t.perfectGift}</span>
           </div>
           
-          <h2 className="font-display font-bold mb-4" style={{
+          <h2 className="font-display font-bold mb-4 text-gray-900" style={{
             fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-            background: 'linear-gradient(135deg, #c084fc, #a855f7)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
           }}>
             {t.title}
           </h2>
-          <p className="text-stone-500 max-w-xl mx-auto">{t.subtitle}</p>
+          <p className="text-gray-500 max-w-xl mx-auto">{t.subtitle}</p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
@@ -156,38 +153,38 @@ export default function GiftCards({ locale }: GiftCardsProps) {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="relative rounded-3xl overflow-hidden p-8 border border-purple-500/20" 
+            <div className="relative rounded-3xl overflow-hidden p-8 border border-amber-200 shadow-lg" 
               style={{ 
-                background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(139, 92, 246, 0.05))',
+                background: 'linear-gradient(135deg, rgba(201, 169, 110, 0.05), rgba(160, 120, 64, 0.02))',
                 aspectRatio: '16/10'
               }}
             >
               {/* Decorative elements */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl" />
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-pink-500/10 rounded-full blur-2xl" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-amber-200/30 rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-amber-200/30 rounded-full blur-2xl" />
               
               <div className="relative z-10 h-full flex flex-col justify-between">
                 {/* Logo */}
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-white font-display text-2xl font-bold">Silk Beauty</h3>
-                    <p className="text-purple-300/60 text-xs">Salon & Spa</p>
+                    <h3 className="text-gray-900 font-display text-2xl font-bold">Silk Beauty</h3>
+                    <p className="text-amber-600/70 text-xs">Salon & Spa</p>
                   </div>
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center">
                     <Sparkles size={18} className="text-white" />
                   </div>
                 </div>
 
                 {/* Amount */}
                 <div className="text-center py-6">
-                  <p className="text-purple-300/60 text-sm mb-1">{t.chooseAmount}</p>
-                  <p className="text-white text-5xl font-bold">
-                    {finalAmount} <span className="text-2xl text-purple-400">{t.gels}</span>
+                  <p className="text-amber-600/70 text-sm mb-1">{t.chooseAmount}</p>
+                  <p className="text-gray-900 text-5xl font-bold">
+                    {finalAmount} <span className="text-2xl text-amber-500">{t.gels}</span>
                   </p>
                 </div>
 
                 {/* Footer */}
-                <div className="flex items-center justify-between text-purple-300/40 text-xs">
+                <div className="flex items-center justify-between text-amber-600/50 text-xs">
                   <span>28 Rustaveli Ave, Batumi</span>
                   <span>+995 599 123 456</span>
                 </div>
@@ -201,8 +198,8 @@ export default function GiftCards({ locale }: GiftCardsProps) {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <div className="p-6 rounded-2xl border border-stone-800" style={{ background: 'rgba(255,255,255,0.02)' }}>
-              <h4 className="text-white font-semibold mb-4">{t.chooseAmount}</h4>
+            <div className="p-6 rounded-2xl border border-gray-200 bg-white shadow-sm">
+              <h4 className="text-gray-900 font-semibold mb-4">{t.chooseAmount}</h4>
               
               {/* Amount Grid */}
               <div className="grid grid-cols-3 gap-3 mb-4">
@@ -212,41 +209,41 @@ export default function GiftCards({ locale }: GiftCardsProps) {
                     onClick={() => { setSelectedAmount(gift.amount); setCustomAmount(''); }}
                     className={`relative p-4 rounded-xl border transition-all text-center ${
                       selectedAmount === gift.amount && !customAmount
-                        ? 'border-purple-500 bg-purple-500/10'
-                        : 'border-stone-700 hover:border-purple-500/50'
+                        ? 'border-amber-500 bg-amber-50'
+                        : 'border-gray-200 hover:border-amber-300'
                     }`}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     {gift.popular && (
-                      <span className="absolute -top-2 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full bg-purple-500 text-white text-xs">
+                      <span className="absolute -top-2 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full bg-amber-500 text-white text-xs">
                         {t.popular}
                       </span>
                     )}
-                    <span className="text-white font-bold">{gift.amount}</span>
-                    <span className="text-stone-500 text-xs ml-1">{t.gels}</span>
+                    <span className="text-gray-900 font-bold">{gift.amount}</span>
+                    <span className="text-gray-500 text-xs ml-1">{t.gels}</span>
                   </motion.button>
                 ))}
               </div>
 
               {/* Custom Amount */}
               <div className="mb-6">
-                <p className="text-stone-500 text-xs mb-2">{t.or} {t.customAmount}:</p>
+                <p className="text-gray-500 text-xs mb-2">{t.or} {t.customAmount}:</p>
                 <div className="flex items-center gap-2">
                   <input
                     type="number"
                     value={customAmount}
                     onChange={(e) => setCustomAmount(e.target.value)}
                     placeholder="100-5000"
-                    className="flex-1 bg-stone-800/50 border border-stone-700 rounded-xl px-4 py-3 text-white focus:border-purple-500/50 outline-none transition-all"
+                    className="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-purple-300 outline-none transition-all"
                   />
-                  <span className="text-stone-400">{t.gels}</span>
+                  <span className="text-gray-400">{t.gels}</span>
                 </div>
               </div>
 
               {/* Includes */}
-              <div className="mb-6 p-4 rounded-xl bg-stone-800/30 border border-stone-700/30">
-                <p className="text-stone-400 text-xs uppercase tracking-wider mb-3">{t.includes}</p>
+              <div className="mb-6 p-4 rounded-xl bg-gray-50 border border-gray-100">
+                <p className="text-gray-500 text-xs uppercase tracking-wider mb-3">{t.includes}</p>
                 <div className="space-y-2">
                   {[
                     { icon: Sparkles, text: t.digital },
@@ -254,8 +251,8 @@ export default function GiftCards({ locale }: GiftCardsProps) {
                     { icon: Heart, text: t.treatments },
                     { icon: Crown, text: t.bonus },
                   ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-2 text-stone-500 text-sm">
-                      <item.icon size={12} className="text-purple-400" />
+                    <div key={i} className="flex items-center gap-2 text-amber-600 text-sm">
+                      <item.icon size={12} className="text-amber-500" />
                       {item.text}
                     </div>
                   ))}
@@ -265,9 +262,9 @@ export default function GiftCards({ locale }: GiftCardsProps) {
               {/* CTA */}
               <motion.button
                 onClick={() => window.open(`https://wa.me/995599123456?text=${encodeURIComponent(`${t.buyNow}: ${finalAmount} GEL`)}`, '_blank')}
-                className="w-full py-4 rounded-xl text-white font-semibold flex items-center justify-center gap-2"
-                style={{ background: 'linear-gradient(135deg, #a855f7, #7c3aed)' }}
-                whileHover={{ scale: 1.02, boxShadow: '0 10px 30px rgba(168, 85, 247, 0.3)' }}
+                className="w-full py-4 rounded-xl text-stone-900 font-semibold flex items-center justify-center gap-2"
+                style={{ background: 'linear-gradient(135deg, #C9A96E, #a07840)' }}
+                whileHover={{ scale: 1.02, boxShadow: '0 10px 30px rgba(201, 169, 110, 0.3)' }}
                 whileTap={{ scale: 0.98 }}
               >
                 <Gift size={18} />

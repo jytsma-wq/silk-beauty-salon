@@ -1059,9 +1059,9 @@ export default function InternationalClient({ locale }: InternationalClientProps
   const isRTL = locale === 'he' || locale === 'ar';
 
   return (
-    <div className="min-h-screen" style={{ background: '#0a0806' }}>
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center"
@@ -1069,19 +1069,19 @@ export default function InternationalClient({ locale }: InternationalClientProps
             backgroundImage: 'url(https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=1920&q=80)',
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
+          <div className="absolute inset-0 bg-gradient-to-b from-gray-900/60 via-gray-800/40 to-gray-900/70" />
         </div>
 
         {/* Floating elements */}
         <motion.div
           animate={{ y: [-20, 20, -20] }}
           transition={{ duration: 6, repeat: Infinity }}
-          className="absolute top-20 right-20 w-20 h-20 rounded-full bg-amber-400/10 blur-2xl"
+          className="absolute top-20 right-20 w-20 h-20 rounded-full bg-teal-300/20 blur-2xl"
         />
         <motion.div
           animate={{ y: [20, -20, 20] }}
           transition={{ duration: 5, repeat: Infinity }}
-          className="absolute bottom-20 left-20 w-32 h-32 rounded-full bg-pink-400/10 blur-3xl"
+          className="absolute bottom-20 left-20 w-32 h-32 rounded-full bg-rose-300/20 blur-3xl"
         />
 
         <div className="container mx-auto max-w-6xl px-6 relative z-10 text-center">
@@ -1095,26 +1095,21 @@ export default function InternationalClient({ locale }: InternationalClientProps
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-amber-400/20 border border-amber-400/30 mb-8"
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-teal-100/80 border border-teal-200 mb-8"
             >
-              <Globe size={18} className="text-amber-400" />
-              <span className="text-amber-300 font-medium">
+              <Globe size={18} className="text-teal-600" />
+              <span className="text-teal-700 font-medium">
                 {locale === 'ru' ? 'Красота без границ' : locale === 'ka' ? 'სილამაზე საზღვრებს გარეშე' : 'Beauty Without Borders'}
               </span>
             </motion.div>
 
             <h1 
-              className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
-              style={{
-                background: 'linear-gradient(135deg, #f5e6d0, #C9A96E)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-              }}
+              className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white"
             >
               {t.heroTitle}
             </h1>
 
-            <p className="text-stone-300 text-lg md:text-xl max-w-3xl mx-auto mb-10">
+            <p className="text-gray-200 text-lg md:text-xl max-w-3xl mx-auto mb-10">
               {t.heroSubtitle}
             </p>
 
@@ -1123,9 +1118,9 @@ export default function InternationalClient({ locale }: InternationalClientProps
                 href="https://wa.me/995599123456?text=Hello! I'm interested in international treatments"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-4 rounded-full text-stone-900 font-semibold text-lg flex items-center gap-3"
-                style={{ background: 'linear-gradient(135deg, #C9A96E, #a07840)' }}
-                whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(201, 169, 110, 0.3)' }}
+                className="px-8 py-4 rounded-full text-white font-semibold text-lg flex items-center gap-3"
+                style={{ background: 'linear-gradient(135deg, #14b8a6, #0d9488)' }}
+                whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(20, 184, 166, 0.3)' }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Plane size={20} />
@@ -1134,7 +1129,7 @@ export default function InternationalClient({ locale }: InternationalClientProps
 
               <Link href={`/${locale}/treatments`}>
                 <motion.button
-                  className="px-8 py-4 rounded-full text-white font-semibold text-lg border border-amber-400/30 hover:bg-amber-400/10 transition-all"
+                  className="px-8 py-4 rounded-full text-white font-semibold text-lg border border-white/30 hover:bg-white/10 transition-all"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -1162,7 +1157,7 @@ export default function InternationalClient({ locale }: InternationalClientProps
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 px-6 border-y border-amber-400/10" style={{ background: 'linear-gradient(180deg, #0d0a08 0%, #0a0806 100%)' }}>
+      <section className="py-16 px-6 border-y border-teal-100 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto max-w-6xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
@@ -1179,9 +1174,9 @@ export default function InternationalClient({ locale }: InternationalClientProps
                 transition={{ delay: i * 0.1 }}
                 className="text-center"
               >
-                <stat.icon size={24} className="mx-auto text-amber-400 mb-3" />
-                <p className="text-3xl md:text-4xl font-bold text-white mb-2">{stat.value}</p>
-                <p className="text-stone-500 text-sm">{stat.label}</p>
+                <stat.icon size={24} className="mx-auto text-teal-500 mb-3" />
+                <p className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">{stat.value}</p>
+                <p className="text-gray-500 text-sm">{stat.label}</p>
               </motion.div>
             ))}
           </div>
@@ -1189,7 +1184,7 @@ export default function InternationalClient({ locale }: InternationalClientProps
       </section>
 
       {/* Why Batumi Section */}
-      <section className="py-24 px-6">
+      <section className="py-24 px-6 bg-white">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1197,10 +1192,10 @@ export default function InternationalClient({ locale }: InternationalClientProps
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-white">
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-gray-900">
               {t.whyTitle}
             </h2>
-            <p className="text-stone-500 max-w-2xl mx-auto">{t.whySubtitle}</p>
+            <p className="text-gray-500 max-w-2xl mx-auto">{t.whySubtitle}</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -1211,14 +1206,13 @@ export default function InternationalClient({ locale }: InternationalClientProps
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="p-6 rounded-2xl border border-stone-800 hover:border-amber-400/30 transition-all group"
-                style={{ background: 'rgba(255,255,255,0.02)' }}
+                className="p-6 rounded-2xl border border-gray-200 hover:border-teal-300 transition-all group bg-white shadow-sm"
               >
-                <div className="w-12 h-12 rounded-xl bg-amber-400/10 flex items-center justify-center mb-4 text-amber-400 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-xl bg-teal-50 flex items-center justify-center mb-4 text-teal-500 group-hover:scale-110 transition-transform">
                   {getIcon(item.icon, 'w-6 h-6')}
                 </div>
-                <h3 className="text-white font-semibold text-lg mb-2">{item.title}</h3>
-                <p className="text-stone-500 text-sm leading-relaxed">{item.desc}</p>
+                <h3 className="text-gray-900 font-semibold text-lg mb-2">{item.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -1226,7 +1220,7 @@ export default function InternationalClient({ locale }: InternationalClientProps
       </section>
 
       {/* Price Comparison */}
-      <section className="py-24 px-6" style={{ background: 'linear-gradient(180deg, #0a0806 0%, #0d0a08 50%, #0a0806 100%)' }}>
+      <section className="py-24 px-6 bg-gradient-to-b from-gray-50 to-white">
         <div className="container mx-auto max-w-5xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1234,25 +1228,24 @@ export default function InternationalClient({ locale }: InternationalClientProps
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-white">
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-gray-900">
               {t.compareTitle}
             </h2>
-            <p className="text-stone-500">{t.compareSubtitle}</p>
+            <p className="text-gray-500">{t.compareSubtitle}</p>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="rounded-2xl border border-amber-400/20 overflow-hidden"
-            style={{ background: 'rgba(255,255,255,0.02)' }}
+            className="rounded-2xl border border-teal-200 overflow-hidden bg-white shadow-sm"
           >
             {/* Table Header */}
-            <div className="grid grid-cols-4 gap-4 p-4 bg-amber-400/5 border-b border-amber-400/10">
-              <div className="text-stone-400 font-medium text-sm">{t.treatment}</div>
-              <div className="text-stone-400 font-medium text-sm text-center">{t.europePrice}</div>
-              <div className="text-amber-400 font-medium text-sm text-center">{t.ourPrice}</div>
-              <div className="text-green-400 font-medium text-sm text-center">{t.savings}</div>
+            <div className="grid grid-cols-4 gap-4 p-4 bg-teal-50 border-b border-teal-100">
+              <div className="text-gray-600 font-medium text-sm">{t.treatment}</div>
+              <div className="text-gray-600 font-medium text-sm text-center">{t.europePrice}</div>
+              <div className="text-teal-600 font-medium text-sm text-center">{t.ourPrice}</div>
+              <div className="text-green-600 font-medium text-sm text-center">{t.savings}</div>
             </div>
 
             {/* Table Rows */}
@@ -1263,24 +1256,24 @@ export default function InternationalClient({ locale }: InternationalClientProps
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="grid grid-cols-4 gap-4 p-4 border-b border-stone-800/50 hover:bg-amber-400/5 transition-all"
+                className="grid grid-cols-4 gap-4 p-4 border-b border-gray-100 hover:bg-teal-50/50 transition-all"
               >
-                <div className="text-white text-sm">{item.name}</div>
-                <div className="text-stone-500 text-center line-through">€{item.europe}</div>
-                <div className="text-amber-400 font-semibold text-center">€{item.batumi}</div>
-                <div className="text-green-400 text-center font-medium">
+                <div className="text-gray-900 text-sm">{item.name}</div>
+                <div className="text-gray-400 text-center line-through">€{item.europe}</div>
+                <div className="text-teal-600 font-semibold text-center">€{item.batumi}</div>
+                <div className="text-green-600 text-center font-medium">
                   {Math.round((1 - item.batumi / item.europe) * 100)}%
                 </div>
               </motion.div>
             ))}
           </motion.div>
 
-          <p className="text-stone-600 text-xs text-center mt-4">{t.compareNote}</p>
+          <p className="text-gray-400 text-xs text-center mt-4">{t.compareNote}</p>
         </div>
       </section>
 
       {/* How It Works */}
-      <section className="py-24 px-6">
+      <section className="py-24 px-6 bg-white">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1288,10 +1281,10 @@ export default function InternationalClient({ locale }: InternationalClientProps
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-white">
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-gray-900">
               {t.processTitle}
             </h2>
-            <p className="text-stone-500">{t.processSubtitle}</p>
+            <p className="text-gray-500">{t.processSubtitle}</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -1306,18 +1299,18 @@ export default function InternationalClient({ locale }: InternationalClientProps
               >
                 {/* Connector Line */}
                 {i < t.steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-amber-400/30 to-transparent" style={{ width: 'calc(100% - 60px)', left: '60px' }} />
+                  <div className="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-teal-300 to-transparent" style={{ width: 'calc(100% - 60px)', left: '60px' }} />
                 )}
 
                 <div className="text-center">
                   <div 
                     className="w-16 h-16 rounded-2xl mx-auto mb-4 flex items-center justify-center text-white font-bold text-xl"
-                    style={{ background: 'linear-gradient(135deg, #C9A96E, #a07840)' }}
+                    style={{ background: 'linear-gradient(135deg, #14b8a6, #0d9488)' }}
                   >
                     {step.number}
                   </div>
-                  <h3 className="text-white font-semibold text-lg mb-2">{step.title}</h3>
-                  <p className="text-stone-500 text-sm leading-relaxed">{step.desc}</p>
+                  <h3 className="text-gray-900 font-semibold text-lg mb-2">{step.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">{step.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -1326,7 +1319,7 @@ export default function InternationalClient({ locale }: InternationalClientProps
       </section>
 
       {/* Packages */}
-      <section className="py-24 px-6" style={{ background: 'linear-gradient(180deg, #0a0806 0%, #110d0a 50%, #0a0806 100%)' }}>
+      <section className="py-24 px-6 bg-gradient-to-b from-gray-50 to-white">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1334,10 +1327,10 @@ export default function InternationalClient({ locale }: InternationalClientProps
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-white">
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-gray-900">
               {t.packagesTitle}
             </h2>
-            <p className="text-stone-500">{t.packagesSubtitle}</p>
+            <p className="text-gray-500">{t.packagesSubtitle}</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -1348,58 +1341,56 @@ export default function InternationalClient({ locale }: InternationalClientProps
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className={`relative rounded-2xl overflow-hidden transition-all ${
-                  pkg.popular ? 'border-amber-400/50 scale-105' : 'border-stone-800 hover:border-amber-400/30'
+                className={`relative rounded-2xl overflow-hidden transition-all bg-white shadow-sm ${
+                  pkg.popular ? 'border-teal-400 scale-105' : 'border-gray-200 hover:border-teal-300'
                 }`}
                 style={{ 
-                  background: pkg.popular 
-                    ? 'linear-gradient(180deg, rgba(201, 169, 110, 0.1), rgba(160, 120, 64, 0.05))' 
-                    : 'rgba(255,255,255,0.02)'
+                  borderWidth: pkg.popular ? '2px' : '1px',
                 }}
               >
                 {pkg.popular && (
-                  <div className="absolute top-0 left-0 right-0 py-2 text-center text-xs font-bold text-stone-900 bg-gradient-to-r from-amber-400 to-amber-500">
+                  <div className="absolute top-0 left-0 right-0 py-2 text-center text-xs font-bold text-white bg-gradient-to-r from-teal-500 to-teal-600">
                     {locale === 'ru' ? 'ПОПУЛЯРНЫЙ' : locale === 'ka' ? 'პოპულარული' : 'MOST POPULAR'}
                   </div>
                 )}
 
                 <div className={`p-6 ${pkg.popular ? 'pt-10' : ''}`}>
-                  <h3 className="text-white font-bold text-xl mb-2">{pkg.name}</h3>
-                  <p className="text-stone-500 text-sm mb-4 flex items-center gap-2">
+                  <h3 className="text-gray-900 font-bold text-xl mb-2">{pkg.name}</h3>
+                  <p className="text-gray-500 text-sm mb-4 flex items-center gap-2">
                     <Calendar size={14} />
                     {pkg.duration}
                   </p>
 
                   <div className="mb-6">
-                    <p className="text-3xl font-bold text-amber-400">€{pkg.price}</p>
+                    <p className="text-3xl font-bold text-teal-600">€{pkg.price}</p>
                   </div>
 
                   <div className="space-y-2 mb-6">
                     {pkg.treatments.map((treatment, j) => (
-                      <div key={j} className="flex items-center gap-2 text-stone-400 text-sm">
-                        <Check size={12} className="text-amber-400" />
+                      <div key={j} className="flex items-center gap-2 text-gray-600 text-sm">
+                        <Check size={12} className="text-teal-500" />
                         {treatment}
                       </div>
                     ))}
                   </div>
 
-                  <div className="pt-4 border-t border-stone-800">
-                    <p className="text-stone-500 text-xs uppercase tracking-wider mb-2">{t.includes}:</p>
-                    <div className="space-y-1 text-stone-400 text-xs">
+                  <div className="pt-4 border-t border-gray-100">
+                    <p className="text-gray-500 text-xs uppercase tracking-wider mb-2">{t.includes}:</p>
+                    <div className="space-y-1 text-gray-600 text-xs">
                       <div className="flex items-center gap-2">
-                        <Building2 size={10} className="text-amber-400/60" />
+                        <Building2 size={10} className="text-teal-500/60" />
                         {pkg.hotel}
                       </div>
                       <div className="flex items-center gap-2">
-                        <Plane size={10} className="text-amber-400/60" />
+                        <Plane size={10} className="text-teal-500/60" />
                         {t.airportTransfers}
                       </div>
                       <div className="flex items-center gap-2">
-                        <Heart size={10} className="text-amber-400/60" />
+                        <Heart size={10} className="text-teal-500/60" />
                         {t.postCare}
                       </div>
                       <div className="flex items-center gap-2">
-                        <MessageCircle size={10} className="text-amber-400/60" />
+                        <MessageCircle size={10} className="text-teal-500/60" />
                         {t.support}
                       </div>
                     </div>
@@ -1408,9 +1399,9 @@ export default function InternationalClient({ locale }: InternationalClientProps
                   <motion.button
                     onClick={() => window.open(`https://wa.me/995599123456?text=${encodeURIComponent(`${t.inquire}: ${pkg.name} - €${pkg.price}`)}`, '_blank')}
                     className={`w-full mt-6 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 ${
-                      pkg.popular ? 'text-stone-900' : 'text-white border border-amber-400/30'
+                      pkg.popular ? 'text-white' : 'text-gray-700 border border-gray-200 hover:border-teal-300'
                     }`}
-                    style={pkg.popular ? { background: 'linear-gradient(135deg, #C9A96E, #a07840)' } : {}}
+                    style={pkg.popular ? { background: 'linear-gradient(135deg, #14b8a6, #0d9488)' } : {}}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -1425,7 +1416,7 @@ export default function InternationalClient({ locale }: InternationalClientProps
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 px-6">
+      <section className="py-24 px-6 bg-white">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1433,7 +1424,7 @@ export default function InternationalClient({ locale }: InternationalClientProps
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-white">
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-gray-900">
               {t.testimonialsTitle}
             </h2>
           </motion.div>
@@ -1446,18 +1437,17 @@ export default function InternationalClient({ locale }: InternationalClientProps
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="p-6 rounded-2xl border border-stone-800"
-                style={{ background: 'rgba(255,255,255,0.02)' }}
+                className="p-6 rounded-2xl border border-gray-200 bg-white shadow-sm"
               >
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-3xl">{item.flag}</span>
                   <div>
-                    <p className="text-white font-semibold">{item.name}</p>
-                    <p className="text-stone-500 text-xs">{item.country}</p>
+                    <p className="text-gray-900 font-semibold">{item.name}</p>
+                    <p className="text-gray-500 text-xs">{item.country}</p>
                   </div>
                 </div>
-                <p className="text-stone-400 text-sm leading-relaxed mb-4">"{item.text}"</p>
-                <p className="text-amber-400 text-xs">{item.treatment}</p>
+                <p className="text-gray-600 text-sm leading-relaxed mb-4">"{item.text}"</p>
+                <p className="text-teal-600 text-xs">{item.treatment}</p>
               </motion.div>
             ))}
           </div>
@@ -1465,44 +1455,44 @@ export default function InternationalClient({ locale }: InternationalClientProps
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 px-6" style={{ background: 'linear-gradient(180deg, #0a0806 0%, #1a120d 50%, #0a0806 100%)' }}>
+      <section className="py-24 px-6 bg-gradient-to-b from-gray-50 to-teal-50/30">
         <div className="container mx-auto max-w-4xl text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-white">
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-gray-900">
               {t.ctaTitle}
             </h2>
-            <p className="text-stone-400 mb-8">{t.ctaSubtitle}</p>
+            <p className="text-gray-500 mb-8">{t.ctaSubtitle}</p>
 
             <motion.a
               href="https://wa.me/995599123456?text=Hello! I'm interested in international beauty treatments in Batumi"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-10 py-5 rounded-full text-stone-900 font-semibold text-lg"
-              style={{ background: 'linear-gradient(135deg, #C9A96E, #a07840)' }}
-              whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(201, 169, 110, 0.3)' }}
+              className="inline-flex items-center gap-3 px-10 py-5 rounded-full text-white font-semibold text-lg"
+              style={{ background: 'linear-gradient(135deg, #14b8a6, #0d9488)' }}
+              whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(20, 184, 166, 0.3)' }}
               whileTap={{ scale: 0.95 }}
             >
               <MessageCircle size={22} />
               {t.ctaButton}
             </motion.a>
 
-            <p className="text-stone-500 text-sm mt-6">
-              {t.ctaEmail}: <a href="mailto:info@silkbeauty.ge" className="text-amber-400 hover:underline">info@silkbeauty.ge</a>
+            <p className="text-gray-500 text-sm mt-6">
+              {t.ctaEmail}: <a href="mailto:info@silkbeauty.ge" className="text-teal-600 hover:underline">info@silkbeauty.ge</a>
             </p>
 
             {/* Info Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-12">
-              <div className="p-4 rounded-xl border border-stone-800 text-center" style={{ background: 'rgba(255,255,255,0.02)' }}>
-                <p className="text-stone-500 text-sm">{t.weSpeak}</p>
-                <p className="text-white font-medium mt-1">{t.languages}</p>
+              <div className="p-4 rounded-xl border border-gray-200 text-center bg-white shadow-sm">
+                <p className="text-gray-500 text-sm">{t.weSpeak}</p>
+                <p className="text-gray-900 font-medium mt-1">{t.languages}</p>
               </div>
-              <div className="p-4 rounded-xl border border-stone-800 text-center" style={{ background: 'rgba(255,255,255,0.02)' }}>
-                <p className="text-stone-500 text-sm">{t.responseTime}</p>
-                <p className="text-white font-medium mt-1">24 {t.hours}</p>
+              <div className="p-4 rounded-xl border border-gray-200 text-center bg-white shadow-sm">
+                <p className="text-gray-500 text-sm">{t.responseTime}</p>
+                <p className="text-gray-900 font-medium mt-1">24 {t.hours}</p>
               </div>
             </div>
           </motion.div>

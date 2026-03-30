@@ -224,7 +224,7 @@ export default function LoyaltyProgram({ locale }: LoyaltyProgramProps) {
   const t = translations[locale as keyof typeof translations] || translations.en;
 
   return (
-    <section className="py-24 px-6" style={{ background: 'linear-gradient(180deg, #0a0806 0%, #110d0a 50%, #0a0806 100%)' }}>
+    <section className="py-24 px-6 bg-gradient-to-b from-amber-50 to-white">
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
         <motion.div
@@ -233,20 +233,17 @@ export default function LoyaltyProgram({ locale }: LoyaltyProgramProps) {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 mb-6">
-            <Crown size={14} className="text-amber-400" />
-            <span className="text-amber-400 text-sm font-medium">{locale === 'ru' ? 'Эксклюзивно' : locale === 'ka' ? 'ექსკლუზიური' : 'Exclusive'}</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100 border border-amber-200 mb-6">
+            <Crown size={14} className="text-amber-600" />
+            <span className="text-amber-700 text-sm font-medium">{locale === 'ru' ? 'Эксклюзивно' : locale === 'ka' ? 'ექსკლუზიური' : 'Exclusive'}</span>
           </div>
           
-          <h2 className="font-display font-bold mb-4" style={{
+          <h2 className="font-display font-bold mb-4 text-gray-900" style={{
             fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-            background: 'linear-gradient(135deg, #f5e6d0, #C9A96E)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
           }}>
             {t.title}
           </h2>
-          <p className="text-stone-500 max-w-xl mx-auto">{t.subtitle}</p>
+          <p className="text-gray-500 max-w-xl mx-auto">{t.subtitle}</p>
         </motion.div>
 
         {/* How It Works */}
@@ -262,22 +259,21 @@ export default function LoyaltyProgram({ locale }: LoyaltyProgramProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="p-6 rounded-2xl border border-stone-800 hover:border-amber-400/30 transition-all text-center"
-              style={{ background: 'rgba(255,255,255,0.02)' }}
+              className="p-6 rounded-2xl border border-gray-200 hover:border-amber-300 transition-all text-center bg-white shadow-sm"
             >
               <div className="w-14 h-14 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: `${item.color}20` }}>
                 <item.icon size={24} style={{ color: item.color }} />
               </div>
-              <h4 className="text-white font-semibold mb-2">{item.title}</h4>
-              <p className="text-stone-500 text-sm">{item.desc}</p>
+              <h4 className="text-gray-900 font-semibold mb-2">{item.title}</h4>
+              <p className="text-gray-500 text-sm">{item.desc}</p>
             </motion.div>
           ))}
         </div>
 
         {/* Tiers */}
         <div className="mb-12">
-          <h3 className="text-white text-xl font-semibold text-center mb-8 flex items-center justify-center gap-2">
-            <Award size={20} className="text-amber-400" />
+          <h3 className="text-gray-900 text-xl font-semibold text-center mb-8 flex items-center justify-center gap-2">
+            <Award size={20} className="text-amber-500" />
             {t.tiers}
           </h3>
           
@@ -289,9 +285,8 @@ export default function LoyaltyProgram({ locale }: LoyaltyProgramProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="p-6 rounded-2xl border transition-all hover:scale-105"
+                className="p-6 rounded-2xl border transition-all hover:scale-105 bg-white shadow-sm"
                 style={{ 
-                  background: tier.bgColor,
                   borderColor: tier.borderColor,
                 }}
               >
@@ -304,19 +299,19 @@ export default function LoyaltyProgram({ locale }: LoyaltyProgramProps) {
                   </h4>
                 </div>
                 
-                <p className="text-stone-400 text-xs mb-3">
+                <p className="text-gray-500 text-xs mb-3">
                   {tier.points}+ {t.points}
                 </p>
                 
                 <div className="space-y-1.5">
                   {tier.perks.slice(0, 3).map((perk, j) => (
-                    <div key={j} className="flex items-center gap-1.5 text-xs text-stone-500">
+                    <div key={j} className="flex items-center gap-1.5 text-xs text-gray-500">
                       <ChevronRight size={10} style={{ color: tier.color }} />
                       {t[perk as keyof typeof t] as string}
                     </div>
                   ))}
                   {tier.perks.length > 3 && (
-                    <p className="text-xs text-stone-600">+{tier.perks.length - 3} {locale === 'ru' ? 'ещё' : locale === 'ka' ? 'მეტი' : 'more'}</p>
+                    <p className="text-xs text-gray-400">+{tier.perks.length - 3} {locale === 'ru' ? 'ещё' : locale === 'ka' ? 'მეტი' : 'more'}</p>
                   )}
                 </div>
               </motion.div>
@@ -325,16 +320,16 @@ export default function LoyaltyProgram({ locale }: LoyaltyProgramProps) {
         </div>
 
         {/* Rewards Preview */}
-        <div className="p-8 rounded-3xl border border-amber-400/20" style={{ background: 'linear-gradient(135deg, rgba(201,169,110,0.05), rgba(160,120,64,0.02))' }}>
+        <div className="p-8 rounded-3xl border border-amber-200 bg-gradient-to-br from-amber-50/50 to-white">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
             <div>
-              <h4 className="text-white text-lg font-semibold mb-2 flex items-center gap-2">
-                <Gift size={20} className="text-amber-400" />
+              <h4 className="text-gray-900 text-lg font-semibold mb-2 flex items-center gap-2">
+                <Gift size={20} className="text-amber-500" />
                 {t.rewards}
               </h4>
               <div className="flex flex-wrap gap-2">
                 {[t.freeManicure, t.freeFacial, t.freeHydra, t.discount20].map((reward, i) => (
-                  <span key={i} className="px-3 py-1 rounded-full bg-amber-500/10 text-amber-400/80 text-sm border border-amber-400/20">
+                  <span key={i} className="px-3 py-1 rounded-full bg-amber-100 text-amber-700 text-sm border border-amber-200">
                     {reward}
                   </span>
                 ))}
@@ -343,9 +338,9 @@ export default function LoyaltyProgram({ locale }: LoyaltyProgramProps) {
             
             <motion.button
               onClick={() => window.open('https://wa.me/995599123456?text=' + encodeURIComponent(locale === 'ru' ? 'Хочу вступить в программу лояльности!' : 'I want to join the loyalty program!'), '_blank')}
-              className="px-8 py-4 rounded-full text-stone-900 font-semibold flex items-center gap-2"
-              style={{ background: 'linear-gradient(135deg, #C9A96E, #a07840)' }}
-              whileHover={{ scale: 1.02, boxShadow: '0 10px 30px rgba(201, 169, 110, 0.3)' }}
+              className="px-8 py-4 rounded-full text-white font-semibold flex items-center gap-2"
+              style={{ background: 'linear-gradient(135deg, #14b8a6, #0d9488)' }}
+              whileHover={{ scale: 1.02, boxShadow: '0 10px 30px rgba(20, 184, 166, 0.3)' }}
               whileTap={{ scale: 0.98 }}
             >
               <Users size={18} />

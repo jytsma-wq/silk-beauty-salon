@@ -589,7 +589,7 @@ export default function SkinAnalysis({ locale }: SkinAnalysisProps) {
   return (
     <>
       {/* CTA Section */}
-      <section className="py-20 px-6 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #0a0806 0%, #0d1a14 50%, #0a0806 100%)' }}>
+      <section className="py-20 px-6 relative overflow-hidden bg-gradient-to-b from-gray-50 to-white">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -597,7 +597,7 @@ export default function SkinAnalysis({ locale }: SkinAnalysisProps) {
             viewport={{ once: true }}
             className="relative z-10"
           >
-            <div className="rounded-3xl border border-emerald-500/20 overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.05))' }}>
+            <div className="rounded-3xl border border-teal-200 overflow-hidden bg-gradient-to-br from-teal-50 to-white shadow-lg">
               <div className="flex flex-col lg:flex-row items-center">
                 {/* Left Content */}
                 <div className="flex-1 p-8 lg:p-12">
@@ -606,30 +606,26 @@ export default function SkinAnalysis({ locale }: SkinAnalysisProps) {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                   >
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/20 border border-emerald-500/30 mb-6">
-                      <Sparkles size={14} className="text-emerald-400" />
-                      <span className="text-emerald-300 text-sm font-medium">AI Powered</span>
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-teal-100 border border-teal-200 mb-6">
+                      <Sparkles size={14} className="text-teal-600" />
+                      <span className="text-teal-700 text-sm font-medium">AI Powered</span>
                     </div>
                     
-                    <h2 className="font-display text-3xl lg:text-4xl font-bold mb-4" style={{
-                      background: 'linear-gradient(135deg, #6ee7b7, #10b981)',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                    }}>
+                    <h2 className="font-display text-3xl lg:text-4xl font-bold mb-4 text-gray-900">
                       {t.title}
                     </h2>
                     
-                    <p className="text-stone-400 text-lg mb-6 max-w-lg">
+                    <p className="text-gray-600 text-lg mb-6 max-w-lg">
                       {t.subtitle}
                     </p>
 
                     <div className="flex flex-wrap gap-4 mb-8">
-                      <div className="flex items-center gap-2 text-stone-500">
-                        <Droplets size={16} className="text-emerald-400" />
+                      <div className="flex items-center gap-2 text-gray-500">
+                        <Droplets size={16} className="text-teal-500" />
                         <span className="text-sm">{locale === 'ru' ? '2 минуты' : locale === 'ka' ? '2 წუთი' : '2 minutes'}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-stone-500">
-                        <Shield size={16} className="text-emerald-400" />
+                      <div className="flex items-center gap-2 text-gray-500">
+                        <Shield size={16} className="text-teal-500" />
                         <span className="text-sm">{locale === 'ru' ? 'Персональные рекомендации' : locale === 'ka' ? 'პერსონალური რეკომენდაციები' : 'Personalized results'}</span>
                       </div>
                     </div>
@@ -637,8 +633,8 @@ export default function SkinAnalysis({ locale }: SkinAnalysisProps) {
                     <motion.button
                       onClick={() => setIsOpen(true)}
                       className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-white font-semibold text-lg transition-all"
-                      style={{ background: 'linear-gradient(135deg, #10b981, #059669)' }}
-                      whileHover={{ scale: 1.02, boxShadow: '0 20px 40px rgba(16, 185, 129, 0.3)' }}
+                      style={{ background: 'linear-gradient(135deg, #14b8a6, #0d9488)' }}
+                      whileHover={{ scale: 1.02, boxShadow: '0 20px 40px rgba(20, 184, 166, 0.3)' }}
                       whileTap={{ scale: 0.98 }}
                     >
                       {t.startAnalysis}
@@ -696,40 +692,40 @@ export default function SkinAnalysis({ locale }: SkinAnalysisProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-sm"
             onClick={() => setIsOpen(false)}
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="w-full max-w-lg rounded-3xl overflow-hidden border border-emerald-500/20"
-              style={{ background: 'linear-gradient(180deg, #0d1a14 0%, #0a0f0c 100%)' }}
+              className="w-full max-w-lg rounded-3xl overflow-hidden border border-teal-200 shadow-2xl"
+              style={{ background: 'white' }}
               onClick={e => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="px-6 py-5 border-b border-emerald-500/10 flex items-center justify-between" style={{ background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(5, 150, 105, 0.1))' }}>
+              <div className="px-6 py-5 border-b border-teal-100 flex items-center justify-between bg-gradient-to-r from-teal-50 to-white">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                    <Sparkles size={18} className="text-emerald-400" />
+                  <div className="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center">
+                    <Sparkles size={18} className="text-teal-600" />
                   </div>
                   <div>
-                    <h3 className="text-white font-display text-lg font-bold">{t.title}</h3>
-                    <p className="text-emerald-400/60 text-xs">{locale === 'ru' ? `${currentQuestion + 1} из ${questionKeys.length}` : locale === 'ka' ? `${currentQuestion + 1} / ${questionKeys.length}` : `${currentQuestion + 1} of ${questionKeys.length}`}</p>
+                    <h3 className="text-gray-900 font-display text-lg font-bold">{t.title}</h3>
+                    <p className="text-teal-600/70 text-xs">{locale === 'ru' ? `${currentQuestion + 1} из ${questionKeys.length}` : locale === 'ka' ? `${currentQuestion + 1} / ${questionKeys.length}` : `${currentQuestion + 1} of ${questionKeys.length}`}</p>
                   </div>
                 </div>
-                <button onClick={reset} className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/70 hover:text-white transition-all">
+                <button onClick={reset} className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-500 hover:text-gray-700 transition-all">
                   <RefreshCw size={16} />
                 </button>
               </div>
 
               {/* Progress Bar */}
               {!showResults && (
-                <div className="h-1 bg-stone-800">
+                <div className="h-1 bg-gray-100">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${((currentQuestion + 1) / questionKeys.length) * 100}%` }}
-                    className="h-full bg-gradient-to-r from-emerald-500 to-emerald-400"
+                    className="h-full bg-gradient-to-r from-teal-500 to-teal-400"
                   />
                 </div>
               )}
@@ -744,7 +740,7 @@ export default function SkinAnalysis({ locale }: SkinAnalysisProps) {
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -20 }}
                     >
-                      <h4 className="text-white text-xl font-medium mb-6">{currentQ.question}</h4>
+                      <h4 className="text-gray-900 text-xl font-medium mb-6">{currentQ.question}</h4>
                       <div className="space-y-2">
                         {currentQ.options.map((option, i) => (
                           <motion.button
@@ -753,13 +749,13 @@ export default function SkinAnalysis({ locale }: SkinAnalysisProps) {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: i * 0.05 }}
                             onClick={() => handleAnswer(option.value)}
-                            className="w-full px-4 py-4 rounded-xl text-left text-stone-300 bg-stone-800/50 border border-stone-700/50 hover:border-emerald-500/50 hover:bg-emerald-500/10 transition-all flex items-center justify-between group"
+                            className="w-full px-4 py-4 rounded-xl text-left text-gray-700 bg-gray-50 border border-gray-200 hover:border-teal-300 hover:bg-teal-50 transition-all flex items-center justify-between group"
                           >
                             <span className="flex items-center gap-2">
                               {'icon' in option && <span>{option.icon}</span>}
                               {option.text}
                             </span>
-                            <ArrowRight size={16} className="text-emerald-400/0 group-hover:text-emerald-400 transition-all" />
+                            <ArrowRight size={16} className="text-teal-500/0 group-hover:text-teal-500 transition-all" />
                           </motion.button>
                         ))}
                       </div>
@@ -772,18 +768,18 @@ export default function SkinAnalysis({ locale }: SkinAnalysisProps) {
                     >
                       {/* Results */}
                       <div className="text-center mb-6">
-                        <div className="w-16 h-16 rounded-full bg-emerald-500/20 flex items-center justify-center mx-auto mb-4">
-                          <Check size={32} className="text-emerald-400" />
+                        <div className="w-16 h-16 rounded-full bg-teal-100 flex items-center justify-center mx-auto mb-4">
+                          <Check size={32} className="text-teal-600" />
                         </div>
-                        <h4 className="text-emerald-400 text-sm uppercase tracking-wider mb-2">{t.yourResults}</h4>
-                        <h3 className="text-white text-2xl font-bold mb-2">{getResult().type}</h3>
-                        <p className="text-stone-400">{getResult().description}</p>
+                        <h4 className="text-teal-600 text-sm uppercase tracking-wider mb-2">{t.yourResults}</h4>
+                        <h3 className="text-gray-900 text-2xl font-bold mb-2">{getResult().type}</h3>
+                        <p className="text-gray-500">{getResult().description}</p>
                       </div>
 
                       {/* Recommended Treatments */}
                       <div className="mb-6">
-                        <h5 className="text-stone-300 text-sm font-medium mb-3 flex items-center gap-2">
-                          <Zap size={14} className="text-emerald-400" />
+                        <h5 className="text-gray-700 text-sm font-medium mb-3 flex items-center gap-2">
+                          <Zap size={14} className="text-teal-500" />
                           {locale === 'ru' ? 'Рекомендуемые процедуры:' : locale === 'ka' ? 'რეკომენდებული პროცედურები:' : 'Recommended Treatments:'}
                         </h5>
                         <div className="flex flex-wrap gap-2">
@@ -793,7 +789,7 @@ export default function SkinAnalysis({ locale }: SkinAnalysisProps) {
                               initial={{ opacity: 0, scale: 0.9 }}
                               animate={{ opacity: 1, scale: 1 }}
                               transition={{ delay: i * 0.05 }}
-                              className="px-3 py-1.5 rounded-lg bg-emerald-500/20 text-emerald-300 text-sm"
+                              className="px-3 py-1.5 rounded-lg bg-teal-50 text-teal-700 text-sm border border-teal-200"
                             >
                               {treatment}
                             </motion.span>
@@ -803,8 +799,8 @@ export default function SkinAnalysis({ locale }: SkinAnalysisProps) {
 
                       {/* Extra for concern */}
                       <div className="mb-6">
-                        <h5 className="text-stone-300 text-sm font-medium mb-3 flex items-center gap-2">
-                          <Heart size={14} className="text-pink-400" />
+                        <h5 className="text-gray-700 text-sm font-medium mb-3 flex items-center gap-2">
+                          <Heart size={14} className="text-rose-500" />
                           {getConcernResult().title}:
                         </h5>
                         <div className="flex flex-wrap gap-2">
@@ -814,7 +810,7 @@ export default function SkinAnalysis({ locale }: SkinAnalysisProps) {
                               initial={{ opacity: 0, scale: 0.9 }}
                               animate={{ opacity: 1, scale: 1 }}
                               transition={{ delay: i * 0.05 }}
-                              className="px-3 py-1.5 rounded-lg bg-pink-500/20 text-pink-300 text-sm"
+                              className="px-3 py-1.5 rounded-lg bg-rose-50 text-rose-700 text-sm border border-rose-200"
                             >
                               {treatment}
                             </motion.span>
@@ -823,14 +819,14 @@ export default function SkinAnalysis({ locale }: SkinAnalysisProps) {
                       </div>
 
                       {/* Tips */}
-                      <div className="p-4 rounded-xl bg-stone-800/30 border border-stone-700/30">
-                        <h5 className="text-stone-400 text-xs uppercase tracking-wider mb-2">
+                      <div className="p-4 rounded-xl bg-gray-50 border border-gray-200">
+                        <h5 className="text-gray-500 text-xs uppercase tracking-wider mb-2">
                           {locale === 'ru' ? 'Советы по уходу:' : locale === 'ka' ? 'მოვლის რჩევები:' : 'Skincare Tips:'}
                         </h5>
                         <ul className="space-y-1">
                           {getResult().tips.map((tip, i) => (
-                            <li key={i} className="text-stone-500 text-sm flex items-start gap-2">
-                              <Check size={12} className="text-emerald-400 mt-1 flex-shrink-0" />
+                            <li key={i} className="text-gray-600 text-sm flex items-start gap-2">
+                              <Check size={12} className="text-teal-500 mt-1 flex-shrink-0" />
                               {tip}
                             </li>
                           ))}
@@ -843,10 +839,10 @@ export default function SkinAnalysis({ locale }: SkinAnalysisProps) {
 
               {/* Footer */}
               {showResults && (
-                <div className="px-6 py-4 border-t border-emerald-500/10 flex justify-center gap-4">
+                <div className="px-6 py-4 border-t border-teal-100 flex justify-center gap-4 bg-gray-50">
                   <motion.button
                     onClick={reset}
-                    className="px-6 py-3 rounded-xl text-stone-400 hover:text-white border border-stone-700 hover:border-stone-600 transition-all"
+                    className="px-6 py-3 rounded-xl text-gray-600 hover:text-gray-900 border border-gray-300 hover:border-gray-400 transition-all"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -855,7 +851,7 @@ export default function SkinAnalysis({ locale }: SkinAnalysisProps) {
                   <motion.button
                     onClick={() => window.open('https://wa.me/995599123456?text=' + encodeURIComponent(locale === 'ru' ? 'Здравствуйте! Хочу записаться на консультацию.' : 'Hello! I would like to book a consultation.'), '_blank')}
                     className="px-6 py-3 rounded-xl text-white font-medium"
-                    style={{ background: 'linear-gradient(135deg, #10b981, #059669)' }}
+                    style={{ background: 'linear-gradient(135deg, #14b8a6, #0d9488)' }}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -865,10 +861,10 @@ export default function SkinAnalysis({ locale }: SkinAnalysisProps) {
               )}
 
               {!showResults && currentQuestion > 0 && (
-                <div className="px-6 py-4 border-t border-emerald-500/10">
+                <div className="px-6 py-4 border-t border-teal-100 bg-gray-50">
                   <button
                     onClick={() => setCurrentQuestion(currentQuestion - 1)}
-                    className="flex items-center gap-2 text-stone-400 hover:text-white transition-all"
+                    className="flex items-center gap-2 text-gray-500 hover:text-gray-700 transition-all"
                   >
                     <ArrowLeft size={16} />
                     {locale === 'ru' ? 'Назад' : locale === 'ka' ? 'უკან' : 'Back'}

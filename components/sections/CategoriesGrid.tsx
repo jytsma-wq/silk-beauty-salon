@@ -47,7 +47,7 @@ const categories = [
 
 export default function CategoriesGrid({ locale }: { locale: string }) {
   return (
-    <section className="px-6 py-24" style={{ background: '#0d0a08' }}>
+    <section className="px-6 py-24 bg-champagne">
       <div className="container mx-auto max-w-7xl">
         {/* Heading */}
         <div className="text-center mb-16">

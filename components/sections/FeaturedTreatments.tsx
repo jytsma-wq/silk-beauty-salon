@@ -39,8 +39,7 @@ const featured = [
 export default function FeaturedTreatments({ locale }: { locale: string }) {
   return (
     <section
-      className="px-6 py-24"
-      style={{ background: 'linear-gradient(180deg, #0d0a08 0%, #110f0b 100%)' }}
+      className="px-6 py-24 bg-champagne"
     >
       <div className="container mx-auto max-w-7xl">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-14 gap-4">
