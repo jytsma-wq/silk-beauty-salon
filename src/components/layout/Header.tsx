@@ -14,6 +14,8 @@ import { LanguageSwitcher } from './LanguageSwitcher';
 
 export function Header() {
   const t = useTranslations('nav');
+  const tHeader = useTranslations('header');
+  const tCommon = useTranslations('common');
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -55,7 +57,7 @@ export function Header() {
                       href={`/treatments#${category.slug}`}
                       className="text-sm font-medium text-gold hover:underline"
                     >
-                      View all →
+                      {tCommon('viewAll')} →
                     </Link>
                   </li>
                 )}
@@ -140,7 +142,7 @@ export function Header() {
       {/* Top Bar */}
       <div className="bg-primary text-white py-2 text-center text-sm hidden md:block">
         <div className="container-custom">
-          <span className="text-gold">★</span> {siteConfig.awards.join(' ')}
+          <span className="text-gold">★</span> {tHeader('announcement')}
           <span className="text-gold">★</span>
         </div>
       </div>

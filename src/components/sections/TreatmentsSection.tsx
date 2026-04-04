@@ -1,9 +1,14 @@
-import Link from 'next/link';
-import Image from 'next/image';
+'use client';
+
+import { useTranslations } from 'next-intl';
 import { ChevronRight } from 'lucide-react';
 import { treatmentCategories } from '@/data/treatments';
+import { Link } from '@/i18n/routing';
 
 export function TreatmentsSection() {
+  const t = useTranslations('treatments');
+  const tCommon = useTranslations('common');
+
   return (
     <section className="section-spacing bg-white" id="treatments">
       <div className="container-custom">
@@ -13,10 +18,10 @@ export function TreatmentsSection() {
             className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold text-primary mb-4 heading-underline"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            Our Treatments
+            {t('title')}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mt-8">
-            Explore our comprehensive range of premium aesthetic treatments designed to enhance your natural beauty
+            {t('subtitle')}
           </p>
         </div>
 
@@ -42,9 +47,6 @@ export function TreatmentsSection() {
                   >
                     {category.name}
                   </h3>
-                  <p className="text-sm text-gray-200 mt-1">
-                    {category.treatments.length} treatments
-                  </p>
                 </div>
               </div>
 
@@ -70,7 +72,7 @@ export function TreatmentsSection() {
                   href={`/treatments#${category.slug}`}
                   className="inline-flex items-center gap-2 text-sm font-medium text-gold hover:underline"
                 >
-                  View all {category.name}
+                  {t('learnMore')}
                   <ChevronRight className="w-4 h-4" />
                 </Link>
               </div>
@@ -84,7 +86,7 @@ export function TreatmentsSection() {
             href="/treatments"
             className="inline-flex items-center gap-2 text-primary font-medium hover:text-gold transition-colors"
           >
-            View All Treatments
+            {t('viewAll')}
             <ChevronRight className="w-5 h-5" />
           </Link>
         </div>

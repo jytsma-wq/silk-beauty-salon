@@ -71,8 +71,17 @@
   },
   "about": {
     "title": "Putting patients first and delivering exceptional service",
-    "description": "Harley Street Injectables provides a range of minimally invasive, pioneering cosmetic and healthcare treatments using the latest technology to achieve the best results.",
+    "description": "Silk Beauty Salon provides a range of minimally invasive, pioneering cosmetic and healthcare treatments using the latest technology to achieve the best results.",
+    "descriptionExtended": "Our salon brings together world-class practitioners in a luxurious, discreet setting in Batumi. We believe in enhancing natural beauty with subtle, refined results that boost confidence without changing who you are.",
     "readMore": "Read More",
+    "features": {
+      "award": "Award-winning salon",
+      "practitioners": "World-class practitioners",
+      "products": "Premium products only",
+      "experience": "Luxury patient experience",
+      "technology": "Latest technologies",
+      "results": "Natural-looking results"
+    },
     "values": {
       "title": "Our Values",
       "excellence": "Excellence",
@@ -84,13 +93,14 @@
     }
   },
   "quickLinks": {
+    "title": "Quick Links",
     "faq": {
       "title": "FAQ",
-      "description": "Read some of the most frequently asked questions about the clinic and our treatments."
+      "description": "Read some of the most frequently asked questions about the salon and our treatments."
     },
     "contact": {
       "title": "Contact",
-      "description": "Located on Harley Street at number 106, opening hours are 9am–6.30pm."
+      "description": "Located on Zurab Gorgiladze Street 63, opening hours are 9am–6.30pm."
     },
     "team": {
       "title": "Our Team",
@@ -107,7 +117,8 @@
     "description": "Sign up with your email address to receive news and updates.",
     "placeholder": "Email Address",
     "subscribe": "Subscribe",
-    "success": "Thank you for subscribing!"
+    "success": "Thank you for subscribing!",
+    "privacy": "We respect your privacy. Unsubscribe at any time."
   },
   "footer": {
     "description": "Batumi's premier beauty salon on Zurab Gorgiladze Street.",

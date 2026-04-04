@@ -72,7 +72,16 @@
   "about": {
     "title": "Hastaları ön planda tutmak ve mükemmel hizmet sunmak",
     "description": "Silk Beauty Salon, en iyi sonuçları elde etmek için en son teknolojileri kullanarak minimal invaziv, öncü kozmetik ve sağlık tedavileri sunmaktadır.",
+    "descriptionExtended": "Salonumuz, Batumi'de lüks, özel bir ortamda dünya standartlarında uzmanları bir araya getiriyor. Doğal güzelliği ince, rafine sonuçlarla artırarak özgüveni yükselttiğimize inanıyoruz.",
     "readMore": "Daha Fazla Oku",
+    "features": {
+      "award": "Ödüllü salon",
+      "practitioners": "Dünya standartlarında uzmanlar",
+      "products": "Sadece premium ürünler",
+      "experience": "Lüks hasta deneyimi",
+      "technology": "En son teknolojiler",
+      "results": "Doğal görünümlü sonuçlar"
+    },
     "values": {
       "title": "Değerlerimiz",
       "excellence": "Mükemmellik",
@@ -84,6 +93,7 @@
     }
   },
   "quickLinks": {
+    "title": "Hızlı Linkler",
     "faq": {
       "title": "SSS",
       "description": "Salon ve tedavilerimiz hakkında en sık sorulan soruları okuyun."
@@ -107,7 +117,8 @@
     "description": "Haber ve güncellemeler almak için e-posta adresinizle kaydolun.",
     "placeholder": "E-posta Adresi",
     "subscribe": "Abone Ol",
-    "success": "Abone olduğunuz için teşekkürler!"
+    "success": "Abone olduğunuz için teşekkürler!",
+    "privacy": "Gizliliğinize saygı duyuyoruz. İstediğiniz zaman aboneliği iptal edin."
   },
   "footer": {
     "description": "Zurab Gorgiladze Caddesi'ndeki Batumi'nin premium güzellik salonu.",

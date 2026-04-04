@@ -1,4 +1,10 @@
+'use client';
+
+import { useTranslations } from 'next-intl';
+
 export function TechnologiesSection() {
+  const t = useTranslations('technologies');
+
   const technologies = [
     { name: 'Cutera', description: 'Advanced Laser Systems' },
     { name: 'Allergan', description: 'Premium Injectables' },
@@ -17,10 +23,10 @@ export function TechnologiesSection() {
             className="text-2xl md:text-3xl font-serif font-semibold text-primary mb-4"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            Cutting-Edge Technologies
+            {t('title')}
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            We use only the most advanced, FDA-approved technologies and premium products
+            {t('subtitle')}
           </p>
         </div>
 

@@ -1,8 +1,13 @@
+'use client';
+
+import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { siteConfig } from '@/data/site-config';
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
 
 export function HeroSection() {
+  const t = useTranslations('hero');
+
   return (
     <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -23,14 +28,14 @@ export function HeroSection() {
             className="text-4xl md:text-5xl lg:text-6xl font-serif font-semibold mb-6 leading-tight"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            Anti-Ageing Specialists
+            {t('title')}
           </h1>
           <div className="w-16 h-0.5 bg-gold mx-auto mb-6" />
           <p className="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed">
-            London's Leading Aesthetic Clinic
+            {t('subtitle')}
           </p>
           <p className="text-base text-gray-300 mb-10 max-w-2xl mx-auto">
-            World-class practitioners, cutting-edge treatments & luxury care to enhance your natural beauty with precision & confidence
+            {t('description')}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
@@ -39,7 +44,7 @@ export function HeroSection() {
               className="btn-gold min-w-[200px]"
             >
               <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
-                Book Appointment
+                {t('cta.book')}
               </a>
             </Button>
             <Button
@@ -49,7 +54,7 @@ export function HeroSection() {
               className="min-w-[200px] border-white text-white hover:bg-white hover:text-primary"
             >
               <Link href="/treatments">
-                View Treatments
+                {t('cta.treatments')}
               </Link>
             </Button>
           </div>

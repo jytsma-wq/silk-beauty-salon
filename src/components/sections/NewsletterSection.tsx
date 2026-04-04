@@ -1,10 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
 export function NewsletterSection() {
+  const t = useTranslations('newsletter');
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
@@ -22,36 +24,36 @@ export function NewsletterSection() {
             className="text-2xl md:text-3xl font-serif font-semibold text-primary mb-4"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            Stay Updated
+            {t('title')}
           </h2>
           <p className="text-muted-foreground mb-8">
-            Sign up with your email address to receive news, exclusive offers, and updates.
+            {t('description')}
           </p>
 
           {submitted ? (
             <div className="bg-green-50 border border-green-200 rounded-lg p-6">
               <p className="text-green-700 font-medium">
-                Thank you for subscribing! Check your inbox for a confirmation email.
+                {t('success')}
               </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <Input
                 type="email"
-                placeholder="Enter your email address"
+                placeholder={t('placeholder')}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 className="flex-1"
               />
               <Button type="submit" className="btn-gold whitespace-nowrap">
-                Sign Up
+                {t('subscribe')}
               </Button>
             </form>
           )}
 
           <p className="text-xs text-muted-foreground mt-4">
-            We respect your privacy. Unsubscribe at any time.
+            {t('privacy')}
           </p>
         </div>
       </div>

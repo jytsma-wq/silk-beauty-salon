@@ -1,38 +1,44 @@
-import Link from 'next/link';
-import { HelpCircle, MapPin, Users, Newspaper, ChevronRight } from 'lucide-react';
+'use client';
 
-const quickLinks = [
-  {
-    title: 'FAQ',
-    description: 'Read some of the most frequently asked questions about the clinic and our treatments.',
-    icon: HelpCircle,
-    href: '/faq',
-    color: 'bg-blue-50 text-blue-600',
-  },
-  {
-    title: 'Contact',
-    description: 'Located on Harley Street at number 106, opening hours are 9am–6.30pm.',
-    icon: MapPin,
-    href: '/contact-us',
-    color: 'bg-green-50 text-green-600',
-  },
-  {
-    title: 'Team',
-    description: 'Find out more about our skilled members of staff and how they can best help you.',
-    icon: Users,
-    href: '/about#team',
-    color: 'bg-purple-50 text-purple-600',
-  },
-  {
-    title: 'Press',
-    description: 'Why not take a look at our most recent Press features and see what they\'re saying about us.',
-    icon: Newspaper,
-    href: '/media-press',
-    color: 'bg-amber-50 text-amber-600',
-  },
-];
+import { useTranslations } from 'next-intl';
+import { HelpCircle, MapPin, Users, Newspaper, ChevronRight } from 'lucide-react';
+import { Link } from '@/i18n/routing';
 
 export function QuickLinksSection() {
+  const t = useTranslations('quickLinks');
+  const tCommon = useTranslations('common');
+
+  const quickLinks = [
+    {
+      title: t('faq.title'),
+      description: t('faq.description'),
+      icon: HelpCircle,
+      href: '/faq',
+      color: 'bg-blue-50 text-blue-600',
+    },
+    {
+      title: t('contact.title'),
+      description: t('contact.description'),
+      icon: MapPin,
+      href: '/contact-us',
+      color: 'bg-green-50 text-green-600',
+    },
+    {
+      title: t('team.title'),
+      description: t('team.description'),
+      icon: Users,
+      href: '/about#team',
+      color: 'bg-purple-50 text-purple-600',
+    },
+    {
+      title: t('press.title'),
+      description: t('press.description'),
+      icon: Newspaper,
+      href: '/media-press',
+      color: 'bg-amber-50 text-amber-600',
+    },
+  ];
+
   return (
     <section className="section-spacing bg-secondary">
       <div className="container-custom">
@@ -42,7 +48,7 @@ export function QuickLinksSection() {
             className="text-3xl md:text-4xl font-serif font-semibold text-primary mb-4"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            Quick Links
+            {t('title')}
           </h2>
         </div>
 
@@ -67,7 +73,7 @@ export function QuickLinksSection() {
                 {link.description}
               </p>
               <span className="inline-flex items-center gap-1 text-sm font-medium text-gold group-hover:gap-2 transition-all">
-                Learn More
+                {tCommon('learnMore')}
                 <ChevronRight className="w-4 h-4" />
               </span>
             </Link>

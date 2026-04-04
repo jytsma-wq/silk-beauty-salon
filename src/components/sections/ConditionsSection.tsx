@@ -1,8 +1,14 @@
-import Link from 'next/link';
+'use client';
+
+import { useTranslations } from 'next-intl';
 import { ChevronRight } from 'lucide-react';
 import { conditions } from '@/data/conditions';
+import { Link } from '@/i18n/routing';
 
 export function ConditionsSection() {
+  const t = useTranslations('conditions');
+  const tCommon = useTranslations('common');
+
   return (
     <section className="section-spacing bg-secondary" id="conditions">
       <div className="container-custom">
@@ -12,10 +18,10 @@ export function ConditionsSection() {
             className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold text-primary mb-4 heading-underline"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            Conditions We Treat
+            {t('title')}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mt-8">
-            Whatever your skin concern, our expert practitioners can create a personalized treatment plan
+            {t('subtitle')}
           </p>
         </div>
 
@@ -49,12 +55,23 @@ export function ConditionsSection() {
                   {condition.shortDescription}
                 </p>
                 <span className="inline-flex items-center gap-1 text-sm font-medium text-gold group-hover:gap-2 transition-all">
-                  Learn More
+                  {tCommon('learnMore')}
                   <ChevronRight className="w-4 h-4" />
                 </span>
               </div>
             </Link>
           ))}
+        </div>
+
+        {/* View All Link */}
+        <div className="text-center mt-12">
+          <Link
+            href="/conditions"
+            className="inline-flex items-center gap-2 text-primary font-medium hover:text-gold transition-colors"
+          >
+            {t('viewAll')}
+            <ChevronRight className="w-5 h-5" />
+          </Link>
         </div>
       </div>
     </section>

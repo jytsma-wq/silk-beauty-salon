@@ -1,7 +1,21 @@
-import Link from 'next/link';
+'use client';
+
+import { useTranslations } from 'next-intl';
 import { ChevronRight } from 'lucide-react';
+import { Link } from '@/i18n/routing';
 
 export function AboutSection() {
+  const t = useTranslations('about');
+
+  const features = [
+    { key: 'award' },
+    { key: 'practitioners' },
+    { key: 'products' },
+    { key: 'experience' },
+    { key: 'technology' },
+    { key: 'results' },
+  ];
+
   return (
     <section className="section-spacing bg-white">
       <div className="container-custom">
@@ -12,29 +26,22 @@ export function AboutSection() {
               className="text-3xl md:text-4xl font-serif font-semibold text-primary mb-6"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
-              Putting patients first and delivering exceptional service
+              {t('title')}
             </h2>
             <div className="w-16 h-0.5 bg-gold mb-6" />
             <p className="text-muted-foreground leading-relaxed mb-6">
-              Harley Street Injectables provides a range of minimally invasive, pioneering cosmetic and healthcare treatments using the latest technology to achieve the best results.
+              {t('description')}
             </p>
             <p className="text-muted-foreground leading-relaxed mb-8">
-              Our clinic brings together world-class practitioners in a luxurious, discreet setting on the prestigious Harley Street. We believe in enhancing natural beauty with subtle, refined results that boost confidence without changing who you are.
+              {t('descriptionExtended')}
             </p>
 
             {/* Features */}
             <div className="grid sm:grid-cols-2 gap-4 mb-8">
-              {[
-                'Award-winning clinic',
-                'World-class practitioners',
-                'Premium products only',
-                'Luxury patient experience',
-                'Latest technologies',
-                'Natural-looking results',
-              ].map((feature) => (
-                <div key={feature} className="flex items-center gap-2">
+              {features.map((feature) => (
+                <div key={feature.key} className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-gold" />
-                  <span className="text-sm">{feature}</span>
+                  <span className="text-sm">{t(`features.${feature.key}`)}</span>
                 </div>
               ))}
             </div>
@@ -43,7 +50,7 @@ export function AboutSection() {
               href="/about"
               className="inline-flex items-center gap-2 text-gold font-medium hover:underline"
             >
-              Learn More About Us
+              {t('readMore')}
               <ChevronRight className="w-5 h-5" />
             </Link>
           </div>
@@ -53,7 +60,7 @@ export function AboutSection() {
             <div className="aspect-[4/5] rounded-lg overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80"
-                alt="Harley Street Injectables Clinic"
+                alt="Silk Beauty Salon"
                 className="w-full h-full object-cover"
               />
             </div>

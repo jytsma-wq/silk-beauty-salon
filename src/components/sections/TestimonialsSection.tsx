@@ -1,11 +1,13 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { testimonials } from '@/data/testimonials';
 
 export function TestimonialsSection() {
+  const t = useTranslations('testimonials');
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextTestimonial = () => {
@@ -25,10 +27,10 @@ export function TestimonialsSection() {
             className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold text-white mb-4 heading-underline"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            What Our Clients Say
+            {t('title')}
           </h2>
           <p className="text-gray-300 max-w-2xl mx-auto mt-8">
-            Read genuine reviews from our satisfied clients
+            {t('subtitle')}
           </p>
         </div>
 

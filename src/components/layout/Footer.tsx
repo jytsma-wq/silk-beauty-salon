@@ -1,10 +1,14 @@
-import Link from 'next/link';
+'use client';
+
+import { useTranslations } from 'next-intl';
 import { Instagram, Facebook, Twitter, Youtube, Mail, Phone, MapPin } from 'lucide-react';
 import { siteConfig } from '@/data/site-config';
 import { treatmentCategories } from '@/data/treatments';
-import { conditions } from '@/data/conditions';
+import { Link } from '@/i18n/routing';
 
 export function Footer() {
+  const t = useTranslations('footer');
+  const tNav = useTranslations('nav');
   const currentYear = new Date().getFullYear();
 
   return (
@@ -25,7 +29,7 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-sm text-gray-300 mb-6 leading-relaxed">
-              {siteConfig.description}
+              {t('description')}
             </p>
             {/* Social Links */}
             <div className="flex items-center gap-4">
@@ -71,35 +75,31 @@ export function Footer() {
           {/* Column 2: Quick Links */}
           <div>
             <h3 className="font-serif text-xl font-semibold text-gold mb-6">
-              Quick Links
+              {t('quickLinks')}
             </h3>
             <ul className="space-y-3">
-              {siteConfig.navigation.footer.quickLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-gray-300 hover:text-gold transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-              {siteConfig.navigation.footer.about.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-gray-300 hover:text-gold transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link
+                  href="/about"
+                  className="text-sm text-gray-300 hover:text-gold transition-colors"
+                >
+                  {tNav('about')}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/faq"
+                  className="text-sm text-gray-300 hover:text-gold transition-colors"
+                >
+                  {tNav('faq')}
+                </Link>
+              </li>
               <li>
                 <Link
                   href="/pricelist"
                   className="text-sm text-gray-300 hover:text-gold transition-colors"
                 >
-                  Price List
+                  {tNav('pricelist')}
                 </Link>
               </li>
               <li>
@@ -107,7 +107,23 @@ export function Footer() {
                   href="/offers"
                   className="text-sm text-gray-300 hover:text-gold transition-colors"
                 >
-                  Offers
+                  {tNav('offers')}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/media-press"
+                  className="text-sm text-gray-300 hover:text-gold transition-colors"
+                >
+                  {tNav('press')}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/blog"
+                  className="text-sm text-gray-300 hover:text-gold transition-colors"
+                >
+                  {tNav('blog')}
                 </Link>
               </li>
             </ul>
@@ -116,10 +132,10 @@ export function Footer() {
           {/* Column 3: Treatments */}
           <div>
             <h3 className="font-serif text-xl font-semibold text-gold mb-6">
-              Treatments
+              {t('treatments')}
             </h3>
             <ul className="space-y-3">
-              {treatmentCategories.slice(0, 8).map((category) => (
+              {treatmentCategories.slice(0, 6).map((category) => (
                 <li key={category.slug}>
                   <Link
                     href={`/treatments#${category.slug}`}
@@ -134,7 +150,7 @@ export function Footer() {
                   href="/treatments"
                   className="text-sm text-gold hover:underline transition-colors"
                 >
-                  View All Treatments →
+                  {tNav('treatments')} →
                 </Link>
               </li>
             </ul>
@@ -143,17 +159,14 @@ export function Footer() {
           {/* Column 4: Contact Info */}
           <div>
             <h3 className="font-serif text-xl font-semibold text-gold mb-6">
-              Contact Us
+              {t('contact')}
             </h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-sm text-gray-300">
-                    {siteConfig.contact.address}
-                  </p>
-                  <p className="text-sm text-gray-300">
-                    {siteConfig.contact.city}, {siteConfig.contact.postcode}
+                    {t('address')}
                   </p>
                 </div>
               </li>
@@ -163,7 +176,7 @@ export function Footer() {
                   href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`}
                   className="text-sm text-gray-300 hover:text-gold transition-colors"
                 >
-                  {siteConfig.contact.phone}
+                  {t('phone')}
                 </a>
               </li>
               <li className="flex items-center gap-3">
@@ -172,7 +185,7 @@ export function Footer() {
                   href={`mailto:${siteConfig.contact.email}`}
                   className="text-sm text-gray-300 hover:text-gold transition-colors"
                 >
-                  {siteConfig.contact.email}
+                  {t('email')}
                 </a>
               </li>
             </ul>
@@ -180,13 +193,11 @@ export function Footer() {
             {/* Opening Hours */}
             <div className="mt-6">
               <h4 className="text-sm font-semibold text-gold mb-3">
-                Opening Hours
+                {t('openingHours')}
               </h4>
               <ul className="space-y-1 text-xs text-gray-300">
-                <li>Mon - Tue: {siteConfig.businessHours.monday}</li>
-                <li>Wed - Thu: {siteConfig.businessHours.wednesday}</li>
-                <li>Fri: {siteConfig.businessHours.friday}</li>
-                <li>Sat - Sun: {siteConfig.businessHours.saturday}</li>
+                <li>{t('hours.monFri')}</li>
+                <li>{t('hours.satSun')}</li>
               </ul>
             </div>
           </div>
@@ -198,26 +209,20 @@ export function Footer() {
         <div className="container-custom py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-gray-400">
-              © {currentYear} {siteConfig.name}. All rights reserved.
+              {t('copyright')}
             </p>
             <div className="flex items-center gap-6">
               <Link
                 href="/privacy-policy"
                 className="text-sm text-gray-400 hover:text-gold transition-colors"
               >
-                Privacy Policy
+                {t('privacy')}
               </Link>
               <Link
                 href="/terms-conditions"
                 className="text-sm text-gray-400 hover:text-gold transition-colors"
               >
-                Terms & Conditions
-              </Link>
-              <Link
-                href="/cookie-policy"
-                className="text-sm text-gray-400 hover:text-gold transition-colors"
-              >
-                Cookie Policy
+                {t('terms')}
               </Link>
             </div>
           </div>
