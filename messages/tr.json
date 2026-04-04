@@ -1,7 +1,7 @@
 {
   "site": {
-    "title": "Londra'nın Ödüllü Estetik Kliniği | Harley Street Injectables",
-    "description": "Harley Street'teki Londra'nın önde gelen cerrahi dışı estetik kliniği. Dünya standartlarında uzmanlar, son teknoloji tedaviler ve lüks bakım."
+    "title": "Batumi'nin Premium Güzellik Salonu | Silk Beauty Salon",
+    "description": "Zurab Gorgiladze Caddesi'ndeki Batumi'nin premium güzellik salonu. Uzman pratisyenler, gelişmiş tedaviler ve lüks bakım."
   },
   "nav": {
     "treatments": "Tedaviler",
@@ -17,12 +17,12 @@
     "team": "Ekibimiz"
   },
   "header": {
-    "announcement": "Ödüllü | Londra'nın En İyi Kozmetik Klinigi | Vogue, Grazia, Vanity Fair'de yayınlandı"
+    "announcement": "Ödüllü | Batumi'nin En İyi Güzellik Salonu | Gürcistan Moda ve Güzellik Dergisi'nde yayınlandı"
   },
   "hero": {
     "title": "Anti-Aging Uzmanları",
-    "subtitle": "Londra'nın Önde Gelen Estetik Kliniği",
-    "description": "Harley Street Injectables, doğal güzelliğinizi hassasiyet ve güvenle artırmak için dünya standartlarında uzmanları, son teknoloji tedavileri ve lüks bakımı bir araya getiriyor.",
+    "subtitle": "Batumi'nin Premium Güzellik Salonu",
+    "description": "Silk Beauty Salon, doğal güzelliğinizi hassasiyet ve güvenle artırmak için uzman pratisyenleri, gelişmiş tedavileri ve lüks bakımı bir araya getiriyor.",
     "cta": {
       "book": "Randevu Al",
       "treatments": "Tedavileri Gör"
@@ -30,7 +30,7 @@
   },
   "treatments": {
     "title": "Tedaviler",
-    "subtitle": "İhtiyaçlarınıza özel son teknoloji estetik tedaviler",
+    "subtitle": "İhtiyaçlarınıza özel gelişmiş estetik tedaviler",
     "learnMore": "Daha Fazla Bilgi",
     "viewAll": "Tüm Tedavileri Gör",
     "categories": {
@@ -61,7 +61,7 @@
     }
   },
   "technologies": {
-    "title": "Son Teknoloji Cihazlar",
+    "title": "Gelişmiş Teknolojiler",
     "subtitle": "En son ve en gelişmiş estetik teknolojilerini kullanıyoruz"
   },
   "testimonials": {
@@ -71,7 +71,7 @@
   },
   "about": {
     "title": "Hastaları ön planda tutmak ve mükemmel hizmet sunmak",
-    "description": "Harley Street Injectables, en iyi sonuçları elde etmek için en son teknolojileri kullanarak minimal invaziv, öncü kozmetik ve sağlık tedavileri sunmaktadır.",
+    "description": "Silk Beauty Salon, en iyi sonuçları elde etmek için en son teknolojileri kullanarak minimal invaziv, öncü kozmetik ve sağlık tedavileri sunmaktadır.",
     "readMore": "Daha Fazla Oku",
     "values": {
       "title": "Değerlerimiz",
@@ -86,11 +86,11 @@
   "quickLinks": {
     "faq": {
       "title": "SSS",
-      "description": "Klinik ve tedavilerimiz hakkında en sık sorulan soruları okuyun."
+      "description": "Salon ve tedavilerimiz hakkında en sık sorulan soruları okuyun."
     },
     "contact": {
       "title": "İletişim",
-      "description": "Harley Street 106 numarada yer almaktayız, çalışma saatleri 9am–6.30pm."
+      "description": "Zurab Gorgiladze Caddesi 63 numarada yer almaktayız, çalışma saatleri 9:00 - 18:30."
     },
     "team": {
       "title": "Ekibimiz",
@@ -110,21 +110,21 @@
     "success": "Abone olduğunuz için teşekkürler!"
   },
   "footer": {
-    "description": "Harley Street'teki Londra'nın önde gelen cerrahi dışı estetik kliniği.",
+    "description": "Zurab Gorgiladze Caddesi'ndeki Batumi'nin premium güzellik salonu.",
     "quickLinks": "Hızlı Linkler",
     "treatments": "Tedaviler",
     "conditions": "Cilt Sorunları",
     "contact": "İletişim Bilgileri",
-    "address": "Harley Street 106, Londra W1G 7JE",
-    "phone": "Tel: 0345 548 5658",
-    "email": "info@harleystreetinjectables.com",
+    "address": "Zurab Gorgiladze Cad. 63, Batumi 6000, Gürcistan",
+    "phone": "Tel: +995 599 123 456",
+    "email": "info@silkbeauty.ge",
     "openingHours": "Çalışma Saatleri",
     "hours": {
-      "monFri": "Pzt-Cum: 9am - 6:30pm",
-      "satSun": "Cmt-Paz: 9:30am - 5pm"
+      "monFri": "Pzt-Cum: 9:00 - 18:30",
+      "satSun": "Cmt-Paz: 9:30 - 17:00"
     },
     "social": "Bizi Takip Edin",
-    "copyright": "© 2024 Harley Street Injectables. Tüm hakları saklıdır.",
+    "copyright": "© 2024 Silk Beauty Salon. Tüm hakları saklıdır.",
     "privacy": "Gizlilik Politikası",
     "terms": "Kullanım Şartları"
   },
@@ -141,10 +141,10 @@
     },
     "info": {
       "title": "Bizi Ziyaret Edin",
-      "address": "Harley Street 106",
-      "city": "Londra W1G 7JE",
-      "phone": "0345 548 5658",
-      "email": "info@harleystreetinjectables.com"
+      "address": "Zurab Gorgiladze Cad. 63",
+      "city": "Batumi 6000, Gürcistan",
+      "phone": "+995 599 123 456",
+      "email": "info@silkbeauty.ge"
     }
   },
   "faq": {
