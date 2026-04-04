@@ -159,10 +159,10 @@ export function Header() {
           <Link href="/" className="flex items-center gap-2">
             <div className="flex flex-col">
               <span className="font-serif text-xl md:text-2xl font-semibold text-primary tracking-tight">
-                Harley Street
+                Silk Beauty
               </span>
               <span className="text-xs md:text-sm text-gold tracking-[0.2em] uppercase font-medium">
-                Injectables
+                Salon
               </span>
             </div>
           </Link>
@@ -259,10 +259,10 @@ function MobileNav({ onClose }: { onClose: () => void }) {
       <div className="flex items-center justify-between p-4 border-b">
         <div className="flex flex-col">
           <span className="font-serif text-xl font-semibold text-primary">
-            Harley Street
+            Silk Beauty
           </span>
           <span className="text-xs text-gold tracking-[0.2em] uppercase">
-            Injectables
+            Salon
           </span>
         </div>
         <div className="flex items-center gap-2">

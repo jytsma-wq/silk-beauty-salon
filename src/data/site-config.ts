@@ -1,39 +1,39 @@
 export const siteConfig = {
-  name: "Harley Street Injectables",
-  description: "London's leading non-surgical aesthetic clinic at 106 Harley Street. We bring together world-class practitioners, cutting-edge treatments & luxury care to enhance your natural beauty with precision & confidence.",
-  url: "https://www.harleystreetinjectables.com",
-  bookingUrl: "https://phorest.com/book/salons/harleystreetinjectables1",
+  name: "Silk Beauty Salon",
+  description: "Batumi's premier beauty salon on Zurab Gorgiladze Street. We bring together expert practitioners, cutting-edge treatments & luxury care to enhance your natural beauty with precision & confidence.",
+  url: "https://www.silkbeauty.ge",
+  bookingUrl: "https://www.silkbeauty.ge/book",
   
   contact: {
-    address: "106 Harley Street",
-    city: "London",
-    postcode: "W1G 7JE",
-    country: "United Kingdom",
-    phone: "0345 548 5658",
-    email: "info@harleystreetinjectables.com"
+    address: "Zurab Gorgiladze 63",
+    city: "Batumi",
+    postcode: "6000",
+    country: "Georgia",
+    phone: "+995 599 123 456",
+    email: "info@silkbeauty.ge"
   },
   
   businessHours: {
-    monday: "09:00 - 18:30",
-    tuesday: "09:00 - 18:30",
-    wednesday: "09:00 - 20:00",
-    thursday: "09:00 - 20:00",
-    friday: "09:00 - 18:30",
-    saturday: "09:30 - 17:00",
-    sunday: "09:30 - 17:00"
+    monday: "10:00 - 19:00",
+    tuesday: "10:00 - 19:00",
+    wednesday: "10:00 - 20:00",
+    thursday: "10:00 - 20:00",
+    friday: "10:00 - 19:00",
+    saturday: "10:00 - 18:00",
+    sunday: "11:00 - 16:00"
   },
   
   social: {
-    instagram: "https://www.instagram.com/harley_st_injectables/",
-    facebook: "https://www.facebook.com/HarleyInjectables/",
-    twitter: "https://x.com/HInjectables",
-    youtube: "https://www.youtube.com/channel/UCSMEsASgbUsTcxiGvdizrjw"
+    instagram: "https://www.instagram.com/silkbeauty_batumi/",
+    facebook: "https://www.facebook.com/silkbeautybatumi/",
+    twitter: "",
+    youtube: ""
   },
   
   awards: [
     "Award Winning",
-    "Voted London's top Cosmetic Clinic",
-    "As featured in Vogue, Grazia, Vanity Fair and Tatler"
+    "Batumi's Premier Beauty Salon",
+    "As featured in Georgian Fashion & Beauty Magazine"
   ],
   
   navigation: {
@@ -62,27 +62,27 @@ export const siteConfig = {
   
   team: [
     {
-      name: "Alice",
+      name: "Nino",
       role: "Founder & Lead Practitioner",
-      bio: "Alice is the founder of Harley Street Injectables and a renowned aesthetic practitioner with over 15 years of experience in the industry. She is known for her natural-looking results and meticulous attention to detail.",
+      bio: "Nino is the founder of Silk Beauty Salon and a renowned aesthetic practitioner with over 15 years of experience in the beauty industry. She is known for her natural-looking results and meticulous attention to detail.",
       image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80"
     },
     {
-      name: "Hazel",
+      name: "Ketevan",
       role: "Senior Aesthetic Practitioner",
-      bio: "Hazel is a highly skilled aesthetic practitioner specializing in dermal fillers and skin treatments. Her gentle approach and artistic eye ensure beautiful, natural results for every client.",
+      bio: "Ketevan is a highly skilled aesthetic practitioner specializing in dermal fillers and skin treatments. Her gentle approach and artistic eye ensure beautiful, natural results for every client.",
       image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80"
     },
     {
-      name: "Sophie",
+      name: "Mariam",
       role: "Aesthetic Practitioner",
-      bio: "Sophie brings a wealth of knowledge in advanced skin treatments and laser therapy. She is passionate about helping clients achieve their skin goals through personalized treatment plans.",
+      bio: "Mariam brings a wealth of knowledge in advanced skin treatments and laser therapy. She is passionate about helping clients achieve their skin goals through personalized treatment plans.",
       image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80"
     },
     {
-      name: "Emma",
+      name: "Sophia",
       role: "Aesthetic Practitioner",
-      bio: "Emma specializes in non-surgical facial rejuvenation and has extensive experience in anti-wrinkle treatments and dermal fillers. Her clients love her natural, fresh approach.",
+      bio: "Sophia specializes in non-surgical facial rejuvenation and has extensive experience in anti-wrinkle treatments and dermal fillers. Her clients love her natural, fresh approach.",
       image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80"
     }
   ],
@@ -106,19 +106,19 @@ export const siteConfig = {
     },
     {
       question: "How do I book an appointment?",
-      answer: "You can book online through our booking system, call us on 0345 548 5658, or email info@harleystreetinjectables.com. We recommend booking consultations in advance as we often have a waiting list."
+      answer: "You can book online through our website, call us at +995 599 123 456, or email info@silkbeauty.ge. We recommend booking consultations in advance as we often have a waiting list."
     },
     {
       question: "Do you offer virtual consultations?",
-      answer: "Yes, we offer virtual consultations for those who cannot visit the clinic initially. However, for treatments requiring precise assessment, an in-person consultation is recommended."
+      answer: "Yes, we offer virtual consultations for those who cannot visit the salon initially. However, for treatments requiring precise assessment, an in-person consultation is recommended."
     },
     {
       question: "What brands of products do you use?",
-      answer: "We use only premium, FDA-approved products from leading brands including Allergan (Juvederm), Galderma (Restylane), and Merz. For skin treatments, we use medical-grade products from iS Clinical, Obagi, and Mesoestetic."
+      answer: "We use only premium, certified products from leading brands including Allergan (Juvederm), Galderma (Restylane), and Merz. For skin treatments, we use medical-grade products from iS Clinical, Obagi, and Mesoestetic."
     },
     {
       question: "Are your practitioners qualified?",
-      answer: "All our practitioners are fully qualified and experienced medical professionals. They undergo continuous training in the latest techniques and safety protocols to ensure the highest standards of care."
+      answer: "All our practitioners are fully qualified and experienced professionals. They undergo continuous training in the latest techniques and safety protocols to ensure the highest standards of care."
     }
   ]
 };

@@ -17,10 +17,10 @@ export function Footer() {
             <Link href="/" className="inline-block mb-6">
               <div className="flex flex-col">
                 <span className="font-serif text-2xl font-semibold text-white tracking-tight">
-                  Harley Street
+                  Silk Beauty
                 </span>
                 <span className="text-sm text-gold tracking-[0.2em] uppercase font-medium">
-                  Injectables
+                  Salon
                 </span>
               </div>
             </Link>

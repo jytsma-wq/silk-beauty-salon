@@ -22,10 +22,10 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Award-Winning Aesthetic Clinic in London | Harley Street Injectables",
-  description: "London's leading non-surgical aesthetic clinic at 106 Harley Street.",
-  keywords: ["aesthetic clinic", "botox", "dermal fillers", "laser treatments", "skin treatments", "Harley Street", "London", "cosmetic clinic"],
-  authors: [{ name: "Harley Street Injectables" }],
+  title: "Premier Beauty Salon in Batumi | Silk Beauty Salon",
+  description: "Batumi's premier beauty salon on Zurab Gorgiladze Street.",
+  keywords: ["beauty salon", "botox", "dermal fillers", "laser treatments", "skin treatments", "Batumi", "Georgia", "cosmetic clinic"],
+  authors: [{ name: "Silk Beauty Salon" }],
   icons: {
     icon: "/favicon.ico",
   },

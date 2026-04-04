@@ -1,7 +1,7 @@
 {
   "site": {
-    "title": "Award-Winning Aesthetic Clinic in London | Harley Street Injectables",
-    "description": "London's leading non-surgical aesthetic clinic at 106 Harley Street. World-class practitioners, cutting-edge treatments & luxury care."
+    "title": "Premier Beauty Salon in Batumi | Silk Beauty Salon",
+    "description": "Batumi's premier beauty salon on Zurab Gorgiladze Street. Expert practitioners, cutting-edge treatments & luxury care."
   },
   "nav": {
     "treatments": "Treatments",
@@ -17,12 +17,12 @@
     "team": "Our Team"
   },
   "header": {
-    "announcement": "Award Winning | Voted London's top Cosmetic Clinic | Featured in Vogue, Grazia, Vanity Fair"
+    "announcement": "Award Winning | Batumi's Premier Beauty Salon | Featured in Georgian Fashion & Beauty Magazine"
   },
   "hero": {
     "title": "Anti-Ageing Specialists",
-    "subtitle": "London's Leading Aesthetic Clinic",
-    "description": "Harley Street Injectables brings together world-class practitioners, cutting-edge treatments & luxury care to enhance your natural beauty with precision & confidence.",
+    "subtitle": "Batumi's Premier Beauty Salon",
+    "description": "Silk Beauty Salon brings together expert practitioners, cutting-edge treatments & luxury care to enhance your natural beauty with precision & confidence.",
     "cta": {
       "book": "Book Appointment",
       "treatments": "View Treatments"
@@ -110,21 +110,21 @@
     "success": "Thank you for subscribing!"
   },
   "footer": {
-    "description": "London's leading non-surgical aesthetic clinic at 106 Harley Street.",
+    "description": "Batumi's premier beauty salon on Zurab Gorgiladze Street.",
     "quickLinks": "Quick Links",
     "treatments": "Treatments",
     "conditions": "Conditions",
     "contact": "Contact Info",
-    "address": "106 Harley Street, London W1G 7JE",
-    "phone": "Tel: 0345 548 5658",
-    "email": "info@harleystreetinjectables.com",
+    "address": "Zurab Gorgiladze 63, Batumi 6000, Georgia",
+    "phone": "Tel: +995 599 123 456",
+    "email": "info@silkbeauty.ge",
     "openingHours": "Opening Hours",
     "hours": {
       "monFri": "Mon-Fri: 9am - 6:30pm",
       "satSun": "Sat-Sun: 9:30am - 5pm"
     },
     "social": "Follow Us",
-    "copyright": "© 2024 Harley Street Injectables. All rights reserved.",
+    "copyright": "© 2024 Silk Beauty Salon. All rights reserved.",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service"
   },
@@ -141,10 +141,10 @@
     },
     "info": {
       "title": "Visit Us",
-      "address": "106 Harley Street",
-      "city": "London W1G 7JE",
-      "phone": "0345 548 5658",
-      "email": "info@harleystreetinjectables.com"
+      "address": "Zurab Gorgiladze 63",
+      "city": "Batumi 6000, Georgia",
+      "phone": "+995 599 123 456",
+      "email": "info@silkbeauty.ge"
     }
   },
   "faq": {
