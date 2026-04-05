@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3000 2>&1 | tee dev.log",
+    "dev": "next dev -p 3000",
     "build": "next build && xcopy /E /I /Y .next\\static .next\\standalone\\.next\\static 2>nul && xcopy /E /I /Y public .next\\standalone\\public 2>nul",
     "start": "NODE_ENV=production bun .next/standalone/server.js 2>&1 | tee server.log",
     "lint": "eslint ."
