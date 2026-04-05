@@ -1,9 +1,7 @@
-PS C:\Users\jytsm\Downloads\silkbeautysalon> git push -u origin main
-To https://github.com/jytsma-wq/silk-beauty-salon.git
- ! [rejected]        main -> main (non-fast-forward)
-error: failed to push some refs to 'https://github.com/jytsma-wq/silk-beauty-salon.git'
-hint: Updates were rejected because the tip of your current branch is behind
-hint: its remote counterpart. If you want to integrate the remote changes,
-hint: use 'git pull' before pushing again.
-hint: See the 'Note about fast-forwards' in 'git push --help' for details.
-PS C:\Users\jytsm\Downloads\silkbeautysalon> 
+Fix the most critical issues immediately:
+
+1. Change all "Harley Street Injectables" to "Silk Beauty Salon" in metadata
+2. Create error.tsx and not-found.tsx files
+3. Create /careers page that's linked in footer
+
+These are breaking the site's branding and navigation.

@@ -126,6 +126,14 @@ export function Footer() {
                   {tNav('blog')}
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/careers"
+                  className="text-sm text-gray-300 hover:text-gold transition-colors"
+                >
+                  Careers
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -163,7 +171,7 @@ export function Footer() {
             </h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" />
+                <MapPin className="w-5 h-5 text-gold mt-0.5 shrink-0" />
                 <div>
                   <p className="text-sm text-gray-300">
                     {t('address')}
@@ -171,7 +179,7 @@ export function Footer() {
                 </div>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-gold flex-shrink-0" />
+                <Phone className="w-5 h-5 text-gold shrink-0" />
                 <a
                   href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`}
                   className="text-sm text-gray-300 hover:text-gold transition-colors"
@@ -180,7 +188,7 @@ export function Footer() {
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-gold flex-shrink-0" />
+                <Mail className="w-5 h-5 text-gold shrink-0" />
                 <a
                   href={`mailto:${siteConfig.contact.email}`}
                   className="text-sm text-gray-300 hover:text-gold transition-colors"
