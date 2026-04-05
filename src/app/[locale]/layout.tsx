@@ -45,7 +45,7 @@ export default async function LocaleLayout({
   const { locale } = await params;
   
   // Ensure valid locale
-  const validLocale = routing.locales.includes(locale as any) ? locale : routing.defaultLocale;
+  const validLocale = (routing.locales as readonly string[]).includes(locale) ? locale : routing.defaultLocale;
   
   setRequestLocale(validLocale);
   

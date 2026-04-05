@@ -46,7 +46,7 @@ export default function AboutPage() {
             About Us
           </h1>
           <p className="text-gray-300 max-w-2xl mx-auto">
-            London's leading non-surgical aesthetic clinic, bringing together world-class practitioners and cutting-edge treatments
+            Batumi's leading non-surgical aesthetic clinic, bringing together world-class practitioners and cutting-edge treatments
           </p>
         </div>
       </section>

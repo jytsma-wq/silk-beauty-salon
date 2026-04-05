@@ -16,28 +16,26 @@ export default function Error({
   }, [error]);
 
   return (
-    <html lang="en">
-      <body className="min-h-screen flex items-center justify-center bg-background">
-        <div className="text-center max-w-md px-4">
-          <h1 className="text-4xl font-serif font-semibold text-primary mb-4">
-            Something Went Wrong
-          </h1>
-          <p className="text-muted-foreground mb-8">
-            We apologize for the inconvenience. An unexpected error has occurred.
+    <div className="min-h-screen flex items-center justify-center bg-background">
+      <div className="text-center max-w-md px-4">
+        <h1 className="text-4xl font-serif font-semibold text-primary mb-4">
+          Something Went Wrong
+        </h1>
+        <p className="text-muted-foreground mb-8">
+          We apologize for the inconvenience. An unexpected error has occurred.
+        </p>
+        {error.message && (
+          <p className="text-sm text-red-500 mb-6 bg-red-50 p-3 rounded">
+            {error.message}
           </p>
-          {error.message && (
-            <p className="text-sm text-red-500 mb-6 bg-red-50 p-3 rounded">
-              {error.message}
-            </p>
-          )}
-          <Button 
-            onClick={reset}
-            className="btn-gold"
-          >
-            Try Again
-          </Button>
-        </div>
-      </body>
-    </html>
+        )}
+        <Button 
+          onClick={reset}
+          className="btn-gold"
+        >
+          Try Again
+        </Button>
+      </div>
+    </div>
   );
 }
