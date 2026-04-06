@@ -51,4 +51,23 @@ test
 prompts
 
 server.log
+
+# Database files
+*.db
+*.db-shm
+*.db-wal
+db/*.db
+dev.db
+prisma/*.db
+
+# Internal documents
+download/
+
 # Skills directory
+/skills/
+
+# Examples directory
+/examples/
+
+# Mini services directory
+/mini-services/

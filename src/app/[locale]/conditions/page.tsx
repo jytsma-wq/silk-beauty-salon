@@ -2,30 +2,50 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
-import { conditions } from '@/data/conditions';
+import { getLocalizedConditions } from '@/data/conditions';
 import { siteConfig } from '@/data/site-config';
 import { Button } from '@/components/ui/button';
+import { getTranslations } from 'next-intl/server';
 
 export const metadata: Metadata = {
   title: 'Conditions We Treat | Silk Beauty Salon',
   description: 'Learn about the various skin conditions we treat including ageing skin, acne scarring, pigmentation, and more.',
 };
 
-export default function ConditionsPage() {
+export default async function ConditionsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'conditionsPage' });
+  const tCommon = await getTranslations({ locale, namespace: 'common' });
+  const conditions = await getLocalizedConditions(locale);
+
   return (
     <>
-      {/* Hero Section */}
-      <section className="bg-primary py-20">
-        <div className="container-custom text-center">
-          <h1 
-            className="text-4xl md:text-5xl font-serif font-semibold text-white mb-4"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
-            Conditions We Treat
-          </h1>
-          <p className="text-gray-300 max-w-2xl mx-auto">
-            Whatever your skin concern, our expert practitioners can create a personalized treatment plan
-          </p>
+      {/* Full Screen Hero Image */}
+      <section className="relative h-screen min-h-[600px]">
+        <Image
+          src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1920&q=80"
+          alt="Skin Care Treatment"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-primary/40" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="container-custom text-center">
+            <h1 
+              className="text-4xl md:text-6xl font-serif font-semibold text-white mb-4"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              {t('listingTitle')}
+            </h1>
+            <p className="text-gray-200 max-w-2xl mx-auto text-lg">
+              {t('listingSubtitle')}
+            </p>
+          </div>
         </div>
       </section>
 
@@ -34,10 +54,10 @@ export default function ConditionsPage() {
         <div className="container-custom">
           <nav className="flex items-center gap-2 text-sm">
             <Link href="/" className="text-muted-foreground hover:text-gold">
-              Home
+              {tCommon('home')}
             </Link>
             <ChevronRight className="w-4 h-4 text-muted-foreground" />
-            <span className="text-primary font-medium">Conditions</span>
+            <span className="text-primary font-medium">{t('title')}</span>
           </nav>
         </div>
       </div>
@@ -74,7 +94,7 @@ export default function ConditionsPage() {
                       {condition.shortDescription}
                     </p>
                     <span className="inline-flex items-center gap-1 text-sm font-medium text-gold group-hover:gap-2 transition-all">
-                      Learn More
+                      {tCommon('learnMore')}
                       <ChevronRight className="w-4 h-4" />
                     </span>
                   </div>
@@ -92,14 +112,14 @@ export default function ConditionsPage() {
             className="text-2xl md:text-3xl font-serif font-semibold text-white mb-4"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            Not Sure Which Treatment Is Right for You?
+            {t('ctaTitle')}
           </h2>
           <p className="text-gray-300 mb-8 max-w-xl mx-auto">
-            Book a consultation with one of our expert practitioners who will assess your concerns and recommend the best treatment options
+            {t('ctaSubtitle')}
           </p>
           <Button asChild className="btn-gold">
             <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
-              Book a Consultation
+              {t('bookConsultation')}
             </a>
           </Button>
         </div>

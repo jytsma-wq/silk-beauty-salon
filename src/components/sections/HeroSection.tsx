@@ -2,9 +2,6 @@
 
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { Button } from '@/components/ui/button';
-import { siteConfig } from '@/data/site-config';
-import { Link } from '@/i18n/routing';
 
 export function HeroSection() {
   const t = useTranslations('hero');
@@ -41,27 +38,6 @@ export function HeroSection() {
           <p className="text-base text-gray-300 mb-10 max-w-2xl mx-auto">
             {t('description')}
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button
-              asChild
-              size="lg"
-              className="btn-gold min-w-[200px]"
-            >
-              <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
-                {t('cta.book')}
-              </a>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="min-w-[200px] border-white text-white hover:bg-white hover:text-primary"
-            >
-              <Link href="/treatments">
-                {t('cta.treatments')}
-              </Link>
-            </Button>
-          </div>
         </div>
       </div>
 

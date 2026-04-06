@@ -1,0 +1,17 @@
+PROMPT 15 — Remove /skills/ directory from repository
+
+git rm -r --cached skills/
+
+Add to .gitignore:
+
+/skills/
+/download/
+/examples/
+/mini-services/
+
+
+Commit the change:
+git commit -m "Remove AI skills directory and internal documents from repo"
+
+These files should live in a separate AI tools repository, not in the production website codebase. The /examples/websocket/ directory should similarly be removed — it contains websocket server example code with no relevance to this project.
+remove all of them when safe

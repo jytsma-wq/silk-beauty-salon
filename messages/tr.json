@@ -9,6 +9,7 @@
     "about": "Hakkımızda",
     "pricelist": "Fiyat Listesi",
     "offers": "Teklifler",
+    "beforeAfter": "Önce ve Sonra",
     "contact": "İletişim",
     "bookAppointment": "Randevu Al",
     "faq": "SSS",
@@ -190,23 +191,211 @@
     "subtitle": "Uzman pratisyenlerimizle tanışın",
     "bookWith": "Randevu Al"
   },
+  "treatmentsPage": {
+    "title": "Tedavilerimiz",
+    "subtitle": "Doğal güzelliğinizi artırmak için tasarlanmış premium estetik tedavilerimizin kapsamlı koleksiyonunu keşfedin",
+    "ctaTitle": "Yolculuğunuza Başlamaya Hazır mısınız?",
+    "ctaSubtitle": "Estetik hedeflerinizi tartışmak için uzmanlarımızdan biriyle konsültasyon randevusu alın",
+    "ctaButton": "Konsültasyon Randevusu Al"
+  },
+  "beforeAfterPage": {
+    "title": "Önce ve Sonra",
+    "subtitle": "Tedavilerimizin gerçek sonuçlarını görün. Uzman estetik tedavilerimizle görünümünüzü dönüştürün.",
+    "ctaTitle": "Dönüşmeye Hazır mısınız?",
+    "ctaText": "Tedavi hedeflerinizi görüşmek için uzmanlarımızdan biriyle konsültasyon randevusu alın",
+    "bookNow": "Randevu Al"
+  },
+  "conditionsPage": {
+    "title": "Cilt Sorunları",
+    "listingTitle": "Tedavi Ettiğimiz Cilt Sorunları",
+    "listingSubtitle": "Cilt sorununuz ne olursa olsun, uzman uygulayıcılarımız kişiselleştirilmiş bir tedavi planı oluşturabilir",
+    "ctaTitle": "Hangi Tedavinin Sizin İçin Doğru Olduğundan Emin Değil misiniz?",
+    "ctaSubtitle": "Sorunlarınızı değerlendirecek ve en iyi tedavi seçeneklerini önerecek uzman pratisyenlerimizden biriyle konsültasyon randevusu alın",
+    "bookConsultation": "Konsültasyon Randevusu Al"
+  },
+  "aboutPage": {
+    "title": "Hakkımızda",
+    "subtitle": "Dünya standartlarında uygulayıcıları ve son teknolojiyi bir araya getiren Batum'nin önde gelen cerrahi olmayan estetik kliniği",
+    "ourStory": "Hikayemiz",
+    "storyP1": "Silk Beauty Salon, lüks ve davetkar bir ortamda en kaliteli estetik tedavileri sunma vizyonuyla kuruldu. Batum'deki Zurab Gorgiladze Caddesi'nde konumlanan kliniğimiz, Gürcistan'ın en yetenekli estetik uygulayıcılarından bazılarını bir araya getiriyor.",
+    "storyP2": "Herkesin kendinden emin ve güzel hissetmeyi hak ettiğine inanıyoruz. Yaklaşımımız, sizi değiştirmek yerine doğal özelliklerinizi geliştirmeye odaklanır. En iyi versiyonunuz gibi görünmenize yardımcı olan incelikli, rafine sonuçlarımızla gurur duyuyoruz.",
+    "storyP3": "Kliniğimize adım attığınız andan itibaren farkı hissedeceksiniz. Mükemmelliğe olan bağlılığımız, tedavilerimizin ötesine geçerek lüks klinik alanımızdan sıcak, dikkatli ekibimize kadar ziyaretinizin her yönünü kapsar.",
+    "ourValues": "Değerlerimiz",
+    "values": {
+      "patientCare": "Hasta Öncelikli Bakım",
+      "patientCareDesc": "Konforunuz, güvenliğiniz ve memnuniyetiniz en üst önceliğimizdir.",
+      "excellence": "Mükemmellik",
+      "excellenceDesc": "Optimal sonuçlar için sadece premium ürünler ve en son teknikler kullanıyoruz.",
+      "safety": "Güvenlik",
+      "safetyDesc": "Tüm tedaviler nitelikli tıp profesyonelleri tarafından gerçekleştirilir.",
+      "naturalResults": "Doğal Sonuçlar",
+      "naturalResultsDesc": "Doğal güzelliğinizi incelikli, rafine tedavilerle artırıyoruz."
+    },
+    "meetTeam": "Ekibimizle Tanışın",
+    "teamSubtitle": "Uzman uygulayıcılarımız yılların deneyimini ve mükemmelliğe olan tutkuyu getiriyor",
+    "team": {
+      "ninoRole": "Kurucu ve Baş Uygulayıcı",
+      "ninoBio": "Nino, Silk Beauty Salon'un kurucusu ve güzellik sektöründe 15 yılı aşkın deneyime sahip ünlü bir estetik uygulayıcısıdır. Doğal görünümlü sonuçları ve titiz detaylara verdiği önemle tanınır.",
+      "ketevanRole": "Kıdemli Estetik Uygulayıcısı",
+      "ketevanBio": "Ketevan, dermal dolgu ve cilt tedavilerinde uzmanlaşmış yüksek vasıflı bir estetik uygulayıcısıdır. Nazik yaklaşımı ve sanatsal bakış açısı, her müşteri için güzel, doğal sonuçlar sağlar.",
+      "mariamRole": "Estetik Uygulayıcı",
+      "mariamBio": "Mariam, gelişmiş cilt tedavileri ve lazer tedavisi konusunda zengin bilgi birikimi getiriyor. Kişiselleştirilmiş tedavi planları aracılığıyla müşterilerinin cilt hedeflerine ulaşmalarına yardımcı olmaya tutkuyla bağlıdır.",
+      "sophiaRole": "Estetik Uygulayıcı",
+      "sophiaBio": "Sophia, cerrahi olmayan yüz gençleştirmede uzmanlaşmıştır ve kırışıklık karşıtı tedaviler ile dermal dolgu konusunda kapsamlı deneyime sahiptir. Müşterileri onun doğal, taze yaklaşımını seviyor."
+    },
+    "awards": {
+      "title": "Ödüller ve Tanınma",
+      "awardWinning": "Ödüllü",
+      "premierSalon": "Batum'un Premier Güzellik Salonu",
+      "featuredIn": "Georgian Fashion & Beauty Magazine'de yer aldı"
+    },
+    "featuredInVogue": "Vogue, Grazia, Vanity Fair ve Tatler'da yer aldı",
+    "featuredIn": "Georgian Fashion & Beauty Magazine'de yer aldı",
+    "ctaTitle": "Yolculuğunuza Başlamaya Hazır mısınız?",
+    "ctaSubtitle": "Bugün uzman uygulayıcılarımızdan biriyle konsültasyon randevusu alın",
+    "ctaButton": "Konsültasyon Randevusu Al"
+  },
+  "contactPage": {
+    "title": "Bize Ulaşın",
+    "subtitle": "Konsültasyon randevusu almak veya herhangi bir soru sormak için ekibimizle iletişime geçin",
+    "formTitle": "Bize Mesaj Gönderin",
+    "thankYou": "Teşekkürler!",
+    "messageSent": "Mesajınız başarıyla gönderildi. Kısa süre içinde size geri döneceğiz.",
+    "fullName": "Ad Soyad",
+    "namePlaceholder": "Adınızı girin",
+    "emailAddress": "E-posta Adresi",
+    "emailPlaceholder": "E-postanızı girin",
+    "phoneNumber": "Telefon Numarası",
+    "phonePlaceholder": "Telefonunuzu girin",
+    "message": "Mesaj",
+    "messagePlaceholder": "Size nasıl yardımcı olabiliriz?",
+    "sending": "Gönderiliyor...",
+    "sendMessage": "Mesaj Gönder",
+    "getInTouch": "İletişime Geçin",
+    "address": "Adres",
+    "phone": "Telefon",
+    "email": "E-posta",
+    "openingHours": "Çalışma Saatleri",
+    "monTue": "Pazartesi - Salı",
+    "wedThu": "Çarşamba - Perşembe",
+    "friday": "Cuma",
+    "satSun": "Cumartesi - Pazar",
+    "readyToBook": "Randevu Almaya Hazır mısınız?",
+    "bookOnlineDesc": "Rezervasyon sistemimiz üzerinden çevrimiçi randevu alın",
+    "bookAppointment": "Randevu Al",
+    "bookOnline": "Online Randevu",
+    "scheduleAppointment": "Randevunuzu planlayın",
+    "bookViaWhatsApp": "WhatsApp ile Randevu",
+    "whatsapp": "WhatsApp",
+    "viewOnMap": "Google Maps'te Görüntüle",
+    "mapAddress": "Zurab Gorgiladze Caddesi 63",
+    "mapCity": "Batum, Gürcistan"
+  },
+  "faqPage": {
+    "title": "Sıkça Sorulan Sorular",
+    "subtitle": "Kliniğimiz, tedavilerimiz ve rezervasyon sürecimiz hakkında sık sorulan soruların yanıtlarını bulun",
+    "breadcrumb": "SSS",
+    "stillHaveQuestions": "Hâlâ Sorularınız mı Var?",
+    "cantFindAnswer": "Aradığınız yanıtı bulamıyor musunuz? Lütfen dostça ekibimize ulaşın.",
+    "contactUs": "Bize Ulaşın",
+    "bookConsultation": "Konsültasyon Randevusu Al"
+  },
+  "pricelistPage": {
+    "title": "Fiyat Listesi",
+    "subtitle": "Tüm premium estetik tedavilerimiz için şeffaf fiyatlandırma",
+    "noteTitle": "Not:",
+    "noteText": "Fiyatlar başlangıç fiyatlarıdır ve bireysel gereksinimlere göre değişebilir. Kesin tedavi planı ve maliyetini belirlemek için konsültasyon gerekir. Tüm konsültasyonlar kapsamlı bir cilt analizi ve kişiselleştirilmiş tedavi önerilerini içerir.",
+    "treatment": "Tedavi",
+    "duration": "Süre",
+    "priceFrom": "Fiyat Başlangıç",
+    "enquire": "Bilgi Al",
+    "ctaTitle": "Randevu Almaya Hazır mısınız?",
+    "ctaSubtitle": "Tedavi hedeflerinizi tartışmak ve kişiselleştirilmiş bir teklif almak için konsültasyon randevusu alın",
+    "ctaButton": "Konsültasyon Randevusu Al"
+  },
+  "offersPage": {
+    "title": "Özel Teklifler",
+    "subtitle": "Özel promosyonlarımızdan ve özel tekliflerimizden yararlanın",
+    "breadcrumb": "Teklifler",
+    "offers": {
+      "newClient": {
+        "title": "Yeni Müşteri Özel",
+        "description": "İlk konsültasyonunuzu ayırtın ve ilk tedavinizde %20 indirim kazanın.",
+        "terms": "Sadece yeni müşteriler için geçerlidir. Diğer tekliflerle birleştirilemez."
+      },
+      "antiWrinkle": {
+        "title": "Kırışıklık Karşıtı Paket",
+        "description": "3 bölge kırışıklık karşıtı tedavi ayırtın ve tasarruf edin.",
+        "terms": "Aynı seansta tedavi edilen 3 bölge için geçerlidir."
+      },
+      "dermalFiller": {
+        "title": "Dermal Dolgu Paketi",
+        "description": "2ml veya daha fazla dermal dolgu ayırtın ve ücretsiz cilt güçlendirici kazanın.",
+        "terms": "Süreli teklif. Stok durumuna göre değişir."
+      },
+      "referral": {
+        "title": "Referans Ödülü",
+        "description": "Bir arkadaşınızı davet edin ve ikiniz de bir sonraki tedaviniz için 50 £ kredi kazanın.",
+        "terms": "Davet edilen arkadaş tedaviyi tamamlamalıdır."
+      },
+      "seasonal": {
+        "title": "Mevsimsel Cilt Yenileme",
+        "description": "Herhangi bir lazer tedavisini tıbbi yüz bakımıyla birleştirin ve ikisinde de %15 indirim kazanın.",
+        "terms": "Her iki tedavi de aynı ay içinde ayırtılmalıdır."
+      },
+      "loyalty": {
+        "title": "Sadakat Programı",
+        "description": "Sadakat programımıza katılın ve her tedavide puan kazanın.",
+        "terms": "Puanlar gelecekteki tedaviler için kullanılabilir."
+      }
+    },
+    "ctaTitle": "Bugün Tedavinizi Ayırtın",
+    "ctaSubtitle": "Konsültasyon randevusu almak ve bu özel tekliflerden yararlanmak için bizimle iletişime geçin",
+    "ctaButton": "Şimdi Ayırt",
+    "termsText": "Tüm teklifler stok durumuna göre değişir ve herhangi bir zamanda geri çekilebilir. Aksi belirtilmedikçe teklifler birleştirilemez. Lütfen rezervasyon yaparken tekliften bahsedin."
+  },
+  "blogPage": {
+    "title": "Blogumuz",
+    "subtitle": "Uzman içgörüleri, tedavi rehberleri ve estetik dünyasından son haberler",
+    "breadcrumb": "Blog",
+    "stayUpdated": "Güncel Kalın",
+    "newsletterDesc": "En son makaleler, ipuçları ve özel teklifler için bültenimize abone olun",
+    "subscribeButton": "Bültene Abone Ol"
+  },
   "treatmentPage": {
     "bookNow": "Bu Tedaviyi Randevu Al",
     "backTo": "Tedavilere Dön",
+    "aboutTreatment": "Bu Tedavi Hakkında",
     "benefits": "Faydalar",
-    "whatToExpect": "Beklentiler",
-    "recovery": "İyileşme ve Bakım",
+    "howItWorks": "Nasıl Çalışır",
+    "aftercare": "Sonrası Bakım",
+    "faqs": "Sıkça Sorulan Sorular",
     "price": "Fiyat",
-    "duration": "Tedavi Süresi",
-    "results": "Sonuçların Süresi"
+    "duration": "Süre",
+    "readyToStart": "Başlamaya Hazır mısınız?",
+    "bookConsultation": "Konsültasyon Randevusu Al",
+    "bookConsultationDesc": "Uzmanlarımızdan biriyle konsültasyon randevusu alın",
+    "bookNowBtn": "Randevu Al",
+    "contactUs": "Bize Ulaşın",
+    "phone": "Telefon",
+    "email": "E-posta",
+    "address": "Adres",
+    "relatedTreatments": "Benzer Tedaviler"
   },
   "conditionPage": {
     "title": "Cilt Sorunu",
     "backTo": "Cilt Sorunlarına Dön",
-    "symptoms": "Belirtiler",
-    "causes": "Nedenler",
-    "treatments": "Önerilen Tedaviler",
-    "bookConsultation": "Konsültasyon Randevusu Al"
+    "aboutCondition": "{name} Hakkında",
+    "symptoms": "Yaygın Belirtiler",
+    "causes": "Yaygın Nedenler",
+    "treatments": "Tedavi Seçenekleri",
+    "bookConsultation": "Konsültasyon Randevusu Al",
+    "needHelp": "Yardıma mı ihtiyacınız var?",
+    "bookConsultationDesc": "Uzmanlarımızdan biriyle konsültasyon randevusu alın",
+    "bookNow": "Randevu Al",
+    "otherConditions": "Diğer Durumlar",
+    "viewAllConditions": "Tüm Durumları Gör",
+    "recommendedTreatments": "Önerilen Tedaviler"
   },
   "language": {
     "select": "Dil Seçin",
@@ -224,6 +413,523 @@
     "next": "Sonraki",
     "previous": "Önceki",
     "viewAll": "Tümünü Gör",
-    "learnMore": "Daha Fazla Bilgi"
+    "learnMore": "Daha Fazla Bilgi",
+    "home": "Ana Sayfa",
+    "readMore": "Devamını Oku",
+    "bookNow": "Randevu Al",
+    "bookConsultation": "Konsültasyon Randevusu Al",
+    "bookOnline": "Online Randevu Al",
+    "bookViaWhatsApp": "WhatsApp ile Randevu Al",
+    "scheduleAppointment": "Randevu Planla",
+    "whatsapp": "WhatsApp",
+    "treatments": "Tedaviler",
+    "conditions": "Cilt Sorunları",
+    "notFound": "Bulunamadı"
+  },
+  "siteConfig": {
+    "awards": {
+      "awardWinning": "Ödüllü",
+      "premierSalon": "Batumi'nin En İyi Güzellik Salonu",
+      "featuredIn": "Gürcistan Moda ve Güzellik Dergisi'nde yer aldı"
+    },
+    "navigation": {
+      "treatments": "Tedaviler",
+      "conditions": "Cilt Sorunları",
+      "about": "Hakkımızda",
+      "priceList": "Fiyat Listesi",
+      "offers": "Teklifler",
+      "contact": "İletişim",
+      "faq": "SSS",
+      "press": "Basın",
+      "blog": "Blog",
+      "aboutUs": "Hakkımızda",
+      "ourTeam": "Ekibimiz",
+      "careers": "Kariyer"
+    },
+    "team": {
+      "ninoRole": "Kurucu ve Baş Uygulayıcı",
+      "ninoBio": "Nino, Silk Beauty Salon'un kurucusu ve güzellik sektöründe 15 yılı aşkın deneyime sahip ünlü bir estetik uygulayıcısıdır. Doğal görünümlü sonuçları ve titiz detaylara verdiği önemle tanınır.",
+      "ketevanRole": "Kıdemli Estetik Uygulayıcısı",
+      "ketevanBio": "Ketevan, dermal dolgu ve cilt tedavilerinde uzmanlaşmış yüksek vasıflı bir estetik uygulayıcısıdır. Nazik yaklaşımı ve sanatsal bakış açısı, her müşteri için güzel, doğal sonuçlar sağlar.",
+      "mariamRole": "Estetik Uygulayıcı",
+      "mariamBio": "Mariam, gelişmiş cilt tedavileri ve lazer tedavisi konusunda zengin bilgi birikimi getiriyor. Kişiselleştirilmiş tedavi planları aracılığıyla müşterilerinin cilt hedeflerine ulaşmalarına yardımcı olmaya tutkuyla bağlıdır.",
+      "sophiaRole": "Estetik Uygulayıcı",
+      "sophiaBio": "Sophia, cerrahi olmayan yüz gençleştirmede uzmanlaşmıştır ve kırışıklık karşıtı tedaviler ile dermal dolgu konusunda kapsamlı deneyime sahiptir. Müşterileri onun doğal, taze yaklaşımını seviyor."
+    },
+    "faqs": {
+      "consultationQuestion": "İlk konsültasyonum sırasında ne beklemeliyim?",
+      "consultationAnswer": "İlk konsültasyonunuz sırasında, endişelerinizi, hedeflerinizi ve tıbbi geçmişinizi tartışacağız. Uygulayıcımız, uygun tedavileri önermeden önce cildinizi ve yüz anatomisinizi inceleyecektir. Dürüst, şeffaf tavsiyelere inanıyoruz ve asla gereksiz tedavi önermiyoruz.",
+      "painQuestion": "Tedaviler ağrılı mı?",
+      "painAnswer": "Çoğu tedavi minimal rahatsızlık içerir. Uygun olduğunda topikal uyuşturucu krem kullanıyoruz ve birçok dermal dolgumuz yerleşik lokal anestezik içeriyor. Uygulayıcılarımız, tedavileri olabildiğince rahat hale getirme konusunda ustadır.",
+      "resultsQuestion": "Sonuçlar ne kadar sürer?",
+      "resultsAnswer": "Bu tedaviye bağlıdır. Kırışıklık karşıtı enjeksiyonlar genellikle 3-6 ay sürer, dermal dolgu ürüne ve tedavi edilen bölgeye bağlı olarak 6-18 ay, cilt sıkılaştırma tedavileri 1-2 yıl süren sonuçlar sağlayabilir. Beklenen süreyi konsültasyonunuz sırasında tartışacağız.",
+      "downtimeQuestion": "Herhangi bir iyileşme süresi var mı?",
+      "downtimeAnswer": "Tedavilerimizin çoğu minimal veya sıfır iyileşme süresine sahiptir. Bazı tedaviler geçici şişlik, kızarıklık veya morluklara neden olabilir. Tedavi sonrası bakım için ayrıntılı talimatlar ve sosyal taahhütler etrafında tedavilerin zamanlaması konusunda tavsiyeler sağlayacağız.",
+      "bookingQuestion": "Randevu nasıl alınır?",
+      "bookingAnswer": "Web sitemiz üzerinden çevrimiçi rezervasyon yapabilir, bizi +995 599 123 456 numaradan arayabilir veya info@silkbeauty.ge adresine e-posta gönderebilirsiniz. Sıklıkla bekleme listemiz olduğu için konsültasyonları önceden ayırtmanızı öneririz.",
+      "virtualQuestion": "Sanal konsültasyon sunuyor musunuz?",
+      "virtualAnswer": "Evet, başlangıçta salona gelemeyenler için sanal konsültasyonlar sunuyoruz. Ancak hassas değerlendirme gerektiren tedaviler için yüz yüze konsültasyon önerilir.",
+      "brandsQuestion": "Hangi ürün markalarını kullanıyorsunuz?",
+      "brandsAnswer": "Sadece Allergan (Juvederm), Galderma (Restylane) ve Merz gibi önde gelen markaların premium, sertifikalı ürünlerini kullanıyoruz. Cilt tedavileri için iS Clinical, Obagi ve Mesoestetic'ten tıbbi sınıf ürünler kullanıyoruz.",
+      "qualifiedQuestion": "Uygulayıcılarınız nitelikli mi?",
+      "qualifiedAnswer": "Tüm uygulayıcılarımız tamamen nitelikli ve deneyimli profesyonellerdir. En yüksek bakım standartlarını sağlamak için en son teknikler ve güvenlik protokolleri konusunda sürekli eğitim alırlar."
+    }
+  },
+  "termsConditions": {
+    "title": "Şartlar ve Koşullar",
+    "subtitle": "Web sitemizin ve hizmetlerimizin kullanımını düzenleyen şartlar",
+    "breadcrumb": "Şartlar",
+    "lastUpdated": "Son güncelleme: Nisan 2026",
+    "acceptanceTitle": "1. Şartların Kabulü",
+    "acceptanceText": "Silk Beauty Salon web sitesine ve hizmetlerine erişerek ve kullanarak, bu Şartlar ve Koşullara bağlı kalmayı kabul edersiniz. Bu şartların herhangi bir bölümüne katılmıyorsanız, lütfen web sitemizi veya hizmetlerimizi kullanmayın.",
+    "servicesTitle": "2. Hizmetler",
+    "servicesText": "Silk Beauty Salon estetik ve güzellik tedavileri sunar. Tüm tedaviler, sektör standartlarına ve yerel yönetmeliklere uygun olarak nitelikli profesyoneller tarafından gerçekleştirilir. Sonuçlar kişiden kişiye değişebilir.",
+    "bookingTitle": "3. Rezervasyon ve Randevular",
+    "bookingIntro": "Randevu rezervasyonu yaparken:",
+    "bookingItem1": "Randevular resmi rezervasyon sistemimiz veya telefonla yapılmalıdır",
+    "bookingItem2": "Belirli tedavilerden önce konsültasyon gerekebilir",
+    "bookingItem3": "Kontrendikasyonlar tespit edilirse hizmeti reddetme hakkını saklı tutarız",
+    "bookingItem4": "Müşteriler planlanan randevularından 15 dakika önce gelmelidir",
+    "cancellationTitle": "4. İptal Politikası",
+    "cancellationText": "Durumların değişebileceğini anlıyoruz. İptal veya yeniden planlama için lütfen en az 24 saat önceden bildirin. Geç iptaller veya no-show'lar ücrete tabi olabilir.",
+    "paymentTitle": "5. Ödeme Koşulları",
+    "paymentIntro": "Ödeme koşulları:",
+    "paymentItem1": "Aksi kararlaştırılmadıkça ödeme hizmet sırasında yapılır",
+    "paymentItem2": "Nakit ve majör kredi kartlarını kabul ediyoruz",
+    "paymentItem3": "Hediye çekleri rezervasyon sırasında ibraz edilmelidir",
+    "paymentItem4": "Tüm fiyatlar Gürcü Larisi (GEL) olarak verilmiştir ve geçerli vergileri içerir",
+    "refundTitle": "6. İade Politikası",
+    "refundText": "Tedavi paketleri iade edilemez. Bir tedaviden memnun kalmamanız durumunda, endişelerinizi uygun şekilde ele alabilmemiz için lütfen 7 gün içinde bizimle iletişime geçin.",
+    "medicalTitle": "7. Tıbbi Sorumluluk Reddi",
+    "medicalText": "Tedavilerimiz tıbbi tavsiye, teşhis veya tedavinin yerini tutmaz. Tıbbi bir durumla ilgili herhangi bir sorunuz için her zaman doktorunuzun veya diğer nitelikli sağlık sağlayıcınızın tavsiyesini alın.",
+    "intellectualTitle": "8. Fikri Mülkiyet",
+    "intellectualText": "Bu web sitesindeki tüm içerikler, metin, resim, logolar ve tasarım dahil olmak üzere, Silk Beauty Salon'un mülkiyetindedir ve telif hakkı ve diğer fikri mülkiyet yasaları tarafından korunmaktadır. Yetkisiz kullanım yasaktır.",
+    "liabilityTitle": "9. Sorumluluk Sınırlaması",
+    "liabilityText": "Kanunen izin verilen en geniş kapsamda, Silk Beauty Salon hizmetlerimizin kullanımından kaynaklanan dolaylı, tesadüfi, özel, ardından gelen veya cezai hasarlardan sorumlu olmayacaktır.",
+    "governingTitle": "10. Yürürlükteki Hukuk",
+    "governingText": "Bu Şartlar ve Koşullar Gürcistan yasalarına tabidir. Bu şartlardan doğan herhangi bir anlaşmazlık, Gürcistan Batum mahkemelerinin münhasır yargı yetkisine tabidir.",
+    "changesTitle": "11. Şartlarda Değişiklikler",
+    "changesText": "Bu Şartlar ve Koşulları herhangi bir zamanda değiştirme hakkını saklı tutarız. Değişiklikler web sitesine yayınlandığı anda yürürlüğe girer. Hizmetlerimizi kullanmaya devam etmeniz, revize edilmiş şartların kabulü anlamına gelir.",
+    "contactTitle": "12. İletişim Bilgileri",
+    "contactText": "Bu Şartlar ve Koşullar hakkında sorularınız için lütfen bizimle iletişime geçin:"
+  },
+  "careers": {
+    "title": "Kariyer",
+    "subtitle": "Doğal güzelliği artırmaya adanmış tutkulu profesyoneller ekibimize katılın",
+    "breadcrumb": "Kariyer",
+    "whyWorkTitle": "Neden Bizimle Çalışmalısınız?",
+    "whyWorkText": "Silk Beauty Salon'da ekibimizin en büyük varlığımız olduğuna inanıyoruz. Yetenekli profesyonellerin gelişebileceği, büyüyebileceği ve müşterilerimizin hayatlarında gerçek bir fark yaratabileceği bir ortam yaratmaya kararlıyız.",
+    "benefitsTitle": "Avantajlar",
+    "benefit1Title": "Rekabetçi Maaş",
+    "benefit1Desc": "Performans bonuslarıyla sektörde öncü telafi paketleri sunuyoruz.",
+    "benefit2Title": "Profesyonel Gelişim",
+    "benefit2Desc": "Kariyerinizi ilerletmek için sürekli eğitim ve sertifikasyon fırsatları.",
+    "benefit3Title": "Premium Ortam",
+    "benefit3Desc": "Son teknoloji ekipmanlarla modern, lüks bir klinikte çalışın.",
+    "benefit4Title": "Takım Kültürü",
+    "benefit4Desc": "İşbirliği ve mükemmelliği değer veren destekleyici bir ekibe katılın.",
+    "openingsTitle": "Mevcut Açık Pozisyonlar",
+    "openingsSubtitle": "Ekibimize katılacak yetenekli bireyleri her zaman arıyoruz",
+    "job1Title": "Estetik Uygulayıcı",
+    "job1Type": "Tam Zamanlı",
+    "job1Location": "Batum, Gürcistan",
+    "job1Desc": "Büyüyen ekibimize katılmak için deneyimli estetik uygulayıcılar arıyoruz.",
+    "job2Title": "Klinik Resepsiyonisti",
+    "job2Type": "Tam Zamanlı",
+    "job2Location": "Batum, Gürcistan",
+    "job2Desc": "Müşteri rezervasyonlarını ve sorularını yönetmek için arkadaş canlısı ve profesyonel resepsiyonist.",
+    "job3Title": "Cilt Bakım Uzmanı",
+    "job3Type": "Yarı Zamanlı",
+    "job3Location": "Batum, Gürcistan",
+    "job3Desc": "Yüz bakımları ve konsültasyonları konusunda deneyimli lisanslı cilt bakım uzmanı.",
+    "applyNow": "Şimdi Başvur",
+    "noRoleTitle": "Doğru Rolü Görmüyor musunuz?",
+    "noRoleText": "Her zaman yetenekli profesyonellerle tanışmaya ilgi duyarız. CV'nizi gönderin ve gelecekteki fırsatlar için sizi aklımızda tutalım.",
+    "sendCV": "CV'nizi Gönderin",
+    "contactUs": "Bize Ulaşın"
+  },
+  "privacyPolicy": {
+    "title": "Gizlilik Politikası",
+    "subtitle": "Kişisel bilgilerinizi nasıl topladığımızı, kullandığımızı ve koruduğumuzu öğrenin",
+    "breadcrumb": "Gizlilik",
+    "lastUpdated": "Son güncelleme: Nisan 2026",
+    "introTitle": "1. Giriş",
+    "introText": "Silk Beauty Salon (\"biz,\" \"bizim,\" veya \"bizi\") gizliliğinize saygı duyar ve kişisel verilerinizi korumaya kararlıdır. Bu gizlilik politikası, web sitemizi ziyaret ettiğinizde veya hizmetlerimizi kullandığınızda bilgilerinizi nasıl topladığımızı, kullandığımızı, açıkladığımızı ve koruduğumuzu açıklar.",
+    "collectTitle": "2. Topladığımız Bilgiler",
+    "collectIntro": "Aşağıdaki türden bilgileri toplayabiliriz:",
+    "collectItem1": "Kişisel Bilgiler: Rezervasyon yaparken veya bizimle iletişime geçerken sağladığınız ad, e-posta adresi, telefon numarası ve diğer iletişim detayları.",
+    "collectItem2": "Tıbbi Bilgiler: Estetik hizmetleri sunmak için gerekli olan sağlık ve tedavi geçmişi.",
+    "collectItem3": "Kullanım Verileri: IP adresi, tarayıcı türü ve ziyaret edilen sayfalar dahil olmak üzere web sitemizi nasıl kullandığınıza dair bilgiler.",
+    "collectItem4": "Cookies: Tarama deneyiminizi geliştirmek için çerezleri kullanıyoruz.",
+    "useTitle": "3. Bilgilerinizi Nasıl Kullanıyoruz",
+    "useIntro": "Kişisel bilgilerinizi aşağıdaki amaçlar için kullanıyoruz:",
+    "useItem1": "Estetik hizmetlerimizi sunmak ve yönetmek için",
+    "useItem2": "Rezervasyonları ve randevuları işlemek için",
+    "useItem3": "Tedaviler ve promosyonlar hakkında sizinle iletişime geçmek için",
+    "useItem4": "Web sitemizi ve hizmetlerimizi geliştirmek için",
+    "useItem5": "Yasal yükümlülüklere uymak için",
+    "sharingTitle": "4. Bilgi Paylaşımı",
+    "sharingText": "Kişisel bilgilerinizi satmıyoruz. Verilerinizi şunlarla paylaşabiliriz:",
+    "sharingItem1": "Operasyonlarımıza yardımcı olan hizmet sağlayıcıları",
+    "sharingItem2": "Tedavi için gerekli olduğunda sağlık profesyonelleri",
+    "sharingItem3": "Yasalar gerektiğinde yasal makamlar",
+    "securityTitle": "5. Veri Güvenliği",
+    "securityText": "Kişisel bilgilerinizi yetkisiz erişime, değişikliğe, ifşaya veya imhaya karşı korumak için uygun teknik ve organizasyonel önlemler uyguluyoruz.",
+    "rightsTitle": "6. Haklarınız",
+    "rightsIntro": "Konumunuza bağlı olarak aşağıdaki haklara sahip olabilirsiniz:",
+    "rightsItem1": "Kişisel verilerinize erişim hakkı",
+    "rightsItem2": "Yanlış bilgileri düzeltme hakkı",
+    "rightsItem3": "Verilerinizin silinmesini talep etme hakkı",
+    "rightsItem4": "İşlemeye itiraz etme hakkı",
+    "rightsItem5": "Veri taşınabilirliği hakkı",
+    "contactTitle": "7. Bize Ulaşın",
+    "contactIntro": "Bu gizlilik politikası veya veri uygulamalarımız hakkında sorularınız varsa lütfen bizimle iletişime geçin:",
+    "changesTitle": "8. Bu Politikadaki Değişiklikler",
+    "changesText": "Bu gizlilik politikasını zaman zaman güncelleyebiliriz. Herhangi bir değişiklikte sizi bilgilendireceğiz."
+  },
+  "mediaPress": {
+    "title": "Basın ve Medya",
+    "subtitle": "En son basın kapsamımızı ve medya özelliklerini okuyun",
+    "breadcrumb": "Basın",
+    "feature1Title": "Londra'daki En İyi Estetik Klinikler",
+    "feature1Date": "Ocak 2024",
+    "feature1Excerpt": "Silk Beauty Salon, Batum'daki en iyi estetik kliniklerden biri olarak adlandırıldı...",
+    "feature2Title": "Cerrahi Olmayan Tedaviler için Nihai Rehber",
+    "feature2Date": "Aralık 2023",
+    "feature2Excerpt": "Silk Beauty Salon ekibinden en son tedaviler hakkında uzman tavsiyeleri...",
+    "feature3Title": "Bu Yıl Ziyaret Edilecek En İyi Güzellik Klinikleri",
+    "feature3Date": "Kasım 2023",
+    "feature3Excerpt": "Silk Beauty Salon'un neden tercih edilen bir destinasyon olmaya devam ettiğini keşfedin...",
+    "feature4Title": "Doğal Görünümlü Estetiğin Yükselişi",
+    "feature4Date": "Ekim 2023",
+    "feature4Excerpt": "Silk Beauty Salon gibi önde gelen klinikler yaklaşımı nasıl değiştiriyor...",
+    "feature5Title": "İlk Tedavininiz için Uzman İpuçları",
+    "feature5Date": "Eylül 2023",
+    "feature5Excerpt": "Silk Beauty Salon uzmanları yeni başlayanlar için tavsiyelerini paylaşıyor...",
+    "feature6Title": "Herkesin Konuştuğu Tedaviler",
+    "feature6Date": "Ağustos 2023",
+    "feature6Excerpt": "Cilt güçlendiricilerden lazer tedavilerine kadar en popüler prosedürleri inceliyoruz...",
+    "readArticle": "Makaleyi Oku",
+    "mediaEnquiries": "Medya Sorguları",
+    "mediaText": "Basın ve medya sorguları için lütfen ekibimizle iletişime geçin:",
+    "contactPress": "Basın Ekibiyle İletişime Geçin",
+    "mapAddress": "Zurab Gorgiladze Caddesi 63",
+    "mapCity": "Batum, Gürcistan"
+  },
+  "treatmentContent": {
+    "botox": {
+      "name": "Botox Enjeksiyonları",
+      "description": "İleri düzey kırışıklık karşıtı tedaviler ile çizgileri azaltın ve genç görünümü yeniden kazanın.",
+      "treatments": {
+        "anti-wrinkle": {
+          "name": "Kırışıklık Enjeksiyonları",
+          "shortDescription": "Taze ve genç bir görünüm için kırışıklıkları ve ince çizgileri giderin.",
+          "description": "Kırışıklık enjeksiyonları, en popüler cerrahi olmayan kozmetik tedavilerden biridir.",
+          "benefits": ["İnce çizgileri ve kırışıklıkları azaltır", "Yeni kırışıklıkların oluşumunu önler", "Minimal downtime ile hızlı tedavi", "Doğal görünümlü sonuçlar", "Uzun süreli etkiler (3-6 ay)"],
+          "howItWorks": "Botulinum toksini, ince bir iğne kullanılarak belirli yüz kaslarına enjekte edilir. Toksin, bu kaslara sinir sinyallerini bloke ederek kasılmalarını ve kırışıklık oluşumunu önler.",
+          "aftercare": "4 saat boyunca yatmayın, 24 saat boyunca egzersiz yapmaktan kaçının ve tedavi edilen bölgeye dokunmayın."
+        },
+        "masseter-botox": {
+          "name": "Masseter Botox",
+          "shortDescription": "Hedefli Botox tedavisi ile çene hattını inceltin ve diş gıcırdatmayı giderin.",
+          "description": "Masseter Botox, yüzü inceltmek ve diş gıcırdatmayı tedavi etmek için tasarlanmış özel bir tedavidir.",
+          "benefits": ["Alt yüzü inceltir ve şekillendirir", "Çene gerginliğini ve ağrısını azaltır", "Diş gıcırdatmayı tedavi eder", "Cerrahi olmayan yüz şekillendirme"]
+        },
+        "hyperhidrosis": {
+          "name": "Hiperhidrozis Tedavisi",
+          "shortDescription": "Kalıcı sonuçlarla aşırı terlemeyi etkili bir şekilde tedavi edin.",
+          "description": "Botox ile hiperhidrozis tedavisi, aşırı terleme için yüksek etkili bir çözümdür.",
+          "benefits": ["Aşırı terlemeyi dramatik şekilde azaltır", "Sonuçlar 6-12 ay sürer", "Hızlı ve minimal invaziv", "Özgüveni artırır"]
+        },
+        "migraine-treatment": {
+          "name": "Migren Tedavisi",
+          "shortDescription": "Kronik migrenlerin sıklığını ve şiddetini azaltın.",
+          "description": "Botox, kronik migrenler için FDA onaylı bir tedavidir.",
+          "benefits": ["Migren ataklarının sıklığını azaltır", "Baş ağrılarının şiddetini azaltır", "Kronik migren için FDA onaylı", "Uzun süreli rahatlama"]
+        }
+      }
+    },
+    "dermal-fillers": {
+      "name": "Dermal Dolgular",
+      "description": "Premium hyalüronik asit dermal dolgu tedavileriyle hacim restore edin, özellikleri geliştirin ve çizgileri giderin.",
+      "treatments": {
+        "lip-fillers": {
+          "name": "Dudak Dolguları",
+          "shortDescription": "Güzel, doğal görünümlü sonuçlar için dudak hacmi ve şeklini geliştirin.",
+          "description": "Dudak dolguları, dudakların şeklini, hacmini ve tanımını geliştirmek için en popüler tedavilerimizden biridir.",
+          "benefits": ["Hacim ve tanım ekler", "Doğal görünümlü geliştirme", "Dudak simetrisini iyileştirir", "Sonuçlar 6-12 ay sürer"]
+        },
+        "cheek-fillers": {
+          "name": "Yanak Dolguları",
+          "shortDescription": "Genç ve kalkık bir görünüm için hacim restore edin ve elmacık kemiklerini tanımlayın.",
+          "description": "Yanak dolguları, orta yüze hacim kazandırmak ve güzel elmacık kemiği tanımı oluşturmak için mükemmel bir yöntemdir.",
+          "benefits": ["Yanaklarda kaybedilen hacmi restore eder", "Elmacık kemiklerini tanımlar ve geliştirir", "Orta yüzü kaldırır", "Sonuçlar 12-18 ay sürer"]
+        },
+        "chin-fillers": {
+          "name": "Çene Dolguları",
+          "shortDescription": "Çene projeksiyonunu geliştirin ve yüz dengesini sağlayın.",
+          "description": "Çene dolguları, yüz profilinizi ve oranlarınızı dramatik şekilde iyileştirebilir.",
+          "benefits": ["Yüz oranlarını iyileştirir", "Çene projeksiyonunu geliştirir", "Daha iyi çene hattı tanımı", "İmplantlara cerrahi olmayan alternatif"]
+        },
+        "jaw-fillers": {
+          "name": "Çene Hattı Dolguları",
+          "shortDescription": "Heybetli bir profil için çene hattınızı tanımlayın ve şekillendirin.",
+          "description": "Çene hattı dolguları, çene hattını tanımlama ve şekillendirme için mükemmel bir tedavidir.",
+          "benefits": ["Daha belirgin çene hattı oluşturur", "Yüz simetrisini iyileştirir", "Cerrahi olmayan prosedür", "Anında sonuçlar"]
+        },
+        "hand-fillers": {
+          "name": "El Dolguları",
+          "shortDescription": "Hacim restorasyonu ile yaşlanan elleri gençleştirin.",
+          "description": "El dolguları, damarların ve tendonların görünümünü azaltarak ellerde hacmi geri kazandırır.",
+          "benefits": ["Kaybedilen hacmi geri kazandırır", "Genç bir kontur oluşturur", "Yüz oranlarını dengeler", "Sonuçlar 12-18 ay sürer"]
+        },
+        "nose-fillers": {
+          "name": "Burun Dolguları",
+          "shortDescription": "Dermal dolgular kullanarak cerrahi olmadan burnunuzun şeklini değiştirin.",
+          "description": "Cerrahi olmayan rinoplasti, burnu şekillendirmek ve kontur etmek için dermal dolgular kullanır.",
+          "benefits": ["Cerrahi alternatifi", "Downtime yok", "Anında sonuç", "Gerekirse geri alınabilir"]
+        },
+        "tear-fill": {
+          "name": "Gözyaşı Dolguları",
+          "shortDescription": "Göz altı çukurluklarını ve koyu halkaları azaltın.",
+          "description": "Gözyaşı dolgusu tedavisi, daha taze bir görünüm için göz altı çukurluklarını ve koyu halkaları giderir.",
+          "benefits": ["Göz altı çukurluklarını azaltır", "Koyu halkaları minimize eder", "Taze görünüm oluşturur", "Sonuçlar 12-18 ay sürer"]
+        },
+        "temple-fillers": {
+          "name": "Şakak Dolguları",
+          "shortDescription": "Daha genç bir görünüm için şakak bölgesinde hacmi geri kazandırın.",
+          "description": "Şakak dolguları, şakak bölgesinde hacmi geri kazandırarak daha dengeli ve genç bir görünüm oluşturur.",
+          "benefits": ["Kaybedilen hacmi geri kazandırır", "Genç bir kontur oluşturur", "Yüz oranlarını dengeler", "Sonuçlar 12-18 ay sürer"]
+        }
+      }
+    },
+    "skin-treatments": {
+      "name": "Cilt Tedavileri",
+      "description": "Çeşitli endişeleri ele almak ve parlak, sağlıklı cilde ulaşmak için ileri cilt tedavileri.",
+      "treatments": {
+        "skin-boosters": {
+          "name": "Cilt Boosterları",
+          "shortDescription": "Parlak, ışıldayan cilt için derin nemlendirme.",
+          "description": "Cilt boosterları, cilt kalitesini iyileştirmek ve parlak bir ışıltı oluşturmak için derin nemlendirme sağlar.",
+          "benefits": ["Derin nemlendirme", "İyileşmiş cilt dokusu", "Parlak ışıltı", "Uzun süreli sonuçlar"]
+        },
+        "chemical-peels": {
+          "name": "Kimyasal Peeling",
+          "shortDescription": "Profesyonel kimyasal peeling tedavileriyle cildinizi yenileyin.",
+          "description": "Kimyasal peeling, daha taze, genç görünümlü cildi ortaya çıkarmak için cildi soyar.",
+          "benefits": ["Cilt yenilenmesi", "İyileşmiş doku", "Azaltılmış pigmentasyon", "Eşit cilt tonu"]
+        },
+        "microneedling": {
+          "name": "Mikro İğneleme",
+          "shortDescription": "Daha sıkı, pürüzsüz cilt için kolajen üretimini uyarın.",
+          "description": "Mikro iğneleme, cildin doğal iyileşme sürecini uyararak kolajen ve elastin üretir.",
+          "benefits": ["Kolajeni uyarır", "Yaraları azaltır", "Cilt dokusunu iyileştirir", "Gözenekleri minimize eder"]
+        },
+        "laser-hair": {
+          "name": "Lazer Tüy Alma",
+          "shortDescription": "Pürüzsüz, tüysüz cilt için kalıcı tüy azaltma.",
+          "description": "Lazer tüy alma, pürüzsüz cilt için uzun süreli tüy azaltma sağlar.",
+          "benefits": ["Kalıcı tüy azaltma", "Pürüzsüz cilt", "Hızlı prosedür", "Uzun süreli sonuçlar"]
+        },
+        "prp-therapy": {
+          "name": "PRP Tedavisi",
+          "shortDescription": "Vücudunuzun kendi büyüme faktörlerini kullanarak cildinizi gençleştirin.",
+          "description": "PRP tedavisi, cildi gençleştirmek ve tazelemek için kendi kan trombositlerinizi kullanır.",
+          "benefits": ["Doğal gençleşme", "İyileşmiş cilt tonu", "Azaltılmış ince çizgiler", "Gelişmiş parlaklık"]
+        }
+      }
+    },
+    "laser-treatments": {
+      "name": "Lazer Tedavileri",
+      "description": "Cilt gençleştirme ve tüy alma için son teknoloji lazer tedavileri.",
+      "treatments": {
+        "co2-laser": {
+          "name": "CO2 Lazer Yenileme",
+          "shortDescription": "Genç bir cilt tonu için dramatik cilt yenileme.",
+          "description": "CO2 lazer yenileme, daha pürüzsüz, genç cildi ortaya çıkarmak için hasarlı cilt katmanlarını soyar.",
+          "benefits": ["Dramatik sonuçlar", "Kırışıklıkları azaltır", "Yaraları iyileştirir", "Eşit cilt tonu"]
+        },
+        "ipl-therapy": {
+          "name": "IPL Terapisi",
+          "shortDescription": "Pigmentasyon, güneş hasarı ve vasküler lezyonları tedavi edin.",
+          "description": "IPL terapisi, pigmentasyon ve güneş hasarı dahil çeşitli cilt endişelerini tedavi etmek için ışık kullanır.",
+          "benefits": ["Pigmentasyonu tedavi eder", "Güneş hasarını azaltır", "Cilt tonunu iyileştirir", "Minimal downtime"]
+        },
+        "laser-vein": {
+          "name": "Lazer Damar Tedavisi",
+          "shortDescription": "İstenmeyen damarları ve örümcek damarları yok edin.",
+          "description": "Lazer damar tedavisi, yüzde ve vücutta istenmeyen damarları güvenli bir şekilde yok eder.",
+          "benefits": ["Damar yok etme", "Güvenli prosedür", "Hızlı iyileşme", "Pürüzsüz cilt"]
+        }
+      }
+    },
+    "body-treatments": {
+      "name": "Vücut Tedavileri",
+      "description": "İleri vücut şekillendirme ve cilt sıkılaştırma tedavileri.",
+      "treatments": {
+        "cool sculpting": {
+          "name": "CoolSculpting",
+          "shortDescription": "İleri soğutma teknolojisi kullanarak cerrahi olmayan yağ azaltma.",
+          "description": "CoolSculpting, cerrahi olmadan inatçı yağ hücrelerini dondurur ve ortadan kaldırır.",
+          "benefits": ["Cerrahi olmayan", "Downtime yok", "Kalıcı yağ azaltma", "Doğal sonuçlar"]
+        },
+        "emtone": {
+          "name": "Emtone",
+          "shortDescription": "Selülit tedavisi ve cilt dokusu iyileştirmesi.",
+          "description": "Emtone, selüliti etkili bir şekilde tedavi etmek için termal ve mekanik enerjiyi birleştirir.",
+          "benefits": ["Selüliti azaltır", "Cilt dokusunu iyileştirir", "Cildi sıkılaştırır", "Downtime yok"]
+        },
+        "skin-tightening": {
+          "name": "Radyofrekans Cilt Sıkılaştırma",
+          "shortDescription": "Daha sıkı, genç görünümlü cilt için cerrahi olmayan cilt sıkılaştırma.",
+          "description": "Radyofrekans cilt sıkılaştırma, daha sıkı cilt için kolajen üretimini uyarır.",
+          "benefits": ["Daha sıkı cilt", "Azalmış sarkma", "Cerrahi olmayan", "Downtime yok"]
+        }
+      }
+    },
+    "intimate-treatments": {
+      "name": "İntim Tedaviler",
+      "description": "Gizli ve profesyonel intim gençleştirme tedavileri.",
+      "treatments": {
+        "vaginal-rejuvenation": {
+          "name": "Vajinal Gençleştirme",
+          "shortDescription": "İntim gençleştirme ile konfor ve özgüveni yeniden kazanın.",
+          "description": "Vajinal gençleştirme, vajinal sağlığı ve fonksiyonunu iyileştirmek için lazer teknolojisini kullanır.",
+          "benefits": ["İyileşmiş konfor", "Artan özgüven", "Cerrahi olmayan", "Hızlı iyileşme"]
+        },
+        "labia-filler": {
+          "name": "Labia Dolgusu",
+          "shortDescription": "Labial dolgu tedavisi ile konforu ve estetiği iyileştirin.",
+          "description": "Labia dolgu tedavisi kozmetik endişeleri giderir ve konforu artırır.",
+          "benefits": ["Kozmetik iyileştirme", "Konfor", "Özgüven", "Doğal sonuç"]
+        }
+      }
+    },
+    "medical-facials": {
+      "name": "Tıbbi Yüz Bakımları",
+      "description": "Optimum cilt sağlığı için profesyonel tıbbi sınıf yüz bakımları.",
+      "treatments": {
+        "hydrafacial": {
+          "name": "HydraFacial",
+          "shortDescription": "Parlak cilt için derin temizleme, soyma ve nemlendirme.",
+          "description": "HydraFacial, tek bir tedavide derin temizleme, soyma ve nemlendirme sağlar.",
+          "benefits": ["Derin temizleme", "Anında ışıltı", "Nemlendirme", "Tüm cilt tipleri için uygun"]
+        },
+        "deraplaning": {
+          "name": "Dermaplaning",
+          "shortDescription": "Pürüzsüz, parlak cilt için soyma ve peach fuzz'u temizleme.",
+          "description": "Dermaplaning, nazikçe soymak ve ince tüyleri temizlemek için cerrahi bir bıçak kullanır.",
+          "benefits": ["Daha pürüzsüz cilt", "Daha iyi ürün emilimi", "Parlak ışıltı", "Makyaj daha iyi tutar"]
+        }
+      }
+    },
+    "hair-treatments": {
+      "name": "Saç Tedavileri",
+      "description": "İleri saç restorasyonu ve saç derisi tedavileri.",
+      "treatments": {
+        "prp-hair": {
+          "name": "PRP Saç Restorasyonu",
+          "shortDescription": "Vücudunuzun kendi büyüme faktörleriyle saç büyümesini uyarın.",
+          "description": "PRP saç restorasyonu, saç foliküllerini uyarmak ve büyümeyi teşvik etmek için kendi trombositlerinizi kullanır.",
+          "benefits": ["Büyümeyi uyarır", "Daha kalın saç", "Doğal tedavi", "Downtime yok"]
+        },
+        "mesotherapy-hair": {
+          "name": "Saç Mezoterapisi",
+          "shortDescription": "Saç derisini ve folikülleri beslemek için besin açısından zengin enjeksiyonlar.",
+          "description": "Saç mezoterapisi, saç büyümesini teşvik etmek için besinleri doğrudan saç derisine iletir.",
+          "benefits": ["Saç derisini besler", "Büyümeyi teşvik eder", "Saç dökümünü azaltır", "İyileşmiş saç kalitesi"]
+        }
+      }
+    }
+  },
+  "conditionContent": {
+    "ageing-skin": {
+      "name": "Yaşlanan Cilt",
+      "shortDescription": "Anti-ageing tedavilerimizle ince çizgileri, kırışıklıkları ve elastikiyet kaybını giderin.",
+      "description": "Yaşlanan cilt, ince çizgilerin, kırışıklıkların, elastikiyet kaybının ve cilt dokusu ve tonundaki değişikliklerin gelişmesiyle karakterize edilen doğal bir süreçtir.",
+      "symptoms": ["İnce çizgiler ve kırışıklıklar", "Cilt elastikiyeti kaybı", "Sarkık cilt", "Yanaklarda hacim kaybı", "Derin nazolabial kıvrımlar", "Kukla çizgileri"],
+      "causes": ["Kolajen üretiminin doğal azalması", "Güneş hasarı", "Yüz yağı ve hacim kaybı", "Cilt hidrasyonunun azalması", "Tekrarlayan yüz ifadeleri"],
+      "treatments": ["Kırışıklık enjeksiyonları", "Dermal dolgular", "Cilt sıkılaştırma tedavileri", "Lazer yenileme", "Tıbbi sınıf cilt bakımı"]
+    },
+    "acne": {
+      "name": "Akne ve Sivilceler",
+      "shortDescription": "Daha temiz, sağlıklı cilt için etkili tedaviler.",
+      "description": "Akne, her yaştan insanı etkileyen yaygın bir cilt durumudur.",
+      "symptoms": ["Siyah noktalar", "Beyaz noktalar", "Papüller", "Püstüller", "Kistler", "Yaralar"],
+      "causes": ["Aşırı yağ üretimi", "Bakteri", "Hormonal değişiklikler", "Bazı ilaçlar"],
+      "treatments": ["Kimyasal peeling", "Lazer tedavisi", "Tıbbi yüz bakımları", "Cilt bakımı önerileri"]
+    },
+    "pigmentation": {
+      "name": "Pigmentasyon Sorunları",
+      "shortDescription": "Cilt tonunu eşitleyin ve koyu lekeleri azaltın.",
+      "description": "Pigmentasyon sorunları koyu lekeleri, melasma ve düzensiz cilt tonunu içerir.",
+      "symptoms": ["Koyu lekeler", "Düzensiz cilt tonu", "Melasma", "Güneş lekeleri", "Yaşlılık lekeleri"],
+      "causes": ["Güneşe maruz kalma", "Hormonal değişiklikler", "Enflamasyon", "Genetik"],
+      "treatments": ["IPL terapisi", "Lazer tedavileri", "Kimyasal peeling", "Cilt boosterları"]
+    },
+    "scars": {
+      "name": "Yaralar",
+      "shortDescription": "Daha pürüzsüz cilt için yaraların görünümünü azaltın.",
+      "description": "Yaralar akne, yaralanmalar veya ameliyattan kaynaklanabilir.",
+      "symptoms": ["İçe çökük yaralar", "Kabarık yaralar", "Renk değişikliği", "Dokusal değişiklikler"],
+      "causes": ["Akne", "Yaralanmalar", "Ameliyat", "Yanıklar"],
+      "treatments": ["Mikro iğneleme", "Lazer tedavisi", "Dermal dolgular", "Kimyasal peeling"]
+    },
+    "hair-loss": {
+      "name": "Saç Dökülmesi",
+      "shortDescription": "İleri tedavilerle saç büyümesini restore edin.",
+      "description": "Saç dökülmesi hem erkekleri hem de kadınları etkileyebilir.",
+      "symptoms": ["Saç incelmesi", "Saç çizgisi geri çekilmesi", "Kel lekeler", "Aşırı dökülme"],
+      "causes": ["Genetik", "Hormonal değişiklikler", "Stres", "Beslenme eksiklikleri"],
+      "treatments": ["PRP terapisi", "Mezoterapi", "Saç restorasyon tedavileri"]
+    },
+    "rosacea": {
+      "name": "Rozase",
+      "shortDescription": "Daha temiz cilt için rozase semptomlarını yönetin.",
+      "description": "Rozase, kızarıklık ve görünür kan damarlarına neden olan kronik bir cilt durumudur.",
+      "symptoms": ["Yüz kızarıklığı", "Görünür kan damarları", "Kabarcıklar ve sivilceler", "Göz tahrişi"],
+      "causes": ["Genetik", "Çevresel faktörler", "Kan damarı anormallikleri"],
+      "treatments": ["IPL terapisi", "Lazer tedavisi", "Cilt bakımı yönetimi", "Tıbbi tedaviler"]
+    },
+    "stretch-marks": {
+      "name": "Çatlaklar",
+      "shortDescription": "Çatlakların görünümünü azaltın.",
+      "description": "Cilt hızla gerildiğinde çatlaklar oluşur.",
+      "symptoms": ["Pembe veya kırmızı çizgiler", "Mor veya kahverengi çizgiler", "İçe çökük çizgiler", "Pürüzsüz doku"],
+      "causes": ["Hamilelik", "Kilo alma", "Büyüme atakları", "Hormonal değişiklikler"],
+      "treatments": ["Lazer tedavisi", "Mikro iğneleme", "Radyofrekans tedavileri", "Topikal tedaviler"]
+    },
+    "cellulite": {
+      "name": "Selülit",
+      "shortDescription": "Vücut tedavilerimizle cildi pürüzsüzleştirin ve sıkılaştırın.",
+      "description": "Selülit ciltte çukurlu bir görünüme neden olur.",
+      "symptoms": ["Çukurlu cilt", "Portakal kabuğu dokusu", "Kütlü görünüm", "Uyluk ve kalçalarda yaygın"],
+      "causes": ["Yağ depoları", "Kötü dolaşım", "Genetik", "Yaşam tarzı faktörleri"],
+      "treatments": ["Emtone", "CoolSculpting", "Radyofrekans", "Masaj tedavileri"]
+    },
+    "dry-skin": {
+      "name": "Kuru ve Dehidre Cilt",
+      "shortDescription": "Cildinize nemi ve hidrasyonu geri kazandırın.",
+      "description": "Kuru cilt, hava koşulları ve yaşlanma dahil çeşitli faktörlerden kaynaklanabilir.",
+      "symptoms": ["Gerginlik", "Dökülme", "Kaba doku", "Kaşıntı", "Kızarıklık"],
+      "causes": ["Hava koşulları", "Yaşlanma", "Sıcak duşlar", "Sert sabunlar", "Dehidrasyon"],
+      "treatments": ["Cilt boosterları", "HydraFacial", "Tıbbi sınıf cilt bakımı", "Nemlendirici tedaviler"]
+    },
+    "sensitive-skin": {
+      "name": "Hassas Cilt",
+      "shortDescription": "Reaktif cilt tipleri için nazik tedaviler.",
+      "description": "Hassas cilt, ürünlere ve çevresel faktörlere kolayca tepki verir.",
+      "symptoms": ["Kızarıklık", "Yanma", "Batma", "Gerginlik", "Döküntüler"],
+      "causes": ["Genetik", "Bariyer disfonksiyonu", "Alerjenler", "Çevresel faktörler"],
+      "treatments": ["Nazik yüz bakımları", "Yatıştırıcı tedaviler", "Özelleştirilmiş cilt bakımı", "LED terapisi"]
+    }
+  },
+  "whatsapp": {
+    "greeting": "Merhaba! 👋 Silk Beauty Salon'a hoş geldiniz. Size nasıl yardımcı olabiliriz?",
+    "bookAppointment": "Randevu almak istiyorum",
+    "serviceQuestion": "Hizmetler hakkında bir sorum var",
+    "pricingInfo": "Fiyatlar hakkında daha fazla bilgiye ihtiyacım var",
+    "otherInquiry": "Diğer soru",
+    "typicalReply": "Genellikle birkaç dakika içinde yanıt verir"
   }
 }

@@ -1,5 +1,10 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
+import { Resend } from 'resend';
+import { db } from '@/lib/db';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'info@silkbeauty.ge';
 
 const contactFormSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters').max(100),
@@ -31,16 +36,25 @@ export async function POST(request: Request) {
       message: message.trim(),
     };
 
-    // In a real implementation, you would:
-    // 1. Send email to admin
-    // 2. Save to database
-    // 3. Send confirmation email to user
-    // 4. Integrate with CRM
-    
-    // For now, just log and return success
-    console.log('Contact form submission:', {
-      ...sanitized,
-      submittedAt: new Date().toISOString(),
+    // Send email to admin
+    await resend.emails.send({
+      from: 'Silk Beauty Salon <noreply@silkbeauty.ge>',
+      to: [CONTACT_EMAIL],
+      subject: `New enquiry from ${sanitized.name}`,
+      html: `<p><b>Name:</b> ${sanitized.name}</p>
+             <p><b>Email:</b> ${sanitized.email}</p>
+             <p><b>Phone:</b> ${sanitized.phone ?? 'Not provided'}</p>
+             <p><b>Message:</b> ${sanitized.message}</p>`,
+    });
+
+    // Save to database
+    await db.contactSubmission.create({
+      data: {
+        name: sanitized.name,
+        email: sanitized.email,
+        phone: sanitized.phone,
+        message: sanitized.message,
+      },
     });
 
     return NextResponse.json(

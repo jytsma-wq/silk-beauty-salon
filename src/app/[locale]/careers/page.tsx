@@ -3,50 +3,51 @@ import Link from 'next/link';
 import { ChevronRight, Mail, MapPin, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { siteConfig } from '@/data/site-config';
+import { getTranslations } from 'next-intl/server';
 
-export const metadata: Metadata = {
-  title: 'Careers | Silk Beauty Salon',
-  description: 'Join our team of aesthetic professionals. View current job openings at Silk Beauty Salon.',
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'careers' });
+  return {
+    title: `${t('title')} | Silk Beauty Salon`,
+    description: t('subtitle'),
+  };
+}
 
-export default function CareersPage() {
+export default async function CareersPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'careers' });
+  const tCommon = await getTranslations({ locale, namespace: 'common' });
+
   const benefits = [
-    {
-      title: 'Competitive Salary',
-      description: 'We offer industry-leading compensation packages with performance bonuses.',
-    },
-    {
-      title: 'Professional Development',
-      description: 'Continuous training and certification opportunities to advance your career.',
-    },
-    {
-      title: 'Premium Environment',
-      description: 'Work in a modern, luxurious clinic with state-of-the-art equipment.',
-    },
-    {
-      title: 'Team Culture',
-      description: 'Join a supportive team that values collaboration and excellence.',
-    },
+    { title: t('benefit1Title'), description: t('benefit1Desc') },
+    { title: t('benefit2Title'), description: t('benefit2Desc') },
+    { title: t('benefit3Title'), description: t('benefit3Desc') },
+    { title: t('benefit4Title'), description: t('benefit4Desc') },
   ];
 
   const openings = [
     {
-      title: 'Aesthetic Practitioner',
-      type: 'Full-time',
-      location: 'Batumi, Georgia',
-      description: 'We are seeking experienced aesthetic practitioners to join our growing team.',
+      title: t('job1Title'),
+      type: t('job1Type'),
+      location: t('job1Location'),
+      description: t('job1Desc'),
     },
     {
-      title: 'Clinic Receptionist',
-      type: 'Full-time',
-      location: 'Batumi, Georgia',
-      description: 'Friendly and professional receptionist to manage client bookings and inquiries.',
+      title: t('job2Title'),
+      type: t('job2Type'),
+      location: t('job2Location'),
+      description: t('job2Desc'),
     },
     {
-      title: 'Skincare Specialist',
-      type: 'Part-time',
-      location: 'Batumi, Georgia',
-      description: 'Licensed skincare specialist with experience in facial treatments and consultations.',
+      title: t('job3Title'),
+      type: t('job3Type'),
+      location: t('job3Location'),
+      description: t('job3Desc'),
     },
   ];
 
@@ -59,10 +60,10 @@ export default function CareersPage() {
             className="text-4xl md:text-5xl font-serif font-semibold text-white mb-4"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            Careers
+            {t('title')}
           </h1>
           <p className="text-gray-300 max-w-2xl mx-auto">
-            Join our team of passionate professionals dedicated to enhancing natural beauty
+            {t('subtitle')}
           </p>
         </div>
       </section>
@@ -72,10 +73,10 @@ export default function CareersPage() {
         <div className="container-custom">
           <nav className="flex items-center gap-2 text-sm">
             <Link href="/" className="text-muted-foreground hover:text-gold">
-              Home
+              {tCommon('home')}
             </Link>
             <ChevronRight className="w-4 h-4 text-muted-foreground" />
-            <span className="text-primary font-medium">Careers</span>
+            <span className="text-primary font-medium">{t('breadcrumb')}</span>
           </nav>
         </div>
       </div>
@@ -88,12 +89,10 @@ export default function CareersPage() {
               className="text-3xl font-serif font-semibold text-primary mb-6"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
-              Why Work With Us?
+              {t('whyWorkTitle')}
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-8">
-              At Silk Beauty Salon, we believe that our team is our greatest asset. We are committed to creating 
-              an environment where talented professionals can thrive, grow, and make a real difference in our 
-              clients&apos; lives. Join us in delivering exceptional aesthetic treatments and experiences.
+              {t('whyWorkText')}
             </p>
           </div>
         </div>
@@ -107,7 +106,7 @@ export default function CareersPage() {
               className="text-3xl font-serif font-semibold text-primary mb-4"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
-              Benefits
+              {t('benefitsTitle')}
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -129,10 +128,10 @@ export default function CareersPage() {
               className="text-3xl font-serif font-semibold text-primary mb-4"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
-              Current Openings
+              {t('openingsTitle')}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              We are always looking for talented individuals to join our team
+              {t('openingsSubtitle')}
             </p>
           </div>
           <div className="space-y-6 max-w-3xl mx-auto">
@@ -151,7 +150,7 @@ export default function CareersPage() {
                 <p className="text-muted-foreground mb-4">{job.description}</p>
                 <Button asChild variant="outline" size="sm">
                   <a href={`mailto:${siteConfig.contact.email}?subject=Application: ${job.title}`}>
-                    Apply Now
+                    {t('applyNow')}
                   </a>
                 </Button>
               </div>
@@ -160,33 +159,34 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* Contact CTA */}
-      <section className="section-spacing bg-primary">
-        <div className="container-custom text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Users className="w-6 h-6 text-gold" />
-            <h2 
-              className="text-2xl md:text-3xl font-serif font-semibold text-white"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
-              Don&apos;t See the Right Role?
-            </h2>
-          </div>
-          <p className="text-gray-300 mb-8 max-w-xl mx-auto">
-            We&apos;re always interested in meeting talented professionals. Send us your CV and we&apos;ll keep you in mind for future opportunities.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild className="btn-gold">
-              <a href={`mailto:${siteConfig.contact.email}?subject=General Application`} className="flex items-center gap-2">
-                <Mail className="w-4 h-4" />
-                Send Your CV
-              </a>
-            </Button>
-            <Button asChild variant="outline" className="border-white/30 text-white hover:bg-white/10">
-              <Link href="/contact-us">
-                Contact Us
-              </Link>
-            </Button>
+      {/* Contact CTA - Sticky */}
+      <section className="sticky bottom-0 z-40 bg-primary py-4 shadow-lg">
+        <div className="container-custom">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <Users className="w-5 h-5 text-gold" />
+              <div>
+                <h2 className="text-lg font-serif font-semibold text-white">
+                  {t('noRoleTitle')}
+                </h2>
+                <p className="text-gray-300 text-sm hidden sm:block">
+                  {t('noRoleText')}
+              </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <Button asChild variant="outline" size="sm" className="border-white/30 text-white hover:bg-white/10">
+                <Link href="/contact-us">
+                  {t('contactUs')}
+                </Link>
+              </Button>
+              <Button asChild size="sm" className="btn-gold">
+                <a href={`mailto:${siteConfig.contact.email}?subject=General Application`} className="flex items-center gap-2">
+                  <Mail className="w-4 h-4" />
+                  {t('sendCV')}
+                </a>
+              </Button>
+            </div>
           </div>
         </div>
       </section>

@@ -9,6 +9,7 @@
     "about": "About",
     "pricelist": "Price List",
     "offers": "Offers",
+    "beforeAfter": "Before & After",
     "contact": "Contact",
     "bookAppointment": "Book Appointment",
     "faq": "FAQ",
@@ -190,23 +191,211 @@
     "subtitle": "Meet our expert practitioners",
     "bookWith": "Book with"
   },
+  "treatmentsPage": {
+    "title": "Our Treatments",
+    "subtitle": "Explore our comprehensive range of premium aesthetic treatments designed to enhance your natural beauty",
+    "ctaTitle": "Ready to Start Your Journey?",
+    "ctaSubtitle": "Book a consultation with one of our expert practitioners to discuss your aesthetic goals",
+    "ctaButton": "Book a Consultation"
+  },
+  "beforeAfterPage": {
+    "title": "Before & After",
+    "subtitle": "See the real results from our treatments. Transform your look with our expert aesthetic treatments.",
+    "ctaTitle": "Ready to Transform Your Look?",
+    "ctaText": "Book a consultation with one of our expert practitioners to discuss your treatment goals",
+    "bookNow": "Book Now"
+  },
+  "conditionsPage": {
+    "title": "Conditions",
+    "listingTitle": "Conditions We Treat",
+    "listingSubtitle": "Whatever your skin concern, our expert practitioners can create a personalized treatment plan",
+    "ctaTitle": "Not Sure Which Treatment Is Right for You?",
+    "ctaSubtitle": "Book a consultation with one of our expert practitioners who will assess your concerns and recommend the best treatment options",
+    "bookConsultation": "Book a Consultation"
+  },
+  "aboutPage": {
+    "title": "About Us",
+    "subtitle": "Batumi's leading non-surgical aesthetic clinic, bringing together world-class practitioners and cutting-edge treatments",
+    "ourStory": "Our Story",
+    "storyP1": "Silk Beauty Salon was founded with a simple vision: to provide the highest quality aesthetic treatments in a luxurious, welcoming environment. Located on Zurab Gorgiladze Street in Batumi, our clinic brings together some of Georgia's most talented aesthetic practitioners.",
+    "storyP2": "We believe that everyone deserves to feel confident and beautiful. Our approach focuses on enhancing your natural features rather than changing who you are. We take pride in our subtle, refined results that help you look like the best version of yourself.",
+    "storyP3": "From the moment you step into our clinic, you'll experience the difference. Our commitment to excellence extends beyond our treatments to every aspect of your visit, from our luxurious clinic space to our warm, attentive team.",
+    "ourValues": "Our Values",
+    "values": {
+      "patientCare": "Patient-First Care",
+      "patientCareDesc": "Your comfort, safety, and satisfaction are our top priorities.",
+      "excellence": "Excellence",
+      "excellenceDesc": "We use only premium products and the latest techniques for optimal results.",
+      "safety": "Safety",
+      "safetyDesc": "All treatments are performed by qualified medical professionals.",
+      "naturalResults": "Natural Results",
+      "naturalResultsDesc": "We enhance your natural beauty with subtle, refined treatments."
+    },
+    "meetTeam": "Meet Our Team",
+    "teamSubtitle": "Our expert practitioners bring years of experience and a passion for excellence",
+    "team": {
+      "ninoRole": "Founder & Lead Practitioner",
+      "ninoBio": "Nino is the founder of Silk Beauty Salon and a renowned aesthetic practitioner with over 15 years of experience in the beauty industry. She is known for her natural-looking results and meticulous attention to detail.",
+      "ketevanRole": "Senior Aesthetic Practitioner",
+      "ketevanBio": "Ketevan is a highly skilled aesthetic practitioner specializing in dermal fillers and skin treatments. Her gentle approach and artistic eye ensure beautiful, natural results for every client.",
+      "mariamRole": "Aesthetic Practitioner",
+      "mariamBio": "Mariam brings a wealth of knowledge in advanced skin treatments and laser therapy. She is passionate about helping clients achieve their skin goals through personalized treatment plans.",
+      "sophiaRole": "Aesthetic Practitioner",
+      "sophiaBio": "Sophia specializes in non-surgical facial rejuvenation and has extensive experience in anti-wrinkle treatments and dermal fillers. Her clients love her natural, fresh approach."
+    },
+    "awards": {
+      "title": "Awards & Recognition",
+      "awardWinning": "Award Winning",
+      "premierSalon": "Batumi's Premier Beauty Salon",
+      "featuredIn": "As featured in Georgian Fashion & Beauty Magazine"
+    },
+    "featuredInVogue": "Featured in Vogue, Grazia, Vanity Fair, and Tatler",
+    "featuredIn": "As featured in Georgian Fashion & Beauty Magazine",
+    "ctaTitle": "Ready to Start Your Journey?",
+    "ctaSubtitle": "Book a consultation with one of our expert practitioners today",
+    "ctaButton": "Book a Consultation"
+  },
+  "contactPage": {
+    "title": "Contact Us",
+    "subtitle": "Get in touch with our team to book a consultation or ask any questions",
+    "formTitle": "Send Us a Message",
+    "thankYou": "Thank You!",
+    "messageSent": "Your message has been sent successfully. We'll get back to you shortly.",
+    "fullName": "Full Name",
+    "namePlaceholder": "Enter your name",
+    "emailAddress": "Email Address",
+    "emailPlaceholder": "Enter your email",
+    "phoneNumber": "Phone Number",
+    "phonePlaceholder": "Enter your phone",
+    "message": "Message",
+    "messagePlaceholder": "How can we help you?",
+    "sending": "Sending...",
+    "sendMessage": "Send Message",
+    "getInTouch": "Get in Touch",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "openingHours": "Opening Hours",
+    "monTue": "Monday - Tuesday",
+    "wedThu": "Wednesday - Thursday",
+    "friday": "Friday",
+    "satSun": "Saturday - Sunday",
+    "readyToBook": "Ready to Book?",
+    "bookOnlineDesc": "Book your appointment online through our booking system",
+    "bookAppointment": "Book Appointment",
+    "bookOnline": "Book Online",
+    "scheduleAppointment": "Schedule your appointment",
+    "bookViaWhatsApp": "Book via WhatsApp",
+    "whatsapp": "WhatsApp",
+    "viewOnMap": "View on Google Maps",
+    "mapAddress": "63 Zurab Gorgiladze Street",
+    "mapCity": "Batumi, Georgia"
+  },
+  "faqPage": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find answers to common questions about our clinic, treatments, and booking process",
+    "breadcrumb": "FAQ",
+    "stillHaveQuestions": "Still Have Questions?",
+    "cantFindAnswer": "Can't find the answer you're looking for? Please reach out to our friendly team.",
+    "contactUs": "Contact Us",
+    "bookConsultation": "Book a Consultation"
+  },
+  "pricelistPage": {
+    "title": "Price List",
+    "subtitle": "Transparent pricing for all our premium aesthetic treatments",
+    "noteTitle": "Note:",
+    "noteText": "Prices are starting prices and may vary based on individual requirements. A consultation is required to determine the exact treatment plan and cost. All consultations include a comprehensive skin analysis and personalized treatment recommendations.",
+    "treatment": "Treatment",
+    "duration": "Duration",
+    "priceFrom": "Price From",
+    "enquire": "Enquire",
+    "ctaTitle": "Ready to Book?",
+    "ctaSubtitle": "Book a consultation to discuss your treatment goals and receive a personalized quote",
+    "ctaButton": "Book a Consultation"
+  },
+  "offersPage": {
+    "title": "Special Offers",
+    "subtitle": "Take advantage of our exclusive promotions and special offers",
+    "breadcrumb": "Offers",
+    "offers": {
+      "newClient": {
+        "title": "New Client Special",
+        "description": "Book your first consultation and receive 20% off your first treatment.",
+        "terms": "Valid for new clients only. Cannot be combined with other offers."
+      },
+      "antiWrinkle": {
+        "title": "Anti-Wrinkle Package",
+        "description": "Book 3 areas of anti-wrinkle treatment and save.",
+        "terms": "Valid for 3 areas treated in the same session."
+      },
+      "dermalFiller": {
+        "title": "Dermal Filler Bundle",
+        "description": "Book 2ml or more of dermal filler and receive complimentary skin booster.",
+        "terms": "Limited time offer. Subject to availability."
+      },
+      "referral": {
+        "title": "Referral Reward",
+        "description": "Refer a friend and you both receive £50 credit towards your next treatment.",
+        "terms": "Referred friend must complete a treatment."
+      },
+      "seasonal": {
+        "title": "Seasonal Skin Refresh",
+        "description": "Combine any laser treatment with a medical facial for 15% off both.",
+        "terms": "Both treatments must be booked in the same month."
+      },
+      "loyalty": {
+        "title": "Loyalty Programme",
+        "description": "Join our loyalty programme and earn points on every treatment.",
+        "terms": "Points can be redeemed towards future treatments."
+      }
+    },
+    "ctaTitle": "Book Your Treatment Today",
+    "ctaSubtitle": "Contact us to book your consultation and take advantage of these exclusive offers",
+    "ctaButton": "Book Now",
+    "termsText": "All offers are subject to availability and may be withdrawn at any time. Offers cannot be combined unless otherwise stated. Please mention the offer when booking."
+  },
+  "blogPage": {
+    "title": "Our Blog",
+    "subtitle": "Expert insights, treatment guides, and the latest from the world of aesthetics",
+    "breadcrumb": "Blog",
+    "stayUpdated": "Stay Updated",
+    "newsletterDesc": "Subscribe to our newsletter for the latest articles, tips, and exclusive offers",
+    "subscribeButton": "Subscribe to Newsletter"
+  },
   "treatmentPage": {
     "bookNow": "Book This Treatment",
     "backTo": "Back to Treatments",
+    "aboutTreatment": "About This Treatment",
     "benefits": "Benefits",
-    "whatToExpect": "What to Expect",
-    "recovery": "Recovery & Aftercare",
-    "price": "Price",
-    "duration": "Treatment Duration",
-    "results": "Results Last"
+    "howItWorks": "How It Works",
+    "aftercare": "Aftercare",
+    "faqs": "Frequently Asked Questions",
+    "price": "Price from",
+    "duration": "Duration",
+    "readyToStart": "Ready to get started?",
+    "bookConsultation": "Book a Consultation",
+    "bookConsultationDesc": "Book a consultation with one of our expert practitioners",
+    "bookNowBtn": "Book Now",
+    "contactUs": "Contact Us",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "relatedTreatments": "Related Treatments"
   },
   "conditionPage": {
     "title": "Condition",
     "backTo": "Back to Conditions",
-    "symptoms": "Symptoms",
-    "causes": "Causes",
-    "treatments": "Recommended Treatments",
-    "bookConsultation": "Book a Consultation"
+    "aboutCondition": "About {name}",
+    "symptoms": "Common Signs & Symptoms",
+    "causes": "Common Causes",
+    "treatments": "Treatment Options",
+    "bookConsultation": "Book a Consultation",
+    "needHelp": "Need Help?",
+    "bookConsultationDesc": "Book a consultation with one of our expert practitioners",
+    "bookNow": "Book Now",
+    "otherConditions": "Other Conditions",
+    "viewAllConditions": "View All Conditions",
+    "recommendedTreatments": "Recommended Treatments"
   },
   "language": {
     "select": "Select Language",
@@ -224,6 +413,523 @@
     "next": "Next",
     "previous": "Previous",
     "viewAll": "View All",
-    "learnMore": "Learn More"
+    "learnMore": "Learn More",
+    "home": "Home",
+    "readMore": "Read More",
+    "bookNow": "Book Now",
+    "bookConsultation": "Book a Consultation",
+    "bookOnline": "Book Online",
+    "scheduleAppointment": "Schedule your appointment",
+    "whatsapp": "WhatsApp",
+    "bookViaWhatsApp": "Book via WhatsApp",
+    "treatments": "Treatments",
+    "conditions": "Conditions",
+    "notFound": "Not Found"
+  },
+  "siteConfig": {
+    "awards": {
+      "awardWinning": "Award Winning",
+      "premierSalon": "Batumi's Premier Beauty Salon",
+      "featuredIn": "As featured in Georgian Fashion & Beauty Magazine"
+    },
+    "navigation": {
+      "treatments": "Treatments",
+      "conditions": "Conditions",
+      "about": "About",
+      "priceList": "Price List",
+      "offers": "Offers",
+      "contact": "Contact",
+      "faq": "FAQ",
+      "press": "Press",
+      "blog": "Blog",
+      "aboutUs": "About Us",
+      "ourTeam": "Our Team",
+      "careers": "Careers"
+    },
+    "team": {
+      "ninoRole": "Founder & Lead Practitioner",
+      "ninoBio": "Nino is the founder of Silk Beauty Salon and a renowned aesthetic practitioner with over 15 years of experience in the beauty industry. She is known for her natural-looking results and meticulous attention to detail.",
+      "ketevanRole": "Senior Aesthetic Practitioner",
+      "ketevanBio": "Ketevan is a highly skilled aesthetic practitioner specializing in dermal fillers and skin treatments. Her gentle approach and artistic eye ensure beautiful, natural results for every client.",
+      "mariamRole": "Aesthetic Practitioner",
+      "mariamBio": "Mariam brings a wealth of knowledge in advanced skin treatments and laser therapy. She is passionate about helping clients achieve their skin goals through personalized treatment plans.",
+      "sophiaRole": "Aesthetic Practitioner",
+      "sophiaBio": "Sophia specializes in non-surgical facial rejuvenation and has extensive experience in anti-wrinkle treatments and dermal fillers. Her clients love her natural, fresh approach."
+    },
+    "faqs": {
+      "consultationQuestion": "What should I expect during my first consultation?",
+      "consultationAnswer": "During your initial consultation, we'll discuss your concerns, goals, and medical history. Our practitioner will examine your skin and facial anatomy before recommending appropriate treatments. We believe in honest, transparent advice and will never recommend unnecessary treatments.",
+      "painQuestion": "Are the treatments painful?",
+      "painAnswer": "Most treatments involve minimal discomfort. We use topical numbing cream where appropriate, and many of our dermal fillers contain built-in local anesthetic. Our practitioners are skilled in making treatments as comfortable as possible.",
+      "resultsQuestion": "How long do results last?",
+      "resultsAnswer": "This depends on the treatment. Anti-wrinkle injections typically last 3-6 months, dermal fillers 6-18 months depending on the product and area treated, and skin tightening treatments can provide results lasting 1-2 years. We'll discuss expected duration during your consultation.",
+      "downtimeQuestion": "Is there any downtime?",
+      "downtimeAnswer": "Many of our treatments have minimal to no downtime. Some treatments may cause temporary swelling, redness, or bruising. We'll provide detailed aftercare instructions and advice on timing treatments around social commitments.",
+      "bookingQuestion": "How do I book an appointment?",
+      "bookingAnswer": "You can book online through our website, call us at +995 599 123 456, or email info@silkbeauty.ge. We recommend booking consultations in advance as we often have a waiting list.",
+      "virtualQuestion": "Do you offer virtual consultations?",
+      "virtualAnswer": "Yes, we offer virtual consultations for those who cannot visit the salon initially. However, for treatments requiring precise assessment, an in-person consultation is recommended.",
+      "brandsQuestion": "What brands of products do you use?",
+      "brandsAnswer": "We use only premium, certified products from leading brands including Allergan (Juvederm), Galderma (Restylane), and Merz. For skin treatments, we use medical-grade products from iS Clinical, Obagi, and Mesoestetic.",
+      "qualifiedQuestion": "Are your practitioners qualified?",
+      "qualifiedAnswer": "All our practitioners are fully qualified and experienced professionals. They undergo continuous training in the latest techniques and safety protocols to ensure the highest standards of care."
+    }
+  },
+  "termsConditions": {
+    "title": "Terms & Conditions",
+    "subtitle": "Terms governing your use of our website and services",
+    "breadcrumb": "Terms & Conditions",
+    "lastUpdated": "Last updated: April 2026",
+    "acceptanceTitle": "1. Acceptance of Terms",
+    "acceptanceText": "By accessing and using the Silk Beauty Salon website and services, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, please do not use our website or services.",
+    "servicesTitle": "2. Services",
+    "servicesText": "Silk Beauty Salon provides aesthetic and beauty treatments. All treatments are performed by qualified professionals in accordance with industry standards and local regulations. Results may vary between individuals.",
+    "bookingTitle": "3. Booking and Appointments",
+    "bookingIntro": "When booking appointments:",
+    "bookingItem1": "Appointments must be booked through our official booking system or by phone",
+    "bookingItem2": "A consultation may be required before certain treatments",
+    "bookingItem3": "We reserve the right to refuse service if contraindications are identified",
+    "bookingItem4": "Clients must arrive 15 minutes before their scheduled appointment",
+    "cancellationTitle": "4. Cancellation Policy",
+    "cancellationText": "We understand that circumstances may change. Please provide at least 24 hours' notice for cancellations or rescheduling. Late cancellations or no-shows may be subject to a fee.",
+    "paymentTitle": "5. Payment Terms",
+    "paymentIntro": "Payment terms:",
+    "paymentItem1": "Payment is due at the time of service unless otherwise agreed",
+    "paymentItem2": "We accept cash and major credit cards",
+    "paymentItem3": "Gift vouchers must be presented at the time of booking",
+    "paymentItem4": "All prices are in Georgian Lari (GEL) and include applicable taxes",
+    "refundTitle": "6. Refund Policy",
+    "refundText": "Treatment packages are non-refundable. In case of dissatisfaction with a treatment, please contact us within 7 days so we can address your concerns appropriately.",
+    "medicalTitle": "7. Medical Disclaimer",
+    "medicalText": "Our treatments are not a substitute for medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.",
+    "intellectualTitle": "8. Intellectual Property",
+    "intellectualText": "All content on this website, including text, images, logos, and design, is the property of Silk Beauty Salon and is protected by copyright and other intellectual property laws. Unauthorized use is prohibited.",
+    "liabilityTitle": "9. Limitation of Liability",
+    "liabilityText": "To the fullest extent permitted by law, Silk Beauty Salon shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of our services.",
+    "governingTitle": "10. Governing Law",
+    "governingText": "These Terms and Conditions are governed by the laws of Georgia. Any disputes arising from these terms shall be subject to the exclusive jurisdiction of the courts of Batumi, Georgia.",
+    "changesTitle": "11. Changes to Terms",
+    "changesText": "We reserve the right to modify these Terms and Conditions at any time. Changes will be effective immediately upon posting to the website. Your continued use of our services constitutes acceptance of the revised terms.",
+    "contactTitle": "12. Contact Information",
+    "contactText": "For questions about these Terms and Conditions, please contact us at"
+  },
+  "careers": {
+    "title": "Careers",
+    "subtitle": "Join our team of passionate professionals dedicated to enhancing natural beauty",
+    "breadcrumb": "Careers",
+    "whyWorkTitle": "Why Work With Us?",
+    "whyWorkText": "At Silk Beauty Salon, we believe that our team is our greatest asset. We are committed to creating an environment where talented professionals can thrive, grow, and make a real difference in our clients' lives. Join us in delivering exceptional aesthetic treatments and experiences.",
+    "benefitsTitle": "Benefits",
+    "benefit1Title": "Competitive Salary",
+    "benefit1Desc": "We offer industry-leading compensation packages with performance bonuses.",
+    "benefit2Title": "Professional Development",
+    "benefit2Desc": "Continuous training and certification opportunities to advance your career.",
+    "benefit3Title": "Premium Environment",
+    "benefit3Desc": "Work in a modern, luxurious clinic with state-of-the-art equipment.",
+    "benefit4Title": "Team Culture",
+    "benefit4Desc": "Join a supportive team that values collaboration and excellence.",
+    "openingsTitle": "Current Openings",
+    "openingsSubtitle": "We are always looking for talented individuals to join our team",
+    "job1Title": "Aesthetic Practitioner",
+    "job1Type": "Full-time",
+    "job1Location": "Batumi, Georgia",
+    "job1Desc": "We are seeking experienced aesthetic practitioners to join our growing team.",
+    "job2Title": "Clinic Receptionist",
+    "job2Type": "Full-time",
+    "job2Location": "Batumi, Georgia",
+    "job2Desc": "Friendly and professional receptionist to manage client bookings and inquiries.",
+    "job3Title": "Skincare Specialist",
+    "job3Type": "Part-time",
+    "job3Location": "Batumi, Georgia",
+    "job3Desc": "Licensed skincare specialist with experience in facial treatments and consultations.",
+    "applyNow": "Apply Now",
+    "noRoleTitle": "Don't See the Right Role?",
+    "noRoleText": "We're always interested in meeting talented professionals. Send us your CV and we'll keep you in mind for future opportunities.",
+    "sendCV": "Send Your CV",
+    "contactUs": "Contact Us"
+  },
+  "privacyPolicy": {
+    "title": "Privacy Policy",
+    "subtitle": "How we collect, use, and protect your personal information",
+    "breadcrumb": "Privacy Policy",
+    "lastUpdated": "Last updated: April 2026",
+    "introTitle": "1. Introduction",
+    "introText": "Silk Beauty Salon (\"we,\" \"our,\" or \"us\") respects your privacy and is committed to protecting your personal data. This privacy policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.",
+    "collectTitle": "2. Information We Collect",
+    "collectIntro": "We may collect the following types of information:",
+    "collectItem1": "Personal Information: Name, email address, phone number, and other contact details you provide when booking appointments or contacting us.",
+    "collectItem2": "Medical Information: Health and treatment history necessary for providing aesthetic services.",
+    "collectItem3": "Usage Data: Information about how you use our website, including IP address, browser type, and pages visited.",
+    "collectItem4": "Cookies: We use cookies to enhance your browsing experience.",
+    "useTitle": "3. How We Use Your Information",
+    "useIntro": "We use your personal information for the following purposes:",
+    "useItem1": "To provide and manage our aesthetic services",
+    "useItem2": "To process bookings and appointments",
+    "useItem3": "To communicate with you about treatments and promotions",
+    "useItem4": "To improve our website and services",
+    "useItem5": "To comply with legal obligations",
+    "sharingTitle": "4. Information Sharing",
+    "sharingText": "We do not sell your personal information. We may share your data with:",
+    "sharingItem1": "Service providers who assist in our operations",
+    "sharingItem2": "Healthcare professionals when necessary for treatment",
+    "sharingItem3": "Legal authorities when required by law",
+    "securityTitle": "5. Data Security",
+    "securityText": "We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.",
+    "rightsTitle": "6. Your Rights",
+    "rightsIntro": "Depending on your location, you may have the following rights:",
+    "rightsItem1": "Right to access your personal data",
+    "rightsItem2": "Right to correct inaccurate information",
+    "rightsItem3": "Right to request deletion of your data",
+    "rightsItem4": "Right to object to processing",
+    "rightsItem5": "Right to data portability",
+    "contactTitle": "7. Contact Us",
+    "contactIntro": "If you have any questions about this privacy policy or our data practices, please contact us:",
+    "changesTitle": "8. Changes to This Policy",
+    "changesText": "We may update this privacy policy from time to time. We will notify you of any changes by posting the new policy on this page and updating the \"Last updated\" date."
+  },
+  "mediaPress": {
+    "title": "Press & Media",
+    "subtitle": "Read our latest press coverage and media features",
+    "breadcrumb": "Press & Media",
+    "feature1Title": "The Best Aesthetic Clinics in London",
+    "feature1Date": "January 2024",
+    "feature1Excerpt": "Silk Beauty Salon is named as one of the top aesthetic clinics in Batumi...",
+    "feature2Title": "The Ultimate Guide to Non-Surgical Treatments",
+    "feature2Date": "December 2023",
+    "feature2Excerpt": "Expert advice from the team at Silk Beauty Salon on the latest treatments...",
+    "feature3Title": "Top Beauty Clinics to Visit This Year",
+    "feature3Date": "November 2023",
+    "feature3Excerpt": "Discover why Silk Beauty Salon continues to be a go-to destination...",
+    "feature4Title": "The Rise of Natural-Looking Aesthetics",
+    "feature4Date": "October 2023",
+    "feature4Excerpt": "How leading clinics like Silk Beauty Salon are changing the approach...",
+    "feature5Title": "Expert Tips for Your First Treatment",
+    "feature5Date": "September 2023",
+    "feature5Excerpt": "The experts at Silk Beauty Salon share their advice for newcomers...",
+    "feature6Title": "The Treatments Everyone Is Talking About",
+    "feature6Date": "August 2023",
+    "feature6Excerpt": "From skin boosters to laser treatments, we explore the most popular procedures...",
+    "readArticle": "Read Article",
+    "mediaEnquiries": "Media Enquiries",
+    "mediaText": "For press and media enquiries, please contact our team at",
+    "contactPress": "Contact Press Team",
+    "mapAddress": "63 Zurab Gorgiladze Street",
+    "mapCity": "Batumi, Georgia"
+  },
+  "treatmentContent": {
+    "botox": {
+      "name": "Botox Injectables",
+      "description": "Advanced anti-wrinkle treatments using premium botulinum toxin to smooth lines and restore youthful appearance.",
+      "treatments": {
+        "anti-wrinkle": {
+          "name": "Anti-Wrinkle Injections",
+          "shortDescription": "Smooth away wrinkles and fine lines for a refreshed, youthful appearance.",
+          "description": "Anti-wrinkle injections are one of the most popular non-surgical cosmetic treatments available. Using botulinum toxin, we temporarily relax the facial muscles that cause wrinkles, resulting in smoother, younger-looking skin.",
+          "benefits": ["Reduces the appearance of fine lines and wrinkles", "Prevents new wrinkles from forming", "Quick treatment with minimal downtime", "Natural-looking results", "Long-lasting effects (3-6 months)"],
+          "howItWorks": "Botulinum toxin is injected into specific facial muscles using a fine needle. The toxin blocks nerve signals to these muscles, preventing them from contracting and creating wrinkles.",
+          "aftercare": "Avoid lying down for 4 hours, avoid exercise for 24 hours, and avoid rubbing the treated area."
+        },
+        "masseter-botox": {
+          "name": "Masseter Botox",
+          "shortDescription": "Slim the jawline and relieve teeth grinding with targeted Botox treatment.",
+          "description": "Masseter Botox is a specialized treatment that targets the masseter muscles to slim the face and treat teeth grinding.",
+          "benefits": ["Slims and contours the lower face", "Reduces jaw tension and pain", "Treats teeth grinding", "Non-surgical facial contouring"]
+        },
+        "hyperhidrosis": {
+          "name": "Hyperhidrosis Treatment",
+          "shortDescription": "Effectively treat excessive sweating with long-lasting results.",
+          "description": "Hyperhidrosis treatment with Botox is a highly effective solution for excessive sweating.",
+          "benefits": ["Dramatically reduces excessive sweating", "Results last 6-12 months", "Quick and minimally invasive", "Improves confidence"]
+        },
+        "migraine-treatment": {
+          "name": "Migraine Treatment",
+          "shortDescription": "Reduce the frequency and severity of chronic migraines.",
+          "description": "Botox is an FDA-approved treatment for chronic migraines.",
+          "benefits": ["Reduces frequency of migraine attacks", "Decreases severity of headaches", "FDA-approved for chronic migraines", "Long-lasting relief"]
+        }
+      }
+    },
+    "dermal-fillers": {
+      "name": "Dermal Fillers",
+      "description": "Restore volume, enhance features, and smooth lines with our premium hyaluronic acid dermal filler treatments.",
+      "treatments": {
+        "lip-fillers": {
+          "name": "Lip Fillers",
+          "shortDescription": "Enhance lip volume and shape for beautiful, natural-looking results.",
+          "description": "Lip fillers are one of our most popular treatments for enhancing the shape, volume, and definition of your lips.",
+          "benefits": ["Adds volume and definition", "Creates natural-looking enhancement", "Improves lip symmetry", "Results last 6-12 months"]
+        },
+        "cheek-fillers": {
+          "name": "Cheek Fillers",
+          "shortDescription": "Restore volume and define cheekbones for a youthful, lifted appearance.",
+          "description": "Cheek fillers are an excellent way to restore volume to the mid-face and create beautiful cheekbone definition.",
+          "benefits": ["Restores lost volume in cheeks", "Defines and enhances cheekbones", "Lifts mid-face area", "Results last 12-18 months"]
+        },
+        "chin-fillers": {
+          "name": "Chin Fillers",
+          "shortDescription": "Enhance chin projection and improve facial balance.",
+          "description": "Chin fillers can dramatically improve your facial profile and proportions.",
+          "benefits": ["Improves facial proportions", "Enhances chin projection", "Creates better jawline definition", "Non-surgical alternative to implants"]
+        },
+        "jaw-fillers": {
+          "name": "Jaw Fillers",
+          "shortDescription": "Define and contour your jawline for a sculpted profile.",
+          "description": "Jaw fillers are an excellent treatment for defining and contouring the jawline.",
+          "benefits": ["Creates more defined jawline", "Improves facial symmetry", "Non-surgical procedure", "Immediate results"]
+        },
+        "tear-fill": {
+          "name": "Tear Fillers",
+          "shortDescription": "Reduce the appearance of under-eye hollows and dark circles.",
+          "description": "Tear filler treatment addresses under-eye hollows and dark circles for a more refreshed appearance.",
+          "benefits": ["Reduces under-eye hollows", "Minimizes dark circles", "Creates refreshed appearance", "Results last 12-18 months"]
+        },
+        "nose-fillers": {
+          "name": "Non-Surgical Rhinoplasty",
+          "shortDescription": "Reshape your nose without surgery using dermal fillers.",
+          "description": "Non-surgical rhinoplasty uses dermal fillers to reshape and contour the nose.",
+          "benefits": ["Non-surgical alternative", "No downtime", "Immediate results", "Reversible if needed"]
+        },
+        "temple-fillers": {
+          "name": "Temple Fillers",
+          "shortDescription": "Restore volume to the temples for a more youthful appearance.",
+          "description": "Temple fillers restore volume to the temporal area, creating a more balanced and youthful appearance.",
+          "benefits": ["Restores lost volume", "Creates youthful contour", "Balances facial proportions", "Results last 12-18 months"]
+        },
+        "hand-fillers": {
+          "name": "Hand Fillers",
+          "shortDescription": "Rejuvenate aging hands with volume restoration.",
+          "description": "Hand fillers restore volume to the hands, reducing the appearance of veins and tendons.",
+          "benefits": ["Reduces visible veins", "Creates youthful hands", "Quick procedure", "Results last 12-18 months"]
+        }
+      }
+    },
+    "skin-treatments": {
+      "name": "Skin Treatments",
+      "description": "Advanced skin treatments to address various concerns and achieve radiant, healthy skin.",
+      "treatments": {
+        "skin-boosters": {
+          "name": "Skin Boosters",
+          "shortDescription": "Deep hydration for glowing, radiant skin.",
+          "description": "Skin boosters provide deep hydration to improve skin quality and create a radiant glow.",
+          "benefits": ["Deep hydration", "Improved skin texture", "Radiant glow", "Long-lasting results"]
+        },
+        "chemical-peels": {
+          "name": "Chemical Peels",
+          "shortDescription": "Renew your skin with professional chemical peel treatments.",
+          "description": "Chemical peels exfoliate the skin to reveal fresher, younger-looking skin underneath.",
+          "benefits": ["Skin renewal", "Improved texture", "Reduced pigmentation", "Even skin tone"]
+        },
+        "microneedling": {
+          "name": "Microneedling",
+          "shortDescription": "Stimulate collagen production for firmer, smoother skin.",
+          "description": "Microneedling stimulates the skin's natural healing process to produce collagen and elastin.",
+          "benefits": ["Stimulates collagen", "Reduces scars", "Improves skin texture", "Minimizes pores"]
+        },
+        "prp-therapy": {
+          "name": "PRP Facial",
+          "shortDescription": "Rejuvenate your skin using your body's own growth factors.",
+          "description": "PRP therapy uses your own blood platelets to rejuvenate and refresh your skin.",
+          "benefits": ["Natural rejuvenation", "Improved skin tone", "Reduced fine lines", "Enhanced glow"]
+        },
+        "laser-hair": {
+          "name": "Laser Hair Removal",
+          "shortDescription": "Permanent hair reduction for smooth, hair-free skin.",
+          "description": "Laser hair removal provides long-lasting hair reduction for smooth skin.",
+          "benefits": ["Permanent reduction", "Smooth skin", "Safe and effective", "Saves time"]
+        }
+      }
+    },
+    "laser-treatments": {
+      "name": "Laser Treatments",
+      "description": "State-of-the-art laser treatments for skin rejuvenation and hair removal.",
+      "treatments": {
+        "co2-laser": {
+          "name": "CO2 Laser Resurfacing",
+          "shortDescription": "Dramatic skin resurfacing for a youthful complexion.",
+          "description": "CO2 laser resurfacing removes layers of damaged skin to reveal smoother, younger skin.",
+          "benefits": ["Dramatic results", "Reduces wrinkles", "Improves scars", "Even skin tone"]
+        },
+        "ipl-therapy": {
+          "name": "IPL Therapy",
+          "shortDescription": "Treat pigmentation, sun damage, and vascular lesions.",
+          "description": "IPL therapy uses light to treat various skin concerns including pigmentation and sun damage.",
+          "benefits": ["Treats pigmentation", "Reduces sun damage", "Improves skin tone", "Minimal downtime"]
+        },
+        "laser-vein": {
+          "name": "Laser Vein Removal",
+          "shortDescription": "Remove unwanted veins and spider veins.",
+          "description": "Laser vein removal safely eliminates unwanted veins on the face and body.",
+          "benefits": ["Removes spider veins", "Safe procedure", "No downtime", "Clearer skin"]
+        }
+      }
+    },
+    "body-treatments": {
+      "name": "Body Treatments",
+      "description": "Advanced body contouring and skin tightening treatments.",
+      "treatments": {
+        "cool sculpting": {
+          "name": "CoolSculpting",
+          "shortDescription": "Non-surgical fat reduction using advanced cooling technology.",
+          "description": "CoolSculpting freezes and eliminates stubborn fat cells without surgery.",
+          "benefits": ["Non-surgical", "No downtime", "Permanent fat reduction", "Natural results"]
+        },
+        "emtone": {
+          "name": "Emtone",
+          "shortDescription": "Treat cellulite and improve skin texture.",
+          "description": "Emtone combines thermal and mechanical energy to treat cellulite effectively.",
+          "benefits": ["Reduces cellulite", "Improves skin texture", "Tightens skin", "No downtime"]
+        },
+        "skin-tightening": {
+          "name": "Radiofrequency Skin Tightening",
+          "shortDescription": "Non-surgical skin tightening for firmer, younger-looking skin.",
+          "description": "Radiofrequency skin tightening stimulates collagen production for firmer skin.",
+          "benefits": ["Firmer skin", "Reduced sagging", "Non-surgical", "No downtime"]
+        }
+      }
+    },
+    "intimate-treatments": {
+      "name": "Intimate Treatments",
+      "description": "Discreet and professional intimate rejuvenation treatments.",
+      "treatments": {
+        "vaginal-rejuvenation": {
+          "name": "Vaginal Rejuvenation",
+          "shortDescription": "Restore comfort and confidence with intimate rejuvenation.",
+          "description": "Vaginal rejuvenation uses laser technology to improve vaginal health and function.",
+          "benefits": ["Improved comfort", "Enhanced confidence", "Non-surgical", "Quick recovery"]
+        },
+        "labia-filler": {
+          "name": "Labia Filler",
+          "shortDescription": "Enhance comfort and aesthetics with labial filler treatment.",
+          "description": "Labia filler treatment addresses cosmetic concerns and improves comfort.",
+          "benefits": ["Improved aesthetics", "Enhanced comfort", "Non-surgical", "Natural results"]
+        }
+      }
+    },
+    "medical-facials": {
+      "name": "Medical Facials",
+      "description": "Professional medical-grade facials for optimal skin health.",
+      "treatments": {
+        "hydrafacial": {
+          "name": "HydraFacial",
+          "shortDescription": "Deep cleansing, exfoliation, and hydration for radiant skin.",
+          "description": "HydraFacial provides deep cleansing, exfoliation, and hydration in one treatment.",
+          "benefits": ["Deep cleansing", "Instant glow", "Hydration", "Suitable for all skin types"]
+        },
+        "deraplaning": {
+          "name": "Dermaplaning",
+          "shortDescription": "Exfoliate and remove peach fuzz for smooth, radiant skin.",
+          "description": "Dermaplaning uses a surgical blade to gently exfoliate and remove vellus hair.",
+          "benefits": ["Smoother skin", "Better product absorption", "Radiant glow", "Makeup applies better"]
+        }
+      }
+    },
+    "hair-treatments": {
+      "name": "Hair Treatments",
+      "description": "Advanced hair restoration and scalp treatments.",
+      "treatments": {
+        "prp-hair": {
+          "name": "PRP Hair Restoration",
+          "shortDescription": "Stimulate hair growth with your body's own growth factors.",
+          "description": "PRP hair restoration uses your own platelets to stimulate hair follicles and promote growth.",
+          "benefits": ["Stimulates growth", "Thicker hair", "Natural treatment", "No downtime"]
+        },
+        "mesotherapy-hair": {
+          "name": "Hair Mesotherapy",
+          "shortDescription": "Nutrient-rich injections to nourish the scalp and hair follicles.",
+          "description": "Hair mesotherapy delivers essential nutrients directly to the scalp to promote hair growth.",
+          "benefits": ["Nourishes scalp", "Promotes growth", "Reduces hair loss", "Improved hair quality"]
+        }
+      }
+    }
+  },
+  "conditionContent": {
+    "ageing-skin": {
+      "name": "Ageing Skin",
+      "shortDescription": "Address fine lines, wrinkles, and loss of elasticity with our anti-ageing treatments.",
+      "description": "Ageing skin is a natural process characterized by the development of fine lines, wrinkles, loss of elasticity, and changes in skin texture and tone.",
+      "symptoms": ["Fine lines and wrinkles", "Loss of skin elasticity", "Sagging skin", "Volume loss in cheeks", "Deep nasolabial folds", "Marionette lines"],
+      "causes": ["Natural decrease in collagen production", "Sun damage", "Loss of facial fat", "Decreased skin hydration", "Repetitive facial expressions"],
+      "treatments": ["Anti-wrinkle injections", "Dermal fillers", "Skin tightening treatments", "Laser resurfacing", "Medical-grade skincare"]
+    },
+    "acne": {
+      "name": "Acne & Breakouts",
+      "shortDescription": "Effective treatments for clearer, healthier skin.",
+      "description": "Acne is a common skin condition that affects people of all ages.",
+      "symptoms": ["Blackheads", "Whiteheads", "Papules", "Pustules", "Cysts", "Scarring"],
+      "causes": ["Excess oil production", "Bacteria", "Hormonal changes", "Certain medications"],
+      "treatments": ["Chemical peels", "Laser therapy", "Medical facials", "Skincare recommendations"]
+    },
+    "pigmentation": {
+      "name": "Pigmentation Issues",
+      "shortDescription": "Even out skin tone and reduce dark spots.",
+      "description": "Pigmentation issues include dark spots, melasma, and uneven skin tone.",
+      "symptoms": ["Dark spots", "Uneven skin tone", "Melasma", "Sun spots", "Age spots"],
+      "causes": ["Sun exposure", "Hormonal changes", "Inflammation", "Genetics"],
+      "treatments": ["IPL therapy", "Laser treatments", "Chemical peels", "Skin boosters"]
+    },
+    "scars": {
+      "name": "Scarring",
+      "shortDescription": "Reduce the appearance of scars for smoother skin.",
+      "description": "Scarring can result from acne, injuries, or surgery.",
+      "symptoms": ["Indented scars", "Raised scars", "Discoloration", "Textural changes"],
+      "causes": ["Acne", "Injuries", "Surgery", "Burns"],
+      "treatments": ["Microneedling", "Laser therapy", "Dermal fillers", "Chemical peels"]
+    },
+    "hair-loss": {
+      "name": "Hair Loss",
+      "shortDescription": "Restore hair growth with advanced treatments.",
+      "description": "Hair loss can affect both men and women.",
+      "symptoms": ["Thinning hair", "Receding hairline", "Bald patches", "Excessive shedding"],
+      "causes": ["Genetics", "Hormonal changes", "Stress", "Nutritional deficiencies"],
+      "treatments": ["PRP therapy", "Mesotherapy", "Hair restoration treatments"]
+    },
+    "rosacea": {
+      "name": "Rosacea",
+      "shortDescription": "Manage rosacea symptoms for clearer skin.",
+      "description": "Rosacea is a chronic skin condition causing redness and visible blood vessels.",
+      "symptoms": ["Facial redness", "Visible blood vessels", "Bumps and pimples", "Eye irritation"],
+      "causes": ["Genetics", "Environmental factors", "Blood vessel abnormalities"],
+      "treatments": ["IPL therapy", "Laser treatment", "Skincare management", "Medical treatments"]
+    },
+    "stretch-marks": {
+      "name": "Stretch Marks",
+      "shortDescription": "Reduce the appearance of stretch marks.",
+      "description": "Stretch marks appear when skin stretches rapidly.",
+      "symptoms": ["Pink or red streaks", "Purple or brown streaks", "Indented lines", "Smooth texture"],
+      "causes": ["Pregnancy", "Weight gain", "Growth spurts", "Hormonal changes"],
+      "treatments": ["Laser therapy", "Microneedling", "Radiofrequency treatments", "Topical treatments"]
+    },
+    "cellulite": {
+      "name": "Cellulite",
+      "shortDescription": "Smooth and firm skin with our body treatments.",
+      "description": "Cellulite causes a dimpled appearance on the skin.",
+      "symptoms": ["Dimpled skin", "Orange peel texture", "Lumpy appearance", "Common on thighs and buttocks"],
+      "causes": ["Fat deposits", "Poor circulation", "Genetics", "Lifestyle factors"],
+      "treatments": ["Emtone", "CoolSculpting", "Radiofrequency", "Massage therapies"]
+    },
+    "dry-skin": {
+      "name": "Dry & Dehydrated Skin",
+      "shortDescription": "Restore moisture and hydration to your skin.",
+      "description": "Dry skin can be caused by various factors including weather and aging.",
+      "symptoms": ["Tightness", "Flaking", "Rough texture", "Itching", "Redness"],
+      "causes": ["Weather", "Aging", "Hot showers", "Harsh soaps", "Dehydration"],
+      "treatments": ["Skin boosters", "HydraFacial", "Medical-grade skincare", "Moisturizing treatments"]
+    },
+    "sensitive-skin": {
+      "name": "Sensitive Skin",
+      "shortDescription": "Gentle treatments for reactive skin types.",
+      "description": "Sensitive skin reacts easily to products and environmental factors.",
+      "symptoms": ["Redness", "Burning", "Stinging", "Tightness", "Rashes"],
+      "causes": ["Genetics", "Barrier dysfunction", "Allergens", "Environmental factors"],
+      "treatments": ["Gentle facials", "Calming treatments", "Customized skincare", "LED therapy"]
+    }
+  },
+  "whatsapp": {
+    "greeting": "Hi there! 👋 Welcome to Silk Beauty Salon. How can we help you today?",
+    "bookAppointment": "I'd like to book an appointment",
+    "serviceQuestion": "I have a question about services",
+    "pricingInfo": "I need more information about pricing",
+    "otherInquiry": "Other inquiry",
+    "typicalReply": "Typically replies within minutes"
   }
 }

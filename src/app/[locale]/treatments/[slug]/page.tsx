@@ -14,27 +14,27 @@ import {
 } from "@/components/ui/accordion";
 
 interface Props {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const resolvedParams = await params;
-  const treatment = getTreatmentBySlug(resolvedParams.slug);
+  const result = await getTreatmentBySlug(resolvedParams.slug, resolvedParams.locale);
   
-  if (!treatment) {
+  if (!result) {
     return {
       title: 'Treatment Not Found | Silk Beauty Salon',
     };
   }
 
   return {
-    title: `${treatment.name} | Silk Beauty Salon`,
-    description: treatment.shortDescription,
+    title: `${result.treatment.name} | Silk Beauty Salon`,
+    description: result.treatment.shortDescription,
   };
 }
 
 export async function generateStaticParams() {
-  const treatments = getAllTreatments();
+  const treatments = await getAllTreatments('en');
   return treatments.map((treatment) => ({
     slug: treatment.slug,
   }));
@@ -42,16 +42,16 @@ export async function generateStaticParams() {
 
 export default async function TreatmentPage({ params }: Props) {
   const resolvedParams = await params;
-  const treatment = getTreatmentBySlug(resolvedParams.slug);
+  const result = await getTreatmentBySlug(resolvedParams.slug, resolvedParams.locale);
 
-  if (!treatment) {
+  if (!result) {
     notFound();
   }
 
+  const { treatment } = result;
+
   // Find the category this treatment belongs to
-  const category = treatmentCategories.find(cat => 
-    cat.treatments.some(t => t.slug === treatment.slug)
-  );
+  const category = result.category;
 
   // Find related treatments
   const relatedTreatments = category?.treatments

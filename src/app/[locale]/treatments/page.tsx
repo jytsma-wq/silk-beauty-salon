@@ -1,31 +1,51 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { ChevronRight } from 'lucide-react';
-import { treatmentCategories } from '@/data/treatments';
+import { getLocalizedTreatmentCategories } from '@/data/treatments';
 import { siteConfig } from '@/data/site-config';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/i18n/routing';
+import { getTranslations } from 'next-intl/server';
 
 export const metadata: Metadata = {
   title: 'Treatments | Silk Beauty Salon',
   description: 'Explore our comprehensive range of premium aesthetic treatments.',
 };
 
-export default function TreatmentsPage() {
+export default async function TreatmentsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'treatmentsPage' });
+  const tCommon = await getTranslations({ locale, namespace: 'common' });
+  const categories = await getLocalizedTreatmentCategories(locale);
+
   return (
     <>
-      {/* Hero Section */}
-      <section className="bg-primary py-20">
-        <div className="container-custom text-center">
-          <h1 
-            className="text-4xl md:text-5xl font-serif font-semibold text-white mb-4"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
-            Our Treatments
-          </h1>
-          <p className="text-gray-300 max-w-2xl mx-auto">
-            Explore our comprehensive range of premium aesthetic treatments designed to enhance your natural beauty
-          </p>
+      {/* Full Screen Hero Image */}
+      <section className="relative h-screen min-h-[600px]">
+        <Image
+          src="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=1920&q=80"
+          alt="Luxury Beauty Salon"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-primary/40" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="container-custom text-center">
+            <h1 
+              className="text-4xl md:text-6xl font-serif font-semibold text-white mb-4"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              {t('title')}
+            </h1>
+            <p className="text-gray-200 max-w-2xl mx-auto text-lg">
+              {t('subtitle')}
+            </p>
+          </div>
         </div>
       </section>
 
@@ -34,10 +54,10 @@ export default function TreatmentsPage() {
         <div className="container-custom">
           <nav className="flex items-center gap-2 text-sm">
             <Link href="/" className="text-muted-foreground hover:text-gold">
-              Home
+              {tCommon('home')}
             </Link>
             <ChevronRight className="w-4 h-4 text-muted-foreground" />
-            <span className="text-primary font-medium">Treatments</span>
+            <span className="text-primary font-medium">{t('title')}</span>
           </nav>
         </div>
       </div>
@@ -45,7 +65,7 @@ export default function TreatmentsPage() {
       {/* All Treatments */}
       <section className="section-spacing">
         <div className="container-custom">
-          {treatmentCategories.map((category) => (
+          {categories.map((category) => (
             <div key={category.slug} id={category.slug} className="mb-16 scroll-mt-24">
               <div className="flex flex-col md:flex-row md:items-end justify-between mb-8">
                 <div>
@@ -106,14 +126,14 @@ export default function TreatmentsPage() {
             className="text-2xl md:text-3xl font-serif font-semibold text-white mb-4"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            Ready to Start Your Journey?
+            {t('ctaTitle')}
           </h2>
           <p className="text-gray-300 mb-8 max-w-xl mx-auto">
-            Book a consultation with one of our expert practitioners to discuss your aesthetic goals
+            {t('ctaSubtitle')}
           </p>
           <Button asChild className="btn-gold">
             <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
-              Book a Consultation
+              {t('ctaButton')}
             </a>
           </Button>
         </div>
