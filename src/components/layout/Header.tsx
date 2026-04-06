@@ -258,7 +258,7 @@ export function Header() {
             </Link>
 
             {/* Book Appointment Button - Right - LARGER */}
-            <div className="relative hidden md:block mr-[-8px]">
+            <div className="relative hidden md:block -mr-2">
               <a
                 href={siteConfig.bookingUrl}
                 target="_blank"
