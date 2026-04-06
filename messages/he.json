@@ -925,6 +925,7 @@
     }
   },
   "whatsapp": {
+    "whatsapp": "WhatsApp",
     "greeting": "שלום! 👋 ברוכים הבאים ל-Silk Beauty Salon. איך אפשר לעזור לכם היום?",
     "bookAppointment": "אני רוצה לקבוע תור",
     "serviceQuestion": "יש לי שאלה לגבי השירותים",

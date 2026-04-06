@@ -921,6 +921,7 @@
     }
   },
   "whatsapp": {
+    "whatsapp": "WhatsApp",
     "greeting": "გამარჯობა! 👋 კეთილი იყოს თქვენი მოსვლა Silk Beauty Salon-ში. რით შეგვიძლია დაგეხმაროთ?",
     "bookAppointment": "მინდა დავჯავშნო ვიზიტი",
     "serviceQuestion": "მაქვს კითხვა სერვისების შესახებ",
