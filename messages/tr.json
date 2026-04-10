@@ -197,6 +197,13 @@
     "ctaSubtitle": "Estetik hedeflerinizi tartışmak için uzmanlarımızdan biriyle konsültasyon randevusu alın",
     "ctaButton": "Konsültasyon Randevusu Al"
   },
+  "beforeAfterPage": {
+    "title": "Öncesi ve Sonrası",
+    "subtitle": "Tedavilerimizin gerçek sonuçlarını görün. Uzman estetik tedavilerimizle görünümünüzü dönüştürün.",
+    "ctaTitle": "Görünümünüzü Dönüştürmeye Hazır mısınız?",
+    "ctaText": "Tedavi hedeflerinizi tartışmak için uzman pratisyenlerimizden biriyle konsültasyon randevusu alın",
+    "bookNow": "Randevu Al"
+  },
   "conditionsPage": {
     "title": "Cilt Sorunları",
     "listingTitle": "Tedavi Ettiğimiz Cilt Sorunları",
@@ -862,5 +869,14 @@
       "causes": ["Genetik", "Bariyer disfonksiyonu", "Alerjenler", "Çevresel faktörler"],
       "treatments": ["Nazik yüz bakımları", "Yatıştırıcı tedaviler", "Özelleştirilmiş cilt bakımı", "LED terapisi"]
     }
+  },
+  "whatsapp": {
+    "whatsapp": "WhatsApp",
+    "greeting": "Merhaba! 👋 Silk Beauty Salon'a hoş geldiniz. Bugün size nasıl yardımcı olabiliriz?",
+    "bookAppointment": "Randevu almak istiyorum",
+    "serviceQuestion": "Hizmetler hakkında bir sorum var",
+    "pricingInfo": "Fiyatlandırma hakkında daha fazla bilgiye ihtiyacım var",
+    "otherInquiry": "Diğer sorular",
+    "typicalReply": "Genellikle dakikalar içinde yanıt verir"
   }
 }
