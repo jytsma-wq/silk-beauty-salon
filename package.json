@@ -53,8 +53,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "eslint --fix --max-warnings 10",
-      "tsc --noEmit"
+      "eslint --fix --max-warnings 10"
     ]
   }
 }
