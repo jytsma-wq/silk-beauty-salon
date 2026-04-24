@@ -7,10 +7,15 @@ import { Button } from '@/components/ui/button';
 import { Link } from '@/i18n/routing';
 import { getTranslations } from 'next-intl/server';
 
-export const metadata: Metadata = {
-  title: 'Treatments | Silk Beauty Salon',
-  description: 'Explore our comprehensive range of premium aesthetic treatments.',
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'treatmentsPage' });
+
+  return {
+    title: t('metaTitle'),
+    description: t('metaDescription'),
+  };
+}
 
 export default async function TreatmentsPage({
   params,
@@ -25,7 +30,7 @@ export default async function TreatmentsPage({
   return (
     <>
       {/* Full Screen Hero Image */}
-      <section className="relative h-screen min-h-[600px]">
+      <section className="relative h-screen min-h-150">
         <Image
           src="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=1920&q=80"
           alt="Luxury Beauty Salon"
@@ -38,8 +43,7 @@ export default async function TreatmentsPage({
           <div className="container-custom text-center">
             <h1 
               className="text-4xl md:text-6xl font-serif font-semibold text-white mb-4"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
+                          >
               {t('title')}
             </h1>
             <p className="text-gray-200 max-w-2xl mx-auto text-lg">
@@ -71,8 +75,7 @@ export default async function TreatmentsPage({
                 <div>
                   <h2 
                     className="text-2xl md:text-3xl font-serif font-semibold text-primary mb-2"
-                    style={{ fontFamily: "'Playfair Display', serif" }}
-                  >
+                                      >
                     {category.name}
                   </h2>
                   <p className="text-muted-foreground max-w-2xl">
@@ -124,8 +127,7 @@ export default async function TreatmentsPage({
         <div className="container-custom text-center">
           <h2 
             className="text-2xl md:text-3xl font-serif font-semibold text-white mb-4"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
+                      >
             {t('ctaTitle')}
           </h2>
           <p className="text-gray-300 mb-8 max-w-xl mx-auto">

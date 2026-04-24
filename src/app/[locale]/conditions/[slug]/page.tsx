@@ -76,8 +76,7 @@ export default async function ConditionPage({ params }: Props) {
             <div>
               <h1 
                 className="text-4xl md:text-5xl font-serif font-semibold text-white mb-6"
-                style={{ fontFamily: "'Playfair Display', serif" }}
-              >
+                              >
                 {condition.name}
               </h1>
               <p className="text-lg text-gray-300 mb-6 leading-relaxed">
@@ -114,8 +113,7 @@ export default async function ConditionPage({ params }: Props) {
               <div className="mb-12">
                 <h2 
                   className="text-2xl font-serif font-semibold text-primary mb-6"
-                  style={{ fontFamily: "'Playfair Display', serif" }}
-                >
+                                  >
                   {t('aboutCondition', {name: condition.name}) || `About ${condition.name}`}
                 </h2>
                 <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
@@ -128,8 +126,7 @@ export default async function ConditionPage({ params }: Props) {
                 <div className="mb-12">
                   <h2 
                     className="text-2xl font-serif font-semibold text-primary mb-6"
-                    style={{ fontFamily: "'Playfair Display', serif" }}
-                  >
+                                      >
                     {t('symptoms') || 'Common Signs & Symptoms'}
                   </h2>
                   <div className="grid sm:grid-cols-2 gap-3">
@@ -148,8 +145,7 @@ export default async function ConditionPage({ params }: Props) {
                 <div className="mb-12">
                   <h2 
                     className="text-2xl font-serif font-semibold text-primary mb-6"
-                    style={{ fontFamily: "'Playfair Display', serif" }}
-                  >
+                                      >
                     {t('causes') || 'Common Causes'}
                   </h2>
                   <ul className="space-y-2">
@@ -168,8 +164,7 @@ export default async function ConditionPage({ params }: Props) {
                 <div className="mb-12">
                   <h2 
                     className="text-2xl font-serif font-semibold text-primary mb-6"
-                    style={{ fontFamily: "'Playfair Display', serif" }}
-                  >
+                                      >
                     {t('treatments') || 'Treatment Options'}
                   </h2>
                   <div className="grid sm:grid-cols-2 gap-3">
@@ -236,8 +231,7 @@ export default async function ConditionPage({ params }: Props) {
           <div className="container-custom">
             <h2 
               className="text-2xl font-serif font-semibold text-primary mb-8"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
+                          >
               {t('recommendedTreatments') || 'Recommended Treatments'}
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">

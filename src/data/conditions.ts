@@ -308,9 +308,5 @@ export async function getConditionBySlug(slug: string, locale: string = 'en'): P
   return conditions.find(condition => condition.slug === slug);
 }
 
-// Backwards compatible synchronous versions (English only)
-export const conditions = baseConditions;
-
-export function getAllConditionsSync(): Condition[] {
-  return baseConditions;
-}
+// Note: Use getLocalizedConditions(locale) for proper i18n support
+// The baseConditions are internal only - not exported

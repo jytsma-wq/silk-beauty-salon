@@ -10,7 +10,7 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = "file:///C:/silk/silkbeautysalon/dev.db"
+  url      = env("DATABASE_URL")
 }
 
 model ContactSubmission {
@@ -30,4 +30,22 @@ model NewsletterSubscriber {
   locale    String   @default("en")
   createdAt DateTime @default(now())
   active    Boolean  @default(true)
+}
+
+model BlogPost {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  excerpt     String
+  content     String
+  image       String
+  category    String
+  author      String   @default("Silk Beauty Team")
+  readTime    String   @default("5 min read")
+  locale      String   @default("en")
+  published   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([locale, published])
 }

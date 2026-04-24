@@ -2,12 +2,15 @@
 
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import { Button } from '@/components/ui/button';
+import { siteConfig } from '@/data/site-config';
 
 export function HeroSection() {
   const t = useTranslations('hero');
+  const tNav = useTranslations('nav');
 
   return (
-    <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
@@ -18,33 +21,36 @@ export function HeroSection() {
           className="object-cover"
           sizes="100vw"
         />
-        {/* Overlay */}
+        {/* Overlay - darker cinematic */}
         <div className="absolute inset-0 hero-overlay" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 container-custom text-center text-white">
         <div className="max-w-3xl mx-auto">
+          {/* Two-line split headline like HSI */}
           <h1 
-            className="text-4xl md:text-5xl lg:text-6xl font-serif font-semibold mb-6 leading-tight"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
+            className="text-4xl md:text-5xl lg:text-7xl font-serif font-semibold leading-tight mb-2"
+                      >
             {t('title')}
           </h1>
-          <div className="w-16 h-0.5 bg-gold mx-auto mb-6" />
-          <p className="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed">
+          <h2 
+            className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-gold mb-8"
+                      >
             {t('subtitle')}
-          </p>
-          <p className="text-base text-gray-300 mb-10 max-w-2xl mx-auto">
+          </h2>
+          <p className="text-base md:text-lg text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
             {t('description')}
           </p>
-        </div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 rounded-full border-2 border-white/50 flex items-start justify-center p-1">
-          <div className="w-1.5 h-3 bg-white/50 rounded-full animate-scroll" />
+          {/* Book Appointment button */}
+          <Button
+            asChild
+            className="btn-gold text-base px-8 py-6"
+          >
+            <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
+              {tNav('bookAppointment')}
+            </a>
+          </Button>
         </div>
       </div>
     </section>

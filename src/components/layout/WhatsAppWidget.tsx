@@ -4,12 +4,15 @@ import { useState, useEffect } from 'react';
 import { MessageCircle, X, Send } from 'lucide-react';
 import { siteConfig } from '@/data/site-config';
 import { useTranslations } from 'next-intl';
+import { trackContactClick } from '@/lib/analytics';
+import { useConsent } from '@/components/providers/ConsentProvider';
+import { cn } from '@/lib/utils';
 
 export function WhatsAppWidget() {
   const t = useTranslations('whatsapp');
+  const { showBanner } = useConsent();
   const phoneNumber = siteConfig.contact.phone.replace(/\s/g, '').replace('+', '');
   const [isOpen, setIsOpen] = useState(false);
-  const [hasOpened, setHasOpened] = useState(false);
 
   const quickMessages = [
     t('bookAppointment'),
@@ -19,13 +22,30 @@ export function WhatsAppWidget() {
   ];
 
   const handleQuickMessage = (message: string) => {
+    trackContactClick('whatsapp');
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
     setIsOpen(false);
   };
 
+  // Close popup on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen]);
+
   return (
-    <div className="fixed bottom-6 right-6 z-40">
+    <div 
+      className={cn(
+        "fixed right-6 z-40 transition-all duration-300",
+        showBanner ? "bottom-32" : "bottom-6"
+      )}
+    >
       {/* Chat Popup */}
       {isOpen && (
         <div className="absolute bottom-20 right-0 w-80 bg-white rounded-2xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-2 duration-300">
@@ -41,7 +61,11 @@ export function WhatsAppWidget() {
               <p className="font-semibold text-white">Silk Beauty Salon</p>
               <p className="text-xs text-white/80">{t('typicalReply')}</p>
             </div>
-            <button onClick={() => setIsOpen(false)} className="text-white/80 hover:text-white">
+            <button 
+              onClick={() => setIsOpen(false)} 
+              className="text-white/80 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/50 rounded p-1"
+              aria-label={t('close')}
+            >
               <X className="w-5 h-5" />
             </button>
           </div>
@@ -58,7 +82,7 @@ export function WhatsAppWidget() {
                 <button
                   key={index}
                   onClick={() => handleQuickMessage(msg)}
-                  className="w-full text-left px-4 py-3 bg-white border border-gray-200 rounded-lg text-sm text-gray-700 hover:bg-gray-50 hover:border-[#25D366] transition-colors flex items-center justify-between group"
+                  className="w-full text-left px-4 py-3 bg-white border border-gray-200 rounded-lg text-sm text-gray-700 hover:bg-gray-50 hover:border-[#25D366] focus:border-[#25D366] focus:ring-2 focus:ring-[#25D366]/20 transition-colors flex items-center justify-between group outline-none"
                 >
                   {msg}
                   <Send className="w-4 h-4 text-gray-400 group-hover:text-[#25D366]" />
@@ -72,12 +96,9 @@ export function WhatsAppWidget() {
       {/* WhatsApp Button */}
       <button
         type="button"
-        className="fixed bottom-6 right-6 z-40 bg-[#25D366] hover:bg-[#20BD5A] text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group"
-        aria-label="Chat on WhatsApp"
-        onClick={() => {
-          setIsOpen(!isOpen);
-          setHasOpened(true);
-        }}
+        className="bg-[#25D366] hover:bg-[#20BD5A] text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-4 focus:ring-[#25D366]/30 group"
+        aria-label={t('chatOnWhatsApp')}
+        onClick={() => setIsOpen(!isOpen)}
       >
         {isOpen ? (
           <X className="w-7 h-7" />
@@ -85,7 +106,7 @@ export function WhatsAppWidget() {
           <>
             <MessageCircle className="w-7 h-7" />
             <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-gray-900 text-white text-sm px-3 py-1.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-              {t('whatsapp')}
+              {t('chatOnWhatsApp')}
             </span>
           </>
         )}

@@ -67,7 +67,7 @@ export default function ContactPage() {
   return (
     <>
       {/* Full Screen Hero Image */}
-      <section className="relative h-screen min-h-[600px]">
+      <section className="relative h-screen min-h-150">
         <Image
           src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1920&q=80"
           alt="Contact Silk Beauty Salon"
@@ -80,8 +80,7 @@ export default function ContactPage() {
           <div className="container-custom text-center">
             <h1 
               className="text-4xl md:text-6xl font-serif font-semibold text-white mb-4"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
+                          >
               {t('title')}
             </h1>
             <p className="text-gray-200 max-w-2xl mx-auto text-lg">
@@ -112,8 +111,7 @@ export default function ContactPage() {
             <div>
               <h2 
                 className="text-2xl font-serif font-semibold text-primary mb-6"
-                style={{ fontFamily: "'Playfair Display', serif" }}
-              >
+                              >
                 {t('formTitle')}
               </h2>
 
@@ -201,8 +199,7 @@ export default function ContactPage() {
             <div>
               <h2 
                 className="text-2xl font-serif font-semibold text-primary mb-6"
-                style={{ fontFamily: "'Playfair Display', serif" }}
-              >
+                              >
                 {t('getInTouch')}
               </h2>
 

@@ -10,6 +10,7 @@ import { Footer } from "@/components/layout/Footer";
 import { ConsentProvider } from "@/components/providers/ConsentProvider";
 import { AnalyticsScripts } from "@/components/providers/AnalyticsScripts";
 import { WhatsAppWidget } from "@/components/layout/WhatsAppWidget";
+import { SkipLink } from "@/components/layout/SkipLink";
 
 const display = Cormorant_Garamond({
   subsets: ["latin"],
@@ -65,16 +66,14 @@ export default async function LocaleLayout({
         className={`${display.variable} ${body.variable} antialiased bg-background text-foreground`}
         style={{ fontFamily: "var(--font-body), sans-serif" }}
       >
-        {/* Skip to content link for accessibility */}
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:outline-none focus:ring-2 focus:ring-gold"
-        >
-          Skip to main content
-        </a>
         <ConsentProvider>
-          <AnalyticsScripts />
+          <AnalyticsScripts
+            gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
+            gtmId={process.env.NEXT_PUBLIC_GTM_ID}
+            fbPixelId={process.env.NEXT_PUBLIC_FB_PIXEL_ID}
+          />
           <NextIntlClientProvider messages={messages}>
+            <SkipLink />
             <Header />
             <main id="main-content">{children}</main>
             <Footer />

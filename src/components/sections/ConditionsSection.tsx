@@ -1,14 +1,24 @@
 'use client';
 
-import Image from 'next/image';
-import { useTranslations } from 'next-intl';
+import { useState, useEffect } from 'react';
+import { useTranslations, useLocale } from 'next-intl';
 import { ChevronRight } from 'lucide-react';
-import { conditions } from '@/data/conditions';
+import { getLocalizedConditions, type Condition } from '@/data/conditions';
 import { Link } from '@/i18n/routing';
 
 export function ConditionsSection() {
   const t = useTranslations('conditions');
   const tCommon = useTranslations('common');
+  const locale = useLocale();
+  const [conditions, setConditions] = useState<Condition[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const localizedConditions = await getLocalizedConditions(locale);
+      setConditions(localizedConditions);
+    };
+    fetchData();
+  }, [locale]);
 
   return (
     <section className="section-spacing bg-secondary" id="conditions">
@@ -17,8 +27,7 @@ export function ConditionsSection() {
         <div className="text-center mb-16">
           <h2 
             className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold text-primary mb-4 heading-underline"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
+                      >
             {t('title')}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mt-8">
@@ -26,43 +35,26 @@ export function ConditionsSection() {
           </p>
         </div>
 
-        {/* Conditions Grid */}
+        {/* Conditions Grid - editorial card style */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {conditions.map((condition, index) => (
+          {conditions.map((condition) => (
             <Link
               key={condition.slug}
               href={`/conditions/${condition.slug}`}
-              className="group relative overflow-hidden rounded-lg aspect-[4/3] card-hover"
+              className="editorial-card group rounded-lg"
             >
-              {/* Background Image */}
-              <Image
-                src={condition.image}
-                alt={condition.name}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                loading={index < 3 ? 'eager' : 'lazy'}
-              />
-              
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-linear-to-t from-primary via-primary/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
-              
-              {/* Content */}
-              <div className="absolute inset-0 flex flex-col justify-end p-6">
-                <h3 
-                  className="text-xl font-serif font-semibold text-white mb-2"
-                  style={{ fontFamily: "'Playfair Display', serif" }}
-                >
-                  {condition.name}
-                </h3>
-                <p className="text-sm text-gray-200 line-clamp-2 mb-4">
-                  {condition.shortDescription}
-                </p>
-                <span className="inline-flex items-center gap-1 text-sm font-medium text-gold group-hover:gap-2 transition-all">
-                  {tCommon('learnMore')}
-                  <ChevronRight className="w-4 h-4" />
-                </span>
-              </div>
+              <h3 
+                className="text-lg font-serif font-semibold text-primary mb-2"
+                              >
+                {condition.name}
+              </h3>
+              <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                {condition.shortDescription}
+              </p>
+              <span className="inline-flex items-center gap-1 text-sm font-medium text-gold group-hover:gap-2 transition-all">
+                {tCommon('learnMore')}
+                <ChevronRight className="w-4 h-4" />
+              </span>
             </Link>
           ))}
         </div>

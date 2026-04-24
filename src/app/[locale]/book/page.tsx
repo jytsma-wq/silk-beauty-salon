@@ -1,54 +1,108 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ChevronRight, Calendar, Clock, Phone, Mail } from 'lucide-react';
+import { ChevronRight, Calendar, Clock } from 'lucide-react';
 import { siteConfig } from '@/data/site-config';
-import { Button } from '@/components/ui/button';
 import { getTranslations } from 'next-intl/server';
+import { BookingProvider } from './booking-context';
 
-export const metadata: Metadata = {
-  title: 'Book an Appointment | Silk Beauty Salon',
-  description: 'Book your consultation or treatment appointment at Silk Beauty Salon in Batumi, Georgia.',
-};
+interface Props {
+  params: Promise<{ locale: string }>;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'bookingPage' });
+  
+  return {
+    title: t('metadata.title'),
+    description: t('metadata.description'),
+  };
+}
 
 export default async function BookPage({
   params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
+}: Props) {
   const { locale } = await params;
+
   const t = await getTranslations({ locale, namespace: 'bookingPage' });
   const tCommon = await getTranslations({ locale, namespace: 'common' });
 
   const consultationTypes = [
     {
       title: t('consultations.facial.title'),
-      duration: '30 min',
+      duration: t('consultations.facial.duration'),
       description: t('consultations.facial.description'),
-      icon: 'face',
+      bookingType: 'facial-consultation',
     },
     {
       title: t('consultations.skin.title'),
-      duration: '45 min',
+      duration: t('consultations.skin.duration'),
       description: t('consultations.skin.description'),
-      icon: 'skin',
+      bookingType: 'skin-consultation',
     },
     {
       title: t('consultations.body.title'),
-      duration: '30 min',
+      duration: t('consultations.body.duration'),
       description: t('consultations.body.description'),
-      icon: 'body',
+      bookingType: 'body-consultation',
     },
     {
       title: t('consultations.virtual.title'),
-      duration: '20 min',
+      duration: t('consultations.virtual.duration'),
       description: t('consultations.virtual.description'),
-      icon: 'video',
+      bookingType: 'virtual-consultation',
     },
   ];
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'MedicalBusiness',
+    name: 'Silk Beauty Salon',
+    image: 'https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=1920&q=80',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: siteConfig.contact.address,
+      addressLocality: siteConfig.contact.city,
+      addressCountry: 'GE',
+    },
+    telephone: siteConfig.contact.phone,
+    email: siteConfig.contact.email,
+    priceRange: '$$',
+    acceptsOffers: [
+      {
+        '@type': 'Offer',
+        name: 'Facial Consultation',
+        price: '50',
+        priceCurrency: 'USD',
+      },
+      {
+        '@type': 'Offer',
+        name: 'Skin Consultation',
+        price: '60',
+        priceCurrency: 'USD',
+      },
+      {
+        '@type': 'Offer',
+        name: 'Body Treatment Consultation',
+        price: '50',
+        priceCurrency: 'USD',
+      },
+      {
+        '@type': 'Offer',
+        name: 'Virtual Consultation',
+        price: '40',
+        priceCurrency: 'USD',
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero Section */}
       <section className="relative py-20 bg-primary">
         <div className="absolute inset-0 opacity-20">
@@ -72,8 +126,7 @@ export default async function BookPage({
           <div className="max-w-3xl">
             <h1 
               className="text-4xl md:text-5xl font-serif font-semibold text-white mb-6"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
+                          >
               {t('title')}
             </h1>
             <p className="text-lg text-gray-300 leading-relaxed">
@@ -94,60 +147,25 @@ export default async function BookPage({
                   <Calendar className="w-6 h-6 text-gold" />
                   <h2 
                     className="text-2xl font-serif font-semibold text-primary"
-                    style={{ fontFamily: "'Playfair Display', serif" }}
-                  >
+                                      >
                     {t('selectDateTime')}
                   </h2>
                 </div>
 
-                {/* Cal.com Embed Container */}
-                <div className="min-h-[600px] bg-secondary rounded-lg">
-                  {/* 
-                    INSTRUCTIONS: 
-                    1. Create a Cal.com account at https://cal.com
-                    2. Set up your booking types (consultations, treatments)
-                    3. Replace the data below with your Cal.com embed code
-                    4. Or uncomment the iframe and add your Cal.com booking link
-                  */}
-                  <div 
-                    className="w-full h-full min-h-[600px] flex items-center justify-center"
-                    style={{ minHeight: '600px' }}
-                  >
-                    {/* Option 1: Cal.com iframe embed */}
-                    {/*
-                    <iframe
-                      src="https://cal.com/silkbeauty/consultation"
-                      frameBorder="0"
-                      scrolling="no"
-                      seamless
-                      className="w-full h-full min-h-[600px]"
-                      style={{ minHeight: '600px' }}
-                    />
-                    */}
-                    
-                    {/* Placeholder until Cal.com is configured */}
-                    <div className="text-center p-8">
-                      <Calendar className="w-16 h-16 text-gold mx-auto mb-4 opacity-50" />
-                      <h3 className="font-serif text-xl text-primary mb-2">{t('bookingNotConfigured')}</h3>
-                      <p className="text-muted-foreground mb-6 max-w-md">
-                        {t('bookingNotConfiguredDesc')}
-                      </p>
-                      <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Button asChild className="btn-gold">
-                          <a href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`}>
-                            <Phone className="w-4 h-4 mr-2" />
-                            {t('callToBook')}
-                          </a>
-                        </Button>
-                        <Button asChild variant="outline">
-                          <a href={`mailto:${siteConfig.contact.email}`}>
-                            <Mail className="w-4 h-4 mr-2" />
-                            {t('emailToBook')}
-                          </a>
-                        </Button>
-                      </div>
+                {/* Booking Embed Container */}
+                <div id="booking-embed" className="min-h-150 bg-secondary rounded-lg flex items-center justify-center p-8">
+                  <BookingProvider>
+                    <div className="text-center">
+                      <h3 className="font-serif text-xl text-primary mb-2">{t('selectDateTime')}</h3>
+                      <p className="text-muted-foreground">{t('bookingComingSoon', { defaultValue: 'Online booking coming soon. Please call us to schedule your appointment.' })}</p>
+                      <a 
+                        href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`}
+                        className="inline-flex items-center gap-2 mt-4 text-gold hover:underline"
+                      >
+                        {siteConfig.contact.phone}
+                      </a>
                     </div>
-                  </div>
+                  </BookingProvider>
                 </div>
               </div>
             </div>
@@ -158,13 +176,21 @@ export default async function BookPage({
               <div className="bg-secondary rounded-lg p-6">
                 <h3 
                   className="font-serif text-lg font-semibold text-primary mb-4"
-                  style={{ fontFamily: "'Playfair Display', serif" }}
-                >
+                                  >
                   {t('consultationTypes')}
                 </h3>
                 <div className="space-y-4">
                   {consultationTypes.map((type) => (
-                    <div key={type.title} className="flex items-start gap-3">
+                    <button
+                      key={type.title}
+                      onClick={() => {
+                        const embed = document.getElementById('booking-embed');
+                        if (embed) {
+                          embed.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                      }}
+                      className="w-full flex items-start gap-3 p-3 rounded-lg hover:bg-white/50 transition-colors text-left"
+                    >
                       <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0">
                         <Clock className="w-5 h-5 text-gold" />
                       </div>
@@ -173,7 +199,7 @@ export default async function BookPage({
                         <p className="text-xs text-muted-foreground">{type.duration}</p>
                         <p className="text-sm text-muted-foreground mt-1">{type.description}</p>
                       </div>
-                    </div>
+                    </button>
                   ))}
                 </div>
               </div>
@@ -182,8 +208,7 @@ export default async function BookPage({
               <div className="bg-primary rounded-lg p-6 text-white">
                 <h3 
                   className="font-serif text-lg font-semibold mb-4"
-                  style={{ fontFamily: "'Playfair Display', serif" }}
-                >
+                                  >
                   {t('whatToExpect.title')}
                 </h3>
                 <ul className="space-y-3 text-sm">
@@ -210,8 +235,7 @@ export default async function BookPage({
               <div className="bg-white rounded-lg border border-border p-6">
                 <h3 
                   className="font-serif text-lg font-semibold text-primary mb-4"
-                  style={{ fontFamily: "'Playfair Display', serif" }}
-                >
+                                  >
                   {t('needHelp')}
                 </h3>
                 <div className="space-y-3 text-sm">
@@ -254,8 +278,7 @@ export default async function BookPage({
         <div className="container-custom">
           <h2 
             className="text-2xl font-serif font-semibold text-primary text-center mb-8"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
+                      >
             {t('faq.title')}
           </h2>
           <div className="max-w-2xl mx-auto space-y-4">

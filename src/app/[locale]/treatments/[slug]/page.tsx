@@ -90,8 +90,7 @@ export default async function TreatmentPage({ params }: Props) {
               )}
               <h1 
                 className="text-4xl md:text-5xl font-serif font-semibold text-white mb-6"
-                style={{ fontFamily: "'Playfair Display', serif" }}
-              >
+                              >
                 {treatment.name}
               </h1>
               <p className="text-lg text-gray-300 mb-6 leading-relaxed">
@@ -147,8 +146,7 @@ export default async function TreatmentPage({ params }: Props) {
               <div className="mb-12">
                 <h2 
                   className="text-2xl font-serif font-semibold text-primary mb-6"
-                  style={{ fontFamily: "'Playfair Display', serif" }}
-                >
+                                  >
                   {t('aboutTreatment') || 'About This Treatment'}
                 </h2>
                 <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
@@ -161,8 +159,7 @@ export default async function TreatmentPage({ params }: Props) {
                 <div className="mb-12">
                   <h2 
                     className="text-2xl font-serif font-semibold text-primary mb-6"
-                    style={{ fontFamily: "'Playfair Display', serif" }}
-                  >
+                                      >
                     {t('benefits') || 'Benefits'}
                   </h2>
                   <div className="grid sm:grid-cols-2 gap-4">
@@ -181,8 +178,7 @@ export default async function TreatmentPage({ params }: Props) {
                 <div className="mb-12">
                   <h2 
                     className="text-2xl font-serif font-semibold text-primary mb-6"
-                    style={{ fontFamily: "'Playfair Display', serif" }}
-                  >
+                                      >
                     {t('howItWorks') || 'How It Works'}
                   </h2>
                   <p className="text-muted-foreground leading-relaxed">
@@ -196,8 +192,7 @@ export default async function TreatmentPage({ params }: Props) {
                 <div className="mb-12">
                   <h2 
                     className="text-2xl font-serif font-semibold text-primary mb-6"
-                    style={{ fontFamily: "'Playfair Display', serif" }}
-                  >
+                                      >
                     {t('aftercare') || 'Aftercare'}
                   </h2>
                   <div className="bg-secondary rounded-lg p-6">
@@ -213,8 +208,7 @@ export default async function TreatmentPage({ params }: Props) {
                 <div>
                   <h2 
                     className="text-2xl font-serif font-semibold text-primary mb-6"
-                    style={{ fontFamily: "'Playfair Display', serif" }}
-                  >
+                                      >
                     {t('faqs') || 'Frequently Asked Questions'}
                   </h2>
                   <Accordion type="single" collapsible className="w-full">
@@ -291,8 +285,7 @@ export default async function TreatmentPage({ params }: Props) {
           <div className="container-custom">
             <h2 
               className="text-2xl font-serif font-semibold text-primary mb-8"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
+                          >
               {t('relatedTreatments') || 'Related Treatments'}
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">

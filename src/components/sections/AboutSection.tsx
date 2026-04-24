@@ -25,8 +25,7 @@ export function AboutSection() {
           <div>
             <h2 
               className="text-3xl md:text-4xl font-serif font-semibold text-primary mb-6"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
+                          >
               {t('title')}
             </h2>
             <div className="w-16 h-0.5 bg-gold mb-6" />
@@ -58,7 +57,7 @@ export function AboutSection() {
 
           {/* Image */}
           <div className="relative">
-            <div className="aspect-[4/5] rounded-lg overflow-hidden relative">
+            <div className="aspect-4/5 rounded-lg overflow-hidden relative">
               <Image
                 src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80"
                 alt="Silk Beauty Salon"

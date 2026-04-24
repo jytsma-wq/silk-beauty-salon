@@ -1,28 +1,22 @@
 import { siteConfig } from "@/data/site-config"
 
-interface LocalBusinessSchema {
-  locale?: string
-}
-
 export function generateLocalBusinessSchema(locale: string = "en") {
-  const business = siteConfig
-  
   const localeNames: Record<string, string> = {
     en: "Silk Beauty Salon",
-    ka: " silk beauty salon",
-    ru: " ",
+    ka: "სილქ ბიუთი სალონი",
+    ru: "Салон Красоты Силк",
     tr: "Silk Beauty Salon",
-    ar: " ",
-    he: " "
+    ar: "صالون الجمال سيلك",
+    he: "סלון יופי סילק"
   }
 
   const descriptions: Record<string, string> = {
     en: "Premier medical aesthetic clinic in Batumi, Georgia offering Botox, dermal fillers, laser treatments, and advanced skin care.",
-    ka: " , , .",
-    ru: " , , .",
+    ka: "ბათუმის წამალი ესთეტიკის კლინიკა, ბოტოქსი, დერმალური ფილერები, ლაზერული მკურნალობა და გაუმჯობესებული კანის მოვლა.",
+    ru: "Ведущая клиника медицинской эстетики в Батуми, Грузия. Предлагаем ботокс, дермальные наполнители, лазерные процедуры и уход за кожей.",
     tr: "Batumi'de Botox, dermal dolgular, lazer tedavileri ve ileri cilt bakimi sunan premier tibbi estetik klinigi.",
-    ar: " .",
-    he: " ."
+    ar: "عيادة الجمال الطبي الرائدة في باتومي جورجيا تقدم البوتوكس والحشوات الجلدية وعلاجات الليزر والعناية المتقدمة بالبشرة.",
+    he: "קליניקת אסתטיקה רפואית מובילה בבטומי גאורגיה המציעה בוטוקס, מילוי עור, טיפולי לייזר וטיפוח עור מתקדם."
   }
 
   const schema = {
@@ -42,7 +36,7 @@ export function generateLocalBusinessSchema(locale: string = "en") {
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": "41.6388",
+      "latitude": "41.6417",
       "longitude": "41.6372"
     },
     "openingHoursSpecification": [
@@ -55,10 +49,11 @@ export function generateLocalBusinessSchema(locale: string = "en") {
       { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "11:00", "closes": "16:00" }
     ],
     "priceRange": "$$",
-    "image": `${siteConfig.url}/og-image.jpg`,
+    "image": `${siteConfig.url}/opengraph-image.png`,
     "sameAs": [
       siteConfig.social.instagram,
-      siteConfig.social.facebook
+      siteConfig.social.facebook,
+      "https://www.tiktok.com/@silkbeautybatumi"
     ].filter(Boolean)
   }
 

@@ -46,8 +46,7 @@ export function QuickLinksSection() {
         <div className="text-center mb-12">
           <h2 
             className="text-3xl md:text-4xl font-serif font-semibold text-primary mb-4"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
+                      >
             {t('title')}
           </h2>
         </div>
@@ -65,8 +64,7 @@ export function QuickLinksSection() {
               </div>
               <h3 
                 className="text-lg font-serif font-semibold text-primary mb-2"
-                style={{ fontFamily: "'Playfair Display', serif" }}
-              >
+                              >
                 {link.title}
               </h3>
               <p className="text-sm text-muted-foreground mb-4">

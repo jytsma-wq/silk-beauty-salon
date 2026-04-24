@@ -1,185 +1,107 @@
 'use client';
 
-import { useState } from 'react';
-import Image from 'next/image';
+import { useTranslations } from 'next-intl';
+import { Camera } from 'lucide-react';
 
-interface BeforeAfterItem {
-  id: number;
-  category: string;
-  treatment: string;
-  beforeImage: string;
-  afterImage: string;
-  description?: string;
+interface BeforeAfterGalleryProps {
+  locale: string;
 }
 
-const beforeAfterData: BeforeAfterItem[] = [
-  {
-    id: 1,
-    category: 'Facial Treatments',
-    treatment: 'Hydrafacial',
-    beforeImage: '/images/before-after/facial-1-before.jpg',
-    afterImage: '/images/before-after/facial-1-after.jpg',
-    description: 'Deep cleansing and hydration'
-  },
-  {
-    id: 2,
-    category: 'Facial Treatments',
-    treatment: 'Anti-Aging Facial',
-    beforeImage: '/images/before-after/facial-2-before.jpg',
-    afterImage: '/images/before-after/facial-2-after.jpg',
-    description: 'Reduced fine lines'
-  },
-  {
-    id: 3,
-    category: 'Skin Treatments',
-    treatment: 'Laser Hair Removal',
-    beforeImage: '/images/before-after/laser-1-before.jpg',
-    afterImage: '/images/before-after/laser-1-after.jpg',
-    description: 'Smooth skin results'
-  },
-  {
-    id: 4,
-    category: 'Skin Treatments',
-    treatment: 'Chemical Peel',
-    beforeImage: '/images/before-after/peel-1-before.jpg',
-    afterImage: '/images/before-after/peel-1-after.jpg',
-    description: 'Even skin tone'
-  },
-  {
-    id: 5,
-    category: 'Injectables',
-    treatment: 'Dermal Fillers',
-    beforeImage: '/images/before-after/fillers-1-before.jpg',
-    afterImage: '/images/before-after/fillers-1-after.jpg',
-    description: 'Volume restoration'
-  },
-  {
-    id: 6,
-    category: 'Injectables',
-    treatment: 'Botox',
-    beforeImage: '/images/before-after/botox-1-before.jpg',
-    afterImage: '/images/before-after/botox-1-after.jpg',
-    description: 'Wrinkle reduction'
-  }
-];
+export function BeforeAfterGallery({ locale: _locale }: BeforeAfterGalleryProps) {
+  const t = useTranslations('beforeAfterPage');
 
-const categories = ['All', ...Array.from(new Set(beforeAfterData.map(item => item.category)))];
-
-export function BeforeAfterGallery({ locale }: { locale: string }) {
-  const [activeCategory, setActiveCategory] = useState('All');
-  const [selectedItem, setSelectedItem] = useState<BeforeAfterItem | null>(null);
-
-  const filteredItems = activeCategory === 'All' 
-    ? beforeAfterData 
-    : beforeAfterData.filter(item => item.category === activeCategory);
+  // Placeholder gallery items - in production, these would come from a CMS or database
+  const galleryItems = [
+    {
+      id: 1,
+      treatment: 'Botox Forehead Lines',
+      beforeImage: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=400&q=80',
+      afterImage: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80',
+      description: 'Results after 2 weeks',
+    },
+    {
+      id: 2,
+      treatment: 'Lip Enhancement',
+      beforeImage: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80',
+      afterImage: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80',
+      description: 'Natural-looking volume',
+    },
+    {
+      id: 3,
+      treatment: 'Skin Rejuvenation',
+      beforeImage: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=400&q=80',
+      afterImage: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80',
+      description: 'After 3 sessions',
+    },
+  ];
 
   return (
-    <>
-      {/* Category Filter */}
-      <div className="flex flex-wrap justify-center gap-2 mb-8">
-        {categories.map((category) => (
-          <button
-            key={category}
-            onClick={() => setActiveCategory(category)}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-              activeCategory === category
-                ? 'bg-gold text-white'
-                : 'bg-secondary text-muted-foreground hover:bg-gold/10 hover:text-gold'
-            }`}
-          >
-            {category}
-          </button>
-        ))}
+    <div className="space-y-8">
+      {/* Disclaimer */}
+      <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 text-sm text-amber-800">
+        <p>{t('disclaimer', { defaultValue: 'Individual results may vary. Photos are of actual clients with their consent.' })}</p>
       </div>
 
       {/* Gallery Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredItems.map((item) => (
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {galleryItems.map((item) => (
           <div
             key={item.id}
-            onClick={() => setSelectedItem(item)}
-            className="group cursor-pointer bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow"
+            className="bg-white rounded-lg overflow-hidden shadow-sm border border-border hover:shadow-md transition-shadow"
           >
-            {/* Before/After Split */}
-            <div className="relative h-64 flex">
-              {/* Before */}
-              <div className="relative w-1/2">
-                <div className="absolute top-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded">
-                  Before
-                </div>
-                <div className="w-full h-full bg-gray-100 flex items-center justify-center">
-                  <span className="text-gray-400 text-sm">Add image</span>
-                </div>
-              </div>
-              {/* After */}
-              <div className="relative w-1/2 border-l">
-                <div className="absolute top-2 left-2 bg-[#25D366] text-white text-xs px-2 py-1 rounded">
-                  After
-                </div>
-                <div className="w-full h-full bg-gray-100 flex items-center justify-center">
-                  <span className="text-gray-400 text-sm">Add image</span>
-                </div>
-              </div>
-              {/* Divider Line */}
-              <div className="absolute inset-y-0 left-1/2 w-0.5 bg-white z-10" />
+            {/* Treatment Label */}
+            <div className="bg-primary text-white px-4 py-2">
+              <h3 className="font-serif font-semibold">{item.treatment}</h3>
             </div>
 
-            {/* Info */}
-            <div className="p-4">
-              <p className="text-xs text-gold font-medium mb-1">{item.category}</p>
-              <h3 className="font-semibold text-primary">{item.treatment}</h3>
-              {item.description && (
-                <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
-              )}
+            {/* Before/After Images */}
+            <div className="grid grid-cols-2 gap-1 p-4">
+              <div className="space-y-2">
+                <div className="aspect-square rounded-lg overflow-hidden bg-secondary relative">
+                  <img
+                    src={item.beforeImage}
+                    alt={`Before ${item.treatment}`}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded">
+                    {t('before', { defaultValue: 'Before' })}
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <div className="aspect-square rounded-lg overflow-hidden bg-secondary relative">
+                  <img
+                    src={item.afterImage}
+                    alt={`After ${item.treatment}`}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-2 left-2 bg-gold/90 text-primary text-xs px-2 py-1 rounded font-medium">
+                    {t('after', { defaultValue: 'After' })}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Description */}
+            <div className="px-4 pb-4">
+              <p className="text-sm text-muted-foreground">{item.description}</p>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Empty State */}
-      {filteredItems.length === 0 && (
-        <div className="text-center py-12">
-          <p className="text-muted-foreground">No results found for this category.</p>
+      {/* Empty State / Coming Soon */}
+      {galleryItems.length === 0 && (
+        <div className="text-center py-16">
+          <Camera className="w-16 h-16 text-muted-foreground mx-auto mb-4 opacity-50" />
+          <h3 className="font-serif text-xl text-primary mb-2">
+            {t('comingSoon', { defaultValue: 'Gallery Coming Soon' })}
+          </h3>
+          <p className="text-muted-foreground max-w-md mx-auto">
+            {t('galleryDescription', { defaultValue: 'We are preparing our before and after gallery. Check back soon to see real results from our treatments.' })}
+          </p>
         </div>
       )}
-
-      {/* Modal */}
-      {selectedItem && (
-        <div 
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
-          onClick={() => setSelectedItem(null)}
-        >
-          <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden" onClick={e => e.stopPropagation()}>
-            <div className="p-4 border-b flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gold font-medium">{selectedItem.category}</p>
-                <h3 className="font-semibold text-lg">{selectedItem.treatment}</h3>
-              </div>
-              <button 
-                onClick={() => setSelectedItem(null)}
-                className="p-2 hover:bg-secondary rounded-full transition-colors"
-              >
-                ✕
-              </button>
-            </div>
-            <div className="p-4">
-              <div className="relative h-80 flex gap-4">
-                <div className="flex-1 relative rounded-lg overflow-hidden bg-gray-100">
-                  <div className="absolute top-2 left-2 bg-black/60 text-white text-sm px-3 py-1 rounded">Before</div>
-                  <div className="w-full h-full flex items-center justify-center text-gray-400">Add before image</div>
-                </div>
-                <div className="flex-1 relative rounded-lg overflow-hidden bg-gray-100">
-                  <div className="absolute top-2 left-2 bg-[#25D366] text-white text-sm px-3 py-1 rounded">After</div>
-                  <div className="w-full h-full flex items-center justify-center text-gray-400">Add after image</div>
-                </div>
-              </div>
-              {selectedItem.description && (
-                <p className="mt-4 text-center text-muted-foreground">{selectedItem.description}</p>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-    </>
+    </div>
   );
 }

@@ -1,5 +1,3 @@
-import { getMessages } from 'next-intl/server';
-
 export interface Treatment {
   name: string;
   slug: string;
@@ -36,7 +34,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Anti-wrinkle injections are one of the most popular non-surgical cosmetic treatments available. Using botulinum toxin, we temporarily relax the facial muscles that cause wrinkles, resulting in smoother, younger-looking skin. This treatment is perfect for forehead lines, crow's feet, and frown lines between the eyebrows. Our expert practitioners use precise injection techniques to achieve natural-looking results that maintain your facial expressions while reducing the appearance of wrinkles.",
         shortDescription: "Smooth away wrinkles and fine lines for a refreshed, youthful appearance.",
         image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80",
-        price: "From £200",
+        price: "From ₾200",
         duration: "15-30 minutes",
         benefits: [
           "Reduces the appearance of fine lines and wrinkles",
@@ -59,7 +57,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Masseter Botox is a specialized treatment that targets the masseter muscles (the large jaw muscles). This treatment can slim the face by reducing the size of these muscles, creating a more oval or V-shaped facial contour. It's also highly effective for treating teeth grinding (bruxism) and jaw tension. Many patients experience relief from jaw pain and headaches associated with teeth grinding.",
         shortDescription: "Slim the jawline and relieve teeth grinding with targeted Botox treatment.",
         image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80",
-        price: "From £250",
+        price: "From ₾250",
         duration: "20-30 minutes",
         benefits: [
           "Slims and contours the lower face",
@@ -81,7 +79,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Hyperhidrosis treatment with Botox is a highly effective solution for excessive sweating. This FDA-approved treatment works by blocking the nerve signals that stimulate sweat glands. It's most commonly used for underarm sweating but can also treat excessive sweating of the palms, feet, and face. Results can last 6-12 months, providing significant improvement in quality of life for those who suffer from this condition.",
         shortDescription: "Effectively treat excessive sweating with long-lasting results.",
         image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
-        price: "From £400",
+        price: "From ₾400",
         duration: "30-45 minutes",
         benefits: [
           "Dramatically reduces excessive sweating",
@@ -103,7 +101,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Botox is an FDA-approved treatment for chronic migraines. This revolutionary treatment involves a series of small injections around the head and neck to dull future headache symptoms. For patients who suffer from chronic migraines (15 or more days per month), this treatment can significantly reduce the frequency and severity of attacks. The treatment protocol typically involves injections every 12 weeks.",
         shortDescription: "Reduce the frequency and severity of chronic migraines.",
         image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&q=80",
-        price: "From £350",
+        price: "From ₾350",
         duration: "30-45 minutes",
         benefits: [
           "Reduces frequency of migraine attacks",
@@ -133,7 +131,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Lip fillers are one of our most popular treatments for enhancing the shape, volume, and definition of your lips. Using premium hyaluronic acid fillers, we can create natural-looking results that enhance your natural beauty. Whether you want to add volume to thin lips, define the lip border, or address asymmetry, our expert practitioners will work with you to achieve your desired look. The treatment is quick, with minimal downtime and results that can last up to 12 months.",
         shortDescription: "Enhance lip volume and shape for beautiful, natural-looking results.",
         image: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80",
-        price: "From £250",
+        price: "From ₾250",
         duration: "30-45 minutes",
         benefits: [
           "Adds volume and definition",
@@ -155,7 +153,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Cheek fillers are an excellent way to restore volume to the mid-face, create beautiful cheekbone definition, and lift sagging skin. As we age, we lose volume in our cheeks, leading to a tired appearance and nasolabial folds. By strategically placing filler in the cheek area, we can restore youthful volume, improve facial contours, and even reduce the appearance of under-eye hollows. Results are immediate and can last up to 18 months.",
         shortDescription: "Restore volume and define cheekbones for a youthful, lifted appearance.",
         image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=800&q=80",
-        price: "From £300",
+        price: "From ₾300",
         duration: "30-45 minutes",
         benefits: [
           "Restores lost volume in cheeks",
@@ -177,7 +175,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Chin fillers can dramatically improve your facial profile and proportions. Whether you have a naturally recessed chin or have lost volume through aging, dermal fillers can add projection and definition. This treatment can improve the appearance of a double chin, create better jawline definition, and bring balance to facial features. It's an excellent alternative to chin implants for those seeking non-surgical enhancement.",
         shortDescription: "Enhance chin projection and improve facial balance.",
         image: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80",
-        price: "From £300",
+        price: "From ₾300",
         duration: "30-45 minutes",
         benefits: [
           "Improves facial proportions",
@@ -199,7 +197,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Jaw fillers are an excellent treatment for defining and contouring the jawline. Whether you want to create a more angular, defined jaw or restore volume lost through aging, this treatment can dramatically improve your profile. By strategically placing filler along the jawline, we can create better definition, improve symmetry, and achieve a more sculpted appearance. It's a popular treatment for both men seeking a stronger jawline and women wanting more definition.",
         shortDescription: "Define and contour your jawline for a sculpted profile.",
         image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80",
-        price: "From £350",
+        price: "From ₾350",
         duration: "45-60 minutes",
         benefits: [
           "Creates defined jawline contour",
@@ -221,7 +219,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Tear trough fillers are a specialized treatment for addressing under-eye hollows and dark circles. As we age, we lose volume in the under-eye area, creating a tired, hollow appearance. This treatment carefully places hyaluronic acid filler in the tear trough area to restore volume, reduce the appearance of dark circles, and create a fresher, more rested appearance. This is a technically demanding treatment that requires expert practitioners for optimal results.",
         shortDescription: "Reduce under-eye hollows and dark circles for a refreshed look.",
         image: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80",
-        price: "From £350",
+        price: "From ₾350",
         duration: "30-45 minutes",
         benefits: [
           "Reduces under-eye hollows",
@@ -243,7 +241,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Non-surgical rhinoplasty, also known as the 'liquid nose job,' is an excellent option for those wanting to improve the appearance of their nose without surgery. Using dermal fillers, we can smooth bumps, correct asymmetry, lift a drooping nasal tip, and improve the overall shape of your nose. This treatment is quick, with minimal downtime, and results are visible immediately. It's perfect for those wanting to 'try on' a new nose shape before committing to surgery.",
         shortDescription: "Reshape and refine your nose without surgery.",
         image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=800&q=80",
-        price: "From £350",
+        price: "From ₾350",
         duration: "30-45 minutes",
         benefits: [
           "Corrects bumps and asymmetry",
@@ -265,7 +263,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Marionette lines are the vertical lines that run from the corners of the mouth down to the chin, giving a puppet-like appearance. These lines develop as we age due to volume loss and skin laxity. Dermal fillers can effectively soften these lines by replacing lost volume and supporting the skin. This treatment can significantly improve the appearance of a downturned mouth and restore a more youthful, cheerful expression.",
         shortDescription: "Soften marionette lines for a more youthful, uplifted appearance.",
         image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80",
-        price: "From £250",
+        price: "From ₾250",
         duration: "30 minutes",
         benefits: [
           "Softens deep lines around mouth",
@@ -287,7 +285,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Nasolabial folds, often called 'smile lines' or 'laugh lines,' are the deep lines that run from the sides of the nose to the corners of the mouth. While these lines are a natural part of facial expression, they can deepen with age due to volume loss and skin laxity. Dermal fillers can effectively soften these lines by replacing lost volume, creating a smoother, more youthful appearance while maintaining your natural expressions.",
         shortDescription: "Soften smile lines for a refreshed, youthful appearance.",
         image: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80",
-        price: "From £250",
+        price: "From ₾250",
         duration: "30 minutes",
         benefits: [
           "Softens deep smile lines",
@@ -317,7 +315,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Clear + Brilliant is a gentle fractional laser treatment designed to prevent and address early signs of aging. This treatment creates microscopic treatment zones in the skin, stimulating collagen production and replacing damaged skin with healthy, younger-looking tissue. It's perfect for those wanting to maintain their skin's youthful appearance or address early signs of aging, fine lines, and skin texture issues with minimal downtime.",
         shortDescription: "Gentle laser treatment for smoother, more radiant skin.",
         image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80",
-        price: "From £300",
+        price: "From ₾300",
         duration: "30-45 minutes",
         benefits: [
           "Improves skin texture and tone",
@@ -333,7 +331,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "AviClear is a revolutionary FDA-cleared laser treatment specifically designed to treat acne. It's the first and only device of its kind, using a 1726nm wavelength laser to target and suppress sebum production in the sebaceous glands. This treatment addresses acne at its source, providing long-lasting results without the need for medications. Most patients see significant improvement with just three 30-minute treatments.",
         shortDescription: "Revolutionary laser treatment targeting acne at its source.",
         image: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80",
-        price: "From £400",
+        price: "From ₾400",
         duration: "30 minutes",
         benefits: [
           "FDA-cleared for acne treatment",
@@ -349,7 +347,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "The Cutera CO2 laser is a powerful skin resurfacing treatment that addresses significant skin concerns including deep wrinkles, acne scars, sun damage, and skin laxity. This fractional CO2 laser creates controlled micro-injuries in the skin, stimulating significant collagen production and skin renewal. It's one of the most effective treatments for dramatic skin rejuvenation with results that can last for years.",
         shortDescription: "Powerful resurfacing for deep wrinkles, scars, and sun damage.",
         image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80",
-        price: "From £800",
+        price: "From ₾800",
         duration: "60-90 minutes",
         benefits: [
           "Dramatic skin rejuvenation",
@@ -365,7 +363,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "The Cutera Secret PRO combines radiofrequency energy with microneedling for powerful skin rejuvenation. The treatment delivers RF energy through tiny needles, creating controlled micro-injuries while heating the deeper layers of skin. This dual-action approach stimulates significant collagen production, improving skin texture, fine lines, wrinkles, acne scars, and skin laxity with less downtime than traditional resurfacing.",
         shortDescription: "Combined RF and microneedling for powerful skin rejuvenation.",
         image: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&q=80",
-        price: "From £450",
+        price: "From ₾450",
         duration: "45-60 minutes",
         benefits: [
           "Stimulates collagen production",
@@ -381,7 +379,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "The Cutera Excel V+ is an advanced vascular and pigment laser system that treats a wide range of skin concerns including rosacea, facial veins, sun damage, age spots, and unwanted pigment. This versatile system uses both 532nm and 1064nm wavelengths to target various concerns with precision. It's excellent for overall skin rejuvenation and creating a more even, clear complexion.",
         shortDescription: "Advanced laser for vascular concerns, pigmentation, and skin rejuvenation.",
         image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80",
-        price: "From £250",
+        price: "From ₾250",
         duration: "30-45 minutes",
         benefits: [
           "Treats rosacea and facial veins",
@@ -397,7 +395,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "The Candela VBeam is a pulsed dye laser specifically designed to treat vascular conditions. It's the gold standard for treating rosacea, facial veins, port wine stains, hemangiomas, and other vascular lesions. The laser targets blood vessels without damaging surrounding tissue, making it a safe and effective treatment for redness and vascular concerns. It's also effective for treating stretch marks and scars.",
         shortDescription: "Gold standard laser for vascular conditions and redness.",
         image: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80",
-        price: "From £200",
+        price: "From ₾200",
         duration: "20-30 minutes",
         benefits: [
           "Treats rosacea",
@@ -413,7 +411,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "BBL HERO (BroadBand Light High Energy Rapid Output) is the most advanced IPL technology available. This treatment delivers light energy deep into the skin to target pigmentation, redness, and signs of aging. The HERO technology allows for faster treatment times and larger treatment areas, making it ideal for full-body treatments. It's excellent for sun damage, age spots, rosacea, and overall skin rejuvenation.",
         shortDescription: "Advanced IPL for full-body skin rejuvenation and pigmentation.",
         image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80",
-        price: "From £350",
+        price: "From ₾350",
         duration: "30-60 minutes",
         benefits: [
           "Full-body treatment option",
@@ -429,7 +427,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "MOXI is a gentle fractional laser that delivers non-ablative treatment for skin rejuvenation. It's designed to refresh and revitalize skin with minimal downtime, making it perfect for those wanting a 'lunchtime' treatment that delivers real results. MOXI improves skin texture, tone, and overall radiance while being gentle enough for all skin types and tones. It's excellent for preventative care and maintaining healthy, glowing skin.",
         shortDescription: "Gentle fractional laser for refreshed, glowing skin.",
         image: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&q=80",
-        price: "From £300",
+        price: "From ₾300",
         duration: "20-30 minutes",
         benefits: [
           "Minimal downtime",
@@ -445,7 +443,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "The combination of MOXI and BBL treatments offers comprehensive skin rejuvenation. MOXI addresses texture and stimulates collagen, while BBL targets pigment and vascular concerns. Together, they provide a powerful synergy that improves overall skin quality, tone, texture, and radiance. This combination is ideal for those wanting significant results with minimal downtime.",
         shortDescription: "Combined treatment for comprehensive skin rejuvenation.",
         image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80",
-        price: "From £500",
+        price: "From ₾500",
         duration: "45-60 minutes",
         benefits: [
           "Comprehensive rejuvenation",
@@ -461,7 +459,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Endolift is an innovative minimally invasive laser treatment that uses a microfiber laser to target fat and tighten skin. The laser fiber is inserted beneath the skin through tiny incisions, delivering energy that melts fat and stimulates collagen production. It's excellent for treating jowls, double chin, and loose skin on the face and body. Results include immediate tightening with continued improvement over several months.",
         shortDescription: "Minimally invasive laser for fat reduction and skin tightening.",
         image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80",
-        price: "From £1,500",
+        price: "From ₾1,500",
         duration: "60-90 minutes",
         benefits: [
           "Minimally invasive",
@@ -485,7 +483,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "The iS Clinical Fire & Ice Peel is a results-driven professional treatment designed to resurface the skin, treating fine lines, wrinkles, and uneven texture. Known as the 'Red Carpet Peel,' this intensive clinical treatment combines two treatment phases - the 'Fire' intensive resurfacing and the 'Ice' rejuvenating mask. It delivers dramatic results with little to no downtime, making it perfect before special events.",
         shortDescription: "Intensive resurfacing treatment for dramatic, instant results.",
         image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80",
-        price: "From £200",
+        price: "From ₾200",
         duration: "45-60 minutes",
         benefits: [
           "Immediate visible results",
@@ -501,7 +499,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "The Cosmelan Peel is a world-renowned depigmentation treatment that effectively reduces and eliminates dark spots and melasma. This professional-grade treatment works by inhibiting the enzyme responsible for melanin production, effectively treating hyperpigmentation at its source. The treatment includes both an in-clinic mask and take-home maintenance products for optimal results.",
         shortDescription: "Professional depigmentation treatment for dark spots and melasma.",
         image: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80",
-        price: "From £600",
+        price: "From ₾600",
         duration: "Initial treatment 60 minutes",
         benefits: [
           "Treats melasma",
@@ -517,7 +515,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "The Obagi Blue Radiance Peel is a superficial to medium depth chemical peel that uses a blend of salicylic, glycolic, and lactic acids to exfoliate and improve skin surface texture and tone. This treatment is excellent for those wanting to improve the appearance of photodamaged skin, fine lines, and mild acne scarring with minimal downtime. Multiple treatments provide progressive improvement.",
         shortDescription: "Chemical peel for smoother, brighter skin.",
         image: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&q=80",
-        price: "From £150",
+        price: "From ₾150",
         duration: "30-45 minutes",
         benefits: [
           "Improves skin texture",
@@ -533,7 +531,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "The Obagi Nu-Derm System is a comprehensive skincare protocol that transforms skin at the cellular level. This physician-dispensed system is designed to treat moderate to severe photodamage, hyperpigmentation, and premature aging. The system includes multiple products that work together to accelerate cellular turnover, improve skin tone, and reveal healthier, younger-looking skin over 12-18 weeks.",
         shortDescription: "Transformative skincare system for photodamage and aging.",
         image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80",
-        price: "From £450",
+        price: "From ₾450",
         duration: "12-18 week program",
         benefits: [
           "Comprehensive transformation",
@@ -549,7 +547,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "SkinPen is the first FDA-cleared microneedling device, delivering precise, controlled micro-injuries to stimulate the skin's natural healing process. This treatment effectively improves acne scars, fine lines, wrinkles, and overall skin texture. The device creates thousands of microscopic channels in the skin, triggering collagen and elastin production for smoother, healthier-looking skin. Results continue to improve for months after treatment.",
         shortDescription: "FDA-cleared microneedling for scars, lines, and texture.",
         image: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&q=80",
-        price: "From £250",
+        price: "From ₾250",
         duration: "45-60 minutes",
         benefits: [
           "FDA-cleared device",
@@ -573,7 +571,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Emface is the first device to simultaneously treat facial muscles and skin using synchronized radiofrequency and HIFES™ technology. This groundbreaking treatment builds and tones facial muscles while tightening the skin, providing a non-invasive facelift effect. In just 20 minutes, Emface delivers the equivalent of 20,000 facial muscle contractions while heating the dermis for collagen remodeling. Results include lifted cheeks, reduced wrinkles, and improved facial contours.",
         shortDescription: "Non-invasive facial toning and skin tightening.",
         image: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80",
-        price: "From £800",
+        price: "From ₾800",
         duration: "20 minutes",
         benefits: [
           "Builds facial muscle",
@@ -589,7 +587,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Exion is an innovative treatment combining radiofrequency with artificial intelligence for precise skin tightening and contouring. The device automatically adjusts energy delivery based on individual tissue response, ensuring optimal results. Exion can treat both face and body, addressing skin laxity, texture, and contouring concerns. It's particularly effective for areas that have been difficult to treat non-surgically.",
         shortDescription: "AI-powered RF treatment for face and body contouring.",
         image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80",
-        price: "From £400",
+        price: "From ₾400",
         duration: "30-45 minutes",
         benefits: [
           "AI-optimized treatment",
@@ -605,7 +603,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "High-Intensity Focused Ultrasound (HIFU) delivers ultrasound energy to the foundational layers of the skin, creating a non-surgical lifting and tightening effect. By targeting the SMAS layer (the same layer addressed in surgical facelifts), HIFU stimulates significant collagen production and tissue contraction. This treatment provides gradual, natural-looking lifting results that develop over 2-3 months and can last up to a year.",
         shortDescription: "Ultrasound-based non-surgical facelift.",
         image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80",
-        price: "From £500",
+        price: "From ₾500",
         duration: "60-90 minutes",
         benefits: [
           "Non-surgical lifting",
@@ -621,7 +619,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "MINT PDO Thread Lift is a minimally invasive procedure that uses absorbable polydioxanone (PDO) threads to lift and tighten sagging skin. These specialized threads are inserted beneath the skin to provide immediate lifting while stimulating collagen production for long-term improvement. The procedure is excellent for lifting the mid-face, jowls, jawline, and neck with results that can last 12-18 months.",
         shortDescription: "Minimally invasive thread lift for immediate results.",
         image: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80",
-        price: "From £800",
+        price: "From ₾800",
         duration: "45-60 minutes",
         benefits: [
           "Immediate lifting",
@@ -637,7 +635,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Morpheus8 is a fractional skin treatment that combines microneedling with radiofrequency energy to remodel and contour the face and body. By delivering RF energy through tiny needles deep into the skin, Morpheus8 stimulates significant collagen production while tightening the underlying tissue. It's highly effective for treating skin laxity, wrinkles, acne scars, and improving overall skin quality. The treatment can be customized for various depths and treatment areas.",
         shortDescription: "Fractional RF microneedling for skin remodeling.",
         image: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&q=80",
-        price: "From £600",
+        price: "From ₾600",
         duration: "45-60 minutes",
         benefits: [
           "Deep skin remodeling",
@@ -653,7 +651,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Nanothreads are ultra-fine PDO threads designed for subtle skin rejuvenation and texture improvement. Unlike traditional lifting threads, nanothreads focus on stimulating collagen production to improve skin quality, fine lines, and overall radiance. They're perfect for delicate areas like around the eyes and mouth, or for those wanting a subtle refresh without dramatic lifting.",
         shortDescription: "Fine threads for skin rejuvenation and texture improvement.",
         image: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80",
-        price: "From £400",
+        price: "From ₾400",
         duration: "30-45 minutes",
         benefits: [
           "Improves skin quality",
@@ -669,7 +667,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Neogen Plasma uses nitrogen plasma energy to treat skin concerns without ablation or charring. This innovative treatment delivers controlled thermal energy to the skin, stimulating significant collagen production and renewal. It's effective for treating wrinkles, acne scars, skin laxity, and eyelid concerns. The treatment provides dramatic results with less downtime than traditional resurfacing procedures.",
         shortDescription: "Plasma energy treatment for skin renewal.",
         image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80",
-        price: "From £500",
+        price: "From ₾500",
         duration: "30-60 minutes",
         benefits: [
           "Non-ablative treatment",
@@ -685,7 +683,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Thermage FLX is the latest generation of the legendary Thermage skin tightening treatment. Using radiofrequency energy, Thermage heats the deep dermis while cooling the skin surface, stimulating collagen production and immediate tissue tightening. A single treatment can provide results that last for years, making it one of the most effective non-invasive skin tightening options available. It's excellent for the face, eyes, and body.",
         shortDescription: "Advanced RF skin tightening with long-lasting results.",
         image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80",
-        price: "From £1,500",
+        price: "From ₾1,500",
         duration: "60-90 minutes",
         benefits: [
           "Single treatment",
@@ -709,7 +707,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Profhilo Body is an injectable hyaluronic acid treatment specifically designed for body skin quality improvement. Using the patented NAHYCO technology, Profhilo delivers stabilized hyaluronic acid that remodels skin from within. It's excellent for treating crepey skin on the arms, neck, décolletage, knees, and other body areas. The treatment hydrates, firms, and improves skin elasticity with a minimal injection protocol.",
         shortDescription: "Injectable HA treatment for body skin quality.",
         image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
-        price: "From £400",
+        price: "From ₾400",
         duration: "30 minutes",
         benefits: [
           "Improves skin quality",
@@ -725,7 +723,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Morpheus8 Body brings the power of fractional RF microneedling to body treatments. With larger treatment tips and deeper penetration capabilities, Morpheus8 Body addresses skin laxity, cellulite, and texture concerns on the body. It's highly effective for treating the abdomen, thighs, arms, and other areas where skin has lost firmness. The treatment remodels tissue deep beneath the skin surface for noticeable contouring and tightening.",
         shortDescription: "Fractional RF microneedling for body contouring.",
         image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
-        price: "From £800",
+        price: "From ₾800",
         duration: "60-90 minutes",
         benefits: [
           "Deep tissue remodeling",
@@ -741,7 +739,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Exion Body uses AI-powered radiofrequency technology for body contouring and skin tightening. The device automatically adjusts energy delivery based on individual tissue response for optimal results. It's effective for treating skin laxity and improving contours on the abdomen, thighs, arms, and other body areas. The treatment is comfortable with no downtime required.",
         shortDescription: "AI-powered RF body contouring treatment.",
         image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
-        price: "From £500",
+        price: "From ₾500",
         duration: "45-60 minutes",
         benefits: [
           "AI-optimized treatment",
@@ -757,7 +755,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Thermage Body delivers radiofrequency energy deep into the skin to tighten and contour body areas. This non-invasive treatment heats the deep dermis while cooling the skin surface, stimulating collagen production for tighter, smoother skin. It's excellent for addressing skin laxity after weight loss, pregnancy, or aging on areas like the abdomen, thighs, arms, and buttocks.",
         shortDescription: "Non-invasive RF body tightening.",
         image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
-        price: "From £1,500",
+        price: "From ₾1,500",
         duration: "90-120 minutes",
         benefits: [
           "Non-invasive",
@@ -773,7 +771,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Ultraformer is an advanced HIFU (High-Intensity Focused Ultrasound) device for body contouring and skin tightening. The treatment delivers focused ultrasound energy to the foundational layers of the skin, creating thermal coagulation points that stimulate collagen production and tissue contraction. It's effective for treating localized fat, skin laxity, and improving body contours without surgery or downtime.",
         shortDescription: "HIFU body contouring and skin tightening.",
         image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
-        price: "From £600",
+        price: "From ₾600",
         duration: "60-90 minutes",
         benefits: [
           "Non-surgical contouring",
@@ -797,7 +795,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Dermamelan Intimate is a specialized depigmentation treatment designed for intimate areas including the genital and perianal regions. This professional treatment safely and effectively reduces hyperpigmentation in these sensitive areas, improving skin tone and boosting confidence. The treatment includes both in-clinic and at-home components for optimal results.",
         shortDescription: "Specialized depigmentation for intimate areas.",
         image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
-        price: "From £800",
+        price: "From ₾800",
         duration: "Initial treatment 60 minutes",
         benefits: [
           "Safe for intimate areas",
@@ -813,7 +811,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Our intimate laser hair removal service provides safe, effective, and permanent hair reduction for sensitive areas. Using advanced laser technology with built-in cooling for comfort, we offer Brazilian and Hollywood hair removal options. Our trained practitioners ensure your comfort and privacy throughout the treatment, with most patients achieving significant hair reduction after 6-8 sessions.",
         shortDescription: "Permanent hair reduction for intimate areas.",
         image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
-        price: "From £150",
+        price: "From ₾150",
         duration: "30-45 minutes",
         benefits: [
           "Permanent hair reduction",
@@ -837,7 +835,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "The Filter Facial is our signature results-driven facial designed to give you that 'filtered' look in real life. This multi-step treatment combines deep cleansing, exfoliation, specialized serums, and advanced technology to improve skin texture, reduce pore size, and create a flawless complexion. Perfect before special events or as regular maintenance for glowing skin.",
         shortDescription: "Signature facial for a flawless, filtered look.",
         image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80",
-        price: "From £150",
+        price: "From ₾150",
         duration: "60 minutes",
         benefits: [
           "Immediate visible results",
@@ -853,7 +851,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "The Caviar Peel is a luxurious treatment that combines the benefits of a chemical peel with the nourishing properties of caviar extract. This unique treatment exfoliates and renews the skin while delivering essential nutrients and antioxidants. The result is smoother, brighter, more youthful-looking skin with improved hydration and elasticity.",
         shortDescription: "Luxurious exfoliating treatment with caviar extract.",
         image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80",
-        price: "From £200",
+        price: "From ₾200",
         duration: "60 minutes",
         benefits: [
           "Gentle exfoliation",
@@ -877,7 +875,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "The Observe Skin Scanner is an advanced imaging system that analyzes your skin at multiple layers to reveal underlying concerns not visible to the naked eye. This comprehensive analysis examines pigmentation, UV damage, vascular conditions, pores, wrinkles, and skin texture. The results guide your personalized treatment plan for optimal outcomes.",
         shortDescription: "Advanced skin analysis for personalized treatment planning.",
         image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
-        price: "From £50",
+        price: "From ₾50",
         duration: "30 minutes",
         benefits: [
           "Multi-layer analysis",
@@ -901,7 +899,7 @@ const baseTreatmentCategories: TreatmentCategory[] = [
         description: "Our comprehensive hair restoration treatments address various forms of hair loss and scalp concerns. Using advanced techniques including PRP therapy, mesotherapy, and specialized products, we stimulate hair follicles, improve scalp health, and promote hair growth. Treatments are customized based on your specific hair loss pattern and goals.",
         shortDescription: "Advanced hair restoration and scalp treatments.",
         image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
-        price: "From £200",
+        price: "From ₾200",
         duration: "45-60 minutes",
         benefits: [
           "Stimulates hair growth",
@@ -969,13 +967,5 @@ export async function getCategoryByTreatmentSlug(treatmentSlug: string, locale: 
   );
 }
 
-// Backwards compatible synchronous versions (English only)
-export const treatmentCategories = baseTreatmentCategories;
-
-export function getAllTreatmentsSync(): Treatment[] {
-  return baseTreatmentCategories.flatMap(category => category.treatments);
-}
-
-export function getTreatmentBySlugSync(slug: string): Treatment | undefined {
-  return getAllTreatmentsSync().find(treatment => treatment.slug === slug);
-}
+// Note: Use getLocalizedTreatmentCategories(locale) for proper i18n support
+// The baseTreatmentCategories are internal only - not exported

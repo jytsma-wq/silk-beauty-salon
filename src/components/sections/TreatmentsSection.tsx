@@ -1,14 +1,25 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { ChevronRight } from 'lucide-react';
-import { treatmentCategories } from '@/data/treatments';
+import { getLocalizedTreatmentCategories, type TreatmentCategory } from '@/data/treatments';
 import { Link } from '@/i18n/routing';
 
 export function TreatmentsSection() {
   const t = useTranslations('treatments');
-  const tCommon = useTranslations('common');
+  useTranslations('common');
+  const locale = useLocale();
+  const [treatmentCategories, setTreatmentCategories] = useState<TreatmentCategory[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const categories = await getLocalizedTreatmentCategories(locale);
+      setTreatmentCategories(categories);
+    };
+    fetchData();
+  }, [locale]);
 
   return (
     <section className="section-spacing bg-white" id="treatments">
@@ -17,8 +28,7 @@ export function TreatmentsSection() {
         <div className="text-center mb-16">
           <h2 
             className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold text-primary mb-4 heading-underline"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
+                      >
             {t('title')}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mt-8">
@@ -47,8 +57,7 @@ export function TreatmentsSection() {
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <h3 
                     className="text-xl font-serif font-semibold text-white"
-                    style={{ fontFamily: "'Playfair Display', serif" }}
-                  >
+                                      >
                     {category.name}
                   </h3>
                 </div>

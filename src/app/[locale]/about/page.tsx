@@ -6,10 +6,14 @@ import { siteConfig } from '@/data/site-config';
 import { Button } from '@/components/ui/button';
 import { getTranslations } from 'next-intl/server';
 
-export const metadata: Metadata = {
-  title: 'About Us | Silk Beauty Salon',
-  description: 'Learn about our award-winning aesthetic clinic and meet our team of expert practitioners.',
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'aboutPage' });
+  return {
+    title: `${t('title')} | Silk Beauty Salon`,
+    description: t('subtitle'),
+  };
+}
 
 export default async function AboutPage({
   params,
@@ -41,7 +45,7 @@ export default async function AboutPage({
   return (
     <>
       {/* Full Screen Hero Image */}
-      <section className="relative h-screen min-h-[600px]">
+      <section className="relative h-screen min-h-150">
         <Image
           src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=80"
           alt="Silk Beauty Salon Interior"
@@ -54,8 +58,7 @@ export default async function AboutPage({
           <div className="container-custom text-center">
             <h1 
               className="text-4xl md:text-6xl font-serif font-semibold text-white mb-4"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
+                          >
               {t('title')}
             </h1>
             <p className="text-gray-200 max-w-2xl mx-auto text-lg">
@@ -85,8 +88,7 @@ export default async function AboutPage({
             <div>
               <h2 
                 className="text-3xl font-serif font-semibold text-primary mb-6"
-                style={{ fontFamily: "'Playfair Display', serif" }}
-              >
+                              >
                 {t('ourStory')}
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
@@ -118,8 +120,7 @@ export default async function AboutPage({
           <div className="text-center mb-12">
             <h2 
               className="text-3xl font-serif font-semibold text-primary mb-4"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
+                          >
               {t('ourValues')}
             </h2>
           </div>
@@ -143,34 +144,33 @@ export default async function AboutPage({
           <div className="text-center mb-12">
             <h2 
               className="text-3xl font-serif font-semibold text-primary mb-4"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
+                          >
               {t('meetTeam')}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               {t('teamSubtitle')}
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { name: 'Nino', image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80' },
-              { name: 'Ketevan', image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80' },
-              { name: 'Mariam', image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80' },
-              { name: 'Sophia', image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80' },
-            ].map((member) => (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {siteConfig.team.map((member) => (
               <div key={member.name} className="text-center">
-                <div className="relative aspect-square rounded-lg overflow-hidden mb-4">
+                <div className="relative aspect-square rounded-lg overflow-hidden mb-4 max-w-sm mx-auto">
                   <Image
                     src={member.image}
                     alt={member.name}
                     fill
                     className="object-cover"
-                    sizes="(max-width: 640px) 50vw, 25vw"
+                    sizes="(max-width: 640px) 50vw, 400px"
                   />
                 </div>
                 <h3 className="font-serif font-semibold text-primary text-lg">{member.name}</h3>
-                <p className="text-gold text-sm mb-2">{t(`team.${member.name.toLowerCase()}Role`)}</p>
-                <p className="text-sm text-muted-foreground">{t(`team.${member.name.toLowerCase()}Bio`)}</p>
+                <p className="text-gold text-sm mb-2">{member.role}</p>
+                <p className="text-sm text-muted-foreground max-w-sm mx-auto">{member.bio}</p>
+                {member.languages && (
+                  <p className="text-xs text-muted-foreground mt-2">
+                    Languages: {member.languages.join(', ')}
+                  </p>
+                )}
               </div>
             ))}
           </div>
@@ -182,8 +182,7 @@ export default async function AboutPage({
         <div className="container-custom text-center">
           <h2 
             className="text-3xl font-serif font-semibold text-white mb-8"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
+                      >
             {t('awards')}
           </h2>
           <div className="flex flex-wrap justify-center gap-4 mb-8">
@@ -208,8 +207,7 @@ export default async function AboutPage({
         <div className="container-custom text-center">
           <h2 
             className="text-3xl font-serif font-semibold text-primary mb-4"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
+                      >
             {t('ctaTitle')}
           </h2>
           <p className="text-muted-foreground mb-8 max-w-xl mx-auto">

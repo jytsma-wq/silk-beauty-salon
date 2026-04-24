@@ -1,0 +1,403 @@
+{
+  "nav": {
+    "beforeAfter": "Before & After"
+  },
+  "blogPage": {
+    "backToBlog": "Back to Blog",
+    "shareArticle": "Share this article",
+    "aboutAuthor": "About the Author",
+    "readyToTransform": "Ready to Transform?",
+    "bookConsultationDesc": "Book a consultation with one of our expert practitioners to discuss your aesthetic goals.",
+    "relatedPosts": "Related Posts",
+    "readMore": "Read More"
+  },
+  "common": {
+    "bookOnline": "Book Online",
+    "scheduleAppointment": "Schedule your appointment",
+    "whatsapp": "WhatsApp",
+    "bookViaWhatsApp": "Book via WhatsApp"
+  },
+  "internationalPage": {
+    "title": "International Clients",
+    "subtitle": "World-Class Medical Aesthetics for Medical Tourists in Batumi, Georgia",
+    "heroTitle": "World-Class Medical Aesthetics in Batumi, Georgia",
+    "heroSubtitle": "Premium Botox, Fillers & Facial Dermatology at Georgian Prices",
+    "welcome": "Welcome",
+    "welcomeText": "We speak your language",
+    "bookConsultation": "Book Free Virtual Consultation",
+    "viewPackages": "View Treatment Packages",
+    "aboutNana": {
+      "title": "Meet Nana Gviniashvili",
+      "subtitle": "Owner & Medical Aesthetic Practitioner",
+      "bio": "Nana Gviniashvili is the owner and sole practitioner at Silk Beauty Salon. With extensive training in medical aesthetics and facial dermatology, she specializes in Botox, dermal fillers, and advanced skin treatments. Nana is known for her natural-looking results, meticulous attention to detail, and personalized approach to each client.",
+      "qualifications": "Qualifications & Certifications",
+      "qualification1": "Certified Medical Aesthetic Practitioner",
+      "qualification2": "Advanced Botox & Dermal Filler Training",
+      "qualification3": "Facial Dermatology Specialist",
+      "qualification4": "Member of Georgian Aesthetic Medicine Association",
+      "languages": "Languages Spoken",
+      "languagesText": "Georgian, English, Russian"
+    },
+    "whyChooseUs": {
+      "title": "Why Choose Silk Beauty Salon",
+      "subtitle": "Premium medical aesthetics at Georgian prices",
+      "costSavings": "Cost Savings",
+      "costSavingsDesc": "50-70% less than Western Europe for same premium products",
+      "premiumProducts": "Premium Products",
+      "premiumProductsDesc": "Allergan (Juvederm), Galderma (Restylane), Merz - authentic products only",
+      "personalizedCare": "Personalized Care",
+      "personalizedCareDesc": "Direct consultation with owner-practitioner - no delegation to juniors",
+      "privacy": "Privacy",
+      "privacyDesc": "Discrete destination away from home - recover by the Black Sea",
+      "travelFriendly": "Travel-Friendly",
+      "travelFriendlyDesc": "No visa required for many nationalities, direct flights available"
+    },
+    "services": {
+      "title": "Our Services for International Clients",
+      "subtitle": "Medical aesthetics treatments tailored for travelers",
+      "durationLabel": "Duration:",
+      "recoveryLabel": "Recovery:",
+      "resultsLabel": "Results:",
+      "lastsLabel": "Lasts:",
+      "botox": {
+        "title": "Botox Injectables",
+        "description": "Anti-wrinkle treatments, masseter slimming, hyperhidrosis",
+        "duration": "15-30 minutes",
+        "recovery": "None - same day departure possible",
+        "results": "3-7 days visible",
+        "lasts": "3-6 months"
+      },
+      "fillers": {
+        "title": "Dermal Fillers",
+        "description": "Lips, cheeks, chin, jawline, under-eye, non-surgical rhinoplasty",
+        "duration": "30-60 minutes",
+        "recovery": "24-48 hours for swelling",
+        "results": "Immediate, final at 1-2 weeks",
+        "lasts": "6-18 months"
+      },
+      "facial": {
+        "title": "Facial Dermatology",
+        "description": "Chemical peels, mesotherapy, PRP, skin boosters, microneedling",
+        "duration": "30-60 minutes",
+        "recovery": "Varies by treatment (1-7 days)",
+        "results": "Progressive improvement",
+        "lasts": "Varies by treatment"
+      }
+    },
+    "packages": {
+      "title": "Treatment Packages for Tourists",
+      "subtitle": "Pre-designed packages with built-in savings",
+      "package": "Package",
+      "includes": "Includes",
+      "savings": "Savings",
+      "freshFace": "Fresh Face",
+      "freshFaceDesc": "Botox (3 areas) + Lip Filler",
+      "totalRejuvenation": "Total Rejuvenation",
+      "totalRejuvenationDesc": "Full face Botox + Cheek Filler + Skin Booster",
+      "nonSurgicalLift": "Non-Surgical Lift",
+      "nonSurgicalLiftDesc": "8-point lift (strategic filler placement)",
+      "vacationGlow": "Vacation Glow",
+      "vacationGlowDesc": "Skin booster + Light chemical peel"
+    },
+    "pricing": {
+      "title": "Transparent Pricing",
+      "subtitle": "Premium treatments at Georgian prices",
+      "treatment": "Treatment",
+      "priceGEL": "Price (GEL)",
+      "priceUSD": "Approx USD",
+      "note": "The same treatments in Western Europe or the UK can cost 2-3 times more. Get premium results at Georgian prices.",
+      "finalNote": "Final pricing determined during consultation based on individual needs"
+    },
+    "journey": {
+      "title": "Your International Client Journey",
+      "subtitle": "A seamless experience from inquiry to follow-up",
+      "step1Title": "Pre-Arrival Consultation",
+      "step1Desc": "WhatsApp/Video consultation, discuss goals, receive personalized quote",
+      "step2Title": "Medical History Review",
+      "step2Desc": "Secure online form, contraindications check before travel",
+      "step3Title": "Travel Planning",
+      "step3Desc": "Guidance on treatment timing vs. travel dates",
+      "step4Title": "In-Person Consultation",
+      "step4Desc": "Face-to-face assessment, treatment plan, consent",
+      "step5Title": "Treatment Day",
+      "step5Desc": "Procedure in sterile environment, numbing provided",
+      "step6Title": "Immediate Aftercare",
+      "step6Desc": "Instructions, ice packs, emergency contact provided",
+      "step7Title": "Follow-Up",
+      "step7Desc": "2-week check (in-person or virtual), adjustments if needed",
+      "step8Title": "Long-Term Support",
+      "step8Desc": "Ongoing access for questions, future treatment planning"
+    },
+    "timing": {
+      "title": "Treatment Timing Guide",
+      "subtitle": "Plan your trip with recovery in mind",
+      "treatment": "Treatment",
+      "minStay": "Minimum Stay",
+      "reason": "Reason",
+      "botoxStay": "Same day OK",
+      "botoxReason": "No visible downtime",
+      "fillersStay": "24-48 hours",
+      "fillersReason": "Allow swelling to subside",
+      "peelStay": "5-7 days",
+      "peelReason": "Peeling phase visible",
+      "prpStay": "48 hours",
+      "prpReason": "Redness, possible bruising",
+      "comboStay": "3-5 days",
+      "comboReason": "Multiple recovery phases",
+      "seaWarning": "Avoid swimming in the Black Sea for 48 hours post-treatment to prevent infection."
+    },
+    "trust": {
+      "title": "Trust & Safety",
+      "subtitle": "Your safety is our priority",
+      "licensed": "Licensed Clinic",
+      "licensedDesc": "Georgian Ministry of Health certified",
+      "certified": "Certified Practitioner",
+      "certifiedDesc": "Fully qualified medical aesthetic professional",
+      "authentic": "Authentic Products",
+      "authenticDesc": "Allergan, Galderma, Merz - with lot number verification",
+      "hygiene": "Sterile Environment",
+      "hygieneDesc": "Medical-grade sterilization protocols",
+      "emergency": "Emergency Protocols",
+      "emergencyDesc": "Clear aftercare support and emergency contact"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Common questions from international clients",
+      "q1": "Is it safe to have treatments while traveling?",
+      "a1": "Yes, many treatments have minimal downtime. We provide detailed aftercare instructions and are available for follow-up support via WhatsApp or video call.",
+      "q2": "What languages does Nana speak?",
+      "a2": "Nana speaks Georgian, English, and Russian fluently, ensuring clear communication with international clients.",
+      "q3": "How do I book before arriving?",
+      "a3": "Contact us via WhatsApp for a free virtual consultation. We'll discuss your goals, provide a quote, and schedule your appointment.",
+      "q4": "Can I have treatment the day before a flight?",
+      "a4": "Botox treatments are fine for same-day travel. For fillers, we recommend 24-48 hours before flying to allow swelling to subside.",
+      "q5": "What if I have a reaction after I return home?",
+      "a5": "We provide 24/7 emergency contact and offer virtual follow-up consultations. For dermal fillers, we can provide guidance to local practitioners if needed.",
+      "q6": "Do you use authentic products?",
+      "a6": "Absolutely. We use only Allergan (Juvederm), Galderma (Restylane), and Merz products. You can see the packaging and lot numbers during your treatment.",
+      "q7": "What payment methods do you accept?",
+      "a7": "We accept cash (GEL, USD, EUR), Visa, Mastercard, and contactless payments including Apple Pay and Google Pay.",
+      "q8": "Do you offer virtual follow-ups?",
+      "a8": "Yes, we offer complimentary virtual follow-up consultations for all international clients at 2 weeks post-treatment."
+    },
+    "contact": {
+      "title": "Contact & Booking",
+      "subtitle": "Multiple ways to reach us",
+      "whatsapp": "WhatsApp",
+      "whatsappDesc": "Primary channel - fastest response",
+      "telegram": "Telegram",
+      "telegramDesc": "Popular in CIS countries",
+      "instagram": "Instagram",
+      "instagramDesc": "See our work and DM us",
+      "videoConsult": "Video Consultation",
+      "videoConsultDesc": "Free pre-arrival consultation",
+      "email": "Email",
+      "emailDesc": "For detailed inquiries",
+      "responseTime": "We respond to international inquiries within 2 hours during business hours."
+    },
+    "location": {
+      "title": "How to Find Us",
+      "address": "Zurab Gorgiladze 63, Batumi 6000, Georgia",
+      "landmarks": "Near Batumi Boulevard, 5 minutes from Old Batumi",
+      "timezone": "Georgia Time (GMT+4)",
+      "viewMap": "View on Google Maps"
+    },
+    "cta": {
+      "title": "Ready to Start Your Journey?",
+      "subtitle": "Book your free virtual consultation today",
+      "button": "Book via WhatsApp"
+    }
+  },
+  "internationalNav": {
+    "main": "International Clients",
+    "preArrival": "Pre-Arrival Guide",
+    "packages": "Treatment Packages",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "mainDesc": "Overview for medical tourists",
+    "packagesDesc": "Special bundles with savings",
+    "pricingDesc": "Transparent pricing in GEL & USD",
+    "faqDesc": "Common questions answered"
+  },
+  "treatmentContent": {
+    "botox": {
+      "treatments": {
+        "anti-wrinkle": {
+          "howItWorks": "Botulinum toxin is injected into specific facial muscles using a fine needle. The toxin blocks nerve signals to these muscles, preventing them from contracting and creating wrinkles.",
+          "aftercare": "Avoid lying down for 4 hours, avoid exercise for 24 hours, and avoid rubbing the treated area."
+        }
+      }
+    },
+    "dermal-fillers": {
+      "treatments": {
+        "tear-fill": {
+          "name": "Tear Fillers",
+          "shortDescription": "Reduce the appearance of under-eye hollows and dark circles.",
+          "description": "Tear filler treatment addresses under-eye hollows and dark circles for a more refreshed appearance.",
+          "benefits": [
+            "Reduces under-eye hollows",
+            "Minimizes dark circles",
+            "Creates refreshed appearance",
+            "Results last 12-18 months"
+          ]
+        },
+        "nose-fillers": {
+          "name": "Non-Surgical Rhinoplasty",
+          "shortDescription": "Reshape your nose without surgery using dermal fillers.",
+          "description": "Non-surgical rhinoplasty uses dermal fillers to reshape and contour the nose.",
+          "benefits": [
+            "Non-surgical alternative",
+            "No downtime",
+            "Immediate results",
+            "Reversible if needed"
+          ]
+        },
+        "temple-fillers": {
+          "name": "Temple Fillers",
+          "shortDescription": "Restore volume to the temples for a more youthful appearance.",
+          "description": "Temple fillers restore volume to the temporal area, creating a more balanced and youthful appearance.",
+          "benefits": [
+            "Restores lost volume",
+            "Creates youthful contour",
+            "Balances facial proportions",
+            "Results last 12-18 months"
+          ]
+        },
+        "hand-fillers": {
+          "name": "Hand Fillers",
+          "shortDescription": "Rejuvenate aging hands with volume restoration.",
+          "description": "Hand fillers restore volume to the hands, reducing the appearance of veins and tendons.",
+          "benefits": [
+            "Reduces visible veins",
+            "Creates youthful hands",
+            "Quick procedure",
+            "Results last 12-18 months"
+          ]
+        }
+      }
+    },
+    "skin-treatments": {
+      "treatments": {
+        "prp-therapy": {
+          "name": "PRP Facial",
+          "shortDescription": "Rejuvenate your skin using your body's own growth factors.",
+          "description": "PRP therapy uses your own blood platelets to rejuvenate and refresh your skin.",
+          "benefits": [
+            "Natural rejuvenation",
+            "Improved skin tone",
+            "Reduced fine lines",
+            "Enhanced glow"
+          ]
+        },
+        "laser-hair": {
+          "name": "Laser Hair Removal",
+          "shortDescription": "Permanent hair reduction for smooth, hair-free skin.",
+          "description": "Laser hair removal provides long-lasting hair reduction for smooth skin.",
+          "benefits": [
+            "Permanent reduction",
+            "Smooth skin",
+            "Safe and effective",
+            "Saves time"
+          ]
+        }
+      }
+    },
+    "laser-treatments": {
+      "treatments": {
+        "laser-vein": {
+          "name": "Laser Vein Removal",
+          "shortDescription": "Remove unwanted veins and spider veins.",
+          "description": "Laser vein removal safely eliminates unwanted veins on the face and body.",
+          "benefits": [
+            "Removes spider veins",
+            "Safe procedure",
+            "No downtime",
+            "Clearer skin"
+          ]
+        }
+      }
+    },
+    "intimate-treatments": {
+      "treatments": {
+        "labia-filler": {
+          "name": "Labia Filler",
+          "shortDescription": "Enhance comfort and aesthetics with labial filler treatment.",
+          "description": "Labia filler treatment addresses cosmetic concerns and improves comfort.",
+          "benefits": [
+            "Improved aesthetics",
+            "Enhanced comfort",
+            "Non-surgical",
+            "Natural results"
+          ]
+        }
+      }
+    }
+  },
+  "bookingPage": {
+    "title": "Book an Appointment",
+    "subtitle": "Schedule your consultation or treatment with our expert practitioners",
+    "metadata": {
+      "title": "Book an Appointment | Silk Beauty Salon",
+      "description": "Book your consultation or treatment appointment at Silk Beauty Salon in Batumi, Georgia."
+    },
+    "selectDateTime": "Select Date & Time",
+    "bookingNotConfigured": "Online Booking Coming Soon",
+    "bookingNotConfiguredDesc": "We're setting up our online booking system. In the meantime, please call or email us to schedule your appointment.",
+    "callToBook": "Call to Book",
+    "emailToBook": "Email to Book",
+    "consultationTypes": "Consultation Types",
+    "consultations": {
+      "facial": {
+        "title": "Facial Consultation",
+        "duration": "30 min",
+        "description": "Discuss anti-wrinkle treatments and dermal fillers"
+      },
+      "skin": {
+        "title": "Skin Consultation",
+        "duration": "45 min",
+        "description": "Comprehensive skin analysis and treatment planning"
+      },
+      "body": {
+        "title": "Body Consultation",
+        "duration": "30 min",
+        "description": "Body contouring and skin tightening options"
+      },
+      "virtual": {
+        "title": "Virtual Consultation",
+        "duration": "20 min",
+        "description": "Online consultation for remote clients"
+      }
+    },
+    "whatToExpect": {
+      "title": "What to Expect",
+      "step1": "Complete our medical questionnaire",
+      "step2": "Discuss your goals and concerns",
+      "step3": "Receive personalized treatment recommendations",
+      "step4": "Get a clear quote with no hidden costs"
+    },
+    "needHelp": "Need Help?",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "faq": {
+      "title": "Booking FAQs",
+      "q1": "How long is a consultation?",
+      "a1": "Initial consultations typically last 30-45 minutes, allowing time for a thorough assessment and discussion of your goals.",
+      "q2": "Is there a deposit required?",
+      "a2": "A 20% deposit is required to secure your appointment, which is deducted from your treatment cost.",
+      "q3": "What is your cancellation policy?",
+      "a3": "We require 48 hours notice for cancellations. Late cancellations may forfeit the deposit.",
+      "q4": "Can I reschedule my appointment?"
+    }
+  },
+  "consent": {
+    "bannerLabel": "Cookie consent banner"
+  },
+  "accessibility": {
+    "skipToContent": "Skip to main content"
+  },
+  "whatsapp": {
+    "chatOnWhatsApp": "Chat on WhatsApp",
+    "close": "Close"
+  }
+}

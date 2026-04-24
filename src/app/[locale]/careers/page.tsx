@@ -58,8 +58,7 @@ export default async function CareersPage({
         <div className="container-custom text-center">
           <h1 
             className="text-4xl md:text-5xl font-serif font-semibold text-white mb-4"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
+                      >
             {t('title')}
           </h1>
           <p className="text-gray-300 max-w-2xl mx-auto">
@@ -87,8 +86,7 @@ export default async function CareersPage({
           <div className="max-w-3xl mx-auto text-center">
             <h2 
               className="text-3xl font-serif font-semibold text-primary mb-6"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
+                          >
               {t('whyWorkTitle')}
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-8">
@@ -104,8 +102,7 @@ export default async function CareersPage({
           <div className="text-center mb-12">
             <h2 
               className="text-3xl font-serif font-semibold text-primary mb-4"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
+                          >
               {t('benefitsTitle')}
             </h2>
           </div>
@@ -126,8 +123,7 @@ export default async function CareersPage({
           <div className="text-center mb-12">
             <h2 
               className="text-3xl font-serif font-semibold text-primary mb-4"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
+                          >
               {t('openingsTitle')}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">

@@ -25,9 +25,7 @@ export const siteConfig = {
   
   social: {
     instagram: "https://www.instagram.com/silkbeauty_batumi/",
-    facebook: "https://www.facebook.com/silkbeautybatumi/",
-    twitter: "",
-    youtube: ""
+    facebook: "https://www.facebook.com/silkbeautybatumi/"
   },
   
   awards: [
@@ -41,6 +39,7 @@ export const siteConfig = {
       { name: "Treatments", href: "#treatments", hasDropdown: true },
       { name: "Conditions", href: "#conditions", hasDropdown: true },
       { name: "About", href: "/about", hasDropdown: true },
+      { name: "International Clients", href: "#international", hasDropdown: true },
       { name: "Price List", href: "/pricelist" },
       { name: "Offers", href: "/offers" },
       { name: "Contact", href: "/contact-us" }
@@ -62,30 +61,43 @@ export const siteConfig = {
   
   team: [
     {
-      name: "Nino",
-      role: "Founder & Lead Practitioner",
-      bio: "Nino is the founder of Silk Beauty Salon and a renowned aesthetic practitioner with over 15 years of experience in the beauty industry. She is known for her natural-looking results and meticulous attention to detail.",
-      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80"
-    },
-    {
-      name: "Ketevan",
-      role: "Senior Aesthetic Practitioner",
-      bio: "Ketevan is a highly skilled aesthetic practitioner specializing in dermal fillers and skin treatments. Her gentle approach and artistic eye ensure beautiful, natural results for every client.",
-      image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80"
-    },
-    {
-      name: "Mariam",
-      role: "Aesthetic Practitioner",
-      bio: "Mariam brings a wealth of knowledge in advanced skin treatments and laser therapy. She is passionate about helping clients achieve their skin goals through personalized treatment plans.",
-      image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80"
-    },
-    {
-      name: "Sophia",
-      role: "Aesthetic Practitioner",
-      bio: "Sophia specializes in non-surgical facial rejuvenation and has extensive experience in anti-wrinkle treatments and dermal fillers. Her clients love her natural, fresh approach.",
-      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80"
+      name: "Nana Gviniashvili",
+      role: "Owner & Medical Aesthetic Practitioner",
+      bio: "Nana Gviniashvili is the owner and sole practitioner at Silk Beauty Salon. With extensive training in medical aesthetics and facial dermatology, she specializes in Botox, dermal fillers, and advanced skin treatments. Nana is known for her natural-looking results, meticulous attention to detail, and personalized approach to each client. She speaks Georgian, English, and Russian fluently, making international clients feel comfortable and well-cared-for.",
+      image: "/images/nana-gviniashvili.jpg",
+      qualifications: [
+        "Certified Medical Aesthetic Practitioner",
+        "Advanced Botox & Dermal Filler Training",
+        "Facial Dermatology Specialist",
+        "Member of Georgian Aesthetic Medicine Association"
+      ],
+      languages: ["Georgian", "English", "Russian"]
     }
   ],
+
+  internationalClients: {
+    heroTitle: "World-Class Medical Aesthetics in Batumi, Georgia",
+    heroSubtitle: "Premium Botox, Fillers & Facial Dermatology at Georgian Prices",
+    treatments: [
+      { name: "Botox Injectables", slug: "botox", minStay: "Same day" },
+      { name: "Dermal Fillers", slug: "dermal-fillers", minStay: "24-48 hours" },
+      { name: "Facial Dermatology", slug: "skin", minStay: "Varies" }
+    ],
+    packages: [
+      { name: "Fresh Face", includes: "Botox (3 areas) + Lip Filler", savings: "15%" },
+      { name: "Total Rejuvenation", includes: "Full face Botox + Cheek Filler + Skin Booster", savings: "20%" },
+      { name: "Non-Surgical Lift", includes: "8-point lift (strategic filler placement)", savings: "Special pricing" }
+    ],
+    whyGeorgia: {
+      title: "Why Choose Georgia for Aesthetic Treatments?",
+      points: [
+        { title: "Significant Cost Savings", description: "Save 50-70% compared to UK, US, or EU prices for identical treatments and products" },
+        { title: "European Standards", description: "Clinics follow strict EU hygiene and safety protocols with internationally trained practitioners" },
+        { title: "English-Speaking Staff", description: "Communication is easy with fluent English-speaking medical teams" },
+        { title: "Tourism + Treatment", description: "Combine your procedure with exploring Georgia's rich culture, wine, and Black Sea beaches" }
+      ]
+    }
+  },
   
   faqs: [
     {

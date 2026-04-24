@@ -44,8 +44,7 @@ export default async function FAQPage({
         <div className="container-custom text-center">
           <h1 
             className="text-4xl md:text-5xl font-serif font-semibold text-white mb-4"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
+                      >
             {t('title')}
           </h1>
           <p className="text-gray-300 max-w-2xl mx-auto">
@@ -88,8 +87,7 @@ export default async function FAQPage({
             <div className="mt-12 bg-secondary rounded-lg p-8 text-center">
               <h2 
                 className="text-xl font-serif font-semibold text-primary mb-4"
-                style={{ fontFamily: "'Playfair Display', serif" }}
-              >
+                              >
                 {t('stillHaveQuestions')}
               </h2>
               <p className="text-muted-foreground mb-6">

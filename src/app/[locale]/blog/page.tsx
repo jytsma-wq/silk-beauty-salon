@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ChevronRight, Calendar, Clock } from 'lucide-react';
-import { siteConfig } from '@/data/site-config';
 import { getTranslations } from 'next-intl/server';
+import { getBlogPosts } from '@/data/blog';
 
 export const metadata: Metadata = {
   title: 'Blog | Silk Beauty Salon',
@@ -18,62 +18,7 @@ export default async function BlogPage({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'blogPage' });
   const tCommon = await getTranslations({ locale, namespace: 'common' });
-  const blogPosts = [
-    {
-      title: 'The Ultimate Guide to Anti-Wrinkle Treatments',
-      slug: 'ultimate-guide-anti-wrinkle',
-      excerpt: 'Everything you need to know about anti-wrinkle injections, from how they work to what to expect during your treatment.',
-      image: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80',
-      category: 'Treatments',
-      date: 'January 15, 2024',
-      readTime: '5 min read',
-    },
-    {
-      title: '5 Signs You Might Benefit from Dermal Fillers',
-      slug: 'signs-you-need-dermal-fillers',
-      excerpt: 'Dermal fillers can address various concerns. Here are the top signs that this treatment might be right for you.',
-      image: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80',
-      category: 'Dermal Fillers',
-      date: 'January 8, 2024',
-      readTime: '4 min read',
-    },
-    {
-      title: 'Winter Skincare: Protecting Your Skin This Season',
-      slug: 'winter-skincare-tips',
-      excerpt: 'Cold weather can be harsh on your skin. Discover our top tips for maintaining a healthy, glowing complexion all winter long.',
-      image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80',
-      category: 'Skincare',
-      date: 'December 20, 2023',
-      readTime: '3 min read',
-    },
-    {
-      title: 'What to Expect at Your First Consultation',
-      slug: 'first-consultation-guide',
-      excerpt: "Nervous about your first visit? Here's a complete guide to what happens during your initial consultation with us.",
-      image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80',
-      category: 'Patient Guide',
-      date: 'December 12, 2023',
-      readTime: '4 min read',
-    },
-    {
-      title: 'The Benefits of Combining Treatments',
-      slug: 'combining-treatments-benefits',
-      excerpt: 'Learn how combining different treatments can enhance your results and help you achieve your aesthetic goals.',
-      image: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&q=80',
-      category: 'Treatments',
-      date: 'December 5, 2023',
-      readTime: '5 min read',
-    },
-    {
-      title: 'Understanding Laser Skin Treatments',
-      slug: 'understanding-laser-treatments',
-      excerpt: 'From IPL to fractional lasers, we break down the different types of laser treatments and their benefits.',
-      image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80',
-      category: 'Laser',
-      date: 'November 28, 2023',
-      readTime: '6 min read',
-    },
-  ];
+  const blogPosts = await getBlogPosts(locale);
 
   return (
     <>
@@ -82,8 +27,7 @@ export default async function BlogPage({
         <div className="container-custom text-center">
           <h1 
             className="text-4xl md:text-5xl font-serif font-semibold text-white mb-4"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
+                      >
             {t('title')}
           </h1>
           <p className="text-gray-300 max-w-2xl mx-auto">
@@ -129,7 +73,11 @@ export default async function BlogPage({
                   <div className="flex items-center gap-4 text-xs text-muted-foreground mb-3">
                     <span className="flex items-center gap-1">
                       <Calendar className="w-3 h-3" />
-                      {post.date}
+                      {new Date(post.createdAt).toLocaleDateString(locale, {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}
                     </span>
                     <span className="flex items-center gap-1">
                       <Clock className="w-3 h-3" />
@@ -138,8 +86,7 @@ export default async function BlogPage({
                   </div>
                   <h2 
                     className="text-lg font-serif font-semibold text-primary mb-2 group-hover:text-gold transition-colors"
-                    style={{ fontFamily: "'Playfair Display', serif" }}
-                  >
+                                      >
                     {post.title}
                   </h2>
                   <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
@@ -164,8 +111,7 @@ export default async function BlogPage({
         <div className="container-custom text-center">
           <h2 
             className="text-2xl font-serif font-semibold text-primary mb-4"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
+                      >
             {t('stayUpdated')}
           </h2>
           <p className="text-muted-foreground mb-6 max-w-xl mx-auto">

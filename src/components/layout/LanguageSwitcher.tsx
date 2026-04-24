@@ -11,7 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Globe } from 'lucide-react';
+import { trackLanguageChange } from '@/lib/analytics';
 
 export function LanguageSwitcher() {
   const locale = useLocale() as Locale;
@@ -19,6 +19,7 @@ export function LanguageSwitcher() {
   const pathname = usePathname();
 
   const handleLocaleChange = (newLocale: Locale) => {
+    trackLanguageChange(locale, newLocale);
     router.replace(pathname, { locale: newLocale });
   };
 

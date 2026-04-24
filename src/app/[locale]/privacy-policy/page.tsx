@@ -28,8 +28,7 @@ export default async function PrivacyPolicyPage({
         <div className="container-custom text-center">
           <h1 
             className="text-4xl md:text-5xl font-serif font-semibold text-white mb-4"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
+                      >
             {t('title')}
           </h1>
           <p className="text-gray-300 max-w-2xl mx-auto">

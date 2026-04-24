@@ -1,13 +1,62 @@
 "use client"
 
 import * as React from "react"
-import { Cookie, X, Settings, Check } from "lucide-react"
+import { useTranslations } from "next-intl"
+import { Cookie, X, Settings } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 
-type ConsentCategory = "necessary" | "analytics" | "marketing" | "functional"
+// Hook for focus trap
+function useFocusTrap(isActive: boolean, onEscape: () => void) {
+  const containerRef = React.useRef<HTMLDivElement>(null)
+
+  React.useEffect(() => {
+    if (!isActive) return
+
+    const container = containerRef.current
+    if (!container) return
+
+    // Find all focusable elements
+    const focusableElements = container.querySelectorAll<HTMLElement>(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    )
+    const firstElement = focusableElements[0]
+    const lastElement = focusableElements[focusableElements.length - 1]
+
+    // Focus first element
+    firstElement?.focus()
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onEscape()
+        return
+      }
+
+      if (e.key !== 'Tab') return
+
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          e.preventDefault()
+          lastElement?.focus()
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          e.preventDefault()
+          firstElement?.focus()
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [isActive, onEscape])
+
+  return containerRef
+}
+
+// ConsentCategory type is used in the consent state interface
 
 interface ConsentState {
   necessary: boolean
@@ -19,6 +68,7 @@ interface ConsentState {
 interface ConsentContextType {
   consent: ConsentState
   hasConsented: boolean
+  showBanner: boolean
   acceptAll: () => void
   rejectAll: () => void
   savePreferences: (consent: ConsentState) => void
@@ -95,7 +145,7 @@ export function ConsentProvider({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <ConsentContext.Provider value={{ consent, hasConsented, acceptAll, rejectAll, savePreferences }}>
+    <ConsentContext.Provider value={{ consent, hasConsented, showBanner, acceptAll, rejectAll, savePreferences }}>
       {children}
       {showBanner && (
         <CookieBanner 
@@ -127,37 +177,45 @@ export function useConsent() {
 }
 
 function CookieBanner({ onAccept, onReject, onManage }: { onAccept: () => void; onReject: () => void; onManage: () => void }) {
+  const t = useTranslations("consent")
+  const bannerRef = useFocusTrap(true, onReject)
+  
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-white border-t shadow-lg">
+    <div 
+      ref={bannerRef}
+      role="dialog" 
+      aria-modal="false" 
+      aria-label={t("bannerLabel")}
+      className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-white border-t shadow-lg"
+    >
       <Card className="max-w-4xl mx-auto border-0 shadow-none">
         <CardHeader className="pb-2">
           <CardTitle className="flex items-center gap-2 text-lg">
-            <Cookie className="w-5 h-5" />
-            Cookie Preferences
+            <Cookie className="w-5 h-5" aria-hidden="true" />
+            {t("title")}
           </CardTitle>
         </CardHeader>
         <CardContent className="pb-2">
           <p className="text-sm text-muted-foreground mb-4">
-            We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. 
-            By clicking "Accept All", you consent to our use of cookies. You can manage your preferences or reject non-essential cookies.
+            {t("description")}
           </p>
           <div className="flex flex-wrap gap-2 text-sm">
-            <span className="px-2 py-1 bg-green-100 text-green-800 rounded">Necessary - Always active</span>
-            <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded">Analytics</span>
-            <span className="px-2 py-1 bg-purple-100 text-purple-800 rounded">Marketing</span>
-            <span className="px-2 py-1 bg-orange-100 text-orange-800 rounded">Functional</span>
+            <span className="px-2 py-1 bg-green-100 text-green-800 rounded">{t("necessaryTag")}</span>
+            <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded">{t("analyticsTag")}</span>
+            <span className="px-2 py-1 bg-purple-100 text-purple-800 rounded">{t("marketingTag")}</span>
+            <span className="px-2 py-1 bg-orange-100 text-orange-800 rounded">{t("functionalTag")}</span>
           </div>
         </CardContent>
-        <CardFooter className="gap-2">
+        <CardFooter className="gap-2 flex-wrap">
           <Button variant="outline" size="sm" onClick={onReject}>
-            Reject All
+            {t("rejectAll")}
           </Button>
           <Button variant="outline" size="sm" onClick={onManage}>
-            <Settings className="w-4 h-4 mr-2" />
-            Manage Preferences
+            <Settings className="w-4 h-4 mr-2" aria-hidden="true" />
+            {t("managePreferences")}
           </Button>
           <Button size="sm" onClick={onAccept}>
-            Accept All
+            {t("acceptAll")}
           </Button>
         </CardFooter>
       </Card>
@@ -175,11 +233,13 @@ interface CookieSettingsModalProps {
 }
 
 function CookieSettingsModal({ preferences, onPreferencesChange, onSave, onClose, onAcceptAll, onRejectAll }: CookieSettingsModalProps) {
+  const t = useTranslations("consent")
+  
   const categories = [
-    { key: 'necessary' as const, label: 'Necessary', description: 'Essential for the website to function properly. Cannot be disabled.', enabled: true },
-    { key: 'analytics' as const, label: 'Analytics', description: 'Help us understand how visitors interact with our website.', enabled: preferences.analytics },
-    { key: 'marketing' as const, label: 'Marketing', description: 'Used to track visitors across websites for advertising purposes.', enabled: preferences.marketing },
-    { key: 'functional' as const, label: 'Functional', description: 'Enable enhanced functionality and personalization.', enabled: preferences.functional },
+    { key: 'necessary' as const, label: t("necessary"), description: t("necessaryDesc"), enabled: true },
+    { key: 'analytics' as const, label: t("analytics"), description: t("analyticsDesc"), enabled: preferences.analytics },
+    { key: 'marketing' as const, label: t("marketing"), description: t("marketingDesc"), enabled: preferences.marketing },
+    { key: 'functional' as const, label: t("functional"), description: t("functionalDesc"), enabled: preferences.functional },
   ]
 
   const handleToggle = (key: keyof ConsentState) => {
@@ -193,7 +253,7 @@ function CookieSettingsModal({ preferences, onPreferencesChange, onSave, onClose
         <CardHeader className="flex flex-row items-center justify-between pb-4">
           <CardTitle className="flex items-center gap-2 text-xl">
             <Settings className="w-5 h-5" />
-            Cookie Settings
+            {t("settingsTitle")}
           </CardTitle>
           <Button variant="ghost" size="icon" onClick={onClose}>
             <X className="w-5 h-5" />
@@ -201,7 +261,7 @@ function CookieSettingsModal({ preferences, onPreferencesChange, onSave, onClose
         </CardHeader>
         <CardContent className="space-y-6">
           <p className="text-sm text-muted-foreground">
-            Customize your cookie preferences. Necessary cookies cannot be disabled as they are essential for the website to function.
+            {t("settingsDescription")}
           </p>
           <div className="space-y-4">
             {categories.map((category) => (
@@ -209,7 +269,7 @@ function CookieSettingsModal({ preferences, onPreferencesChange, onSave, onClose
                 <div className="space-y-1">
                   <Label className="font-medium">
                     {category.label}
-                    {category.key === 'necessary' && <span className="text-xs text-muted-foreground ml-2">(Required)</span>}
+                    {category.key === 'necessary' && <span className="text-xs text-muted-foreground ml-2">({t("required")})</span>}
                   </Label>
                   <p className="text-sm text-muted-foreground">{category.description}</p>
                 </div>
@@ -224,14 +284,14 @@ function CookieSettingsModal({ preferences, onPreferencesChange, onSave, onClose
         </CardContent>
         <CardFooter className="flex justify-between gap-2">
           <Button variant="outline" onClick={onRejectAll}>
-            Reject All
+            {t("rejectAll")}
           </Button>
           <div className="flex gap-2">
             <Button variant="outline" onClick={onAcceptAll}>
-              Accept All
+              {t("acceptAll")}
             </Button>
             <Button onClick={onSave}>
-              Save Preferences
+              {t("savePreferences")}
             </Button>
           </div>
         </CardFooter>

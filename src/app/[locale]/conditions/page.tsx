@@ -7,10 +7,15 @@ import { siteConfig } from '@/data/site-config';
 import { Button } from '@/components/ui/button';
 import { getTranslations } from 'next-intl/server';
 
-export const metadata: Metadata = {
-  title: 'Conditions We Treat | Silk Beauty Salon',
-  description: 'Learn about the various skin conditions we treat including ageing skin, acne scarring, pigmentation, and more.',
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'conditionsPage' });
+
+  return {
+    title: t('metaTitle'),
+    description: t('metaDescription'),
+  };
+}
 
 export default async function ConditionsPage({
   params,
@@ -25,7 +30,7 @@ export default async function ConditionsPage({
   return (
     <>
       {/* Full Screen Hero Image */}
-      <section className="relative h-screen min-h-[600px]">
+      <section className="relative h-screen min-h-150">
         <Image
           src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1920&q=80"
           alt="Skin Care Treatment"
@@ -38,8 +43,7 @@ export default async function ConditionsPage({
           <div className="container-custom text-center">
             <h1 
               className="text-4xl md:text-6xl font-serif font-semibold text-white mb-4"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
+                          >
               {t('listingTitle')}
             </h1>
             <p className="text-gray-200 max-w-2xl mx-auto text-lg">
@@ -86,8 +90,7 @@ export default async function ConditionsPage({
                   <div className="p-6">
                     <h2 
                       className="text-xl font-serif font-semibold text-primary mb-3 group-hover:text-gold transition-colors"
-                      style={{ fontFamily: "'Playfair Display', serif" }}
-                    >
+                                          >
                       {condition.name}
                     </h2>
                     <p className="text-sm text-muted-foreground mb-4">
@@ -110,8 +113,7 @@ export default async function ConditionsPage({
         <div className="container-custom text-center">
           <h2 
             className="text-2xl md:text-3xl font-serif font-semibold text-white mb-4"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
+                      >
             {t('ctaTitle')}
           </h2>
           <p className="text-gray-300 mb-8 max-w-xl mx-auto">

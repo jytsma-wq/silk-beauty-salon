@@ -340,9 +340,9 @@ html {
   color: #c9a962;
 }
 
-/* Hero overlay */
+/* Hero overlay - darker, more cinematic */
 .hero-overlay {
-  background: linear-gradient(135deg, rgba(26, 26, 46, 0.7) 0%, rgba(26, 26, 46, 0.5) 100%);
+  background: linear-gradient(135deg, rgba(26, 26, 46, 0.85) 0%, rgba(26, 26, 46, 0.65) 100%);
 }
 
 /* Gold border accent */
@@ -355,9 +355,9 @@ html {
   background-color: #c9a962;
 }
 
-/* Text gold */
+/* Text gold - darkened for WCAG AA contrast (4.5:1 on white) */
 .text-gold {
-  color: #c9a962;
+  color: #a0802c;
 }
 
 /* Animate fadeIn */
@@ -386,6 +386,69 @@ html {
 
 .animate-scroll {
   animation: scroll 1.5s infinite;
+}
+
+/* Marquee animation for awards/press ticker */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  animation: marquee 30s linear infinite;
+  width: max-content;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Consultation CTA section */
+.consultation-section {
+  background: linear-gradient(135deg, #1a1a2e 0%, #252542 100%);
+}
+
+/* Mega menu full-width panel */
+.mega-menu-panel {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: 40;
+  background: #ffffff;
+  border-top: 1px solid #e0e0e0;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Editorial card style for conditions */
+.editorial-card {
+  border: 1px solid #e0e0e0;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  background: #ffffff;
+}
+
+.editorial-card:hover {
+  border-color: #c9a962;
+  box-shadow: 0 4px 20px rgba(201, 169, 98, 0.1);
+}
+
+/* Technology strip item */
+.tech-strip-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-right: 1px solid #e0e0e0;
+}
+
+.tech-strip-item:last-child {
+  border-right: none;
 }
 
 /* ========================================

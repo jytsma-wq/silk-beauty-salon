@@ -44,7 +44,6 @@ const BLOCKED_PATTERNS = [
 
 // Suspicious patterns to log
 const SUSPICIOUS_PATTERNS = [
-  /\.\./,  // Directory traversal
   /\.php/i,
   /\.asp/i,
   /\.exe/i,
@@ -56,9 +55,6 @@ const SUSPICIOUS_PATTERNS = [
   /delete.*from/i,
   /drop.*table/i,
 ];
-
-// API key for /api/* routes (set in env: API_SECRET_KEY)
-const API_SECRET_KEY = process.env.API_SECRET_KEY || 'your-secret-key-here';
 
 function getClientIp(request: NextRequest): string {
   return request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() 

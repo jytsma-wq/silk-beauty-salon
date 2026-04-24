@@ -76,8 +76,7 @@ export default async function MediaPressPage({
         <div className="container-custom text-center">
           <h1 
             className="text-4xl md:text-5xl font-serif font-semibold text-white mb-4"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
+                      >
             {t('title')}
           </h1>
           <p className="text-gray-300 max-w-2xl mx-auto">
@@ -123,8 +122,7 @@ export default async function MediaPressPage({
                   <p className="text-sm text-muted-foreground mb-2">{feature.date}</p>
                   <h3 
                     className="text-lg font-serif font-semibold text-primary mb-2 group-hover:text-gold transition-colors"
-                    style={{ fontFamily: "'Playfair Display', serif" }}
-                  >
+                                      >
                     {feature.title}
                   </h3>
                   <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
@@ -150,8 +148,7 @@ export default async function MediaPressPage({
           <div className="max-w-2xl mx-auto text-center">
             <h2 
               className="text-2xl font-serif font-semibold text-primary mb-4"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
+                          >
               {t('mediaEnquiries')}
             </h2>
             <p className="text-muted-foreground mb-6">

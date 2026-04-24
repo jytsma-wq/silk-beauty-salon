@@ -1,15 +1,19 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
-import { treatmentCategories } from '@/data/treatments';
+import { getLocalizedTreatmentCategories } from '@/data/treatments';
 import { siteConfig } from '@/data/site-config';
 import { Button } from '@/components/ui/button';
 import { getTranslations } from 'next-intl/server';
 
-export const metadata: Metadata = {
-  title: 'Price List | Silk Beauty Salon',
-  description: 'View our comprehensive treatment price list for all our aesthetic services.',
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'pricelistPage' });
+  return {
+    title: `${t('title')} | Silk Beauty Salon`,
+    description: t('subtitle'),
+  };
+}
 
 export default async function PriceListPage({
   params,
@@ -19,6 +23,7 @@ export default async function PriceListPage({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'pricelistPage' });
   const tCommon = await getTranslations({ locale, namespace: 'common' });
+  const treatmentCategories = await getLocalizedTreatmentCategories(locale);
   return (
     <>
       {/* Hero Section */}
@@ -26,8 +31,7 @@ export default async function PriceListPage({
         <div className="container-custom text-center">
           <h1 
             className="text-4xl md:text-5xl font-serif font-semibold text-white mb-4"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
+                      >
             {t('title')}
           </h1>
           <p className="text-gray-300 max-w-2xl mx-auto">
@@ -64,8 +68,7 @@ export default async function PriceListPage({
             <div key={category.slug} className="mb-12">
               <h2 
                 className="text-2xl font-serif font-semibold text-primary mb-6 pb-2 border-b border-border"
-                style={{ fontFamily: "'Playfair Display', serif" }}
-              >
+                              >
                 {category.name}
               </h2>
               <div className="bg-white rounded-lg border border-border overflow-hidden">
@@ -114,8 +117,7 @@ export default async function PriceListPage({
           <div className="bg-primary rounded-lg p-8 text-center">
             <h2 
               className="text-2xl font-serif font-semibold text-white mb-4"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
+                          >
               {t('ctaTitle')}
             </h2>
             <p className="text-gray-300 mb-6 max-w-xl mx-auto">

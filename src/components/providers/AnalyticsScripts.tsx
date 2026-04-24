@@ -1,7 +1,9 @@
 "use client"
 
 import Script from "next/script"
+import { useEffect } from "react"
 import { useConsent } from "./ConsentProvider"
+import { initAnalyticsConfig } from "@/lib/analytics"
 
 interface ScriptLoaderProps {
   gtmId?: string
@@ -12,6 +14,13 @@ interface ScriptLoaderProps {
 
 export function AnalyticsScripts({ gtmId, gaId, fbPixelId, elfsightId }: ScriptLoaderProps) {
   const { consent, hasConsented } = useConsent()
+
+  // Initialize analytics config when consent is given and IDs are available
+  useEffect(() => {
+    if (hasConsented && (gaId || gtmId || fbPixelId)) {
+      initAnalyticsConfig({ gaId, gtmId, fbPixelId })
+    }
+  }, [hasConsented, gaId, gtmId, fbPixelId])
 
   if (!hasConsented) return null
 

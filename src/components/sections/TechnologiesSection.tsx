@@ -1,51 +1,31 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/routing';
+import { ArrowRight } from 'lucide-react';
 
 export function TechnologiesSection() {
   const t = useTranslations('technologies');
 
-  const technologies = [
-    { name: 'Cutera', description: 'Advanced Laser Systems' },
-    { name: 'Allergan', description: 'Premium Injectables' },
-    { name: 'Obagi', description: 'Medical Skincare' },
-    { name: 'iS Clinical', description: 'Clinical Skincare' },
-    { name: 'Mesoestetic', description: 'Professional Peels' },
-    { name: 'Galderma', description: 'Dermal Fillers' },
-  ];
-
   return (
     <section className="py-20 bg-white border-y border-border">
       <div className="container-custom">
-        {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 
-            className="text-2xl md:text-3xl font-serif font-semibold text-primary mb-4"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
+        <div className="max-w-3xl mx-auto text-center">
+          <h2
+            className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold text-primary mb-6"
+                      >
             {t('title')}
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
+          <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-8">
             {t('subtitle')}
           </p>
-        </div>
-
-        {/* Technologies Logos */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
-          {technologies.map((tech) => (
-            <div
-              key={tech.name}
-              className="flex flex-col items-center text-center p-6 rounded-lg hover:bg-secondary transition-colors"
-            >
-              <div className="w-20 h-20 rounded-full bg-secondary flex items-center justify-center mb-4">
-                <span className="font-serif text-2xl text-gold font-semibold">
-                  {tech.name.charAt(0)}
-                </span>
-              </div>
-              <h3 className="font-semibold text-primary">{tech.name}</h3>
-              <p className="text-xs text-muted-foreground">{tech.description}</p>
-            </div>
-          ))}
+          <Link
+            href="/about"
+            className="inline-flex items-center gap-2 text-gold font-semibold text-lg hover:gap-3 transition-all"
+          >
+            {t('aboutUs')}
+            <ArrowRight className="w-5 h-5" />
+          </Link>
         </div>
       </div>
     </section>

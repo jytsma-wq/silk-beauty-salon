@@ -52,6 +52,10 @@ prompts
 prompts.txt
 download/
 website_content.json
+package.zip
+*.zip
+files.txt
+tsconfig.tsbuildinfo
 
 server.log
 
