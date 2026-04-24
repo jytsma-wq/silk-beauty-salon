@@ -1230,7 +1230,6 @@
     }
   },
   "whatsapp": {
-    "whatsapp": "WhatsApp",
     "greeting": "مرحبا! 👋 مرحبا بك في صالون سيلك للتجميل. كيف يمكننا مساعدتك اليوم؟",
     "bookAppointment": "أريد حجز موعد",
     "serviceQuestion": "لدي سؤال حول الخدمات",

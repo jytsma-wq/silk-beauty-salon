@@ -1253,7 +1253,6 @@
     }
   },
   "whatsapp": {
-    "whatsapp": "WhatsApp",
     "greeting": "Здравствуйте!  Добро пожаловать в Silk Beauty Salon. Чем мы можем помочь вам сегодня?",
     "bookAppointment": "Хочу записаться на прием",
     "serviceQuestion": "У меня есть вопрос о услугах",

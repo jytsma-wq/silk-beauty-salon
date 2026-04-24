@@ -1258,7 +1258,6 @@
     }
   },
   "whatsapp": {
-    "whatsapp": "WhatsApp",
     "greeting": "Merhaba! 👋 Silk Beauty Salon'a hoş geldiniz. Bugün size nasıl yardımcı olabiliriz?",
     "bookAppointment": "Randevu almak istiyorum",
     "serviceQuestion": "Hizmetler hakkında bir sorum var",
