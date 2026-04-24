@@ -75,7 +75,8 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "eslint --fix --max-warnings 10"
+      "eslint --fix --max-warnings 0",
+      "tsc --noEmit --skipLibCheck"
     ]
   }
 }
