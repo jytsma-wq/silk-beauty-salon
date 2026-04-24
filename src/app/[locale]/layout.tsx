@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Poppins } from "next/font/google";
 import "../globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { AnnouncerProvider } from "@/components/ui/announcer";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ConsentProvider } from "@/components/providers/ConsentProvider";
@@ -73,12 +74,14 @@ export default async function LocaleLayout({
             fbPixelId={process.env.NEXT_PUBLIC_FB_PIXEL_ID}
           />
           <NextIntlClientProvider messages={messages}>
-            <SkipLink />
-            <Header />
-            <main id="main-content">{children}</main>
-            <Footer />
-            <WhatsAppWidget />
-            <Toaster />
+            <AnnouncerProvider>
+              <SkipLink />
+              <Header />
+              <main id="main-content">{children}</main>
+              <Footer />
+              <WhatsAppWidget />
+              <Toaster />
+            </AnnouncerProvider>
           </NextIntlClientProvider>
         </ConsentProvider>
       </body>

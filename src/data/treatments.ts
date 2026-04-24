@@ -21,7 +21,7 @@ export interface TreatmentCategory {
 }
 
 // Base treatment data (non-translatable: images, prices, slugs)
-const baseTreatmentCategories: TreatmentCategory[] = [
+export const baseTreatmentCategories: TreatmentCategory[] = [
   {
     name: "Botox Injectables",
     slug: "botox",

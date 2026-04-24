@@ -49,3 +49,109 @@ model BlogPost {
 
   @@index([locale, published])
 }
+
+// Treatment Category - base data (images, slugs are non-translatable)
+model TreatmentCategory {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  image       String
+  sortOrder   Int      @default(0)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  translations TreatmentCategoryTranslation[]
+  treatments   Treatment[]
+
+  @@index([slug])
+  @@index([active, sortOrder])
+}
+
+// Treatment Category Translations (i18n content)
+model TreatmentCategoryTranslation {
+  id          String   @id @default(cuid())
+  categoryId  String
+  locale      String   // en, ka, ru, ar, he, tr
+  name        String
+  description String
+
+  // Relations
+  category    TreatmentCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@unique([categoryId, locale])
+  @@index([locale])
+}
+
+// Individual Treatment - base data
+model Treatment {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  image       String
+  price       String?  // e.g., "From ₾200"
+  duration    String?  // e.g., "15-30 minutes"
+  sortOrder   Int      @default(0)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  categoryId  String
+  category    TreatmentCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  translations TreatmentTranslation[]
+  benefits     TreatmentBenefit[]
+  faqs         TreatmentFAQ[]
+
+  @@index([slug])
+  @@index([categoryId])
+  @@index([active, sortOrder])
+}
+
+// Treatment Translations (i18n content)
+model TreatmentTranslation {
+  id              String   @id @default(cuid())
+  treatmentId     String
+  locale          String   // en, ka, ru, ar, he, tr
+  name            String
+  description     String
+  shortDescription String
+  howItWorks      String?
+  aftercare       String?
+
+  // Relations
+  treatment       Treatment @relation(fields: [treatmentId], references: [id], onDelete: Cascade)
+
+  @@unique([treatmentId, locale])
+  @@index([locale])
+}
+
+// Treatment Benefits (translatable array items)
+model TreatmentBenefit {
+  id          String   @id @default(cuid())
+  treatmentId String
+  locale      String
+  text        String
+  sortOrder   Int      @default(0)
+
+  // Relations
+  treatment   Treatment @relation(fields: [treatmentId], references: [id], onDelete: Cascade)
+
+  @@index([treatmentId, locale])
+  @@index([sortOrder])
+}
+
+// Treatment FAQs (translatable Q&A)
+model TreatmentFAQ {
+  id          String   @id @default(cuid())
+  treatmentId String
+  locale      String
+  question    String
+  answer      String
+  sortOrder   Int      @default(0)
+
+  // Relations
+  treatment   Treatment @relation(fields: [treatmentId], references: [id], onDelete: Cascade)
+
+  @@index([treatmentId, locale])
+  @@index([sortOrder])
+}

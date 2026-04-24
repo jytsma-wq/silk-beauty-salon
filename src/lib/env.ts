@@ -1,7 +1,5 @@
 import { z } from 'zod'
 
-const isProduction = process.env.NODE_ENV === 'production'
-
 // Production schema - all required fields must be present
 const productionSchema = z.object({
   DATABASE_URL: z.string().min(1, 'DATABASE_URL is required'),
@@ -28,25 +26,44 @@ const developmentSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
 })
 
-const schema = isProduction ? productionSchema : developmentSchema
-const parsed = schema.safeParse(process.env)
+export type Env = z.infer<typeof productionSchema>
 
-if (!parsed.success) {
-  console.error('Environment validation failed:')
-  console.error(parsed.error.flatten().fieldErrors)
-  throw new Error('Invalid environment configuration')
+// ✅ Export the schemas for testing
+export { productionSchema, developmentSchema }
+
+// ✅ Export a factory function for dependency injection
+export function parseEnv(input: Record<string, unknown>): Env {
+  const isProduction = input.NODE_ENV === 'production'
+  const schema = isProduction ? productionSchema : developmentSchema
+  return schema.parse(input)
 }
 
-// Warn about missing optional variables in development
-if (!isProduction) {
-  const optionalVars = ['DATABASE_URL', 'RESEND_API_KEY', 'RESEND_AUDIENCE_ID', 'API_SECRET_KEY']
-  const missing = optionalVars.filter(key => !process.env[key])
-  
-  if (missing.length > 0) {
-    console.warn('⚠️  Missing optional environment variables (using defaults):')
-    missing.forEach(key => console.warn(`   - ${key}`))
-    console.warn('   Set these in .env.local for full functionality.\n')
+// Runtime initialization with process.env
+function initializeEnv(): Env {
+  const isProduction = process.env.NODE_ENV === 'production'
+  const schema = isProduction ? productionSchema : developmentSchema
+  const parsed = schema.safeParse(process.env)
+
+  if (!parsed.success) {
+    console.error('Environment validation failed:')
+    console.error(parsed.error.flatten().fieldErrors)
+    throw new Error('Invalid environment configuration')
   }
+
+  // Warn about missing optional variables in development
+  if (!isProduction) {
+    const optionalVars = ['DATABASE_URL', 'RESEND_API_KEY', 'RESEND_AUDIENCE_ID', 'API_SECRET_KEY']
+    const missing = optionalVars.filter(key => !process.env[key])
+
+    if (missing.length > 0) {
+      console.warn('⚠️  Missing optional environment variables (using defaults):')
+      missing.forEach(key => console.warn(`   - ${key}`))
+      console.warn('   Set these in .env.local for full functionality.\n')
+    }
+  }
+
+  return parsed.data
 }
 
-export const env = parsed.data
+// ✅ Export the parsed env for runtime use (evaluated once)
+export const env = initializeEnv()

@@ -101,7 +101,7 @@ export default async function HomePage({
       <JsonLd schema={generateLocalBusinessSchema(locale)} />
       <HeroSection />
       <AwardsMarquee />
-      <TreatmentsSection />
+      <TreatmentsSection locale={locale} />
       <ConditionsSection />
       <AboutSection />
       <TechnologiesSection />

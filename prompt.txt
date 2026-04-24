@@ -182,4 +182,4 @@
 2026-04-24 08:49:57.912 [info] > git status -z -uall [147ms]
 2026-04-24 08:49:57.917 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [137ms]
 2026-04-24 08:50:03.567 [info] > git config --get commit.template [126ms]
-2026-04-24 08:50:03.588 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) --ignore-case refs/heads/main refs/remotes/main [132ms]
+2026-04-24 08:50:03.588 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) --ignore-case refs/heads/main refs/remotes/main [132ms]do

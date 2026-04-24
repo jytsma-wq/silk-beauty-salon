@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from 'next-intl/plugin';
+import withBundleAnalyzer from '@next/bundle-analyzer';
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
@@ -48,28 +49,17 @@ const nextConfig: NextConfig = {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()',
           },
-          // Content-Security-Policy
-          // Dev: allows unsafe-inline for development (Next.js hot reload)
-          // Prod: should use nonce-based approach with middleware
-          {
-            key: 'Content-Security-Policy',
-            value: [
-              "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net https://static.elfsight.com",
-              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-              "font-src 'self' https://fonts.gstatic.com",
-              "img-src 'self' data: https://images.unsplash.com https://flagcdn.com https://cdn.sanity.io https://www.google-analytics.com",
-              "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://api.cal.com",
-              "frame-src https://cal.com https://*.cal.com",
-              "frame-ancestors 'none'",
-              "base-uri 'self'",
-              "form-action 'self'",
-            ].join('; ')
-          },
+          // CSP is now handled dynamically by middleware.ts with nonce
+          // This provides better security than static CSP
         ],
       },
     ];
   },
 };
 
-export default withNextIntl(nextConfig);
+// Enable bundle analyzer when BUNDLE_ANALYZE=true
+const withAnalyzer = withBundleAnalyzer({
+  enabled: process.env.BUNDLE_ANALYZE === 'true',
+});
+
+export default withAnalyzer(withNextIntl(nextConfig));

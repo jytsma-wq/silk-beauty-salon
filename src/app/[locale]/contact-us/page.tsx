@@ -34,11 +34,29 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    setFieldErrors({});
+
+    // Client-side validation
+    const errors: Record<string, string> = {};
+    if (!formData.name.trim()) errors.name = t('nameRequired');
+    if (!formData.email.trim()) {
+      errors.email = t('emailRequired');
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = t('emailInvalid');
+    }
+    if (!formData.message.trim()) errors.message = t('messageRequired');
+
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      setLoading(false);
+      return;
+    }
 
     try {
       const response = await fetch('/api/contact', {
@@ -59,6 +77,11 @@ export default function ContactPage() {
       setFormData({ name: '', email: '', phone: '', message: '' });
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to send message');
+      // Announce error to screen readers
+      const errorAnnouncement = document.getElementById('form-error-announcement');
+      if (errorAnnouncement) {
+        errorAnnouncement.textContent = err instanceof Error ? err.message : 'Failed to send message';
+      }
     } finally {
       setLoading(false);
     }
@@ -124,36 +147,67 @@ export default function ContactPage() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Global error announcement for screen readers */}
+                  <div id="form-error-announcement" role="alert" aria-live="assertive" className="sr-only" />
+                  
                   {error && (
-                    <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                      <p className="text-red-600 text-sm">{error}</p>
+                    <div 
+                      className="bg-red-50 border border-red-200 rounded-lg p-4"
+                      role="alert"
+                      aria-live="polite"
+                    >
+                      <p className="text-red-600 text-sm" id="form-global-error">{error}</p>
                     </div>
                   )}
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium mb-2">
-                      {t('fullName')} *
+                      {t('fullName')} <span aria-label="required">*</span>
                     </label>
                     <Input
                       id="name"
+                      name="name"
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onChange={(e) => {
+                        setFormData({ ...formData, name: e.target.value });
+                        if (fieldErrors.name) setFieldErrors({ ...fieldErrors, name: '' });
+                      }}
                       required
+                      aria-required="true"
+                      aria-invalid={!!fieldErrors.name}
+                      aria-describedby={fieldErrors.name ? 'name-error' : undefined}
                       placeholder={t('namePlaceholder')}
                     />
+                    {fieldErrors.name && (
+                      <span id="name-error" role="alert" aria-live="polite" className="text-red-600 text-sm mt-1 block">
+                        {fieldErrors.name}
+                      </span>
+                    )}
                   </div>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium mb-2">
-                        {t('emailAddress')} *
+                        {t('emailAddress')} <span aria-label="required">*</span>
                       </label>
                       <Input
                         id="email"
+                        name="email"
                         type="email"
                         value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        onChange={(e) => {
+                          setFormData({ ...formData, email: e.target.value });
+                          if (fieldErrors.email) setFieldErrors({ ...fieldErrors, email: '' });
+                        }}
                         required
+                        aria-required="true"
+                        aria-invalid={!!fieldErrors.email}
+                        aria-describedby={fieldErrors.email ? 'email-error' : undefined}
                         placeholder={t('emailPlaceholder')}
                       />
+                      {fieldErrors.email && (
+                        <span id="email-error" role="alert" aria-live="polite" className="text-red-600 text-sm mt-1 block">
+                          {fieldErrors.email}
+                        </span>
+                      )}
                     </div>
                     <div>
                       <label htmlFor="phone" className="block text-sm font-medium mb-2">
@@ -161,25 +215,42 @@ export default function ContactPage() {
                       </label>
                       <Input
                         id="phone"
+                        name="phone"
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder={t('phonePlaceholder')}
+                        aria-describedby="phone-hint"
                       />
+                      <span id="phone-hint" className="text-muted-foreground text-xs mt-1 block">
+                        {t('phoneOptional')}
+                      </span>
                     </div>
                   </div>
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium mb-2">
-                      {t('message')} *
+                      {t('message')} <span aria-label="required">*</span>
                     </label>
                     <Textarea
                       id="message"
+                      name="message"
                       value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      onChange={(e) => {
+                        setFormData({ ...formData, message: e.target.value });
+                        if (fieldErrors.message) setFieldErrors({ ...fieldErrors, message: '' });
+                      }}
                       required
+                      aria-required="true"
+                      aria-invalid={!!fieldErrors.message}
+                      aria-describedby={fieldErrors.message ? 'message-error' : undefined}
                       placeholder={t('messagePlaceholder')}
                       rows={5}
                     />
+                    {fieldErrors.message && (
+                      <span id="message-error" role="alert" aria-live="polite" className="text-red-600 text-sm mt-1 block">
+                        {fieldErrors.message}
+                      </span>
+                    )}
                   </div>
                   <Button type="submit" className="btn-gold w-full sm:w-auto" disabled={loading}>
                     {loading ? (

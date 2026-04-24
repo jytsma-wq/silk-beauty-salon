@@ -45,7 +45,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-primary text-white">
+    <footer className="bg-primary text-white" role="contentinfo">
       {/* Main Footer Content */}
       <div className="container-custom py-16">
         {/* Row 1: Treatment Category Columns - HSI style categorized */}

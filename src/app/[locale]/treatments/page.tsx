@@ -1,11 +1,30 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { ChevronRight } from 'lucide-react';
-import { getLocalizedTreatmentCategories } from '@/data/treatments';
+import { getTreatmentCategoriesByLocale, getAllCategorySlugs } from '@/lib/treatments-db';
 import { siteConfig } from '@/data/site-config';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/i18n/routing';
 import { getTranslations } from 'next-intl/server';
+
+// Generate static params for all locales
+export async function generateStaticParams() {
+  const locales = ['en', 'ka', 'ru', 'ar', 'he', 'tr'];
+  const categories = await getAllCategorySlugs();
+  
+  const params = [];
+  for (const locale of locales) {
+    params.push({ locale });
+    // Also generate for each category slug
+    for (const slug of categories) {
+      params.push({ locale, category: slug });
+    }
+  }
+  return params;
+}
+
+// Revalidate every 24 hours
+export const revalidate = 86400;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -25,7 +44,7 @@ export default async function TreatmentsPage({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'treatmentsPage' });
   const tCommon = await getTranslations({ locale, namespace: 'common' });
-  const categories = await getLocalizedTreatmentCategories(locale);
+  const categories = await getTreatmentCategoriesByLocale(locale);
 
   return (
     <>

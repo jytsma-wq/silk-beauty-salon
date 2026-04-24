@@ -15,7 +15,8 @@
     "press": "עיתונות",
     "blog": "בלוג",
     "team": "הצוות שלנו",
-    "beforeAfter": "לפני ואחרי"
+    "beforeAfter": "לפני ואחרי",
+    "mainNavigation": "ניווט ראשי"
   },
   "header": {
     "announcement": "זוכת פרסים | סלון היופי הטוב בבתומי | פורסם במגזין האופנה והיופי הגיאורגי"
@@ -278,12 +279,17 @@
     "messageSent": "ההודעה שלך נשלחה בהצלחה. נחזור אליך בקרוב.",
     "fullName": "שם מלא",
     "namePlaceholder": "הכנס את שמך",
+    "nameRequired": "אנא הכנס את שמך",
     "emailAddress": "כתובת אימייל",
+    "emailRequired": "אנא הכנס כתובת אימייל",
+    "emailInvalid": "אנא הכנס כתובת אימייל תקינה",
     "emailPlaceholder": "הכנס את האימייל שלך",
     "phoneNumber": "מספר טלפון",
     "phonePlaceholder": "הכנס את הטלפון שלך",
+    "phoneOptional": "אופציונלי",
     "message": "הודעה",
     "messagePlaceholder": "איך אנחנו יכולים לעזור?",
+    "messageRequired": "אנא הכנס הודעה",
     "sending": "שולח...",
     "sendMessage": "שלח הודעה",
     "getInTouch": "צור קשר",
@@ -1523,6 +1529,10 @@
     }
   },
   "accessibility": {
-    "skipToContent": "דלג לתוכן העיקרי"
+    "skipToContent": "דלג לתוכן העיקרי",
+    "skipToMain": "דלג לתוכן העיקרי",
+    "skipToTreatments": "דלג לטיפולים",
+    "skipToBooking": "דלג להזמנת תור",
+    "skipNavigation": "דילוג על קישורים"
   }
 }

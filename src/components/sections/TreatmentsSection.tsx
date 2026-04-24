@@ -1,25 +1,16 @@
-'use client';
-
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { useTranslations, useLocale } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { ChevronRight } from 'lucide-react';
-import { getLocalizedTreatmentCategories, type TreatmentCategory } from '@/data/treatments';
+import { getTreatmentCategoriesByLocale } from '@/lib/treatments-db';
 import { Link } from '@/i18n/routing';
 
-export function TreatmentsSection() {
-  const t = useTranslations('treatments');
-  useTranslations('common');
-  const locale = useLocale();
-  const [treatmentCategories, setTreatmentCategories] = useState<TreatmentCategory[]>([]);
+interface TreatmentsSectionProps {
+  locale: string;
+}
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const categories = await getLocalizedTreatmentCategories(locale);
-      setTreatmentCategories(categories);
-    };
-    fetchData();
-  }, [locale]);
+export async function TreatmentsSection({ locale }: TreatmentsSectionProps) {
+  const t = await getTranslations({ locale, namespace: 'treatments' });
+  const treatmentCategories = await getTreatmentCategoriesByLocale(locale);
 
   return (
     <section className="section-spacing bg-white" id="treatments">
@@ -38,7 +29,7 @@ export function TreatmentsSection() {
 
         {/* Treatments Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {treatmentCategories.slice(0, 6).map((category, index) => (
+          {treatmentCategories.slice(0, 6).map((category, index: number) => (
             <div
               key={category.slug}
               className="group relative overflow-hidden rounded-lg bg-white border border-border card-hover"

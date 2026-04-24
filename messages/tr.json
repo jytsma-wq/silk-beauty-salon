@@ -15,7 +15,8 @@
     "press": "Basın",
     "blog": "Blog",
     "team": "Ekibimiz",
-    "beforeAfter": "Öncesi ve Sonrası"
+    "beforeAfter": "Öncesi ve Sonrası",
+    "mainNavigation": "Ana Navigasyon"
   },
   "header": {
     "announcement": "Ödüllü | Batumi'nin En İyi Güzellik Salonu | Gürcistan Moda ve Güzellik Dergisi'nde yayınlandı"
@@ -278,12 +279,17 @@
     "messageSent": "Mesajınız başarıyla gönderildi. Kısa süre içinde size geri döneceğiz.",
     "fullName": "Ad Soyad",
     "namePlaceholder": "Adınızı girin",
+    "nameRequired": "Lütfen adınızı girin",
     "emailAddress": "E-posta Adresi",
+    "emailRequired": "Lütfen e-posta adresinizi girin",
+    "emailInvalid": "Lütfen geçerli bir e-posta adresi girin",
     "emailPlaceholder": "E-postanızı girin",
     "phoneNumber": "Telefon Numarası",
     "phonePlaceholder": "Telefonunuzu girin",
+    "phoneOptional": "isteğe bağlı",
     "message": "Mesaj",
     "messagePlaceholder": "Size nasıl yardımcı olabiliriz?",
+    "messageRequired": "Lütfen bir mesaj girin",
     "sending": "Gönderiliyor...",
     "sendMessage": "Mesaj Gönder",
     "getInTouch": "İletişime Geçin",
@@ -1550,6 +1556,10 @@
     }
   },
   "accessibility": {
-    "skipToContent": "Ana içeriğe atla"
+    "skipToContent": "Ana içeriğe geç",
+    "skipToMain": "Ana içeriğe geç",
+    "skipToTreatments": "Tedavilere geç",
+    "skipToBooking": "Rezervasyona geç",
+    "skipNavigation": "Gezinti Atla Bağlantıları"
   }
 }

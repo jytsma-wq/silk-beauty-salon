@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ChevronRight, Clock, Check } from 'lucide-react';
-import { getTreatmentBySlug, getCategoryByTreatmentSlug, getAllTreatments } from '@/data/treatments';
+import { getTreatmentBySlug, getAllTreatmentSlugs, getCategoryByTreatmentSlug } from '@/lib/treatments-db';
 import { siteConfig } from '@/data/site-config';
 import { Button } from '@/components/ui/button';
 import { getTranslations } from 'next-intl/server';
@@ -13,6 +13,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+
+// Revalidate every 24 hours
+export const revalidate = 86400;
 
 interface Props {
   params: Promise<{ slug: string; locale: string }>;
@@ -36,10 +39,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  const treatments = await getAllTreatments('en');
-  return treatments.map((treatment) => ({
-    slug: treatment.slug,
-  }));
+  const locales = ['en', 'ka', 'ru', 'ar', 'he', 'tr'];
+  const slugs = await getAllTreatmentSlugs();
+  
+  const params = [];
+  for (const locale of locales) {
+    for (const slug of slugs) {
+      params.push({ locale, slug });
+    }
+  }
+  return params;
 }
 
 export default async function TreatmentPage({ params }: Props) {
@@ -57,7 +66,7 @@ export default async function TreatmentPage({ params }: Props) {
 
   // Find related treatments
   const relatedTreatments = category?.treatments
-    .filter(t => t.slug !== treatment.slug)
+    .filter((t: { slug: string }) => t.slug !== treatment?.slug)
     .slice(0, 3) || [];
 
   return (
@@ -289,7 +298,7 @@ export default async function TreatmentPage({ params }: Props) {
               {t('relatedTreatments') || 'Related Treatments'}
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {relatedTreatments.map((related) => (
+              {relatedTreatments.map((related: { slug: string; image: string; name: string; shortDescription: string }) => (
                 <Link
                   key={related.slug}
                   href={`/treatments/${related.slug}`}

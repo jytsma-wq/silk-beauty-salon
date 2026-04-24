@@ -278,6 +278,7 @@ export function Header() {
 
       {/* Main Header */}
       <header
+        role="banner"
         className={cn(
           'sticky top-0 z-50 w-full transition-all duration-300',
           isScrolled
@@ -366,7 +367,7 @@ export function Header() {
           </div>
 
           {/* Desktop Navigation - Centered with folder-style mega menus */}
-          <nav className="hidden lg:flex items-center justify-center gap-1 mt-2">
+          <nav aria-label={t('mainNavigation')} className="hidden lg:flex items-center justify-center gap-1 mt-2">
             {navItems.map((item) => (
               <div
                 key={item.name}
@@ -377,9 +378,11 @@ export function Header() {
                 <Link
                   href={item.href}
                   className={cn(
-                    'flex items-center gap-1 px-4 py-2 text-base font-medium text-primary hover:text-gold transition-colors',
+                    'flex items-center gap-1 px-4 py-2 text-base font-medium text-primary hover:text-gold transition-colors focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none',
                     item.hasDropdown && 'cursor-default'
                   )}
+                  aria-haspopup={item.hasDropdown ? 'true' : undefined}
+                  aria-expanded={item.hasDropdown ? activeDropdown === item.name : undefined}
                 >
                   {item.name}
                   {item.hasDropdown && (
@@ -388,13 +391,18 @@ export function Header() {
                         'w-4 h-4 transition-transform',
                         activeDropdown === item.name && 'rotate-180'
                       )}
+                      aria-hidden="true"
                     />
                   )}
                 </Link>
 
                 {/* Dropdown Menu - absolute positioned within the hover zone */}
                 {item.hasDropdown && activeDropdown === item.name && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 animate-fadeIn z-50">
+                  <div 
+                    className="absolute top-full left-1/2 -translate-x-1/2 pt-2 animate-fadeIn z-50"
+                    role="menu"
+                    aria-label={item.name}
+                  >
                     <div className="bg-white shadow-xl rounded-lg border border-border overflow-hidden">
                       {item.dropdownContent}
                     </div>

@@ -1,6 +1,41 @@
 import createMiddleware from 'next-intl/middleware';
 import { NextRequest, NextResponse } from 'next/server';
 import { routing } from './src/i18n/routing';
+import { randomBytes } from 'crypto';
+
+// Generate cryptographically secure nonce
+function generateNonce(): string {
+  return randomBytes(16).toString('base64');
+}
+
+// Build Content Security Policy header with nonce
+function buildCSPHeader(nonce: string): string {
+  const directives = [
+    "default-src 'self'",
+    "script-src 'self' 'nonce-" + nonce + "' 'strict-dynamic' https://www.google-analytics.com https://www.googletagmanager.com",
+    "style-src 'self' 'unsafe-inline'",
+    "img-src 'self' data: https: blob:",
+    "font-src 'self'",
+    "connect-src 'self' https://www.google-analytics.com https://vitals.vercel-insights.com",
+    "frame-src 'self'",
+    "object-src 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    "frame-ancestors 'none'",
+    "upgrade-insecure-requests",
+  ];
+  return directives.join('; ');
+}
+
+// Security headers configuration
+const SECURITY_HEADERS = {
+  'X-DNS-Prefetch-Control': 'on',
+  'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload',
+  'X-Frame-Options': 'DENY',
+  'X-Content-Type-Options': 'nosniff',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
+};
 
 // Rate limiting - in-memory store (resets on function cold start)
 // For production with multiple instances, use Redis or Upstash
@@ -167,8 +202,24 @@ export default function middleware(request: NextRequest) {
     }
   }
 
-  // 4. Pass to i18n middleware
-  return i18nMiddleware(request);
+  // 4. Pass to i18n middleware and add security headers
+  const response = i18nMiddleware(request);
+  
+  // Generate nonce for CSP
+  const nonce = generateNonce();
+  
+  // Add security headers to all responses
+  Object.entries(SECURITY_HEADERS).forEach(([key, value]) => {
+    response.headers.set(key, value);
+  });
+  
+  // Add CSP header with nonce
+  response.headers.set('Content-Security-Policy', buildCSPHeader(nonce));
+  
+  // Store nonce in header for client-side scripts to access
+  response.headers.set('X-Nonce', nonce);
+  
+  return response;
 }
 
 export const config = {

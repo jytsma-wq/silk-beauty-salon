@@ -15,7 +15,8 @@
     "press": "الصحافة",
     "blog": "المدونة",
     "team": "فريقنا",
-    "beforeAfter": "قبل وبعد"
+    "beforeAfter": "قبل وبعد",
+    "mainNavigation": "التنقل الرئيسي"
   },
   "header": {
     "announcement": "حائزة على جوائز | أفضل صالون تجميل في باتومي | نُشرت في مجلة الجمال والموضة الجورجية"
@@ -278,12 +279,17 @@
     "messageSent": "تم إرسال رسالتك بنجاح. سنتواصل معك قريباً.",
     "fullName": "الاسم الكامل",
     "namePlaceholder": "أدخل اسمك",
+    "nameRequired": "الرجاء إدخال اسمك",
     "emailAddress": "عنوان البريد الإلكتروني",
+    "emailRequired": "الرجاء إدخال عنوان البريد الإلكتروني",
+    "emailInvalid": "الرجاء إدخال عنوان بريد إلكتروني صالح",
     "emailPlaceholder": "أدخل بريدك الإلكتروني",
     "phoneNumber": "رقم الهاتف",
     "phonePlaceholder": "أدخل هاتفك",
+    "phoneOptional": "اختياري",
     "message": "الرسالة",
     "messagePlaceholder": "كيف يمكننا مساعدتك؟",
+    "messageRequired": "الرجاء إدخال رسالتك",
     "sending": "جاري الإرسال...",
     "sendMessage": "إرسال الرسالة",
     "getInTouch": "تواصل معنا",
@@ -1522,6 +1528,10 @@
     }
   },
   "accessibility": {
-    "skipToContent": "تخطى إلى المحتوى الرئيسي"
+    "skipToContent": "تخطى إلى المحتوى الرئيسي",
+    "skipToMain": "تخطى إلى المحتوى الرئيسي",
+    "skipToTreatments": "تخطى إلى العلاجات",
+    "skipToBooking": "تخطى إلى الحجز",
+    "skipNavigation": "روابط التخطي"
   }
 }

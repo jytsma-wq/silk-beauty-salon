@@ -15,7 +15,8 @@
     "faq": "FAQ",
     "press": "Press",
     "blog": "Blog",
-    "team": "Our Team"
+    "team": "Our Team",
+    "mainNavigation": "Main navigation"
   },
   "header": {
     "announcement": "Award Winning | Batumi's Premier Beauty Salon | Featured in Georgian Fashion & Beauty Magazine"
@@ -278,12 +279,17 @@
     "messageSent": "Your message has been sent successfully. We'll get back to you shortly.",
     "fullName": "Full Name",
     "namePlaceholder": "Enter your name",
+    "nameRequired": "Please enter your name",
     "emailAddress": "Email Address",
     "emailPlaceholder": "Enter your email",
+    "emailRequired": "Please enter your email address",
+    "emailInvalid": "Please enter a valid email address",
     "phoneNumber": "Phone Number",
     "phonePlaceholder": "Enter your phone",
+    "phoneOptional": "Optional",
     "message": "Message",
     "messagePlaceholder": "How can we help you?",
+    "messageRequired": "Please enter a message",
     "sending": "Sending...",
     "sendMessage": "Send Message",
     "getInTouch": "Get in Touch",
@@ -1231,7 +1237,11 @@
     "required": "Required"
   },
   "accessibility": {
-    "skipToContent": "Skip to main content"
+    "skipToContent": "Skip to main content",
+    "skipToMain": "Skip to main content",
+    "skipToTreatments": "Skip to treatments",
+    "skipToBooking": "Skip to booking",
+    "skipNavigation": "Skip links"
   },
   "whatsapp": {
     "chatOnWhatsApp": "Chat on WhatsApp",

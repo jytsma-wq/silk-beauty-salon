@@ -1,0 +1,162 @@
+name: Test & Build
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  lint-and-typecheck:
+    name: Lint & Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Run TypeScript type check
+        run: npm run typecheck
+
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    needs: lint-and-typecheck
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Vitest tests with coverage
+        run: npm run test:coverage
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-report
+          path: coverage/
+          retention-days: 30
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: [lint-and-typecheck, unit-tests]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build application
+        run: npm run build
+        env:
+          NODE_ENV: production
+          DATABASE_URL: ${{ secrets.DATABASE_URL || 'file:./dev.db' }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY || 'test-key' }}
+          RESEND_AUDIENCE_ID: ${{ secrets.RESEND_AUDIENCE_ID || 'test-audience' }}
+          CONTACT_EMAIL: ${{ secrets.CONTACT_EMAIL || 'test@example.com' }}
+          API_SECRET_KEY: ${{ secrets.API_SECRET_KEY || 'test-secret' }}
+
+  e2e-tests:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    needs: build
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium firefox webkit
+
+      - name: Build application
+        run: npm run build
+        env:
+          NODE_ENV: production
+          DATABASE_URL: ${{ secrets.DATABASE_URL || 'file:./dev.db' }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY || 'test-key' }}
+          RESEND_AUDIENCE_ID: ${{ secrets.RESEND_AUDIENCE_ID || 'test-audience' }}
+          CONTACT_EMAIL: ${{ secrets.CONTACT_EMAIL || 'test@example.com' }}
+          API_SECRET_KEY: ${{ secrets.API_SECRET_KEY || 'test-secret' }}
+
+      - name: Run Playwright tests
+        run: npm run test:e2e
+        env:
+          CI: true
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+
+  coverage-check:
+    name: Coverage Check
+    runs-on: ubuntu-latest
+    needs: unit-tests
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests with coverage
+        run: npm run test:coverage
+
+      - name: Check coverage thresholds
+        run: |
+          # Extract coverage percentages from coverage-summary.json
+          COVERAGE=$(cat coverage/coverage-summary.json | jq '.total.statements.pct')
+          echo "Statement coverage: $COVERAGE%"
+          
+          if (( $(echo "$COVERAGE < 70" | bc -l) )); then
+            echo "Coverage dropped below 70% threshold!"
+            exit 1
+          fi
+          
+          echo "Coverage check passed!"

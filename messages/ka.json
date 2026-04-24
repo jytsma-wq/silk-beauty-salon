@@ -15,7 +15,8 @@
     "press": "პრესა",
     "blog": "ბლოგი",
     "team": "ჩვენი გუნდი",
-    "beforeAfter": "სანამ და მერე"
+    "beforeAfter": "სანამ და მერე",
+    "mainNavigation": "მთავარი ნავიგაცია"
   },
   "header": {
     "announcement": "ჯილდოს მფლობელი | ბათუმის საუკეთესო სილამაზის სალონი | გამოქვეყნებულია ქართული მოდისა და სილამაზის ჟურნალში"
@@ -269,12 +270,17 @@
     "messageSent": "თქვენი შეტყობინება წარმატებით გაიგზავნა. მალე დაგიკავშირდებით.",
     "fullName": "სრული სახელი",
     "namePlaceholder": "შეიყვანეთ თქვენი სახელი",
+    "nameRequired": "გთხოვთ, შეიყვანოთ თქვენი სახელი",
     "emailAddress": "ელფოსტის მისამართი",
+    "emailRequired": "გთხოვთ, შეიყვანოთ ელფოსტის მისამართი",
+    "emailInvalid": "გთხოვთ, შეიყვანოთ სწორი ელფოსტის მისამართი",
     "emailPlaceholder": "შეიყვანეთ თქვენი ელფოსტა",
     "phoneNumber": "ტელეფონის ნომერი",
     "phonePlaceholder": "შეიყვანეთ თქვენი ტელეფონი",
+    "phoneOptional": "სურვილისამებრ",
     "message": "შეტყობინება",
     "messagePlaceholder": "როგორ შეგვიძლია დაგეხმაროთ?",
+    "messageRequired": "გთხოვთ, შეიყვანოთ შეტყობინება",
     "sending": "იგზავნება...",
     "sendMessage": "შეტყობინების გაგზავნა",
     "getInTouch": "დაგვიკავშირდით",
@@ -1179,7 +1185,11 @@
     "required": "საჭირო"
   },
   "accessibility": {
-    "skipToContent": "გადადით მთავარ კონტენტზე"
+    "skipToContent": "გადადით მთავარ კონტენტზე",
+    "skipToMain": "გადადით მთავარ კონტენტზე",
+    "skipToTreatments": "გადადით მკურნალობებზე",
+    "skipToBooking": "გადადით ჯავშანზე",
+    "skipNavigation": "გამოტოვების ბმულები"
   },
   "whatsapp": {
     "chatOnWhatsApp": "WhatsApp-ში წერა",
