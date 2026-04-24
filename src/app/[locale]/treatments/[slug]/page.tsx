@@ -2,10 +2,11 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ChevronRight, Clock, Star, Check } from 'lucide-react';
-import { getTreatmentBySlug, treatmentCategories, getAllTreatments } from '@/data/treatments';
+import { ChevronRight, Clock, Check } from 'lucide-react';
+import { getTreatmentBySlug, getCategoryByTreatmentSlug, getAllTreatments } from '@/data/treatments';
 import { siteConfig } from '@/data/site-config';
 import { Button } from '@/components/ui/button';
+import { getTranslations } from 'next-intl/server';
 import {
   Accordion,
   AccordionContent,
@@ -14,16 +15,17 @@ import {
 } from "@/components/ui/accordion";
 
 interface Props {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const resolvedParams = await params;
-  const treatment = getTreatmentBySlug(resolvedParams.slug);
+  const tCommon = await getTranslations({locale: resolvedParams.locale, namespace: 'common'});
+  const treatment = await getTreatmentBySlug(resolvedParams.slug, resolvedParams.locale);
   
   if (!treatment) {
     return {
-      title: 'Treatment Not Found | Silk Beauty Salon',
+      title: `${tCommon('notFound')} | Silk Beauty Salon`,
     };
   }
 
@@ -34,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  const treatments = getAllTreatments();
+  const treatments = await getAllTreatments('en');
   return treatments.map((treatment) => ({
     slug: treatment.slug,
   }));
@@ -42,16 +44,16 @@ export async function generateStaticParams() {
 
 export default async function TreatmentPage({ params }: Props) {
   const resolvedParams = await params;
-  const treatment = getTreatmentBySlug(resolvedParams.slug);
+  const t = await getTranslations({locale: resolvedParams.locale, namespace: 'treatmentPage'});
+  const tCommon = await getTranslations({locale: resolvedParams.locale, namespace: 'common'});
+  const treatment = await getTreatmentBySlug(resolvedParams.slug, resolvedParams.locale);
 
   if (!treatment) {
     notFound();
   }
 
   // Find the category this treatment belongs to
-  const category = treatmentCategories.find(cat => 
-    cat.treatments.some(t => t.slug === treatment.slug)
-  );
+  const category = await getCategoryByTreatmentSlug(treatment?.slug || '', resolvedParams.locale);
 
   // Find related treatments
   const relatedTreatments = category?.treatments
@@ -66,11 +68,11 @@ export default async function TreatmentPage({ params }: Props) {
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-sm mb-8 text-gray-300">
             <Link href="/" className="hover:text-gold">
-              Home
+              {tCommon('home')}
             </Link>
             <ChevronRight className="w-4 h-4" />
             <Link href="/treatments" className="hover:text-gold">
-              Treatments
+              {tCommon('treatments')}
             </Link>
             <ChevronRight className="w-4 h-4" />
             <span className="text-gold">{treatment.name}</span>
@@ -99,13 +101,13 @@ export default async function TreatmentPage({ params }: Props) {
               <div className="flex flex-wrap gap-4 mb-8">
                 {treatment.price && (
                   <div className="bg-white/10 rounded-lg px-4 py-2">
-                    <span className="text-sm text-gray-300">Price from</span>
+                    <span className="text-sm text-gray-300">{t('price') || 'Price from'}</span>
                     <p className="text-xl font-semibold text-gold">{treatment.price}</p>
                   </div>
                 )}
                 {treatment.duration && (
                   <div className="bg-white/10 rounded-lg px-4 py-2">
-                    <span className="text-sm text-gray-300">Duration</span>
+                    <span className="text-sm text-gray-300">{t('duration') || 'Duration'}</span>
                     <p className="text-xl font-semibold text-white flex items-center gap-2">
                       <Clock className="w-5 h-5 text-gold" />
                       {treatment.duration}
@@ -116,7 +118,7 @@ export default async function TreatmentPage({ params }: Props) {
 
               <Button asChild size="lg" className="btn-gold">
                 <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
-                  Book Consultation
+                  {t('bookConsultation') || 'Book Consultation'}
                 </a>
               </Button>
             </div>
@@ -147,7 +149,7 @@ export default async function TreatmentPage({ params }: Props) {
                   className="text-2xl font-serif font-semibold text-primary mb-6"
                   style={{ fontFamily: "'Playfair Display', serif" }}
                 >
-                  About This Treatment
+                  {t('aboutTreatment') || 'About This Treatment'}
                 </h2>
                 <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
                   {treatment.description}
@@ -161,7 +163,7 @@ export default async function TreatmentPage({ params }: Props) {
                     className="text-2xl font-serif font-semibold text-primary mb-6"
                     style={{ fontFamily: "'Playfair Display', serif" }}
                   >
-                    Benefits
+                    {t('benefits') || 'Benefits'}
                   </h2>
                   <div className="grid sm:grid-cols-2 gap-4">
                     {treatment.benefits.map((benefit, index) => (
@@ -181,7 +183,7 @@ export default async function TreatmentPage({ params }: Props) {
                     className="text-2xl font-serif font-semibold text-primary mb-6"
                     style={{ fontFamily: "'Playfair Display', serif" }}
                   >
-                    How It Works
+                    {t('howItWorks') || 'How It Works'}
                   </h2>
                   <p className="text-muted-foreground leading-relaxed">
                     {treatment.howItWorks}
@@ -196,7 +198,7 @@ export default async function TreatmentPage({ params }: Props) {
                     className="text-2xl font-serif font-semibold text-primary mb-6"
                     style={{ fontFamily: "'Playfair Display', serif" }}
                   >
-                    Aftercare
+                    {t('aftercare') || 'Aftercare'}
                   </h2>
                   <div className="bg-secondary rounded-lg p-6">
                     <p className="text-muted-foreground leading-relaxed">
@@ -213,7 +215,7 @@ export default async function TreatmentPage({ params }: Props) {
                     className="text-2xl font-serif font-semibold text-primary mb-6"
                     style={{ fontFamily: "'Playfair Display', serif" }}
                   >
-                    Frequently Asked Questions
+                    {t('faqs') || 'Frequently Asked Questions'}
                   </h2>
                   <Accordion type="single" collapsible className="w-full">
                     {treatment.faqs.map((faq, index) => (
@@ -236,14 +238,14 @@ export default async function TreatmentPage({ params }: Props) {
               {/* Book CTA */}
               <div className="bg-primary rounded-lg p-6 text-center mb-8">
                 <h3 className="font-serif text-xl text-white mb-4">
-                  Ready to get started?
+                  {t('readyToStart') || 'Ready to get started?'}
                 </h3>
                 <p className="text-gray-300 text-sm mb-4">
-                  Book a consultation with one of our expert practitioners
+                  {t('bookConsultationDesc') || 'Book a consultation with one of our expert practitioners'}
                 </p>
                 <Button asChild className="btn-gold w-full">
                   <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
-                    Book Now
+                    {t('bookNow') || 'Book Now'}
                   </a>
                 </Button>
               </div>
@@ -251,25 +253,25 @@ export default async function TreatmentPage({ params }: Props) {
               {/* Contact Info */}
               <div className="bg-secondary rounded-lg p-6">
                 <h3 className="font-serif text-lg font-semibold text-primary mb-4">
-                  Contact Us
+                  {t('contactUs') || 'Contact Us'}
                 </h3>
                 <ul className="space-y-3 text-sm">
                   <li>
-                    <span className="text-muted-foreground">Phone:</span>
+                    <span className="text-muted-foreground">{t('phone') || 'Phone'}:</span>
                     <br />
                     <a href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`} className="text-primary hover:text-gold">
                       {siteConfig.contact.phone}
                     </a>
                   </li>
                   <li>
-                    <span className="text-muted-foreground">Email:</span>
+                    <span className="text-muted-foreground">{t('email') || 'Email'}:</span>
                     <br />
                     <a href={`mailto:${siteConfig.contact.email}`} className="text-primary hover:text-gold">
                       {siteConfig.contact.email}
                     </a>
                   </li>
                   <li>
-                    <span className="text-muted-foreground">Address:</span>
+                    <span className="text-muted-foreground">{t('address') || 'Address'}:</span>
                     <br />
                     <span className="text-primary">
                       {siteConfig.contact.address}<br />
@@ -291,7 +293,7 @@ export default async function TreatmentPage({ params }: Props) {
               className="text-2xl font-serif font-semibold text-primary mb-8"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
-              Related Treatments
+              {t('relatedTreatments') || 'Related Treatments'}
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {relatedTreatments.map((related) => (

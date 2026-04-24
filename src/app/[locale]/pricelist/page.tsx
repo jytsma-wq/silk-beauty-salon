@@ -4,13 +4,21 @@ import { ChevronRight } from 'lucide-react';
 import { treatmentCategories } from '@/data/treatments';
 import { siteConfig } from '@/data/site-config';
 import { Button } from '@/components/ui/button';
+import { getTranslations } from 'next-intl/server';
 
 export const metadata: Metadata = {
   title: 'Price List | Silk Beauty Salon',
   description: 'View our comprehensive treatment price list for all our aesthetic services.',
 };
 
-export default function PriceListPage() {
+export default async function PriceListPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'pricelistPage' });
+  const tCommon = await getTranslations({ locale, namespace: 'common' });
   return (
     <>
       {/* Hero Section */}
@@ -20,10 +28,10 @@ export default function PriceListPage() {
             className="text-4xl md:text-5xl font-serif font-semibold text-white mb-4"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            Price List
+            {t('title')}
           </h1>
           <p className="text-gray-300 max-w-2xl mx-auto">
-            Transparent pricing for all our premium aesthetic treatments
+            {t('subtitle')}
           </p>
         </div>
       </section>
@@ -33,10 +41,10 @@ export default function PriceListPage() {
         <div className="container-custom">
           <nav className="flex items-center gap-2 text-sm">
             <Link href="/" className="text-muted-foreground hover:text-gold">
-              Home
+              {tCommon('home')}
             </Link>
             <ChevronRight className="w-4 h-4 text-muted-foreground" />
-            <span className="text-primary font-medium">Price List</span>
+            <span className="text-primary font-medium">{t('title')}</span>
           </nav>
         </div>
       </div>
@@ -47,9 +55,7 @@ export default function PriceListPage() {
           {/* Note */}
           <div className="bg-secondary rounded-lg p-6 mb-12">
             <p className="text-sm text-muted-foreground">
-              <strong className="text-primary">Note:</strong> Prices are starting prices and may vary based on individual requirements. 
-              A consultation is required to determine the exact treatment plan and cost. 
-              All consultations include a comprehensive skin analysis and personalized treatment recommendations.
+              <strong className="text-primary">{t('noteTitle')}</strong> {t('noteText')}
             </p>
           </div>
 
@@ -66,9 +72,9 @@ export default function PriceListPage() {
                 <table className="w-full">
                   <thead>
                     <tr className="bg-secondary">
-                      <th className="text-left p-4 font-semibold">Treatment</th>
-                      <th className="text-left p-4 font-semibold hidden sm:table-cell">Duration</th>
-                      <th className="text-right p-4 font-semibold">Price From</th>
+                      <th className="text-left p-4 font-semibold">{t('treatment')}</th>
+                      <th className="text-left p-4 font-semibold hidden sm:table-cell">{t('duration')}</th>
+                      <th className="text-right p-4 font-semibold">{t('priceFrom')}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -93,7 +99,7 @@ export default function PriceListPage() {
                         </td>
                         <td className="p-4 text-right">
                           <span className="font-semibold text-gold">
-                            {treatment.price || 'Enquire'}
+                            {treatment.price || t('enquire')}
                           </span>
                         </td>
                       </tr>
@@ -110,14 +116,14 @@ export default function PriceListPage() {
               className="text-2xl font-serif font-semibold text-white mb-4"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
-              Ready to Book?
+              {t('ctaTitle')}
             </h2>
             <p className="text-gray-300 mb-6 max-w-xl mx-auto">
-              Book a consultation to discuss your treatment goals and receive a personalized quote
+              {t('ctaSubtitle')}
             </p>
             <Button asChild className="btn-gold">
               <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
-                Book a Consultation
+                {t('ctaButton')}
               </a>
             </Button>
           </div>

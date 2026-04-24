@@ -1,74 +1,81 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { ChevronRight, Tag, Percent } from 'lucide-react';
 import { siteConfig } from '@/data/site-config';
 import { Button } from '@/components/ui/button';
+import { getTranslations } from 'next-intl/server';
 
 export const metadata: Metadata = {
   title: 'Special Offers | Silk Beauty Salon',
   description: 'Discover our latest special offers and promotions on premium aesthetic treatments.',
 };
 
-export default function OffersPage() {
+export default async function OffersPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'offersPage' });
+  const tCommon = await getTranslations({ locale, namespace: 'common' });
   const offers = [
     {
-      title: 'New Client Special',
-      description: 'Book your first consultation and receive 20% off your first treatment.',
+      titleKey: 'newClient',
       discount: '20% OFF',
-      terms: 'Valid for new clients only. Cannot be combined with other offers.',
       highlight: true,
     },
     {
-      title: 'Anti-Wrinkle Package',
-      description: 'Book 3 areas of anti-wrinkle treatment and save.',
+      titleKey: 'antiWrinkle',
       discount: 'Save £100',
-      terms: 'Valid for 3 areas treated in the same session.',
       highlight: false,
     },
     {
-      title: 'Dermal Filler Bundle',
-      description: 'Book 2ml or more of dermal filler and receive complimentary skin booster.',
+      titleKey: 'dermalFiller',
       discount: 'Free Skin Booster',
-      terms: 'Limited time offer. Subject to availability.',
       highlight: false,
     },
     {
-      title: 'Referral Reward',
-      description: 'Refer a friend and you both receive £50 credit towards your next treatment.',
+      titleKey: 'referral',
       discount: '£50 Credit',
-      terms: 'Referred friend must complete a treatment.',
       highlight: false,
     },
     {
-      title: 'Seasonal Skin Refresh',
-      description: 'Combine any laser treatment with a medical facial for 15% off both.',
+      titleKey: 'seasonal',
       discount: '15% OFF',
-      terms: 'Both treatments must be booked in the same month.',
       highlight: false,
     },
     {
-      title: 'Loyalty Programme',
-      description: 'Join our loyalty programme and earn points on every treatment.',
+      titleKey: 'loyalty',
       discount: 'Earn Points',
-      terms: 'Points can be redeemed towards future treatments.',
       highlight: false,
     },
   ];
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="bg-primary py-20">
-        <div className="container-custom text-center">
-          <h1 
-            className="text-4xl md:text-5xl font-serif font-semibold text-white mb-4"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
-            Special Offers
-          </h1>
-          <p className="text-gray-300 max-w-2xl mx-auto">
-            Take advantage of our exclusive promotions and special offers
-          </p>
+      {/* Full Screen Hero Image */}
+      <section className="relative h-screen min-h-[600px]">
+        <Image
+          src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80"
+          alt="Special Offers"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-primary/40" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="container-custom text-center">
+            <h1 
+              className="text-4xl md:text-6xl font-serif font-semibold text-white mb-4"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              {t('title')}
+            </h1>
+            <p className="text-gray-200 max-w-2xl mx-auto text-lg">
+              {t('subtitle')}
+            </p>
+          </div>
         </div>
       </section>
 
@@ -77,10 +84,10 @@ export default function OffersPage() {
         <div className="container-custom">
           <nav className="flex items-center gap-2 text-sm">
             <Link href="/" className="text-muted-foreground hover:text-gold">
-              Home
+              {tCommon('home')}
             </Link>
             <ChevronRight className="w-4 h-4 text-muted-foreground" />
-            <span className="text-primary font-medium">Offers</span>
+            <span className="text-primary font-medium">{t('breadcrumb')}</span>
           </nav>
         </div>
       </div>
@@ -110,13 +117,13 @@ export default function OffersPage() {
                     className="text-xl font-serif font-semibold text-primary mb-2"
                     style={{ fontFamily: "'Playfair Display', serif" }}
                   >
-                    {offer.title}
+                    {t(`offers.${offer.titleKey}.title`)}
                   </h3>
                   <p className="text-muted-foreground text-sm mb-4">
-                    {offer.description}
+                    {t(`offers.${offer.titleKey}.description`)}
                   </p>
                   <p className="text-xs text-muted-foreground/70">
-                    {offer.terms}
+                    {t(`offers.${offer.titleKey}.terms`)}
                   </p>
                 </div>
               </div>
@@ -129,14 +136,14 @@ export default function OffersPage() {
               className="text-2xl font-serif font-semibold text-white mb-4"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
-              Book Your Treatment Today
+              {t('ctaTitle')}
             </h2>
             <p className="text-gray-300 mb-6 max-w-xl mx-auto">
-              Contact us to book your consultation and take advantage of these exclusive offers
+              {t('ctaSubtitle')}
             </p>
             <Button asChild className="btn-gold">
               <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
-                Book Now
+                {t('ctaButton')}
               </a>
             </Button>
           </div>
@@ -144,9 +151,7 @@ export default function OffersPage() {
           {/* Terms */}
           <div className="mt-8 text-center">
             <p className="text-sm text-muted-foreground">
-              All offers are subject to availability and may be withdrawn at any time. 
-              Offers cannot be combined unless otherwise stated. 
-              Please mention the offer when booking.
+              {t('termsText')}
             </p>
           </div>
         </div>

@@ -10,7 +10,8 @@ export interface Condition {
   relatedTreatments?: string[];
 }
 
-export const conditions: Condition[] = [
+// Base conditions data (non-translatable: images, slugs)
+const baseConditions: Condition[] = [
   {
     name: "Ageing Skin",
     slug: "ageing-skin",
@@ -273,6 +274,43 @@ export const conditions: Condition[] = [
   }
 ];
 
-export function getConditionBySlug(slug: string): Condition | undefined {
+// Helper to get translated content from messages
+async function getConditionTranslations(locale: string) {
+  try {
+    const messages = await import(`../../messages/${locale}.json`);
+    return messages.default?.conditionContent || {};
+  } catch {
+    return {};
+  }
+}
+
+// Merge base data with translations
+export async function getLocalizedConditions(locale: string): Promise<Condition[]> {
+  const translations = await getConditionTranslations(locale);
+  
+  return baseConditions.map(condition => ({
+    ...condition,
+    name: translations[condition.slug]?.name || condition.name,
+    description: translations[condition.slug]?.description || condition.description,
+    shortDescription: translations[condition.slug]?.shortDescription || condition.shortDescription,
+    symptoms: translations[condition.slug]?.symptoms || condition.symptoms,
+    causes: translations[condition.slug]?.causes || condition.causes,
+    treatments: translations[condition.slug]?.treatments || condition.treatments,
+  }));
+}
+
+export async function getAllConditions(locale: string = 'en'): Promise<Condition[]> {
+  return getLocalizedConditions(locale);
+}
+
+export async function getConditionBySlug(slug: string, locale: string = 'en'): Promise<Condition | undefined> {
+  const conditions = await getLocalizedConditions(locale);
   return conditions.find(condition => condition.slug === slug);
+}
+
+// Backwards compatible synchronous versions (English only)
+export const conditions = baseConditions;
+
+export function getAllConditionsSync(): Condition[] {
+  return baseConditions;
 }

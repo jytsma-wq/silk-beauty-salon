@@ -1,3 +1,5 @@
+import { getMessages } from 'next-intl/server';
+
 export interface Treatment {
   name: string;
   slug: string;
@@ -20,7 +22,8 @@ export interface TreatmentCategory {
   treatments: Treatment[];
 }
 
-export const treatmentCategories: TreatmentCategory[] = [
+// Base treatment data (non-translatable: images, prices, slugs)
+const baseTreatmentCategories: TreatmentCategory[] = [
   {
     name: "Botox Injectables",
     slug: "botox",
@@ -912,14 +915,67 @@ export const treatmentCategories: TreatmentCategory[] = [
   }
 ];
 
-export function getAllTreatments(): Treatment[] {
-  return treatmentCategories.flatMap(category => category.treatments);
+// Helper to get translated content from messages
+async function getTreatmentTranslations(locale: string) {
+  try {
+    const messages = await import(`../../messages/${locale}.json`);
+    return messages.default?.treatmentContent || {};
+  } catch {
+    return {};
+  }
 }
 
-export function getTreatmentBySlug(slug: string): Treatment | undefined {
-  return getAllTreatments().find(treatment => treatment.slug === slug);
+// Merge base data with translations
+export async function getLocalizedTreatmentCategories(locale: string): Promise<TreatmentCategory[]> {
+  const translations = await getTreatmentTranslations(locale);
+  
+  return baseTreatmentCategories.map(category => ({
+    ...category,
+    name: translations[category.slug]?.name || category.name,
+    description: translations[category.slug]?.description || category.description,
+    treatments: category.treatments.map(treatment => ({
+      ...treatment,
+      name: translations[treatment.slug]?.name || treatment.name,
+      description: translations[treatment.slug]?.description || treatment.description,
+      shortDescription: translations[treatment.slug]?.shortDescription || treatment.shortDescription,
+      benefits: translations[treatment.slug]?.benefits || treatment.benefits,
+      howItWorks: translations[treatment.slug]?.howItWorks || treatment.howItWorks,
+      aftercare: translations[treatment.slug]?.aftercare || treatment.aftercare,
+      faqs: translations[treatment.slug]?.faqs || treatment.faqs,
+    }))
+  }));
 }
 
-export function getTreatmentCategoryBySlug(slug: string): TreatmentCategory | undefined {
-  return treatmentCategories.find(category => category.slug === slug);
+export async function getAllTreatments(locale: string = 'en'): Promise<Treatment[]> {
+  const categories = await getLocalizedTreatmentCategories(locale);
+  return categories.flatMap(category => category.treatments);
+}
+
+export async function getTreatmentBySlug(slug: string, locale: string = 'en'): Promise<Treatment | undefined> {
+  const treatments = await getAllTreatments(locale);
+  return treatments.find(treatment => treatment.slug === slug);
+}
+
+export async function getTreatmentCategoryBySlug(slug: string, locale: string = 'en'): Promise<TreatmentCategory | undefined> {
+  const categories = await getLocalizedTreatmentCategories(locale);
+  return categories.find(category => category.slug === slug);
+}
+
+// Helper to find category containing a specific treatment
+export async function getCategoryByTreatmentSlug(treatmentSlug: string, locale: string = 'en'): Promise<TreatmentCategory | undefined> {
+  const categories = await getLocalizedTreatmentCategories(locale);
+  return categories.find(category => 
+    category.treatments.some(t => t.slug === treatmentSlug)
+  );
+}
+
+// Backwards compatible synchronous versions (English only)
+export const treatmentCategories = baseTreatmentCategories;
+
+export function getAllTreatmentsSync(): Treatment[] {
+  return baseTreatmentCategories.flatMap(category => category.treatments);
+}
+
+export function getTreatmentBySlugSync(slug: string): Treatment | undefined {
+  return getAllTreatmentsSync().find(treatment => treatment.slug === slug);
 }

@@ -2,23 +2,27 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import type { Metadata } from "next";
-import { Playfair_Display, Poppins } from "next/font/google";
+import { Cormorant_Garamond, Poppins } from "next/font/google";
 import "../globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { ConsentProvider } from "@/components/providers/ConsentProvider";
+import { AnalyticsScripts } from "@/components/providers/AnalyticsScripts";
+import { WhatsAppWidget } from "@/components/layout/WhatsAppWidget";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const display = Cormorant_Garamond({
   subsets: ["latin"],
+  weight: ["300", "400", "600"],
   display: "swap",
+  variable: "--font-display",
 });
 
-const poppins = Poppins({
-  variable: "--font-poppins",
+const body = Poppins({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600"],
   display: "swap",
+  variable: "--font-body",
 });
 
 export const metadata: Metadata = {
@@ -58,15 +62,26 @@ export default async function LocaleLayout({
   return (
     <html lang={validLocale} suppressHydrationWarning className="scroll-smooth" dir={isRtl ? 'rtl' : 'ltr'}>
       <body
-        className={`${playfair.variable} ${poppins.variable} antialiased bg-background text-foreground`}
-        style={{ fontFamily: "var(--font-poppins), sans-serif" }}
+        className={`${display.variable} ${body.variable} antialiased bg-background text-foreground`}
+        style={{ fontFamily: "var(--font-body), sans-serif" }}
       >
-        <NextIntlClientProvider messages={messages}>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-          <Toaster />
-        </NextIntlClientProvider>
+        {/* Skip to content link for accessibility */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:outline-none focus:ring-2 focus:ring-gold"
+        >
+          Skip to main content
+        </a>
+        <ConsentProvider>
+          <AnalyticsScripts />
+          <NextIntlClientProvider messages={messages}>
+            <Header />
+            <main id="main-content">{children}</main>
+            <Footer />
+            <WhatsAppWidget />
+            <Toaster />
+          </NextIntlClientProvider>
+        </ConsentProvider>
       </body>
     </html>
   );

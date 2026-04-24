@@ -3,13 +3,21 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ChevronRight, Calendar, Clock } from 'lucide-react';
 import { siteConfig } from '@/data/site-config';
+import { getTranslations } from 'next-intl/server';
 
 export const metadata: Metadata = {
   title: 'Blog | Silk Beauty Salon',
   description: 'Read our latest articles on aesthetic treatments, skincare tips, and industry insights.',
 };
 
-export default function BlogPage() {
+export default async function BlogPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'blogPage' });
+  const tCommon = await getTranslations({ locale, namespace: 'common' });
   const blogPosts = [
     {
       title: 'The Ultimate Guide to Anti-Wrinkle Treatments',
@@ -76,10 +84,10 @@ export default function BlogPage() {
             className="text-4xl md:text-5xl font-serif font-semibold text-white mb-4"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            Our Blog
+            {t('title')}
           </h1>
           <p className="text-gray-300 max-w-2xl mx-auto">
-            Expert insights, treatment guides, and the latest from the world of aesthetics
+            {t('subtitle')}
           </p>
         </div>
       </section>
@@ -89,10 +97,10 @@ export default function BlogPage() {
         <div className="container-custom">
           <nav className="flex items-center gap-2 text-sm">
             <Link href="/" className="text-muted-foreground hover:text-gold">
-              Home
+              {tCommon('home')}
             </Link>
             <ChevronRight className="w-4 h-4 text-muted-foreground" />
-            <span className="text-primary font-medium">Blog</span>
+            <span className="text-primary font-medium">{t('breadcrumb')}</span>
           </nav>
         </div>
       </div>
@@ -141,7 +149,7 @@ export default function BlogPage() {
                     href={`/blog/${post.slug}`}
                     className="inline-flex items-center gap-1 text-sm font-medium text-gold hover:underline"
                   >
-                    Read More
+                    {tCommon('readMore')}
                     <ChevronRight className="w-4 h-4" />
                   </Link>
                 </div>
@@ -158,16 +166,16 @@ export default function BlogPage() {
             className="text-2xl font-serif font-semibold text-primary mb-4"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            Stay Updated
+            {t('stayUpdated')}
           </h2>
           <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-            Subscribe to our newsletter for the latest articles, tips, and exclusive offers
+            {t('newsletterDesc')}
           </p>
           <Link
             href="/#newsletter"
             className="inline-flex items-center gap-2 btn-gold px-6 py-3 rounded-md text-primary font-medium hover:bg-gold/90 transition-colors"
           >
-            Subscribe to Newsletter
+            {t('subscribeButton')}
           </Link>
         </div>
       </section>

@@ -4,54 +4,67 @@ import Link from 'next/link';
 import { ChevronRight, ExternalLink } from 'lucide-react';
 import { siteConfig } from '@/data/site-config';
 import { Button } from '@/components/ui/button';
+import { getTranslations } from 'next-intl/server';
 
-export const metadata: Metadata = {
-  title: 'Press & Media | Silk Beauty Salon',
-  description: 'Read our latest press coverage and media features.',
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'mediaPress' });
+  return {
+    title: `${t('title')} | Silk Beauty Salon`,
+    description: t('subtitle'),
+  };
+}
 
-export default function MediaPressPage() {
+export default async function MediaPressPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'mediaPress' });
+  const tCommon = await getTranslations({ locale, namespace: 'common' });
+
   const pressFeatures = [
     {
       publication: 'Vogue',
-      title: 'The Best Aesthetic Clinics in London',
-      date: 'January 2024',
-      excerpt: 'Silk Beauty Salon is named as one of the top aesthetic clinics in Batumi...',
+      title: t('feature1Title'),
+      date: t('feature1Date'),
+      excerpt: t('feature1Excerpt'),
       image: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=400&q=80',
     },
     {
       publication: 'Grazia',
-      title: 'The Ultimate Guide to Non-Surgical Treatments',
-      date: 'December 2023',
-      excerpt: 'Expert advice from the team at Silk Beauty Salon on the latest treatments...',
+      title: t('feature2Title'),
+      date: t('feature2Date'),
+      excerpt: t('feature2Excerpt'),
       image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400&q=80',
     },
     {
       publication: 'Tatler',
-      title: 'Top Beauty Clinics to Visit This Year',
-      date: 'November 2023',
-      excerpt: 'Discover why Silk Beauty Salon continues to be a go-to destination...',
+      title: t('feature3Title'),
+      date: t('feature3Date'),
+      excerpt: t('feature3Excerpt'),
       image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80',
     },
     {
       publication: 'Vanity Fair',
-      title: 'The Rise of Natural-Looking Aesthetics',
-      date: 'October 2023',
-      excerpt: 'How leading clinics like Silk Beauty Salon are changing the approach...',
+      title: t('feature4Title'),
+      date: t('feature4Date'),
+      excerpt: t('feature4Excerpt'),
       image: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=400&q=80',
     },
     {
-      publication: 'Harper\'s Bazaar',
-      title: 'Expert Tips for Your First Treatment',
-      date: 'September 2023',
-      excerpt: 'The experts at Silk Beauty Salon share their advice for newcomers...',
+      publication: "Harper's Bazaar",
+      title: t('feature5Title'),
+      date: t('feature5Date'),
+      excerpt: t('feature5Excerpt'),
       image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&q=80',
     },
     {
       publication: 'Elle',
-      title: 'The Treatments Everyone Is Talking About',
-      date: 'August 2023',
-      excerpt: 'From skin boosters to laser treatments, we explore the most popular procedures...',
+      title: t('feature6Title'),
+      date: t('feature6Date'),
+      excerpt: t('feature6Excerpt'),
       image: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=400&q=80',
     },
   ];
@@ -65,10 +78,10 @@ export default function MediaPressPage() {
             className="text-4xl md:text-5xl font-serif font-semibold text-white mb-4"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            Press & Media
+            {t('title')}
           </h1>
           <p className="text-gray-300 max-w-2xl mx-auto">
-            Read our latest press coverage and media features
+            {t('subtitle')}
           </p>
         </div>
       </section>
@@ -78,10 +91,10 @@ export default function MediaPressPage() {
         <div className="container-custom">
           <nav className="flex items-center gap-2 text-sm">
             <Link href="/" className="text-muted-foreground hover:text-gold">
-              Home
+              {tCommon('home')}
             </Link>
             <ChevronRight className="w-4 h-4 text-muted-foreground" />
-            <span className="text-primary font-medium">Press & Media</span>
+            <span className="text-primary font-medium">{t('breadcrumb')}</span>
           </nav>
         </div>
       </div>
@@ -121,7 +134,7 @@ export default function MediaPressPage() {
                     href="#"
                     className="inline-flex items-center gap-1 text-sm font-medium text-gold hover:underline"
                   >
-                    Read Article
+                    {t('readArticle')}
                     <ExternalLink className="w-3 h-3" />
                   </a>
                 </div>
@@ -139,17 +152,17 @@ export default function MediaPressPage() {
               className="text-2xl font-serif font-semibold text-primary mb-4"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
-              Media Enquiries
+              {t('mediaEnquiries')}
             </h2>
             <p className="text-muted-foreground mb-6">
-              For press and media enquiries, please contact our team at{' '}
+              {t('mediaText')}{' '}
               <a href={`mailto:${siteConfig.contact.email}`} className="text-gold hover:underline">
                 {siteConfig.contact.email}
               </a>
             </p>
             <Button asChild variant="outline">
               <a href={`mailto:${siteConfig.contact.email}`}>
-                Contact Press Team
+                {t('contactPress')}
               </a>
             </Button>
           </div>

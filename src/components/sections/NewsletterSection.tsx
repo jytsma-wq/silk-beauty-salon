@@ -10,10 +10,19 @@ export function NewsletterSection() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle newsletter signup
-    setSubmitted(true);
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      if (!res.ok) throw new Error('Failed');
+      setSubmitted(true);
+    } catch {
+      // show error state
+    }
   };
 
   return (
@@ -22,7 +31,6 @@ export function NewsletterSection() {
         <div className="max-w-2xl mx-auto text-center">
           <h2 
             className="text-2xl md:text-3xl font-serif font-semibold text-primary mb-4"
-            style={{ fontFamily: "'Playfair Display', serif" }}
           >
             {t('title')}
           </h2>
