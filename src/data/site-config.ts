@@ -63,7 +63,7 @@ export const siteConfig = {
     {
       name: "Nana Gviniashvili",
       role: "Owner & Medical Aesthetic Practitioner",
-      bio: "Nana Gviniashvili is the owner and sole practitioner at Silk Beauty Salon. With extensive training in medical aesthetics and facial dermatology, she specializes in Botox, dermal fillers, and advanced skin treatments. Nana is known for her natural-looking results, meticulous attention to detail, and personalized approach to each client. She speaks Georgian, English, and Russian fluently, making international clients feel comfortable and well-cared-for.",
+      bio: "Nana Gviniashvili is the owner and lead practitioner at Silk Beauty Salon. With extensive training in medical aesthetics and facial dermatology, she specializes in Botox, dermal fillers, and advanced skin treatments. Nana is known for her natural-looking results, meticulous attention to detail, and personalized approach to each client. She speaks Georgian, English, and Russian fluently, making international clients feel comfortable and well-cared-for.",
       image: "/images/nana-gviniashvili.jpg",
       qualifications: [
         "Certified Medical Aesthetic Practitioner",
@@ -72,6 +72,58 @@ export const siteConfig = {
         "Member of Georgian Aesthetic Medicine Association"
       ],
       languages: ["Georgian", "English", "Russian"]
+    },
+    {
+      name: "Mariam Beridze",
+      role: "Senior Aesthetic Practitioner",
+      bio: "Mariam brings over 8 years of experience in medical aesthetics to Silk Beauty Salon. She specializes in chemical peels, microneedling, and laser treatments. Mariam is passionate about helping clients achieve healthy, glowing skin through personalized treatment plans.",
+      image: "/images/mariam-beridze.jpg",
+      qualifications: [
+        "Certified Aesthetic Practitioner",
+        "Advanced Chemical Peel Specialist",
+        "Laser Treatment Certified",
+        "Diploma in Medical Aesthetics"
+      ],
+      languages: ["Georgian", "English"]
+    },
+    {
+      name: "Ana Kalandadze",
+      role: "Beauty Therapist",
+      bio: "Ana is our skilled beauty therapist specializing in facials, massage, and body treatments. With a holistic approach to beauty and wellness, she creates relaxing experiences that leave clients feeling rejuvenated both inside and out.",
+      image: "/images/ana-kalandadze.jpg",
+      qualifications: [
+        "Certified Beauty Therapist",
+        "Advanced Facial Specialist",
+        "Massage Therapy Certified",
+        "Holistic Wellness Practitioner"
+      ],
+      languages: ["Georgian", "English", "Turkish"]
+    },
+    {
+      name: "Elena Chikvaidze",
+      role: "Aesthetic Nurse",
+      bio: "Elena is a registered nurse with specialized training in aesthetic procedures. She assists with injectable treatments and provides post-procedure care. Her gentle touch and attention to patient comfort make every treatment experience seamless.",
+      image: "/images/elena-chikvaidze.jpg",
+      qualifications: [
+        "Registered Nurse",
+        "Aesthetic Nursing Certification",
+        "Injectable Treatment Assistant",
+        "Patient Care Specialist"
+      ],
+      languages: ["Georgian", "English", "Russian"]
+    },
+    {
+      name: "Natia Tsiklauri",
+      role: "Skin Care Specialist",
+      bio: "Natia is our skin care expert focusing on dermatological assessments and treatment planning. She analyzes skin conditions and recommends personalized skincare routines to complement in-clinic treatments for optimal results.",
+      image: "/images/natia-tsiklauri.jpg",
+      qualifications: [
+        "Skin Care Specialist",
+        "Dermatology Training",
+        "Product Knowledge Expert",
+        "Treatment Planning Certified"
+      ],
+      languages: ["Georgian", "English"]
     }
   ],
 

@@ -65,7 +65,7 @@ export function Header() {
 
   const navItems = [
     {
-      name: `Folder: ${t('treatments')}`,
+      name: t('treatments'),
       href: '/treatments',
       hasDropdown: true,
       dropdownContent: (
@@ -103,7 +103,7 @@ export function Header() {
       ),
     },
     {
-      name: `Folder: ${t('conditions')}`,
+      name: t('conditions'),
       href: '/conditions',
       hasDropdown: true,
       dropdownContent: (
@@ -133,7 +133,7 @@ export function Header() {
       ),
     },
     {
-      name: `Folder: ${tInternational('main')}`,
+      name: tInternational('main'),
       href: '/international-clients',
       hasDropdown: true,
       dropdownContent: (
@@ -216,7 +216,7 @@ export function Header() {
       ),
     },
     {
-      name: `Folder: ${t('about')}`,
+      name: t('about'),
       href: '/about',
       hasDropdown: true,
       dropdownContent: (
@@ -249,33 +249,6 @@ export function Header() {
 
   return (
     <>
-      {/* Top Bar - HSI style utility links */}
-      <div className="bg-primary text-white py-1.5 text-sm hidden md:block">
-        <div className="container-custom flex items-center justify-between">
-          {/* Utility Links */}
-          <div className="flex items-center gap-4">
-            <Link href="/pricelist" className="text-white hover:text-gold transition-colors">
-              {t('pricelist')}
-            </Link>
-            <Link href="/offers" className="text-white hover:text-gold transition-colors">
-              {t('offers')}
-            </Link>
-            <Link href="/contact-us" className="text-white hover:text-gold transition-colors">
-              {t('contact')}
-            </Link>
-          </div>
-          {/* Book Appointment */}
-          <a
-            href={siteConfig.bookingUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gold hover:text-white transition-colors font-medium"
-          >
-            {t('bookAppointment')}
-          </a>
-        </div>
-      </div>
-
       {/* Main Header */}
       <header
         role="banner"

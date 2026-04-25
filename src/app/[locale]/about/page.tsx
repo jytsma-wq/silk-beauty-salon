@@ -151,10 +151,10 @@ export default async function AboutPage({
               {t('teamSubtitle')}
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 max-w-7xl mx-auto">
             {siteConfig.team.map((member) => (
               <div key={member.name} className="text-center">
-                <div className="relative aspect-square rounded-lg overflow-hidden mb-4 max-w-sm mx-auto">
+                <div className="relative aspect-square rounded-lg overflow-hidden mb-4 max-w-xs mx-auto">
                   <Image
                     src={member.image}
                     alt={member.name}
