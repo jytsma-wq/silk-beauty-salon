@@ -1,2 +1,445 @@
-Prompt 7 — Elevate: add ScrollReveal to all homepage sections
-Import ScrollReveal from @/components/ScrollReveal in src/app/[locale]/page.tsx. Wrap each section with a staggered ScrollReveal: ContentSection at delay 0, CategoryGrid at delay 0.1, StatsSection at delay 0, CTABanner at delay 0, BeforeAfter at delay 0.1. Review each section component and ensure they don't have conflicting opacity or transform styles that would fight the animation. Also add ScrollReveal to CTABanner.tsx and CategoryGrid.tsx internally for child card elements to stagger in. Verify framer-motion is listed in dependencies — it is ("framer-motion": "^12.38.0").
+# Comprehensive Codebase Verification Prompt
+## For Kimi 2.5 in Windsurf — Silk Beauty Salon
+
+---
+
+## YOUR ROLE
+
+You are a senior full-stack engineer performing a complete, systematic audit of this Next.js codebase. You must read every file listed below, verify every claim in every checklist item, and produce a structured report with PASS / FAIL / WARN for each item. After the report, fix every FAIL automatically without asking for confirmation. Document every change you make.
+
+**Do not skip any checklist item. Do not assume anything passes without reading the file.**
+
+---
+
+## PROJECT CONTEXT
+
+- **Stack:** Next.js 16, React 19, TypeScript strict, Tailwind CSS v4, next-intl v4, Prisma 5 (SQLite), Resend, ioredis, Zod v4, Vitest, Playwright, Framer Motion, Bun runtime
+- **Locales:** en (default), ka, ru, tr, ar, he — all with localePrefix: 'always'
+- **RTL locales:** ar, he
+- **Pages:** 20 pages under src/app/[locale]/
+- **API routes:** /api/contact, /api/newsletter, /api/csrf
+- **Security libs:** src/lib/csrf.ts, src/lib/rate-limit.ts, src/lib/security-logger.ts
+- **Design:** Tailwind v4 with @theme inline CSS variables in src/app/globals.css
+
+---
+
+## AUDIT CHECKLIST
+
+Work through every section. Read the actual file content — do not guess.
+
+---
+
+### SECTION 1 — HEADER COMPONENT
+**File:** `src/components/layout/Header.tsx`
+
+- [ ] 1.1 Does it import `useTranslations` from `next-intl`?
+- [ ] 1.2 Does it import `useLocale` from `next-intl`?
+- [ ] 1.3 Are all NAV_ITEMS built from translation keys, NOT hardcoded English strings?
+- [ ] 1.4 Do all nav hrefs include the locale prefix (e.g. `/${locale}/treatments`)?
+- [ ] 1.5 Is `LanguageSwitcher` imported and rendered?
+- [ ] 1.6 Is `MobileMenuSheet` imported and rendered?
+- [ ] 1.7 Is there a mobile burger button visible on small screens (`md:hidden`)?
+- [ ] 1.8 Does the brand logo link to `/${locale}` (not bare `/`)?
+- [ ] 1.9 Is the brand name read from `siteConfig.name` (not hardcoded)?
+- [ ] 1.10 Does the nav element have `aria-label="Main navigation"`?
+- [ ] 1.11 Is scroll-detection still working (`window.scrollY > 50`)?
+- [ ] 1.12 Is there a `useEffect` cleanup for the scroll event listener?
+
+**If any of 1.1–1.12 fail:** Rewrite Header.tsx keeping the visual design but restoring all i18n and accessibility. Import `useTranslations`, `useLocale` from `next-intl`; `LanguageSwitcher` from `./LanguageSwitcher`; `MobileMenuSheet` from `./MobileMenuSheet`; `siteConfig` from `@/data/site-config`; `Menu` from `lucide-react`.
+
+---
+
+### SECTION 2 — FOOTER COMPONENT
+**File:** `src/components/layout/Footer.tsx`
+
+- [ ] 2.1 Does it import `useTranslations` and `useLocale` from `next-intl`?
+- [ ] 2.2 Does the privacy link point to `/${locale}/privacy-policy` (NOT `/privacy`)?
+- [ ] 2.3 Does the terms link point to `/${locale}/terms-conditions` (NOT `/terms`)?
+- [ ] 2.4 Is there NO link to `/cookies` or `/cookie-policy` (this page does not exist)?
+- [ ] 2.5 Are all internal links locale-prefixed?
+- [ ] 2.6 Is the salon name read from `siteConfig.name` (not hardcoded)?
+- [ ] 2.7 Is the copyright year dynamic: `new Date().getFullYear()`?
+- [ ] 2.8 Are social links using `siteConfig.social.*` values (not placeholder `#`)?
+
+---
+
+### SECTION 3 — CSS & DESIGN SYSTEM
+**File:** `src/app/globals.css`
+
+- [ ] 3.1 Is `@import "tailwindcss"` the first line (Tailwind v4 syntax)?
+- [ ] 3.2 Does `@theme inline` define `--color-brand-bg`, `--color-brand-text`, `--color-brand-accent`, `--color-brand-gold`?
+- [ ] 3.3 Does `@theme inline` define `--font-heading` and `--font-body`?
+- [ ] 3.4 Is there an `@keyframes fade-in` defined AND a `.animate-fade-in` class?
+- [ ] 3.5 Is there an `@keyframes slide-up` defined AND a `.animate-slide-up` class?
+- [ ] 3.6 Does the global `h1` rule in `@layer base` use `color: var(--color-brand-text)` (NOT `--color-brand-text-on-dark`)? White h1 on light backgrounds is invisible.
+- [ ] 3.7 Is `min-h-125` used anywhere? If yes: is `--spacing-125` defined in `@theme`? If not defined, replace all usages with `min-h-[500px]`.
+- [ ] 3.8 Are `container-brand` and `container-custom` defined (they are identical — flag as redundant)?
+- [ ] 3.9 Is `marquee-track` animation defined (used by AwardsMarquee)?
+
+**File:** `src/app/[locale]/layout.tsx`
+
+- [ ] 3.10 Are `Cormorant_Garamond` and `Inter` loaded with `variable` props (`--font-heading`, `--font-body`)?
+- [ ] 3.11 Does `<body>` have both `${display.variable} ${body.variable}` in className?
+- [ ] 3.12 Does `<html>` have correct `dir` attribute for RTL locales (ar, he)?
+- [ ] 3.13 Is `globals.css` imported in this file (not in root layout)?
+
+---
+
+### SECTION 4 — NEXT.CONFIG.TS
+**File:** `next.config.ts`
+
+- [ ] 4.1 Is there an `async headers()` function?
+- [ ] 4.2 Does it set `X-Frame-Options: DENY`?
+- [ ] 4.3 Does it set `X-Content-Type-Options: nosniff`?
+- [ ] 4.4 Does it set `Strict-Transport-Security` with `max-age=63072000; includeSubDomains; preload`?
+- [ ] 4.5 Does it set `Permissions-Policy: camera=(), microphone=(), geolocation=()`?
+- [ ] 4.6 Does it set a `Content-Security-Policy`?
+- [ ] 4.7 Does the CSP `script-src` include `'unsafe-inline'` (required for framer-motion)?
+- [ ] 4.8 Does the CSP `style-src` include `'unsafe-inline'` (required for framer-motion style injection)?
+- [ ] 4.9 Does the CSP `frame-src` include `https://cal.com https://*.cal.com`?
+- [ ] 4.10 Does the CSP `img-src` include `https://picsum.photos` and `https://flagcdn.com` (used in dev)?
+- [ ] 4.11 Is `output: 'standalone'` set?
+- [ ] 4.12 Is `reactStrictMode: true` set?
+- [ ] 4.13 Is `withNextIntl` wrapping the config?
+- [ ] 4.14 Is `withBundleAnalyzer` wrapping correctly (only enabled when `BUNDLE_ANALYZE=true`)?
+
+**If 4.1–4.10 fail:** Add the complete headers() function with all CSP directives.
+
+---
+
+### SECTION 5 — I18N COMPLETENESS
+**Files:** `messages/en.json`, `messages/ka.json`, `messages/ru.json`, `messages/tr.json`, `messages/he.json`, `messages/ar.json`
+
+Run this verification logic mentally (or via the validate:i18n script):
+
+- [ ] 5.1 Count EN keys. Every other locale must have the same count.
+- [ ] 5.2 `ka.json`: 0 missing keys vs EN, 0 extra keys vs EN?
+- [ ] 5.3 `ru.json`: 0 missing keys vs EN, 0 extra keys vs EN?
+- [ ] 5.4 `tr.json`: 0 missing keys vs EN, 0 extra keys vs EN?
+- [ ] 5.5 `he.json`: 0 missing keys vs EN, 0 extra keys vs EN?
+- [ ] 5.6 `ar.json`: 0 missing keys vs EN, 0 extra keys vs EN?
+- [ ] 5.7 Do all locales have the `hero` namespace (heading, imageAlt, ctaText)?
+- [ ] 5.8 Do all locales have the `categories` namespace (fillers, skinboosters, biostimulators, other + Desc + Alt variants)?
+- [ ] 5.9 Do all locales have the `content` namespace (heading1, body1, heading2, body2, imageAlt2)?
+- [ ] 5.10 Do all locales have the `stats` namespace (stat1, stat2)?
+- [ ] 5.11 Do all locales have the `cta` namespace (heading, description, imageAlt, ctaText)?
+- [ ] 5.12 Do all locales have the `results` namespace (beforeAlt, afterAlt, ctaText)?
+- [ ] 5.13 Check for `{variable}` interpolation consistency — every `{name}`, `{count}`, `{date}` in EN must also appear in the translated string.
+
+**If any locale has missing keys:** Translate them using formal medical-aesthetic language appropriate for a luxury beauty salon in Batumi, Georgia. For Arabic: right-to-left appropriate phrasing.
+
+---
+
+### SECTION 6 — SECURITY (API ROUTES)
+**File:** `src/app/api/contact/route.ts`
+
+- [ ] 6.1 Is `strictRateLimit` imported from `@/lib/rate-limit` and called at the start of POST?
+- [ ] 6.2 Does rate-limit failure return 429 with `Retry-After` header?
+- [ ] 6.3 Is `verifyCsrfToken` imported from `@/lib/csrf` and called?
+- [ ] 6.4 Does CSRF failure return 403?
+- [ ] 6.5 Is `logSecurityEvent` imported from `@/lib/security-logger` and called for both rate-limit and CSRF failures?
+- [ ] 6.6 Is input validated with Zod before any processing?
+- [ ] 6.7 Is the email address lowercased/normalized before saving?
+- [ ] 6.8 Is HTML-escaped content used in the email body (prevent XSS in email clients)?
+- [ ] 6.9 Does the error response NOT expose stack traces?
+
+**File:** `src/app/api/newsletter/route.ts`
+
+- [ ] 6.10 Is `apiRateLimit` (or equivalent) called?
+- [ ] 6.11 Does it use `safeParse` (not `parse`) so validation errors are caught gracefully?
+- [ ] 6.12 Does a Resend API failure return 500 with a user-friendly message (NOT "Invalid email")?
+
+**File:** `src/app/api/csrf/route.ts`
+
+- [ ] 6.13 Is there a GET handler that calls `setCsrfToken()` and returns the token as JSON?
+
+**File:** `src/lib/csrf.ts`
+
+- [ ] 6.14 Does `verifyCsrfToken` use `timingSafeEqual` from Node's `crypto` module?
+- [ ] 6.15 Does it check the `x-csrf-token` header OR `_csrf` in the request body?
+
+**File:** `src/lib/rate-limit.ts`
+
+- [ ] 6.16 Is there a primary Redis implementation using `ioredis`?
+- [ ] 6.17 Is there an in-memory Map fallback when Redis is unavailable?
+- [ ] 6.18 Is `REDIS_URL` read from `process.env` (not hardcoded)?
+- [ ] 6.19 Is there a `strictRateLimit` preset (5 req / 15 min) for contact form?
+- [ ] 6.20 Is there an `apiRateLimit` preset (30 req / 1 min) for newsletter?
+
+**File:** `src/lib/env.ts`
+
+- [ ] 6.21 Is `REDIS_URL` validated as `z.string().url().optional()`?
+- [ ] 6.22 Is there a prod/dev split (strict for production, lenient for development)?
+- [ ] 6.23 Does the prod schema require `RESEND_API_KEY`?
+
+---
+
+### SECTION 7 — SITEMAP
+**File:** `src/app/sitemap.ts`
+
+- [ ] 7.1 Is `/gallery` NOT in the PAGES array? (this page does not exist)
+- [ ] 7.2 Is `/international-clients` in the PAGES array?
+- [ ] 7.3 Is `/book` in the PAGES array?
+- [ ] 7.4 Is `/privacy-policy` in the PAGES array?
+- [ ] 7.5 Is `/terms-conditions` in the PAGES array?
+- [ ] 7.6 Are treatment slugs dynamically included (from `src/data/treatments.ts`)?
+- [ ] 7.7 Are blog slugs dynamically included (from `src/data/blog.ts`)?
+- [ ] 7.8 Does each URL entry include all 6 locale variants?
+- [ ] 7.9 Are `priority` values meaningful (0.9 for treatments, 0.7 for blog, 0.5 for legal)?
+
+---
+
+### SECTION 8 — GIT HYGIENE
+**Check these files exist in the repository (they should NOT be tracked):**
+
+- [ ] 8.1 `prisma/db/dev.db` — MUST NOT be tracked
+- [ ] 8.2 `prisma/dev.db` — MUST NOT be tracked
+- [ ] 8.3 `prisma/prisma/dev.db` — MUST NOT be tracked (wrong path, created by error)
+- [ ] 8.4 `tsconfig.tsbuildinfo` — MUST NOT be tracked
+- [ ] 8.5 `file.txt` — MUST NOT be tracked
+- [ ] 8.6 `package-lock.json` — MUST NOT be tracked (project uses bun.lock)
+- [ ] 8.7 `eslint.config.zip` — MUST NOT be tracked (9.2MB binary from previous iteration)
+- [ ] 8.8 `download/` directory — MUST NOT be tracked
+- [ ] 8.9 Check `.gitignore` covers: `*.db`, `tsconfig.tsbuildinfo`, `package-lock.json`, `file.txt`, `*.zip`
+- [ ] 8.10 Does `.gitattributes` exist with `* text=auto eol=lf` to prevent CRLF contamination?
+- [ ] 8.11 `prisma/prisma/` directory — delete entirely (created by running prisma in wrong directory)
+
+**If any of 8.1–8.8 exist in the repo:**
+```bash
+git rm --cached prisma/db/dev.db prisma/dev.db prisma/prisma/dev.db 2>/dev/null || true
+git rm --cached tsconfig.tsbuildinfo file.txt package-lock.json eslint.config.zip 2>/dev/null || true
+git rm -r --cached download/ 2>/dev/null || true
+rm -rf prisma/prisma/
+git commit -m "chore: remove committed databases and dev artifacts"
+```
+
+---
+
+### SECTION 9 — MIDDLEWARE
+**File:** `middleware.ts`
+
+- [ ] 9.1 Does middleware use `createMiddleware` from `next-intl/middleware` or the routing config?
+- [ ] 9.2 Are all 6 locales (`en`, `ka`, `ru`, `tr`, `ar`, `he`) covered in the middleware routing?
+- [ ] 9.3 Is `localePrefix: 'always'` matching the `src/i18n/routing.ts` config?
+- [ ] 9.4 Does middleware correctly set the `X-CSRF-Token` header for the layout to read?
+- [ ] 9.5 Are API routes (`/api/*`) excluded from locale middleware processing?
+
+---
+
+### SECTION 10 — BOOKING PAGE
+**File:** `src/app/[locale]/book/page.tsx`
+
+- [ ] 10.1 Is there NO manual locale guard that restricts to only `['en', 'ka']`?
+- [ ] 10.2 Does the page render for all 6 locales?
+- [ ] 10.3 Is `BookingProvider` wrapping the page content?
+
+**File:** `src/app/[locale]/book/booking-context.tsx`
+
+- [ ] 10.4 Is there a `BookingProvider` component exported?
+- [ ] 10.5 Is there a `useBooking()` hook that throws if used outside the provider?
+
+---
+
+### SECTION 11 — ACCESSIBILITY
+**File:** `src/components/layout/SkipLink.tsx`
+
+- [ ] 11.1 Does it render `<a href="#main-content">` with `sr-only focus:not-sr-only` classes?
+- [ ] 11.2 Is it the first element inside `<body>`?
+
+**File:** `src/app/[locale]/layout.tsx`
+
+- [ ] 11.3 Is `<main id="main-content">` wrapping `{children}`?
+- [ ] 11.4 Is `<SkipLink />` rendered before `<Header />`?
+- [ ] 11.5 Is `<AnnouncerProvider>` wrapping the content?
+
+**File:** `src/components/ui/announcer.tsx`
+
+- [ ] 11.6 Are both polite (`role="status"`) and assertive (`role="alert"`) live regions present?
+- [ ] 11.7 Is `useAnnouncer()` hook exported?
+
+---
+
+### SECTION 12 — CI/CD PIPELINE
+**File:** `.github/workflows/test.yml`
+
+- [ ] 12.1 Does every job step use `oven-sh/setup-bun@v2` (NOT `setup-node`) for installation?
+- [ ] 12.2 Does every install step use `bun install --frozen-lockfile` (NOT `npm ci`)?
+- [ ] 12.3 Does every run step use `bun run <script>` (NOT `npm run`)?
+- [ ] 12.4 Is there a coverage check job with a minimum threshold (70% statement coverage)?
+- [ ] 12.5 Are Playwright and coverage reports uploaded as artefacts?
+
+**File:** `.github/workflows/i18n-check.yml`
+
+- [ ] 12.6 Does it run `bun run validate:i18n` on every push and PR?
+
+**File:** `.husky/pre-commit`
+
+- [ ] 12.7 Does it run `npx lint-staged`?
+
+**File:** `package.json` → `lint-staged`
+
+- [ ] 12.8 Is `--max-warnings 0` set (not 10)?
+- [ ] 12.9 Is `tsc --noEmit --skipLibCheck` also run as part of lint-staged?
+
+---
+
+### SECTION 13 — TYPESCRIPT & LINT
+**File:** `eslint.config.mjs`
+
+- [ ] 13.1 Is `react-hooks/exhaustive-deps` set to `"error"` (not `"off"`)?
+- [ ] 13.2 Is `no-unreachable` set to `"error"`?
+- [ ] 13.3 Is `no-redeclare` set to `"error"`?
+- [ ] 13.4 Is `@typescript-eslint/no-unused-vars` set to `"warn"` with `argsIgnorePattern: "^_"`?
+- [ ] 13.5 Is `prefer-const` set to `"warn"`?
+- [ ] 13.6 Is `no-console` set to `"warn"` allowing `error` and `warn`?
+
+**File:** `tsconfig.json`
+
+- [ ] 13.7 Is `"strict": true` set?
+- [ ] 13.8 Is `"noEmit": true` set (or handled via CLI flag)?
+
+---
+
+### SECTION 14 — COMPONENT HEALTH
+**File:** `src/components/sections/HeroSection.tsx`
+
+- [ ] 14.1 Is `min-h-[500px]` used (NOT `min-h-125`)?
+- [ ] 14.2 Does the `<h1>` have `text-white` class (since global h1 color should be dark)?
+- [ ] 14.3 Are `animate-fade-in` and `animate-slide-up` only used after they are defined in globals.css?
+
+**File:** `src/components/ScrollReveal.tsx`
+
+- [ ] 14.4 Is `framer-motion` the animation library being used?
+- [ ] 14.5 Is `viewport={{ once: true }}` set to avoid re-animating on scroll-up?
+
+**File:** `src/components/seo/JsonLd.tsx`
+
+- [ ] 14.6 Is there a `generateLocalBusinessSchema(locale)` function?
+- [ ] 14.7 Does it include `@type: "MedicalBusiness"` and `"BeautySalon"`?
+- [ ] 14.8 Does it include multilingual `name` and `description` per locale?
+
+**File:** `src/data/site-config.ts`
+
+- [ ] 14.9 Is `siteConfig.name` the correct salon name (not "Beauty Aesthetics")?
+- [ ] 14.10 Is `siteConfig.contact.phone` the correct Batumi phone number?
+- [ ] 14.11 Is `siteConfig.location` set to Batumi, Georgia?
+
+---
+
+### SECTION 15 — PRISMA & DATABASE
+**File:** `prisma/schema.prisma`
+
+- [ ] 15.1 Is `provider = "sqlite"` set (not "postgresql")?
+- [ ] 15.2 Is `DATABASE_URL` using `env("DATABASE_URL")`?
+- [ ] 15.3 Are these models defined: `ContactSubmission`, `NewsletterSubscriber`, `BlogPost`, `TreatmentCategory`, `Treatment`, `TreatmentTranslation`, `TreatmentBenefit`, `TreatmentFAQ`?
+- [ ] 15.4 Are the boilerplate `User` and `Post` models NOT present?
+
+**File:** `src/lib/db.ts`
+
+- [ ] 15.5 Is Prisma instantiated with `log: process.env.NODE_ENV === 'development' ? ['query', 'warn', 'error'] : ['error']` (NOT always logging queries)?
+- [ ] 15.6 Is the global Prisma singleton pattern used to prevent hot-reload issues?
+
+---
+
+### SECTION 16 — CADDYFILE (PRODUCTION PROXY)
+**File:** `Caddyfile`
+
+- [ ] 16.1 Does it bind to the production domain (`silkbeauty.ge` or configured domain)?
+- [ ] 16.2 Is HTTPS automatic via Let's Encrypt?
+- [ ] 16.3 Is www→non-www redirect in place?
+- [ ] 16.4 Is gzip or zstd compression enabled?
+- [ ] 16.5 Is the `Server` header removed (`-Server`)?
+- [ ] 16.6 Is `HSTS` header set?
+- [ ] 16.7 Does it reverse-proxy to `localhost:3000`?
+- [ ] 16.8 Are `X-Forwarded-For` and `X-Forwarded-Proto` headers passed upstream?
+
+---
+
+## OUTPUT FORMAT
+
+After reading all files, produce this report:
+
+```
+═══════════════════════════════════════════════
+SILK BEAUTY SALON — VERIFICATION REPORT
+Generated: [date]
+═══════════════════════════════════════════════
+
+SUMMARY
+  Total checks:  [N]
+  PASS:          [N]
+  WARN:          [N]
+  FAIL:          [N]
+
+CRITICAL FAILS (fix immediately):
+  [list each FAIL with file + line reference]
+
+WARNINGS (fix before production):
+  [list each WARN]
+
+─────────────────────────────────────────────
+SECTION-BY-SECTION RESULTS
+─────────────────────────────────────────────
+
+[1] HEADER COMPONENT
+  1.1  useTranslations imported         [PASS/FAIL]
+  1.2  useLocale imported               [PASS/FAIL]
+  ...
+
+[2] FOOTER COMPONENT
+  ...
+
+[continue for all 16 sections]
+```
+
+---
+
+## AFTER THE REPORT: AUTO-FIX PROTOCOL
+
+Fix every FAIL in this priority order:
+
+1. **Header** (1.1–1.12) — restore i18n, mobile nav, locale hrefs
+2. **Footer** (2.1–2.8) — fix broken routes, add i18n
+3. **CSS animations** (3.4, 3.5, 3.6, 3.7) — define missing classes, fix h1 color
+4. **CSP headers** (4.1–4.10) — add full headers() block to next.config.ts
+5. **i18n gaps** (5.1–5.13) — translate missing keys for ka/ru/tr/ar
+6. **Git cleanup** (8.1–8.11) — untrack committed files, delete wrong dirs
+7. **Sitemap** (7.1–7.9) — remove /gallery, add missing pages
+8. **CI lockfile** (12.1–12.3) — ensure Bun not npm throughout
+
+After all fixes, run:
+```bash
+bun run typecheck
+bun run lint
+bun run validate:i18n
+bun run test
+```
+
+Report results of each command. If any fail, fix and re-run until all pass.
+
+---
+
+## KNOWN ISSUES FROM PREVIOUS AUDIT (verify these are fixed)
+
+These were identified in the last code review. Confirm PASS or FAIL:
+
+| Issue | Expected | File |
+|-------|----------|------|
+| Header hardcodes nav in English | FIXED | Header.tsx |
+| Footer links to /privacy (404) | FIXED | Footer.tsx |
+| animate-fade-in not defined | FIXED | globals.css |
+| animate-slide-up not defined | FIXED | globals.css |
+| min-h-125 invalid token | FIXED | HeroSection.tsx |
+| h1 global color is white | FIXED | globals.css |
+| CSP headers() missing | FIXED | next.config.ts |
+| 29 i18n keys missing (ka/ru/tr/ar) | FIXED | messages/*.json |
+| 3× SQLite DBs committed | FIXED | git history |
+| /gallery in sitemap (DNE) | FIXED | sitemap.ts |
+| prisma/prisma/ wrong dir | FIXED | filesystem |
+| CRLF line endings in .ts files | FIXED | .gitattributes |
+| CI uses npm ci not bun | FIXED | test.yml |
+| booking page locked to en/ka | FIXED | book/page.tsx |
+
+---
+
+*End of verification prompt.*
