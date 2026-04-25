@@ -1,24 +1,24 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Metadata } from 'next';
-import { HeroSection } from '@/components/sections/HeroSection';
-import { AwardsMarquee } from '@/components/sections/AwardsMarquee';
-import { TreatmentsSection } from '@/components/sections/TreatmentsSection';
-import { ConditionsSection } from '@/components/sections/ConditionsSection';
-import { AboutSection } from '@/components/sections/AboutSection';
-import { TechnologiesSection } from '@/components/sections/TechnologiesSection';
-import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
-import { ConsultationSection } from '@/components/sections/ConsultationSection';
-import { QuickLinksSection } from '@/components/sections/QuickLinksSection';
+import HeroSection from '@/components/sections/HeroSection';
+import ContentSection from '@/components/sections/ContentSection';
+import CategoryGrid from '@/components/sections/CategoryGrid';
+import StatsSection from '@/components/sections/StatsSection';
+import CTABanner from '@/components/sections/CTABanner';
+import BeforeAfter from '@/components/sections/BeforeAfter';
 import { JsonLd, generateLocalBusinessSchema } from '@/components/seo/JsonLd';
 
-const localeMap: Record<string, string> = {
-  en: 'en_US',
-  ka: 'ka_GE',
-  ru: 'ru_RU',
-  tr: 'tr_TR',
-  ar: 'ar_SA',
-  he: 'he_IL',
-};
+const categories = [
+  { title: 'Dermal Fillers', description: 'Restore volume and contour with premium hyaluronic acid treatments.', imageSrc: '/images/category-fillers.jpg', imageAlt: 'Dermal fillers treatment', href: '/treatments/fillers' },
+  { title: 'Skinboosters', description: 'Deep hydration and radiance for revitalized, glowing skin.', imageSrc: '/images/category-skinboosters.jpg', imageAlt: 'Skinboosters treatment', href: '/treatments/skinboosters' },
+  { title: 'Biostimulators', description: 'Stimulate your skin\'s natural collagen production for lasting results.', imageSrc: '/images/category-biostimulators.jpg', imageAlt: 'Biostimulators treatment', href: '/treatments/biostimulators' },
+  { title: 'Other Treatments', description: 'Expression line treatments and additional aesthetic solutions.', imageSrc: '/images/category-other.jpg', imageAlt: 'Other aesthetic treatments', href: '/treatments/other' },
+]
+
+const stats = [
+  { value: '67', suffix: '%', description: 'Patients with a desire to feel happier and more confident or improve quality of life.' },
+  { value: '61', suffix: '%', description: 'Patients who wanted to treat themselves or celebrate a milestone.' },
+]
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -53,7 +53,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     openGraph: {
       type: 'website',
-      locale: localeMap[locale] || 'en_US',
+      locale: locale || 'en_US',
       url: `https://www.silkbeauty.ge/${locale}`,
       siteName: 'Silk Beauty Salon',
       title: t('homeTitle'),
@@ -99,15 +99,41 @@ export default async function HomePage({
   return (
     <>
       <JsonLd schema={generateLocalBusinessSchema(locale)} />
-      <HeroSection />
-      <AwardsMarquee />
-      <TreatmentsSection locale={locale} />
-      <ConditionsSection />
-      <AboutSection />
-      <TechnologiesSection />
-      <TestimonialsSection />
-      <ConsultationSection />
-      <QuickLinksSection />
+      <HeroSection
+        imageSrc="/images/hero-main.jpg"
+        imageAlt="Beauty aesthetics confidence"
+        heading="Confidence in your skin is our main concern"
+        ctaText="Find out how"
+        ctaHref="/consultation"
+      />
+      <ContentSection
+        heading="Aesthetic possibilities shaped together"
+        body="There are many types of fine lines and wrinkles, and a name for almost every type we may experience on our face. Our portfolio of treatments offers a holistic approach to achieving natural-looking results that celebrate your individuality."
+      />
+      <CategoryGrid categories={categories} />
+      <ContentSection
+        heading="Combat the side effects of time"
+        body="As we age, changes to the underlying structure of our skin can result in expression lines that alter our appearance. By temporarily relaxing the muscles of the face, we can reduce the appearance of these expression lines and feel our best."
+        imageSrc="/images/section-combat.jpg"
+        imageAlt="Combat side effects of time"
+      />
+      <StatsSection stats={stats} />
+      <CTABanner
+        imageSrc="/images/cta-specialist.jpg"
+        imageAlt="Find a specialist"
+        heading="Find a specialist"
+        description="Ready to explore your options? Connect with a qualified specialist near you."
+        ctaText="Get started"
+        ctaHref="/find-specialist"
+      />
+      <BeforeAfter
+        beforeSrc="/images/ba-before.jpg"
+        afterSrc="/images/ba-after.jpg"
+        beforeAlt="Before treatment"
+        afterAlt="After treatment"
+        ctaText="See their results"
+        ctaHref="/results"
+      />
     </>
   );
 }

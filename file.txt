@@ -1,3 +1,7 @@
+5.4 Phase 4: Page Assembly
+
+PROMPT 4A: Homepage Assembly
+INSTRUCTION: Update src/app/page.tsx to assemble the homepage using all the section components created in Phase 3. This is the main page that users see when they visit the site. The page must compose sections in the following order: Hero, Content Introduction, Category Grid, Split Section, Statistics, CTA Banner, Before/After. Import Header and Footer from layout components.
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import HeroSection from '@/components/sections/HeroSection'
@@ -64,3 +68,4 @@ export default function HomePage() {
     </>
   )
 }
+CRITICAL: The page MUST use the fragment wrapper (<></>) because layout.tsx already provides html/body. Sections flow vertically with NO extra spacing between them (each section handles its own padding). Import paths MUST use @/ alias. Image paths reference public/images/ directory. Do NOT add any additional wrapper divs or global styles.
