@@ -13,7 +13,7 @@ interface CTABannerProps {
 export default function CTABanner({ imageSrc, imageAlt, heading, description, ctaText, ctaHref }: CTABannerProps) {
   return (
     <section className="relative w-full py-24 md:py-32 flex items-center justify-center">
-      <Image src={imageSrc} alt={imageAlt} fill className="object-cover" />
+      <Image src={imageSrc} alt={imageAlt} fill className="object-cover" unoptimized />
       <div className="absolute inset-0 bg-black/50" />
       <div className="container-brand relative z-10 text-center">
         <h2 className="text-white text-3xl md:text-4xl font-body font-bold mb-4">{heading}</h2>

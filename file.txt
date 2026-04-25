@@ -1,71 +1,35 @@
-5.4 Phase 4: Page Assembly
+5.5 Phase 5: Polish & Animation
 
-PROMPT 4A: Homepage Assembly
-INSTRUCTION: Update src/app/page.tsx to assemble the homepage using all the section components created in Phase 3. This is the main page that users see when they visit the site. The page must compose sections in the following order: Hero, Content Introduction, Category Grid, Split Section, Statistics, CTA Banner, Before/After. Import Header and Footer from layout components.
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
-import HeroSection from '@/components/sections/HeroSection'
-import ContentSection from '@/components/sections/ContentSection'
-import CategoryGrid from '@/components/sections/CategoryGrid'
-import CTABanner from '@/components/sections/CTABanner'
-import StatsSection from '@/components/sections/StatsSection'
-import BeforeAfter from '@/components/sections/BeforeAfter'
+PROMPT 5A: Scroll-Triggered Animations
+INSTRUCTION: Create a reusable scroll-reveal wrapper component at src/components/ScrollReveal.tsx that uses Framer Motion to animate elements as they enter the viewport. This component wraps any child element and applies a subtle fade-up animation.
+'use client'
+import { motion } from 'framer-motion'
+import { ReactNode } from 'react'
 
-const categories = [
-  { title: 'Dermal Fillers', description: 'Restore volume and contour with premium hyaluronic acid treatments.', imageSrc: '/images/category-fillers.jpg', imageAlt: 'Dermal fillers treatment', href: '/treatments/fillers' },
-  { title: 'Skinboosters', description: 'Deep hydration and radiance for revitalized, glowing skin.', imageSrc: '/images/category-skinboosters.jpg', imageAlt: 'Skinboosters treatment', href: '/treatments/skinboosters' },
-  { title: 'Biostimulators', description: 'Stimulate your skin\'s natural collagen production for lasting results.', imageSrc: '/images/category-biostimulators.jpg', imageAlt: 'Biostimulators treatment', href: '/treatments/biostimulators' },
-  { title: 'Other Treatments', description: 'Expression line treatments and additional aesthetic solutions.', imageSrc: '/images/category-other.jpg', imageAlt: 'Other aesthetic treatments', href: '/treatments/other' },
-]
+interface ScrollRevealProps { children: ReactNode; delay?: number; className?: string }
 
-const stats = [
-  { value: '67', suffix: '%', description: 'Patients with a desire to feel happier and more confident or improve quality of life.' },
-  { value: '61', suffix: '%', description: 'Patients who wanted to treat themselves or celebrate a milestone.' },
-]
-
-export default function HomePage() {
+export default function ScrollReveal({ children, delay = 0, className = '' }: ScrollRevealProps) {
   return (
-    <>
-      <Header />
-      <main>
-        <HeroSection
-          imageSrc="/images/hero-main.jpg"
-          imageAlt="Beauty aesthetics confidence"
-          heading="Confidence in your skin is our main concern"
-          ctaText="Find out how"
-          ctaHref="/consultation"
-        />
-        <ContentSection
-          heading="Aesthetic possibilities shaped together"
-          body="There are many types of fine lines and wrinkles, and a name for almost every type we may experience on our face. Our portfolio of treatments offers a holistic approach to achieving natural-looking results that celebrate your individuality."
-        />
-        <CategoryGrid categories={categories} />
-        <ContentSection
-          heading="Combat the side effects of time"
-          body="As we age, changes to the underlying structure of our skin can result in expression lines that alter our appearance. By temporarily relaxing the muscles of the face, we can reduce the appearance of these expression lines and feel our best."
-          imageSrc="/images/section-combat.jpg"
-          imageAlt="Combat side effects of time"
-        />
-        <StatsSection stats={stats} />
-        <CTABanner
-          imageSrc="/images/cta-specialist.jpg"
-          imageAlt="Find a specialist"
-          heading="Find a specialist"
-          description="Ready to explore your options? Connect with a qualified specialist near you."
-          ctaText="Get started"
-          ctaHref="/find-specialist"
-        />
-        <BeforeAfter
-          beforeSrc="/images/ba-before.jpg"
-          afterSrc="/images/ba-after.jpg"
-          beforeAlt="Before treatment"
-          afterAlt="After treatment"
-          ctaText="See their results"
-          ctaHref="/results"
-        />
-      </main>
-      <Footer />
-    </>
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-80px' }}
+      transition={{ duration: 0.6, delay, ease: 'easeOut' }}
+      className={className}
+    >
+      {children}
+    </motion.div>
   )
 }
-CRITICAL: The page MUST use the fragment wrapper (<></>) because layout.tsx already provides html/body. Sections flow vertically with NO extra spacing between them (each section handles its own padding). Import paths MUST use @/ alias. Image paths reference public/images/ directory. Do NOT add any additional wrapper divs or global styles.
+CRITICAL: The animation MUST be subtle: opacity 0 to 1, y 30px to 0. Duration 0.6s with easeOut. The viewport trigger fires once (once: true) with a -80px margin so it triggers slightly before the element is fully in view. The delay parameter allows staggered animations for grid items. Do NOT use spring physics, bounce, or any exaggerated motion. The Galderma site is calm and deliberate, not flashy.
+PROMPT 5B: Image Placeholder Generation
+INSTRUCTION: Generate placeholder images for the beauty salon website using the z-ai-generate CLI tool. Run the following commands in the terminal to create all required images. Each image is designed to match the aesthetic quality and subject matter of the Galderma website.
+cd /home/z/my-project && mkdir -p public/images
+z-ai-generate -p "Professional beauty salon, close-up of a woman's face with perfect skin, soft natural lighting, neutral background, medical aesthetic photography, high-end clinical feel, Swiss pharmaceutical advertisement style" -o ./public/images/hero-main.jpg -s 1344x768
+z-ai-generate -p "Elegant woman receiving facial treatment in bright clinical room, soft diffused lighting, white and neutral tones, premium aesthetic clinic, editorial magazine photography" -o ./public/images/section-combat.jpg -s 1344x768
+z-ai-generate -p "Hyaluronic acid dermal filler treatment, elegant product photography, soft pink and white tones, clinical aesthetic, premium medical beauty product" -o ./public/images/category-fillers.jpg -s 1152x864
+z-ai-generate -p "Skin hydration treatment, water droplets on smooth skin, blue and white tones, clinical beauty photography, premium aesthetic" -o ./public/images/category-skinboosters.jpg -s 1152x864
+z-ai-generate -p "Collagen biostimulator treatment, natural skin texture close-up, warm neutral tones, medical aesthetic photography, elegant clinical style" -o ./public/images/category-biostimulators.jpg -s 1152x864
+z-ai-generate -p "Professional aesthetic clinic interior, specialist consulting with patient, bright white room, Swiss medical aesthetic, editorial photography" -o ./public/images/cta-specialist.jpg -s 1344x768
+z-ai-generate -p "Beauty treatment other options, woman with subtle smile, soft studio lighting, neutral tones, clinical beauty aesthetic" -o ./public/images/category-other.jpg -s 1152x864
+CRITICAL: Use the exact sizes specified. The hero image is 1344x768 (landscape). Category images are 1152x864 (slightly portrait). These match the aspect ratios defined in the components. If any image generation fails, use a solid-color placeholder: bg-brand-bg-alt (#F8F8F8). Do NOT use any external stock photo URLs.

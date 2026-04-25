@@ -8,10 +8,10 @@ import StatsSection from '@/components/sections/StatsSection'
 import BeforeAfter from '@/components/sections/BeforeAfter'
 
 const categories = [
-  { title: 'Dermal Fillers', description: 'Restore volume and contour with premium hyaluronic acid treatments.', imageSrc: '/images/category-fillers.jpg', imageAlt: 'Dermal fillers treatment', href: '/treatments/fillers' },
-  { title: 'Skinboosters', description: 'Deep hydration and radiance for revitalized, glowing skin.', imageSrc: '/images/category-skinboosters.jpg', imageAlt: 'Skinboosters treatment', href: '/treatments/skinboosters' },
-  { title: 'Biostimulators', description: 'Stimulate your skin\'s natural collagen production for lasting results.', imageSrc: '/images/category-biostimulators.jpg', imageAlt: 'Biostimulators treatment', href: '/treatments/biostimulators' },
-  { title: 'Other Treatments', description: 'Expression line treatments and additional aesthetic solutions.', imageSrc: '/images/category-other.jpg', imageAlt: 'Other aesthetic treatments', href: '/treatments/other' },
+  { title: 'Dermal Fillers', description: 'Restore volume and contour with premium hyaluronic acid treatments.', imageSrc: 'https://picsum.photos/seed/fillers/1152/864', imageAlt: 'Dermal fillers treatment', href: '/treatments/fillers' },
+  { title: 'Skinboosters', description: 'Deep hydration and radiance for revitalized, glowing skin.', imageSrc: 'https://picsum.photos/seed/skinboosters/1152/864', imageAlt: 'Skinboosters treatment', href: '/treatments/skinboosters' },
+  { title: 'Biostimulators', description: 'Stimulate your skin\'s natural collagen production for lasting results.', imageSrc: 'https://picsum.photos/seed/biostimulators/1152/864', imageAlt: 'Biostimulators treatment', href: '/treatments/biostimulators' },
+  { title: 'Other Treatments', description: 'Expression line treatments and additional aesthetic solutions.', imageSrc: 'https://picsum.photos/seed/other/1152/864', imageAlt: 'Other aesthetic treatments', href: '/treatments/other' },
 ]
 
 const stats = [
@@ -25,7 +25,7 @@ export default function HomePage() {
       <Header />
       <main>
         <HeroSection
-          imageSrc="/images/hero-main.jpg"
+          imageSrc="https://picsum.photos/seed/hero/1344/768"
           imageAlt="Beauty aesthetics confidence"
           heading="Confidence in your skin is our main concern"
           ctaText="Find out how"
@@ -39,12 +39,12 @@ export default function HomePage() {
         <ContentSection
           heading="Combat the side effects of time"
           body="As we age, changes to the underlying structure of our skin can result in expression lines that alter our appearance. By temporarily relaxing the muscles of the face, we can reduce the appearance of these expression lines and feel our best."
-          imageSrc="/images/section-combat.jpg"
+          imageSrc="https://picsum.photos/seed/combat/1344/768"
           imageAlt="Combat side effects of time"
         />
         <StatsSection stats={stats} />
         <CTABanner
-          imageSrc="/images/cta-specialist.jpg"
+          imageSrc="https://picsum.photos/seed/specialist/1344/768"
           imageAlt="Find a specialist"
           heading="Find a specialist"
           description="Ready to explore your options? Connect with a qualified specialist near you."
@@ -52,8 +52,8 @@ export default function HomePage() {
           ctaHref="/find-specialist"
         />
         <BeforeAfter
-          beforeSrc="/images/ba-before.jpg"
-          afterSrc="/images/ba-after.jpg"
+          beforeSrc="https://picsum.photos/seed/before/800/800"
+          afterSrc="https://picsum.photos/seed/after/800/800"
           beforeAlt="Before treatment"
           afterAlt="After treatment"
           ctaText="See their results"

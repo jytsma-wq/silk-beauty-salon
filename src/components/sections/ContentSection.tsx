@@ -16,7 +16,7 @@ export default function ContentSection({ heading, body: bodyText, imageSrc, imag
           <div className={`flex flex-col ${reversed ? 'md:flex-row-reverse' : 'md:flex-row'} gap-0`}>
             <div className="w-full md:w-1/2">
               <div className="relative aspect-4/3 md:aspect-auto md:h-full min-h-100">
-                <Image src={imageSrc} alt={imageAlt || ''} fill className="object-cover" />
+                <Image src={imageSrc} alt={imageAlt || ''} fill className="object-cover" unoptimized />
               </div>
             </div>
             <div className="w-full md:w-1/2 flex items-center py-12 md:py-16 px-0 md:px-16">
