@@ -1,35 +1,24 @@
-5.5 Phase 5: Polish & Animation
-
-PROMPT 5A: Scroll-Triggered Animations
-INSTRUCTION: Create a reusable scroll-reveal wrapper component at src/components/ScrollReveal.tsx that uses Framer Motion to animate elements as they enter the viewport. This component wraps any child element and applies a subtle fade-up animation.
-'use client'
-import { motion } from 'framer-motion'
-import { ReactNode } from 'react'
-
-interface ScrollRevealProps { children: ReactNode; delay?: number; className?: string }
-
-export default function ScrollReveal({ children, delay = 0, className = '' }: ScrollRevealProps) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.6, delay, ease: 'easeOut' }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  )
-}
-CRITICAL: The animation MUST be subtle: opacity 0 to 1, y 30px to 0. Duration 0.6s with easeOut. The viewport trigger fires once (once: true) with a -80px margin so it triggers slightly before the element is fully in view. The delay parameter allows staggered animations for grid items. Do NOT use spring physics, bounce, or any exaggerated motion. The Galderma site is calm and deliberate, not flashy.
-PROMPT 5B: Image Placeholder Generation
-INSTRUCTION: Generate placeholder images for the beauty salon website using the z-ai-generate CLI tool. Run the following commands in the terminal to create all required images. Each image is designed to match the aesthetic quality and subject matter of the Galderma website.
-cd /home/z/my-project && mkdir -p public/images
-z-ai-generate -p "Professional beauty salon, close-up of a woman's face with perfect skin, soft natural lighting, neutral background, medical aesthetic photography, high-end clinical feel, Swiss pharmaceutical advertisement style" -o ./public/images/hero-main.jpg -s 1344x768
-z-ai-generate -p "Elegant woman receiving facial treatment in bright clinical room, soft diffused lighting, white and neutral tones, premium aesthetic clinic, editorial magazine photography" -o ./public/images/section-combat.jpg -s 1344x768
-z-ai-generate -p "Hyaluronic acid dermal filler treatment, elegant product photography, soft pink and white tones, clinical aesthetic, premium medical beauty product" -o ./public/images/category-fillers.jpg -s 1152x864
-z-ai-generate -p "Skin hydration treatment, water droplets on smooth skin, blue and white tones, clinical beauty photography, premium aesthetic" -o ./public/images/category-skinboosters.jpg -s 1152x864
-z-ai-generate -p "Collagen biostimulator treatment, natural skin texture close-up, warm neutral tones, medical aesthetic photography, elegant clinical style" -o ./public/images/category-biostimulators.jpg -s 1152x864
-z-ai-generate -p "Professional aesthetic clinic interior, specialist consulting with patient, bright white room, Swiss medical aesthetic, editorial photography" -o ./public/images/cta-specialist.jpg -s 1344x768
-z-ai-generate -p "Beauty treatment other options, woman with subtle smile, soft studio lighting, neutral tones, clinical beauty aesthetic" -o ./public/images/category-other.jpg -s 1152x864
-CRITICAL: Use the exact sizes specified. The hero image is 1344x768 (landscape). Category images are 1152x864 (slightly portrait). These match the aspect ratios defined in the components. If any image generation fails, use a solid-color placeholder: bg-brand-bg-alt (#F8F8F8). Do NOT use any external stock photo URLs.
+6. Risk Mitigation & Quality Assurance
+6.1 Design Fidelity Checklist
+After implementing all phases, verify the following design fidelity requirements are met. Each item must pass with a visual comparison to the Galderma reference site. Any deviation must be documented and justified:
+1. Color Accuracy: Open browser DevTools and verify that every background is pure white (#FFFFFF), footer is #F8F8F8, body text is #000000, and no unauthorized colors appear anywhere on the page. The only permitted non-monochromatic color is the accent blue (#2E86C1) used sparingly for focus states and active links.
+2. Typography Hierarchy: Verify that H1 uses Playfair Display at 48px, H2 uses Inter at 24px bold, and body uses Inter at 16px with 26px line-height. Check that navigation text is 15px with 0.15px letter-spacing. Check that CTA buttons use 11px uppercase with 1.65px letter-spacing.
+3. Whitespace Generosity: Sections must have at least 80px (5rem) of vertical padding. The max-width container must be 1265px. There should be no visual clutter, no tight spacing, and no element that feels cramped.
+4. Image Treatment: All images must be full-bleed within their containers with no border-radius, no border, no shadow. Hero images must have the exact gradient overlay (transparent at top, 60% black at bottom). Category cards must have the gradient overlay on the lower portion.
+5. Button Styles: Outline CTAs on dark backgrounds must use border-current with transparent background. Solid buttons must use #0F0F10 background with white text and rounded-sm (2px) border-radius. No other button styles are permitted.
+6. No Rounded Corners: With the sole exception of solid buttons (rounded-sm = 2px), no element on the site should have border-radius. Images, cards, inputs, and all other elements must have sharp rectangular edges.
+7. Mobile Responsiveness: At 375px viewport width, the hero must still display at min-height 500px, navigation must collapse to the mobile Sheet, and all text must remain readable. The category grid must stack to 1 column.
+6.2 Common Implementation Pitfalls
+The following are the most common mistakes developers make when implementing this design language. Each pitfall includes the correct approach:
+Pitfall 1: Adding shadows to cards or images. The Galderma site uses ZERO box-shadows anywhere. Shadows add visual weight and destroy the flat, clinical aesthetic. If elements need visual separation, use background color differences (#FFFFFF vs #F8F8F8) or subtle borders (border-black/5 to border-black/10).
+Pitfall 2: Using rounded corners on images or cards. The only rounded element is the solid button (2px radius). All images, cards, and containers must be sharp rectangles. Rounded corners suggest softness and playfulness, which contradicts the clinical precision of the design.
+Pitfall 3: Using colored backgrounds for sections. The only permitted section backgrounds are pure white (#FFFFFF) and the footer gray (#F8F8F8). No blue tints, no warm off-whites, no gradient backgrounds on content sections. The only non-white backgrounds are on photographic hero/CTA sections where the image provides the color.
+Pitfall 4: Making buttons too prominent. CTA buttons on the Galderma site are deliberately understated. They use outline styles with small text (11px uppercase). They do not shout. They do not use bright colors. They respect the user and trust the content. Never make buttons the visual focal point of a section.
+Pitfall 5: Using multiple font families. Only two font families are permitted: Playfair Display (H1 only) and Inter (everything else). Never introduce a third font, never use system-ui as a visible font, and never use decorative or script fonts for any purpose.
+Pitfall 6: Adding decorative elements. No ornamental dividers, no decorative SVGs, no background patterns, no textured overlays. The Galderma design achieves beauty through restraint, not through decoration. If a section feels empty, the answer is more whitespace, not more elements.
+6.3 Performance Requirements
+The beauty salon website must meet the following performance benchmarks to match the professional quality of the Galderma reference:
+Lighthouse Performance: Score of 90+ on mobile and 95+ on desktop. This requires optimized images (Next.js Image component handles this), minimal JavaScript (avoid unnecessary client components), and efficient CSS (Tailwind purges unused styles).
+First Contentful Paint: Under 1.5 seconds on 4G connection. The hero image is the largest content element and must use priority loading (priority prop on the Image component).
+Cumulative Layout Shift: Under 0.1. All images must have explicit width and height or use fill with an aspect ratio container. Never allow images to cause layout shifts.
+Time to Interactive: Under 3 seconds on 4G. Minimize client-side JavaScript. The only client components should be the Header (scroll listener), MobileNav (Sheet interaction), and ScrollReveal (Framer Motion). All other components must be server components.

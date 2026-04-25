@@ -7,8 +7,9 @@ const LOCALES = ['en','ka','ru','tr','ar','he'];
 const PAGES = [
   '','/about','/treatments','/conditions',
   '/pricelist','/offers','/before-after',
-  '/blog','/faq','/contact-us','/gallery',
-  '/careers','/media-press',
+  '/blog','/faq','/contact-us',
+  '/careers','/media-press','/international-clients',
+  '/book','/privacy-policy','/terms-conditions',
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
