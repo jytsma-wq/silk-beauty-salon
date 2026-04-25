@@ -2,6 +2,9 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { Resend } from 'resend';
 import { db } from '@/lib/db';
+import { strictRateLimit } from '@/lib/rate-limit';
+import { logSecurityEvent } from '@/lib/security-logger';
+import { verifyCsrfToken } from '@/lib/csrf';
 
 // Initialize Resend only if API key is available
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
@@ -17,6 +20,51 @@ const contactFormSchema = z.object({
 
 export async function POST(request: Request) {
   try {
+    // Extract client IP
+    const headers = request.headers;
+    const forwarded = headers.get('x-forwarded-for');
+    const realIp = headers.get('x-real-ip');
+    const ip = forwarded?.split(',')[0].trim() || realIp || 'unknown';
+
+    // Verify CSRF token
+    const csrfValid = await verifyCsrfToken(request as unknown as import('next/server').NextRequest);
+    if (!csrfValid) {
+      await logSecurityEvent({
+        type: 'csrf_fail',
+        ip,
+        path: '/api/contact',
+        userAgent: headers.get('user-agent') || undefined,
+        details: { reason: 'CSRF token invalid or missing' },
+      });
+      return NextResponse.json(
+        { error: 'Invalid or missing CSRF token' },
+        { status: 403 }
+      );
+    }
+
+    // Check rate limit
+    const rateLimitResult = await strictRateLimit(ip);
+    if (!rateLimitResult.allowed) {
+      await logSecurityEvent({
+        type: 'rate_limit',
+        ip,
+        path: '/api/contact',
+        userAgent: headers.get('user-agent') || undefined,
+        details: { reason: 'Contact form rate limit exceeded' },
+      });
+      return NextResponse.json(
+        { error: 'Too many requests. Please try again later.' },
+        {
+          status: 429,
+          headers: {
+            'Retry-After': String(Math.ceil((rateLimitResult.resetTime - Date.now()) / 1000)),
+            'X-RateLimit-Limit': String(rateLimitResult.limit),
+            'X-RateLimit-Remaining': String(rateLimitResult.remaining),
+          },
+        }
+      );
+    }
+
     const body = await request.json();
     
     // Validate input

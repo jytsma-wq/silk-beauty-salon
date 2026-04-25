@@ -50,6 +50,7 @@ test
 
 prompts
 prompts.txt
+prompt.txt
 download/
 website_content.json
 package.zip

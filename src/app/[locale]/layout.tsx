@@ -2,6 +2,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import type { Metadata } from "next";
+import { setCsrfToken } from '@/lib/csrf';
 import { Cormorant_Garamond, Poppins } from "next/font/google";
 import "../globals.css";
 import { Toaster } from "@/components/ui/toaster";
@@ -49,13 +50,16 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  
+
   // Ensure valid locale
   const validLocale = (routing.locales as readonly string[]).includes(locale) ? locale : routing.defaultLocale;
-  
+
   setRequestLocale(validLocale);
-  
+
   const messages = await getMessages();
+
+  // Generate CSRF token for the session
+  const csrfToken = await setCsrfToken();
 
   // Check if RTL language
   const rtlLocales = ['ar', 'he'];
@@ -63,6 +67,9 @@ export default async function LocaleLayout({
 
   return (
     <html lang={validLocale} suppressHydrationWarning className="scroll-smooth" dir={isRtl ? 'rtl' : 'ltr'}>
+      <head>
+        <meta name="csrf-token" content={csrfToken} />
+      </head>
       <body
         className={`${display.variable} ${body.variable} antialiased bg-background text-foreground`}
         style={{ fontFamily: "var(--font-body), sans-serif" }}
