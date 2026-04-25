@@ -11,7 +11,7 @@ export interface Condition {
 }
 
 // Base conditions data (non-translatable: images, slugs)
-const baseConditions: Condition[] = [
+export const baseConditions: Condition[] = [
   {
     name: "Ageing Skin",
     slug: "ageing-skin",
@@ -309,4 +309,4 @@ export async function getConditionBySlug(slug: string, locale: string = 'en'): P
 }
 
 // Note: Use getLocalizedConditions(locale) for proper i18n support
-// The baseConditions are internal only - not exported
+// The baseConditions are exported for client components that can't use async functions

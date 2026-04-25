@@ -2,8 +2,8 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import type { Metadata } from "next";
-import { setCsrfToken } from '@/lib/csrf';
-import { Cormorant_Garamond, Poppins } from "next/font/google";
+import { headers } from 'next/headers';
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import "../globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { AnnouncerProvider } from "@/components/ui/announcer";
@@ -18,12 +18,12 @@ const display = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["300", "400", "600"],
   display: "swap",
-  variable: "--font-display",
+  variable: "--font-heading",
 });
 
-const body = Poppins({
+const body = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
   variable: "--font-body",
 });
@@ -58,8 +58,9 @@ export default async function LocaleLayout({
 
   const messages = await getMessages();
 
-  // Generate CSRF token for the session
-  const csrfToken = await setCsrfToken();
+  // Get CSRF token from middleware header
+  const headersList = await headers();
+  const csrfToken = headersList.get('X-CSRF-Token') || '';
 
   // Check if RTL language
   const rtlLocales = ['ar', 'he'];
@@ -70,10 +71,7 @@ export default async function LocaleLayout({
       <head>
         <meta name="csrf-token" content={csrfToken} />
       </head>
-      <body
-        className={`${display.variable} ${body.variable} antialiased bg-background text-foreground`}
-        style={{ fontFamily: "var(--font-body), sans-serif" }}
-      >
+      <body className={`${display.variable} ${body.variable} antialiased bg-brand-bg text-brand-text font-body`}>
         <ConsentProvider>
           <AnalyticsScripts
             gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}

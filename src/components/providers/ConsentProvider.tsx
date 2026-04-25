@@ -91,10 +91,10 @@ export function ConsentProvider({ children }: { children: React.ReactNode }) {
   const [tempPreferences, setTempPreferences] = React.useState<ConsentState>(defaultConsent)
 
   React.useEffect(() => {
-    const stored = localStorage.getItem("cookie_consent")
-    if (stored) {
+    const consentCookie = document.cookie.split(';').find(c => c.trim().startsWith('cookie_consent='))
+    if (consentCookie) {
       try {
-        const parsed = JSON.parse(stored)
+        const parsed = JSON.parse(decodeURIComponent(consentCookie.split('=')[1]))
         setConsent(parsed)
         setHasConsented(true)
       } catch {
@@ -113,7 +113,7 @@ export function ConsentProvider({ children }: { children: React.ReactNode }) {
       functional: true,
     }
     setConsent(fullConsent)
-    localStorage.setItem("cookie_consent", JSON.stringify(fullConsent))
+    document.cookie = `cookie_consent=${encodeURIComponent(JSON.stringify(fullConsent))}; path=/; max-age=${365 * 24 * 60 * 60}; SameSite=Strict`
     setHasConsented(true)
     setShowBanner(false)
     setShowSettings(false)
@@ -121,7 +121,7 @@ export function ConsentProvider({ children }: { children: React.ReactNode }) {
 
   const rejectAll = () => {
     setConsent(defaultConsent)
-    localStorage.setItem("cookie_consent", JSON.stringify(defaultConsent))
+    document.cookie = `cookie_consent=${encodeURIComponent(JSON.stringify(defaultConsent))}; path=/; max-age=${365 * 24 * 60 * 60}; SameSite=Strict`
     setHasConsented(true)
     setShowBanner(false)
     setShowSettings(false)
@@ -129,7 +129,7 @@ export function ConsentProvider({ children }: { children: React.ReactNode }) {
 
   const savePreferences = (prefs: ConsentState) => {
     setConsent(prefs)
-    localStorage.setItem("cookie_consent", JSON.stringify(prefs))
+    document.cookie = `cookie_consent=${encodeURIComponent(JSON.stringify(prefs))}; path=/; max-age=${365 * 24 * 60 * 60}; SameSite=Strict`
     setHasConsented(true)
     setShowBanner(false)
     setShowSettings(false)

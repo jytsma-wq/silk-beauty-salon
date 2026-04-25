@@ -20,6 +20,19 @@ vi.mock('resend', () => ({
   })),
 }));
 
+vi.mock('@/lib/csrf', () => ({
+  verifyCsrfToken: vi.fn().mockResolvedValue(true),
+  setCsrfToken: vi.fn().mockResolvedValue('test-csrf-token'),
+}));
+
+vi.mock('@/lib/rate-limit', () => ({
+  strictRateLimit: vi.fn().mockResolvedValue({ allowed: true, limit: 5, remaining: 4, resetTime: Date.now() + 60000 }),
+}));
+
+vi.mock('@/lib/security-logger', () => ({
+  logSecurityEvent: vi.fn().mockResolvedValue(undefined),
+}));
+
 // Import after mocks
 import { POST } from '../contact/route';
 import { db } from '@/lib/db';

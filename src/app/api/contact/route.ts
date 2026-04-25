@@ -6,6 +6,16 @@ import { strictRateLimit } from '@/lib/rate-limit';
 import { logSecurityEvent } from '@/lib/security-logger';
 import { verifyCsrfToken } from '@/lib/csrf';
 
+// HTML escape function to prevent XSS in emails
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 // Initialize Resend only if API key is available
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'info@silkbeauty.ge';
@@ -92,10 +102,10 @@ export async function POST(request: Request) {
         from: 'Silk Beauty Salon <noreply@silkbeauty.ge>',
         to: [CONTACT_EMAIL],
         subject: `New enquiry from ${sanitized.name}`,
-        html: `<p><b>Name:</b> ${sanitized.name}</p>
-               <p><b>Email:</b> ${sanitized.email}</p>
-               <p><b>Phone:</b> ${sanitized.phone ?? 'Not provided'}</p>
-               <p><b>Message:</b> ${sanitized.message}</p>`,
+        html: `<p><b>Name:</b> ${escapeHtml(sanitized.name)}</p>
+               <p><b>Email:</b> ${escapeHtml(sanitized.email)}</p>
+               <p><b>Phone:</b> ${escapeHtml(sanitized.phone ?? 'Not provided')}</p>
+               <p><b>Message:</b> ${escapeHtml(sanitized.message)}</p>`,
       });
     } else {
       console.log('Contact form submission (Resend not configured):', sanitized);

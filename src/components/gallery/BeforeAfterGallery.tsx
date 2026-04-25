@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Camera } from 'lucide-react';
 
@@ -58,10 +59,12 @@ export function BeforeAfterGallery({ locale: _locale }: BeforeAfterGalleryProps)
             <div className="grid grid-cols-2 gap-1 p-4">
               <div className="space-y-2">
                 <div className="aspect-square rounded-lg overflow-hidden bg-secondary relative">
-                  <img
+                  <Image
                     src={item.beforeImage}
                     alt={`Before ${item.treatment}`}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 50vw, 25vw"
                   />
                   <div className="absolute bottom-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded">
                     {t('before', { defaultValue: 'Before' })}
@@ -70,10 +73,12 @@ export function BeforeAfterGallery({ locale: _locale }: BeforeAfterGalleryProps)
               </div>
               <div className="space-y-2">
                 <div className="aspect-square rounded-lg overflow-hidden bg-secondary relative">
-                  <img
+                  <Image
                     src={item.afterImage}
                     alt={`After ${item.treatment}`}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 50vw, 25vw"
                   />
                   <div className="absolute bottom-2 left-2 bg-gold/90 text-primary text-xs px-2 py-1 rounded font-medium">
                     {t('after', { defaultValue: 'After' })}

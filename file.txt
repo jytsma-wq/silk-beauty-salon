@@ -1,24 +1,12 @@
-6. Risk Mitigation & Quality Assurance
-6.1 Design Fidelity Checklist
-After implementing all phases, verify the following design fidelity requirements are met. Each item must pass with a visual comparison to the Galderma reference site. Any deviation must be documented and justified:
-1. Color Accuracy: Open browser DevTools and verify that every background is pure white (#FFFFFF), footer is #F8F8F8, body text is #000000, and no unauthorized colors appear anywhere on the page. The only permitted non-monochromatic color is the accent blue (#2E86C1) used sparingly for focus states and active links.
-2. Typography Hierarchy: Verify that H1 uses Playfair Display at 48px, H2 uses Inter at 24px bold, and body uses Inter at 16px with 26px line-height. Check that navigation text is 15px with 0.15px letter-spacing. Check that CTA buttons use 11px uppercase with 1.65px letter-spacing.
-3. Whitespace Generosity: Sections must have at least 80px (5rem) of vertical padding. The max-width container must be 1265px. There should be no visual clutter, no tight spacing, and no element that feels cramped.
-4. Image Treatment: All images must be full-bleed within their containers with no border-radius, no border, no shadow. Hero images must have the exact gradient overlay (transparent at top, 60% black at bottom). Category cards must have the gradient overlay on the lower portion.
-5. Button Styles: Outline CTAs on dark backgrounds must use border-current with transparent background. Solid buttons must use #0F0F10 background with white text and rounded-sm (2px) border-radius. No other button styles are permitted.
-6. No Rounded Corners: With the sole exception of solid buttons (rounded-sm = 2px), no element on the site should have border-radius. Images, cards, inputs, and all other elements must have sharp rectangular edges.
-7. Mobile Responsiveness: At 375px viewport width, the hero must still display at min-height 500px, navigation must collapse to the mobile Sheet, and all text must remain readable. The category grid must stack to 1 column.
-6.2 Common Implementation Pitfalls
-The following are the most common mistakes developers make when implementing this design language. Each pitfall includes the correct approach:
-Pitfall 1: Adding shadows to cards or images. The Galderma site uses ZERO box-shadows anywhere. Shadows add visual weight and destroy the flat, clinical aesthetic. If elements need visual separation, use background color differences (#FFFFFF vs #F8F8F8) or subtle borders (border-black/5 to border-black/10).
-Pitfall 2: Using rounded corners on images or cards. The only rounded element is the solid button (2px radius). All images, cards, and containers must be sharp rectangles. Rounded corners suggest softness and playfulness, which contradicts the clinical precision of the design.
-Pitfall 3: Using colored backgrounds for sections. The only permitted section backgrounds are pure white (#FFFFFF) and the footer gray (#F8F8F8). No blue tints, no warm off-whites, no gradient backgrounds on content sections. The only non-white backgrounds are on photographic hero/CTA sections where the image provides the color.
-Pitfall 4: Making buttons too prominent. CTA buttons on the Galderma site are deliberately understated. They use outline styles with small text (11px uppercase). They do not shout. They do not use bright colors. They respect the user and trust the content. Never make buttons the visual focal point of a section.
-Pitfall 5: Using multiple font families. Only two font families are permitted: Playfair Display (H1 only) and Inter (everything else). Never introduce a third font, never use system-ui as a visible font, and never use decorative or script fonts for any purpose.
-Pitfall 6: Adding decorative elements. No ornamental dividers, no decorative SVGs, no background patterns, no textured overlays. The Galderma design achieves beauty through restraint, not through decoration. If a section feels empty, the answer is more whitespace, not more elements.
-6.3 Performance Requirements
-The beauty salon website must meet the following performance benchmarks to match the professional quality of the Galderma reference:
-Lighthouse Performance: Score of 90+ on mobile and 95+ on desktop. This requires optimized images (Next.js Image component handles this), minimal JavaScript (avoid unnecessary client components), and efficient CSS (Tailwind purges unused styles).
-First Contentful Paint: Under 1.5 seconds on 4G connection. The hero image is the largest content element and must use priority loading (priority prop on the Image component).
-Cumulative Layout Shift: Under 0.1. All images must have explicit width and height or use fill with an aspect ratio container. Never allow images to cause layout shifts.
-Time to Interactive: Under 3 seconds on 4G. Minimize client-side JavaScript. The only client components should be the Header (scroll listener), MobileNav (Sheet interaction), and ScrollReveal (Framer Motion). All other components must be server components.
+⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+
+PS E:\silk\silkbeautysalon10-4> 

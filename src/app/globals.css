@@ -1,8 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 @import "tailwindcss";
-@import "tw-animate-css";
 
 @theme inline {
+  /* Colors */
   --color-brand-bg: #FFFFFF;
   --color-brand-bg-alt: #F8F8F8;
   --color-brand-text: #000000;
@@ -11,48 +10,240 @@
   --color-brand-text-on-dark: #FFFFFF;
   --color-brand-accent: #2E86C1;
   --color-brand-btn-solid: #0F0F10;
-  --font-heading: 'Playfair Display', Georgia, serif;
-  --font-body: 'Inter', system-ui, sans-serif;
+  --color-brand-gold: #C9A84C;
+  --color-brand-border: #E2E2E3;
+
+  /* Fonts - using next/font/google CSS variables */
+  --font-heading: var(--font-heading), Georgia, serif;
+  --font-body: var(--font-body), system-ui, sans-serif;
+
+  /* Container */
   --max-width-container: 1265px;
+
+  /* Custom spacing */
+  --spacing-18: 4.5rem;
+  --spacing-22: 5.5rem;
+  --spacing-26: 6.5rem;
+  --spacing-30: 7.5rem;
 }
 
 @layer base {
   * {
-    border-color: transparent;
+    border-color: var(--color-brand-border);
   }
 
   body {
-    @apply bg-brand-bg text-brand-text font-body antialiased;
+    background-color: var(--color-brand-bg);
+    color: var(--color-brand-text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   }
 
   h1 {
-    @apply font-heading font-normal text-5xl leading-14.5 text-brand-text-on-dark;
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: 3rem;
+    line-height: 1.2;
+    color: var(--color-brand-text);
   }
 
   h2 {
-    @apply font-body font-bold text-2xl text-brand-text;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--color-brand-text);
   }
 
   h3 {
-    @apply font-body font-bold text-2xl text-brand-text;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--color-brand-text);
   }
 }
 
 @layer components {
   .container-brand {
-    @apply mx-auto max-w-container px-5 md:px-10;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--max-width-container);
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
   }
+  @media (min-width: 768px) {
+    .container-brand {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+  }
+
   .hero-gradient {
     background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 60%);
   }
+
   .cta-outline {
-    @apply border border-current bg-transparent px-8 py-4 text-[0.6875rem] uppercase tracking-[0.103125rem] font-medium transition-opacity duration-300 hover:opacity-80;
+    border: 1px solid currentColor;
+    background: transparent;
+    padding: 1rem 2rem;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.103125rem;
+    font-weight: 500;
+    transition: opacity 0.3s;
   }
+  .cta-outline:hover { opacity: 0.8; }
+
   .cta-outline-on-dark {
-    @apply border border-brand-text-on-dark text-brand-text-on-dark bg-transparent px-8 py-4 text-[0.6875rem] uppercase tracking-[0.103125rem] font-medium transition-opacity duration-300 hover:opacity-80;
+    border: 1px solid var(--color-brand-text-on-dark);
+    color: var(--color-brand-text-on-dark);
+    background: transparent;
+    padding: 1rem 2rem;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.103125rem;
+    font-weight: 500;
+    transition: opacity 0.3s;
   }
+  .cta-outline-on-dark:hover { opacity: 0.8; }
+
   .cta-solid {
-    @apply bg-brand-btn-solid text-white px-8 py-3 text-[0.6875rem] uppercase tracking-[0.103125rem] font-medium rounded-sm transition-opacity duration-300 hover:opacity-90;
+    background-color: var(--color-brand-btn-solid);
+    color: #FFFFFF;
+    padding: 0.75rem 2rem;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.103125rem;
+    font-weight: 500;
+    border-radius: 0.125rem;
+    transition: opacity 0.3s;
+  }
+  .cta-solid:hover { opacity: 0.9; }
+
+  .section-spacing {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  @media (min-width: 768px) {
+    .section-spacing {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+  }
+
+  .container-custom {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--max-width-container);
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-custom {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+  }
+
+  .btn-gold {
+    background-color: var(--color-brand-gold);
+    color: #FFFFFF;
+    font-weight: 600;
+  }
+  .btn-gold:hover {
+    background-color: #B8963F;
+  }
+
+  .text-gold { color: var(--color-brand-gold); }
+  .bg-gold { background-color: var(--color-brand-gold); }
+  .border-gold { border-color: var(--color-brand-gold); }
+
+  .heading-underline {
+    position: relative;
+    display: inline-block;
+  }
+  .heading-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background-color: var(--color-brand-gold);
+  }
+
+  .card-hover {
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+  .card-hover:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+  }
+
+  .editorial-card {
+    padding: 1.5rem;
+    background: #FFFFFF;
+    border: 1px solid var(--color-brand-border);
+    transition: box-shadow 0.3s, border-color 0.3s;
+  }
+  .editorial-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    border-color: var(--color-brand-gold);
+  }
+
+  .marquee-track {
+    display: flex;
+    animation: marquee 30s linear infinite;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .consultation-section {
+    background: linear-gradient(135deg, #0E2030 0%, #1A5276 100%);
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.2);
+    border-radius: 3px;
+  }
+}
+
+@layer utilities {
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.7s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.7s ease-out 0.2s forwards;
   }
 }

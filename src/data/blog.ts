@@ -61,18 +61,14 @@ export async function getBlogPostBySlug(
   slug: string,
   locale: string
 ): Promise<BlogPost | null> {
-  const post = await db.blogPost.findUnique({
+  const post = await db.blogPost.findFirst({
     where: {
       slug,
+      locale,
     },
   });
 
-  // Return post if found and matches locale (or is default 'en')
-  if (post && (post.locale === locale || post.locale === 'en')) {
-    return post;
-  }
-
-  return null;
+  return post;
 }
 
 /**
