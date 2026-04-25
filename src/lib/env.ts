@@ -20,6 +20,7 @@ const developmentSchema = z.object({
   RESEND_AUDIENCE_ID: z.string().optional().default(''),
   CONTACT_EMAIL: z.string().email().optional().default('info@silkbeauty.ge'),
   API_SECRET_KEY: z.string().optional().default('dev-secret-key'),
+  REDIS_URL: z.string().url().optional(),
   NEXT_PUBLIC_GA_MEASUREMENT_ID: z.string().optional(),
   NEXT_PUBLIC_FB_PIXEL_ID: z.string().optional(),
   NEXT_PUBLIC_CALCOM_USERNAME: z.string().optional(),
