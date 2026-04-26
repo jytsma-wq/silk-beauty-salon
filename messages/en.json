@@ -7,6 +7,11 @@
     "treatments": "Treatments",
     "conditions": "Skin Conditions",
     "about": "About",
+    "consultation": "Consultation",
+    "skinConcerns": "Skin Concerns",
+    "results": "Results",
+    "aboutUs": "About Us",
+    "findSpecialist": "Find a Specialist",
     "pricelist": "Price List",
     "offers": "Offers",
     "beforeAfter": "Before & After",
@@ -30,10 +35,49 @@
     "title": "Anti-Ageing Specialists",
     "subtitle": "Batumi's Premier Beauty Salon",
     "description": "Silk Beauty Salon brings together expert practitioners, cutting-edge treatments & luxury care to enhance your natural beauty with precision & confidence.",
+    "heading": "Confidence in your skin is our main concern",
+    "imageAlt": "Beauty aesthetics confidence",
+    "ctaText": "Find out how",
     "cta": {
       "book": "Book Appointment",
       "treatments": "View Treatments"
     }
+  },
+  "content": {
+    "heading1": "Aesthetic possibilities shaped together",
+    "body1": "There are many types of fine lines and wrinkles, and a name for almost every type we may experience on our face. Our portfolio of treatments offers a holistic approach to achieving natural-looking results that celebrate your individuality.",
+    "heading2": "Combat the side effects of time",
+    "body2": "As we age, changes to the underlying structure of our skin can result in expression lines that alter our appearance. By temporarily relaxing the muscles of the face, we can reduce the appearance of these expression lines and feel our best.",
+    "imageAlt2": "Combat side effects of time"
+  },
+  "categories": {
+    "fillers": "Dermal Fillers",
+    "fillersDesc": "Restore volume and contour with premium hyaluronic acid treatments.",
+    "fillersAlt": "Dermal fillers treatment",
+    "skinboosters": "Skinboosters",
+    "skinboostersDesc": "Deep hydration and radiance for revitalized, glowing skin.",
+    "skinboostersAlt": "Skinboosters treatment",
+    "biostimulators": "Biostimulators",
+    "biostimulatorsDesc": "Stimulate your skin's natural collagen production for lasting results.",
+    "biostimulatorsAlt": "Biostimulators treatment",
+    "other": "Other Treatments",
+    "otherDesc": "Expression line treatments and additional aesthetic solutions.",
+    "otherAlt": "Other aesthetic treatments"
+  },
+  "stats": {
+    "stat1": "Patients with a desire to feel happier and more confident or improve quality of life.",
+    "stat2": "Patients who wanted to treat themselves or celebrate a milestone."
+  },
+  "cta": {
+    "heading": "Find a specialist",
+    "description": "Ready to explore your options? Connect with a qualified specialist near you.",
+    "imageAlt": "Find a specialist",
+    "ctaText": "Get started"
+  },
+  "results": {
+    "beforeAlt": "Before treatment",
+    "afterAlt": "After treatment",
+    "ctaText": "See their results"
   },
   "treatments": {
     "title": "Treatments",

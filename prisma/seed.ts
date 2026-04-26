@@ -211,8 +211,8 @@ async function main() {
   console.log('Start seeding blog posts...');
 
   for (const post of blogPosts) {
-    const existing = await prisma.blogPost.findUnique({
-      where: { slug: post.slug },
+    const existing = await prisma.blogPost.findFirst({
+      where: { slug: post.slug, locale: post.locale },
     });
 
     if (!existing) {

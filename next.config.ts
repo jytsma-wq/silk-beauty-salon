@@ -5,18 +5,13 @@ import withBundleAnalyzer from '@next/bundle-analyzer';
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
 const nextConfig: NextConfig = {
-  output: "standalone",
+  output: 'standalone',
   reactStrictMode: true,
   images: {
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'flagcdn.com',
-      },
+      { protocol: 'https', hostname: 'images.unsplash.com' },
+      { protocol: 'https', hostname: 'flagcdn.com' },
+      { protocol: 'https', hostname: 'picsum.photos' },
     ],
   },
   async headers() {
@@ -24,7 +19,6 @@ const nextConfig: NextConfig = {
       {
         source: '/:path*',
         headers: [
-          // Security Headers
           {
             key: 'X-Frame-Options',
             value: 'DENY',
@@ -34,23 +28,21 @@ const nextConfig: NextConfig = {
             value: 'nosniff',
           },
           {
-            key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin',
-          },
-          {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on',
-          },
-          {
             key: 'Strict-Transport-Security',
             value: 'max-age=63072000; includeSubDomains; preload',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
           },
           {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()',
           },
-          // CSP is now handled dynamically by middleware.ts with nonce
-          // This provides better security than static CSP
+          {
+            key: 'Content-Security-Policy',
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://analytics.google.com https://www.googletagmanager.com https://connect.facebook.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://images.unsplash.com https://flagcdn.com https://picsum.photos data: blob:; frame-src 'self' https://cal.com https://*.cal.com; connect-src 'self' https://analytics.google.com https://www.google-analytics.com https://www.facebook.com;",
+          },
         ],
       },
     ];

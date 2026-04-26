@@ -968,4 +968,4 @@ export async function getCategoryByTreatmentSlug(treatmentSlug: string, locale: 
 }
 
 // Note: Use getLocalizedTreatmentCategories(locale) for proper i18n support
-// The baseTreatmentCategories are internal only - not exported
+// The baseTreatmentCategories are exported for client components that can't use async functions

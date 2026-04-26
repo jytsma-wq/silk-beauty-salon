@@ -7,6 +7,11 @@
     "treatments": "Tedaviler",
     "conditions": "Cilt Sorunları",
     "about": "Hakkımızda",
+    "consultation": "Konsültasyon",
+    "skinConcerns": "Cilt Sorunları",
+    "results": "Sonuçlar",
+    "aboutUs": "Hakkımızda",
+    "findSpecialist": "Uzman Bul",
     "pricelist": "Fiyat Listesi",
     "offers": "Teklifler",
     "contact": "İletişim",
@@ -33,7 +38,46 @@
     "cta": {
       "book": "Randevu Al",
       "treatments": "Tedavileri Gör"
-    }
+    },
+    "heading": "Cildinizdeki güven bizim ana endişemizdir",
+    "imageAlt": "Güzellik estetiği güveni",
+    "ctaText": "Nasıl olduğunu öğrenin"
+  },
+  "content": {
+    "heading1": "Birlikte şekillenen estetik olanaklar",
+    "body1": "Yüzümüzde yaşayabileceğimiz birçok ince çizgi ve kırışıklık türü vardır ve hemen hemen her türün bir adı vardır. Tedavi portföyümüz, bireyselliğinizi kutlayan doğal görünümlü sonuçlar elde etmek için bütünsel bir yaklaşım sunar.",
+    "heading2": "Zamanın yan etkileriyle savaşın",
+    "body2": "Yaşlandıkça, cildimizin alt yapısındaki değişiklikler görünümümüzü değiştiren ifade çizgilerine neden olabilir. Yüz kaslarını geçici olarak gevşeterek, bu ifade çizgilerinin görünümünü azaltabilir ve en iyi şekilde hissedebiliriz.",
+    "imageAlt2": "Zamanın yan etkileriyle savaşın"
+  },
+  "categories": {
+    "fillers": "Dermal Dolgular",
+    "fillersDesc": "Premium hyaluronik asit tedavileriyle hacmi ve konturu geri kazanın.",
+    "fillersAlt": "Dermal dolgu tedavisi",
+    "skinboosters": "Cilt Güçlendiriciler",
+    "skinboostersDesc": "Canlı, parlak cilt için derin nemlendirme ve ışıltı.",
+    "skinboostersAlt": "Cilt güçlendirici tedavisi",
+    "biostimulators": "Biyostimülatörler",
+    "biostimulatorsDesc": "Kalıcı sonuçlar için cildinizin doğal kollajen üretimini uyarın.",
+    "biostimulatorsAlt": "Biyostimülatör tedavisi",
+    "other": "Diğer Tedaviler",
+    "otherDesc": "İfade çizgisi tedavileri ve ek estetik çözümler.",
+    "otherAlt": "Diğer estetik tedaviler"
+  },
+  "stats": {
+    "stat1": "Daha mutlu ve kendinden emin hissetme veya yaşam kalitesini iyileştirme arzusundaki hastalar.",
+    "stat2": "Kendilerini şımartmak veya bir kilometre taşını kutlamak isteyen hastalar."
+  },
+  "cta": {
+    "heading": "Bir uzman bulun",
+    "description": "Seçeneklerinizi keşfetmeye hazır mısınız? Yakınınızdaki nitelikli bir uzmanla bağlantı kurun.",
+    "imageAlt": "Bir uzman bulun",
+    "ctaText": "Başlayın"
+  },
+  "results": {
+    "beforeAlt": "Tedavi öncesi",
+    "afterAlt": "Tedavi sonrası",
+    "ctaText": "Onların sonuçlarını görün"
   },
   "treatments": {
     "title": "Tedaviler",
