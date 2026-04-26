@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
 import { ChevronLeft, ChevronRight, ZoomIn, Info } from 'lucide-react';
 import { cn } from '@/lib/utils';
 

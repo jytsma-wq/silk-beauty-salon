@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
 import { ChevronRight, Calendar, Clock } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 import { getBlogPosts } from '@/data/blog';

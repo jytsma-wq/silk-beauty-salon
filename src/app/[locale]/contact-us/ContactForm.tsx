@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { siteConfig } from '@/data/site-config';
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
 import { ChevronRight } from 'lucide-react';
 
 // TikTok Icon Component

@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
 import { ChevronRight, Mail, MapPin, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { siteConfig } from '@/data/site-config';

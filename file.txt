@@ -1,39 +1,52 @@
-Do this for every page! Make the whole website uniform!!!step by step. control every detail!
-Also get rid of all the black space in the pages, make it more clear and modern.
-One more thing: all the fonts must be segma sans serif!!!
-Extreme whitespace as a design element — 140–200px between sections. French luxury communicates exclusivity through emptiness. Sisley Paris uses 180px vertical padding on content sections. The current 80px feels rushed and commercial. More space = more prestige.
-Zero borders, zero shadows — anywhere. No card borders. No box-shadows. No dividers. Augustinus Bader and Biologique Recherche separate content purely with whitespace and alternating cream/white backgrounds. A border signals "cheap website template." French luxury uses nothing.
-Section labels — tiny caps above every heading. Before every h2, there's a tiny all-caps label in muted gray: "— SOINS DU VISAGE —" or "— NOTRE PHILOSOPHIE —". This is the signature of French editorial design. A thin rule + small label sets the context before the big serif heading lands.
-Numbered editorial treatment lists — not cards. Treatments are listed as "01 / Dermal Fillers" with a hairline separator between each. Large, barely-visible gray number + treatment name in DM Serif + one line description. On hover: a crimson left-border slides in. This is the Augustinus Bader ingredient-list approach — clinical, editorial, authoritative.
-Brand manifesto section — one enormous serif statement. A full viewport-height section of pure white with 3–5 words per line in large DM Serif Display. Something like "The science of beautiful skin." at 8vw font size. Sisley Paris does this between hero and treatments. It stops the visitor cold.
-Pull-quote testimonials — not card grids. One testimonial takes up an entire section. The quote mark is enormous (200px, light crimson). The quote text is 2rem DM Serif. Client name below in 10px caps. Pure white background. This is how Vogue magazine presents testimonials — not a grid of 6 small cards.
-Statistics displayed as art — not charts. "1000+ patients · 5 years · 98% satisfaction" displayed as three massive numbers in 6vw DM Serif with a thin hairline between each. Centered on warm cream. The data IS the design — no icons, no labels below, just the numbers and a two-word descriptor.
-Asymmetric image/text splits — never symmetrical grids. Left 55% image, right 45% text. Or left 40% text, right 60% image that bleeds to the viewport edge. Sisley Paris alternates these left-right throughout the page. It creates visual rhythm without repetition.
-Horizontal marquee / ticker strip. Between major sections, a full-width strip in warm cream scrolls text horizontally: "DERMAL FILLERS — LASER TREATMENTS — ANTI-WRINKLE — SKIN BOOSTERS — BODY CONTOURING —" at 12px caps. The .marquee-track class already exists in globals.css — it just needs to be used.
-Hover = color shift only, never translate or shadow. Links change from gray to black. Crimson appears. Nothing moves, nothing floats. The current .card-hover { transform: translateY(-5px); box-shadow: 0 10px 40px... } is the opposite of French luxury — it feels like a Shopify template.
-Reference sites: sisley-paris.com · augustinusbader.com · biologique-recherche.com · carita.fr · yves-rocher.fr · guerlain.com · annefontaine.com
-Design gaps — current v11 vs French magazine target
-Section whitespace
-44%
-Borderless cards
-20%
-Editorial section labels
-0%
-Brand manifesto section
-0%
-Numbered treatment list
-0%
-Pull-quote testimonials
-10%
-Stats as visual art
-0%
-Marquee strip
-0%
-Asymmetric splits
-30%
-Zero-shadow hover states
-15%
-Header / Footer quality
-95%
-i18n completeness
-99%
+Prompt 3: Fix i18n Link Imports (Critical)
+This is the most critical fix. Every page under [locale]/ that uses Link from 'next/link' will generate URLs without the locale prefix, breaking navigation for all non-English users. This must be fixed systematically across all affected files.
+Copy this prompt:
+AUDIT SWEEP #3: FIX I18N LINK IMPORTS
+
+CRITICAL BUG: Multiple files import Link from 'next/link' instead of from
+'@/i18n/routing'. This breaks locale-prefixed URLs for all non-English users.
+
+FOR EACH FILE BELOW, make these exact changes:
+  - Replace: import Link from 'next/link'
+    With: import { Link } from '@/i18n/routing'
+  - Replace: import { Link } from 'next/link' (if named import used)
+    With: import { Link } from '@/i18n/routing'
+  - If the file ALSO uses other next/link exports (like useRouter), keep
+    those as separate imports from 'next/link'. ONLY change the Link import.
+
+FILES TO FIX (check each one individually):
+1. src/app/[locale]/about/page.tsx
+2. src/app/[locale]/blog/page.tsx
+3. src/app/[locale]/blog/[slug]/page.tsx
+4. src/app/[locale]/book/page.tsx
+5. src/app/[locale]/careers/page.tsx
+6. src/app/[locale]/conditions/page.tsx
+7. src/app/[locale]/conditions/[slug]/page.tsx
+8. src/app/[locale]/consultation/page.tsx
+9. src/app/[locale]/contact-us/page.tsx
+10. src/app/[locale]/contact-us/page-server.tsx
+11. src/app/[locale]/contact-us/ContactForm.tsx
+12. src/app/[locale]/faq/page.tsx
+13. src/app/[locale]/media-press/page.tsx
+14. src/app/[locale]/offers/page.tsx
+15. src/app/[locale]/pricelist/page.tsx
+16. src/app/[locale]/privacy-policy/page.tsx
+17. src/app/[locale]/terms-conditions/page.tsx
+18. src/app/[locale]/treatments/[slug]/page.tsx
+19. src/app/[locale]/not-found.tsx
+20. src/components/sections/ConsultationCTA.tsx
+21. src/components/sections/SkinTrendsSection.tsx
+22. src/components/gallery/EnhancedBeforeAfter.tsx
+
+VERIFICATION: After fixing all files, search the ENTIRE src/ directory:
+  grep -r "from 'next/link'" src/
+  grep -r 'from "next/link"' src/
+The ONLY remaining next/link import should be in src/app/not-found.tsx
+(the root not-found, outside [locale], which correctly uses next/link).
+
+Then run: npm run build — must succeed with zero errors.
+
+DO NOT change any Link usage in components that already import from
+@/i18n/routing (Header, Footer, GaldermaHeader, GaldermaFooter, etc.).
+DO NOT change the Link import in src/app/not-found.tsx (root level,
+outside [locale], which correctly uses next/link).

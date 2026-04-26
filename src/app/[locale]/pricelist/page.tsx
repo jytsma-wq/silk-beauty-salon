@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
 import { ChevronRight } from 'lucide-react';
 import { getLocalizedTreatmentCategories } from '@/data/treatments';
 import { siteConfig } from '@/data/site-config';
