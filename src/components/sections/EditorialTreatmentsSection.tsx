@@ -126,7 +126,7 @@ export function EditorialTreatmentsSection() {
           {/* Right: numbered editorial list with scroll progress */}
           <div ref={listRef} className="relative">
             {/* Scroll Progress Indicator */}
-            <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-[#b5453a]/10 hidden lg:block">
+            <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-[#b5453a]/10 hidden lg:block">
               <motion.div
                 className="w-full bg-[#b5453a]/40"
                 style={{ height: `${scrollProgress * 100}%` }}
@@ -176,7 +176,7 @@ export function EditorialTreatmentsSection() {
                             animate={{ opacity: 1, scale: 1, x: 0 }}
                             exit={{ opacity: 0, scale: 0.9, x: 20 }}
                             transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-                            className="absolute right-0 top-0 w-[200px] h-[200px] rounded-sm overflow-hidden shadow-xl z-20 hidden lg:block"
+                            className="absolute right-0 top-0 w-50 h-50 rounded-sm overflow-hidden shadow-xl z-20 hidden lg:block"
                           >
                             <Image
                               src={cat.image}

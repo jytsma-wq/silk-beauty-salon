@@ -13,12 +13,27 @@ export function ParallaxImage({
   fill = true,
   className = '',
   alt,
+  sizes,
   ...props
 }: ParallaxImageProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [translateY, setTranslateY] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile on mount
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || 'ontouchstart' in window);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
+    // Skip parallax on mobile for performance
+    if (isMobile) return;
+
     let rafId: number;
     let lastScrollY = window.scrollY;
 
@@ -27,16 +42,16 @@ export function ParallaxImage({
 
       rafId = requestAnimationFrame(() => {
         const scrollY = window.scrollY;
-        
+
         if (containerRef.current && scrollY !== lastScrollY) {
           const rect = containerRef.current.getBoundingClientRect();
           const windowHeight = window.innerHeight;
-          
+
           // Calculate parallax offset based on element position
           const elementCenter = rect.top + rect.height / 2;
           const viewportCenter = windowHeight / 2;
           const distanceFromCenter = elementCenter - viewportCenter;
-          
+
           const offset = distanceFromCenter * parallaxSpeed;
           setTranslateY(offset);
           lastScrollY = scrollY;
@@ -52,10 +67,25 @@ export function ParallaxImage({
       window.removeEventListener('scroll', handleScroll);
       if (rafId) cancelAnimationFrame(rafId);
     };
-  }, [parallaxSpeed]);
+  }, [parallaxSpeed, isMobile]);
+
+  // Mobile: render image without parallax wrapper
+  if (isMobile) {
+    return (
+      <div className={`overflow-hidden ${fill ? 'absolute inset-0' : 'relative'}`}>
+        <Image
+          alt={alt}
+          fill={fill}
+          sizes={sizes}
+          className={`object-cover ${className}`}
+          {...props}
+        />
+      </div>
+    );
+  }
 
   return (
-    <div 
+    <div
       ref={containerRef}
       className={`overflow-hidden ${fill ? 'absolute inset-0' : 'relative'}`}
     >
@@ -70,6 +100,7 @@ export function ParallaxImage({
         <Image
           alt={alt}
           fill={fill}
+          sizes={sizes}
           className={`object-cover ${className}`}
           {...props}
         />

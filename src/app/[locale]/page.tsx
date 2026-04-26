@@ -1,17 +1,35 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { BrandManifestoSection } from '@/components/sections/BrandManifestoSection';
 import { EditorialTreatmentsSection } from '@/components/sections/EditorialTreatmentsSection';
 import { StatisticsStrip } from '@/components/sections/StatisticsStrip';
-import { TreatmentsMarquee } from '@/components/sections/TreatmentsMarquee';
 import { PullQuoteTestimonial } from '@/components/sections/PullQuoteTestimonial';
 import { ConsultationCTA } from '@/components/sections/ConsultationCTA';
-import { ConditionsSection } from '@/components/sections/ConditionsSection';
 import { AboutSection } from '@/components/sections/AboutSection';
-import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
-import { QuickLinksSection } from '@/components/sections/QuickLinksSection';
 import { JsonLd, generateLocalBusinessSchema } from '@/components/seo/JsonLd';
+
+// Lazy load below-fold components for better performance
+const TreatmentsMarquee = dynamic(
+  () => import('@/components/sections/TreatmentsMarquee').then(mod => mod.TreatmentsMarquee),
+  { loading: () => null }
+);
+
+const ConditionsSection = dynamic(
+  () => import('@/components/sections/ConditionsSection').then(mod => mod.ConditionsSection),
+  { loading: () => null }
+);
+
+const TestimonialsSection = dynamic(
+  () => import('@/components/sections/TestimonialsSection').then(mod => mod.TestimonialsSection),
+  { loading: () => null }
+);
+
+const QuickLinksSection = dynamic(
+  () => import('@/components/sections/QuickLinksSection').then(mod => mod.QuickLinksSection),
+  { loading: () => null }
+);
 
 const localeMap: Record<string, string> = {
   en: 'en_US',

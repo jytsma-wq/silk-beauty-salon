@@ -11,6 +11,9 @@ interface StickySplitSectionProps {
   minHeight?: string;
 }
 
+// Check if sticky is supported
+const isStickySupported = typeof CSS !== 'undefined' && CSS.supports('position', 'sticky');
+
 export function StickySplitSection({
   imageSrc,
   imageAlt,
@@ -21,6 +24,17 @@ export function StickySplitSection({
   const sectionRef = useRef<HTMLElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isRevealed, setIsRevealed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile for sticky fallback
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || 'ontouchstart' in window);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Scroll progress calculation
   useEffect(() => {
@@ -84,11 +98,12 @@ export function StickySplitSection({
       className="grid grid-cols-1 lg:grid-cols-2 min-h-screen"
       style={{ minHeight }}
     >
-      {/* Image Side - Sticky */}
+      {/* Image Side - Sticky (fallback to relative on mobile or if sticky not supported) */}
       <div
-        className={`h-screen sticky top-0 overflow-hidden ${
-          reverse ? 'lg:order-2' : 'lg:order-1'
-        }`}
+        className={`h-screen overflow-hidden ${
+          isStickySupported && !isMobile ? 'lg:sticky lg:top-0' : 'lg:relative'
+        } ${reverse ? 'lg:order-2' : 'lg:order-1'}`}
+        style={!isStickySupported || isMobile ? { position: 'relative' } : undefined}
       >
         {/* Image with clip-path reveal and parallax */}
         <div className="absolute inset-0" style={clipPathStyle}>
@@ -97,7 +112,7 @@ export function StickySplitSection({
             alt={imageAlt}
             fill
             parallaxSpeed={0.1}
-            sizes="50vw"
+            sizes="(max-width: 768px) 100vw, 50vw"
             priority
           />
         </div>
@@ -114,11 +129,14 @@ export function StickySplitSection({
         </div>
       </div>
 
-      {/* Content Side - Scrollable */}
+      {/* Content Side - Scrollable with iOS Safari fixes */}
       <div
-        className={`py-32 px-8 lg:px-20 flex flex-col justify-center ${
+        className={`py-32 px-8 lg:px-20 flex flex-col justify-center overflow-y-auto ${
           reverse ? 'lg:order-1' : 'lg:order-2'
         }`}
+        style={{
+          WebkitOverflowScrolling: 'touch',
+        }}
       >
         {children}
       </div>
