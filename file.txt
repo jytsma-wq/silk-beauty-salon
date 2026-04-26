@@ -1,52 +1,79 @@
-Prompt 3: Fix i18n Link Imports (Critical)
-This is the most critical fix. Every page under [locale]/ that uses Link from 'next/link' will generate URLs without the locale prefix, breaking navigation for all non-English users. This must be fixed systematically across all affected files.
-Copy this prompt:
-AUDIT SWEEP #3: FIX I18N LINK IMPORTS
+> git -c user.useConfigOnly=true commit --quiet --allow-empty-message --file -
 
-CRITICAL BUG: Multiple files import Link from 'next/link' instead of from
-'@/i18n/routing'. This breaks locale-prefixed URLs for all non-English users.
+╔════════════════════════════════════════════════════════════╗
+║        TRANSLATION VALIDATION REPORT                       ║
+╚════════════════════════════════════════════════════════════╝
 
-FOR EACH FILE BELOW, make these exact changes:
-  - Replace: import Link from 'next/link'
-    With: import { Link } from '@/i18n/routing'
-  - Replace: import { Link } from 'next/link' (if named import used)
-    With: import { Link } from '@/i18n/routing'
-  - If the file ALSO uses other next/link exports (like useRouter), keep
-    those as separate imports from 'next/link'. ONLY change the Link import.
+❌ FAIL - ar.json
+   Missing keys: 4
+     - testimonial
+     - testimonial.quote
+     - testimonial.name
+     - testimonial.location
+   Extra keys: 3 (not in source)
+   Structure issues: 22
+     - consultation.cta - type mismatch: source is string, target is object
+     - conditionContent.acne.symptoms - array length mismatch: source 6, target 5
+     - conditionContent.acne.causes - array length mismatch: source 4, target 3
+     ... and 19 more
 
-FILES TO FIX (check each one individually):
-1. src/app/[locale]/about/page.tsx
-2. src/app/[locale]/blog/page.tsx
-3. src/app/[locale]/blog/[slug]/page.tsx
-4. src/app/[locale]/book/page.tsx
-5. src/app/[locale]/careers/page.tsx
-6. src/app/[locale]/conditions/page.tsx
-7. src/app/[locale]/conditions/[slug]/page.tsx
-8. src/app/[locale]/consultation/page.tsx
-9. src/app/[locale]/contact-us/page.tsx
-10. src/app/[locale]/contact-us/page-server.tsx
-11. src/app/[locale]/contact-us/ContactForm.tsx
-12. src/app/[locale]/faq/page.tsx
-13. src/app/[locale]/media-press/page.tsx
-14. src/app/[locale]/offers/page.tsx
-15. src/app/[locale]/pricelist/page.tsx
-16. src/app/[locale]/privacy-policy/page.tsx
-17. src/app/[locale]/terms-conditions/page.tsx
-18. src/app/[locale]/treatments/[slug]/page.tsx
-19. src/app/[locale]/not-found.tsx
-20. src/components/sections/ConsultationCTA.tsx
-21. src/components/sections/SkinTrendsSection.tsx
-22. src/components/gallery/EnhancedBeforeAfter.tsx
+❌ FAIL - he.json
+   Missing keys: 4
+     - testimonial
+     - testimonial.quote
+     - testimonial.name
+     - testimonial.location
+   Extra keys: 3 (not in source)
+   Structure issues: 21
+     - consultation.cta - type mismatch: source is string, target is object
+     - conditionContent.acne.causes - array length mismatch: source 4, target 3
+     - conditionContent.acne.treatments - array length mismatch: source 4, target 3
+     ... and 18 more
 
-VERIFICATION: After fixing all files, search the ENTIRE src/ directory:
-  grep -r "from 'next/link'" src/
-  grep -r 'from "next/link"' src/
-The ONLY remaining next/link import should be in src/app/not-found.tsx
-(the root not-found, outside [locale], which correctly uses next/link).
+❌ FAIL - ka.json
+   Missing keys: 8
+     - treatments.sectionLabel
+     - treatments.sectionTitle
+     - treatments.sectionDescription
+     - about.descriptionExtended
+     - testimonial
+     ... and 3 more
+   Extra keys: 6 (not in source)
+   Structure issues: 19
+     - consultation.cta - type mismatch: source is string, target is object
+     - conditionContent.acne.causes - array length mismatch: source 4, target 3
+     - conditionContent.acne.treatments - array length mismatch: source 4, target 3
+     ... and 16 more
 
-Then run: npm run build — must succeed with zero errors.
+❌ FAIL - ru.json
+   Missing keys: 4
+     - testimonial
+     - testimonial.quote
+     - testimonial.name
+     - testimonial.location
+   Extra keys: 3 (not in source)
+   Structure issues: 3
+     - consultation.cta - type mismatch: source is string, target is object
+     - conditionContent.pigmentation.symptoms - array length mismatch: source 5, target 4
+     - conditionContent.stretch-marks.symptoms - array length mismatch: source 4, target 3
 
-DO NOT change any Link usage in components that already import from
-@/i18n/routing (Header, Footer, GaldermaHeader, GaldermaFooter, etc.).
-DO NOT change the Link import in src/app/not-found.tsx (root level,
-outside [locale], which correctly uses next/link).
+❌ FAIL - tr.json
+   Missing keys: 4
+     - testimonial
+     - testimonial.quote
+     - testimonial.name
+     - testimonial.location
+   Extra keys: 10 (not in source)
+   Structure issues: 1
+     - consultation.cta - type mismatch: source is string, target is object
+
+╔════════════════════════════════════════════════════════════╗
+║                      SUMMARY                               ║
+╚════════════════════════════════════════════════════════════╝
+Total missing keys: 24
+Total other issues: 91
+Files with problems: 5/5
+
+❌ Validation failed - critical issues found
+
+husky - pre-commit script failed (code 1)

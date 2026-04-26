@@ -247,6 +247,11 @@
     "satisfaction": "Memnuniyet Oranı",
     "awards": "Sektör Ödülleri"
   },
+  "testimonial": {
+    "quote": "Silk Beauty Salon ekibi özgüvenimi dönüştürdü. Sonuçlar doğal ve tam olarak hayal ettiğim gibi.",
+    "name": "Sarah Mitchell",
+    "location": "Londra, Birleşik Krallık"
+  },
   "manifesto": {
     "label": "Felsefemiz",
     "statement": "Bilim güzel cilt sanatıyla buluştuğunda.",
@@ -518,6 +523,8 @@
   },
   "blogPage": {
     "title": "Blogumuz",
+    "metaTitle": "Blog | Silk Beauty Salon",
+    "metaDescription": "Uzman içgörüleri, tedavi rehberleri ve estetik dünyasından son haberler",
     "subtitle": "Uzman içgörüleri, tedavi rehberleri ve estetik dünyasından son haberler",
     "breadcrumb": "Blog",
     "stayUpdated": "Güncel Kalın",

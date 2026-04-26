@@ -301,7 +301,11 @@
     "label": "Personalized Care",
     "headline": "Book Your Consultation Today",
     "body": "Schedule a personalized consultation with our expert practitioners to discuss your aesthetic goals and create a tailored treatment plan just for you.",
-    "cta": "Book Now",
+    "cta": {
+      "title": "Ready to Start Your Journey?",
+      "description": "Book your consultation today and take the first step towards enhanced natural beauty.",
+      "button": "Find a Specialist"
+    },
     "hero": {
       "title": "Explore the possibilities with a treatment consultation",
       "description": "An essential part of treatment, the aesthetic consultation is where your journey begins. The better we understand your needs and desires, the more likely you will achieve the results you want.",
@@ -508,6 +512,8 @@
   },
   "blogPage": {
     "title": "Our Blog",
+    "metaTitle": "Blog | Silk Beauty Salon",
+    "metaDescription": "Expert insights, treatment guides, and the latest from the world of aesthetics",
     "subtitle": "Expert insights, treatment guides, and the latest from the world of aesthetics",
     "breadcrumb": "Blog",
     "stayUpdated": "Stay Updated",
