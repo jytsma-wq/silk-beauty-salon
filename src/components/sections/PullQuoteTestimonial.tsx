@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
-import Image from 'next/image';
+import { ParallaxImage } from '@/components/effects';
 
 export function PullQuoteTestimonial() {
   const t = useTranslations('testimonial');
@@ -11,19 +11,19 @@ export function PullQuoteTestimonial() {
     <section className="section-spacing bg-white overflow-hidden">
       <div className="container-custom">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          {/* Left - Image */}
+          {/* Left - Image with Parallax */}
           <motion.div
-            className="relative aspect-4/5 lg:aspect-3/4"
+            className="relative aspect-4/5 lg:aspect-3/4 overflow-hidden"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <Image
+            <ParallaxImage
               src="/images/testimonial-portrait.svg"
               alt=""
               fill
-              className="object-cover"
+              parallaxSpeed={0.15}
             />
           </motion.div>
 

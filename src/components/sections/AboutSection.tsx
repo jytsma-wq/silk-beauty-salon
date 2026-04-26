@@ -1,8 +1,8 @@
 'use client';
 
-import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
+import { StickySplitSection } from './StickySplitSection';
 
 export function AboutSection() {
   const t = useTranslations('about');
@@ -14,61 +14,46 @@ export function AboutSection() {
   ];
 
   return (
-    <section className="section-spacing section-warm">
-      <div className="container-custom">
-        <div className="editorial-split">
-          {/* Left - Image */}
-          <div className="relative h-full min-h-100 lg:min-h-130">
-            <Image
-              src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200&q=80"
-              alt="Silk Beauty Salon"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-              priority
-            />
+    <StickySplitSection
+      imageSrc="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200&q=80"
+      imageAlt="Silk Beauty Salon"
+      reverse={false}
+    >
+      {/* Category Label */}
+      <span className="text-xs tracking-[0.2em] uppercase text-stone-500 mb-6">
+        {t('category')}
+      </span>
+
+      {/* Heading - Editorial Scale */}
+      <h2 className="font-serif text-[clamp(2rem,5vw,3.5rem)] leading-[1.1] text-stone-800 mb-8">
+        {t('title')}
+      </h2>
+
+      {/* Body Text - Soft Neutrals */}
+      <p className="text-stone-600 leading-[1.7] mb-6 text-lg">
+        {t('description')}
+      </p>
+      <p className="text-stone-600 leading-[1.7] mb-10 text-lg">
+        {t('descriptionExtended')}
+      </p>
+
+      {/* Stats */}
+      <div className="flex gap-8 mb-8">
+        {stats.map((stat) => (
+          <div key={stat.label}>
+            <div className="stat-number text-[#b5453a]">{stat.number}</div>
+            <div className="text-sm text-gray-500 uppercase tracking-wider">{stat.label}</div>
           </div>
-
-          {/* Right - Content */}
-          <div className="flex flex-col justify-center py-12 lg:py-0 lg:pl-20 pl-8">
-            {/* Category Label */}
-            <span className="text-xs tracking-[0.2em] uppercase text-stone-500 mb-6">
-              {t('category')}
-            </span>
-
-            {/* Heading - Editorial Scale */}
-            <h2 className="font-serif text-[clamp(2rem,5vw,3.5rem)] leading-[1.1] text-stone-800 mb-8">
-              {t('title')}
-            </h2>
-
-            {/* Body Text - Soft Neutrals */}
-            <p className="text-stone-600 leading-[1.7] mb-6 text-lg">
-              {t('description')}
-            </p>
-            <p className="text-stone-600 leading-[1.7] mb-10 text-lg">
-              {t('descriptionExtended')}
-            </p>
-
-            {/* Stats */}
-            <div className="flex gap-8 mb-8">
-              {stats.map((stat) => (
-                <div key={stat.label}>
-                  <div className="stat-number text-[#b5453a]">{stat.number}</div>
-                  <div className="text-sm text-gray-500 uppercase tracking-wider">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-
-            {/* CTA */}
-            <Link
-              href="/about"
-              className="btn-outline inline-flex w-fit"
-            >
-              {t('readMore')}
-            </Link>
-          </div>
-        </div>
+        ))}
       </div>
-    </section>
+
+      {/* CTA */}
+      <Link
+        href="/about"
+        className="btn-outline inline-flex w-fit"
+      >
+        {t('readMore')}
+      </Link>
+    </StickySplitSection>
   );
 }

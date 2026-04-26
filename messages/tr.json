@@ -185,6 +185,10 @@
     "title": "Danışmanlık Talep Edin",
     "metaTitle": "Uzman Bul | Silk Beauty Salon",
     "metaDescription": "Uzman estetik pratisyenlerimizle konsültasyon rezervasyonu yapın. Geliştirilmiş doğal güzellik yolculuğunuza başlayın.",
+    "label": "Kişiselleştirilmiş Bakım",
+    "headline": "Bugün Konsültasyonunuzu Ayırtın",
+    "body": "Estetik hedeflerinizi tartışmak ve sizin için özel bir tedavi planı oluşturmak için uzman pratisyenlerimizle kişiselleştirilmiş bir konsültasyon planlayın.",
+    "cta": "Şimdi Ayırtın",
     "hero": {
       "title": "Tedavi konsültasyonu ile olanakları keşfedin",
       "description": "Tedavinin önemli bir parçası olan estetik konsültasyon, yolculuğunuzun başladığı yerdir. İhtiyaçlarınızı ve arzularınızı ne kadar iyi anlarsak, istediğiniz sonuçlara ulaşma olasılığınız o kadar artar.",
@@ -236,6 +240,20 @@
       "description": "Bugün konsültasyonunuzu rezerve edin ve geliştirilmiş doğal güzelliğe doğru ilk adımı atın.",
       "button": "Uzman Bul"
     }
+  },
+  "statistics": {
+    "years": "Yıllık Deneyim",
+    "clients": "Mutlu Müşteri",
+    "satisfaction": "Memnuniyet Oranı",
+    "awards": "Sektör Ödülleri"
+  },
+  "manifesto": {
+    "label": "Felsefemiz",
+    "statement": "Bilim güzel cilt sanatıyla buluştuğunda.",
+    "value1": "Hassasiyet",
+    "value2": "Diskresyon",
+    "value3": "Mükemmellik",
+    "cta": "Hikayemizi keşfedin"
   },
   "newsletter": {
     "title": "Güncel Kalın",

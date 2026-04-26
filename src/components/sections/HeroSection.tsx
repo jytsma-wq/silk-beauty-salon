@@ -1,57 +1,204 @@
 'use client';
 
+import { useEffect, useRef, useState, useCallback } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { BookingButton } from '@/components/booking-button';
+import { motion } from 'framer-motion';
 
 export function HeroSection() {
   const t = useTranslations('hero');
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [parallaxOffset, setParallaxOffset] = useState(0);
+
+  // Handle video load
+  const handleVideoLoaded = useCallback(() => {
+    setIsVideoLoaded(true);
+  }, []);
+
+  // Parallax effect with requestAnimationFrame
+  useEffect(() => {
+    let rafId: number;
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      if (rafId) return; // Throttle via RAF
+
+      rafId = requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        if (scrollY !== lastScrollY) {
+          setParallaxOffset(scrollY * 0.3); // 0.3x scroll speed
+          lastScrollY = scrollY;
+        }
+        rafId = 0;
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, []);
+
+  // Animation variants
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (delay: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        delay,
+        ease: [0.25, 0.1, 0.25, 1] as const,
+      },
+    }),
+  };
 
   return (
-    <section className="relative min-h-screen flex items-end overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <Image
-          src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=1920&q=80"
-          alt="Luxury spa and beauty salon interior"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
-        {/* Overlay - lighter, directional gradient */}
-        <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/15 to-transparent" />
+    <section className="relative min-h-[85vh] md:min-h-screen flex items-end overflow-hidden">
+      {/* Video Background with Parallax */}
+      <div 
+        className="absolute inset-0 will-change-transform"
+        style={{ transform: `translateY(${parallaxOffset}px)` }}
+      >
+        {/* Poster Image with Ken Burns effect (shown while video loads) */}
+        <motion.div
+          className="absolute inset-0"
+          initial={{ opacity: 1 }}
+          animate={{ opacity: isVideoLoaded ? 0 : 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div 
+            className="absolute inset-0 animate-ken-burns"
+            style={{
+              animation: 'kenBurns 10s ease-out forwards',
+            }}
+          >
+            <Image
+              src="/images/hero-poster.jpg"
+              alt="Luxury spa and beauty salon interior"
+              fill
+              priority
+              fetchPriority="high"
+              className="object-cover scale-100"
+              sizes="100vw"
+            />
+          </div>
+        </motion.div>
+
+        {/* Video Element */}
+        <motion.video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          disablePictureInPicture
+          onLoadedData={handleVideoLoaded}
+          onCanPlay={handleVideoLoaded}
+          className="absolute inset-0 w-full h-full object-cover will-change-transform"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isVideoLoaded ? 1 : 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <source src="/videos/hero-bg.mp4" type="video/mp4" />
+        </motion.video>
+
+        {/* Cinematic Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
+        
+        {/* Mobile-specific darker overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 md:hidden" />
+
+        {/* Floating Particles - Ambient Effect */}
+        <FloatingParticles />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container-custom text-left text-white pb-20 md:pb-28">
+      <div className="relative z-10 container-custom text-left text-white pb-16 md:pb-28">
         <div className="max-w-2xl">
-          {/* Editorial headline — light weight, tight tracking */}
-          <h1
-            className="text-4xl md:text-5xl lg:text-6xl font-serif font-light leading-tight mb-4 tracking-tight"
+          {/* Editorial headline with animation */}
+          <motion.h1
+            className="text-3xl md:text-5xl lg:text-6xl font-serif font-light leading-tight mb-4 tracking-tight"
+            variants={fadeInUp}
+            initial="hidden"
+            animate="visible"
+            custom={0.3}
           >
             {t('title')}
-          </h1>
-          <h2
-            className="text-xl md:text-2xl font-sans font-light text-white/80 mb-8 tracking-wide"
+          </motion.h1>
+
+          <motion.h2
+            className="text-lg md:text-2xl font-sans font-light text-white/80 mb-6 md:mb-8 tracking-wide"
+            variants={fadeInUp}
+            initial="hidden"
+            animate="visible"
+            custom={0.6}
           >
             {t('subtitle')}
-          </h2>
-          <p className="text-base text-white/70 mb-10 max-w-lg leading-relaxed">
-            {t('description')}
-          </p>
-          {/* Book Appointment button */}
-          <BookingButton />
+          </motion.h2>
 
-          {/* Scroll indicator */}
-          <div className="mt-16 flex items-center gap-2 text-white/50 text-xs tracking-widest uppercase">
-            <span>Scroll to explore</span>
-            <svg className="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-          </div>
+          <motion.p
+            className="text-sm md:text-base text-white/70 mb-8 md:mb-10 max-w-lg leading-relaxed"
+            variants={fadeInUp}
+            initial="hidden"
+            animate="visible"
+            custom={0.9}
+          >
+            {t('description')}
+          </motion.p>
+
+          {/* Book Appointment button */}
+          <motion.div
+            variants={fadeInUp}
+            initial="hidden"
+            animate="visible"
+            custom={1.2}
+          >
+            <BookingButton />
+          </motion.div>
+
+          {/* Elegant Scroll Indicator */}
+          <motion.div
+            className="mt-12 md:mt-16 flex flex-col items-start gap-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 1.8 }}
+          >
+            <span className="text-white/50 text-[10px] tracking-[0.2em] uppercase">
+              Scroll
+            </span>
+            <div className="w-px h-10 bg-white/30 relative overflow-hidden">
+              <motion.div
+                className="absolute inset-0 bg-white/60"
+                animate={{
+                  y: ['-100%', '100%'],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }}
+              />
+            </div>
+          </motion.div>
         </div>
       </div>
+
+      {/* Ken Burns animation keyframes */}
+      <style jsx global>{`
+        @keyframes kenBurns {
+          0% {
+            transform: scale(1);
+          }
+          100% {
+            transform: scale(1.05);
+          }
+        }
+      `}</style>
     </section>
   );
 }
