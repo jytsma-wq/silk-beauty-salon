@@ -29,8 +29,8 @@ const galleryData: BeforeAfterItem[] = [
     age: 45,
     treatment: 'Cheek Fillers',
     treatmentDetails: 'Restylane® Lyft™ 1.2ml per side',
-    beforeImage: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&q=80',
-    afterImage: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=80',
+    beforeImage: '/images/before-after/cheek-fillers-before.jpg',
+    afterImage: '/images/before-after/cheek-fillers-after.jpg',
     duration: '6 months',
     sessions: 1,
     concerns: ['Loss of volume', 'Sagging cheeks'],
@@ -42,8 +42,8 @@ const galleryData: BeforeAfterItem[] = [
     age: 52,
     treatment: 'Skinboosters',
     treatmentDetails: 'Restylane® Skinboosters VITAL™ 1ml per side in 2 sessions',
-    beforeImage: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600&q=80',
-    afterImage: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&q=80',
+    beforeImage: '/images/before-after/skinboosters-before.jpg',
+    afterImage: '/images/before-after/skinboosters-after.jpg',
     duration: '8 months',
     sessions: 2,
     concerns: ['Dehydrated skin', 'Fine lines'],
@@ -55,8 +55,8 @@ const galleryData: BeforeAfterItem[] = [
     age: 38,
     treatment: 'Biostimulator',
     treatmentDetails: 'Sculptra® 16ml Session 1, 8ml Session 2',
-    beforeImage: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80',
-    afterImage: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&q=80',
+    beforeImage: '/images/before-after/biostimulator-before.jpg',
+    afterImage: '/images/before-after/biostimulator-after.jpg',
     duration: '12+ months',
     sessions: 2,
     concerns: ['Volume loss', 'Skin laxity'],
@@ -68,8 +68,8 @@ const galleryData: BeforeAfterItem[] = [
     age: 35,
     treatment: 'Jawline Contouring',
     treatmentDetails: 'Restylane® Lyft™ 2.4ml / jawline, Restylane® Defyne™ 4ml / jawline',
-    beforeImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80',
-    afterImage: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80',
+    beforeImage: '/images/before-after/jawline-before.jpg',
+    afterImage: '/images/before-after/jawline-after.jpg',
     duration: '9 months',
     sessions: 1,
     concerns: ['Weak jawline', 'Facial imbalance'],
@@ -81,8 +81,8 @@ const galleryData: BeforeAfterItem[] = [
     age: 28,
     treatment: 'Lip Enhancement',
     treatmentDetails: 'Restylane® Kysse™ 0.8ml per lip',
-    beforeImage: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&q=80',
-    afterImage: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&q=80',
+    beforeImage: '/images/before-after/lips-before.jpg',
+    afterImage: '/images/before-after/lips-after.jpg',
     duration: '10 months',
     sessions: 1,
     concerns: ['Thin lips', 'Loss of definition'],
@@ -94,8 +94,8 @@ const galleryData: BeforeAfterItem[] = [
     age: 42,
     treatment: 'Frown Lines',
     treatmentDetails: 'Anti-wrinkle injections',
-    beforeImage: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=80',
-    afterImage: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&q=80',
+    beforeImage: '/images/before-after/frown-lines-before.jpg',
+    afterImage: '/images/before-after/frown-lines-after.jpg',
     duration: '4 months',
     sessions: 1,
     concerns: ['Deep frown lines', 'Forehead wrinkles'],
@@ -200,7 +200,7 @@ export function EnhancedBeforeAfter({
         {/* Treatment Label Header */}
         <div className="bg-primary text-white px-6 py-4 flex items-center justify-between">
           <div>
-            <h3 className="font-heading text-xl">{currentItem.treatment}</h3>
+            <h3 className="font-serif text-xl">{currentItem.treatment}</h3>
             <p className="text-sm text-white/80">{currentItem.treatmentDetails}</p>
           </div>
           <button
@@ -271,7 +271,7 @@ export function EnhancedBeforeAfter({
           <div className="border-t bg-gray-50 p-6">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <h4 className="font-heading text-lg text-primary mb-3">
+                <h4 className="font-serif text-lg text-primary mb-3">
                   {currentItem.patientName}, {currentItem.age}
                 </h4>
                 <div className="space-y-2 text-sm">

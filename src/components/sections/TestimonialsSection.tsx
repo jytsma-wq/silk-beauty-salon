@@ -36,7 +36,7 @@ export function TestimonialsSection() {
         <div className="flex items-end justify-between mb-10">
           <div>
             <h2
-              className="text-3xl md:text-4xl lg:text-5xl font-heading tracking-tight text-white"
+              className="text-3xl md:text-4xl lg:text-5xl font-serif tracking-tight text-white"
             >
               {t('title')}
             </h2>
@@ -72,7 +72,7 @@ export function TestimonialsSection() {
         >
           {testimonials.map((testimonial, index) => (
             <div
-              key={index}
+              key={testimonial.author || testimonial.quote?.slice(0,20) || index}
               className="shrink-0 w-[85vw] sm:w-[45vw] lg:w-[30vw] snap-start"
             >
               <div className="p-8 h-full flex flex-col justify-between">

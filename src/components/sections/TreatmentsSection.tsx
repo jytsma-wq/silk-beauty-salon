@@ -18,11 +18,11 @@ export async function TreatmentsSection({ locale }: TreatmentsSectionProps) {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2
-            className="text-3xl md:text-4xl lg:text-5xl font-heading text-primary tracking-tight mb-4"
+            className="text-3xl md:text-4xl lg:text-5xl font-serif text-primary tracking-tight mb-4"
           >
             {t('title')}
           </h2>
-          <p className="font-body text-muted-foreground leading-relaxed max-w-2xl mx-auto mt-8">
+          <p className="font-sans text-muted-foreground leading-relaxed max-w-2xl mx-auto mt-8">
             {t('subtitle')}
           </p>
         </div>
@@ -47,7 +47,7 @@ export async function TreatmentsSection({ locale }: TreatmentsSectionProps) {
                 <div className="absolute inset-0 bg-linear-to-t from-primary/80 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <h3
-                    className="text-xl font-heading text-white tracking-tight"
+                    className="text-xl font-serif text-white tracking-tight"
                   >
                     {category.name}
                   </h3>
@@ -56,7 +56,7 @@ export async function TreatmentsSection({ locale }: TreatmentsSectionProps) {
 
               {/* Content */}
               <div className="p-6">
-                <p className="font-body text-muted-foreground leading-relaxed text-sm mb-4 line-clamp-2">
+                <p className="font-sans text-muted-foreground leading-relaxed text-sm mb-4 line-clamp-2">
                   {category.description}
                 </p>
                 <ul className="space-y-2 mb-4">

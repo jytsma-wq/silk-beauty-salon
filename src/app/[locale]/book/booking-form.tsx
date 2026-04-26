@@ -93,7 +93,7 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
         <div className="w-16 h-16 bg-[#b5453a]/10 rounded-full flex items-center justify-center mx-auto mb-6">
           <CheckCircle className="w-8 h-8 text-[#b5453a]" />
         </div>
-        <h3 className="font-heading text-2xl text-primary mb-4">
+        <h3 className="font-serif text-2xl text-primary mb-4">
           {t('successTitle', { defaultValue: 'Booking Request Submitted' })}
         </h3>
         <p className="text-muted-foreground mb-6 max-w-md mx-auto">

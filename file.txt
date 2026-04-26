@@ -1,38 +1,43 @@
-Prompt 5: Clean Tailwind Config & Remove Dual CSP
-Remove unused color definitions from tailwind.config.ts and eliminate the duplicate CSP configuration between next.config.ts and middleware.ts.
-Copy this prompt:
-AUDIT SWEEP #5: CLEAN TAILWIND CONFIG & DUAL CSP
+> git -c user.useConfigOnly=true commit --quiet --allow-empty-message --file -
 
-FIX 1: Remove unused Galderma colors from tailwind.config.ts
-  Open tailwind.config.ts and DELETE these four lines from the colors
-  object (they are never used anywhere in the codebase):
-    'galderma-bg': '#F9F9F7',
-    'galderma-text': '#1A1A1A',
-    'galderma-gold': '#9A7D63',
-    'galderma-navy': '#002D72',
+╔════════════════════════════════════════════════════════════╗
+║        TRANSLATION VALIDATION REPORT                       ║
+╚════════════════════════════════════════════════════════════╝
 
-FIX 2: Remove duplicate CSP from next.config.ts
-  Open next.config.ts and REMOVE the entire Content-Security-Policy
-  header entry from the headers() function. The middleware.ts handles CSP
-  correctly with nonce-based values. The next.config.ts CSP is both
-  redundant AND conflicting (it uses unsafe-inline/unsafe-eval while
-  middleware uses nonce-based).
+❌ FAIL - ar.json
+   Structure issues: 17
+     - conditionContent.pigmentation.causes - array length mismatch: source 4, target 3
+     - conditionContent.pigmentation.treatments - array length mismatch: source 4, target 3
+     - conditionContent.scars.symptoms - array length mismatch: source 4, target 3
+     ... and 14 more
 
-  Keep ALL other security headers in next.config.ts (X-Frame-Options,
-  X-Content-Type-Options, Strict-Transport-Security, Referrer-Policy,
-  Permissions-Policy). ONLY remove the Content-Security-Policy entry.
+❌ FAIL - he.json
+   Structure issues: 17
+     - conditionContent.pigmentation.causes - array length mismatch: source 4, target 3
+     - conditionContent.pigmentation.treatments - array length mismatch: source 4, target 3
+     - conditionContent.scars.symptoms - array length mismatch: source 4, target 3
+     ... and 14 more
 
-FIX 3: Remove console.log from middleware.ts
-  Open middleware.ts and:
-  - DELETE line: console.log('[Middleware] Processing: ${pathname}');
-  - DELETE line: console.log('[Middleware] Redirecting root to /en');
-  These are debug logs that should not be in production.
+❌ FAIL - ka.json
+   Extra keys: 3 (not in source)
+   Structure issues: 15
+     - conditionContent.pigmentation.causes - array length mismatch: source 4, target 3
+     - conditionContent.scars.symptoms - array length mismatch: source 4, target 3
+     - conditionContent.hair-loss.symptoms - array length mismatch: source 4, target 3
+     ... and 12 more
 
-VERIFICATION:
-  1. grep -r "galderma-bg|galderma-text|galderma-gold|galderma-navy" src/
-     Must return ZERO matches.
-  2. grep "Content-Security-Policy" next.config.ts
-     Must return ZERO matches.
-  3. grep "console.log" middleware.ts
-     Must return ZERO matches.
-  4. Run: npm run build — must succeed.
+✅ PASS - ru.json
+
+✅ PASS - tr.json
+   Extra keys: 7 (not in source)
+
+╔════════════════════════════════════════════════════════════╗
+║                      SUMMARY                               ║
+╚════════════════════════════════════════════════════════════╝
+Total missing keys: 0
+Total other issues: 59
+Files with problems: 3/5
+
+❌ Validation failed - critical issues found
+
+husky - pre-commit script failed (code 1)

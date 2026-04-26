@@ -45,7 +45,7 @@ export function QuickLinksSection() {
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2
-            className="text-3xl md:text-4xl font-heading text-primary tracking-tight mb-4"
+            className="text-3xl md:text-4xl font-serif text-primary tracking-tight mb-4"
           >
             {t('title')}
           </h2>
@@ -63,11 +63,11 @@ export function QuickLinksSection() {
                 <link.icon className="w-6 h-6" />
               </div>
               <h3
-                className="text-lg font-heading text-primary tracking-tight mb-2"
+                className="text-lg font-serif text-primary tracking-tight mb-2"
               >
                 {link.title}
               </h3>
-              <p className="font-body text-muted-foreground leading-relaxed text-sm mb-4">
+              <p className="font-sans text-muted-foreground leading-relaxed text-sm mb-4">
                 {link.description}
               </p>
               <span className="inline-flex items-center gap-1 text-sm font-medium text-[#b5453a] group-hover:gap-2 transition-all">

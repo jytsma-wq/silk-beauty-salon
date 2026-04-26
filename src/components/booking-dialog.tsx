@@ -224,7 +224,7 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader className="text-center">
-          <DialogTitle className="text-2xl font-heading">Book Appointment</DialogTitle>
+          <DialogTitle className="text-2xl font-serif">Book Appointment</DialogTitle>
           <DialogDescription>
             Schedule your consultation with our expert practitioners
           </DialogDescription>
@@ -435,7 +435,7 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
             </div>
 
             <div>
-              <h3 className="text-xl font-heading mb-2">Booking Confirmed!</h3>
+              <h3 className="text-xl font-serif mb-2">Booking Confirmed!</h3>
               <p className="text-gray-600">
                 Thank you, {name}. Your appointment has been scheduled.
               </p>

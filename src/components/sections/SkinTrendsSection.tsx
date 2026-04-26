@@ -27,10 +27,10 @@ export async function SkinTrendsSection({
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div className="text-center md:text-left">
-            <h2 className="heading-underline text-3xl md:text-4xl font-heading font-semibold text-primary tracking-tight mb-4">
+            <h2 className="heading-underline text-3xl md:text-4xl font-serif font-semibold text-primary tracking-tight mb-4">
               {t('title', { defaultValue: 'Skin Trends' })}
             </h2>
-            <p className="font-body text-muted-foreground max-w-2xl">
+            <p className="font-sans text-muted-foreground max-w-2xl">
               {t('subtitle', { 
                 defaultValue: 'Expert insights, treatment guides, and the latest in aesthetic medicine.' 
               })}
@@ -71,7 +71,7 @@ export async function SkinTrendsSection({
 
               {/* Content */}
               <div className="p-6">
-                <h3 className="font-heading text-lg font-semibold text-primary mb-3 line-clamp-2 group-hover:text-[#b5453a] transition-colors">
+                <h3 className="font-serif text-lg font-semibold text-primary mb-3 line-clamp-2 group-hover:text-[#b5453a] transition-colors">
                   <Link href={`/blog/${article.slug}`}>
                     {article.title}
                   </Link>

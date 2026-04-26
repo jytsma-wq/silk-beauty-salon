@@ -91,7 +91,7 @@ export default async function ConsultationPage({
               <span className="text-[#b5453a]">Consultation</span>
             </nav>
             
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-semibold mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-semibold mb-6">
               {t('hero.title', { defaultValue: 'Explore the possibilities with a treatment consultation' })}
             </h1>
             <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed">
@@ -130,7 +130,7 @@ export default async function ConsultationPage({
             {features.map((feature, idx) => (
               <div key={idx} className="p-8 border-t border-[#e8e4df]">
                 <feature.icon className="w-6 h-6 text-[#b5453a] mb-6" />
-                <h3 className="font-heading text-xl font-semibold text-primary mb-3">
+                <h3 className="font-serif text-xl font-semibold text-primary mb-3">
                   {feature.title}
                 </h3>
                 <p className="text-muted-foreground">
@@ -146,7 +146,7 @@ export default async function ConsultationPage({
       <section className="section-spacing">
         <div className="container-custom">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-heading font-semibold text-primary mb-4">
+            <h2 className="text-3xl md:text-4xl font-serif font-semibold text-primary mb-4">
               {t('journey.title', { defaultValue: 'Your Aesthetic Journey' })}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -162,7 +162,7 @@ export default async function ConsultationPage({
                 <span className="text-xs tracking-[0.15em] uppercase text-[#b5453a]">
                   {String(step.number).padStart(2, '0')}
                 </span>
-                <h3 className="font-heading text-lg font-semibold text-primary mt-4 mb-3">
+                <h3 className="font-serif text-lg font-semibold text-primary mt-4 mb-3">
                   {step.title}
                 </h3>
                 <p className="text-sm text-muted-foreground">
@@ -178,7 +178,7 @@ export default async function ConsultationPage({
       <section className="section-spacing bg-secondary">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-semibold text-primary mb-4">
+            <h2 className="text-3xl md:text-4xl font-serif font-semibold text-primary mb-4">
               {t('treatments.title', { defaultValue: 'Treatments We Offer' })}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -195,7 +195,7 @@ export default async function ConsultationPage({
                 href={category.href}
                 className="group block py-6 border-t border-[#e8e4df]"
               >
-                <h3 className="font-heading text-xl font-semibold text-primary mb-2 group-hover:text-[#b5453a] transition-colors">
+                <h3 className="font-serif text-xl font-semibold text-primary mb-2 group-hover:text-[#b5453a] transition-colors">
                   {category.name}
                 </h3>
                 <ul className="space-y-1 mb-3">
@@ -227,7 +227,7 @@ export default async function ConsultationPage({
         </div>
         
         <div className="container-custom relative z-10 text-center text-white">
-          <h2 className="text-3xl md:text-4xl font-heading font-semibold mb-4">
+          <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-4">
             {t('cta.title', { defaultValue: 'Ready to Start Your Journey?' })}
           </h2>
           <p className="text-white/80 max-w-xl mx-auto mb-8">

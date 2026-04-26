@@ -10,7 +10,7 @@ export function ConsultationCTA() {
   return (
     <StickySplitSection
       imageSrc="/images/consultation.svg"
-      imageAlt=""
+      imageAlt="Consultation with aesthetic specialist"
       reverse={true}
     >
       {/* Section Label */}

@@ -21,7 +21,7 @@ export function PullQuoteTestimonial() {
           >
             <ParallaxImage
               src="/images/testimonial-portrait.svg"
-              alt=""
+              alt="Happy client testimonial portrait"
               fill
               parallaxSpeed={0.15}
             />

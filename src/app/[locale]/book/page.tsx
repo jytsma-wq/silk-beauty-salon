@@ -125,7 +125,7 @@ export default async function BookPage({
 
           <div className="max-w-3xl">
             <h1 
-              className="text-4xl md:text-5xl font-heading font-semibold text-white mb-6"
+              className="text-4xl md:text-5xl font-serif font-semibold text-white mb-6"
                           >
               {t('title')}
             </h1>
@@ -146,7 +146,7 @@ export default async function BookPage({
                 <div className="flex items-center gap-3 mb-6">
                   <Calendar className="w-6 h-6 text-[#b5453a]" />
                   <h2 
-                    className="text-2xl font-heading font-semibold text-primary"
+                    className="text-2xl font-serif font-semibold text-primary"
                                       >
                     {t('selectDateTime')}
                   </h2>
@@ -164,7 +164,7 @@ export default async function BookPage({
               {/* Consultation Types */}
               <div className="border-t border-[#e8e4df] py-8">
                 <h3 
-                  className="font-heading text-lg font-semibold text-primary mb-4"
+                  className="font-serif text-lg font-semibold text-primary mb-4"
                                   >
                   {t('consultationTypes')}
                 </h3>
@@ -194,7 +194,7 @@ export default async function BookPage({
               {/* What to Expect */}
               <div className="border-t border-[#e8e4df] py-8">
                 <h3 
-                  className="font-heading text-lg font-semibold mb-4"
+                  className="font-serif text-lg font-semibold mb-4"
                                   >
                   {t('whatToExpect.title')}
                 </h3>
@@ -221,7 +221,7 @@ export default async function BookPage({
               {/* Contact Info */}
               <div className="border-t border-[#e8e4df] py-8">
                 <h3 
-                  className="font-heading text-lg font-semibold text-primary mb-4"
+                  className="font-serif text-lg font-semibold text-primary mb-4"
                               >
                   {t('needHelp')}
                 </h3>
@@ -264,7 +264,7 @@ export default async function BookPage({
       <section className="section-spacing bg-[#f7f4f0]">
         <div className="container-custom">
           <h2 
-            className="text-2xl font-heading font-semibold text-primary text-center mb-8"
+            className="text-2xl font-serif font-semibold text-primary text-center mb-8"
                       >
             {t('faq.title')}
           </h2>

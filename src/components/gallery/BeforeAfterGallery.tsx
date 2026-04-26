@@ -15,22 +15,22 @@ export function BeforeAfterGallery({ locale: _locale }: BeforeAfterGalleryProps)
     {
       id: 1,
       treatment: 'Botox Forehead Lines',
-      beforeImage: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=400&q=80',
-      afterImage: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80',
+      beforeImage: '/images/before-after/forehead-before.jpg',
+      afterImage: '/images/before-after/forehead-after.jpg',
       description: 'Results after 2 weeks',
     },
     {
       id: 2,
       treatment: 'Lip Enhancement',
-      beforeImage: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80',
-      afterImage: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80',
+      beforeImage: '/images/before-after/lips-before.jpg',
+      afterImage: '/images/before-after/lips-after.jpg',
       description: 'Natural-looking volume',
     },
     {
       id: 3,
       treatment: 'Skin Rejuvenation',
-      beforeImage: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=400&q=80',
-      afterImage: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80',
+      beforeImage: '/images/before-after/skin-before.jpg',
+      afterImage: '/images/before-after/skin-after.jpg',
       description: 'After 3 sessions',
     },
   ];
@@ -51,7 +51,7 @@ export function BeforeAfterGallery({ locale: _locale }: BeforeAfterGalleryProps)
           >
             {/* Treatment Label */}
             <div className="bg-primary text-white px-4 py-2">
-              <h3 className="font-heading tracking-tight">{item.treatment}</h3>
+              <h3 className="font-serif tracking-tight">{item.treatment}</h3>
             </div>
 
             {/* Before/After Images */}
@@ -94,7 +94,7 @@ export function BeforeAfterGallery({ locale: _locale }: BeforeAfterGalleryProps)
       {galleryItems.length === 0 && (
         <div className="text-center py-16">
           <Camera className="w-16 h-16 text-muted-foreground mx-auto mb-4 opacity-50" />
-          <h3 className="font-heading text-xl text-primary tracking-tight mb-2">
+          <h3 className="font-serif text-xl text-primary tracking-tight mb-2">
             {t('comingSoon', { defaultValue: 'Gallery Coming Soon' })}
           </h3>
           <p className="text-muted-foreground max-w-md mx-auto">

@@ -19,7 +19,7 @@ export function TreatmentsMarquee() {
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-linear-to-l from-stone-900 to-transparent z-10" />
 
         {/* Scrolling content */}
-        <div className="flex animate-marquee whitespace-nowrap">
+        <div className="flex marquee-track whitespace-nowrap">
           {allNames.map((name, index) => (
             <span
               key={`${name}-${index}`}
@@ -31,21 +31,6 @@ export function TreatmentsMarquee() {
           ))}
         </div>
       </div>
-
-      {/* CSS for marquee animation */}
-      <style jsx>{`
-        @keyframes marquee {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-        .animate-marquee {
-          animation: marquee 40s linear infinite;
-        }
-      `}</style>
     </section>
   );
 }

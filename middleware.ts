@@ -170,7 +170,7 @@ function logSuspicious(request: NextRequest, reason: string) {
   const userAgent = request.headers.get('user-agent') || 'unknown';
   
   // In production, send to logging service (Datadog, etc.)
-  console.log(`[SECURITY] ${timestamp} | ${reason} | IP: ${ip} | Path: ${request.nextUrl.pathname} | UA: ${userAgent.substring(0, 100)}`);
+  // console.log(`[SECURITY] ${timestamp} | ${reason} | IP: ${ip} | Path: ${request.nextUrl.pathname} | UA: ${userAgent.substring(0, 100)}`);
 }
 
 // Create the i18n middleware

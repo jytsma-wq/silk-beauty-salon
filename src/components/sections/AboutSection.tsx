@@ -15,7 +15,7 @@ export function AboutSection() {
 
   return (
     <StickySplitSection
-      imageSrc="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200&q=80"
+      imageSrc="/images/salon-interior.jpg"
       imageAlt="Silk Beauty Salon"
       reverse={false}
     >

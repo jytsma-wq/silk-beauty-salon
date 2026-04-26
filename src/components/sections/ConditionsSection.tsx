@@ -26,11 +26,11 @@ export function ConditionsSection() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2
-            className="text-3xl md:text-4xl lg:text-5xl font-heading text-primary tracking-tight mb-4"
+            className="text-3xl md:text-4xl lg:text-5xl font-serif text-primary tracking-tight mb-4"
           >
             {t('title')}
           </h2>
-          <p className="font-body text-muted-foreground leading-relaxed max-w-2xl mx-auto mt-8">
+          <p className="font-sans text-muted-foreground leading-relaxed max-w-2xl mx-auto mt-8">
             {t('subtitle')}
           </p>
         </div>
@@ -44,11 +44,11 @@ export function ConditionsSection() {
               className="group p-6 transition-colors hover:bg-stone-50"
             >
               <h3
-                className="text-lg font-heading text-primary tracking-tight mb-2"
+                className="text-lg font-serif text-primary tracking-tight mb-2"
               >
                 {condition.name}
               </h3>
-              <p className="font-body text-muted-foreground leading-relaxed text-sm mb-4 line-clamp-2">
+              <p className="font-sans text-muted-foreground leading-relaxed text-sm mb-4 line-clamp-2">
                 {condition.shortDescription}
               </p>
               <span className="category-pill">

@@ -52,7 +52,7 @@ export function MobileNav({ onClose, treatmentCategories, conditions }: MobileNa
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b">
         <div className="flex flex-col">
-          <span className="font-heading text-xl font-semibold text-primary">
+          <span className="font-serif text-xl font-semibold text-primary">
             Silk Beauty
           </span>
           <span className="text-xs text-[#b5453a] tracking-[0.2em] uppercase">
@@ -100,7 +100,7 @@ export function MobileNav({ onClose, treatmentCategories, conditions }: MobileNa
                 <div className="pb-4 px-4">
                   {treatmentCategories.map((category) => (
                     <div key={category.slug} className="mb-4">
-                      <h4 className="font-heading text-sm font-semibold text-[#b5453a] mb-2">
+                      <h4 className="font-serif text-sm font-semibold text-[#b5453a] mb-2">
                         {category.name}
                       </h4>
                       <ul className="space-y-1">
