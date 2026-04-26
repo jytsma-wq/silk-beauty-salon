@@ -1,158 +1,62 @@
-PROMPT 1 — globals.css: The French Magazine Design System
-Open src/app/globals.css. Make these precise changes. Do not change any import, font variable, or color variable — only the utility classes and animations. 1. Section spacing (critical — the most impactful change):
-.section-spacing {
-  padding: 140px 0;          /* was: 80px 0 */
-}
-@media (max-width: 768px) {
-  .section-spacing {
-    padding: 80px 0;          /* was: 50px 0 */
-  }
-}
-2. Remove all card borders and shadows (borderless French style):
-.card-hover {
-  transition: color 0.3s ease, border-color 0.3s ease;
-  /* DELETE: transform and box-shadow — never used in French luxury */
-}
-.card-hover:hover {
-  /* DELETE: transform: translateY(-5px) */
-  /* DELETE: box-shadow */
-}
-.editorial-card {
-  border: none;               /* was: 1px solid #e0e0e0 */
-  background: transparent;    /* was: #ffffff */
-  padding: 2rem 0;            /* was: 1.5rem */
-}
-.editorial-card:hover {
-  border-color: transparent;  /* was: #b5453a */
-  box-shadow: none;           /* was: 0 4px 20px ... */
-  border-left: 2px solid #b5453a;  /* ADD: crisp left accent on hover */
-  padding-left: 1rem;
-}
-.testimonial-card {
-  border: none;               /* was: 1px solid #e0e0e0 */
-  padding: 0;                 /* was: 2rem */
-  background: transparent;
-}
-3. Fix image overlay tint (remove navy blue from gradients):
-.image-overlay::after {
-  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
-  /* was: rgba(26,26,46,0.8) — navy tint removed */
-}
-4. Add French magazine editorial classes (all new):
-/* ── French Magazine System ── */
+Here is a production-ready, highly structured prompt optimized for Kimi 2.5's long-context and deep-reasoning capabilities. It aligns with your stack, enforces surgical precision, and outputs actionable, prioritized findings.
+Copy-Paste Prompt for Kimi 2.5
 
-/* Section eyebrow label */
-.section-label {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 28px;
-}
-.section-label::before,
-.section-label::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: #e0e0e0;
-  max-width: 60px;
-}
-.section-label span {
-  font-size: 0.625rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #9a9a9a;
-  font-family: var(--font-sans);
-  white-space: nowrap;
-}
+You are an elite Senior Full-Stack Code Auditor with deep expertise in modern web stacks. I am a Senior Full-Stack Developer maintaining a production codebase built with:
+• Next.js 15/16 (App Router)
+• React 19
+• TypeScript (strict: true)
+• Tailwind CSS 4
+• Prisma ORM + PostgreSQL
 
-/* Editorial numbered items (Augustinus Bader style) */
-.editorial-number {
-  font-family: var(--font-display);
-  font-size: clamp(4rem, 8vw, 7rem);
-  font-weight: 400;
-  color: #f0ede8;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  user-select: none;
-}
+Perform a comprehensive, surgical audit of the provided codebase. Focus on three pillars: ERRORS, INCONSISTENCIES, and IMPROVEMENTS. Apply strict engineering standards and flag anything that violates modern best practices, security, performance, or maintainability.
 
-/* Pull-quote for testimonials */
-.pull-quote-mark {
-  font-family: var(--font-display);
-  font-size: 12rem;
-  line-height: 0.7;
-  color: #b5453a;
-  opacity: 0.12;
-  display: block;
-  margin-bottom: -2rem;
-  pointer-events: none;
-}
-.pull-quote-text {
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
-  font-weight: 400;
-  line-height: 1.5;
-  letter-spacing: -0.01em;
-  color: #1c1c1c;
-}
+🔍 SCOPE & CHECKLIST
+1. ERRORS (P0 - Critical)
+   - Runtime crashes, unhandled promises, memory leaks
+   - React 19 deprecations / breaking changes (e.g., legacy data fetching, deprecated hooks)
+   - Next.js 15 breaking changes (e.g., `searchParams` typing, `next/image` defaults, caching behavior)
+   - Prisma/Postgres mismatches: schema vs client, failed migrations, N+1 queries, connection pool exhaustion
+   - Security vulnerabilities: XSS, CORS misconfig, env leaks, auth bypasses, unsanitized inputs
 
-/* Manifesto headline */
-.manifesto-text {
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 6vw, 5.5rem);
-  font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: -0.04em;
-  color: #1c1c1c;
-}
+2. INCONSISTENCIES (P1 - Codebase Fragmentation)
+   - Naming conventions, folder structure deviations, mixed routing patterns
+   - Mixed styling approaches (Tailwind v3 vs v4 syntax, inline styles, CSS modules)
+   - Inconsistent error handling / logging / validation (Zod vs manual, try/catch vs error boundaries)
+   - TS strict mode violations: `any`/`unknown` misuse, missing `readonly`, improper generics, non-exhaustive narrowing
+   - Mixed state/data patterns: Server Components vs Client Components boundaries, mixed `useState`/`useReducer`/`Zustand`/`React Query`
 
-/* Statistics display */
-.stat-display {
-  font-family: var(--font-display);
-  font-size: clamp(3.5rem, 6vw, 5rem);
-  font-weight: 400;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  color: #1c1c1c;
-}
-.stat-label {
-  font-size: 0.625rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #9a9a9a;
-  margin-top: 8px;
-}
+3. IMPROVEMENTS (P2 - Architecture & DX)
+   - Performance: bundle size, unnecessary re-renders, suboptimal caching, image/font loading, Prisma `select`/`include` optimization
+   - Accessibility: semantic HTML, ARIA, focus management, keyboard navigation
+   - Maintainability: magic numbers/strings, duplicated logic, missing abstraction layers, over-complicated hooks
+   - Modernization opportunities: React Server Components, Server Actions, `use` hook, Tailwind 4 CSS-first config, Prisma relation optimizations, Next.js 15 route handlers & metadata APIs
 
-/* Hairline separator */
-.hairline {
-  width: 100%;
-  height: 1px;
-  background: #e8e4df;
-}
+📤 OUTPUT FORMAT
+Structure your response exactly as follows:
+1. Executive Summary (1-2 paragraphs: health score, critical risks, overall trajectory)
+2. P0: Critical Errors (File:Line, issue, impact, fix)
+3. P1: Inconsistencies (Category, examples across files, standardization recommendation)
+4. P2: Improvement Suggestions (Performance, DX, Architecture, Security)
+5. Stack-Specific Recommendations (Next.js 15/16, React 19, TS strict, Tailwind 4, Prisma/Postgres)
+6. Prioritized Action Plan (Step-by-step refactoring roadmap with estimated effort & risk)
 
-/* French link style — underline grows from left */
-.link-french {
-  position: relative;
-  color: #1c1c1c;
-  text-decoration: none;
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-.link-french::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: #b5453a;
-  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.link-french:hover::after { width: 100%; }
+📌 RULES & CONSTRAINTS
+- Assume production-grade standards. Flag anything that would fail a senior code review.
+- Provide concrete file paths, line references, and before/after code snippets where applicable.
+- Avoid over-engineering. Suggest pragmatic, incremental improvements.
+- If context is truncated or files are missing, explicitly request specific directories/files for deeper analysis.
+- Do not guess. If uncertain, state assumptions and request clarification.
 
-/* Full-width image section (no container constraint) */
-.image-full { 
-  width: 100vw; 
-  margin-left: calc(-50vw + 50%); 
-}
+Begin audit. Awaiting codebase input.
+
+Paste each chunk with a prefix like:
+FILE GROUP: app/ | Starting audit... [paste content]
+Iterative Refinement:
+After the first sweep, run targeted follow-ups:
+"Focus only on Prisma schema vs client usage and N+1 prevention."
+"Audit all Client Components for unnecessary state/re-renders and suggest Server Component conversions."
+"Check Tailwind 4 migration compliance and remove deprecated v3 patterns."
+Validation Loop:
+Use the Action Plan section as a Jira/Linear ticket list. Implement fixes in order (P0 → P1 → P2), then re-run Kimi on the patched directories to verify regression-free improvements.
+
+Proces directory to directory. Finish each one before moving to the next.

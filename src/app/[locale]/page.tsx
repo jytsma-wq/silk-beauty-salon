@@ -1,11 +1,15 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Metadata } from 'next';
 import { HeroSection } from '@/components/sections/HeroSection';
-import { TreatmentsSection } from '@/components/sections/TreatmentsSection';
+import { BrandManifestoSection } from '@/components/sections/BrandManifestoSection';
+import { EditorialTreatmentsSection } from '@/components/sections/EditorialTreatmentsSection';
+import { StatisticsStrip } from '@/components/sections/StatisticsStrip';
+import { TreatmentsMarquee } from '@/components/sections/TreatmentsMarquee';
+import { PullQuoteTestimonial } from '@/components/sections/PullQuoteTestimonial';
+import { ConsultationCTA } from '@/components/sections/ConsultationCTA';
 import { ConditionsSection } from '@/components/sections/ConditionsSection';
 import { AboutSection } from '@/components/sections/AboutSection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
-import { ConsultationSection } from '@/components/sections/ConsultationSection';
 import { QuickLinksSection } from '@/components/sections/QuickLinksSection';
 import { JsonLd, generateLocalBusinessSchema } from '@/components/seo/JsonLd';
 
@@ -98,11 +102,15 @@ export default async function HomePage({
     <>
       <JsonLd schema={generateLocalBusinessSchema(locale)} />
       <HeroSection />
-      <TreatmentsSection locale={locale} />
+      <BrandManifestoSection />
+      <EditorialTreatmentsSection />
+      <StatisticsStrip />
+      <TreatmentsMarquee />
+      <PullQuoteTestimonial />
+      <ConsultationCTA />
       <ConditionsSection />
       <AboutSection />
       <TestimonialsSection />
-      <ConsultationSection />
       <QuickLinksSection />
     </>
   );

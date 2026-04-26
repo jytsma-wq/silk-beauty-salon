@@ -84,6 +84,9 @@
     "subtitle": "İhtiyaçlarınıza özel gelişmiş estetik tedaviler",
     "learnMore": "Daha Fazla Bilgi",
     "viewAll": "Tüm Tedavileri Gör",
+    "sectionLabel": "Tedavilerimiz",
+    "sectionTitle": "Parlak cilt için bilimsel tedaviler",
+    "sectionDescription": "Her tedavi, kanıtlanmış sonuçlar için seçilir ve titiz bir şekilde uygulanır.",
     "categories": {
       "botox": "Botox Enjeksiyonları",
       "fillers": "Dolgu Enjeksiyonları",
@@ -148,10 +151,18 @@
       "safetyDesc": "Güvenliğiniz en önemli önceliğimizdir",
       "innovation": "İnovasyon",
       "innovationDesc": "En son teknolojileri ve teknikleri kullanma"
+    },
+    "manifesto": {
+      "label": "Felsefemiz",
+      "statement": "Bilimin güzel cilt sanatıyla buluştuğu yer.",
+      "value1": "Keskinlik",
+      "value2": "Diskreylik",
+      "value3": "Mükemmellik",
+      "cta": "Hikayemizi keşfedin"
     }
   },
   "quickLinks": {
-    "title": "Hızlı Linkler",
+    "title": "Hızlı Bağlantılar",
     "faq": {
       "title": "SSS",
       "description": "Salon ve tedavilerimiz hakkında en sık sorulan soruları okuyun."

@@ -78,9 +78,9 @@ export function WhatsAppWidget() {
             
             {/* Quick Reply Buttons */}
             <div className="space-y-2">
-              {quickMessages.map((msg, index) => (
+              {quickMessages.map((msg) => (
                 <button
-                  key={index}
+                  key={msg}
                   onClick={() => handleQuickMessage(msg)}
                   className="w-full text-left px-4 py-3 bg-white border border-gray-200 rounded-sm text-sm text-gray-700 hover:bg-gray-50 hover:border-[#25D366] focus:border-[#25D366] focus:ring-2 focus:ring-[#25D366]/20 transition-colors flex items-center justify-between group outline-none"
                 >

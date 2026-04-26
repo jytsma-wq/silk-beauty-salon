@@ -592,3 +592,167 @@ select:focus-visible,
   background: #b5453a;
   color: #fff;
 }
+
+/* ─────────────────────────────────────────────────────────────
+   FRENCH MAGAZINE DESIGN SYSTEM
+   ───────────────────────────────────────────────────────────── */
+
+/* 1. Section spacing (critical — the most impactful change) */
+.section-spacing {
+  padding: 140px 0;          /* was: 80px 0 */
+}
+@media (max-width: 768px) {
+  .section-spacing {
+    padding: 80px 0;          /* was: 50px 0 */
+  }
+}
+
+/* 2. Remove all card borders and shadows (borderless French style) */
+.card-hover {
+  transition: color 0.3s ease, border-color 0.3s ease;
+  /* DELETE: transform and box-shadow — never used in French luxury */
+}
+.card-hover:hover {
+  /* DELETE: transform: translateY(-5px) */
+  /* DELETE: box-shadow */
+}
+.editorial-card {
+  border: none;               /* was: 1px solid #e0e0e0 */
+  background: transparent;    /* was: #ffffff */
+  padding: 2rem 0;            /* was: 1.5rem */
+}
+.editorial-card:hover {
+  border-color: transparent;  /* was: #b5453a */
+  box-shadow: none;           /* was: 0 4px 20px ... */
+  border-left: 2px solid #b5453a;  /* ADD: crisp left accent on hover */
+  padding-left: 1rem;
+}
+.testimonial-card {
+  border: none;               /* was: 1px solid #e0e0e0 */
+  padding: 0;                 /* was: 2rem */
+  background: transparent;
+}
+
+/* 3. Fix image overlay tint (remove navy blue from gradients) */
+.image-overlay::after {
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
+  /* was: rgba(26,26,46,0.8) — navy tint removed */
+}
+
+/* ── French Magazine System ── */
+
+/* Section eyebrow label */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.section-label::before,
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #e0e0e0;
+  max-width: 60px;
+}
+.section-label span {
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #9a9a9a;
+  font-family: var(--font-sans);
+  white-space: nowrap;
+}
+
+/* Editorial numbered items (Augustinus Bader style) */
+.editorial-number {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 8vw, 7rem);
+  font-weight: 400;
+  color: #f0ede8;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  user-select: none;
+}
+
+/* Pull-quote for testimonials */
+.pull-quote-mark {
+  font-family: var(--font-display);
+  font-size: 12rem;
+  line-height: 0.7;
+  color: #b5453a;
+  opacity: 0.12;
+  display: block;
+  margin-bottom: -2rem;
+  pointer-events: none;
+}
+.pull-quote-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: #1c1c1c;
+}
+
+/* Manifesto headline */
+.manifesto-text {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  color: #1c1c1c;
+}
+
+/* Statistics display */
+.stat-display {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 6vw, 5rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: #1c1c1c;
+}
+.stat-label {
+  font-size: 0.625rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #9a9a9a;
+  margin-top: 8px;
+}
+
+/* Hairline separator */
+.hairline {
+  width: 100%;
+  height: 1px;
+  background: #e8e4df;
+}
+
+/* French link style — underline grows from left */
+.link-french {
+  position: relative;
+  color: #1c1c1c;
+  text-decoration: none;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.link-french::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #b5453a;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.link-french:hover::after { width: 100%; }
+
+/* Full-width image section (no container constraint) */
+.image-full { 
+  width: 100vw; 
+  margin-left: calc(-50vw + 50%); 
+}

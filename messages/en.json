@@ -84,6 +84,9 @@
     "subtitle": "Cutting-edge aesthetic treatments tailored to your needs",
     "learnMore": "Learn More",
     "viewAll": "View All Treatments",
+    "sectionLabel": "Our Treatments",
+    "sectionTitle": "Science-backed treatments for radiant skin",
+    "sectionDescription": "Every treatment is selected for proven results and delivered with meticulous care.",
     "categories": {
       "botox": "Botox Injectables",
       "fillers": "Dermal Filler Injectables",
@@ -149,6 +152,14 @@
       "innovation": "Innovation",
       "innovationDesc": "Using the latest technologies and techniques"
     }
+  },
+  "manifesto": {
+    "label": "Our Philosophy",
+    "statement": "Where science meets the art of beautiful skin.",
+    "value1": "Precision",
+    "value2": "Discretion",
+    "value3": "Excellence",
+    "cta": "Discover our story"
   },
   "quickLinks": {
     "title": "Quick Links",
