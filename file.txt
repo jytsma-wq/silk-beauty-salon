@@ -1,79 +1,38 @@
-> git -c user.useConfigOnly=true commit --quiet --allow-empty-message --file -
+Prompt 5: Clean Tailwind Config & Remove Dual CSP
+Remove unused color definitions from tailwind.config.ts and eliminate the duplicate CSP configuration between next.config.ts and middleware.ts.
+Copy this prompt:
+AUDIT SWEEP #5: CLEAN TAILWIND CONFIG & DUAL CSP
 
-╔════════════════════════════════════════════════════════════╗
-║        TRANSLATION VALIDATION REPORT                       ║
-╚════════════════════════════════════════════════════════════╝
+FIX 1: Remove unused Galderma colors from tailwind.config.ts
+  Open tailwind.config.ts and DELETE these four lines from the colors
+  object (they are never used anywhere in the codebase):
+    'galderma-bg': '#F9F9F7',
+    'galderma-text': '#1A1A1A',
+    'galderma-gold': '#9A7D63',
+    'galderma-navy': '#002D72',
 
-❌ FAIL - ar.json
-   Missing keys: 4
-     - testimonial
-     - testimonial.quote
-     - testimonial.name
-     - testimonial.location
-   Extra keys: 3 (not in source)
-   Structure issues: 22
-     - consultation.cta - type mismatch: source is string, target is object
-     - conditionContent.acne.symptoms - array length mismatch: source 6, target 5
-     - conditionContent.acne.causes - array length mismatch: source 4, target 3
-     ... and 19 more
+FIX 2: Remove duplicate CSP from next.config.ts
+  Open next.config.ts and REMOVE the entire Content-Security-Policy
+  header entry from the headers() function. The middleware.ts handles CSP
+  correctly with nonce-based values. The next.config.ts CSP is both
+  redundant AND conflicting (it uses unsafe-inline/unsafe-eval while
+  middleware uses nonce-based).
 
-❌ FAIL - he.json
-   Missing keys: 4
-     - testimonial
-     - testimonial.quote
-     - testimonial.name
-     - testimonial.location
-   Extra keys: 3 (not in source)
-   Structure issues: 21
-     - consultation.cta - type mismatch: source is string, target is object
-     - conditionContent.acne.causes - array length mismatch: source 4, target 3
-     - conditionContent.acne.treatments - array length mismatch: source 4, target 3
-     ... and 18 more
+  Keep ALL other security headers in next.config.ts (X-Frame-Options,
+  X-Content-Type-Options, Strict-Transport-Security, Referrer-Policy,
+  Permissions-Policy). ONLY remove the Content-Security-Policy entry.
 
-❌ FAIL - ka.json
-   Missing keys: 8
-     - treatments.sectionLabel
-     - treatments.sectionTitle
-     - treatments.sectionDescription
-     - about.descriptionExtended
-     - testimonial
-     ... and 3 more
-   Extra keys: 6 (not in source)
-   Structure issues: 19
-     - consultation.cta - type mismatch: source is string, target is object
-     - conditionContent.acne.causes - array length mismatch: source 4, target 3
-     - conditionContent.acne.treatments - array length mismatch: source 4, target 3
-     ... and 16 more
+FIX 3: Remove console.log from middleware.ts
+  Open middleware.ts and:
+  - DELETE line: console.log('[Middleware] Processing: ${pathname}');
+  - DELETE line: console.log('[Middleware] Redirecting root to /en');
+  These are debug logs that should not be in production.
 
-❌ FAIL - ru.json
-   Missing keys: 4
-     - testimonial
-     - testimonial.quote
-     - testimonial.name
-     - testimonial.location
-   Extra keys: 3 (not in source)
-   Structure issues: 3
-     - consultation.cta - type mismatch: source is string, target is object
-     - conditionContent.pigmentation.symptoms - array length mismatch: source 5, target 4
-     - conditionContent.stretch-marks.symptoms - array length mismatch: source 4, target 3
-
-❌ FAIL - tr.json
-   Missing keys: 4
-     - testimonial
-     - testimonial.quote
-     - testimonial.name
-     - testimonial.location
-   Extra keys: 10 (not in source)
-   Structure issues: 1
-     - consultation.cta - type mismatch: source is string, target is object
-
-╔════════════════════════════════════════════════════════════╗
-║                      SUMMARY                               ║
-╚════════════════════════════════════════════════════════════╝
-Total missing keys: 24
-Total other issues: 91
-Files with problems: 5/5
-
-❌ Validation failed - critical issues found
-
-husky - pre-commit script failed (code 1)
+VERIFICATION:
+  1. grep -r "galderma-bg|galderma-text|galderma-gold|galderma-navy" src/
+     Must return ZERO matches.
+  2. grep "Content-Security-Policy" next.config.ts
+     Must return ZERO matches.
+  3. grep "console.log" middleware.ts
+     Must return ZERO matches.
+  4. Run: npm run build — must succeed.

@@ -11,10 +11,6 @@ const config: Config = {
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
-  			'galderma-bg': '#F9F9F7',
-  			'galderma-text': '#1A1A1A',
-  			'galderma-gold': '#9A7D63',
-  			'galderma-navy': '#002D72',
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
