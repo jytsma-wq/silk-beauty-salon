@@ -85,14 +85,14 @@ export default async function BlogPostPage({
           src={post.image}
           alt={post.title}
           fill
-          className="object-cover rounded-sm shadow-sm"
+          className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-primary/60" />
+        <div className="absolute inset-0 bg-[#1c1c1c]/50" />
         <div className="absolute inset-0 flex items-end pb-12">
           <div className="container-custom">
             <div className="max-w-3xl">
-              <span className="bg-gold text-primary text-xs font-semibold px-3 py-1 rounded-full mb-4 inline-block">
+              <span className="text-gold text-xs tracking-[0.15em] uppercase mb-4 inline-block">
                 {post.category}
               </span>
               <h1 
@@ -204,12 +204,10 @@ export default async function BlogPostPage({
             {/* Sidebar */}
             <div className="lg:col-span-1">
               {/* Author */}
-              <div className="bg-secondary rounded-lg p-6 mb-6">
+              <div className="border-t border-[#e8e4df] py-8 mb-6">
                 <h3 className="font-serif text-lg text-primary mb-4">{t('aboutAuthor')}</h3>
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center">
-                    <User className="w-6 h-6 text-gold" />
-                  </div>
+                  <User className="w-6 h-6 text-gold" />
                   <div>
                     <p className="font-medium text-primary">{post.author}</p>
                     <p className="text-sm text-muted-foreground">Expert Practitioner</p>
@@ -218,16 +216,16 @@ export default async function BlogPostPage({
               </div>
 
               {/* Book CTA */}
-              <div className="bg-primary rounded-lg p-6 text-white mb-6">
-                <h3 className="font-serif text-lg mb-2">{t('readyToTransform')}</h3>
-                <p className="text-sm text-gray-300 mb-4">{t('bookConsultationDesc')}</p>
+              <div className="border-t border-[#e8e4df] py-8 mb-6">
+                <h3 className="font-serif text-lg text-primary mb-2">{t('readyToTransform')}</h3>
+                <p className="text-sm text-muted-foreground mb-4">{t('bookConsultationDesc')}</p>
                 <Button asChild className="btn-gold w-full">
                   <Link href="/book">{tCommon('bookConsultation')}</Link>
                 </Button>
               </div>
 
               {/* Related Posts */}
-              <div className="bg-secondary rounded-lg p-6">
+              <div className="border-t border-[#e8e4df] py-8">
                 <h3 className="font-serif text-lg text-primary mb-4">{t('relatedPosts')}</h3>
                 <div className="space-y-4">
                   {relatedPosts.map((relatedPost) => (

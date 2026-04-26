@@ -54,7 +54,7 @@ export default async function CareersPage({
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-primary py-20">
+      <section className="bg-[#1c1c1c] py-20">
         <div className="container-custom text-center">
           <h1 
             className="text-4xl md:text-5xl font-serif font-semibold text-white mb-4"
@@ -97,7 +97,7 @@ export default async function CareersPage({
       </section>
 
       {/* Benefits */}
-      <section className="section-spacing bg-secondary">
+      <section className="section-spacing bg-[#f7f4f0]">
         <div className="container-custom">
           <div className="text-center mb-12">
             <h2 
@@ -108,7 +108,7 @@ export default async function CareersPage({
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {benefits.map((benefit) => (
-              <div key={benefit.title} className="bg-white rounded-lg p-6 text-center card-hover">
+              <div key={benefit.title} className="p-8 text-center border-t border-[#e8e4df]">
                 <h3 className="font-serif font-semibold text-primary mb-2">{benefit.title}</h3>
                 <p className="text-sm text-muted-foreground">{benefit.description}</p>
               </div>
@@ -130,14 +130,14 @@ export default async function CareersPage({
               {t('openingsSubtitle')}
             </p>
           </div>
-          <div className="space-y-6 max-w-3xl mx-auto">
+          <div className="space-y-0 max-w-3xl mx-auto">
             {openings.map((job) => (
-              <div key={job.title} className="bg-white border border-border rounded-lg p-6 card-hover">
+              <div key={job.title} className="py-8 border-t border-[#e8e4df]">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4">
                   <h3 className="font-serif font-semibold text-primary text-lg">{job.title}</h3>
-                  <div className="flex items-center gap-2 mt-2 sm:mt-0">
-                    <span className="text-xs bg-secondary px-2 py-1 rounded">{job.type}</span>
-                    <span className="text-xs bg-gold/10 text-gold px-2 py-1 rounded flex items-center gap-1">
+                  <div className="flex items-center gap-4 mt-2 sm:mt-0 text-xs text-muted-foreground">
+                    <span>{job.type}</span>
+                    <span className="flex items-center gap-1 text-gold">
                       <MapPin className="w-3 h-3" />
                       {job.location}
                     </span>
@@ -155,23 +155,23 @@ export default async function CareersPage({
         </div>
       </section>
 
-      {/* Contact CTA - Sticky */}
-      <section className="sticky bottom-0 z-40 bg-primary py-4 shadow-lg">
+      {/* Contact CTA */}
+      <section className="bg-[#f7f4f0] py-12">
         <div className="container-custom">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <Users className="w-5 h-5 text-gold" />
               <div>
-                <h2 className="text-lg font-serif font-semibold text-white">
+                <h2 className="text-lg font-serif font-semibold text-primary">
                   {t('noRoleTitle')}
                 </h2>
-                <p className="text-gray-300 text-sm hidden sm:block">
+                <p className="text-muted-foreground text-sm hidden sm:block">
                   {t('noRoleText')}
               </p>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <Button asChild variant="outline" size="sm" className="border-white/30 text-white hover:bg-white/10">
+              <Button asChild variant="outline" size="sm">
                 <Link href="/contact-us">
                   {t('contactUs')}
                 </Link>

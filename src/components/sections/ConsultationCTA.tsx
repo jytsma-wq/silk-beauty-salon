@@ -52,7 +52,7 @@ export function ConsultationCTA() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <Image
-              src="/images/consultation.jpg"
+              src="/images/consultation.svg"
               alt=""
               fill
               className="object-cover"

@@ -71,7 +71,7 @@ export default async function TreatmentPage({ params }: Props) {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-primary py-20">
+      <section className="relative bg-[#1c1c1c] py-20">
         <div className="container-custom">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-sm mb-8 text-gray-300">
@@ -107,25 +107,25 @@ export default async function TreatmentPage({ params }: Props) {
 
               <div className="flex flex-wrap gap-4 mb-8">
                 {treatment.price && (
-                  <div className="bg-white/10 rounded-lg px-4 py-2">
-                    <span className="text-sm text-gray-300">{t('price') || 'Price from'}</span>
-                    <p className="text-xl font-semibold text-gold">{treatment.price}</p>
-                  </div>
-                )}
-                {treatment.duration && (
-                  <div className="bg-white/10 rounded-lg px-4 py-2">
-                    <span className="text-sm text-gray-300">{t('duration') || 'Duration'}</span>
-                    <p className="text-xl font-semibold text-white flex items-center gap-2">
-                      <Clock className="w-5 h-5 text-gold" />
-                      {treatment.duration}
-                    </p>
-                  </div>
-                )}
+                <div className="inline-block mr-6">
+                  <span className="text-sm text-gray-300 block">{t('price') || 'Price from'}</span>
+                  <p className="text-xl font-semibold text-gold">{treatment.price}</p>
+                </div>
+              )}
+              {treatment.duration && (
+                <div className="inline-block">
+                  <span className="text-sm text-gray-300 block">{t('duration') || 'Duration'}</span>
+                  <p className="text-xl font-semibold text-white flex items-center gap-2">
+                    <Clock className="w-5 h-5 text-gold" />
+                    {treatment.duration}
+                  </p>
+                </div>
+              )}
               </div>
 
             </div>
 
-            <div className="relative aspect-3/4 w-full rounded-sm overflow-hidden shadow-sm">
+            <div className="relative aspect-3/4 w-full overflow-hidden">
               <Image
                 src={treatment.image}
                 alt={treatment.name}
@@ -167,7 +167,7 @@ export default async function TreatmentPage({ params }: Props) {
                   </h2>
                   <div className="grid sm:grid-cols-2 gap-4">
                     {treatment.benefits.map((benefit, index) => (
-                      <div key={index} className="flex items-start gap-3 p-4 bg-secondary rounded-lg">
+                      <div key={index} className="flex items-start gap-3 py-3 border-t border-[#e8e4df]">
                         <Check className="w-5 h-5 text-gold mt-0.5 shrink-0" />
                         <span className="text-sm">{benefit}</span>
                       </div>
@@ -198,7 +198,7 @@ export default async function TreatmentPage({ params }: Props) {
                                       >
                     {t('aftercare') || 'Aftercare'}
                   </h2>
-                  <div className="bg-secondary rounded-lg p-6">
+                  <div className="border-t border-[#e8e4df] pt-6">
                     <p className="text-muted-foreground leading-relaxed">
                       {treatment.aftercare}
                     </p>
@@ -233,14 +233,14 @@ export default async function TreatmentPage({ params }: Props) {
             {/* Sidebar */}
             <div className="lg:col-span-1">
               {/* Book CTA */}
-              <div className="bg-primary rounded-lg p-6 text-center mb-8">
-                <h3 className="font-serif text-xl text-white mb-4">
+              <div className="border-t border-[#e8e4df] py-8 text-center mb-8">
+                <h3 className="font-serif text-xl text-primary mb-4">
                   {t('readyToStart') || 'Ready to get started?'}
                 </h3>
               </div>
 
               {/* Contact Info */}
-              <div className="bg-secondary rounded-lg p-6">
+              <div className="border-t border-[#e8e4df] py-8">
                 <h3 className="font-serif text-lg font-semibold text-primary mb-4">
                   {t('contactUs') || 'Contact Us'}
                 </h3>
@@ -288,25 +288,14 @@ export default async function TreatmentPage({ params }: Props) {
                 <Link
                   key={related.slug}
                   href={`/treatments/${related.slug}`}
-                  className="group bg-white rounded-lg overflow-hidden border border-border card-hover"
+                  className="group block py-6 border-t border-[#e8e4df]"
                 >
-                  <div className="relative aspect-3/4 w-full overflow-hidden rounded-sm shadow-sm">
-                    <Image
-                      src={related.image}
-                      alt={related.name}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <h3 className="font-semibold text-primary group-hover:text-gold transition-colors">
-                      {related.name}
-                    </h3>
-                    <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
-                      {related.shortDescription}
-                    </p>
-                  </div>
+                  <h3 className="font-serif font-semibold text-primary group-hover:text-gold transition-colors mb-2">
+                    {related.name}
+                  </h3>
+                  <p className="text-sm text-muted-foreground line-clamp-2">
+                    {related.shortDescription}
+                  </p>
                 </Link>
               ))}
             </div>

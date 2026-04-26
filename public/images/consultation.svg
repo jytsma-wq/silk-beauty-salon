@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+  <rect width="800" height="1000" fill="#d6d3d1"/>
+  <rect x="100" y="200" width="600" height="600" rx="8" fill="#a8a29e"/>
+  <text x="400" y="520" font-family="Arial, sans-serif" font-size="32" fill="#44403c" text-anchor="middle">Consultation</text>
+</svg>

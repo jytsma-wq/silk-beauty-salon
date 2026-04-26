@@ -15,6 +15,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
+export async function generateStaticParams() {
+  const locales = ['en', 'ka', 'ru', 'ar', 'he', 'tr'];
+  return locales.map((locale) => ({ locale }));
+}
+
 export default async function AboutPage({
   params,
 }: {
@@ -50,10 +55,10 @@ export default async function AboutPage({
           src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=80"
           alt="Silk Beauty Salon Interior"
           fill
-          className="object-cover rounded-sm shadow-sm"
+          className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-primary/40" />
+        <div className="absolute inset-0 bg-[#1c1c1c]/40" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="container-custom text-center">
             <h1 
@@ -101,7 +106,7 @@ export default async function AboutPage({
                 {t('storyP3')}
               </p>
             </div>
-            <div className="relative aspect-4/5 rounded-sm overflow-hidden shadow-sm">
+            <div className="relative aspect-4/5 overflow-hidden">
               <Image
                 src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80"
                 alt="Silk Beauty Salon Clinic"
@@ -126,10 +131,8 @@ export default async function AboutPage({
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value) => (
-              <div key={value.titleKey} className="bg-white rounded-lg p-6 text-center card-hover">
-                <div className="w-14 h-14 rounded-full bg-gold/10 flex items-center justify-center mx-auto mb-4">
-                  <value.icon className="w-7 h-7 text-gold" />
-                </div>
+              <div key={value.titleKey} className="p-8 text-center border-t border-[#e8e4df]">
+                <value.icon className="w-7 h-7 text-gold mx-auto mb-4" />
                 <h3 className="font-serif font-semibold text-primary mb-2">{t(`values.${value.titleKey}`)}</h3>
                 <p className="text-sm text-muted-foreground">{t(`values.${value.titleKey}Desc`)}</p>
               </div>
@@ -154,7 +157,7 @@ export default async function AboutPage({
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 max-w-7xl mx-auto">
             {siteConfig.team.map((member) => (
               <div key={member.name} className="text-center">
-                <div className="relative aspect-4/5 rounded-sm overflow-hidden mb-4 max-w-xs mx-auto shadow-sm">
+                <div className="relative aspect-4/5 overflow-hidden mb-4 max-w-xs mx-auto">
                   <Image
                     src={member.image}
                     alt={member.name}
@@ -178,25 +181,23 @@ export default async function AboutPage({
       </section>
 
       {/* Awards */}
-      <section className="section-spacing bg-primary">
+      <section className="section-spacing bg-[#f7f4f0]">
         <div className="container-custom text-center">
-          <h2 
-            className="text-3xl font-serif font-semibold text-white mb-8"
-                      >
+          <h2 className="text-3xl font-serif font-semibold text-[#1c1c1c] mb-8">
             {t('awards')}
           </h2>
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
+          <div className="flex flex-wrap justify-center gap-8 mb-8">
             {[
               'awardWinning',
               'premierSalon',
               'featuredIn'
             ].map((awardKey) => (
-              <div key={awardKey} className="bg-white/10 rounded-lg px-6 py-3">
-                <span className="text-white">{t(`awards.${awardKey}`)}</span>
-              </div>
+              <span key={awardKey} className="text-[#1c1c1c] text-sm tracking-wider uppercase">
+                {t(`awards.${awardKey}`)}
+              </span>
             ))}
           </div>
-          <p className="text-gray-300 text-sm">
+          <p className="text-[#9a9a9a] text-sm">
             {t('featuredIn')}
           </p>
         </div>

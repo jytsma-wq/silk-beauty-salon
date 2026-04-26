@@ -178,8 +178,15 @@ const i18nMiddleware = createMiddleware(routing);
 
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  console.log(`[Middleware] Processing: ${pathname}`);
   const ip = getClientIp(request);
   const userAgent = request.headers.get('user-agent') || null;
+
+  // 0. Redirect root to default locale
+  if (pathname === '/') {
+    console.log('[Middleware] Redirecting root to /en');
+    return NextResponse.redirect(new URL('/en', request.url));
+  }
 
   // 1. Check for blocked user agents
   if (checkUserAgent(userAgent)) {
@@ -251,12 +258,7 @@ export default function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Match all pathnames except for
-    // - api routes (we handle them in the middleware)
-    // - _next/static files
-    // - _next/image files
-    // - favicon.ico
-    // - public folder files
-    '/((?!api|_next|_vercel|.*\\..*).*)'
+    '/',
+    '/((?!_next|_vercel|.*\\..*).*)'
   ]
 };

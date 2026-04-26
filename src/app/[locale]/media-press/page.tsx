@@ -72,7 +72,7 @@ export default async function MediaPressPage({
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-primary py-20">
+      <section className="bg-[#1c1c1c] py-20">
         <div className="container-custom text-center">
           <h1 
             className="text-4xl md:text-5xl font-serif font-semibold text-white mb-4"
@@ -103,39 +103,28 @@ export default async function MediaPressPage({
         <div className="container-custom">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {pressFeatures.map((feature, index) => (
-              <article key={index} className="group bg-white border border-border rounded-lg overflow-hidden card-hover">
-                <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src={feature.image}
-                    alt={feature.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-gold text-primary text-xs font-semibold px-3 py-1 rounded-full">
-                      {feature.publication}
-                    </span>
-                  </div>
+              <article key={index} className="group py-8 border-t border-[#e8e4df] hover:border-[#b5453a] transition-colors">
+                <div className="mb-4">
+                  <span className="text-gold text-xs tracking-[0.15em] uppercase">
+                    {feature.publication}
+                  </span>
                 </div>
-                <div className="p-6">
-                  <p className="text-sm text-muted-foreground mb-2">{feature.date}</p>
-                  <h3 
-                    className="text-lg font-serif font-semibold text-primary mb-2 group-hover:text-gold transition-colors"
-                                      >
-                    {feature.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                    {feature.excerpt}
-                  </p>
-                  <a
-                    href="#"
-                    className="inline-flex items-center gap-1 text-sm font-medium text-gold hover:underline"
-                  >
-                    {t('readArticle')}
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                </div>
+                <p className="text-sm text-muted-foreground mb-2">{feature.date}</p>
+                <h3 
+                  className="text-lg font-serif font-semibold text-primary mb-2 group-hover:text-gold transition-colors"
+                                  >
+                  {feature.title}
+                </h3>
+                <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                  {feature.excerpt}
+                </p>
+                <a
+                  href="#"
+                  className="inline-flex items-center gap-1 text-sm font-medium text-gold hover:underline"
+                >
+                  {t('readArticle')}
+                  <ExternalLink className="w-3 h-3" />
+                </a>
               </article>
             ))}
           </div>
@@ -143,7 +132,7 @@ export default async function MediaPressPage({
       </section>
 
       {/* Media Enquiries */}
-      <section className="section-spacing bg-secondary">
+      <section className="section-spacing bg-[#f7f4f0]">
         <div className="container-custom">
           <div className="max-w-2xl mx-auto text-center">
             <h2 

@@ -78,7 +78,7 @@ export default async function ConsultationPage({
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-linear-to-r from-primary/90 via-primary/70 to-transparent" />
+          <div className="absolute inset-0 bg-[#1c1c1c]/50" />
         </div>
         
         <div className="container-custom relative z-10 py-20">
@@ -128,10 +128,8 @@ export default async function ConsultationPage({
         <div className="container-custom">
           <div className="grid md:grid-cols-3 gap-8">
             {features.map((feature, idx) => (
-              <div key={idx} className="bg-white p-8 rounded-sm shadow-sm">
-                <div className="w-12 h-12 bg-[#b5453a]/10 rounded-full flex items-center justify-center mb-6">
-                  <feature.icon className="w-6 h-6 text-[#b5453a]" />
-                </div>
+              <div key={idx} className="p-8 border-t border-[#e8e4df]">
+                <feature.icon className="w-6 h-6 text-[#b5453a] mb-6" />
                 <h3 className="font-heading text-xl font-semibold text-primary mb-3">
                   {feature.title}
                 </h3>
@@ -160,23 +158,16 @@ export default async function ConsultationPage({
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {steps.map((step, idx) => (
-              <div key={idx} className="relative">
-                <div className="bg-white border border-border p-6 rounded-sm h-full">
-                  <span className="text-4xl font-heading font-bold text-[#b5453a]/20">
-                    {step.number}
-                  </span>
-                  <h3 className="font-heading text-lg font-semibold text-primary mt-4 mb-3">
-                    {step.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {step.description}
-                  </p>
-                </div>
-                {idx < steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
-                    <ArrowRight className="w-6 h-6 text-[#b5453a]" />
-                  </div>
-                )}
+              <div key={idx} className="border-t border-[#e8e4df] pt-6">
+                <span className="text-xs tracking-[0.15em] uppercase text-[#b5453a]">
+                  {String(step.number).padStart(2, '0')}
+                </span>
+                <h3 className="font-heading text-lg font-semibold text-primary mt-4 mb-3">
+                  {step.title}
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  {step.description}
+                </p>
               </div>
             ))}
           </div>
@@ -202,34 +193,21 @@ export default async function ConsultationPage({
               <Link
                 key={category.slug}
                 href={category.href}
-                className="group bg-white rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                className="group block py-6 border-t border-[#e8e4df]"
               >
-                <div className="relative aspect-video overflow-hidden">
-                  <Image
-                    src={category.image || ''}
-                    alt={category.name}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-linear-to-t from-primary/80 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <h3 className="font-heading text-xl font-semibold text-white">
-                      {category.name}
-                    </h3>
-                  </div>
-                </div>
-                <div className="p-4">
-                  <ul className="space-y-1">
-                    {category.items.slice(0, 4).map((item) => (
-                      <li key={item.slug} className="text-sm text-muted-foreground">
-                        {item.name}
-                      </li>
-                    ))}
-                  </ul>
-                  <p className="text-[#b5453a] text-sm font-medium mt-3 group-hover:underline">
-                    Explore treatments →
-                  </p>
-                </div>
+                <h3 className="font-heading text-xl font-semibold text-primary mb-2 group-hover:text-[#b5453a] transition-colors">
+                  {category.name}
+                </h3>
+                <ul className="space-y-1 mb-3">
+                  {category.items.slice(0, 3).map((item) => (
+                    <li key={item.slug} className="text-sm text-muted-foreground">
+                      {item.name}
+                    </li>
+                  ))}
+                </ul>
+                <span className="text-[#b5453a] text-sm">
+                  Explore treatments →
+                </span>
               </Link>
             ))}
           </div>
@@ -245,7 +223,7 @@ export default async function ConsultationPage({
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-primary/80" />
+          <div className="absolute inset-0 bg-[#1c1c1c]/60" />
         </div>
         
         <div className="container-custom relative z-10 text-center text-white">

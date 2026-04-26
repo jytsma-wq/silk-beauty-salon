@@ -17,14 +17,12 @@
     "beforeAfter": "Before & After",
     "contact": "Contact",
     "bookAppointment": "Book Appointment",
-    "findSpecialist": "Find a specialist",
     "faq": "FAQ",
     "press": "Press",
     "blog": "Blog",
     "team": "Our Team",
     "mainNavigation": "Main navigation",
     "internationalClients": "International Clients",
-    "consultation": "Consultation",
     "viewAll": "View All",
     "exploreAll": "Explore All"
   },
@@ -300,6 +298,10 @@
     "title": "Request a Consultation",
     "metaTitle": "Find a Specialist | Silk Beauty Salon",
     "metaDescription": "Book a consultation with our expert aesthetic practitioners. Start your journey to enhanced natural beauty.",
+    "label": "Personalized Care",
+    "headline": "Book Your Consultation Today",
+    "body": "Schedule a personalized consultation with our expert practitioners to discuss your aesthetic goals and create a tailored treatment plan just for you.",
+    "cta": "Book Now",
     "hero": {
       "title": "Explore the possibilities with a treatment consultation",
       "description": "An essential part of treatment, the aesthetic consultation is where your journey begins. The better we understand your needs and desires, the more likely you will achieve the results you want.",
@@ -345,12 +347,18 @@
     "treatments": {
       "title": "Treatments We Offer",
       "subtitle": "Comprehensive aesthetic solutions for every concern."
-    },
-    "cta": {
-      "title": "Ready to Start Your Journey?",
-      "description": "Book your consultation today and take the first step towards enhanced natural beauty.",
-      "button": "Find a Specialist"
     }
+  },
+  "statistics": {
+    "years": "Years Experience",
+    "clients": "Happy Clients",
+    "satisfaction": "Satisfaction Rate",
+    "awards": "Industry Awards"
+  },
+  "testimonial": {
+    "quote": "The team at Silk Beauty Salon transformed my confidence. The results are natural and exactly what I envisioned.",
+    "name": "Sarah Mitchell",
+    "location": "London, UK"
   },
   "aboutPage": {
     "title": "About Us",

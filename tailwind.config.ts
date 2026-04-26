@@ -60,8 +60,10 @@ const config: Config = {
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		fontFamily: {
-  			heading: ['"Lora"', '"Playfair Display"', 'serif'],
-  			body: ['"Inter"', '"Montserrat"', 'sans-serif']
+  			heading: ['"DM Serif Display"', 'Georgia', 'serif'],
+  			body: ['"Inter"', 'system-ui', 'sans-serif'],
+  			sans: ['"Inter"', 'system-ui', 'sans-serif'],
+  			serif: ['"DM Serif Display"', 'Georgia', 'serif']
   		}
   	}
   },

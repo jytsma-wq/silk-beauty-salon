@@ -40,7 +40,7 @@ export default async function FAQPage({
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-primary py-20">
+      <section className="bg-[#1c1c1c] py-20">
         <div className="container-custom text-center">
           <h1 
             className="text-4xl md:text-5xl font-serif font-semibold text-white mb-4"
@@ -84,7 +84,7 @@ export default async function FAQPage({
             </Accordion>
 
             {/* Additional Questions */}
-            <div className="mt-12 bg-secondary rounded-lg p-8 text-center">
+            <div className="mt-12 border-t border-[#e8e4df] py-12 text-center">
               <h2 
                 className="text-xl font-serif font-semibold text-primary mb-4"
                               >

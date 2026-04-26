@@ -18,7 +18,7 @@ export default async function BeforeAfterPage({
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="bg-primary text-white py-16 md:py-24">
+      <section className="bg-[#1c1c1c] text-white py-16 md:py-24">
         <div className="container-custom">
           <h1 className="font-serif text-4xl md:text-5xl font-semibold mb-4">
             {t('title')}
@@ -37,7 +37,7 @@ export default async function BeforeAfterPage({
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 bg-secondary">
+      <section className="py-12 bg-[#f7f4f0]">
         <div className="container-custom text-center">
           <h2 className="font-serif text-2xl md:text-3xl font-semibold mb-4">
             {t('ctaTitle')}

@@ -20,7 +20,7 @@ export function PullQuoteTestimonial() {
             transition={{ duration: 0.8 }}
           >
             <Image
-              src="/images/testimonial-portrait.jpg"
+              src="/images/testimonial-portrait.svg"
               alt=""
               fill
               className="object-cover"

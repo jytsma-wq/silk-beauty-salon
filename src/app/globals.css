@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -7,8 +7,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: "DM Sans", sans-serif;
-  --font-serif: "DM Serif Display", serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-serif: "DM Serif Display", Georgia, serif;
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -200,14 +200,35 @@ html {
   background: #b5453a;
 }
 
-/* Card hover effect */
+/* French luxury: Zero transform, zero shadow - color shift only */
 .card-hover {
-  transition: all 0.3s ease;
+  transition: color 0.3s ease, border-color 0.3s ease;
 }
 
 .card-hover:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  /* No transform, no shadow - French luxury uses only color */
+}
+
+/* Editorial hover - crimson accent line slides in */
+.editorial-hover {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.editorial-hover::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: #b5453a;
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.editorial-hover:hover::before {
+  transform: scaleY(1);
 }
 
 /* Button styles */
@@ -308,34 +329,50 @@ html {
   width: 100%;
 }
 
-/* Testimonial card */
+/* Pull-quote testimonial - Vogue magazine style */
+.pull-quote {
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+
+.pull-quote::before {
+  content: '“';
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 200px;
+  color: rgba(181, 69, 58, 0.15);
+  position: absolute;
+  top: -60px;
+  left: -20px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* Testimonial card - borderless */
 .testimonial-card {
   background: #ffffff;
-  border: 1px solid #e0e0e0;
   padding: 2rem;
   position: relative;
 }
 
-.testimonial-card::before {
-  content: '"';
-  font-family: var(--font-playfair), serif;
-  font-size: 4rem;
-  color: #b5453a;
-  position: absolute;
-  top: 10px;
-  left: 20px;
-  line-height: 1;
-  opacity: 0.3;
-}
-
-/* Section spacing */
+/* Section spacing - French luxury: extreme whitespace */
 .section-spacing {
-  padding: 80px 0;
+  padding: 140px 0;
 }
 
 @media (max-width: 768px) {
   .section-spacing {
-    padding: 50px 0;
+    padding: 100px 0;
+  }
+}
+
+.section-spacing-lg {
+  padding: 180px 0;
+}
+
+@media (max-width: 768px) {
+  .section-spacing-lg {
+    padding: 120px 0;
   }
 }
 
@@ -755,4 +792,206 @@ select:focus-visible,
 .image-full { 
   width: 100vw; 
   margin-left: calc(-50vw + 50%); 
+}
+
+/* ========================================
+   FRENCH LUXURY DESIGN SYSTEM - New Additions
+   ======================================== */
+
+/* Section Label — tiny caps above every heading */
+.section-label {
+  font-family: var(--font-sans), Inter, sans-serif;
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #9a9a9a;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.section-label::before,
+.section-label::after {
+  content: '—';
+  margin: 0 0.75em;
+  color: #d0ccc7;
+}
+
+/* Numbered editorial treatment list — Augustinus Bader style */
+.editorial-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.editorial-list-item {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #e8e4df;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.editorial-list-item:first-child {
+  border-top: 1px solid #e8e4df;
+}
+
+.editorial-list-number {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #d0ccc7;
+  min-width: 2.5rem;
+  letter-spacing: 0.1em;
+}
+
+.editorial-list-content {
+  flex: 1;
+}
+
+.editorial-list-title {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #1c1c1c;
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.01em;
+}
+
+.editorial-list-desc {
+  font-family: var(--font-sans), Inter, sans-serif;
+  font-size: 0.875rem;
+  color: #6b6b6b;
+  font-weight: 300;
+}
+
+/* Crimson left-border slide-in on hover */
+.editorial-list-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #b5453a;
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.editorial-list-item:hover::before {
+  transform: scaleY(1);
+}
+
+.editorial-list-item:hover .editorial-list-title {
+  color: #b5453a;
+}
+
+/* Brand Manifesto Section */
+.manifesto-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  padding: 140px 4vw;
+}
+
+.manifesto-text-large {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(2rem, 8vw, 5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #1c1c1c;
+  text-align: center;
+  max-width: 12ch;
+}
+
+/* Statistics as Art */
+.stats-art {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  background: #f7f4f0;
+  padding: 100px 4vw;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 0 3vw;
+  position: relative;
+}
+
+.stat-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 60%;
+  background: #d0ccc7;
+}
+
+.stat-number {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  color: #1c1c1c;
+  line-height: 1;
+}
+
+.stat-desc {
+  font-family: var(--font-sans), Inter, sans-serif;
+  font-size: 0.625rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #9a9a9a;
+  margin-top: 0.75rem;
+}
+
+/* Asymmetric Image/Text Split */
+.asymmetric-split {
+  display: grid;
+  min-height: 600px;
+}
+
+.asymmetric-split-left {
+  grid-template-columns: 55% 45%;
+}
+
+.asymmetric-split-right {
+  grid-template-columns: 40% 60%;
+}
+
+@media (max-width: 768px) {
+  .asymmetric-split,
+  .asymmetric-split-left,
+  .asymmetric-split-right {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Borderless, shadowless cards */
+.card-luxury {
+  background: #ffffff;
+  padding: 2rem;
+  transition: background-color 0.3s ease;
+}
+
+.card-luxury:hover {
+  background: #fafafa;
+}
+
+/* Remove all borders and shadows from UI elements */
+.no-border {
+  border: none !important;
+}
+
+.no-shadow {
+  box-shadow: none !important;
 }

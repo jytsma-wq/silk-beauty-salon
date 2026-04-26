@@ -52,30 +52,25 @@ export default async function LocaleLayout({
   const isRtl = rtlLocales.includes(validLocale);
 
   return (
-    <html lang={validLocale} suppressHydrationWarning className="scroll-smooth" dir={isRtl ? 'rtl' : 'ltr'}>
+    <>
       <head>{csrfToken ? <meta name="csrf-token" content={csrfToken} /> : null}</head>
-      <body
-        className="antialiased bg-background text-foreground"
-        style={{ fontFamily: "'DM Sans', sans-serif" }}
-      >
-        <ConsentProvider>
-          <AnalyticsScripts
-            gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
-            gtmId={process.env.NEXT_PUBLIC_GTM_ID}
-            fbPixelId={process.env.NEXT_PUBLIC_FB_PIXEL_ID}
-          />
-          <NextIntlClientProvider messages={messages}>
-            <AnnouncerProvider>
-              <SkipLink />
-              <GaldermaHeader />
-              <main id="main-content">{children}</main>
-              <GaldermaFooter />
-              <WhatsAppWidget />
-              <Toaster />
-            </AnnouncerProvider>
-          </NextIntlClientProvider>
-        </ConsentProvider>
-      </body>
-    </html>
+      <ConsentProvider>
+        <AnalyticsScripts
+          gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
+          gtmId={process.env.NEXT_PUBLIC_GTM_ID}
+          fbPixelId={process.env.NEXT_PUBLIC_FB_PIXEL_ID}
+        />
+        <NextIntlClientProvider messages={messages}>
+          <AnnouncerProvider>
+            <SkipLink />
+            <GaldermaHeader />
+            <main id="main-content">{children}</main>
+            <GaldermaFooter />
+            <WhatsAppWidget />
+            <Toaster />
+          </AnnouncerProvider>
+        </NextIntlClientProvider>
+      </ConsentProvider>
+    </>
   );
 }

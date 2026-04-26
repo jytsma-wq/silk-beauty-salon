@@ -15,6 +15,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
+export async function generateStaticParams() {
+  const locales = ['en', 'ka', 'ru', 'ar', 'he', 'tr'];
+  return locales.map((locale) => ({ locale }));
+}
+
 const pricingData = [
   { treatment: 'Botox (1 area)', priceGEL: '250-350', priceUSD: '$90-125' },
   { treatment: 'Botox (3 areas)', priceGEL: '600-800', priceUSD: '$215-290' },
@@ -70,10 +75,10 @@ export default async function InternationalClientsPage({
           src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=80"
           alt="Silk Beauty Salon"
           fill
-          className="object-cover rounded-sm shadow-sm"
+          className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-primary/60" />
+        <div className="absolute inset-0 bg-[#1c1c1c]/40" />
         <div className="absolute inset-0 flex items-center">
           <div className="container-custom">
             <div className="max-w-2xl">
@@ -152,7 +157,7 @@ export default async function InternationalClientsPage({
             </div>
 
             <div className="relative">
-              <div className="aspect-4/5 rounded-sm overflow-hidden relative bg-secondary shadow-sm">
+              <div className="aspect-4/5 overflow-hidden relative bg-[#f7f4f0]">
                 <Image
                   src={team?.image || "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80"}
                   alt="Nana Gviniashvili"
@@ -161,8 +166,6 @@ export default async function InternationalClientsPage({
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
-              <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-gold/10 rounded-lg -z-10" />
-              <div className="absolute -top-6 -right-6 w-32 h-32 border-2 border-gold/30 rounded-lg -z-10" />
             </div>
           </div>
         </div>
@@ -186,9 +189,9 @@ export default async function InternationalClientsPage({
               { key: 'privacy', icon: Globe },
               { key: 'travelFriendly', icon: MapPin },
             ].map((item) => (
-              <div key={item.key} className="bg-white rounded-lg p-6 text-center card-hover">
-                <div className="w-14 h-14 rounded-full bg-gold/10 flex items-center justify-center mx-auto mb-4">
-                  <item.icon className="w-7 h-7 text-gold" />
+              <div key={item.key} className="p-8 text-center">
+                <div className="mb-6">
+                  <item.icon className="w-8 h-8 text-gold mx-auto" />
                 </div>
                 <h3 className="font-serif font-semibold text-primary mb-2">
                   {t(`whyChooseUs.${item.key}`)}
@@ -214,27 +217,25 @@ export default async function InternationalClientsPage({
 
           <div className="grid md:grid-cols-3 gap-8">
             {['botox', 'fillers', 'facial'].map((service) => (
-              <div key={service} className="bg-white rounded-lg border border-border overflow-hidden card-hover">
-                <div className="p-6">
-                  <h3 className="font-serif text-xl font-semibold text-primary mb-2">
-                    {t(`services.${service}.title`)}
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    {t(`services.${service}.description`)}
-                  </p>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">{t('services.durationLabel')}</span>
-                      <span className="font-medium">{t(`services.${service}.duration`)}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">{t('services.recoveryLabel')}</span>
-                      <span className="font-medium">{t(`services.${service}.recovery`)}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">{t('services.resultsLabel')}</span>
-                      <span className="font-medium">{t(`services.${service}.results`)}</span>
-                    </div>
+              <div key={service} className="py-8 border-t border-[#e8e4df]">
+                <h3 className="font-serif text-xl font-semibold text-primary mb-2">
+                  {t(`services.${service}.title`)}
+                </h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  {t(`services.${service}.description`)}
+                </p>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">{t('services.durationLabel')}</span>
+                    <span className="font-medium">{t(`services.${service}.duration`)}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">{t('services.recoveryLabel')}</span>
+                    <span className="font-medium">{t(`services.${service}.recovery`)}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">{t('services.resultsLabel')}</span>
+                    <span className="font-medium">{t(`services.${service}.results`)}</span>
                   </div>
                 </div>
               </div>
@@ -244,24 +245,24 @@ export default async function InternationalClientsPage({
       </section>
 
       {/* Packages Section */}
-      <section id="packages" className="section-spacing bg-primary">
+      <section id="packages" className="section-spacing bg-[#f7f4f0]">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-serif font-semibold text-white mb-4">
+            <h2 className="text-3xl font-serif font-semibold text-[#1c1c1c] mb-4">
               {t('packages.title')}
             </h2>
-            <p className="text-gray-300">{t('packages.subtitle')}</p>
+            <p className="text-[#6b6b6b]">{t('packages.subtitle')}</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {packagesData.map((pkg, index) => (
-              <div key={index} className="bg-white rounded-lg p-6 text-center card-hover">
-                <Gift className="w-10 h-10 text-gold mx-auto mb-4" />
-                <h3 className="font-serif text-xl font-semibold text-primary mb-2">{pkg.name}</h3>
-                <p className="text-sm text-muted-foreground mb-4">{pkg.includes}</p>
-                <div className="inline-block bg-gold/10 text-gold font-semibold px-4 py-2 rounded-full text-sm">
+              <div key={index} className="p-8 text-center border-t border-[#e8e4df]">
+                <Gift className="w-8 h-8 text-gold mx-auto mb-4" />
+                <h3 className="font-serif text-xl font-semibold text-[#1c1c1c] mb-2">{pkg.name}</h3>
+                <p className="text-sm text-[#6b6b6b] mb-4">{pkg.includes}</p>
+                <span className="text-xs tracking-[0.15em] uppercase text-gold">
                   {pkg.savings}
-                </div>
+                </span>
               </div>
             ))}
           </div>
@@ -278,25 +279,16 @@ export default async function InternationalClientsPage({
             <p className="text-muted-foreground">{t('pricing.subtitle')}</p>
           </div>
 
-          <div className="bg-white rounded-lg border border-border overflow-hidden max-w-3xl mx-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="bg-secondary">
-                  <th className="text-left p-4 font-semibold">{t('pricing.treatment')}</th>
-                  <th className="text-center p-4 font-semibold">{t('pricing.priceGEL')}</th>
-                  <th className="text-right p-4 font-semibold">{t('pricing.priceUSD')}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {pricingData.map((item, index) => (
-                  <tr key={index} className={`border-t border-border ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}>
-                    <td className="p-4 font-medium">{item.treatment}</td>
-                    <td className="p-4 text-center text-muted-foreground">{item.priceGEL}</td>
-                    <td className="p-4 text-right font-semibold text-gold">{item.priceUSD}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="max-w-3xl mx-auto">
+            {pricingData.map((item, index) => (
+              <div key={index} className="flex justify-between py-6 border-t border-[#e8e4df]">
+                <span className="font-medium">{item.treatment}</span>
+                <div className="text-right">
+                  <span className="text-muted-foreground mr-4">{item.priceGEL} GEL</span>
+                  <span className="font-semibold text-gold">{item.priceUSD}</span>
+                </div>
+              </div>
+            ))}
           </div>
 
           <div className="mt-8 text-center">
@@ -316,36 +308,18 @@ export default async function InternationalClientsPage({
             <p className="text-muted-foreground">{t('timing.subtitle')}</p>
           </div>
 
-          <div className="bg-white rounded-lg border border-border overflow-hidden max-w-3xl mx-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="bg-secondary">
-                  <th className="text-left p-4 font-semibold">{t('timing.treatment')}</th>
-                  <th className="text-center p-4 font-semibold">{t('timing.minStay')}</th>
-                  <th className="text-left p-4 font-semibold">{t('timing.reason')}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {timingData.map((item, index) => (
-                  <tr key={index} className={`border-t border-border ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}>
-                    <td className="p-4 font-medium">{item.treatment}</td>
-                    <td className="p-4 text-center">
-                      <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${item.minStay === 'Same day OK' ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'}`}>
-                        {item.minStay}
-                      </span>
-                    </td>
-                    <td className="p-4 text-muted-foreground">{item.reason}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="max-w-3xl mx-auto">
+            {timingData.map((item, index) => (
+              <div key={index} className="flex justify-between py-6 border-t border-[#e8e4df]">
+                <span className="font-medium">{item.treatment}</span>
+                <span className="text-muted-foreground">{item.minStay}</span>
+                <span className="text-sm text-[#9a9a9a] max-w-xs text-right">{item.reason}</span>
+              </div>
+            ))}
           </div>
 
-          <div className="mt-6 text-center">
-            <div className="inline-flex items-center gap-2 bg-amber-50 text-amber-800 px-4 py-2 rounded-lg">
-              <AlertCircle className="w-5 h-5" />
-              <span className="text-sm">{t('timing.seaWarning')}</span>
-            </div>
+          <div className="mt-12 text-center">
+            <p className="text-sm text-[#9a9a9a] italic">{t('timing.seaWarning')}</p>
           </div>
         </div>
       </section>
@@ -360,20 +334,18 @@ export default async function InternationalClientsPage({
             <p className="text-muted-foreground">{t('journey.subtitle')}</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16">
             {[1, 2, 3, 4, 5, 6, 7, 8].map((step) => (
-              <div key={step} className="relative">
-                <div className="bg-white rounded-lg p-6 border border-border card-hover">
-                  <div className="w-10 h-10 rounded-full bg-gold text-white flex items-center justify-center font-bold mb-4">
-                    {step}
-                  </div>
-                  <h3 className="font-semibold text-primary mb-2">
-                    {t(`journey.step${step}Title`)}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {t(`journey.step${step}Desc`)}
-                  </p>
-                </div>
+              <div key={step} className="border-t border-[#e8e4df] pt-6">
+                <span className="text-xs tracking-[0.15em] uppercase text-gold mb-4 block">
+                  {String(step).padStart(2, '0')}
+                </span>
+                <h3 className="font-serif text-lg text-primary mb-2">
+                  {t(`journey.step${step}Title`)}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {t(`journey.step${step}Desc`)}
+                </p>
               </div>
             ))}
           </div>
@@ -392,8 +364,8 @@ export default async function InternationalClientsPage({
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {['licensed', 'certified', 'authentic', 'hygiene', 'emergency'].map((item) => (
-              <div key={item} className="bg-white rounded-lg p-6 text-center card-hover">
-                <Shield className="w-10 h-10 text-gold mx-auto mb-4" />
+              <div key={item} className="p-8 text-center border-t border-[#e8e4df]">
+                <Shield className="w-8 h-8 text-gold mx-auto mb-4" />
                 <h3 className="font-serif font-semibold text-primary mb-2">
                   {t(`trust.${item}`)}
                 </h3>
@@ -418,12 +390,12 @@ export default async function InternationalClientsPage({
 
           <div className="max-w-3xl mx-auto space-y-4">
             {faqData.map((item, index) => (
-              <details key={index} className="bg-white rounded-lg border border-border group">
-                <summary className="flex items-center justify-between p-6 cursor-pointer list-none">
+              <details key={index} className="border-t border-[#e8e4df] group">
+                <summary className="flex items-center justify-between py-6 cursor-pointer list-none">
                   <span className="font-medium text-primary">{item.q}</span>
                   <ChevronRight className="w-5 h-5 text-muted-foreground group-open:rotate-90 transition-transform" />
                 </summary>
-                <div className="px-6 pb-6">
+                <div className="pb-6">
                   <p className="text-muted-foreground">{item.a}</p>
                 </div>
               </details>
@@ -433,13 +405,13 @@ export default async function InternationalClientsPage({
       </section>
 
       {/* Contact Section */}
-      <section className="section-spacing bg-primary">
+      <section className="section-spacing bg-[#f7f4f0]">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-serif font-semibold text-white mb-4">
+            <h2 className="text-3xl font-serif font-semibold text-[#1c1c1c] mb-4">
               {t('contact.title')}
             </h2>
-            <p className="text-gray-300">{t('contact.subtitle')}</p>
+            <p className="text-[#6b6b6b]">{t('contact.subtitle')}</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
@@ -450,15 +422,15 @@ export default async function InternationalClientsPage({
               { key: 'videoConsult', icon: Phone },
               { key: 'email', icon: Mail },
             ].map((item) => (
-              <div key={item.key} className="bg-white/10 rounded-lg p-6 text-center">
+              <div key={item.key} className="p-6 text-center">
                 <item.icon className="w-8 h-8 text-gold mx-auto mb-3" />
-                <h3 className="font-semibold text-white mb-1">{t(`contact.${item.key}`)}</h3>
-                <p className="text-xs text-gray-300">{t(`contact.${item.key}Desc`)}</p>
+                <h3 className="font-semibold text-[#1c1c1c] mb-1">{t(`contact.${item.key}`)}</h3>
+                <p className="text-xs text-[#6b6b6b]">{t(`contact.${item.key}Desc`)}</p>
               </div>
             ))}
           </div>
 
-          <p className="text-center text-gray-300 text-sm">
+          <p className="text-center text-[#9a9a9a] text-sm">
             {t('contact.responseTime')}
           </p>
         </div>

@@ -59,7 +59,7 @@ export default async function OffersPage({
   return (
     <>
       {/* Full Screen Hero Image */}
-      <section className="relative h-screen min-h-150">
+      <section className="relative h-screen min-h-37.5">
         <Image
           src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80"
           alt="Special Offers"
@@ -67,7 +67,7 @@ export default async function OffersPage({
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-primary/40" />
+        <div className="absolute inset-0 bg-[#1c1c1c]/40" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="container-custom text-center">
             <h1 
@@ -102,44 +102,37 @@ export default async function OffersPage({
             {offers.map((offer, index) => (
               <div
                 key={index}
-                className={`relative bg-white border rounded-lg overflow-hidden card-hover ${
-                  offer.highlight ? 'border-gold' : 'border-border'
+                className={`relative py-8 border-t ${
+                  offer.highlight ? 'border-gold' : 'border-[#e8e4df]'
                 }`}
               >
-                {offer.highlight && (
-                  <div className="absolute top-4 right-4">
-                    <Tag className="w-6 h-6 text-gold" />
-                  </div>
-                )}
-                <div className={`p-6 ${offer.highlight ? 'bg-gold/5' : ''}`}>
-                  <div className="flex items-center gap-2 mb-4">
-                    <Percent className={`w-5 h-5 ${offer.highlight ? 'text-gold' : 'text-primary'}`} />
-                    <span className="text-sm font-medium text-gold">{offer.discount}</span>
-                  </div>
-                  <h3 
-                    className="text-xl font-serif font-semibold text-primary mb-2"
-                                      >
-                    {t(`offers.${offer.titleKey}.title`)}
-                  </h3>
-                  <p className="text-muted-foreground text-sm mb-4">
-                    {t(`offers.${offer.titleKey}.description`)}
-                  </p>
-                  <p className="text-xs text-muted-foreground/70">
-                    {t(`offers.${offer.titleKey}.terms`)}
-                  </p>
+                <div className="flex items-center gap-2 mb-4">
+                  <Percent className={`w-5 h-5 ${offer.highlight ? 'text-gold' : 'text-primary'}`} />
+                  <span className="text-sm font-medium text-gold">{offer.discount}</span>
                 </div>
+                <h3 
+                  className="text-xl font-serif font-semibold text-primary mb-2"
+                                    >
+                  {t(`offers.${offer.titleKey}.title`)}
+                </h3>
+                <p className="text-muted-foreground text-sm mb-4">
+                  {t(`offers.${offer.titleKey}.description`)}
+                </p>
+                <p className="text-xs text-muted-foreground/70">
+                  {t(`offers.${offer.titleKey}.terms`)}
+                </p>
               </div>
             ))}
           </div>
 
           {/* CTA */}
-          <div className="mt-12 bg-primary rounded-lg p-8 text-center">
+          <div className="mt-12 border-t border-[#e8e4df] py-12 text-center">
             <h2 
-              className="text-2xl font-serif font-semibold text-white mb-4"
+              className="text-2xl font-serif font-semibold text-primary mb-4"
                           >
               {t('ctaTitle')}
             </h2>
-            <p className="text-gray-300 mb-6 max-w-xl mx-auto">
+            <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
               {t('ctaSubtitle')}
             </p>
             <Button asChild className="btn-gold">

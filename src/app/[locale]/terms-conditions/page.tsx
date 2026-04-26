@@ -24,7 +24,7 @@ export default async function TermsConditionsPage({
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-primary py-20">
+      <section className="bg-[#1c1c1c] py-20">
         <div className="container-custom text-center">
           <h1 
             className="text-4xl md:text-5xl font-serif font-semibold text-white mb-4"

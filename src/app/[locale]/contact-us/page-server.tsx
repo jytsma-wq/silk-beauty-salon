@@ -29,7 +29,11 @@ export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function ContactPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'contactPage' });
   const tCommon = await getTranslations({ locale, namespace: 'common' });
@@ -91,9 +95,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
 
               <div className="space-y-6 mb-8">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center shrink-0">
-                    <MapPin className="w-6 h-6 text-gold" />
-                  </div>
+                  <MapPin className="w-6 h-6 text-gold shrink-0 mt-1" />
                   <div>
                     <h3 className="font-semibold text-primary mb-1">{t('address')}</h3>
                     <p className="text-muted-foreground">
@@ -104,9 +106,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center shrink-0">
-                    <Phone className="w-6 h-6 text-gold" />
-                  </div>
+                  <Phone className="w-6 h-6 text-gold shrink-0 mt-1" />
                   <div>
                     <h3 className="font-semibold text-primary mb-1">{t('phone')}</h3>
                     <a
@@ -119,9 +119,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center shrink-0">
-                    <Mail className="w-6 h-6 text-gold" />
-                  </div>
+                  <Mail className="w-6 h-6 text-gold shrink-0 mt-1" />
                   <div>
                     <h3 className="font-semibold text-primary mb-1">{t('email')}</h3>
                     <a
@@ -212,7 +210,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
       </section>
 
       {/* Map Section */}
-      <section className="h-100 bg-secondary">
+      <section className="h-100 bg-[#f7f4f0]">
         <div className="w-full h-full flex items-center justify-center">
           <div className="text-center">
             <MapPin className="w-12 h-12 text-gold mx-auto mb-4" />

@@ -15,6 +15,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
+export async function generateStaticParams() {
+  const locales = ['en', 'ka', 'ru', 'ar', 'he', 'tr'];
+  return locales.map((locale) => ({ locale }));
+}
+
 export default async function PriceListPage({
   params,
 }: {
@@ -27,7 +32,7 @@ export default async function PriceListPage({
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-primary py-20">
+      <section className="bg-[#1c1c1c] py-20">
         <div className="container-custom text-center">
           <h1 
             className="text-4xl md:text-5xl font-serif font-semibold text-white mb-4"
@@ -57,7 +62,7 @@ export default async function PriceListPage({
       <section className="section-spacing">
         <div className="container-custom">
           {/* Note */}
-          <div className="bg-secondary rounded-lg p-6 mb-12">
+          <div className="border-t border-[#e8e4df] py-6 mb-12">
             <p className="text-sm text-muted-foreground">
               <strong className="text-primary">{t('noteTitle')}</strong> {t('noteText')}
             </p>
@@ -71,20 +76,20 @@ export default async function PriceListPage({
                               >
                 {category.name}
               </h2>
-              <div className="bg-white rounded-lg border border-border overflow-hidden">
+              <div className="border-t border-[#e8e4df]">
                 <table className="w-full">
                   <thead>
-                    <tr className="bg-secondary">
+                    <tr className="border-b border-[#e8e4df]">
                       <th className="text-left p-4 font-semibold">{t('treatment')}</th>
                       <th className="text-left p-4 font-semibold hidden sm:table-cell">{t('duration')}</th>
                       <th className="text-right p-4 font-semibold">{t('priceFrom')}</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {category.treatments.map((treatment, index) => (
+                    {category.treatments.map((treatment) => (
                       <tr 
                         key={treatment.slug} 
-                        className={`border-t border-border hover:bg-secondary/50 transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}
+                        className="border-t border-[#e8e4df] hover:bg-[#f7f4f0] transition-colors"
                       >
                         <td className="p-4">
                           <Link 
@@ -114,13 +119,13 @@ export default async function PriceListPage({
           ))}
 
           {/* CTA */}
-          <div className="bg-primary rounded-lg p-8 text-center">
+          <div className="border-t border-[#e8e4df] py-12 text-center">
             <h2 
-              className="text-2xl font-serif font-semibold text-white mb-4"
+              className="text-2xl font-serif font-semibold text-primary mb-4"
                           >
               {t('ctaTitle')}
             </h2>
-            <p className="text-gray-300 mb-6 max-w-xl mx-auto">
+            <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
               {t('ctaSubtitle')}
             </p>
             <Button asChild className="btn-gold">

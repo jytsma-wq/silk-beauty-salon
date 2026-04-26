@@ -54,10 +54,10 @@ export default async function TreatmentsPage({
           src="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=1920&q=80"
           alt="Luxury Beauty Salon"
           fill
-          className="object-cover rounded-sm shadow-sm"
+          className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-primary/40" />
+        <div className="absolute inset-0 bg-[#1c1c1c]/40" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="container-custom text-center">
             <h1 
@@ -108,31 +108,19 @@ export default async function TreatmentsPage({
                   <Link
                     key={treatment.slug}
                     href={`/treatments/${treatment.slug}`}
-                    className="group bg-white border border-border rounded-lg overflow-hidden card-hover"
+                    className="group block py-6 border-t border-[#e8e4df] hover:border-[#b5453a] transition-colors"
                   >
-                    <div className="relative aspect-3/4 w-full overflow-hidden rounded-sm shadow-sm">
-                      <Image
-                        src={treatment.image}
-                        alt={treatment.name}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      />
-                      <div className="absolute inset-0 bg-linear-to-t from-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                    <div className="p-4">
-                      <h3 className="font-semibold text-primary mb-2 group-hover:text-gold transition-colors">
-                        {treatment.name}
-                      </h3>
-                      <p className="text-sm text-muted-foreground line-clamp-2">
-                        {treatment.shortDescription}
+                    <h3 className="font-serif font-semibold text-primary mb-2 group-hover:text-gold transition-colors">
+                      {treatment.name}
+                    </h3>
+                    <p className="text-sm text-muted-foreground line-clamp-2">
+                      {treatment.shortDescription}
+                    </p>
+                    {treatment.price && (
+                      <p className="text-sm font-medium text-gold mt-2">
+                        {treatment.price}
                       </p>
-                      {treatment.price && (
-                        <p className="text-sm font-medium text-gold mt-2">
-                          {treatment.price}
-                        </p>
-                      )}
-                    </div>
+                    )}
                   </Link>
                 ))}
               </div>
@@ -142,14 +130,14 @@ export default async function TreatmentsPage({
       </section>
 
       {/* CTA Section */}
-      <section className="bg-primary py-16">
+      <section className="bg-[#f7f4f0] py-16">
         <div className="container-custom text-center">
           <h2 
-            className="text-2xl md:text-3xl font-serif font-semibold text-white mb-4"
+            className="text-2xl md:text-3xl font-serif font-semibold text-primary mb-4"
                       >
             {t('ctaTitle')}
           </h2>
-          <p className="text-gray-300 mb-8 max-w-xl mx-auto">
+          <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
             {t('ctaSubtitle')}
           </p>
           <Button asChild className="btn-gold">

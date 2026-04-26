@@ -31,10 +31,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
+  const locales = ['en', 'ka', 'ru', 'ar', 'he', 'tr'];
   const conditions = await getAllConditions('en');
-  return conditions.map((condition) => ({
-    slug: condition.slug,
-  }));
+  
+  const params = [];
+  for (const locale of locales) {
+    for (const condition of conditions) {
+      params.push({ locale, slug: condition.slug });
+    }
+  }
+  return params;
 }
 
 export default async function ConditionPage({ params }: Props) {
@@ -57,7 +63,7 @@ export default async function ConditionPage({ params }: Props) {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-primary py-20">
+      <section className="relative bg-[#1c1c1c] py-20">
         <div className="container-custom">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-sm mb-8 text-gray-300">
@@ -89,7 +95,7 @@ export default async function ConditionPage({ params }: Props) {
               </Button>
             </div>
 
-            <div className="relative aspect-3/4 w-full rounded-sm overflow-hidden shadow-sm">
+            <div className="relative aspect-3/4 w-full overflow-hidden">
               <Image
                 src={condition.image}
                 alt={condition.name}
@@ -131,7 +137,7 @@ export default async function ConditionPage({ params }: Props) {
                   </h2>
                   <div className="grid sm:grid-cols-2 gap-3">
                     {condition.symptoms.map((symptom, index) => (
-                      <div key={index} className="flex items-start gap-3 p-4 bg-secondary rounded-lg">
+                      <div key={index} className="flex items-start gap-3 py-3 border-t border-[#e8e4df]">
                         <Check className="w-5 h-5 text-gold mt-0.5 shrink-0" />
                         <span className="text-sm">{symptom}</span>
                       </div>
@@ -169,7 +175,7 @@ export default async function ConditionPage({ params }: Props) {
                   </h2>
                   <div className="grid sm:grid-cols-2 gap-3">
                     {condition.treatments.map((treatment, index) => (
-                      <div key={index} className="flex items-start gap-3 p-4 border border-border rounded-lg">
+                      <div key={index} className="flex items-start gap-3 py-3 border-t border-[#e8e4df]">
                         <ArrowRight className="w-5 h-5 text-gold mt-0.5 shrink-0" />
                         <span className="text-sm">{treatment}</span>
                       </div>
@@ -182,11 +188,11 @@ export default async function ConditionPage({ params }: Props) {
             {/* Sidebar */}
             <div className="lg:col-span-1">
               {/* Book CTA */}
-              <div className="bg-primary rounded-lg p-6 text-center mb-8">
-                <h3 className="font-serif text-xl text-white mb-4">
+              <div className="border-t border-[#e8e4df] py-8 text-center mb-8">
+                <h3 className="font-serif text-xl text-primary mb-4">
                   {t('needHelp') || 'Need Help?'}
                 </h3>
-                <p className="text-gray-300 text-sm mb-4">
+                <p className="text-muted-foreground text-sm mb-4">
                   {t('bookConsultationDesc') || 'Book a consultation with one of our expert practitioners'}
                 </p>
                 <Button asChild className="btn-gold w-full">
@@ -197,7 +203,7 @@ export default async function ConditionPage({ params }: Props) {
               </div>
 
               {/* Other Conditions */}
-              <div className="bg-secondary rounded-lg p-6">
+              <div className="border-t border-[#e8e4df] py-8">
                 <h3 className="font-serif text-lg font-semibold text-primary mb-4">
                   {t('otherConditions') || 'Other Conditions'}
                 </h3>
@@ -227,7 +233,7 @@ export default async function ConditionPage({ params }: Props) {
 
       {/* Related Treatments */}
       {relatedTreatments.length > 0 && (
-        <section className="section-spacing bg-secondary">
+        <section className="section-spacing bg-[#f7f4f0]">
           <div className="container-custom">
             <h2 
               className="text-2xl font-serif font-semibold text-primary mb-8"
@@ -239,30 +245,19 @@ export default async function ConditionPage({ params }: Props) {
                 <Link
                   key={item.slug}
                   href={`/treatments/${item.slug}`}
-                  className="group bg-white rounded-lg overflow-hidden border border-border card-hover"
+                  className="group block py-6 border-t border-[#e8e4df] hover:border-[#b5453a] transition-colors"
                 >
-                  <div className="relative aspect-3/4 w-full overflow-hidden rounded-sm shadow-sm">
-                    <Image
-                      src={item.image}
-                      alt={item.name}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <h3 className="font-semibold text-primary group-hover:text-gold transition-colors">
-                      {item.name}
-                    </h3>
-                    <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
-                      {item.shortDescription}
+                  <h3 className="font-serif font-semibold text-primary group-hover:text-gold transition-colors mb-2">
+                    {item.name}
+                  </h3>
+                  <p className="text-sm text-muted-foreground line-clamp-2">
+                    {item.shortDescription}
+                  </p>
+                  {item.price && (
+                    <p className="text-sm font-medium text-gold mt-2">
+                      {item.price}
                     </p>
-                    {item.price && (
-                      <p className="text-sm font-medium text-gold mt-2">
-                        {item.price}
-                      </p>
-                    )}
-                  </div>
+                  )}
                 </Link>
               ))}
             </div>
