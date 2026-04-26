@@ -24,6 +24,22 @@ model ContactSubmission {
   status    String   @default("new")
 }
 
+model BookingRequest {
+  id            String   @id @default(cuid())
+  name          String
+  email         String
+  phone         String
+  service       String
+  preferredDate String?
+  preferredTime String?
+  message       String?
+  locale        String   @default("en")
+  createdAt     DateTime @default(now())
+  status        String   @default("pending")
+
+  @@index([status, createdAt])
+}
+
 model NewsletterSubscriber {
   id        String   @id @default(cuid())
   email     String   @unique
@@ -154,4 +170,22 @@ model TreatmentFAQ {
 
   @@index([treatmentId, locale])
   @@index([sortOrder])
+}
+
+// Booking model for calendar-based appointment system
+model Booking {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  phone       String?
+  service     String
+  date        String   // ISO date string YYYY-MM-DD
+  timeSlot    String   // e.g. "09:00 - 10:00"
+  message     String?
+  status      String   @default("pending") // pending, confirmed, cancelled
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([date, status])
+  @@index([status, createdAt])
 }

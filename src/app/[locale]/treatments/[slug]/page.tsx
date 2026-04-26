@@ -5,7 +5,6 @@ import { notFound } from 'next/navigation';
 import { ChevronRight, Clock, Check } from 'lucide-react';
 import { getTreatmentBySlug, getAllTreatmentSlugs, getCategoryByTreatmentSlug } from '@/lib/treatments-db';
 import { siteConfig } from '@/data/site-config';
-import { Button } from '@/components/ui/button';
 import { getTranslations } from 'next-intl/server';
 import {
   Accordion,
@@ -124,14 +123,9 @@ export default async function TreatmentPage({ params }: Props) {
                 )}
               </div>
 
-              <Button asChild size="lg" className="btn-gold">
-                <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
-                  {t('bookConsultation') || 'Book Consultation'}
-                </a>
-              </Button>
             </div>
 
-            <div className="relative aspect-4/3 rounded-lg overflow-hidden">
+            <div className="relative aspect-3/4 w-full rounded-sm overflow-hidden shadow-sm">
               <Image
                 src={treatment.image}
                 alt={treatment.name}
@@ -243,14 +237,6 @@ export default async function TreatmentPage({ params }: Props) {
                 <h3 className="font-serif text-xl text-white mb-4">
                   {t('readyToStart') || 'Ready to get started?'}
                 </h3>
-                <p className="text-gray-300 text-sm mb-4">
-                  {t('bookConsultationDesc') || 'Book a consultation with one of our expert practitioners'}
-                </p>
-                <Button asChild className="btn-gold w-full">
-                  <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
-                    {t('bookNow') || 'Book Now'}
-                  </a>
-                </Button>
               </div>
 
               {/* Contact Info */}
@@ -304,7 +290,7 @@ export default async function TreatmentPage({ params }: Props) {
                   href={`/treatments/${related.slug}`}
                   className="group bg-white rounded-lg overflow-hidden border border-border card-hover"
                 >
-                  <div className="relative h-48 overflow-hidden">
+                  <div className="relative aspect-3/4 w-full overflow-hidden rounded-sm shadow-sm">
                     <Image
                       src={related.image}
                       alt={related.name}

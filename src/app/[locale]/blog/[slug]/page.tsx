@@ -80,12 +80,12 @@ export default async function BlogPostPage({
       <JsonLd schema={breadcrumbSchema} />
 
       {/* Hero Section */}
-      <section className="relative h-100 min-h-100">
+      <section className="relative w-full h-[60vh] md:h-[80vh]">
         <Image
           src={post.image}
           alt={post.title}
           fill
-          className="object-cover"
+          className="object-cover rounded-sm shadow-sm"
           priority
         />
         <div className="absolute inset-0 bg-primary/60" />

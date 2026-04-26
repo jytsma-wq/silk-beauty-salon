@@ -67,7 +67,7 @@ export function LanguageSwitcher() {
                 <span>{localeNames[loc]?.nativeName}</span>
               </span>
               {locale === loc && (
-                <span className="text-gold text-xs">✓</span>
+                <span className="text-[#b5453a] text-xs">✓</span>
               )}
             </span>
           </DropdownMenuItem>

@@ -1,11 +1,22 @@
 import createMiddleware from 'next-intl/middleware';
 import { NextRequest, NextResponse } from 'next/server';
 import { routing } from './src/i18n/routing';
-import { randomBytes } from 'crypto';
 
-// Generate cryptographically secure nonce
+// Generate cryptographically secure nonce using Web Crypto API (Edge Runtime compatible)
 function generateNonce(): string {
-  return randomBytes(16).toString('base64');
+  const array = new Uint8Array(16);
+  crypto.getRandomValues(array);
+  return btoa(String.fromCharCode(...array));
+}
+
+// Generate CSRF token using Web Crypto API
+function generateCsrfToken(): string {
+  const array = new Uint8Array(32);
+  crypto.getRandomValues(array);
+  return btoa(String.fromCharCode(...array))
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=/g, '');
 }
 
 // Build Content Security Policy header with nonce
@@ -204,21 +215,37 @@ export default function middleware(request: NextRequest) {
 
   // 4. Pass to i18n middleware and add security headers
   const response = i18nMiddleware(request);
-  
+
   // Generate nonce for CSP
   const nonce = generateNonce();
-  
+
+  // Check if CSRF token exists, set if not
+  const existingCsrfToken = request.cookies.get('csrf-token')?.value;
+  if (!existingCsrfToken) {
+    const csrfToken = generateCsrfToken();
+    response.cookies.set('csrf-token', csrfToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      path: '/',
+      maxAge: 60 * 60 * 24, // 24 hours
+    });
+    response.headers.set('X-CSRF-Token', csrfToken);
+  } else {
+    response.headers.set('X-CSRF-Token', existingCsrfToken);
+  }
+
   // Add security headers to all responses
   Object.entries(SECURITY_HEADERS).forEach(([key, value]) => {
     response.headers.set(key, value);
   });
-  
+
   // Add CSP header with nonce
   response.headers.set('Content-Security-Policy', buildCSPHeader(nonce));
-  
+
   // Store nonce in header for client-side scripts to access
   response.headers.set('X-Nonce', nonce);
-  
+
   return response;
 }
 

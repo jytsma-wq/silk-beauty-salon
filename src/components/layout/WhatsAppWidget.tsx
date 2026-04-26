@@ -48,7 +48,7 @@ export function WhatsAppWidget() {
     >
       {/* Chat Popup */}
       {isOpen && (
-        <div className="absolute bottom-20 right-0 w-80 bg-white rounded-2xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-2 duration-300">
+        <div className="absolute bottom-20 right-0 w-80 bg-background rounded-sm shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-2 duration-300">
           {/* Header */}
           <div className="bg-[#25D366] p-4 flex items-center gap-3">
             <div className="relative">
@@ -82,7 +82,7 @@ export function WhatsAppWidget() {
                 <button
                   key={index}
                   onClick={() => handleQuickMessage(msg)}
-                  className="w-full text-left px-4 py-3 bg-white border border-gray-200 rounded-lg text-sm text-gray-700 hover:bg-gray-50 hover:border-[#25D366] focus:border-[#25D366] focus:ring-2 focus:ring-[#25D366]/20 transition-colors flex items-center justify-between group outline-none"
+                  className="w-full text-left px-4 py-3 bg-white border border-gray-200 rounded-sm text-sm text-gray-700 hover:bg-gray-50 hover:border-[#25D366] focus:border-[#25D366] focus:ring-2 focus:ring-[#25D366]/20 transition-colors flex items-center justify-between group outline-none"
                 >
                   {msg}
                   <Send className="w-4 h-4 text-gray-400 group-hover:text-[#25D366]" />

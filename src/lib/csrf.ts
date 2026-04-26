@@ -1,16 +1,20 @@
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
-import { randomBytes, timingSafeEqual } from 'crypto';
 
 const CSRF_COOKIE_NAME = 'csrf-token';
 const CSRF_HEADER_NAME = 'x-csrf-token';
 const TOKEN_LENGTH = 32;
 
 /**
- * Generate cryptographically secure CSRF token
+ * Generate cryptographically secure CSRF token using Web Crypto API
  */
 export function generateCsrfToken(): string {
-  return randomBytes(TOKEN_LENGTH).toString('base64url');
+  const array = new Uint8Array(TOKEN_LENGTH);
+  crypto.getRandomValues(array);
+  return btoa(String.fromCharCode(...array))
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=/g, '');
 }
 
 /**
@@ -30,6 +34,19 @@ export async function setCsrfToken(): Promise<string> {
   });
   
   return token;
+}
+
+/**
+ * Set CSRF token in a response cookie (for use in middleware)
+ */
+export function setCsrfTokenInResponse(response: NextResponse, token: string): void {
+  response.cookies.set(CSRF_COOKIE_NAME, token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'strict',
+    path: '/',
+    maxAge: 60 * 60 * 24, // 24 hours
+  });
 }
 
 /**
@@ -54,7 +71,7 @@ export async function verifyCsrfToken(request: NextRequest): Promise<boolean> {
   // Check header first
   const headerToken = request.headers.get(CSRF_HEADER_NAME);
   if (headerToken) {
-    return safeCompare(cookieToken, headerToken);
+    return await safeCompare(cookieToken, headerToken);
   }
   
   // Check form data for POST requests
@@ -63,7 +80,7 @@ export async function verifyCsrfToken(request: NextRequest): Promise<boolean> {
       const formData = await request.clone().formData();
       const formToken = formData.get('_csrf');
       if (typeof formToken === 'string') {
-        return safeCompare(cookieToken, formToken);
+        return await safeCompare(cookieToken, formToken);
       }
     } catch {
       // Not form data, ignore
@@ -73,7 +90,7 @@ export async function verifyCsrfToken(request: NextRequest): Promise<boolean> {
     try {
       const json = await request.clone().json();
       if (json._csrf) {
-        return safeCompare(cookieToken, json._csrf);
+        return await safeCompare(cookieToken, json._csrf);
       }
     } catch {
       // Not JSON, ignore
@@ -84,17 +101,31 @@ export async function verifyCsrfToken(request: NextRequest): Promise<boolean> {
 }
 
 /**
- * Timing-safe string comparison
+ * Timing-safe string comparison using Web Crypto API
  */
-function safeCompare(a: string, b: string): boolean {
-  const bufA = Buffer.from(a);
-  const bufB = Buffer.from(b);
+async function safeCompare(a: string, b: string): Promise<boolean> {
+  const encoder = new TextEncoder();
+  const bufA = encoder.encode(a);
+  const bufB = encoder.encode(b);
   
   if (bufA.length !== bufB.length) {
     return false;
   }
   
-  return timingSafeEqual(bufA, bufB);
+  // Use subtle crypto for constant-time comparison
+  const key = await crypto.subtle.importKey(
+    'raw',
+    new Uint8Array(32),
+    { name: 'HMAC', hash: 'SHA-256' },
+    false,
+    ['sign']
+  );
+  
+  const sigA = await crypto.subtle.sign('HMAC', key, bufA);
+  const sigB = await crypto.subtle.sign('HMAC', key, bufB);
+  
+  return sigA.byteLength === sigB.byteLength && 
+    new Uint8Array(sigA).every((val, i) => val === new Uint8Array(sigB)[i]);
 }
 
 /**

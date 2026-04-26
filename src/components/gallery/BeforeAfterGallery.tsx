@@ -38,7 +38,7 @@ export function BeforeAfterGallery({ locale: _locale }: BeforeAfterGalleryProps)
   return (
     <div className="space-y-8">
       {/* Disclaimer */}
-      <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 text-sm text-amber-800">
+      <div className="bg-amber-50 border border-amber-200 rounded-sm p-4 text-sm text-amber-800">
         <p>{t('disclaimer', { defaultValue: 'Individual results may vary. Photos are of actual clients with their consent.' })}</p>
       </div>
 
@@ -47,35 +47,35 @@ export function BeforeAfterGallery({ locale: _locale }: BeforeAfterGalleryProps)
         {galleryItems.map((item) => (
           <div
             key={item.id}
-            className="bg-white rounded-lg overflow-hidden shadow-sm border border-border hover:shadow-md transition-shadow"
+            className="bg-white rounded-sm overflow-hidden shadow-sm border border-border hover:shadow-sm transition-shadow"
           >
             {/* Treatment Label */}
             <div className="bg-primary text-white px-4 py-2">
-              <h3 className="font-serif font-semibold">{item.treatment}</h3>
+              <h3 className="font-heading tracking-tight">{item.treatment}</h3>
             </div>
 
             {/* Before/After Images */}
             <div className="grid grid-cols-2 gap-1 p-4">
               <div className="space-y-2">
-                <div className="aspect-square rounded-lg overflow-hidden bg-secondary relative">
+                <div className="aspect-3/4 w-full rounded-sm overflow-hidden bg-secondary relative shadow-sm">
                   <img
                     src={item.beforeImage}
                     alt={`Before ${item.treatment}`}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute bottom-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded">
+                  <div className="absolute bottom-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded-sm">
                     {t('before', { defaultValue: 'Before' })}
                   </div>
                 </div>
               </div>
               <div className="space-y-2">
-                <div className="aspect-square rounded-lg overflow-hidden bg-secondary relative">
+                <div className="aspect-3/4 w-full rounded-sm overflow-hidden bg-secondary relative shadow-sm">
                   <img
                     src={item.afterImage}
                     alt={`After ${item.treatment}`}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute bottom-2 left-2 bg-gold/90 text-primary text-xs px-2 py-1 rounded font-medium">
+                  <div className="absolute bottom-2 left-2 bg-[#b5453a]/90 text-white text-xs px-2 py-1 rounded-sm font-medium">
                     {t('after', { defaultValue: 'After' })}
                   </div>
                 </div>
@@ -94,7 +94,7 @@ export function BeforeAfterGallery({ locale: _locale }: BeforeAfterGalleryProps)
       {galleryItems.length === 0 && (
         <div className="text-center py-16">
           <Camera className="w-16 h-16 text-muted-foreground mx-auto mb-4 opacity-50" />
-          <h3 className="font-serif text-xl text-primary mb-2">
+          <h3 className="font-heading text-xl text-primary tracking-tight mb-2">
             {t('comingSoon', { defaultValue: 'Gallery Coming Soon' })}
           </h3>
           <p className="text-muted-foreground max-w-md mx-auto">

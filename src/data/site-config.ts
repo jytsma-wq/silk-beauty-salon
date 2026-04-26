@@ -37,7 +37,7 @@ export const siteConfig = {
   navigation: {
     main: [
       { name: "Treatments", href: "#treatments", hasDropdown: true },
-      { name: "Conditions", href: "#conditions", hasDropdown: true },
+      { name: "Skin Conditions", href: "#conditions", hasDropdown: true },
       { name: "About", href: "/about", hasDropdown: true },
       { name: "International Clients", href: "#international", hasDropdown: true },
       { name: "Price List", href: "/pricelist" },

@@ -89,7 +89,7 @@ export default async function ConditionPage({ params }: Props) {
               </Button>
             </div>
 
-            <div className="relative aspect-4/3 rounded-lg overflow-hidden">
+            <div className="relative aspect-3/4 w-full rounded-sm overflow-hidden shadow-sm">
               <Image
                 src={condition.image}
                 alt={condition.name}
@@ -241,7 +241,7 @@ export default async function ConditionPage({ params }: Props) {
                   href={`/treatments/${item.slug}`}
                   className="group bg-white rounded-lg overflow-hidden border border-border card-hover"
                 >
-                  <div className="relative h-48 overflow-hidden">
+                  <div className="relative aspect-3/4 w-full overflow-hidden rounded-sm shadow-sm">
                     <Image
                       src={item.image}
                       alt={item.name}

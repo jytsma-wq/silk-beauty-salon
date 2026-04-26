@@ -49,12 +49,12 @@ export default async function TreatmentsPage({
   return (
     <>
       {/* Full Screen Hero Image */}
-      <section className="relative h-screen min-h-150">
+      <section className="relative w-full h-[60vh] md:h-[80vh]">
         <Image
           src="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=1920&q=80"
           alt="Luxury Beauty Salon"
           fill
-          className="object-cover"
+          className="object-cover rounded-sm shadow-sm"
           priority
         />
         <div className="absolute inset-0 bg-primary/40" />
@@ -110,7 +110,7 @@ export default async function TreatmentsPage({
                     href={`/treatments/${treatment.slug}`}
                     className="group bg-white border border-border rounded-lg overflow-hidden card-hover"
                   >
-                    <div className="relative h-48 overflow-hidden">
+                    <div className="relative aspect-3/4 w-full overflow-hidden rounded-sm shadow-sm">
                       <Image
                         src={treatment.image}
                         alt={treatment.name}

@@ -168,7 +168,7 @@ export async function getActiveAlerts(limit: number = 50): Promise<Array<{ type:
  * Middleware to check if request should be blocked
  * Use in API routes to check blocked IPs
  */
-export async function securityCheck(ip: string, path: string): Promise<{ blocked: boolean; reason?: string }> {
+export async function securityCheck(ip: string, _path: string): Promise<{ blocked: boolean; reason?: string }> {
   // Check if IP is blocked
   if (await isIpBlocked(ip)) {
     return { blocked: true, reason: 'IP temporarily blocked due to suspicious activity' };

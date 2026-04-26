@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -6,8 +7,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-body), sans-serif;
-  --font-serif: var(--font-display), serif;
+  --font-sans: "DM Sans", sans-serif;
+  --font-serif: "DM Serif Display", serif;
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -48,15 +49,15 @@
   --radius: 0;
   
   /* Primary Colors - Deep Navy/Black */
-  --primary: #1a1a2e;
+  --primary: #1c1c1c;
   --primary-foreground: #ffffff;
   
   /* Secondary - Light Gray */
-  --secondary: #f5f5f5;
+  --secondary: #f7f4f0;
   --secondary-foreground: #1a1a2e;
   
   /* Accent - Elegant Gold */
-  --accent: #c9a962;
+  --accent: #b5453a;
   --accent-foreground: #1a1a2e;
   
   /* Background & Foreground */
@@ -64,8 +65,8 @@
   --foreground: #1a1a2e;
   
   /* Muted */
-  --muted: #f5f5f5;
-  --muted-foreground: #666666;
+  --muted: #f7f4f0;
+  --muted-foreground: #6b6b6b;
   
   /* Card */
   --card: #ffffff;
@@ -78,13 +79,13 @@
   /* Border & Input */
   --border: #e0e0e0;
   --input: #e0e0e0;
-  --ring: #c9a962;
+  --ring: #b5453a;
   
   /* Destructive */
   --destructive: #ef4444;
   
   /* Chart colors */
-  --chart-1: #c9a962;
+  --chart-1: #b5453a;
   --chart-2: #1a1a2e;
   --chart-3: #666666;
   --chart-4: #f5f5f5;
@@ -98,7 +99,7 @@
   --sidebar-accent: #f5f5f5;
   --sidebar-accent-foreground: #1a1a2e;
   --sidebar-border: #e0e0e0;
-  --sidebar-ring: #c9a962;
+  --sidebar-ring: #b5453a;
 }
 
 .dark {
@@ -114,13 +115,13 @@
   --secondary-foreground: #ffffff;
   --muted: #2d2d4a;
   --muted-foreground: #a0a0b0;
-  --accent: #c9a962;
+  --accent: #b5453a;
   --accent-foreground: #1a1a2e;
   --destructive: #ef4444;
   --border: #3a3a5c;
   --input: #3a3a5c;
-  --ring: #c9a962;
-  --chart-1: #c9a962;
+  --ring: #b5453a;
+  --chart-1: #b5453a;
   --chart-2: #ffffff;
   --chart-3: #a0a0b0;
   --chart-4: #2d2d4a;
@@ -132,7 +133,7 @@
   --sidebar-accent: #2d2d4a;
   --sidebar-accent-foreground: #ffffff;
   --sidebar-border: #3a3a5c;
-  --sidebar-ring: #c9a962;
+  --sidebar-ring: #b5453a;
 }
 
 @layer base {
@@ -140,11 +141,14 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
-    font-family: var(--font-body), sans-serif;
+    @apply bg-background text-foreground font-sans antialiased;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display), serif;
+    letter-spacing: -0.02em;
+  }
+  h1 {
+    letter-spacing: -0.03em;
   }
 }
 
@@ -158,12 +162,12 @@
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #c9a962;
+  background: #b5453a;
   border-radius: 3px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #b8993f;
+  background: #8e3229;
 }
 
 /* Smooth scroll */
@@ -173,7 +177,7 @@ html {
 
 /* Gold text gradient for special headings */
 .text-gold-gradient {
-  background: linear-gradient(135deg, #c9a962 0%, #e5d4a1 50%, #c9a962 100%);
+  background: linear-gradient(135deg, #b5453a 0%, #d4706a 50%, #b5453a 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -193,7 +197,7 @@ html {
   transform: translateX(-50%);
   width: 60px;
   height: 2px;
-  background: #c9a962;
+  background: #b5453a;
 }
 
 /* Card hover effect */
@@ -208,8 +212,8 @@ html {
 
 /* Button styles */
 .btn-gold {
-  background: #c9a962;
-  color: #1a1a2e;
+  background: #b5453a;
+  color: #ffffff;
   padding: 12px 28px;
   font-weight: 500;
   letter-spacing: 0.5px;
@@ -217,13 +221,13 @@ html {
 }
 
 .btn-gold:hover {
-  background: #b8993f;
-  color: #1a1a2e;
+  background: #8e3229;
+  color: #ffffff;
 }
 
 .btn-outline {
-  border: 1px solid #1a1a2e;
-  color: #1a1a2e;
+  border: 1px solid #b5453a;
+  color: #b5453a;
   padding: 12px 28px;
   font-weight: 500;
   letter-spacing: 0.5px;
@@ -231,7 +235,7 @@ html {
 }
 
 .btn-outline:hover {
-  background: #1a1a2e;
+  background: #b5453a;
   color: #ffffff;
 }
 
@@ -296,7 +300,7 @@ html {
   left: 0;
   width: 0;
   height: 1px;
-  background: #c9a962;
+  background: #b5453a;
   transition: width 0.3s ease;
 }
 
@@ -316,7 +320,7 @@ html {
   content: '"';
   font-family: var(--font-playfair), serif;
   font-size: 4rem;
-  color: #c9a962;
+  color: #b5453a;
   position: absolute;
   top: 10px;
   left: 20px;
@@ -337,27 +341,27 @@ html {
 
 /* Navigation link active state */
 .nav-link-active {
-  color: #c9a962;
+  color: #b5453a;
 }
 
 /* Hero overlay - darker, more cinematic */
 .hero-overlay {
-  background: linear-gradient(135deg, rgba(26, 26, 46, 0.85) 0%, rgba(26, 26, 46, 0.65) 100%);
+  background: linear-gradient(135deg, rgba(28, 28, 28, 0.55) 0%, rgba(28, 28, 28, 0.35) 100%);
 }
 
 /* Gold border accent */
 .border-gold {
-  border-color: #c9a962;
+  border-color: #b5453a;
 }
 
 /* Background gold */
 .bg-gold {
-  background-color: #c9a962;
+  background-color: #b5453a;
 }
 
 /* Text gold - darkened for WCAG AA contrast (4.5:1 on white) */
 .text-gold {
-  color: #a0802c;
+  color: #b5453a;
 }
 
 /* Animate fadeIn */
@@ -410,7 +414,7 @@ html {
 
 /* Consultation CTA section */
 .consultation-section {
-  background: linear-gradient(135deg, #1a1a2e 0%, #252542 100%);
+  background: #f7f4f0;
 }
 
 /* Mega menu full-width panel */
@@ -434,8 +438,8 @@ html {
 }
 
 .editorial-card:hover {
-  border-color: #c9a962;
-  box-shadow: 0 4px 20px rgba(201, 169, 98, 0.1);
+  border-color: #b5453a;
+  box-shadow: 0 4px 20px rgba(181, 69, 58, 0.1);
 }
 
 /* Technology strip item */
@@ -457,7 +461,7 @@ html {
 
 /* Visible focus indicators for keyboard navigation */
 *:focus-visible {
-  outline: 2px solid #c9a962;
+  outline: 2px solid #b5453a;
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -474,9 +478,9 @@ input:focus-visible,
 textarea:focus-visible,
 select:focus-visible,
 [tabindex]:focus-visible {
-  outline: 2px solid #c9a962;
+  outline: 2px solid #b5453a;
   outline-offset: 2px;
-  box-shadow: 0 0 0 4px rgba(201, 169, 98, 0.2);
+  box-shadow: 0 0 0 4px rgba(181, 69, 58, 0.2);
 }
 
 /* Reduced motion support - respect user preferences */
@@ -538,4 +542,53 @@ select:focus-visible,
   overflow: visible;
   clip: auto;
   white-space: normal;
+}
+
+/* Galderma-style alternating section backgrounds */
+.section-light {
+  background: #ffffff;
+}
+
+.section-warm {
+  background: #f7f4f0;
+}
+
+/* Editorial image+text split — Galderma signature layout */
+.editorial-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 520px;
+}
+
+@media (max-width: 768px) {
+  .editorial-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Galderma stat/number style */
+.stat-number {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 5rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: #b5453a;
+}
+
+/* Galderma category pill */
+.category-pill {
+  display: inline-block;
+  border: 1px solid #b5453a;
+  color: #b5453a;
+  padding: 6px 16px;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+
+.category-pill:hover {
+  background: #b5453a;
+  color: #fff;
 }

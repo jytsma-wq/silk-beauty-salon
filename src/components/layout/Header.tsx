@@ -72,7 +72,7 @@ export function Header() {
         <div className="grid grid-cols-3 gap-8 p-6 min-w-200">
           {treatmentCategories.map((category) => (
             <div key={category.slug}>
-              <h3 className="font-serif text-lg font-semibold mb-3 text-primary">
+              <h3 className="font-heading text-lg font-semibold mb-3 text-primary">
                 {category.name}
               </h3>
               <ul className="space-y-2">
@@ -80,7 +80,7 @@ export function Header() {
                   <li key={treatment.slug}>
                     <Link
                       href={`/treatments/${treatment.slug}`}
-                      className="text-sm text-muted-foreground hover:text-gold transition-colors"
+                      className="text-sm text-muted-foreground hover:text-[#b5453a] transition-colors"
                     >
                       {treatment.name}
                     </Link>
@@ -90,7 +90,7 @@ export function Header() {
                   <li>
                     <Link
                       href={`/treatments#${category.slug}`}
-                      className="text-sm font-medium text-gold hover:underline"
+                      className="text-sm font-medium text-[#b5453a] hover:underline"
                     >
                       {tCommon('viewAll')} →
                     </Link>
@@ -115,12 +115,12 @@ export function Header() {
               className="flex items-center gap-3 p-3 rounded-lg hover:bg-secondary transition-colors group"
             >
               <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center">
-                <span className="text-gold font-serif text-lg">
+                <span className="text-[#b5453a] font-heading text-lg">
                   {condition.name.charAt(0)}
                 </span>
               </div>
               <div>
-                <span className="font-medium group-hover:text-gold transition-colors">
+                <span className="font-medium group-hover:text-[#b5453a] transition-colors">
                   {condition.name}
                 </span>
                 <p className="text-xs text-muted-foreground line-clamp-1">
@@ -144,11 +144,11 @@ export function Header() {
                 href="/international-clients"
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-secondary transition-colors group"
               >
-                <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center">
-                  <Globe className="w-5 h-5 text-gold" />
+                <div className="w-10 h-10 rounded-full bg-[#b5453a]/10 flex items-center justify-center">
+                  <Globe className="w-5 h-5 text-[#b5453a]" />
                 </div>
                 <div>
-                  <span className="font-medium group-hover:text-gold transition-colors">
+                  <span className="font-medium group-hover:text-[#b5453a] transition-colors">
                     {tInternational('main')}
                   </span>
                   <p className="text-xs text-muted-foreground">
@@ -162,11 +162,11 @@ export function Header() {
                 href="/international-clients#packages"
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-secondary transition-colors group"
               >
-                <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center">
-                  <Gift className="w-5 h-5 text-gold" />
+                <div className="w-10 h-10 rounded-full bg-[#b5453a]/10 flex items-center justify-center">
+                  <Gift className="w-5 h-5 text-[#b5453a]" />
                 </div>
                 <div>
-                  <span className="font-medium group-hover:text-gold transition-colors">
+                  <span className="font-medium group-hover:text-[#b5453a] transition-colors">
                     {tInternational('packages')}
                   </span>
                   <p className="text-xs text-muted-foreground">
@@ -180,11 +180,11 @@ export function Header() {
                 href="/international-clients#pricing"
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-secondary transition-colors group"
               >
-                <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center">
-                  <CreditCard className="w-5 h-5 text-gold" />
+                <div className="w-10 h-10 rounded-full bg-[#b5453a]/10 flex items-center justify-center">
+                  <CreditCard className="w-5 h-5 text-[#b5453a]" />
                 </div>
                 <div>
-                  <span className="font-medium group-hover:text-gold transition-colors">
+                  <span className="font-medium group-hover:text-[#b5453a] transition-colors">
                     {tInternational('pricing')}
                   </span>
                   <p className="text-xs text-muted-foreground">
@@ -198,11 +198,11 @@ export function Header() {
                 href="/international-clients#faq"
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-secondary transition-colors group"
               >
-                <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center">
-                  <HelpCircle className="w-5 h-5 text-gold" />
+                <div className="w-10 h-10 rounded-full bg-[#b5453a]/10 flex items-center justify-center">
+                  <HelpCircle className="w-5 h-5 text-[#b5453a]" />
                 </div>
                 <div>
-                  <span className="font-medium group-hover:text-gold transition-colors">
+                  <span className="font-medium group-hover:text-[#b5453a] transition-colors">
                     {tInternational('faq')}
                   </span>
                   <p className="text-xs text-muted-foreground">
@@ -225,7 +225,7 @@ export function Header() {
             <li>
               <Link
                 href="/about"
-                className="block p-2 rounded hover:bg-secondary transition-colors hover:text-gold"
+                className="block p-2 rounded hover:bg-secondary transition-colors hover:text-[#b5453a]"
               >
                 {t('team')}
               </Link>
@@ -233,7 +233,7 @@ export function Header() {
             <li>
               <Link
                 href="/blog"
-                className="block p-2 rounded hover:bg-secondary transition-colors hover:text-gold"
+                className="block p-2 rounded hover:bg-secondary transition-colors hover:text-[#b5453a]"
               >
                 {t('blog')}
               </Link>
@@ -255,7 +255,7 @@ export function Header() {
         className={cn(
           'sticky top-0 z-50 w-full transition-all duration-300',
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-md py-2'
+            ? 'bg-white/95 backdrop-blur-md shadow-sm py-2'
             : 'bg-white py-3'
         )}
       >
@@ -264,7 +264,7 @@ export function Header() {
           <div className="flex items-center justify-between">
             {/* Language Switcher - Left - with room for dropdown */}
             <div className="flex items-center min-w-30">
-              <div className="bg-gold hover:bg-gold/90 text-white rounded-md px-3 py-1.5">
+              <div className="border border-[#b5453a] text-[#b5453a] hover:bg-[#b5453a] hover:text-white rounded-none px-3 py-1.5 transition-colors text-xs">
                 <LanguageSwitcher />
               </div>
             </div>
@@ -272,10 +272,10 @@ export function Header() {
             {/* Logo - Centered */}
             <Link href="/" className="flex items-center gap-2" aria-label="Silk Beauty Salon - Home">
               <div className="flex flex-col items-center">
-                <span className="font-serif text-2xl md:text-3xl font-semibold text-primary tracking-tight">
+                <span className="font-heading text-2xl md:text-3xl font-semibold text-primary tracking-tight">
                   Silk Beauty
                 </span>
-                <span className="text-xs md:text-sm text-gold tracking-[0.2em] uppercase font-medium">
+                <span className="text-xs md:text-sm text-[#b5453a] tracking-[0.2em] uppercase font-medium">
                   Salon
                 </span>
               </div>
@@ -287,14 +287,14 @@ export function Header() {
                 onClick={() => setBookingDropdownOpen(!bookingDropdownOpen)}
                 aria-expanded={bookingDropdownOpen}
                 aria-haspopup="menu"
-                className="btn-gold flex items-center gap-2 px-5 py-2"
+                className="bg-[#b5453a] hover:bg-[#8e3229] text-white flex items-center gap-2 px-6 py-2.5 text-sm tracking-widest uppercase transition-colors rounded-none border-0"
               >
                 {t('bookAppointment')}
                 <ChevronDown className={cn('w-4 h-4 transition-transform', bookingDropdownOpen && 'rotate-180')} />
               </Button>
               
               {bookingDropdownOpen && (
-                <div className="absolute top-full right-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-border overflow-hidden z-50 animate-fadeIn">
+                <div className="absolute top-full right-0 mt-2 w-56 bg-white rounded-sm shadow-xl border border-border overflow-hidden z-50 animate-fadeIn">
                   <a
                     href={siteConfig.bookingUrl}
                     target="_blank"
@@ -302,7 +302,7 @@ export function Header() {
                     className="flex items-center gap-3 px-4 py-3 hover:bg-secondary transition-colors"
                     onClick={() => setBookingDropdownOpen(false)}
                   >
-                    <ExternalLink className="w-5 h-5 text-gold" />
+                    <ExternalLink className="w-5 h-5 text-[#b5453a]" />
                     <div>
                       <p className="font-medium text-sm">{tCommon('bookOnline')}</p>
                       <p className="text-xs text-muted-foreground">{tCommon('scheduleAppointment')}</p>
@@ -351,7 +351,7 @@ export function Header() {
                 <Link
                   href={item.href}
                   className={cn(
-                    'flex items-center gap-1 px-4 py-2 text-base font-medium text-primary hover:text-gold transition-colors focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none',
+                    'flex items-center gap-1 px-4 py-2 text-sm tracking-wide font-medium text-primary hover:text-[#b5453a] transition-colors focus-visible:ring-2 focus-visible:ring-[#b5453a] focus-visible:outline-none',
                     item.hasDropdown && 'cursor-default'
                   )}
                   aria-haspopup={item.hasDropdown ? 'true' : undefined}
@@ -376,7 +376,7 @@ export function Header() {
                     role="menu"
                     aria-label={item.name}
                   >
-                    <div className="bg-white shadow-xl rounded-lg border border-border overflow-hidden">
+                    <div className="bg-white shadow-xl rounded-sm border border-border overflow-hidden">
                       {item.dropdownContent}
                     </div>
                   </div>

@@ -65,12 +65,12 @@ export default async function InternationalClientsPage({
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-150 flex items-center">
+      <section className="relative w-full h-[60vh] md:h-[80vh] flex items-center">
         <Image
           src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=80"
           alt="Silk Beauty Salon"
           fill
-          className="object-cover"
+          className="object-cover rounded-sm shadow-sm"
           priority
         />
         <div className="absolute inset-0 bg-primary/60" />
@@ -152,12 +152,12 @@ export default async function InternationalClientsPage({
             </div>
 
             <div className="relative">
-              <div className="aspect-4/5 rounded-lg overflow-hidden relative bg-secondary">
+              <div className="aspect-4/5 rounded-sm overflow-hidden relative bg-secondary shadow-sm">
                 <Image
                   src={team?.image || "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80"}
                   alt="Nana Gviniashvili"
                   fill
-                  className="object-cover"
+                  className="object-cover object-top"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>

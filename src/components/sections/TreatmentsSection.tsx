@@ -13,16 +13,16 @@ export async function TreatmentsSection({ locale }: TreatmentsSectionProps) {
   const treatmentCategories = await getTreatmentCategoriesByLocale(locale);
 
   return (
-    <section className="section-spacing bg-white" id="treatments">
+    <section className="section-spacing section-warm" id="treatments">
       <div className="container-custom">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 
-            className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold text-primary mb-4 heading-underline"
-                      >
+          <h2
+            className="text-3xl md:text-4xl lg:text-5xl font-heading text-primary tracking-tight mb-4"
+          >
             {t('title')}
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto mt-8">
+          <p className="font-body text-muted-foreground leading-relaxed max-w-2xl mx-auto mt-8">
             {t('subtitle')}
           </p>
         </div>
@@ -32,10 +32,10 @@ export async function TreatmentsSection({ locale }: TreatmentsSectionProps) {
           {treatmentCategories.slice(0, 6).map((category, index: number) => (
             <div
               key={category.slug}
-              className="group relative overflow-hidden rounded-lg bg-white border border-border card-hover"
+              className="group relative overflow-hidden"
             >
               {/* Image */}
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative aspect-3/4 w-full overflow-hidden">
                 <Image
                   src={category.image}
                   alt={category.name}
@@ -46,9 +46,9 @@ export async function TreatmentsSection({ locale }: TreatmentsSectionProps) {
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-primary/80 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <h3 
-                    className="text-xl font-serif font-semibold text-white"
-                                      >
+                  <h3
+                    className="text-xl font-heading text-white tracking-tight"
+                  >
                     {category.name}
                   </h3>
                 </div>
@@ -56,7 +56,7 @@ export async function TreatmentsSection({ locale }: TreatmentsSectionProps) {
 
               {/* Content */}
               <div className="p-6">
-                <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                <p className="font-body text-muted-foreground leading-relaxed text-sm mb-4 line-clamp-2">
                   {category.description}
                 </p>
                 <ul className="space-y-2 mb-4">
@@ -64,9 +64,9 @@ export async function TreatmentsSection({ locale }: TreatmentsSectionProps) {
                     <li key={treatment.slug} className="text-sm">
                       <Link
                         href={`/treatments/${treatment.slug}`}
-                        className="text-primary hover:text-gold transition-colors flex items-center gap-1"
+                        className="text-foreground hover:text-[#b5453a] transition-colors flex items-center gap-1"
                       >
-                        <ChevronRight className="w-3 h-3 text-gold" />
+                        <ChevronRight className="w-3 h-3 text-[#b5453a]" />
                         {treatment.name}
                       </Link>
                     </li>
@@ -74,11 +74,12 @@ export async function TreatmentsSection({ locale }: TreatmentsSectionProps) {
                 </ul>
                 <Link
                   href={`/treatments#${category.slug}`}
-                  className="inline-flex items-center gap-2 text-sm font-medium text-gold hover:underline"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-[#b5453a] hover:underline"
                 >
                   {t('learnMore')}
                   <ChevronRight className="w-4 h-4" />
                 </Link>
+                <div className="w-0 group-hover:w-full h-[2px] bg-stone-400 transition-all duration-300 mt-4" />
               </div>
             </div>
           ))}
@@ -88,7 +89,7 @@ export async function TreatmentsSection({ locale }: TreatmentsSectionProps) {
         <div className="text-center mt-12">
           <Link
             href="/treatments"
-            className="inline-flex items-center gap-2 text-primary font-medium hover:text-gold transition-colors"
+            className="btn-outline inline-flex items-center gap-2"
           >
             {t('viewAll')}
             <ChevronRight className="w-5 h-5" />

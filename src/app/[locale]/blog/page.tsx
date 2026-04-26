@@ -55,7 +55,7 @@ export default async function BlogPage({
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {blogPosts.map((post) => (
               <article key={post.slug} className="group bg-white border border-border rounded-lg overflow-hidden card-hover">
-                <div className="relative h-52 overflow-hidden">
+                <div className="relative aspect-3/4 w-full overflow-hidden rounded-sm shadow-sm">
                   <Image
                     src={post.image}
                     alt={post.title}

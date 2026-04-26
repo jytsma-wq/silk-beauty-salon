@@ -30,12 +30,12 @@ export default async function ConditionsPage({
   return (
     <>
       {/* Full Screen Hero Image */}
-      <section className="relative h-screen min-h-150">
+      <section className="relative w-full h-[60vh] md:h-[80vh]">
         <Image
           src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1920&q=80"
           alt="Skin Care Treatment"
           fill
-          className="object-cover"
+          className="object-cover rounded-sm shadow-sm"
           priority
         />
         <div className="absolute inset-0 bg-primary/40" />
@@ -77,7 +77,7 @@ export default async function ConditionsPage({
                 className="group bg-white border border-border rounded-lg overflow-hidden card-hover"
               >
                 <div className="grid md:grid-cols-2">
-                  <div className="relative h-48 md:h-full overflow-hidden">
+                  <div className="relative aspect-3/4 w-full md:aspect-auto md:h-full overflow-hidden rounded-sm shadow-sm">
                     <Image
                       src={condition.image}
                       alt={condition.name}

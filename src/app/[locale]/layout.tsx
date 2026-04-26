@@ -2,31 +2,16 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import type { Metadata } from "next";
-import { setCsrfToken } from '@/lib/csrf';
-import { Cormorant_Garamond, Poppins } from "next/font/google";
+import { headers } from 'next/headers';
 import "../globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { AnnouncerProvider } from "@/components/ui/announcer";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
+import { GaldermaHeader } from "@/components/layout/GaldermaHeader";
+import { GaldermaFooter } from "@/components/layout/GaldermaFooter";
 import { ConsentProvider } from "@/components/providers/ConsentProvider";
 import { AnalyticsScripts } from "@/components/providers/AnalyticsScripts";
 import { WhatsAppWidget } from "@/components/layout/WhatsAppWidget";
 import { SkipLink } from "@/components/layout/SkipLink";
-
-const display = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["300", "400", "600"],
-  display: "swap",
-  variable: "--font-display",
-});
-
-const body = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  display: "swap",
-  variable: "--font-body",
-});
 
 export const metadata: Metadata = {
   title: "Premier Beauty Salon in Batumi | Silk Beauty Salon",
@@ -58,8 +43,9 @@ export default async function LocaleLayout({
 
   const messages = await getMessages();
 
-  // Generate CSRF token for the session
-  const csrfToken = await setCsrfToken();
+  // Get CSRF token from middleware header
+  const headersList = await headers();
+  const csrfToken = headersList.get('X-CSRF-Token') || '';
 
   // Check if RTL language
   const rtlLocales = ['ar', 'he'];
@@ -67,12 +53,10 @@ export default async function LocaleLayout({
 
   return (
     <html lang={validLocale} suppressHydrationWarning className="scroll-smooth" dir={isRtl ? 'rtl' : 'ltr'}>
-      <head>
-        <meta name="csrf-token" content={csrfToken} />
-      </head>
+      <head>{csrfToken ? <meta name="csrf-token" content={csrfToken} /> : null}</head>
       <body
-        className={`${display.variable} ${body.variable} antialiased bg-background text-foreground`}
-        style={{ fontFamily: "var(--font-body), sans-serif" }}
+        className="antialiased bg-background text-foreground"
+        style={{ fontFamily: "'DM Sans', sans-serif" }}
       >
         <ConsentProvider>
           <AnalyticsScripts
@@ -83,9 +67,9 @@ export default async function LocaleLayout({
           <NextIntlClientProvider messages={messages}>
             <AnnouncerProvider>
               <SkipLink />
-              <Header />
+              <GaldermaHeader />
               <main id="main-content">{children}</main>
-              <Footer />
+              <GaldermaFooter />
               <WhatsAppWidget />
               <Toaster />
             </AnnouncerProvider>

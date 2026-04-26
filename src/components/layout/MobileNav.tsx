@@ -27,10 +27,10 @@ export function MobileNav({ onClose, treatmentCategories, conditions }: MobileNa
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b">
         <div className="flex flex-col">
-          <span className="font-serif text-xl font-semibold text-primary">
+          <span className="font-heading text-xl font-semibold text-primary">
             Silk Beauty
           </span>
-          <span className="text-xs text-gold tracking-[0.2em] uppercase">
+          <span className="text-xs text-[#b5453a] tracking-[0.2em] uppercase">
             Salon
           </span>
         </div>
@@ -62,7 +62,7 @@ export function MobileNav({ onClose, treatmentCategories, conditions }: MobileNa
             <div className="pb-4 px-4">
               {treatmentCategories.map((category) => (
                 <div key={category.slug} className="mb-4">
-                  <h4 className="font-serif text-sm font-semibold text-gold mb-2">
+                  <h4 className="font-heading text-sm font-semibold text-[#b5453a] mb-2">
                     {category.name}
                   </h4>
                   <ul className="space-y-1">
@@ -124,7 +124,7 @@ export function MobileNav({ onClose, treatmentCategories, conditions }: MobileNa
             className="w-full flex items-center justify-between p-4 font-medium hover:bg-secondary transition-colors"
           >
             <span className="flex items-center gap-2">
-              <Globe className="w-5 h-5 text-gold" />
+              <Globe className="w-5 h-5 text-[#b5453a]" />
               {tInternational('main')}
             </span>
             <ChevronDown
@@ -213,7 +213,7 @@ export function MobileNav({ onClose, treatmentCategories, conditions }: MobileNa
       <div className="p-4 border-t bg-secondary">
         <Button
           asChild
-          className="w-full btn-gold"
+          className="w-full bg-[#b5453a] hover:bg-[#8e3229] text-white rounded-none px-6 py-3 font-medium transition-colors text-xs tracking-widest uppercase"
         >
           <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
             {t('bookAppointment')}
@@ -222,7 +222,7 @@ export function MobileNav({ onClose, treatmentCategories, conditions }: MobileNa
         <div className="mt-4 text-center">
           <a
             href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`}
-            className="text-sm text-muted-foreground hover:text-gold transition-colors"
+            className="text-sm text-muted-foreground hover:text-[#b5453a] transition-colors"
           >
             {siteConfig.contact.phone}
           </a>

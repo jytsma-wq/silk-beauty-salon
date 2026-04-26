@@ -1,11 +1,9 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Metadata } from 'next';
 import { HeroSection } from '@/components/sections/HeroSection';
-import { AwardsMarquee } from '@/components/sections/AwardsMarquee';
 import { TreatmentsSection } from '@/components/sections/TreatmentsSection';
 import { ConditionsSection } from '@/components/sections/ConditionsSection';
 import { AboutSection } from '@/components/sections/AboutSection';
-import { TechnologiesSection } from '@/components/sections/TechnologiesSection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { ConsultationSection } from '@/components/sections/ConsultationSection';
 import { QuickLinksSection } from '@/components/sections/QuickLinksSection';
@@ -100,11 +98,9 @@ export default async function HomePage({
     <>
       <JsonLd schema={generateLocalBusinessSchema(locale)} />
       <HeroSection />
-      <AwardsMarquee />
       <TreatmentsSection locale={locale} />
       <ConditionsSection />
       <AboutSection />
-      <TechnologiesSection />
       <TestimonialsSection />
       <ConsultationSection />
       <QuickLinksSection />

@@ -2,15 +2,13 @@
 
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { Button } from '@/components/ui/button';
-import { siteConfig } from '@/data/site-config';
+import { BookingButton } from '@/components/booking-button';
 
 export function HeroSection() {
   const t = useTranslations('hero');
-  const tNav = useTranslations('nav');
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-end overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
@@ -21,36 +19,37 @@ export function HeroSection() {
           className="object-cover"
           sizes="100vw"
         />
-        {/* Overlay - darker cinematic */}
-        <div className="absolute inset-0 hero-overlay" />
+        {/* Overlay - lighter, directional gradient */}
+        <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/15 to-transparent" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container-custom text-center text-white">
-        <div className="max-w-3xl mx-auto">
-          {/* Two-line split headline like HSI */}
-          <h1 
-            className="text-4xl md:text-5xl lg:text-7xl font-serif font-semibold leading-tight mb-2"
-                      >
+      <div className="relative z-10 container-custom text-left text-white pb-20 md:pb-28">
+        <div className="max-w-2xl">
+          {/* Editorial headline — light weight, tight tracking */}
+          <h1
+            className="text-4xl md:text-5xl lg:text-6xl font-serif font-light leading-tight mb-4 tracking-tight"
+          >
             {t('title')}
           </h1>
-          <h2 
-            className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-gold mb-8"
-                      >
+          <h2
+            className="text-xl md:text-2xl font-sans font-light text-white/80 mb-8 tracking-wide"
+          >
             {t('subtitle')}
           </h2>
-          <p className="text-base md:text-lg text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base text-white/70 mb-10 max-w-lg leading-relaxed">
             {t('description')}
           </p>
           {/* Book Appointment button */}
-          <Button
-            asChild
-            className="btn-gold text-base px-8 py-6"
-          >
-            <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
-              {tNav('bookAppointment')}
-            </a>
-          </Button>
+          <BookingButton />
+
+          {/* Scroll indicator */}
+          <div className="mt-16 flex items-center gap-2 text-white/50 text-xs tracking-widest uppercase">
+            <span>Scroll to explore</span>
+            <svg className="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </div>
         </div>
       </div>
     </section>

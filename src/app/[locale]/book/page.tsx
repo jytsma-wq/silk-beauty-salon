@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { ChevronRight, Calendar, Clock } from 'lucide-react';
 import { siteConfig } from '@/data/site-config';
 import { getTranslations } from 'next-intl/server';
-import { BookingProvider } from './booking-context';
+import { BookingForm } from './booking-form';
 
 interface Props {
   params: Promise<{ locale: string }>;
@@ -116,16 +116,16 @@ export default async function BookPage({
         <div className="container-custom relative z-10">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-sm mb-8 text-gray-300">
-            <Link href="/" className="hover:text-gold">
+            <Link href="/" className="hover:text-[#b5453a]">
               {tCommon('home')}
             </Link>
             <ChevronRight className="w-4 h-4" />
-            <span className="text-gold">{t('title')}</span>
+            <span className="text-[#b5453a]">{t('title')}</span>
           </nav>
 
           <div className="max-w-3xl">
             <h1 
-              className="text-4xl md:text-5xl font-serif font-semibold text-white mb-6"
+              className="text-4xl md:text-5xl font-heading font-semibold text-white mb-6"
                           >
               {t('title')}
             </h1>
@@ -144,28 +144,17 @@ export default async function BookPage({
             <div className="lg:col-span-2">
               <div className="bg-white rounded-lg border border-border p-6">
                 <div className="flex items-center gap-3 mb-6">
-                  <Calendar className="w-6 h-6 text-gold" />
+                  <Calendar className="w-6 h-6 text-[#b5453a]" />
                   <h2 
-                    className="text-2xl font-serif font-semibold text-primary"
+                    className="text-2xl font-heading font-semibold text-primary"
                                       >
                     {t('selectDateTime')}
                   </h2>
                 </div>
 
-                {/* Booking Embed Container */}
-                <div id="booking-embed" className="min-h-150 bg-secondary rounded-lg flex items-center justify-center p-8">
-                  <BookingProvider>
-                    <div className="text-center">
-                      <h3 className="font-serif text-xl text-primary mb-2">{t('selectDateTime')}</h3>
-                      <p className="text-muted-foreground">{t('bookingComingSoon', { defaultValue: 'Online booking coming soon. Please call us to schedule your appointment.' })}</p>
-                      <a 
-                        href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`}
-                        className="inline-flex items-center gap-2 mt-4 text-gold hover:underline"
-                      >
-                        {siteConfig.contact.phone}
-                      </a>
-                    </div>
-                  </BookingProvider>
+                {/* Booking Form */}
+                <div id="booking-embed" className="bg-secondary rounded-lg p-8">
+                  <BookingForm consultationTypes={consultationTypes} />
                 </div>
               </div>
             </div>
@@ -175,7 +164,7 @@ export default async function BookPage({
               {/* Consultation Types */}
               <div className="bg-secondary rounded-lg p-6">
                 <h3 
-                  className="font-serif text-lg font-semibold text-primary mb-4"
+                  className="font-heading text-lg font-semibold text-primary mb-4"
                                   >
                   {t('consultationTypes')}
                 </h3>
@@ -192,7 +181,7 @@ export default async function BookPage({
                       className="w-full flex items-start gap-3 p-3 rounded-lg hover:bg-white/50 transition-colors text-left"
                     >
                       <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0">
-                        <Clock className="w-5 h-5 text-gold" />
+                        <Clock className="w-5 h-5 text-[#b5453a]" />
                       </div>
                       <div>
                         <h4 className="font-medium text-primary">{type.title}</h4>
@@ -207,25 +196,25 @@ export default async function BookPage({
               {/* What to Expect */}
               <div className="bg-primary rounded-lg p-6 text-white">
                 <h3 
-                  className="font-serif text-lg font-semibold mb-4"
+                  className="font-heading text-lg font-semibold mb-4"
                                   >
                   {t('whatToExpect.title')}
                 </h3>
                 <ul className="space-y-3 text-sm">
                   <li className="flex items-start gap-2">
-                    <span className="text-gold">1.</span>
+                    <span className="text-[#b5453a]">1.</span>
                     <span>{t('whatToExpect.step1')}</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-gold">2.</span>
+                    <span className="text-[#b5453a]">2.</span>
                     <span>{t('whatToExpect.step2')}</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-gold">3.</span>
+                    <span className="text-[#b5453a]">3.</span>
                     <span>{t('whatToExpect.step3')}</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-gold">4.</span>
+                    <span className="text-[#b5453a]">4.</span>
                     <span>{t('whatToExpect.step4')}</span>
                   </li>
                 </ul>
@@ -234,7 +223,7 @@ export default async function BookPage({
               {/* Contact Info */}
               <div className="bg-white rounded-lg border border-border p-6">
                 <h3 
-                  className="font-serif text-lg font-semibold text-primary mb-4"
+                  className="font-heading text-lg font-semibold text-primary mb-4"
                                   >
                   {t('needHelp')}
                 </h3>
@@ -244,7 +233,7 @@ export default async function BookPage({
                     <br />
                     <a 
                       href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`}
-                      className="text-primary hover:text-gold"
+                      className="text-primary hover:text-[#b5453a]"
                     >
                       {siteConfig.contact.phone}
                     </a>
@@ -254,7 +243,7 @@ export default async function BookPage({
                     <br />
                     <a 
                       href={`mailto:${siteConfig.contact.email}`}
-                      className="text-primary hover:text-gold"
+                      className="text-primary hover:text-[#b5453a]"
                     >
                       {siteConfig.contact.email}
                     </a>
@@ -277,7 +266,7 @@ export default async function BookPage({
       <section className="section-spacing bg-secondary">
         <div className="container-custom">
           <h2 
-            className="text-2xl font-serif font-semibold text-primary text-center mb-8"
+            className="text-2xl font-heading font-semibold text-primary text-center mb-8"
                       >
             {t('faq.title')}
           </h2>

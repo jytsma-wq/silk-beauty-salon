@@ -2,74 +2,70 @@
 
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { ChevronRight } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 
 export function AboutSection() {
   const t = useTranslations('about');
 
-  const features = [
-    { key: 'award' },
-    { key: 'practitioners' },
-    { key: 'products' },
-    { key: 'experience' },
-    { key: 'technology' },
-    { key: 'results' },
+  const stats = [
+    { number: '10+', label: t('stats.years') },
+    { number: '5000+', label: t('stats.patients') },
+    { number: '15+', label: t('stats.treatments') },
   ];
 
   return (
-    <section className="section-spacing bg-white">
+    <section className="section-spacing section-warm">
       <div className="container-custom">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Content */}
-          <div>
-            <h2 
-              className="text-3xl md:text-4xl font-serif font-semibold text-primary mb-6"
-                          >
+        <div className="editorial-split">
+          {/* Left - Image */}
+          <div className="relative h-full min-h-100 lg:min-h-130">
+            <Image
+              src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200&q=80"
+              alt="Silk Beauty Salon"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority
+            />
+          </div>
+
+          {/* Right - Content */}
+          <div className="flex flex-col justify-center py-12 lg:py-0 lg:pl-20 pl-8">
+            {/* Category Label */}
+            <span className="text-xs tracking-[0.2em] uppercase text-stone-500 mb-6">
+              {t('category')}
+            </span>
+
+            {/* Heading - Editorial Scale */}
+            <h2 className="font-serif text-[clamp(2rem,5vw,3.5rem)] leading-[1.1] text-stone-800 mb-8">
               {t('title')}
             </h2>
-            <div className="w-16 h-0.5 bg-gold mb-6" />
-            <p className="text-muted-foreground leading-relaxed mb-6">
+
+            {/* Body Text - Soft Neutrals */}
+            <p className="text-stone-600 leading-[1.7] mb-6 text-lg">
               {t('description')}
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-8">
+            <p className="text-stone-600 leading-[1.7] mb-10 text-lg">
               {t('descriptionExtended')}
             </p>
 
-            {/* Features */}
-            <div className="grid sm:grid-cols-2 gap-4 mb-8">
-              {features.map((feature) => (
-                <div key={feature.key} className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-gold" />
-                  <span className="text-sm">{t(`features.${feature.key}`)}</span>
+            {/* Stats */}
+            <div className="flex gap-8 mb-8">
+              {stats.map((stat) => (
+                <div key={stat.label}>
+                  <div className="stat-number text-[#b5453a]">{stat.number}</div>
+                  <div className="text-sm text-gray-500 uppercase tracking-wider">{stat.label}</div>
                 </div>
               ))}
             </div>
 
+            {/* CTA */}
             <Link
               href="/about"
-              className="inline-flex items-center gap-2 text-gold font-medium hover:underline"
+              className="btn-outline inline-flex w-fit"
             >
               {t('readMore')}
-              <ChevronRight className="w-5 h-5" />
             </Link>
-          </div>
-
-          {/* Image */}
-          <div className="relative">
-            <div className="aspect-4/5 rounded-lg overflow-hidden relative">
-              <Image
-                src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80"
-                alt="Silk Beauty Salon"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                priority
-              />
-            </div>
-            {/* Decorative Element */}
-            <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-gold/10 rounded-lg -z-10" />
-            <div className="absolute -top-6 -right-6 w-32 h-32 border-2 border-gold/30 rounded-lg -z-10" />
           </div>
         </div>
       </div>

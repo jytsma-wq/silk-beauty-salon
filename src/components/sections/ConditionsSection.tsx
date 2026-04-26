@@ -21,16 +21,16 @@ export function ConditionsSection() {
   }, [locale]);
 
   return (
-    <section className="section-spacing bg-secondary" id="conditions">
+    <section className="section-spacing section-warm" id="conditions">
       <div className="container-custom">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 
-            className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold text-primary mb-4 heading-underline"
-                      >
+          <h2
+            className="text-3xl md:text-4xl lg:text-5xl font-heading text-primary tracking-tight mb-4"
+          >
             {t('title')}
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto mt-8">
+          <p className="font-body text-muted-foreground leading-relaxed max-w-2xl mx-auto mt-8">
             {t('subtitle')}
           </p>
         </div>
@@ -41,19 +41,18 @@ export function ConditionsSection() {
             <Link
               key={condition.slug}
               href={`/conditions/${condition.slug}`}
-              className="editorial-card group rounded-lg"
+              className="group p-6 transition-colors hover:bg-stone-50"
             >
-              <h3 
-                className="text-lg font-serif font-semibold text-primary mb-2"
-                              >
+              <h3
+                className="text-lg font-heading text-primary tracking-tight mb-2"
+              >
                 {condition.name}
               </h3>
-              <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+              <p className="font-body text-muted-foreground leading-relaxed text-sm mb-4 line-clamp-2">
                 {condition.shortDescription}
               </p>
-              <span className="inline-flex items-center gap-1 text-sm font-medium text-gold group-hover:gap-2 transition-all">
+              <span className="category-pill">
                 {tCommon('learnMore')}
-                <ChevronRight className="w-4 h-4" />
               </span>
             </Link>
           ))}
@@ -63,10 +62,10 @@ export function ConditionsSection() {
         <div className="text-center mt-12">
           <Link
             href="/conditions"
-            className="inline-flex items-center gap-2 text-primary font-medium hover:text-gold transition-colors"
+            className="inline-flex items-center gap-2 text-foreground font-medium hover:text-[#b5453a] transition-colors"
           >
             {t('viewAll')}
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight className="w-5 h-5 text-[#b5453a]" />
           </Link>
         </div>
       </div>

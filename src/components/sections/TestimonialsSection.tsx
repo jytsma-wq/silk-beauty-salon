@@ -30,14 +30,14 @@ export function TestimonialsSection() {
   };
 
   return (
-    <section className="section-spacing bg-primary">
+    <section className="py-24 bg-primary">
       <div className="container-custom">
         {/* Section Header - HSI style "So they say" */}
         <div className="flex items-end justify-between mb-10">
           <div>
             <h2
-              className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold text-white"
-                          >
+              className="text-3xl md:text-4xl lg:text-5xl font-heading tracking-tight text-white"
+            >
               {t('title')}
             </h2>
           </div>
@@ -75,13 +75,13 @@ export function TestimonialsSection() {
               key={index}
               className="shrink-0 w-[85vw] sm:w-[45vw] lg:w-[30vw] snap-start"
             >
-              <div className="bg-white/5 backdrop-blur-sm rounded-lg p-8 border border-white/10 h-full flex flex-col justify-between">
+              <div className="p-8 h-full flex flex-col justify-between">
                 <blockquote
                   className="text-base md:text-lg text-white leading-relaxed mb-6 italic"
                                   >
                   &ldquo;{testimonial.quote}&rdquo;
                 </blockquote>
-                <p className="font-semibold text-gold text-sm">
+                <p className="font-semibold text-[#b5453a] text-sm">
                   {testimonial.author}
                 </p>
               </div>

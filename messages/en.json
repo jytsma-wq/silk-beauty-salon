@@ -5,18 +5,23 @@
   },
   "nav": {
     "treatments": "Treatments",
-    "conditions": "Conditions",
+    "conditions": "Skin Conditions",
     "about": "About",
     "pricelist": "Price List",
     "offers": "Offers",
     "beforeAfter": "Before & After",
     "contact": "Contact",
     "bookAppointment": "Book Appointment",
+    "findSpecialist": "Find a specialist",
     "faq": "FAQ",
     "press": "Press",
     "blog": "Blog",
     "team": "Our Team",
-    "mainNavigation": "Main navigation"
+    "mainNavigation": "Main navigation",
+    "internationalClients": "International Clients",
+    "consultation": "Consultation",
+    "viewAll": "View All",
+    "exploreAll": "Explore All"
   },
   "header": {
     "announcement": "Award Winning | Batumi's Premier Beauty Salon | Featured in Georgian Fashion & Beauty Magazine"
@@ -73,10 +78,16 @@
     "viewAll": "View All Testimonials"
   },
   "about": {
-    "title": "Putting patients first and delivering exceptional service",
-    "description": "Silk Beauty Salon provides a range of minimally invasive, pioneering cosmetic and healthcare treatments using the latest technology to achieve the best results.",
-    "descriptionExtended": "Our salon brings together world-class practitioners in a luxurious, discreet setting in Batumi. We believe in enhancing natural beauty with subtle, refined results that boost confidence without changing who you are.",
+    "category": "",
+    "title": "ABOUT US",
+    "description": "Our clinic is equipped with the latest state-of-the-art technologies, from advanced skin-tightening devices to non-invasive body contouring machines. We are committed to staying at the forefront of aesthetic innovation, offering treatments that deliver outstanding results with minimal downtime.",
+    "descriptionExtended": "",
     "readMore": "Read More",
+    "stats": {
+      "years": "Years",
+      "patients": "Happy Patients",
+      "treatments": "Treatments"
+    },
     "features": {
       "award": "Award-winning salon",
       "practitioners": "World-class practitioners",
@@ -115,9 +126,6 @@
     },
     "learnMore": "Learn More"
   },
-  "consultation": {
-    "title": "Request a Consultation"
-  },
   "newsletter": {
     "title": "Stay Updated",
     "description": "Sign up with your email address to receive news and updates.",
@@ -130,7 +138,7 @@
     "description": "Batumi's premier beauty salon on Zurab Gorgiladze Street.",
     "quickLinks": "Quick Links",
     "treatments": "Treatments",
-    "conditions": "Conditions",
+    "conditions": "Skin Conditions",
     "contact": "Contact Info",
     "address": "Zurab Gorgiladze 63, Batumi 6000, Georgia",
     "phone": "Tel: +995 599 123 456",
@@ -149,8 +157,12 @@
     "pressTitle": "Media & Press",
     "pressDesc": "Why not take a look at our most recent Press features and see what they're saying about us.",
     "copyright": "© 2024 Silk Beauty Salon. All rights reserved.",
-    "privacy": "Privacy Policy",
-    "terms": "Terms of Service"
+    "privacy": "Privacy",
+    "terms": "Terms of Use",
+    "cookieNotice": "Cookie Notice",
+    "stayConnected": "Stay connected",
+    "socialDescription": "Follow us on Social Media for current news and patients stories",
+    "disclaimer": "Always consult a healthcare professional for individualized treatment recommendations and to discuss important safety information and risks associated with the use of the products."
   },
   "contact": {
     "title": "Contact Us",
@@ -228,6 +240,62 @@
     "ctaTitle": "Not Sure Which Treatment Is Right for You?",
     "ctaSubtitle": "Book a consultation with one of our expert practitioners who will assess your concerns and recommend the best treatment options",
     "bookConsultation": "Book a Consultation"
+  },
+  "consultation": {
+    "title": "Request a Consultation",
+    "metaTitle": "Find a Specialist | Silk Beauty Salon",
+    "metaDescription": "Book a consultation with our expert aesthetic practitioners. Start your journey to enhanced natural beauty.",
+    "hero": {
+      "title": "Explore the possibilities with a treatment consultation",
+      "description": "An essential part of treatment, the aesthetic consultation is where your journey begins. The better we understand your needs and desires, the more likely you will achieve the results you want.",
+      "cta": "Book Consultation",
+      "call": "Call Us"
+    },
+    "features": {
+      "expert": {
+        "title": "Expert Practitioners",
+        "description": "Our team includes certified aesthetic doctors and nurses with extensive experience."
+      },
+      "personalized": {
+        "title": "Personalized Approach",
+        "description": "Every treatment plan is tailored to your unique facial anatomy and aesthetic goals."
+      },
+      "convenient": {
+        "title": "Convenient Location",
+        "description": "Easy access in central Tbilisi with comfortable, private treatment rooms."
+      }
+    },
+    "journey": {
+      "title": "Your Aesthetic Journey",
+      "subtitle": "From consultation to results, we guide you through every step of your transformation."
+    },
+    "steps": {
+      "consultation": {
+        "title": "Initial Consultation",
+        "description": "Discuss your concerns, goals, and medical history with our specialist."
+      },
+      "assessment": {
+        "title": "Facial Assessment",
+        "description": "Comprehensive analysis of your facial structure and skin condition."
+      },
+      "plan": {
+        "title": "Treatment Plan",
+        "description": "Receive a personalized treatment plan with recommendations and pricing."
+      },
+      "treatment": {
+        "title": "Treatment",
+        "description": "Schedule your treatment at your convenience with our caring team."
+      }
+    },
+    "treatments": {
+      "title": "Treatments We Offer",
+      "subtitle": "Comprehensive aesthetic solutions for every concern."
+    },
+    "cta": {
+      "title": "Ready to Start Your Journey?",
+      "description": "Book your consultation today and take the first step towards enhanced natural beauty.",
+      "button": "Find a Specialist"
+    }
   },
   "aboutPage": {
     "title": "About Us",
@@ -453,7 +521,8 @@
     "treatments": "Treatments",
     "conditions": "Conditions",
     "notFound": "Not Found",
-    "social": "Follow Us"
+    "social": "Follow Us",
+    "searchPlaceholder": "Search treatments, conditions..."
   },
   "siteConfig": {
     "awards": {
@@ -463,7 +532,7 @@
     },
     "navigation": {
       "treatments": "Treatments",
-      "conditions": "Conditions",
+      "conditions": "Skin Conditions",
       "about": "About",
       "priceList": "Price List",
       "offers": "Offers",
@@ -1209,7 +1278,8 @@
       "a2": "A 20% deposit is required to secure your appointment, which is deducted from your treatment cost.",
       "q3": "What is your cancellation policy?",
       "a3": "We require 48 hours notice for cancellations. Late cancellations may forfeit the deposit.",
-      "q4": "Can I reschedule my appointment?"
+      "q4": "Can I reschedule my appointment?",
+      "a4": "Yes, you can reschedule your appointment up to 24 hours before your scheduled time. Please contact us by phone or email to arrange a new time that works for you."
     }
   },
   "consent": {

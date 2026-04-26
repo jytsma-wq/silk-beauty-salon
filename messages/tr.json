@@ -16,7 +16,12 @@
     "blog": "Blog",
     "team": "Ekibimiz",
     "beforeAfter": "Öncesi ve Sonrası",
-    "mainNavigation": "Ana Navigasyon"
+    "mainNavigation": "Ana Navigasyon",
+    "findSpecialist": "Uzman Bul",
+    "internationalClients": "Uluslararası Müşteriler",
+    "viewAll": "Tümünü Gör",
+    "exploreAll": "Tümünü Keşfet",
+    "consultation": "Konsültasyon"
   },
   "header": {
     "announcement": "Ödüllü | Batumi'nin En İyi Güzellik Salonu | Gürcistan Moda ve Güzellik Dergisi'nde yayınlandı"
@@ -73,10 +78,16 @@
     "viewAll": "Tüm Yorumları Gör"
   },
   "about": {
+    "category": "Hakkımızda",
     "title": "Hastaları ön planda tutmak ve mükemmel hizmet sunmak",
     "description": "Silk Beauty Salon, en iyi sonuçları elde etmek için en son teknolojileri kullanarak minimal invaziv, öncü kozmetik ve sağlık tedavileri sunmaktadır.",
     "descriptionExtended": "Salonumuz, Batumi'de lüks, özel bir ortamda dünya standartlarında uzmanları bir araya getiriyor. Doğal güzelliği ince, rafine sonuçlarla artırarak özgüveni yükselttiğimize inanıyoruz.",
     "readMore": "Daha Fazla Oku",
+    "stats": {
+      "years": "Yıl",
+      "patients": "Mutlu Hasta",
+      "treatments": "Tedavi"
+    },
     "features": {
       "award": "Ödüllü salon",
       "practitioners": "Dünya standartlarında uzmanlar",
@@ -116,7 +127,60 @@
     "learnMore": "Daha Fazla Bilgi"
   },
   "consultation": {
-    "title": "Danışmanlık Talep Edin"
+    "title": "Danışmanlık Talep Edin",
+    "metaTitle": "Uzman Bul | Silk Beauty Salon",
+    "metaDescription": "Uzman estetik pratisyenlerimizle konsültasyon rezervasyonu yapın. Geliştirilmiş doğal güzellik yolculuğunuza başlayın.",
+    "hero": {
+      "title": "Tedavi konsültasyonu ile olanakları keşfedin",
+      "description": "Tedavinin önemli bir parçası olan estetik konsültasyon, yolculuğunuzun başladığı yerdir. İhtiyaçlarınızı ve arzularınızı ne kadar iyi anlarsak, istediğiniz sonuçlara ulaşma olasılığınız o kadar artar.",
+      "cta": "Konsültasyon Rezervasyonu",
+      "call": "Bizi Arayın"
+    },
+    "features": {
+      "expert": {
+        "title": "Uzman Pratisyenler",
+        "description": "Ekibimiz kapsamlı deneyime sahip sertifikalı estetik doktorları ve hemşireleri içerir."
+      },
+      "personalized": {
+        "title": "Kişiselleştirilmiş Yaklaşım",
+        "description": "Her tedavi planı benzersiz yüz anatominize ve estetik hedeflerinize göre uyarlanır."
+      },
+      "convenient": {
+        "title": "Uygun Konum",
+        "description": "Merkezi Tiflis'te konforlu, özel tedavi odalarıyla kolay erişim."
+      }
+    },
+    "journey": {
+      "title": "Estetik Yolculuğunuz",
+      "subtitle": "Konsültasyondan sonuçlara kadar, dönüşümünüzün her adımında size rehberlik ediyoruz."
+    },
+    "steps": {
+      "consultation": {
+        "title": "İlk Konsültasyon",
+        "description": "Uzmanımızla endişelerinizi, hedeflerinizi ve tıbbi geçmişinizi tartışın."
+      },
+      "assessment": {
+        "title": "Yüz Değerlendirmesi",
+        "description": "Yüz yapınızın ve cilt durumunuzun kapsamlı analizi."
+      },
+      "plan": {
+        "title": "Tedavi Planı",
+        "description": "Öneriler ve fiyatlandırma ile kişiselleştirilmiş bir tedavi planı alın."
+      },
+      "treatment": {
+        "title": "Tedavi",
+        "description": "İlgili ekibimizle tedavinizi uygun zamanda planlayın."
+      }
+    },
+    "treatments": {
+      "title": "Sunduğumuz Tedaviler",
+      "subtitle": "Her endişe için kapsamlı estetik çözümler."
+    },
+    "cta": {
+      "title": "Yolculuğunuza Başlamaya Hazır mısınız?",
+      "description": "Bugün konsültasyonunuzu rezerve edin ve geliştirilmiş doğal güzelliğe doğru ilk adımı atın.",
+      "button": "Uzman Bul"
+    }
   },
   "newsletter": {
     "title": "Güncel Kalın",
@@ -149,8 +213,12 @@
     "pressTitle": "Medya ve Basın",
     "pressDesc": "En son basın yayınlarımıza göz atın.",
     "copyright": "© 2024 Silk Beauty Salon. Tüm hakları saklıdır.",
-    "privacy": "Gizlilik Politikası",
-    "terms": "Kullanım Şartları"
+    "privacy": "Gizlilik",
+    "terms": "Kullanım Koşulları",
+    "cookieNotice": "Çerez Bildirimi",
+    "stayConnected": "Bağlı kalın",
+    "socialDescription": "Güncel haberler ve hasta hikayeleri için sosyal medyada bizi takip edin",
+    "disclaimer": "Her zaman ürünlerin kullanımıyla ilgili bireyselleştirilmiş tedavi önerileri ve önemli güvenlik bilgileri ile riskleri tartışmak için bir sağlık uzmanına danışın."
   },
   "contact": {
     "title": "Bize Ulaşın",
@@ -453,7 +521,8 @@
     "bookOnline": "Çevrimiçi Randevu Al",
     "scheduleAppointment": "Randevunuzu planlayın",
     "whatsapp": "WhatsApp",
-    "bookViaWhatsApp": "WhatsApp ile Randevu Al"
+    "bookViaWhatsApp": "WhatsApp ile Randevu Al",
+    "searchPlaceholder": "Tedavi ve cilt sorunları ara..."
   },
   "siteConfig": {
     "awards": {
@@ -1551,7 +1620,8 @@
       "a2": "Randevunuzu garanti altına almak için %20 depozito gerekir ve bu tedavi maliyetinizden düşülür.",
       "q3": "İptal politikanız nedir?",
       "a3": "İptaller için 48 saat önceden haber verilmesini gerektiriyoruz. Geç iptaller depozito kaybına neden olabilir.",
-      "q4": "Randevumu yeniden planlayabilir miyim?"
+      "q4": "Randevumu yeniden planlayabilir miyim?",
+      "a4": "Evet, randevunuzu planlanan saatten 24 saat önce yeniden planlayabilirsiniz. Lütfen yeni bir zaman ayarlamak için telefon veya e-posta ile bize ulaşın."
     }
   },
   "accessibility": {

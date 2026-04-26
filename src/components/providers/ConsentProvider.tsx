@@ -92,17 +92,20 @@ export function ConsentProvider({ children }: { children: React.ReactNode }) {
 
   React.useEffect(() => {
     const stored = localStorage.getItem("cookie_consent")
-    if (stored) {
-      try {
-        const parsed = JSON.parse(stored)
-        setConsent(parsed)
-        setHasConsented(true)
-      } catch {
+    // Use requestAnimationFrame to avoid setState in effect body
+    requestAnimationFrame(() => {
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored)
+          setConsent(parsed)
+          setHasConsented(true)
+        } catch {
+          setShowBanner(true)
+        }
+      } else {
         setShowBanner(true)
       }
-    } else {
-      setShowBanner(true)
-    }
+    })
   }, [])
 
   const acceptAll = () => {
@@ -186,7 +189,7 @@ function CookieBanner({ onAccept, onReject, onManage }: { onAccept: () => void; 
       role="dialog" 
       aria-modal="false" 
       aria-label={t("bannerLabel")}
-      className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-white border-t shadow-lg"
+      className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-background border-t shadow-lg"
     >
       <Card className="max-w-4xl mx-auto border-0 shadow-none">
         <CardHeader className="pb-2">
