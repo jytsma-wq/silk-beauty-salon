@@ -1406,7 +1406,16 @@
       "a3": "We require 48 hours notice for cancellations. Late cancellations may forfeit the deposit.",
       "q4": "Can I reschedule my appointment?",
       "a4": "Yes, you can reschedule your appointment up to 24 hours before your scheduled time. Please contact us by phone or email to arrange a new time that works for you."
-    }
+    },
+    "preferredTime": "Preferred Time",
+    "selectTime": "Select a time slot",
+    "morning": "Morning",
+    "afternoon": "Afternoon",
+    "evening": "Evening",
+    "additionalNotes": "Additional Notes",
+    "notesPlaceholder": "Any special requests or information we should know...",
+    "requestBooking": "Request Booking",
+    "bookingNote": "We'll confirm your appointment within 24 hours"
   },
   "consent": {
     "title": "Cookie Preferences",
