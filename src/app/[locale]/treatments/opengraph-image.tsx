@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 import { routing } from '@/i18n/routing';
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 
 const fontRegular = fetch(new URL('https://fonts.gstatic.com/s/cormorantgaramond/v16/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYrEtFmS.woff2')).then((res) => res.arrayBuffer());
 const fontBold = fetch(new URL('https://fonts.gstatic.com/s/cormorantgaramond/v16/co3YmX5slCNuHLi8bLeY9MK7whWMhyjYqEfFmw.woff2')).then((res) => res.arrayBuffer());

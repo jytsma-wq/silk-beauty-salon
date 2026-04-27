@@ -13,20 +13,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Status enums for type safety
-enum BookingStatus {
-  PENDING
-  CONFIRMED
-  CANCELLED
-  COMPLETED
-}
-
-enum ContactStatus {
-  NEW
-  IN_PROGRESS
-  RESOLVED
-  CLOSED
-}
+// Status types (using String instead of enum for SQLite compatibility)
 
 model ContactSubmission {
   id        String        @id @default(cuid())
@@ -36,7 +23,7 @@ model ContactSubmission {
   message   String
   locale    String        @default("en")
   createdAt DateTime      @default(now())
-  status    ContactStatus @default(NEW)
+  status    String   @default("NEW")
 }
 
 model BookingRequest {
@@ -50,7 +37,7 @@ model BookingRequest {
   message       String?
   locale        String        @default("en")
   createdAt     DateTime      @default(now())
-  status        BookingStatus @default(PENDING)
+  status        String   @default("PENDING")
 
   @@index([status, createdAt])
 }
@@ -197,7 +184,7 @@ model Booking {
   date        DateTime
   timeSlot    String        // e.g. "09:00 - 10:00"
   message     String?
-  status      BookingStatus @default(PENDING)
+  status      String   @default("PENDING")
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
 

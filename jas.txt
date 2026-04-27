@@ -1,0 +1,58 @@
+I have a Next.js 16.2.4 project (Silk Beauty Salon) using Prisma ORM with SQLite. When I run npm run build, the build succeeds but produces multiple errors and warnings that I need fixed. Here is the full error output:
+
+ERROR 1 — Prisma: Missing Database Tables
+The following tables do not exist in the database, causing prisma:error throughout the build:
+
+main.TreatmentCategory — called via prisma.treatmentCategory.findMany()
+main.BlogPost — called via prisma.blogPost.findMany()
+main.Treatment — called via prisma.treatment.findMany()
+These errors appear during both the "Collecting page data" and "Generating static pages" phases. The Prisma schema clearly defines these models, but the actual SQLite database tables have not been created/synced.
+
+ERROR 2 — metadataBase Not Set
+Multiple warnings during static page generation:
+
+text
+
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000"
+ERROR 3 — Edge Runtime Warning
+
+text
+
+⚠ Using edge runtime on a page currently disables static generation for that page
+Please fix ALL three issues as follows:
+
+Fix 1: Prisma Database Tables Missing
+Read my prisma/schema.prisma file to understand all models
+Run npx prisma migrate dev --name init (or npx prisma db push if migrations folder already exists) to sync the schema to the database
+If there's a prisma/seed.ts or prisma/seed.js, run it after migration to populate initial data
+If the seed file doesn't exist, create one that populates TreatmentCategory, Treatment, and BlogPost with sample data so static generation doesn't fail on empty queries
+Make sure all pages that call prisma.treatmentCategory.findMany(), prisma.blogPost.findMany(), and prisma.treatment.findMany() handle the case where tables are empty (return empty arrays instead of throwing errors) by wrapping Prisma calls in try/catch blocks
+Fix 2: metadataBase Property
+Find the root layout.tsx or layout.js file (likely in app/[locale]/layout.tsx or app/layout.tsx)
+Add metadataBase to the exported metadata object:
+typescript
+
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://silkbeautysalon.com'),
+  // ... rest of existing metadata
+}
+If NEXT_PUBLIC_SITE_URL is not in .env.local, add it: NEXT_PUBLIC_SITE_URL=https://silkbeautysalon.com
+Fix 3: Edge Runtime Warning
+Search all route files for export const runtime = 'edge'
+For pages that don't strictly need edge runtime (most pages using Prisma cannot run on edge because Prisma requires Node.js runtime), remove the runtime = 'edge' export or change it to export const runtime = 'nodejs'
+Only keep edge runtime on API routes that genuinely need it (e.g., lightweight proxy routes that don't use Prisma)
+Prisma + SQLite specifically requires Node.js runtime — any page or API route that calls Prisma MUST use Node.js runtime, not edge
+After making all fixes:
+Run npx prisma generate to regenerate the Prisma client
+Run npx prisma db push to sync the schema
+Run npm run build again and confirm there are ZERO prisma:error messages and ZERO metadataBase warnings
+Report back what files you changed and what commands you ran
+That prompt should give Kimi 2.5 everything it needs to resolve all three categories of errors. The root causes are:
+
+Prisma tables not synced → needs prisma db push or prisma migrate dev + try/catch wrappers
+metadataBase missing → one line addition to root layout metadata
+Edge runtime incompatible with Prisma → remove runtime = 'edge' from Prisma-dependent routes
+
+
+
+
