@@ -11,9 +11,6 @@ interface StickySplitSectionProps {
   minHeight?: string;
 }
 
-// Check if sticky is supported
-const isStickySupported = typeof CSS !== 'undefined' && CSS.supports('position', 'sticky');
-
 export function StickySplitSection({
   imageSrc,
   imageAlt,
@@ -24,15 +21,21 @@ export function StickySplitSection({
   const sectionRef = useRef<HTMLElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isRevealed, setIsRevealed] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(true); // Default to mobile for SSR consistency
+  const [isStickySupported, setIsStickySupported] = useState(false); // Default false for SSR
 
-  // Detect mobile for sticky fallback
+  // Detect mobile and sticky support after mount (for hydration consistency)
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768 || 'ontouchstart' in window);
     };
     checkMobile();
     window.addEventListener('resize', checkMobile);
+
+    // Check sticky support after mount
+    const stickySupported = typeof CSS !== 'undefined' && CSS.supports('position', 'sticky');
+    setIsStickySupported(stickySupported);
+
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 

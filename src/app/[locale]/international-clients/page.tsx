@@ -102,9 +102,9 @@ export default async function InternationalClientsPage({
                   </a>
                 </Button>
                 <Button asChild variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
-                  <a href="#packages">
+                  <I18nLink href="#packages">
                     {t('viewPackages')}
-                  </a>
+                  </I18nLink>
                 </Button>
               </div>
             </div>
