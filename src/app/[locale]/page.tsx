@@ -1,8 +1,10 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
-import { HeroSection } from '@/components/sections/HeroSection';
+import { CinematicHeroSection } from '@/components/sections/CinematicHeroSection';
+import { PressBar } from '@/components/sections/PressBar';
 import { BrandManifestoSection } from '@/components/sections/BrandManifestoSection';
+import { RevealSection } from '@/components/ui/RevealSection';
 import { EditorialTreatmentsSection } from '@/components/sections/EditorialTreatmentsSection';
 import { StatisticsStrip } from '@/components/sections/StatisticsStrip';
 import { PullQuoteTestimonial } from '@/components/sections/PullQuoteTestimonial';
@@ -18,16 +20,6 @@ const TreatmentsMarquee = dynamic(
 
 const ConditionsSection = dynamic(
   () => import('@/components/sections/ConditionsSection').then(mod => mod.ConditionsSection),
-  { loading: () => null }
-);
-
-const TestimonialsSection = dynamic(
-  () => import('@/components/sections/TestimonialsSection').then(mod => mod.TestimonialsSection),
-  { loading: () => null }
-);
-
-const QuickLinksSection = dynamic(
-  () => import('@/components/sections/QuickLinksSection').then(mod => mod.QuickLinksSection),
   { loading: () => null }
 );
 
@@ -119,17 +111,17 @@ export default async function HomePage({
   return (
     <>
       <JsonLd schema={generateLocalBusinessSchema(locale)} />
-      <HeroSection />
-      <BrandManifestoSection />
-      <EditorialTreatmentsSection />
-      <StatisticsStrip />
+      <CinematicHeroSection />          {/* Video + kinetic text */}
+      <PressBar />                      {/* Dark credential ticker */}
+      <RevealSection><BrandManifestoSection /></RevealSection>
+      <RevealSection direction="left"><EditorialTreatmentsSection /></RevealSection>
       <TreatmentsMarquee />
-      <PullQuoteTestimonial />
-      <ConsultationCTA />
-      <ConditionsSection />
-      <AboutSection />
-      <TestimonialsSection />
-      <QuickLinksSection />
+      <RevealSection direction="right"><ConditionsSection /></RevealSection>
+      <RevealSection direction="left"><AboutSection /></RevealSection>
+      <StatisticsStrip />              {/* Already has internal motion */}
+      <TreatmentsMarquee />             {/* Second marquee — visual break */}
+      <PullQuoteTestimonial />         {/* Already has internal motion */}
+      <RevealSection><ConsultationCTA /></RevealSection>
     </>
   );
 }

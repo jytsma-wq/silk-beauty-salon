@@ -9,7 +9,7 @@ export function ConsultationCTA() {
 
   return (
     <StickySplitSection
-      imageSrc="/images/consultation.svg"
+      imageSrc="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=1200&q=80"
       imageAlt="Consultation with aesthetic specialist"
       reverse={true}
     >
@@ -33,7 +33,7 @@ export function ConsultationCTA() {
         href="/book"
         className="inline-flex items-center justify-center px-8 py-4 bg-[#1c1c1c] text-white text-sm tracking-widest uppercase transition-colors hover:bg-[#b5453a]"
       >
-        {t('cta')}
+        {t('cta.button')}
       </Link>
     </StickySplitSection>
   );

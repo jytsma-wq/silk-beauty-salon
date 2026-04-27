@@ -20,7 +20,7 @@ export function PullQuoteTestimonial() {
             transition={{ duration: 0.8 }}
           >
             <ParallaxImage
-              src="/images/testimonial-portrait.svg"
+              src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=600&q=80"
               alt="Happy client testimonial portrait"
               fill
               parallaxSpeed={0.15}

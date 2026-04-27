@@ -95,7 +95,7 @@ export function HeroSection() {
               }}
             >
               <Image
-                src="/images/hero-poster.jpg"
+                src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=1920&q=80"
                 alt="Luxury spa and beauty salon interior"
                 fill
                 priority
@@ -121,7 +121,7 @@ export function HeroSection() {
                 }}
               >
                 <Image
-                  src="/images/hero-poster.jpg"
+                  src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=1920&q=80"
                   alt="Luxury spa and beauty salon interior"
                   fill
                   priority
@@ -132,7 +132,8 @@ export function HeroSection() {
               </div>
             </motion.div>
 
-            {/* Desktop: Video Element */}
+            {/* Desktop: Video Element - Temporarily disabled until video is sourced */}
+            {/*
             <motion.video
               ref={videoRef}
               autoPlay
@@ -150,6 +151,7 @@ export function HeroSection() {
             >
               <source src="/videos/hero-bg.mp4" type="video/mp4" />
             </motion.video>
+            */}
           </>
         )}
 

@@ -141,6 +141,38 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Page-load fade-in (Galderma pattern) */
+@keyframes pageReveal {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+body {
+  animation: pageReveal 0.4s ease forwards;
+}
+
+/* Hero video specific styles */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-video {
+    display: none; /* shows poster image only for motion-sensitive users */
+  }
+}
+
+/* Smooth cursor for luxury feel */
+*, *::before, *::after {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='4' fill='%23b5453a' opacity='0.6'/%3E%3C/svg%3E") 10 10, auto;
+}
+a, button, [role="button"] {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='6' fill='none' stroke='%23b5453a' stroke-width='1.5'/%3E%3C/svg%3E") 12 12, pointer;
+}
+
 /* Gold text gradient for special headings */
 .text-gold-gradient {
   background: linear-gradient(135deg, #b5453a 0%, #d4706a 50%, #b5453a 100%);
@@ -328,7 +360,7 @@ html {
 
 @media (max-width: 768px) {
   .section-spacing {
-    padding: 100px 0;
+    padding: 80px 0;
   }
 }
 
@@ -600,25 +632,7 @@ select:focus-visible,
    FRENCH MAGAZINE DESIGN SYSTEM
    ───────────────────────────────────────────────────────────── */
 
-/* 1. Section spacing (critical — the most impactful change) */
-.section-spacing {
-  padding: 140px 0;          /* was: 80px 0 */
-}
-@media (max-width: 768px) {
-  .section-spacing {
-    padding: 80px 0;          /* was: 50px 0 */
-  }
-}
-
 /* 2. Remove all card borders and shadows (borderless French style) */
-.card-hover {
-  transition: color 0.3s ease, border-color 0.3s ease;
-  /* DELETE: transform and box-shadow — never used in French luxury */
-}
-.card-hover:hover {
-  /* DELETE: transform: translateY(-5px) */
-  /* DELETE: box-shadow */
-}
 .editorial-card {
   border: none;               /* was: 1px solid #e0e0e0 */
   background: transparent;    /* was: #ffffff */

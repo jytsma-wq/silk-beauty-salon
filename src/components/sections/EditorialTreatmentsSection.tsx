@@ -22,6 +22,7 @@ export function EditorialTreatmentsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [hovered, setHovered] = useState<string | null>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
   const listRef = useRef<HTMLDivElement>(null);
@@ -134,7 +135,7 @@ export function EditorialTreatmentsSection() {
               />
             </div>
 
-            <div className="pl-6 lg:pl-8">
+            <div className="pl-6 lg:pl-8 relative">
               {categories.map((cat, index) => (
                 <div
                   key={cat.slug}
@@ -143,64 +144,49 @@ export function EditorialTreatmentsSection() {
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
-                  <div className="hairline" />
-
-                  {/* Main Item Row */}
-                  <div
-                    className={`py-6 flex gap-6 items-start cursor-pointer
-                      border-l-2 transition-all duration-300
-                      ${expandedIndex === index ? 'border-[#b5453a] pl-4' : 'border-transparent hover:border-[#b5453a] hover:pl-4'}
-                      ${activeIndex === index ? 'bg-stone-50/50' : ''}`}
-                    onClick={() => toggleExpand(index)}
-                  >
-                    {/* Number */}
-                    <span className="editorial-number shrink-0 leading-none text-stone-300">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-
-                    {/* Text Content */}
-                    <div className="flex-1 pt-1 relative">
-                      <h3 className={`font-serif text-lg lg:text-xl font-light tracking-tight mb-2 transition-colors
-                        ${activeIndex === index ? 'text-[#b5453a]' : 'text-stone-900 hover:text-[#b5453a]'}`}>
-                        {cat.name}
-                      </h3>
-                      <p className="text-sm text-stone-500 leading-relaxed max-w-sm">
-                        {cat.description}
-                      </p>
-
-                      {/* Hover Image Preview */}
-                      <AnimatePresence>
-                        {hoveredIndex === index && cat.image && (
-                          <motion.div
-                            initial={{ opacity: 0, scale: 0.9, x: 20 }}
-                            animate={{ opacity: 1, scale: 1, x: 0 }}
-                            exit={{ opacity: 0, scale: 0.9, x: 20 }}
-                            transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-                            className="absolute right-0 top-0 w-50 h-50 rounded-sm overflow-hidden shadow-xl z-20 hidden lg:block"
-                          >
-                            <Image
-                              src={cat.image}
-                              alt={cat.name}
-                              fill
-                              className="object-cover"
-                              sizes="200px"
-                            />
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-
-                    {/* Expand/Collapse Icon */}
-                    <motion.div
-                      animate={{ rotate: expandedIndex === index ? 45 : 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="w-6 h-6 flex items-center justify-center text-stone-400 shrink-0"
+                  <Link href={`/treatments/${cat.slug}`} className="group block">
+                    <div className="hairline" />
+                    <div
+                      className="py-8 flex gap-6 items-start relative overflow-hidden
+                        border-l-0 hover:border-l-2 border-[#b5453a]
+                        hover:pl-4 transition-all duration-500"
+                      onMouseEnter={() => setHovered(cat.slug)}
+                      onMouseLeave={() => setHovered(null)}
                     >
-                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                        <path d="M6 1V11M1 6H11" stroke="currentColor" strokeWidth="1.5" />
-                      </svg>
-                    </motion.div>
-                  </div>
+                      {/* Hover image — slides in from right (Harley St pattern) */}
+                      <motion.div
+                        className="absolute right-0 top-0 bottom-0 w-32 lg:w-48
+                          overflow-hidden pointer-events-none"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={hovered === cat.slug
+                          ? { opacity: 1, x: 0 }
+                          : { opacity: 0, x: 20 }}
+                        transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+                      >
+                        <img
+                          src={cat.image || `https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=200&q=70`}
+                          alt=""
+                          className="w-full h-full object-cover"
+                          aria-hidden="true"
+                        />
+                      </motion.div>
+
+                      {/* Number */}
+                      <span className="editorial-number shrink-0 leading-none text-stone-300">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                      {/* Text */}
+                      <div className="pt-2 flex-1">
+                        <h3 className="font-serif text-xl font-light text-stone-900
+                          group-hover:text-stone-700 mb-2 tracking-tight">
+                          {cat.name}
+                        </h3>
+                        <p className="text-xs text-stone-400 leading-relaxed max-w-xs">
+                          {cat.description}
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
 
                   {/* Expanded Detail */}
                   <AnimatePresence>

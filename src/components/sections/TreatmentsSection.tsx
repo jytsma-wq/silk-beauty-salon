@@ -79,7 +79,7 @@ export async function TreatmentsSection({ locale }: TreatmentsSectionProps) {
                   {t('learnMore')}
                   <ChevronRight className="w-4 h-4" />
                 </Link>
-                <div className="w-0 group-hover:w-full h-[2px] bg-stone-400 transition-all duration-300 mt-4" />
+                <div className="w-0 group-hover:w-full h-0.5 bg-stone-400 transition-all duration-300 mt-4" />
               </div>
             </div>
           ))}

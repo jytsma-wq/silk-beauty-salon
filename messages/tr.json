@@ -34,7 +34,10 @@
   "hero": {
     "title": "Anti-Aging Uzmanları",
     "subtitle": "Batumi'nin Premium Güzellik Salonu",
-    "description": "Silk Beauty Salon, doğal güzelliğinizi hassasiyet ve güvenle artırmak için uzman pratisyenleri, gelişmiş tedavileri ve lüks bakımı bir araya getiriyor.",
+    "description": "Silk Beauty Salon, doğal güzelliğinizi hassasiyet ve güvenle geliştirmek için uzman uygulayıcıları, son teknoloji tedavileri ve lüks bakımı bir araya getiriyor.",
+    "eyebrow": "Silk Beauty · Batumi, Gürcistan",
+    "exploreMore": "Tedavileri Keşfet",
+    "scroll": "Aşağı Kaydır",
     "cta": {
       "book": "Randevu Al",
       "treatments": "Tedavileri Gör"
@@ -125,6 +128,7 @@
     "viewAll": "Tüm Yorumları Gör"
   },
   "about": {
+    "sectionLabel": "Hakkımızda",
     "category": "Hakkımızda",
     "title": "Hastaları ön planda tutmak ve mükemmel hizmet sunmak",
     "description": "Silk Beauty Salon, en iyi sonuçları elde etmek için en son teknolojileri kullanarak minimal invaziv, öncü kozmetik ve sağlık tedavileri sunmaktadır.",

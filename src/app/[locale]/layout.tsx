@@ -13,15 +13,20 @@ import { AnalyticsScripts } from "@/components/providers/AnalyticsScripts";
 import { WhatsAppWidget } from "@/components/layout/WhatsAppWidget";
 import { SkipLink } from "@/components/layout/SkipLink";
 
-export const metadata: Metadata = {
-  title: "Premier Beauty Salon in Batumi | Silk Beauty Salon",
-  description: "Batumi's premier beauty salon on Zurab Gorgiladze Street.",
-  keywords: ["beauty salon", "botox", "dermal fillers", "laser treatments", "skin treatments", "Batumi", "Georgia", "cosmetic clinic"],
-  authors: [{ name: "Silk Beauty Salon" }],
-  icons: {
-    icon: "/favicon.ico",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "Premier Beauty Salon in Batumi | Silk Beauty Salon",
+    description: "Batumi's premier beauty salon on Zurab Gorgiladze Street.",
+    keywords: ["beauty salon", "botox", "dermal fillers", "laser treatments", "skin treatments", "Batumi", "Georgia", "cosmetic clinic"],
+    authors: [{ name: "Silk Beauty Salon" }],
+    icons: {
+      icon: "/favicon.ico",
+    },
+    other: {
+      'link:rel:preload;as:video;href:https://cdn.coverr.co/videos/coverr-a-woman-getting-a-facial-treatment-6960/1080p.mp4;type:video/mp4': '',
+    },
+  };
+}
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -53,7 +58,7 @@ export default async function LocaleLayout({
 
   return (
     <>
-      <head>{csrfToken ? <meta name="csrf-token" content={csrfToken} /> : null}</head>
+      {csrfToken ? <meta name="csrf-token" content={csrfToken} /> : null}
       <ConsentProvider>
         <AnalyticsScripts
           gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}

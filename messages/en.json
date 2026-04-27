@@ -39,7 +39,10 @@
     "cta": {
       "book": "Book Appointment",
       "treatments": "View Treatments"
-    }
+    },
+    "eyebrow": "Silk Beauty · Batumi, Georgia",
+    "exploreMore": "Explore Treatments",
+    "scroll": "Scroll"
   },
   "content": {
     "heading1": "Aesthetic possibilities shaped together",
@@ -123,6 +126,7 @@
     "viewAll": "View All Testimonials"
   },
   "about": {
+    "sectionLabel": "About Us",
     "category": "",
     "title": "ABOUT US",
     "description": "Our clinic is equipped with the latest state-of-the-art technologies, from advanced skin-tightening devices to non-invasive body contouring machines. We are committed to staying at the forefront of aesthetic innovation, offering treatments that deliver outstanding results with minimal downtime.",

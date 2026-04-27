@@ -19,6 +19,11 @@ export function AboutSection() {
       imageAlt="Silk Beauty Salon"
       reverse={false}
     >
+      {/* Section Label */}
+      <div className="section-label mb-8">
+        <span>{t('sectionLabel')}</span>
+      </div>
+
       {/* Category Label */}
       <span className="text-xs tracking-[0.2em] uppercase text-stone-500 mb-6">
         {t('category')}
