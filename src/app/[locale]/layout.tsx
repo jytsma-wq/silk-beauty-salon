@@ -57,7 +57,7 @@ export default async function LocaleLayout({
   const isRtl = rtlLocales.includes(validLocale as 'ar' | 'he');
 
   return (
-    <html lang={validLocale} dir={isRtl ? 'rtl' : 'ltr'}>
+    <html lang={validLocale} dir={isRtl ? 'rtl' : 'ltr'} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

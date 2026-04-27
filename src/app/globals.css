@@ -509,13 +509,9 @@ select:focus-visible,
   :root {
     --gold: #d4af37;
   }
-  
+
   .btn-gold {
     border: 2px solid currentColor;
-  }
-  
-  .card-hover {
-    border: 1px solid var(--border);
   }
 }
 

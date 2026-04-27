@@ -187,15 +187,15 @@ export default async function AboutPage({
             {t('awards.title')}
           </h2>
           <div className="flex flex-wrap justify-center gap-8 mb-8">
-            {[
-              'awardWinning',
-              'premierSalon',
-              'featuredIn'
-            ].map((awardKey) => (
-              <span key={awardKey} className="text-[#1c1c1c] text-sm tracking-wider uppercase">
-                {t(`awards.${awardKey}`)}
-              </span>
-            ))}
+            <span className="text-[#1c1c1c] text-sm tracking-wider uppercase">
+              {t('awards.awardWinning')}
+            </span>
+            <span className="text-[#1c1c1c] text-sm tracking-wider uppercase">
+              {t('awards.premierSalon')}
+            </span>
+            <span className="text-[#1c1c1c] text-sm tracking-wider uppercase">
+              {t('awards.featuredIn')}
+            </span>
           </div>
           <p className="text-[#9a9a9a] text-sm">
             {t('featuredIn')}

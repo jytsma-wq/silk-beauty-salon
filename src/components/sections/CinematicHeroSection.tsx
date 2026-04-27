@@ -3,6 +3,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 import { BookingButton } from '@/components/booking-button';
 
 // Split text into words for staggered animation (Harley Street pattern)
@@ -47,7 +48,7 @@ export function CinematicHeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-end overflow-hidden bg-stone-900">
+    <section className="relative min-h-screen flex items-end overflow-hidden bg-stone-800">
 
       {/* ── Video Layer ── */}
       <div className="absolute inset-0 z-0">
@@ -116,14 +117,14 @@ export function CinematicHeroSection() {
             transition={{ delay: 2.0, duration: 0.7 }}
           >
             <BookingButton />
-            <a
+            <Link
               href="/treatments"
               className="text-[0.625rem] tracking-[0.2em] uppercase text-white/60
                 hover:text-white border-b border-white/20 hover:border-white/60
                 pb-0.5 transition-all duration-300 self-center"
             >
               {t('exploreMore', { defaultValue: 'Explore Treatments' })} →
-            </a>
+            </Link>
           </motion.div>
 
           {/* Scroll indicator */}

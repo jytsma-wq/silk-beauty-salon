@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800">
-  <rect width="600" height="800" fill="#d6d3d1"/>
-  <circle cx="300" cy="280" r="120" fill="#a8a29e"/>
-  <rect x="150" y="420" width="300" height="300" rx="20" fill="#a8a29e"/>
-  <text x="300" y="750" font-family="Arial, sans-serif" font-size="20" fill="#44403c" text-anchor="middle">Testimonial Portrait</text>
-</svg>
