@@ -8,7 +8,8 @@ import { db } from '@/lib/db';
 
 // Cached function to get treatment categories by locale
 export const getTreatmentCategoriesByLocale = cache(async (locale: string) => {
-  const categories = await db.treatmentCategory.findMany({
+  try {
+    const categories = await db.treatmentCategory.findMany({
     where: { active: true },
     orderBy: { sortOrder: 'asc' },
     include: {
@@ -60,24 +61,38 @@ export const getTreatmentCategoriesByLocale = cache(async (locale: string) => {
       })),
     })),
   }));
+  } catch {
+    // Return empty array if database is not available
+    return [];
+  }
 });
 
 // Cached function to get all treatment slugs (for generateStaticParams)
 export const getAllTreatmentSlugs = cache(async () => {
-  const treatments = await db.treatment.findMany({
-    where: { active: true },
-    select: { slug: true },
-  });
-  return treatments.map((t) => t.slug);
+  try {
+    const treatments = await db.treatment.findMany({
+      where: { active: true },
+      select: { slug: true },
+    });
+    return treatments.map((t) => t.slug);
+  } catch {
+    // Return empty array if database is not available (e.g., during build)
+    return [];
+  }
 });
 
 // Cached function to get all category slugs (for generateStaticParams)
 export const getAllCategorySlugs = cache(async () => {
-  const categories = await db.treatmentCategory.findMany({
-    where: { active: true },
-    select: { slug: true },
-  });
-  return categories.map((c) => c.slug);
+  try {
+    const categories = await db.treatmentCategory.findMany({
+      where: { active: true },
+      select: { slug: true },
+    });
+    return categories.map((c) => c.slug);
+  } catch {
+    // Return empty array if database is not available (e.g., during build)
+    return [];
+  }
 });
 
 // Cached function to get single treatment by slug

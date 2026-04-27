@@ -31,27 +31,30 @@ export interface BlogPostSummary {
  * Fetch all published blog posts for a given locale
  */
 export async function getBlogPosts(locale: string): Promise<BlogPostSummary[]> {
-  const posts = await db.blogPost.findMany({
-    where: {
-      locale,
-      published: true,
-    },
-    select: {
-      title: true,
-      slug: true,
-      excerpt: true,
-      image: true,
-      category: true,
-      author: true,
-      readTime: true,
-      createdAt: true,
-    },
-    orderBy: {
-      createdAt: 'desc',
-    },
-  });
-
-  return posts;
+  try {
+    const posts = await db.blogPost.findMany({
+      where: {
+        locale,
+        published: true,
+      },
+      select: {
+        title: true,
+        slug: true,
+        excerpt: true,
+        image: true,
+        category: true,
+        author: true,
+        readTime: true,
+        createdAt: true,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+    return posts;
+  } catch {
+    return [];
+  }
 }
 
 /**
@@ -61,30 +64,36 @@ export async function getBlogPostBySlug(
   slug: string,
   locale: string
 ): Promise<BlogPost | null> {
-  const post = await db.blogPost.findFirst({
-    where: {
-      slug,
-      locale,
-    },
-  });
-
-  return post;
+  try {
+    const post = await db.blogPost.findFirst({
+      where: {
+        slug,
+        locale,
+      },
+    });
+    return post;
+  } catch {
+    return null;
+  }
 }
 
 /**
  * Fetch all blog post slugs for static generation
  */
 export async function getAllBlogSlugs(): Promise<string[]> {
-  const posts = await db.blogPost.findMany({
-    where: {
-      published: true,
-    },
-    select: {
-      slug: true,
-    },
-  });
-
-  return posts.map((post: { slug: string }) => post.slug);
+  try {
+    const posts = await db.blogPost.findMany({
+      where: {
+        published: true,
+      },
+      select: {
+        slug: true,
+      },
+    });
+    return posts.map((post: { slug: string }) => post.slug);
+  } catch {
+    return [];
+  }
 }
 
 /**
@@ -95,29 +104,32 @@ export async function getRelatedBlogPosts(
   locale: string,
   limit: number = 3
 ): Promise<BlogPostSummary[]> {
-  const posts = await db.blogPost.findMany({
-    where: {
-      locale,
-      published: true,
-      slug: {
-        not: currentSlug,
+  try {
+    const posts = await db.blogPost.findMany({
+      where: {
+        locale,
+        published: true,
+        slug: {
+          not: currentSlug,
+        },
       },
-    },
-    select: {
-      title: true,
-      slug: true,
-      excerpt: true,
-      image: true,
-      category: true,
-      author: true,
-      readTime: true,
-      createdAt: true,
-    },
-    orderBy: {
-      createdAt: 'desc',
-    },
-    take: limit,
-  });
-
-  return posts;
+      select: {
+        title: true,
+        slug: true,
+        excerpt: true,
+        image: true,
+        category: true,
+        author: true,
+        readTime: true,
+        createdAt: true,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+      take: limit,
+    });
+    return posts;
+  } catch {
+    return [];
+  }
 }
