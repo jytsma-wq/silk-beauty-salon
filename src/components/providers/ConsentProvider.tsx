@@ -7,54 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
-
-// Hook for focus trap
-function useFocusTrap(isActive: boolean, onEscape: () => void) {
-  const containerRef = React.useRef<HTMLDivElement>(null)
-
-  React.useEffect(() => {
-    if (!isActive) return
-
-    const container = containerRef.current
-    if (!container) return
-
-    // Find all focusable elements
-    const focusableElements = container.querySelectorAll<HTMLElement>(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-    )
-    const firstElement = focusableElements[0]
-    const lastElement = focusableElements[focusableElements.length - 1]
-
-    // Focus first element
-    firstElement?.focus()
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onEscape()
-        return
-      }
-
-      if (e.key !== 'Tab') return
-
-      if (e.shiftKey) {
-        if (document.activeElement === firstElement) {
-          e.preventDefault()
-          lastElement?.focus()
-        }
-      } else {
-        if (document.activeElement === lastElement) {
-          e.preventDefault()
-          firstElement?.focus()
-        }
-      }
-    }
-
-    document.addEventListener('keydown', handleKeyDown)
-    return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [isActive, onEscape])
-
-  return containerRef
-}
+import { useFocusTrap } from "@/hooks/use-focus-trap"
 
 // ConsentCategory type is used in the consent state interface
 
@@ -181,11 +134,11 @@ export function useConsent() {
 
 function CookieBanner({ onAccept, onReject, onManage }: { onAccept: () => void; onReject: () => void; onManage: () => void }) {
   const t = useTranslations("consent")
-  const bannerRef = useFocusTrap(true, onReject)
-  
+  const { containerRef: bannerRef } = useFocusTrap({ isActive: true, onEscape: onReject })
+
   return (
-    <div 
-      ref={bannerRef}
+    <div
+      ref={bannerRef as React.RefObject<HTMLDivElement>}
       role="dialog" 
       aria-modal="false" 
       aria-label={t("bannerLabel")}

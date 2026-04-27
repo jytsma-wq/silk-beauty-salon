@@ -11,10 +11,15 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-export const metadata: Metadata = {
-  title: 'FAQ | Silk Beauty Salon',
-  description: 'Find answers to frequently asked questions about our treatments, booking, and clinic.',
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'faqPage' });
+
+  return {
+    title: t('title'),
+    description: t('subtitle'),
+  };
+}
 
 export default async function FAQPage({
   params,

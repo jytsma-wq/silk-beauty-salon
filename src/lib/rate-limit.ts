@@ -144,3 +144,53 @@ export async function apiRateLimit(identifier: string): Promise<RateLimitResult>
     keyPrefix: 'api',
   });
 }
+
+/**
+ * Per-route rate limiting for specific API endpoints
+ * As per security requirements
+ */
+
+// Contact form: 5 requests per minute per IP
+export async function contactRateLimit(identifier: string): Promise<RateLimitResult> {
+  return rateLimit(identifier, {
+    windowMs: 60 * 1000, // 1 minute
+    maxRequests: 5,
+    keyPrefix: 'contact',
+  });
+}
+
+// Booking form: 5 requests per minute per IP
+export async function bookRateLimit(identifier: string): Promise<RateLimitResult> {
+  return rateLimit(identifier, {
+    windowMs: 60 * 1000, // 1 minute
+    maxRequests: 5,
+    keyPrefix: 'book',
+  });
+}
+
+// Bookings API: 10 requests per minute per IP
+export async function bookingsApiRateLimit(identifier: string): Promise<RateLimitResult> {
+  return rateLimit(identifier, {
+    windowMs: 60 * 1000, // 1 minute
+    maxRequests: 10,
+    keyPrefix: 'bookings',
+  });
+}
+
+// Newsletter: 3 requests per minute per IP
+export async function newsletterRateLimit(identifier: string): Promise<RateLimitResult> {
+  return rateLimit(identifier, {
+    windowMs: 60 * 1000, // 1 minute
+    maxRequests: 3,
+    keyPrefix: 'newsletter',
+  });
+}
+
+// CSRF token: 20 requests per minute per IP
+export async function csrfRateLimit(identifier: string): Promise<RateLimitResult> {
+  return rateLimit(identifier, {
+    windowMs: 60 * 1000, // 1 minute
+    maxRequests: 20,
+    keyPrefix: 'csrf',
+  });
+}

@@ -1,9 +1,11 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { Resend } from 'resend';
 import { db } from '@/lib/db';
-import { strictRateLimit } from '@/lib/rate-limit';
+import { bookRateLimit } from '@/lib/rate-limit';
 import { logSecurityEvent } from '@/lib/security-logger';
+import { verifyCsrfToken } from '@/lib/csrf';
+import { sanitizeText, sanitizeName } from '@/lib/sanitize';
 
 // Initialize Resend only if API key is available
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
@@ -20,16 +22,36 @@ const bookingFormSchema = z.object({
   locale: z.string().default('en'),
 });
 
-export async function POST(request: Request) {
+// HTML escape utility for email content
+function escapeHtml(str: string | null | undefined): string {
+  if (!str) return 'Not specified';
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+export async function POST(request: NextRequest) {
   try {
+    // CSRF validation
+    const csrfValid = await verifyCsrfToken(request);
+    if (!csrfValid) {
+      return NextResponse.json(
+        { error: 'Invalid or missing CSRF token' },
+        { status: 403 }
+      );
+    }
+
     // Extract client IP
     const headers = request.headers;
     const forwarded = headers.get('x-forwarded-for');
     const realIp = headers.get('x-real-ip');
     const ip = forwarded?.split(',')[0].trim() || realIp || 'unknown';
 
-    // Check rate limit
-    const rateLimitResult = await strictRateLimit(ip);
+    // Check rate limit (5 requests per minute per IP)
+    const rateLimitResult = await bookRateLimit(ip);
     if (!rateLimitResult.allowed) {
       await logSecurityEvent({
         type: 'rate_limit',
@@ -66,13 +88,13 @@ export async function POST(request: Request) {
 
     // Sanitize input
     const sanitized = {
-      name: name.trim(),
+      name: sanitizeName(name),
       email: email.toLowerCase().trim(),
-      phone: phone.trim(),
-      service: service.trim(),
-      preferredDate: preferredDate || null,
-      preferredTime: preferredTime || null,
-      message: message?.trim() || null,
+      phone: sanitizeText(phone),
+      service: sanitizeText(service),
+      preferredDate: preferredDate ? sanitizeText(preferredDate) : null,
+      preferredTime: preferredTime ? sanitizeText(preferredTime) : null,
+      message: message ? sanitizeText(message) : null,
     };
 
     // Send email to admin (if Resend is configured)
@@ -82,13 +104,13 @@ export async function POST(request: Request) {
         to: [CONTACT_EMAIL],
         subject: `New Booking Request from ${sanitized.name}`,
         html: `<h2>New Booking Request</h2>
-               <p><b>Name:</b> ${sanitized.name}</p>
-               <p><b>Email:</b> ${sanitized.email}</p>
-               <p><b>Phone:</b> ${sanitized.phone}</p>
-               <p><b>Service:</b> ${sanitized.service}</p>
-               <p><b>Preferred Date:</b> ${sanitized.preferredDate ?? 'Not specified'}</p>
-               <p><b>Preferred Time:</b> ${sanitized.preferredTime ?? 'Not specified'}</p>
-               <p><b>Message:</b> ${sanitized.message ?? 'None'}</p>`,
+               <p><b>Name:</b> ${escapeHtml(sanitized.name)}</p>
+               <p><b>Email:</b> ${escapeHtml(sanitized.email)}</p>
+               <p><b>Phone:</b> ${escapeHtml(sanitized.phone)}</p>
+               <p><b>Service:</b> ${escapeHtml(sanitized.service)}</p>
+               <p><b>Preferred Date:</b> ${escapeHtml(sanitized.preferredDate)}</p>
+               <p><b>Preferred Time:</b> ${escapeHtml(sanitized.preferredTime)}</p>
+               <p><b>Message:</b> ${sanitized.message ? escapeHtml(sanitized.message) : 'None'}</p>`,
       });
     } else {
       console.log('Booking form submission (Resend not configured):', sanitized);

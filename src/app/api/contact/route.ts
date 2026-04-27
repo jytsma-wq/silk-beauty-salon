@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { Resend } from 'resend';
 import { db } from '@/lib/db';
-import { strictRateLimit } from '@/lib/rate-limit';
+import { contactRateLimit } from '@/lib/rate-limit';
 import { logSecurityEvent } from '@/lib/security-logger';
 import { verifyCsrfToken } from '@/lib/csrf';
 
@@ -52,8 +52,8 @@ export async function POST(request: Request) {
       );
     }
 
-    // Check rate limit
-    const rateLimitResult = await strictRateLimit(ip);
+    // Check rate limit (5 requests per minute per IP)
+    const rateLimitResult = await contactRateLimit(ip);
     if (!rateLimitResult.allowed) {
       await logSecurityEvent({
         type: 'rate_limit',

@@ -21,7 +21,7 @@ export function PullQuoteTestimonial() {
           >
             <ParallaxImage
               src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=600&q=80"
-              alt="Happy client testimonial portrait"
+              alt={t('imageAlt')}
               fill
               parallaxSpeed={0.15}
             />

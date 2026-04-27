@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { format, isBefore, isToday } from "date-fns";
 import { cn } from "@/lib/utils";
 import { Calendar } from "@/components/ui/calendar";
@@ -41,14 +42,14 @@ interface BookingDialogProps {
 }
 
 const SERVICES = [
-  "Consultation",
-  "Botox Treatment",
-  "Dermal Fillers",
-  "Laser Hair Removal",
-  "Skin Rejuvenation",
-  "Chemical Peel",
-  "Microneedling",
-  "Hydrafacial",
+  { key: "serviceConsultation", default: "Consultation" },
+  { key: "serviceBotox", default: "Botox Treatment" },
+  { key: "serviceFillers", default: "Dermal Fillers" },
+  { key: "serviceLaser", default: "Laser Hair Removal" },
+  { key: "serviceRejuvenation", default: "Skin Rejuvenation" },
+  { key: "servicePeel", default: "Chemical Peel" },
+  { key: "serviceMicroneedling", default: "Microneedling" },
+  { key: "serviceHydrafacial", default: "Hydrafacial" },
 ];
 
 const TIME_SLOTS = [
@@ -60,6 +61,8 @@ const TIME_SLOTS = [
   "14:00 - 15:00",
   "15:00 - 16:00",
   "16:00 - 17:00",
+  "17:00 - 18:00",
+  "18:00 - 19:00",
 ];
 
 // Step indicator component
@@ -106,6 +109,7 @@ function StepIndicator({ step }: { step: string }) {
 }
 
 export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
+  const t = useTranslations("booking");
   // Step state
   const [step, setStep] = useState<"datetime" | "details" | "confirmation">("datetime");
 
@@ -196,21 +200,21 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
       });
 
       if (response.status === 409) {
-        setError("This time slot is already booked. Please select another time.");
+        setError(t('slotConflict'));
         setIsLoading(false);
         return;
       }
 
       if (!response.ok) {
         const data = await response.json();
-        setError(data.error || "Failed to create booking");
+        setError(data.error || t('bookingFailed'));
         setIsLoading(false);
         return;
       }
 
       setStep("confirmation");
     } catch (_err) {
-      setError("An unexpected error occurred. Please try again.");
+      setError(t('unexpectedError'));
     } finally {
       setIsLoading(false);
     }
@@ -224,9 +228,9 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader className="text-center">
-          <DialogTitle className="text-2xl font-serif">Book Appointment</DialogTitle>
+          <DialogTitle className="text-2xl font-serif">{t('dialogTitle')}</DialogTitle>
           <DialogDescription>
-            Schedule your consultation with our expert practitioners
+            {t('dialogDescription')}
           </DialogDescription>
         </DialogHeader>
 
@@ -245,16 +249,16 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
             <div>
               <Label className="flex items-center gap-2 mb-2">
                 <MessageSquare className="w-4 h-4 text-[#b5453a]" />
-                Select Service
+                {t('selectService')}
               </Label>
               <Select value={selectedService} onValueChange={setSelectedService}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Choose a service" />
+                  <SelectValue placeholder={t('servicePlaceholder')} />
                 </SelectTrigger>
                 <SelectContent>
                   {SERVICES.map((service) => (
-                    <SelectItem key={service} value={service}>
-                      {service}
+                    <SelectItem key={service.key} value={t(service.key)}>
+                      {t(service.key)}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -265,7 +269,7 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
             <div>
               <Label className="flex items-center gap-2 mb-2">
                 <CalendarIcon className="w-4 h-4 text-[#b5453a]" />
-                Select Date
+                {t('selectDate')}
               </Label>
               <div className="border rounded-sm p-4 flex justify-center">
                 <Calendar
@@ -283,7 +287,7 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
               <div>
                 <Label className="flex items-center gap-2 mb-2">
                   <Clock className="w-4 h-4 text-[#b5453a]" />
-                  Select Time Slot
+                  {t('selectTimeSlot')}
                 </Label>
                 <div className="grid grid-cols-2 gap-2">
                   {TIME_SLOTS.map((slot) => {
@@ -303,7 +307,7 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
                             : "bg-white hover:border-[#b5453a] border-gray-200"
                         )}
                       >
-                        {slot} {isBooked && "(Booked)"}
+                        {slot} {isBooked && t('booked')}
                       </button>
                     );
                   })}
@@ -316,7 +320,7 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
               disabled={!selectedService || !selectedDate || !selectedTime}
               className="w-full bg-[#b5453a] hover:bg-[#8e3229] text-white"
             >
-              Continue
+              {t('continue')}
               <ChevronRight className="w-4 h-4 ml-2" />
             </Button>
           </div>
@@ -327,17 +331,17 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
           <div className="space-y-6">
             {/* Summary */}
             <div className="bg-gray-50 p-4 rounded-sm">
-              <h4 className="font-medium text-gray-900 mb-2">Booking Summary</h4>
+              <h4 className="font-medium text-gray-900 mb-2">{t('bookingSummary')}</h4>
               <div className="text-sm text-gray-600 space-y-1">
                 <p>
-                  <span className="font-medium">Service:</span> {selectedService}
+                  <span className="font-medium">{t('service')}:</span> {selectedService}
                 </p>
                 <p>
-                  <span className="font-medium">Date:</span>{" "}
+                  <span className="font-medium">{t('date')}:</span>{" "}
                   {selectedDate && format(selectedDate, "MMMM d, yyyy")}
                 </p>
                 <p>
-                  <span className="font-medium">Time:</span> {selectedTime}
+                  <span className="font-medium">{t('time')}:</span> {selectedTime}
                 </p>
               </div>
             </div>
@@ -347,12 +351,12 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
               <div>
                 <Label className="flex items-center gap-2 mb-2">
                   <User className="w-4 h-4 text-[#b5453a]" />
-                  Full Name
+                  {t('fullName')}
                 </Label>
                 <Input
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="John Doe"
+                  placeholder={t('namePlaceholder')}
                   required
                 />
               </div>
@@ -360,13 +364,13 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
               <div>
                 <Label className="flex items-center gap-2 mb-2">
                   <Mail className="w-4 h-4 text-[#b5453a]" />
-                  Email
+                  {t('email')}
                 </Label>
                 <Input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="john@example.com"
+                  placeholder={t('emailPlaceholder')}
                   required
                 />
               </div>
@@ -374,25 +378,25 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
               <div>
                 <Label className="flex items-center gap-2 mb-2">
                   <Phone className="w-4 h-4 text-[#b5453a]" />
-                  Phone (Optional)
+                  {t('phone')}
                 </Label>
                 <Input
                   type="tel"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  placeholder="+1 234 567 890"
+                  placeholder={t('phonePlaceholder')}
                 />
               </div>
 
               <div>
                 <Label className="flex items-center gap-2 mb-2">
                   <MessageSquare className="w-4 h-4 text-[#b5453a]" />
-                  Message (Optional)
+                  {t('message')}
                 </Label>
                 <Textarea
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  placeholder="Any specific requirements or questions..."
+                  placeholder={t('messagePlaceholder')}
                   rows={3}
                 />
               </div>
@@ -405,7 +409,7 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
                 className="flex-1"
               >
                 <ChevronLeft className="w-4 h-4 mr-2" />
-                Back
+                {t('back')}
               </Button>
               <Button
                 onClick={handleNext}
@@ -415,10 +419,10 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
                 {isLoading ? (
                   <>
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                    Booking...
+                    {t('booking')}
                   </>
                 ) : (
-                  "Confirm Booking"
+                  t('confirmBooking')
                 )}
               </Button>
             </div>
@@ -435,24 +439,24 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
             </div>
 
             <div>
-              <h3 className="text-xl font-serif mb-2">Booking Confirmed!</h3>
+              <h3 className="text-xl font-serif mb-2">{t('bookingConfirmed')}</h3>
               <p className="text-gray-600">
-                Thank you, {name}. Your appointment has been scheduled.
+                {t('thankYou', { name })}
               </p>
             </div>
 
             <div className="bg-gray-50 p-4 rounded-sm text-left">
-              <h4 className="font-medium text-gray-900 mb-3">Booking Details</h4>
+              <h4 className="font-medium text-gray-900 mb-3">{t('bookingDetails')}</h4>
               <div className="text-sm text-gray-600 space-y-2">
                 <p>
-                  <span className="font-medium">Service:</span> {selectedService}
+                  <span className="font-medium">{t('service')}:</span> {selectedService}
                 </p>
                 <p>
-                  <span className="font-medium">Date:</span>{" "}
+                  <span className="font-medium">{t('date')}:</span>{" "}
                   {selectedDate && format(selectedDate, "MMMM d, yyyy")}
                 </p>
                 <p>
-                  <span className="font-medium">Time:</span> {selectedTime}
+                  <span className="font-medium">{t('time')}:</span> {selectedTime}
                 </p>
                 <p>
                   <span className="font-medium">Email:</span> {email}
@@ -464,7 +468,7 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
               onClick={handleClose}
               className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
             >
-              Done
+              {t('done')}
             </Button>
           </div>
         )}

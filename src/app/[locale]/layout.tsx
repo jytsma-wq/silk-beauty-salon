@@ -1,6 +1,7 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
+import { rtlLocales } from '@/i18n';
 import type { Metadata } from "next";
 import { headers } from 'next/headers';
 import "../globals.css";
@@ -53,12 +54,16 @@ export default async function LocaleLayout({
   const csrfToken = headersList.get('X-CSRF-Token') || '';
 
   // Check if RTL language
-  const rtlLocales = ['ar', 'he'];
-  const isRtl = rtlLocales.includes(validLocale);
+  const isRtl = rtlLocales.includes(validLocale as 'ar' | 'he');
 
   return (
-    <>
-      {csrfToken ? <meta name="csrf-token" content={csrfToken} /> : null}
+    <html lang={validLocale} dir={isRtl ? 'rtl' : 'ltr'}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {csrfToken ? <meta name="csrf-token" content={csrfToken} /> : null}
+      </head>
+      <body>
       <ConsentProvider>
         <AnalyticsScripts
           gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
@@ -76,6 +81,7 @@ export default async function LocaleLayout({
           </AnnouncerProvider>
         </NextIntlClientProvider>
       </ConsentProvider>
-    </>
+      </body>
+    </html>
   );
 }

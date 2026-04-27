@@ -16,7 +16,7 @@ export function AboutSection() {
   return (
     <StickySplitSection
       imageSrc="/images/salon-interior.jpg"
-      imageAlt="Silk Beauty Salon"
+      imageAlt={t('imageAlt')}
       reverse={false}
     >
       {/* Section Label */}

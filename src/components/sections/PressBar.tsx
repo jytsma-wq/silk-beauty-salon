@@ -2,24 +2,26 @@
 
 import { motion } from 'framer-motion';
 import { useReducedMotion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
-const CREDENTIALS = [
-  { icon: '✦', text: 'Award-Winning Aesthetic Clinic' },
-  { icon: '✦', text: '5,000+ Patients Treated' },
-  { icon: '✦', text: 'Expert Medical Practitioners' },
-  { icon: '✦', text: 'Batumi\'s Premier Aesthetic Clinic' },
-  { icon: '✦', text: 'International Medical Standards' },
-  { icon: '✦', text: 'Certified Aesthetic Procedures' },
+const CREDENTIAL_KEYS = [
+  'credential1',
+  'credential2',
+  'credential3',
+  'credential4',
+  'credential5',
+  'credential6',
 ];
 
 export function PressBar() {
+  const t = useTranslations('pressBar');
   const shouldReduceMotion = useReducedMotion();
-  const doubled = [...CREDENTIALS, ...CREDENTIALS];
+  const doubled = [...CREDENTIAL_KEYS, ...CREDENTIAL_KEYS];
 
   return (
     <div
       className="bg-[#1c1c1c] py-3.5 overflow-hidden"
-      aria-label="Clinic credentials"
+      aria-label={t('ariaLabel')}
     >
       <div className="flex">
         <motion.div
@@ -31,12 +33,12 @@ export function PressBar() {
             repeat: Infinity,
           }}
         >
-          {doubled.map((item, i) => (
+          {doubled.map((key, i) => (
             <div key={i} className="flex items-center gap-5 shrink-0">
-              <span className="text-[#b5453a] text-[10px]">{item.icon}</span>
+              <span className="text-[#b5453a] text-[10px]">✦</span>
               <span className="text-[0.5625rem] tracking-[0.2em] uppercase
                 text-white/50 whitespace-nowrap font-light">
-                {item.text}
+                {t(key)}
               </span>
             </div>
           ))}

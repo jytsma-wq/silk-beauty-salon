@@ -119,7 +119,6 @@ export default async function HomePage({
       <RevealSection direction="right"><ConditionsSection /></RevealSection>
       <RevealSection direction="left"><AboutSection /></RevealSection>
       <StatisticsStrip />              {/* Already has internal motion */}
-      <TreatmentsMarquee />             {/* Second marquee — visual break */}
       <PullQuoteTestimonial />         {/* Already has internal motion */}
       <RevealSection><ConsultationCTA /></RevealSection>
     </>

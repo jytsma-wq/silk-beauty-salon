@@ -165,14 +165,6 @@ body {
   }
 }
 
-/* Smooth cursor for luxury feel */
-*, *::before, *::after {
-  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='4' fill='%23b5453a' opacity='0.6'/%3E%3C/svg%3E") 10 10, auto;
-}
-a, button, [role="button"] {
-  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='6' fill='none' stroke='%23b5453a' stroke-width='1.5'/%3E%3C/svg%3E") 12 12, pointer;
-}
-
 /* Gold text gradient for special headings */
 .text-gold-gradient {
   background: linear-gradient(135deg, #b5453a 0%, #d4706a 50%, #b5453a 100%);
@@ -292,14 +284,6 @@ a, button, [role="button"] {
   overflow: hidden;
 }
 
-.image-overlay::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(26, 26, 46, 0.8) 0%, transparent 50%);
-  pointer-events: none;
-}
-
 /* Container max width */
 .container-custom {
   max-width: 1600px;
@@ -344,13 +328,6 @@ a, button, [role="button"] {
   left: -20px;
   line-height: 1;
   pointer-events: none;
-}
-
-/* Testimonial card - borderless */
-.testimonial-card {
-  background: #ffffff;
-  padding: 2rem;
-  position: relative;
 }
 
 /* Section spacing - French luxury: extreme whitespace */
@@ -464,19 +441,6 @@ a, button, [role="button"] {
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
 
-/* Editorial card style for conditions */
-.editorial-card {
-  border: 1px solid #e0e0e0;
-  padding: 1.5rem;
-  transition: all 0.3s ease;
-  background: #ffffff;
-}
-
-.editorial-card:hover {
-  border-color: #b5453a;
-  box-shadow: 0 4px 20px rgba(181, 69, 58, 0.1);
-}
-
 /* Technology strip item */
 .tech-strip-item {
   display: flex;
@@ -555,30 +519,6 @@ select:focus-visible,
   }
 }
 
-/* Screen reader only utility */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-.sr-only:focus {
-  position: static;
-  width: auto;
-  height: auto;
-  padding: inherit;
-  margin: inherit;
-  overflow: visible;
-  clip: auto;
-  white-space: normal;
-}
-
 /* Galderma-style alternating section backgrounds */
 .section-light {
   background: #ffffff;
@@ -599,16 +539,6 @@ select:focus-visible,
   .editorial-split {
     grid-template-columns: 1fr;
   }
-}
-
-/* Galderma stat/number style */
-.stat-number {
-  font-family: var(--font-serif);
-  font-size: clamp(3rem, 7vw, 5rem);
-  font-weight: 400;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  color: #b5453a;
 }
 
 /* Galderma category pill */

@@ -137,14 +137,12 @@ export const footerQuickLinks = [
 
 // Legal links
 export const legalLinks = [
-  { name: "Terms of Use", href: "/terms" },
-  { name: "Privacy Policy", href: "/privacy" },
-  { name: "Cookie Notice", href: "/cookies" },
+  { name: "Terms & Conditions", href: "/terms-conditions" },
+  { name: "Privacy Policy", href: "/privacy-policy" },
 ];
 
-// Social links
+// Social links (source of truth: site-config.ts)
 export const socialLinks = [
-  { name: "Facebook", href: "https://facebook.com/silkbeauty", icon: "facebook" },
-  { name: "Instagram", href: "https://instagram.com/silkbeauty", icon: "instagram" },
-  { name: "YouTube", href: "https://youtube.com/silkbeauty", icon: "youtube" },
+  { name: "Facebook", href: "https://www.facebook.com/silkbeautybatumi/", icon: "facebook" },
+  { name: "Instagram", href: "https://www.instagram.com/silkbeauty_batumi/", icon: "instagram" },
 ];

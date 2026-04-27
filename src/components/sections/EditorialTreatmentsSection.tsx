@@ -163,11 +163,14 @@ export function EditorialTreatmentsSection() {
                           : { opacity: 0, x: 20 }}
                         transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
                       >
-                        <img
+                        <Image
                           src={cat.image || `https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=200&q=70`}
                           alt=""
-                          className="w-full h-full object-cover"
+                          fill
+                          className="object-cover"
                           aria-hidden="true"
+                          sizes="200px"
+                          unoptimized={cat.image?.startsWith('http')}
                         />
                       </motion.div>
 

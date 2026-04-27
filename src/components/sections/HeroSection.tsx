@@ -96,7 +96,7 @@ export function HeroSection() {
             >
               <Image
                 src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=1920&q=80"
-                alt="Luxury spa and beauty salon interior"
+                alt={t('imageAlt')}
                 fill
                 priority
                 fetchPriority="high"
@@ -122,7 +122,7 @@ export function HeroSection() {
               >
                 <Image
                   src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=1920&q=80"
-                  alt="Luxury spa and beauty salon interior"
+                  alt={t('imageAlt')}
                   fill
                   priority
                   fetchPriority="high"

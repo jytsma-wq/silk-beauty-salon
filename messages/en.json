@@ -34,7 +34,7 @@
     "subtitle": "Batumi's Premier Beauty Salon",
     "description": "Silk Beauty Salon brings together expert practitioners, cutting-edge treatments & luxury care to enhance your natural beauty with precision & confidence.",
     "heading": "Confidence in your skin is our main concern",
-    "imageAlt": "Beauty aesthetics confidence",
+    "imageAlt": "Luxury spa and beauty salon interior",
     "ctaText": "Find out how",
     "cta": {
       "book": "Book Appointment",
@@ -42,7 +42,8 @@
     },
     "eyebrow": "Silk Beauty · Batumi, Georgia",
     "exploreMore": "Explore Treatments",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "cornerDetail": "EST. 2024<br />BATUMI, GE"
   },
   "content": {
     "heading1": "Aesthetic possibilities shaped together",
@@ -125,8 +126,18 @@
     "subtitle": "Real results from real clients",
     "viewAll": "View All Testimonials"
   },
+  "pressBar": {
+    "ariaLabel": "Clinic credentials",
+    "credential1": "Award-Winning Aesthetic Clinic",
+    "credential2": "5,000+ Patients Treated",
+    "credential3": "Expert Medical Practitioners",
+    "credential4": "Batumi's Premier Aesthetic Clinic",
+    "credential5": "International Medical Standards",
+    "credential6": "Certified Aesthetic Procedures"
+  },
   "about": {
     "sectionLabel": "About Us",
+    "imageAlt": "Silk Beauty Salon",
     "category": "",
     "title": "ABOUT US",
     "description": "Our clinic is equipped with the latest state-of-the-art technologies, from advanced skin-tightening devices to non-invasive body contouring machines. We are committed to staying at the forefront of aesthetic innovation, offering treatments that deliver outstanding results with minimal downtime.",
@@ -171,7 +182,7 @@
     },
     "contact": {
       "title": "Contact",
-      "description": "Located on Zurab Gorgiladze Street 63, opening hours are 9am–6.30pm."
+      "description": "Located on Zurab Gorgiladze Street 63, opening hours are 10am–7pm."
     },
     "team": {
       "title": "Our Team",
@@ -202,7 +213,7 @@
     "email": "info@silkbeauty.ge",
     "openingHours": "Opening Hours",
     "hours": {
-      "monFri": "Mon-Fri: 9am - 6:30pm",
+      "monFri": "Mon-Fri: 10am - 7pm",
       "satSun": "Sat-Sun: 9:30am - 5pm"
     },
     "social": "Follow Us",
@@ -327,7 +338,7 @@
       },
       "convenient": {
         "title": "Convenient Location",
-        "description": "Easy access in central Tbilisi with comfortable, private treatment rooms."
+        "description": "Easy access in central Batumi with comfortable, private treatment rooms."
       }
     },
     "journey": {
@@ -357,6 +368,46 @@
       "subtitle": "Comprehensive aesthetic solutions for every concern."
     }
   },
+  "booking": {
+    "selectService": "Select Service",
+    "selectDate": "Select Date",
+    "selectTimeSlot": "Select Time Slot",
+    "fullName": "Full Name",
+    "email": "Email",
+    "phone": "Phone (Optional)",
+    "message": "Message (Optional)",
+    "servicePlaceholder": "Choose a service",
+    "namePlaceholder": "John Doe",
+    "emailPlaceholder": "john@example.com",
+    "phonePlaceholder": "+1 234 567 890",
+    "messagePlaceholder": "Any specific requirements or questions...",
+    "dialogTitle": "Book Appointment",
+    "dialogDescription": "Schedule your consultation with our expert practitioners",
+    "continue": "Continue",
+    "back": "Back",
+    "confirmBooking": "Confirm Booking",
+    "booking": "Booking...",
+    "booked": "(Booked)",
+    "slotConflict": "This time slot is already booked. Please select another time.",
+    "bookingFailed": "Failed to create booking",
+    "unexpectedError": "An unexpected error occurred. Please try again.",
+    "bookingSummary": "Booking Summary",
+    "service": "Service",
+    "date": "Date",
+    "time": "Time",
+    "bookingConfirmed": "Booking Confirmed!",
+    "thankYou": "Thank you, {name}. Your appointment has been scheduled.",
+    "bookingDetails": "Booking Details",
+    "done": "Done",
+    "serviceConsultation": "Consultation",
+    "serviceBotox": "Botox Treatment",
+    "serviceFillers": "Dermal Fillers",
+    "serviceLaser": "Laser Hair Removal",
+    "serviceRejuvenation": "Skin Rejuvenation",
+    "servicePeel": "Chemical Peel",
+    "serviceMicroneedling": "Microneedling",
+    "serviceHydrafacial": "Hydrafacial"
+  },
   "statistics": {
     "years": "Years Experience",
     "clients": "Happy Clients",
@@ -366,7 +417,8 @@
   "testimonial": {
     "quote": "The team at Silk Beauty Salon transformed my confidence. The results are natural and exactly what I envisioned.",
     "name": "Sarah Mitchell",
-    "location": "London, UK"
+    "location": "Batumi, Georgia",
+    "imageAlt": "Happy client testimonial portrait"
   },
   "aboutPage": {
     "title": "About Us",
@@ -495,7 +547,7 @@
       },
       "referral": {
         "title": "Referral Reward",
-        "description": "Refer a friend and you both receive £50 credit towards your next treatment.",
+        "description": "Refer a friend and you both receive ₾50 credit towards your next treatment.",
         "terms": "Referred friend must complete a treatment."
       },
       "seasonal": {
@@ -964,7 +1016,7 @@
     "title": "Press & Media",
     "subtitle": "Read our latest press coverage and media features",
     "breadcrumb": "Press & Media",
-    "feature1Title": "The Best Aesthetic Clinics in London",
+    "feature1Title": "The Best Aesthetic Clinics in Batumi",
     "feature1Date": "January 2024",
     "feature1Excerpt": "Silk Beauty Salon is named as one of the top aesthetic clinics in Batumi...",
     "feature2Title": "The Ultimate Guide to Non-Surgical Treatments",

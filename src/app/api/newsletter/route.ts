@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { z } from 'zod';
-import { apiRateLimit } from '@/lib/rate-limit';
+import { newsletterRateLimit } from '@/lib/rate-limit';
 import { logSecurityEvent } from '@/lib/security-logger';
 
 const schema = z.object({ email: z.string().email() });
@@ -16,8 +16,8 @@ export async function POST(request: Request) {
   const realIp = headers.get('x-real-ip');
   const ip = forwarded?.split(',')[0].trim() || realIp || 'unknown';
 
-  // Check rate limit
-  const rateLimitResult = await apiRateLimit(ip);
+  // Check rate limit (3 requests per minute per IP)
+  const rateLimitResult = await newsletterRateLimit(ip);
   if (!rateLimitResult.allowed) {
     await logSecurityEvent({
       type: 'rate_limit',

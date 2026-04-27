@@ -10,7 +10,7 @@ export function ConsultationCTA() {
   return (
     <StickySplitSection
       imageSrc="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=1200&q=80"
-      imageAlt="Consultation with aesthetic specialist"
+      imageAlt={t('imageAlt')}
       reverse={true}
     >
       {/* Section Label */}

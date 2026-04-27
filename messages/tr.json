@@ -38,12 +38,13 @@
     "eyebrow": "Silk Beauty · Batumi, Gürcistan",
     "exploreMore": "Tedavileri Keşfet",
     "scroll": "Aşağı Kaydır",
+    "cornerDetail": "KUR. 2024<br />BATUMI, GÜRCİSTAN",
     "cta": {
       "book": "Randevu Al",
       "treatments": "Tedavileri Gör"
     },
     "heading": "Cildinizdeki güven bizim ana endişemizdir",
-    "imageAlt": "Güzellik estetiği güveni",
+    "imageAlt": "Lüks spa ve güzellik salonu iç mekanı",
     "ctaText": "Nasıl olduğunu öğrenin"
   },
   "content": {
@@ -127,8 +128,18 @@
     "subtitle": "Gerçek müşterilerden gerçek sonuçlar",
     "viewAll": "Tüm Yorumları Gör"
   },
+  "pressBar": {
+    "ariaLabel": "Klinik sertifikaları",
+    "credential1": "Ödüllü Estetik Kliniği",
+    "credential2": "5,000+ Tedavi Edilen Hasta",
+    "credential3": "Uzman Tıbbi Uygulayıcılar",
+    "credential4": "Batumi'nin En İyi Estetik Kliniği",
+    "credential5": "Uluslararası Tıbbi Standartlar",
+    "credential6": "Sertifikalı Estetik Prosedürler"
+  },
   "about": {
     "sectionLabel": "Hakkımızda",
+    "imageAlt": "Silk Beauty Salon",
     "category": "Hakkımızda",
     "title": "Hastaları ön planda tutmak ve mükemmel hizmet sunmak",
     "description": "Silk Beauty Salon, en iyi sonuçları elde etmek için en son teknolojileri kullanarak minimal invaziv, öncü kozmetik ve sağlık tedavileri sunmaktadır.",
@@ -155,14 +166,6 @@
       "safetyDesc": "Güvenliğiniz en önemli önceliğimizdir",
       "innovation": "İnovasyon",
       "innovationDesc": "En son teknolojileri ve teknikleri kullanma"
-    },
-    "manifesto": {
-      "label": "Felsefemiz",
-      "statement": "Bilimin güzel cilt sanatıyla buluştuğu yer.",
-      "value1": "Keskinlik",
-      "value2": "Diskreylik",
-      "value3": "Mükemmellik",
-      "cta": "Hikayemizi keşfedin"
     }
   },
   "quickLinks": {
@@ -173,7 +176,7 @@
     },
     "contact": {
       "title": "İletişim",
-      "description": "Zurab Gorgiladze Caddesi 63 numarada yer almaktayız, çalışma saatleri 9:00 - 18:30."
+      "description": "Zurab Gorgiladze Caddesi 63 numarada yer almaktayız, çalışma saatleri 10:00 - 19:00."
     },
     "team": {
       "title": "Ekibimiz",
@@ -187,6 +190,7 @@
   },
   "consultation": {
     "title": "Danışmanlık Talep Edin",
+    "imageAlt": "Estetik uzmanıyla konsültasyon",
     "metaTitle": "Uzman Bul | Silk Beauty Salon",
     "metaDescription": "Uzman estetik pratisyenlerimizle konsültasyon rezervasyonu yapın. Geliştirilmiş doğal güzellik yolculuğunuza başlayın.",
     "label": "Kişiselleştirilmiş Bakım",
@@ -210,7 +214,7 @@
       },
       "convenient": {
         "title": "Uygun Konum",
-        "description": "Merkezi Tiflis'te konforlu, özel tedavi odalarıyla kolay erişim."
+        "description": "Merkezi Batumi'de konforlu, özel tedavi odalarıyla kolay erişim."
       }
     },
     "journey": {
@@ -245,6 +249,46 @@
       "button": "Uzman Bul"
     }
   },
+  "booking": {
+    "selectService": "Hizmet Seçin",
+    "selectDate": "Tarih Seçin",
+    "selectTimeSlot": "Saat Seçin",
+    "fullName": "Ad Soyad",
+    "email": "E-posta",
+    "phone": "Telefon (İsteğe Bağlı)",
+    "message": "Mesaj (İsteğe Bağlı)",
+    "servicePlaceholder": "Bir hizmet seçin",
+    "namePlaceholder": "Ahmet Yılmaz",
+    "emailPlaceholder": "ahmet@example.com",
+    "phonePlaceholder": "+90 555 123 4567",
+    "messagePlaceholder": "Herhangi bir özel gereksinim veya soru...",
+    "dialogTitle": "Randevu Al",
+    "dialogDescription": "Uzman uygulayıcılarımızla konsültasyonunuzu planlayın",
+    "continue": "Devam Et",
+    "back": "Geri",
+    "confirmBooking": "Rezervasyonu Onayla",
+    "booking": "Rezervasyon yapılıyor...",
+    "booked": "(Dolu)",
+    "slotConflict": "Bu saat dilimi zaten rezerve edilmiş. Lütfen başka bir saat seçin.",
+    "bookingFailed": "Rezervasyon oluşturulamadı",
+    "unexpectedError": "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.",
+    "bookingSummary": "Rezervasyon Özeti",
+    "service": "Hizmet",
+    "date": "Tarih",
+    "time": "Saat",
+    "bookingConfirmed": "Rezervasyon Onaylandı!",
+    "thankYou": "Teşekkürler, {name}. Randevunuz planlandı.",
+    "bookingDetails": "Rezervasyon Detayları",
+    "done": "Tamam",
+    "serviceConsultation": "Konsültasyon",
+    "serviceBotox": "Botoks Tedavisi",
+    "serviceFillers": "Dermal Dolgu",
+    "serviceLaser": "Lazer Epilasyon",
+    "serviceRejuvenation": "Cilt Gençleştirme",
+    "servicePeel": "Kimyasal Peeling",
+    "serviceMicroneedling": "Mikro İğneleme",
+    "serviceHydrafacial": "Hydrafacial"
+  },
   "statistics": {
     "years": "Yıllık Deneyim",
     "clients": "Mutlu Müşteri",
@@ -254,7 +298,8 @@
   "testimonial": {
     "quote": "Silk Beauty Salon ekibi özgüvenimi dönüştürdü. Sonuçlar doğal ve tam olarak hayal ettiğim gibi.",
     "name": "Sarah Mitchell",
-    "location": "Londra, Birleşik Krallık"
+    "location": "Batumi, Gürcistan",
+    "imageAlt": "Memnun müşteri portresi"
   },
   "manifesto": {
     "label": "Felsefemiz",
@@ -283,7 +328,7 @@
     "email": "info@silkbeauty.ge",
     "openingHours": "Çalışma Saatleri",
     "hours": {
-      "monFri": "Pzt-Cum: 9:00 - 18:30",
+      "monFri": "Pzt-Cum: 10:00 - 19:00",
       "satSun": "Cmt-Paz: 9:30 - 17:00"
     },
     "social": "Bizi Takip Edin",
@@ -506,7 +551,7 @@
       },
       "referral": {
         "title": "Referans Ödülü",
-        "description": "Bir arkadaşınızı davet edin ve ikiniz de bir sonraki tedaviniz için 50 £ kredi kazanın.",
+        "description": "Bir arkadaşınızı davet edin ve ikiniz de bir sonraki tedaviniz için ₾50 kredi kazanın.",
         "terms": "Davet edilen arkadaş tedaviyi tamamlamalıdır."
       },
       "seasonal": {
@@ -773,7 +818,7 @@
     "title": "Basın ve Medya",
     "subtitle": "En son basın kapsamımızı ve medya özelliklerini okuyun",
     "breadcrumb": "Basın",
-    "feature1Title": "Londra'daki En İyi Estetik Klinikler",
+    "feature1Title": "Batumi'deki En İyi Estetik Klinikler",
     "feature1Date": "Ocak 2024",
     "feature1Excerpt": "Silk Beauty Salon, Batum'daki en iyi estetik kliniklerden biri olarak adlandırıldı...",
     "feature2Title": "Cerrahi Olmayan Tedaviler için Nihai Rehber",

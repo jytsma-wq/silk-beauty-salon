@@ -2,10 +2,15 @@ import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { BeforeAfterGallery } from '@/components/gallery/BeforeAfterGallery';
 
-export const metadata: Metadata = {
-  title: 'Before & After | Silk Beauty Salon',
-  description: 'View our before and after treatment results',
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'beforeAfterPage' });
+
+  return {
+    title: t('title'),
+    description: t('subtitle'),
+  };
+}
 
 export default async function BeforeAfterPage({
   params,

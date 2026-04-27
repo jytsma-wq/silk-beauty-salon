@@ -153,8 +153,8 @@ export function CinematicHeroSection() {
         animate={{ opacity: 1 }}
         transition={{ delay: 2.8, duration: 0.6 }}
       >
-        <p className="text-[0.5rem] tracking-[0.25em] uppercase text-white/30 text-right">
-          EST. 2024<br />BATUMI, GE
+        <p className="text-[0.5rem] tracking-[0.25em] uppercase text-white/30 text-right"
+           dangerouslySetInnerHTML={{ __html: t('cornerDetail') }}>
         </p>
       </motion.div>
 

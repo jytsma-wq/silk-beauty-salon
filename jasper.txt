@@ -1,0 +1,68 @@
+PROMPT 7: Security Hardening
+Security issues found in the audit that go beyond the critical fixes in Prompt 2.
+---
+PROMPT 7: SECURITY HARDENING
+---
+ 
+Apply these security improvements to the codebase.
+ 
+SEC-1: PRISMA SCHEMA ENUMS
+In prisma/schema.prisma, BookingRequest.status and ContactSubmission.status are plain String.
+Change them to enums:
+  enum BookingStatus { PENDING CONFIRMED CANCELLED COMPLETED }
+  enum ContactStatus { NEW IN_PROGRESS RESOLVED CLOSED }
+  
+Also change date fields from String to DateTime:
+  - BookingRequest.preferredDate → preferredDate DateTime
+  - Booking.date → date DateTime
+ 
+SEC-2: CSRF TOKEN EXPOSURE
+The CSRF token is exposed in both:
+  - <meta name="csrf-token" content={csrfToken} /> (HTML meta tag)
+  - X-CSRF-Token response header
+Having it in both places is redundant and increases attack surface.
+Keep ONLY the meta tag approach (needed for client-side forms).
+Remove the X-CSRF-Token header from middleware.ts response.
+ 
+SEC-3: SUSPICIOUS ACTIVITY LOGGING
+In middleware.ts, the logSuspicious function is defined but is a no-op (commented out).
+This means suspicious requests (path traversal, SQL injection attempts, etc.) are detected
+but never logged. Implement actual logging:
+- Log to console with structured format: { timestamp, ip, path, pattern, userAgent }
+- Consider logging to a file or external service in production
+ 
+SEC-4: API RATE LIMITING
+Currently only the middleware has rate limiting for page requests.
+Add per-route rate limiting for API routes:
+  - /api/contact: 5 requests per minute per IP
+  - /api/book: 5 requests per minute per IP  
+  - /api/bookings: 10 requests per minute per IP
+  - /api/newsletter: 3 requests per minute per IP
+  - /api/csrf: 20 requests per minute per IP
+ 
+SEC-5: INPUT VALIDATION
+Add Zod schemas for ALL API route inputs:
+  - /api/contact: Validate name (string, 1-200 chars), email (email format), phone (optional, string), message (string, 1-5000 chars)
+  - /api/book: Validate name, email, service, date (valid date), time (valid time format), phone (optional)
+  - /api/newsletter: Validate email (email format)
+  Use zod v4 API (the project uses zod ^4.0.2)
+ 
+SEC-6: SECURITY HEADERS DEDUPLICATION
+Security headers are set in THREE places: next.config.ts, middleware.ts, and Caddyfile.
+Remove duplicates. The Caddyfile (reverse proxy) should be the sole source of security headers
+since it's the outermost layer. Remove security headers from next.config.ts and middleware.ts
+EXCEPT for Content-Security-Policy (which must stay in middleware for dynamic nonces).
+ 
+SEC-7: REMOVE PICSUM.PHOTOS FROM CSP
+picsum.photos is a placeholder image service. It should NOT be in the production CSP.
+Remove it from the middleware's CSP img-src directive.
+ 
+VERIFICATION:
+[ ] Prisma schema uses enums for status fields
+[ ] Date fields use DateTime type
+[ ] No X-CSRF-Token response header
+[ ] Suspicious activity is actually logged
+[ ] All API routes have rate limiting
+[ ] All API routes have Zod input validation
+[ ] Security headers not duplicated
+[ ] picsum.photos removed from CSP

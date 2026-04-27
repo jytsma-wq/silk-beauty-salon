@@ -2,7 +2,7 @@ import { Redis } from 'ioredis';
 import { getRedisClient } from './rate-limit';
 
 interface SecurityEvent {
-  type: 'rate_limit' | 'csrf_fail' | 'auth_fail' | 'xss_attempt' | 'sql_injection' | 'nosql_injection';
+  type: 'rate_limit' | 'csrf_fail' | 'auth_fail' | 'xss_attempt' | 'sql_injection' | 'nosql_injection' | 'validation_fail';
   ip: string;
   path: string;
   userAgent?: string;

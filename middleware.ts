@@ -20,14 +20,16 @@ function generateCsrfToken(): string {
 }
 
 // Build Content Security Policy header with nonce
+// Note: Other security headers are handled by reverse proxy (Caddyfile)
 function buildCSPHeader(nonce: string): string {
   const directives = [
     "default-src 'self'",
     "script-src 'self' 'nonce-" + nonce + "' 'strict-dynamic' https://www.google-analytics.com https://www.googletagmanager.com",
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https: blob:",
+    "media-src 'self' https://cdn.coverr.co https://storage.googleapis.com blob:",
     "font-src 'self'",
-    "connect-src 'self' https://www.google-analytics.com https://vitals.vercel-insights.com",
+    "connect-src 'self' https://www.google-analytics.com https://vitals.vercel-insights.com https://cdn.coverr.co",
     "frame-src 'self'",
     "object-src 'none'",
     "base-uri 'self'",
@@ -37,16 +39,6 @@ function buildCSPHeader(nonce: string): string {
   ];
   return directives.join('; ');
 }
-
-// Security headers configuration
-const SECURITY_HEADERS = {
-  'X-DNS-Prefetch-Control': 'on',
-  'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload',
-  'X-Frame-Options': 'DENY',
-  'X-Content-Type-Options': 'nosniff',
-  'Referrer-Policy': 'strict-origin-when-cross-origin',
-  'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
-};
 
 // Rate limiting - in-memory store (resets on function cold start)
 // For production with multiple instances, use Redis or Upstash
@@ -168,9 +160,20 @@ function logSuspicious(request: NextRequest, reason: string) {
   const timestamp = new Date().toISOString();
   const ip = getClientIp(request);
   const userAgent = request.headers.get('user-agent') || 'unknown';
-  
-  // In production, send to logging service (Datadog, etc.)
-  // console.log(`[SECURITY] ${timestamp} | ${reason} | IP: ${ip} | Path: ${request.nextUrl.pathname} | UA: ${userAgent.substring(0, 100)}`);
+  const path = request.nextUrl.pathname;
+
+  // Structured security logging
+  const logEntry = {
+    timestamp,
+    level: 'WARN',
+    type: 'SECURITY',
+    reason,
+    ip,
+    path,
+    userAgent: userAgent.substring(0, 100),
+  };
+
+  console.log(JSON.stringify(logEntry));
 }
 
 // Create the i18n middleware
@@ -224,7 +227,7 @@ export default function middleware(request: NextRequest) {
   // Generate nonce for CSP
   const nonce = generateNonce();
 
-  // Check if CSRF token exists, set if not
+  // Check if CSRF token exists, set if not (only in cookie, not header)
   const existingCsrfToken = request.cookies.get('csrf-token')?.value;
   if (!existingCsrfToken) {
     const csrfToken = generateCsrfToken();
@@ -235,21 +238,11 @@ export default function middleware(request: NextRequest) {
       path: '/',
       maxAge: 60 * 60 * 24, // 24 hours
     });
-    response.headers.set('X-CSRF-Token', csrfToken);
-  } else {
-    response.headers.set('X-CSRF-Token', existingCsrfToken);
+    // Note: CSRF token is NOT exposed in headers - only in httpOnly cookie and meta tag in layout
   }
 
-  // Add security headers to all responses
-  Object.entries(SECURITY_HEADERS).forEach(([key, value]) => {
-    response.headers.set(key, value);
-  });
-
-  // Add CSP header with nonce
+  // Add CSP header with nonce (other security headers handled by Caddyfile)
   response.headers.set('Content-Security-Policy', buildCSPHeader(nonce));
-
-  // Store nonce in header for client-side scripts to access
-  response.headers.set('X-Nonce', nonce);
 
   return response;
 }

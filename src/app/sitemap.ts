@@ -1,16 +1,17 @@
 import { MetadataRoute } from 'next';
 import { baseTreatmentCategories } from '@/data/treatments';
 import { getAllBlogSlugs } from '@/data/blog';
+import { locales } from '@/i18n';
 
 const BASE = 'https://www.silkbeauty.ge';
-const LOCALES = ['en','ka','ru','tr','ar','he'];
+const LOCALES = [...locales];
 const PAGES = [
   '','/about','/treatments','/conditions',
   '/pricelist','/offers','/before-after',
   '/blog','/faq','/contact-us','/book',
   '/consultation','/international-clients',
   '/privacy-policy','/terms-conditions',
-  '/careers',
+  '/careers','/media-press',
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
