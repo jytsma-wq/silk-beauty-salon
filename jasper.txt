@@ -2,132 +2,36 @@
 Console Error
 
 ## Error Message
-MISSING_MESSAGE: Could not resolve `consultation.imageAlt` in messages for locale `en`.
+INSUFFICIENT_PATH: Message at `aboutPage.awards` resolved to `object`, but only strings are supported. Use a `.` to retrieve nested messages. See https://next-intl.dev/docs/usage/translations#structuring-messages
 
 
-    at getFallbackFromErrorAndNotify (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_0oy9y-a._.js:397:23)
-    at translateBaseFn (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_0oy9y-a._.js:427:28)
-    at translateFn (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_0oy9y-a._.js:455:24)
-    at ConsultationCTA (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/src_0-3_cpo._.js:1981:19)
-    at Object.react_stack_bottom_frame (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
-    at renderWithHooks (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:24)
-    at updateFunctionComponent (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
-    at beginWork (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
-    at runWithFiberInDEV (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
-    at performUnitOfWork (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
-    at workLoopSync (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:40)
-    at renderRootSync (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
-    at performWorkOnRoot (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:186)
-    at performSyncWorkOnRoot (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10263:9)
-    at flushSyncWorkAcrossRoots_impl (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10179:316)
-    at processRootScheduleInMicrotask (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10200:106)
-    at <unknown> (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10274:158)
-    at HomePage (src\app\[locale]\page.tsx:123:22)
-
-## Code Frame
-  121 |       <StatisticsStrip />              {/* Already has int...
-  122 |       <PullQuoteTestimonial />         {/* Already has int...
-> 123 |       <RevealSection><ConsultationCTA /></RevealSection>
-      |                      ^
-  124 |     </>
-  125 |   );
-  126 | }
-
-Next.js version: 16.2.4 (Turbopack)
-
-## Error Type
-Console Error
-
-## Error Message
-A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-https://react.dev/link/hydration-mismatch
-
-  ...
-    <HTTPAccessFallbackErrorBoundary pathname="/en" notFound={<SegmentViewNode>} forbidden={undefined} ...>
-      <RedirectBoundary>
-        <RedirectErrorBoundary router={{...}}>
-          <InnerLayoutRouter url="/en" tree={[...]} params={{locale:"en"}} cacheNode={{rsc:{...}, ...}} ...>
-            <SegmentViewNode type="page" pagePath="[locale]/p...">
-              <SegmentTrieNode>
-              <HomePage>
-                <script>
-                <CinematicHeroSection>
-                <PressBar>
-                <RevealSection>
-                <RevealSection>
-                <Suspense>
-                <RevealSection>
-                <RevealSection direction="left">
-                  <motion.div className="" initial="hidden" whileInView="visible" viewport={{once:true, ...}} ...>
-                    <div className="" style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
-                      <AboutSection>
-                        <StickySplitSection imageSrc="/images/sa..." imageAlt="Silk Beaut..." reverse={false}>
-                          <section ref={{current:null}} className="grid grid-..." style={{...}}>
-                            <div
-+                             className="h-screen overflow-hidden lg:sticky lg:top-0 lg:order-1"
--                             className="h-screen overflow-hidden lg:relative lg:order-1"
-+                             style={undefined}
--                             style={{position:"relative"}}
-                            >
-                            ...
-                <StatisticsStrip>
-                <PullQuoteTestimonial>
-                <RevealSection>
-                  <motion.div className="" initial="hidden" whileInView="visible" viewport={{once:true, ...}} ...>
-                    <div className="" style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
-                      <ConsultationCTA>
-                        <StickySplitSection imageSrc={"https://..."} imageAlt="consultati..." reverse={true}>
-                          <section ref={{current:null}} className="grid grid-..." style={{...}}>
-                            <div
-+                             className="h-screen overflow-hidden lg:sticky lg:top-0 lg:order-2"
--                             className="h-screen overflow-hidden lg:relative lg:order-2"
-+                             style={undefined}
--                             style={{position:"relative"}}
-                            >
-                            ...
-            ...
-          ...
-
-
-
-    at createConsoleError (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2333:71)
-    at handleConsoleError (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:3119:54)
-    at console.error (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:3266:57)
-    at <unknown> (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:3439:25)
-    at runWithFiberInDEV (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
-    at emitPendingHydrationWarnings (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:3438:13)
-    at completeWork (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:7065:32)
-    at runWithFiberInDEV (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
-    at completeUnitOfWork (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9622:23)
-    at performUnitOfWork (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9557:28)
-    at workLoopSync (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:40)
-    at renderRootSync (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
-    at performWorkOnRoot (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:186)
-    at performSyncWorkOnRoot (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10263:9)
-    at flushSyncWorkAcrossRoots_impl (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10179:316)
-    at processRootScheduleInMicrotask (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10200:106)
-    at <unknown> (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10274:158)
-    at div (<anonymous>:null:null)
-    at StickySplitSection (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/src_0-3_cpo._.js:1881:215)
-    at AboutSection (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/src_0-3_cpo._.js:2080:214)
-    at HomePage (src\app\[locale]\page.tsx:120:39)
+    at AboutPage (src\app\[locale]\about\page.tsx:187:14)
+    at resolveErrorDev (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:1919:105)
+    at getOutlinedModel (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:1469:28)
+    at parseModelString (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:1584:50)
+    at reviveModel (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2522:66)
+    at parseModel (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2517:16)
+    at initializeModelChunk (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:1084:25)
+    at getOutlinedModel (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:1407:17)
+    at parseModelString (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:1639:50)
+    at reviveModel (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2522:66)
+    at reviveModel (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2525:61)
+    at parseModel (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2517:16)
+    at initializeModelChunk (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:1084:25)
+    at resolveConsoleEntry (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2047:96)
+    at processFullStringRow (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2453:17)
+    at processFullBinaryRow (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2393:9)
+    at processBinaryChunk (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2502:221)
+    at progress (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2676:20)
+    at AboutPage (<anonymous>:null:null)
 
 ## Code Frame
-  118 | ...tmentsMarquee />
-  119 | ...alSection direction="right"><ConditionsSection /></Reve...
-> 120 | ...alSection direction="left"><AboutSection /></RevealSect...
-      |                               ^
-  121 | ...isticsStrip />              {/* Already has internal mo...
-  122 | ...QuoteTestimonial />         {/* Already has internal mo...
-  123 | ...alSection><ConsultationCTA /></RevealSection>
+  185 |         <div className="container-custom text-center">
+  186 |           <h2 className="text-3xl font-serif font-semibold...
+> 187 |             {t('awards')}
+      |              ^
+  188 |           </h2>
+  189 |           <div className="flex flex-wrap justify-center ga...
+  190 |             {[
 
 Next.js version: 16.2.4 (Turbopack)

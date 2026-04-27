@@ -184,7 +184,7 @@ export default async function AboutPage({
       <section className="section-spacing bg-[#f7f4f0]">
         <div className="container-custom text-center">
           <h2 className="text-3xl font-serif font-semibold text-[#1c1c1c] mb-8">
-            {t('awards')}
+            {t('awards.title')}
           </h2>
           <div className="flex flex-wrap justify-center gap-8 mb-8">
             {[
