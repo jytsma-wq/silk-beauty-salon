@@ -20,23 +20,23 @@ export function PressBar() {
 
   return (
     <div
-      className="bg-[#1c1c1c] py-3.5 overflow-hidden"
+      className="bg-[#1c1c1c] py-5 overflow-hidden"
       aria-label={t('ariaLabel')}
     >
       <div className="flex">
         <motion.div
-          className="flex shrink-0 gap-12 items-center"
+          className="flex shrink-0 gap-16 items-center"
           animate={shouldReduceMotion ? {} : { x: ['0%', '-50%'] }}
           transition={shouldReduceMotion ? {} : {
-            duration: 28,
+            duration: 20,
             ease: 'linear',
             repeat: Infinity,
           }}
         >
           {doubled.map((key, i) => (
-            <div key={i} className="flex items-center gap-5 shrink-0">
-              <span className="text-[#b5453a] text-[10px]">✦</span>
-              <span className="text-[0.5625rem] tracking-[0.2em] uppercase
+            <div key={i} className="flex items-center gap-6 shrink-0">
+              <span className="text-[#b5453a] text-sm">✦</span>
+              <span className="text-xs tracking-[0.2em] uppercase
                 text-white/50 whitespace-nowrap font-light">
                 {t(key)}
               </span>
