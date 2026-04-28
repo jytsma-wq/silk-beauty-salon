@@ -20,6 +20,7 @@ export function PressBar() {
     <div
       className="bg-[#1c1c1c] py-5 overflow-hidden"
       aria-label={t('ariaLabel')}
+      suppressHydrationWarning
     >
       <div className="flex animate-marquee">
         {tripled.map((key, i) => (
