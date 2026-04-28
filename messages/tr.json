@@ -410,6 +410,18 @@
   "beforeAfterPage": {
     "title": "Öncesi ve Sonrası",
     "subtitle": "Tedavilerimizin gerçek sonuçlarını görün. Uzman estetik tedavilerimizle görünümünüzü dönüştürün.",
+    "sectionLabel": "Gerçek Sonuçlar",
+    "before": "Öncesi",
+    "after": "Sonrası",
+    "disclaimer": "Bireysel sonuçlar değişiklik gösterebilir. Tüm fotoğraflar gerçek müşterilerin izniyle gösterilmiştir.",
+    "comingSoon": "Galeri Çok Yakında",
+    "galleryDescription": "Öncesi ve sonrası galerimizi hazırlıyoruz. Yakında tekrar kontrol edin.",
+    "duration": "Sonuçların süresi",
+    "sessions": "Seanslar",
+    "concerns": "Çözülen sorunlar",
+    "results": "Elde edilen sonuçlar",
+    "seeMoreResults": "Tüm sonuçları gör",
+    "filter": "Tedaviye göre filtrele",
     "ctaTitle": "Görünümünüzü Dönüştürmeye Hazır mısınız?",
     "ctaText": "Tedavi hedeflerinizi tartışmak için uzman pratisyenlerimizden biriyle konsültasyon randevusu alın",
     "bookNow": "Randevu Al"

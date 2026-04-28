@@ -130,10 +130,12 @@ const galleryData: BeforeAfterItem[] = [
 ];
 
 interface EnhancedBeforeAfterProps {
-  locale: string;
+  locale?: string;
   showFilters?: boolean;
   maxItems?: number;
 }
+
+const CATEGORIES = ['All', 'Botox', 'Dermal Fillers', 'Skin Boosters', 'Jawline', 'Skin'];
 
 export function EnhancedBeforeAfter({ 
   locale: _locale, 
@@ -143,11 +145,18 @@ export function EnhancedBeforeAfter({
   const t = useTranslations('gallery');
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedTreatment, setSelectedTreatment] = useState<string | null>(null);
+  const [activeFilter, setActiveFilter] = useState('All');
   const [showInfo, setShowInfo] = useState(false);
 
-  const filteredItems = selectedTreatment
-    ? galleryData.filter(item => item.treatment === selectedTreatment)
-    : galleryData;
+  const filteredItems = activeFilter === 'All'
+    ? (selectedTreatment ? galleryData.filter(item => item.treatment === selectedTreatment) : galleryData)
+    : galleryData.filter(item =>
+        item.treatment.toLowerCase().includes(activeFilter.toLowerCase()) ||
+        (activeFilter === 'Botox' && (item.treatment.includes('Botox') || item.treatment.includes('Frown') || item.treatment.includes('Anti-Wrinkle'))) ||
+        (activeFilter === 'Dermal Fillers' && (item.treatment.includes('Fillers') || item.treatment.includes('Lip') || item.treatment.includes('Chin') || item.treatment.includes('Jaw'))) ||
+        (activeFilter === 'Skin Boosters' && item.treatment.includes('Skinbooster')) ||
+        (activeFilter === 'Skin' && (item.treatment.includes('Skin') || item.treatment.includes('PRP')))
+      );
 
   const displayItems = filteredItems.slice(0, maxItems);
   const currentItem = displayItems[activeIndex];
@@ -184,8 +193,28 @@ export function EnhancedBeforeAfter({
         </div>
       </div>
 
-      {/* Treatment Filters */}
+      {/* Category Filter Tabs */}
       {showFilters && (
+        <div className="flex flex-wrap gap-2 mb-8">
+          {CATEGORIES.map(cat => (
+            <button
+              key={cat}
+              onClick={() => { setActiveFilter(cat); setActiveIndex(0); setSelectedTreatment(null); }}
+              className={cn(
+                'text-[0.625rem] tracking-[0.15em] uppercase px-4 py-2 border transition-colors',
+                activeFilter === cat
+                  ? 'bg-[#1c1c1c] text-white border-[#1c1c1c]'
+                  : 'bg-transparent text-gray-600 border-gray-300 hover:border-[#1c1c1c]'
+              )}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Treatment Filters */}
+      {showFilters && activeFilter === 'All' && (
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => {
@@ -396,7 +425,7 @@ export function EnhancedBeforeAfter({
       {/* CTA */}
       <div className="text-center">
         <Link
-          href="/gallery"
+          href="/before-after"
           className="inline-flex items-center gap-2 text-[#b5453a] hover:underline font-medium"
         >
           {t('seeMoreResults', { defaultValue: 'See more results' })}

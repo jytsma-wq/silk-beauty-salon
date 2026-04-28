@@ -295,6 +295,18 @@
   "beforeAfterPage": {
     "title": "Before & After",
     "subtitle": "See the real results from our treatments. Transform your look with our expert aesthetic treatments.",
+    "sectionLabel": "Real Results",
+    "before": "Before",
+    "after": "After",
+    "disclaimer": "Individual results may vary. All photos are of real clients shown with their consent.",
+    "comingSoon": "Gallery Coming Soon",
+    "galleryDescription": "We are preparing our before and after gallery. Check back soon.",
+    "duration": "Results duration",
+    "sessions": "Sessions",
+    "concerns": "Concerns addressed",
+    "results": "Results achieved",
+    "seeMoreResults": "See all results",
+    "filter": "Filter by treatment",
     "ctaTitle": "Ready to Transform Your Look?",
     "ctaText": "Book a consultation with one of our expert practitioners to discuss your treatment goals",
     "bookNow": "Book Now"

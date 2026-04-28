@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
-import { BeforeAfterGallery } from '@/components/gallery/BeforeAfterGallery';
+import { EnhancedBeforeAfter } from '@/components/gallery/EnhancedBeforeAfter';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -23,12 +23,15 @@ export default async function BeforeAfterPage({
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="bg-[#1c1c1c] text-white py-16 md:py-24">
+      <section className="pt-32 pb-16 bg-white">
         <div className="container-custom">
-          <h1 className="font-serif text-4xl md:text-5xl font-semibold mb-4">
+          <div className="section-label mb-6">
+            <span>{t('sectionLabel', { defaultValue: 'Real Results' })}</span>
+          </div>
+          <h1 className="font-serif text-5xl md:text-6xl font-light tracking-tight text-gray-900 mb-6">
             {t('title')}
           </h1>
-          <p className="text-lg text-white/80 max-w-2xl">
+          <p className="text-lg text-gray-500 max-w-2xl leading-relaxed">
             {t('subtitle')}
           </p>
         </div>
@@ -37,7 +40,7 @@ export default async function BeforeAfterPage({
       {/* Gallery Section */}
       <section className="py-12 md:py-16">
         <div className="container-custom">
-          <BeforeAfterGallery locale={locale} />
+          <EnhancedBeforeAfter showFilters={true} maxItems={8} />
         </div>
       </section>
 
