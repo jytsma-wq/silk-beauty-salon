@@ -16,7 +16,8 @@ const CREDENTIAL_KEYS = [
 export function PressBar() {
   const t = useTranslations('pressBar');
   const shouldReduceMotion = useReducedMotion();
-  const doubled = [...CREDENTIAL_KEYS, ...CREDENTIAL_KEYS];
+  // Triple the items to ensure seamless infinite scroll on all screen widths
+  const tripled = [...CREDENTIAL_KEYS, ...CREDENTIAL_KEYS, ...CREDENTIAL_KEYS];
 
   return (
     <div
@@ -26,15 +27,16 @@ export function PressBar() {
       <div className="flex">
         <motion.div
           className="flex shrink-0 gap-16 items-center"
-          animate={shouldReduceMotion ? {} : { x: ['0%', '-50%'] }}
+          animate={shouldReduceMotion ? {} : { x: ['0%', '-33.333%'] }}
           transition={shouldReduceMotion ? {} : {
             duration: 20,
             ease: 'linear',
             repeat: Infinity,
+            repeatType: 'loop',
           }}
         >
-          {doubled.map((key, i) => (
-            <div key={i} className="flex items-center gap-6 shrink-0">
+          {tripled.map((key, i) => (
+            <div key={`${key}-${i}`} className="flex items-center gap-6 shrink-0">
               <span className="text-[#b5453a] text-sm">✦</span>
               <span className="text-xs tracking-[0.2em] uppercase
                 text-white/50 whitespace-nowrap font-light">
