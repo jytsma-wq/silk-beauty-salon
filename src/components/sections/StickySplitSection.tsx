@@ -106,6 +106,7 @@ export function StickySplitSection({
         className={`relative h-screen overflow-hidden ${
           isStickySupported && !isMobile ? 'lg:sticky lg:top-0' : 'lg:relative'
         } ${reverse ? 'lg:order-2' : 'lg:order-1'}`}
+        style={{ position: 'relative' }}
       >
         {/* Image with clip-path reveal and parallax */}
         <div className="absolute inset-0" style={clipPathStyle}>
