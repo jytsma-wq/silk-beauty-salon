@@ -1751,7 +1751,16 @@
       "a3": "İptaller için 48 saat önceden haber verilmesini gerektiriyoruz. Geç iptaller depozito kaybına neden olabilir.",
       "q4": "Randevumu yeniden planlayabilir miyim?",
       "a4": "Evet, randevunuzu planlanan saatten 24 saat önce yeniden planlayabilirsiniz. Lütfen yeni bir zaman ayarlamak için telefon veya e-posta ile bize ulaşın."
-    }
+    },
+    "preferredTime": "Tercih Edilen Zaman",
+    "selectTime": "Bir zaman aralığı seçin",
+    "morning": "Sabah",
+    "afternoon": "Öğleden sonra",
+    "evening": "Akşam",
+    "additionalNotes": "Ek Notlar",
+    "notesPlaceholder": "Bilmemiz gereken herhangi bir özel istek veya bilgi...",
+    "requestBooking": "Rezervasyon İste",
+    "bookingNote": "Randevunuzu 24 saat içinde onaylayacağız"
   },
   "accessibility": {
     "skipToContent": "Ana içeriğe geç",
