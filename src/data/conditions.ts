@@ -236,6 +236,124 @@ export const baseConditions: Condition[] = [
     ]
   },
   {
+    name: "Dry Skin",
+    slug: "dry-skin",
+    description: "Dry skin, also known as xerosis, is a common condition characterized by a lack of moisture and natural oils in the skin. This can lead to tightness, flaking, rough texture, and even cracking or bleeding in severe cases. Dry skin can affect anyone but becomes more common with age as oil production decreases. Environmental factors like cold weather, low humidity, harsh soaps, and hot showers can worsen the condition. Our clinic offers comprehensive hydration treatments including medical-grade facials, skin boosters, and personalized skincare protocols to restore your skin's moisture barrier and achieve a healthy, glowing complexion.",
+    shortDescription: "Restore hydration and achieve smooth, glowing skin with our targeted dry skin treatments.",
+    image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80",
+    symptoms: [
+      "Tight, uncomfortable feeling after cleansing",
+      "Flaking or peeling skin",
+      "Rough, sandpaper-like texture",
+      "Fine lines appearing more prominent",
+      "Itching or irritation",
+      "Dull, lackluster complexion",
+      "Redness or inflammation"
+    ],
+    causes: [
+      "Decreased oil production with age",
+      "Cold, dry weather conditions",
+      "Low indoor humidity",
+      "Hot showers and baths",
+      "Harsh soaps and cleansers",
+      "Dehydration and poor diet",
+      "Genetic predisposition",
+      "Certain medications"
+    ],
+    treatments: [
+      "HydraFacial for deep hydration",
+      "Skin booster injections (Profhilo, Volite)",
+      "Medical-grade moisturizing facials",
+      "Customized skincare protocols",
+      "Humectant-rich professional treatments"
+    ],
+    relatedTreatments: [
+      "is-clinical-fire-ice-peel",
+      "filter-facial",
+      "profhilo-body",
+      "clear-brilliant",
+      "obagi-nu-derm"
+    ]
+  },
+  {
+    name: "Fine Lines & Wrinkles",
+    slug: "fine-lines-wrinkles",
+    description: "Fine lines and wrinkles are among the earliest signs of aging, typically appearing first around the eyes (crow's feet), forehead, and between the brows. These creases form due to repeated facial expressions, collagen breakdown, and decreased skin elasticity. Fine lines are shallow and often disappear when the face is at rest, while deeper wrinkles remain visible. Our clinic offers a range of preventative and corrective treatments including anti-wrinkle injections, skin boosters, collagen-stimulating treatments, and advanced skincare to smooth existing lines and prevent new ones from forming.",
+    shortDescription: "Smooth and prevent fine lines with our anti-wrinkle treatments and skincare solutions.",
+    image: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80",
+    symptoms: [
+      "Expression lines around eyes (crow's feet)",
+      "Forehead lines when raising eyebrows",
+      "Frown lines between brows",
+      "Lines around mouth (smoker's lines)",
+      "Crepey texture on cheeks",
+      "Deepening nasolabial folds"
+    ],
+    causes: [
+      "Repeated facial muscle contractions",
+      "Decreased collagen production",
+      "Loss of skin elasticity",
+      "Sun damage and UV exposure",
+      "Dehydration",
+      "Smoking and alcohol consumption",
+      "Poor sleep habits",
+      "Genetic factors"
+    ],
+    treatments: [
+      "Anti-wrinkle injections (Botox)",
+      "Skin boosters for hydration",
+      "Collagen-stimulating treatments",
+      "Laser skin resurfacing",
+      "Medical-grade retinoid skincare"
+    ],
+    relatedTreatments: [
+      "anti-wrinkle",
+      "morpheus-8-treatment",
+      "thermage-flx",
+      "cutera-c02-laser",
+      "hifu-treatment"
+    ]
+  },
+  {
+    name: "Loss of Firmness",
+    slug: "loss-of-firmness",
+    description: "Loss of skin firmness occurs when the skin's support structure weakens due to decreased collagen and elastin production. This leads to sagging, particularly around the jawline, cheeks, neck, and eyelids. The skin may feel looser and less resilient when pinched. While this is a natural part of aging, factors like sun damage, weight fluctuations, and lifestyle choices can accelerate the process. Our clinic offers advanced skin tightening treatments including HIFU, radiofrequency, thread lifts, and collagen-stimulating procedures to restore firmness and lift sagging areas without surgery.",
+    shortDescription: "Lift and tighten sagging skin with our advanced skin firming treatments.",
+    image: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80",
+    symptoms: [
+      "Sagging jawline (jowls)",
+      "Loose skin on cheeks",
+      "Drooping eyelids",
+      "Turkey neck appearance",
+      "Loss of facial contour definition",
+      "Skin that doesn't bounce back when pinched"
+    ],
+    causes: [
+      "Decreased collagen and elastin production",
+      "Breakdown of existing collagen fibers",
+      "Sun damage accelerating aging",
+      "Significant weight loss",
+      "Natural aging process",
+      "Poor skincare habits",
+      "Smoking reducing blood flow to skin",
+      "Genetic predisposition to sagging"
+    ],
+    treatments: [
+      "HIFU non-surgical lifting",
+      "Radiofrequency skin tightening",
+      "PDO thread lifts",
+      "Collagen-stimulating injections",
+      "Morpheus8 RF microneedling"
+    ],
+    relatedTreatments: [
+      "hifu-treatment",
+      "thermage-flx",
+      "morpheus-8-treatment",
+      "mint-pdo-thread-lift",
+      "nanothreads"
+    ]
+  },
+  {
     name: "Other Conditions",
     slug: "other-conditions",
     description: "Beyond the common concerns, our clinic treats a wide range of other skin and aesthetic conditions. These include rosacea, vascular lesions, excessive sweating (hyperhidrosis), teeth grinding (bruxism), migraines, and various skin texture concerns. We also offer treatments for specific areas such as the delicate eye area, neck, and hands. Our comprehensive consultation process ensures we understand your unique concerns and can recommend the most appropriate treatments from our extensive range of services.",

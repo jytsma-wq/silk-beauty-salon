@@ -23,16 +23,16 @@ export const skinConcerns: NavCategory = {
   href: "/conditions",
   image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80",
   items: [
-    { name: "Fine Lines & Wrinkles", slug: "fine-lines-wrinkles", href: "/conditions/ageing-skin", description: "Address signs of aging" },
-    { name: "Loss of Firmness", slug: "loss-of-firmness", href: "/conditions/ageing-skin", description: "Tighten and lift skin" },
+    { name: "Fine Lines & Wrinkles", slug: "fine-lines-wrinkles", href: "/conditions/fine-lines-wrinkles", description: "Address signs of aging" },
+    { name: "Loss of Firmness", slug: "loss-of-firmness", href: "/conditions/loss-of-firmness", description: "Tighten and lift skin" },
     { name: "Facial Contouring", slug: "facial-contouring", href: "/treatments/jaw-fillers", description: "Define facial structure" },
     { name: "Loss of Radiance", slug: "loss-of-radiance", href: "/conditions/uneven-skin-tone", description: "Restore glow" },
     { name: "Loss of Volume", slug: "loss-of-volume", href: "/treatments/cheek-fillers", description: "Restore youthful fullness" },
     { name: "Under Eye Dark Circles", slug: "under-eye-dark-circles", href: "/treatments/tear-trough", description: "Refresh tired eyes" },
-    { name: "Dry Skin", slug: "dry-skin", href: "/conditions", description: "Hydrate and nourish" },
+    { name: "Dry Skin", slug: "dry-skin", href: "/conditions/dry-skin", description: "Hydrate and nourish" },
     { name: "Acne & Scarring", slug: "acne-scarring", href: "/conditions/acne-scarring", description: "Clear skin and smooth scars" },
     { name: "Uneven Skin Tone", slug: "uneven-skin-tone", href: "/conditions/uneven-skin-tone", description: "Brighten complexion" },
-    { name: "Pigmentation", slug: "pigmentation", href: "/conditions/uneven-skin-tone", description: "Reduce dark spots" },
+    { name: "Pigmentation", slug: "pigmentation", href: "/conditions/pigmentation", description: "Reduce dark spots" },
   ],
 };
 
