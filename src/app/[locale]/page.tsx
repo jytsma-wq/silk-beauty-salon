@@ -2,7 +2,6 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import { CinematicHeroSection } from '@/components/sections/CinematicHeroSection';
-import { PressBar } from '@/components/sections/PressBar';
 import { BrandManifestoSection } from '@/components/sections/BrandManifestoSection';
 import { RevealSection } from '@/components/ui/RevealSection';
 import { EditorialTreatmentsSection } from '@/components/sections/EditorialTreatmentsSection';
@@ -113,7 +112,6 @@ export default async function HomePage({
     <>
       <JsonLd schema={generateLocalBusinessSchema(locale)} />
       <CinematicHeroSection />          {/* Video + kinetic text */}
-      <PressBar />                      {/* Dark credential ticker */}
       <RevealSection><BrandManifestoSection /></RevealSection>
       <RevealSection direction="left"><EditorialTreatmentsSection /></RevealSection>
       <TreatmentsMarquee />

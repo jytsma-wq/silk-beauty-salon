@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { BookingButton } from '@/components/booking-button';
 import { treatmentCategories, skinConcerns, botoxTreatments, laserTreatments } from '@/data/navigation';
+import { PressBar } from '@/components/sections/PressBar';
 
 export function GaldermaHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -19,6 +20,9 @@ export function GaldermaHeader() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white">
+      {/* Press Bar - Scrolling credentials ticker */}
+      <PressBar />
+
       {/* Top Bar - Logo, Social, Utility Links */}
       <div className="border-b border-gray-200">
         <div className="container-custom">
