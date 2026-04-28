@@ -32,9 +32,9 @@ export function StickySplitSection({
     checkMobile();
     window.addEventListener('resize', checkMobile);
 
-    // Check sticky support after mount
+    // Check sticky support after mount (deferred to prevent cascading renders)
     const stickySupported = typeof CSS !== 'undefined' && CSS.supports('position', 'sticky');
-    setIsStickySupported(stickySupported);
+    queueMicrotask(() => setIsStickySupported(stickySupported));
 
     return () => window.removeEventListener('resize', checkMobile);
   }, []);

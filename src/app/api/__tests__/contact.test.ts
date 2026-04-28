@@ -27,6 +27,7 @@ vi.mock('@/lib/csrf', () => ({
 
 vi.mock('@/lib/rate-limit', () => ({
   strictRateLimit: vi.fn().mockResolvedValue({ allowed: true, limit: 5, remaining: 4, resetTime: Date.now() + 60000 }),
+  contactRateLimit: vi.fn().mockResolvedValue({ allowed: true, limit: 5, remaining: 4, resetTime: Date.now() + 60000 }),
 }));
 
 vi.mock('@/lib/security-logger', () => ({
