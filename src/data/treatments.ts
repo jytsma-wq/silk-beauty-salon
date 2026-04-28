@@ -300,6 +300,146 @@ export const baseTreatmentCategories: TreatmentCategory[] = [
           { question: "Will I still be able to smile naturally?", answer: "Absolutely. The treatment softens the lines while preserving your natural facial expressions and movement." },
           { question: "Is this treatment painful?", answer: "Most patients experience minimal discomfort. We use fillers with built-in anesthetic and can apply numbing cream." }
         ]
+      },
+      {
+        name: "Temple Fillers",
+        slug: "temple-fillers",
+        description: "Temple fillers restore volume to the temples, an often-overlooked area that significantly impacts facial harmony. As we age, the temples can become hollow, creating a skeletal appearance and emphasizing other aging features. Dermal fillers in this area create a smoother transition from the forehead to the cheek, restoring youthful contours and balancing facial proportions.",
+        shortDescription: "Restore volume to hollow temples for balanced facial contours.",
+        image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80",
+        price: "From ₾300",
+        duration: "30 minutes",
+        benefits: [
+          "Restores volume to hollow temples",
+          "Creates smoother facial contours",
+          "Balances facial proportions",
+          "Natural-looking results",
+          "Results last 12-18 months"
+        ],
+        howItWorks: "Hyaluronic acid filler is carefully injected into the temple area to restore lost volume. The treatment creates a smooth transition between the forehead and cheeks, enhancing overall facial harmony.",
+        aftercare: "Avoid touching the area for 24 hours. Sleep on your back for the first few nights. Avoid strenuous exercise for 24-48 hours.",
+        faqs: [
+          { question: "Will people notice I've had temple fillers?", answer: "No, when done properly, temple fillers create subtle, natural-looking improvements that enhance your features without looking obvious." },
+          { question: "How long do results last?", answer: "Results typically last 12-18 months, depending on the type of filler used and your individual metabolism." }
+        ]
+      },
+      {
+        name: "Neck Rejuvenation",
+        slug: "neck-rejuvenation",
+        description: "Neck rejuvenation treatments address the signs of aging that often appear in the neck area, including horizontal lines, vertical bands, and skin laxity. Using a combination of Botox and dermal fillers, we can smooth lines, relax prominent neck bands, and restore a more youthful neck contour that matches your rejuvenated face.",
+        shortDescription: "Smooth lines and restore youthful contours to the neck.",
+        image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80",
+        price: "From ₾400",
+        duration: "30-45 minutes",
+        benefits: [
+          "Smooths horizontal neck lines",
+          "Relaxes prominent neck bands",
+          "Restores youthful neck contour",
+          "Non-surgical treatment",
+          "Minimal downtime"
+        ],
+        howItWorks: "Botox is injected into the platysma muscles to relax vertical neck bands, while dermal fillers address horizontal lines and restore volume. This combined approach creates comprehensive neck rejuvenation.",
+        aftercare: "Avoid lying down for 4 hours. Avoid exercise for 24 hours. Keep head elevated when sleeping for the first few nights.",
+        faqs: [
+          { question: "How long until I see results?", answer: "Initial results from Botox appear within 3-7 days, with filler results visible immediately. Full results are apparent after 2 weeks." },
+          { question: "Can this help with a 'turkey neck'?", answer: "Yes, neck rejuvenation can significantly improve the appearance of lax skin and prominent bands in the neck area." }
+        ]
+      },
+      {
+        name: "Décolletage Treatment",
+        slug: "decolletage-treatment",
+        description: "The décolletage area is often one of the first places to show signs of aging, with wrinkles, crepey skin, and sun damage becoming visible. Our décolletage treatments use a combination of skin boosters, microneedling, and specialized skincare to restore smoothness, hydration, and a youthful appearance to this delicate area.",
+        shortDescription: "Restore smooth, youthful skin to the décolletage area.",
+        image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80",
+        price: "From ₾350",
+        duration: "45-60 minutes",
+        benefits: [
+          "Smooths chest wrinkles",
+          "Improves skin texture",
+          "Restores hydration",
+          "Reduces sun damage appearance",
+          "Creates youthful décolletage"
+        ],
+        howItWorks: "A combination of skin boosters and microneedling stimulates collagen production and deeply hydrates the skin. This dual approach addresses both texture and volume loss in the décolletage area.",
+        aftercare: "Avoid sun exposure for 48 hours. Apply SPF 30+ daily. Avoid hot showers and saunas for 24 hours. Keep the area moisturized.",
+        faqs: [
+          { question: "How many treatments will I need?", answer: "Most patients benefit from a series of 3 treatments spaced 4-6 weeks apart for optimal results." },
+          { question: "Is there downtime?", answer: "There may be mild redness for 24-48 hours, but most patients can resume normal activities immediately." }
+        ]
+      },
+      {
+        name: "Hand Rejuvenation",
+        slug: "hand-rejuvenation",
+        description: "Hands often reveal our age before our face does, with visible veins, tendons, and volume loss becoming prominent over time. Hand rejuvenation uses dermal fillers to restore volume, minimizing the appearance of veins and tendons while creating smooth, youthful-looking hands that match your rejuvenated appearance.",
+        shortDescription: "Restore volume and youthfulness to aging hands.",
+        image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80",
+        price: "From ₾400",
+        duration: "30-45 minutes",
+        benefits: [
+          "Restores volume to hands",
+          "Minimizes visible veins",
+          "Reduces tendon prominence",
+          "Creates youthful appearance",
+          "Long-lasting results"
+        ],
+        howItWorks: "Dermal fillers are carefully injected beneath the skin on the back of the hands to restore lost volume. This creates a cushioning effect that minimizes the appearance of veins and tendons.",
+        aftercare: "Avoid strenuous hand activities for 24 hours. Apply ice to reduce swelling. Avoid extreme temperatures for 48 hours. Results are immediate with final results after 1-2 weeks.",
+        faqs: [
+          { question: "Will I still be able to use my hands normally?", answer: "Yes, the fillers are placed in a way that doesn't affect hand function. You can resume normal activities after 24 hours." },
+          { question: "How long do results last?", answer: "Hand rejuvenation results typically last 12-18 months, making it a long-lasting treatment for this area." }
+        ]
+      }
+    ]
+  },
+  {
+    name: "Body Contouring",
+    slug: "body-contouring",
+    description: "Advanced non-surgical treatments for sculpting and contouring the body, addressing stubborn fat, skin laxity, and cellulite.",
+    image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80",
+    treatments: [
+      {
+        name: "Endolift Body",
+        slug: "endolift-body",
+        description: "Endolift is an innovative minimally invasive laser treatment that targets stubborn fat and tightens skin on the body. The laser fiber is inserted beneath the skin through tiny incisions, delivering energy that melts fat and stimulates collagen production. It's excellent for treating areas like the abdomen, arms, thighs, and knees with minimal downtime compared to traditional liposuction.",
+        shortDescription: "Minimally invasive laser for fat reduction and skin tightening on the body.",
+        image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80",
+        price: "From ₾2,000",
+        duration: "60-120 minutes",
+        benefits: [
+          "Targets stubborn fat",
+          "Tightens loose skin",
+          "Minimally invasive",
+          "Immediate results",
+          "Continued improvement over months"
+        ],
+        howItWorks: "A microfiber laser is inserted beneath the skin to directly target fat cells and stimulate collagen. The laser energy melts fat which is then naturally eliminated by the body while simultaneously tightening the skin.",
+        aftercare: "Wear compression garment for 1-2 weeks. Avoid strenuous exercise for 1 week. Results improve over 3-6 months as collagen builds.",
+        faqs: [
+          { question: "What areas can be treated?", answer: "Endolift can treat abdomen, flanks, arms, inner thighs, knees, and other areas with localized fat and skin laxity." },
+          { question: "Is it like liposuction?", answer: "Endolift is less invasive than traditional liposuction, with smaller incisions and the added benefit of skin tightening from the laser energy." }
+        ]
+      },
+      {
+        name: "Body Skin Tightening",
+        slug: "body-skin-tightening",
+        description: "Our body skin tightening treatments use radiofrequency and ultrasound technology to stimulate collagen production and firm loose skin on the body. This non-invasive treatment is perfect for addressing skin laxity after weight loss, pregnancy, or due to aging, without the need for surgery.",
+        shortDescription: "Non-invasive treatment to firm and tighten loose body skin.",
+        image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80",
+        price: "From ₾350",
+        duration: "45-90 minutes",
+        benefits: [
+          "Firms loose skin",
+          "Stimulates collagen",
+          "Non-invasive",
+          "No downtime",
+          "Gradual, natural results"
+        ],
+        howItWorks: "Radiofrequency or ultrasound energy is delivered deep into the skin to heat tissue and stimulate collagen and elastin production. This process naturally tightens and firms the skin over time.",
+        aftercare: "No downtime required. Stay hydrated. Results develop over 2-3 months as collagen builds. Multiple sessions recommended for optimal results.",
+        faqs: [
+          { question: "How many sessions will I need?", answer: "Most patients need 4-6 sessions spaced 2-4 weeks apart for optimal results, followed by maintenance treatments." },
+          { question: "Does it hurt?", answer: "The treatment is generally comfortable. You may feel a warming sensation as the energy is delivered to the deeper layers of skin." }
+        ]
       }
     ]
   },
