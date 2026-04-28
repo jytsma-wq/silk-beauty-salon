@@ -985,3 +985,18 @@ select:focus-visible,
   margin: 0 auto;
   max-width: 200px;
 }
+
+/* 11. PRESS BAR MARQUEE ANIMATION */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+  will-change: transform;
+}
