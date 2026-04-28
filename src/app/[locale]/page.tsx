@@ -8,6 +8,7 @@ import { RevealSection } from '@/components/ui/RevealSection';
 import { EditorialTreatmentsSection } from '@/components/sections/EditorialTreatmentsSection';
 import { StatisticsStrip } from '@/components/sections/StatisticsStrip';
 import { PullQuoteTestimonial } from '@/components/sections/PullQuoteTestimonial';
+import { BeforeAfterTeaser } from '@/components/sections/BeforeAfterTeaser';
 import { ConsultationCTA } from '@/components/sections/ConsultationCTA';
 import { AboutSection } from '@/components/sections/AboutSection';
 import { JsonLd, generateLocalBusinessSchema } from '@/components/seo/JsonLd';
@@ -120,6 +121,7 @@ export default async function HomePage({
       <RevealSection direction="left"><AboutSection /></RevealSection>
       <StatisticsStrip />              {/* Already has internal motion */}
       <PullQuoteTestimonial />         {/* Already has internal motion */}
+      <RevealSection><BeforeAfterTeaser /></RevealSection>
       <RevealSection><ConsultationCTA /></RevealSection>
     </>
   );
