@@ -1,0 +1,555 @@
+openapi: 3.0.0
+info:
+  title: Silk Beauty Salon API
+  description: |
+    RESTful API for Silk Beauty Salon application.
+    
+    ## Authentication
+    No authentication required for public endpoints.
+    
+    ## Rate Limiting
+    - Form submissions: 5 requests per 15 minutes
+    - Data fetching: 100 requests per minute
+    
+    ## Standards
+    - RESTful conventions
+    - JSON request/response
+    - UTF-8 encoding
+    - ISO 8601 dates
+    - Proper HTTP status codes
+  version: 1.0.0
+  contact:
+    name: Silk Beauty Salon Support
+    email: api@silkbeautysalon.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://silkbeautysalon.com/api/v1
+    description: Production server
+  - url: https://staging.silkbeautysalon.com/api/v1
+    description: Staging server
+  - url: http://localhost:3000/api/v1
+    description: Local development
+
+paths:
+  /health:
+    get:
+      summary: Health Check
+      description: Returns the health status of the API and its dependencies
+      tags:
+        - Health
+      operationId: getHealth
+      responses:
+        '200':
+          description: API is healthy
+          headers:
+            X-Request-ID:
+              schema:
+                type: string
+              description: Unique request identifier
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+        '503':
+          description: Service is unhealthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /contact:
+    post:
+      summary: Submit Contact Form
+      description: Submit a contact form inquiry
+      tags:
+        - Contact
+      operationId: submitContact
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactRequest'
+            examples:
+              default:
+                summary: Default example
+                value:
+                  name: "Jane Doe"
+                  email: "jane@example.com"
+                  phone: "+995 555 123456"
+                  subject: "Booking Inquiry"
+                  message: "I would like to book an appointment for next week."
+                  consent: true
+      responses:
+        '200':
+          description: Message sent successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactResponse'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /booking:
+    post:
+      summary: Create Booking
+      description: Create a new booking/appointment request
+      tags:
+        - Booking
+      operationId: createBooking
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookingRequest'
+      responses:
+        '201':
+          description: Booking created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookingResponse'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Time slot not available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /newsletter/subscribe:
+    post:
+      summary: Subscribe to Newsletter
+      description: Subscribe an email address to the newsletter
+      tags:
+        - Newsletter
+      operationId: subscribeNewsletter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewsletterSubscribe'
+      responses:
+        '200':
+          description: Subscription successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewsletterResponse'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Email already subscribed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /treatments:
+    get:
+      summary: List Treatments
+      description: Get a paginated list of available treatments
+      tags:
+        - Treatments
+      operationId: listTreatments
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+          description: Page number
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+            maximum: 100
+          description: Items per page
+        - name: category
+          in: query
+          schema:
+            type: string
+          description: Filter by category
+      responses:
+        '200':
+          description: List of treatments
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TreatmentsList'
+
+components:
+  schemas:
+    # Response Wrappers
+    ApiResponse:
+      type: object
+      required:
+        - success
+        - meta
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+        error:
+          $ref: '#/components/schemas/ApiError'
+        meta:
+          $ref: '#/components/schemas/ApiMeta'
+
+    ApiError:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          description: Error code for programmatic handling
+        message:
+          type: string
+          description: Human-readable error message
+        details:
+          type: object
+          additionalProperties: true
+          description: Additional error details
+
+    ApiMeta:
+      type: object
+      required:
+        - requestId
+        - timestamp
+        - version
+      properties:
+        requestId:
+          type: string
+          format: uuid
+          description: Unique request identifier
+        timestamp:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp
+        version:
+          type: string
+          description: API version
+        pagination:
+          $ref: '#/components/schemas/PaginationInfo'
+        rateLimit:
+          $ref: '#/components/schemas/RateLimitInfo'
+
+    PaginationInfo:
+      type: object
+      properties:
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        totalPages:
+          type: integer
+        hasNext:
+          type: boolean
+        hasPrev:
+          type: boolean
+
+    RateLimitInfo:
+      type: object
+      properties:
+        limit:
+          type: integer
+        remaining:
+          type: integer
+        resetAt:
+          type: string
+          format: date-time
+
+    # Health
+    HealthResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [healthy, degraded, unhealthy]
+                timestamp:
+                  type: string
+                  format: date-time
+                version:
+                  type: string
+                checks:
+                  type: object
+                  properties:
+                    database:
+                      type: string
+                      enum: [ok, error]
+
+    # Contact
+    ContactRequest:
+      type: object
+      required:
+        - name
+        - email
+        - subject
+        - message
+        - consent
+      properties:
+        name:
+          type: string
+          minLength: 2
+          maxLength: 100
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        subject:
+          type: string
+          maxLength: 100
+        message:
+          type: string
+          minLength: 10
+          maxLength: 2000
+        consent:
+          type: boolean
+
+    ContactResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                messageId:
+                  type: string
+                submittedAt:
+                  type: string
+                  format: date-time
+
+    # Booking
+    BookingRequest:
+      type: object
+      required:
+        - name
+        - email
+        - phone
+        - service
+        - preferredDate
+        - preferredTime
+      properties:
+        name:
+          type: string
+          minLength: 2
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+          minLength: 5
+        service:
+          type: string
+        preferredDate:
+          type: string
+          format: date
+          pattern: '^\d{4}-\d{2}-\d{2}$'
+        preferredTime:
+          type: string
+          pattern: '^\d{2}:\d{2}$'
+        message:
+          type: string
+          maxLength: 500
+
+    BookingResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                status:
+                  type: string
+                  enum: [PENDING, CONFIRMED, CANCELLED, COMPLETED]
+                name:
+                  type: string
+                email:
+                  type: string
+                service:
+                  type: string
+                preferredDate:
+                  type: string
+                preferredTime:
+                  type: string
+                createdAt:
+                  type: string
+                  format: date-time
+
+    # Newsletter
+    NewsletterSubscribe:
+      type: object
+      required:
+        - email
+        - consent
+      properties:
+        email:
+          type: string
+          format: email
+        consent:
+          type: boolean
+
+    NewsletterResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                email:
+                  type: string
+                subscribedAt:
+                  type: string
+                  format: date-time
+                message:
+                  type: string
+
+    # Treatments
+    Treatment:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        duration:
+          type: integer
+          description: Duration in minutes
+        price:
+          type: number
+        category:
+          type: string
+        image:
+          type: string
+          format: uri
+        isActive:
+          type: boolean
+
+    TreatmentsList:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Treatment'
+
+    # Error
+    ErrorResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            success:
+              type: boolean
+              enum: [false]
+            error:
+              $ref: '#/components/schemas/ApiError'
+
+  headers:
+    X-Request-ID:
+      description: Unique request identifier
+      schema:
+        type: string
+    X-RateLimit-Limit:
+      description: Request limit per window
+      schema:
+        type: integer
+    X-RateLimit-Remaining:
+      description: Requests remaining in current window
+      schema:
+        type: integer
+    X-RateLimit-Reset:
+      description: Time when rate limit resets (Unix timestamp)
+      schema:
+        type: integer
+
+  responses:
+    BadRequest:
+      description: Bad request - validation error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+    TooManyRequests:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      headers:
+        Retry-After:
+          description: Seconds to wait before retry
+          schema:
+            type: integer
+
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+tags:
+  - name: Health
+    description: Health check endpoints
+  - name: Contact
+    description: Contact form operations
+  - name: Booking
+    description: Booking and appointment operations
+  - name: Newsletter
+    description: Newsletter subscription operations
+  - name: Treatments
+    description: Treatment/service information

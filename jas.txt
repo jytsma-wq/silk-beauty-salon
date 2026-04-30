@@ -1,215 +1,129 @@
-### 📌 PROMPT 6: Enhanced Accessibility (WCAG 2.1 AA Compliance)
+### 📌 PROMPT 8: API Architecture & Documentation
 
 ```
-Task: Achieve full WCAG 2.1 Level AA accessibility compliance
+Task: Refactor and document API architecture with versioning, validation, and OpenAPI specification
 
 Context:
-- Current implementation has basic accessibility
-- Need comprehensive accessibility for all users
-- Support for screen readers, keyboard navigation, and assistive technologies
+- Current API routes in /src/app/api/ lack structure
+- No API documentation
+- Missing validation middleware
+- No versioning strategy
 
 Requirements:
 
-1. **Keyboard Navigation**
-   - Ensure all interactive elements are keyboard accessible
-   - Implement proper focus management
-   - Add visible focus indicators
-   - Create skip links for main content
-   - Implement roving tabindex for complex widgets
-   - Add keyboard shortcuts documentation
-   - Test with keyboard-only navigation
+1. **API Structure Refactoring**
+   - Organize API routes by version:
+     * /api/v1/contact
+     * /api/v1/booking
+     * /api/v1/newsletter
+     * /api/v1/treatments
+   - Create shared middleware:
+     * Request validation
+     * Authentication (if needed)
+     * Rate limiting
+     * CORS handling
+     * Response formatting
+   - Implement consistent error responses
+   - Add request/response logging
 
-2. **Screen Reader Support**
-   - Add comprehensive ARIA labels
-   - Implement ARIA live regions for dynamic content
-   - Add ARIA descriptions where needed
-   - Test with NVDA, JAWS, and VoiceOver
-   - Add screen reader-only text where helpful
-   - Ensure proper heading hierarchy
-   - Add landmark regions
+2. **Request Validation**
+   - Use Zod for all API route validation
+   - Create schemas in /src/schemas/api/
+   - Validate:
+     * Request body
+     * Query parameters
+     * Headers
+     * Path parameters
+   - Return detailed validation errors
+   - Add validation middleware
 
-3. **Color Contrast**
-   - Ensure WCAG AA contrast ratios (4.5:1 for text, 3:1 for UI)
-   - Add high contrast mode
-   - Test all color combinations
-   - Provide alternative visual indicators (not just color)
-   - Test with color blindness simulators
+3. **Response Standardization**
+   - Create standard response wrapper:
+     ```typescript
+     {
+       success: boolean;
+       data?: any;
+       error?: {
+         code: string;
+         message: string;
+         details?: any;
+       };
+       meta?: {
+         requestId: string;
+         timestamp: string;
+         version: string;
+       };
+     }
+     ```
+   - Implement in all API routes
+   - Add TypeScript types for responses
 
-4. **Forms Accessibility**
-   - Add proper label associations
-   - Implement error message announcements
-   - Add fieldset and legend for grouped inputs
-   - Provide inline validation feedback
-   - Add required field indicators
-   - Implement autocomplete attributes
-   - Add input format hints
+4. **OpenAPI/Swagger Documentation**
+   - Generate OpenAPI 3.0 specification
+   - Use swagger-jsdoc or similar
+   - Document all endpoints:
+     * Description
+     * Parameters
+     * Request body schema
+     * Response schema
+     * Error responses
+     * Examples
+   - Add interactive API documentation UI (Swagger UI)
+   - Auto-generate TypeScript types from spec
 
-5. **Media Accessibility**
-   - Add captions for videos
-   - Provide text alternatives for images
-   - Add transcripts for audio content
-   - Implement controls for autoplay media
-   - Add audio descriptions where needed
+5. **API Versioning Strategy**
+   - Implement version in URL path
+   - Add deprecation headers
+   - Maintain backward compatibility
+   - Document breaking changes
+   - Create migration guides
 
-6. **Responsive & Zoom Support**
-   - Support 200% zoom without loss of functionality
-   - Ensure text spacing adjustments work
-   - Test with different viewport sizes
-   - Support orientation changes
-   - Avoid horizontal scrolling
+6. **Rate Limiting Per Endpoint**
+   - Different limits for different endpoints:
+     * Form submissions: 5/15min
+     * Data fetching: 100/min
+     * Authentication: 10/min
+   - Per-user rate limiting
+   - Add rate limit headers in response
 
-7. **Motion & Animations**
-   - Respect prefers-reduced-motion
-   - Provide pause controls for animations
-   - Avoid seizure-inducing content
-   - Add alternative static content
+7. **API Testing**
+   - Create Postman/Insomnia collection
+   - Add integration tests for all endpoints
+   - Add contract testing
+   - Test error scenarios
+   - Load testing for performance
 
-8. **Automated Testing**
-   - Integrate axe-core for automated testing
-   - Add pa11y for CI/CD pipeline
-   - Implement Lighthouse accessibility audits
-   - Add accessibility tests to E2E suite
-   - Create accessibility test reports
+8. **API Security**
+   - Implement API key authentication (if needed)
+   - Add CORS configuration
+   - Input sanitization
+   - Output encoding
+   - SQL injection prevention
+   - Rate limiting
 
-9. **Documentation**
-   - Create accessibility statement page
-   - Document keyboard shortcuts
-   - Add accessibility guidelines for contributors
-   - Provide feedback mechanism for accessibility issues
-
-Deliverables:
-- Accessibility audit report
-- Enhanced components with ARIA in /src/components/
-- Accessibility utility functions in /src/lib/a11y.ts
-- Skip link component (enhanced)
-- Focus trap utility
-- Accessibility testing suite
-- High contrast theme
-- Accessibility statement page at /[locale]/accessibility
-- Keyboard shortcuts documentation
-- Screen reader testing report
-- Documentation in docs/ACCESSIBILITY.md
-
-Testing Checklist:
-- ✓ Keyboard navigation
-- ✓ Screen reader testing (NVDA, JAWS, VoiceOver)
-- ✓ Color contrast validation
-- ✓ Automated axe-core audits
-- ✓ Mobile accessibility
-- ✓ Form accessibility
-- ✓ Focus management
-- ✓ ARIA implementation
-```
-
----
-
-### 📌 PROMPT 7: CI/CD Pipeline & DevOps Setup
-
-```
-Task: Implement complete CI/CD pipeline with automated testing, deployment, and monitoring
-
-Context:
-- No current CI/CD configuration
-- Need automated testing and deployment
-- Implement infrastructure as code
-- Set up staging and production environments
-
-Requirements:
-
-1. **GitHub Actions Workflows**
-   - Create CI workflow for:
-     * Linting (ESLint)
-     * Type checking (TypeScript)
-     * Unit tests (Vitest)
-     * Integration tests
-     * E2E tests (Playwright)
-     * Build verification
-     * Security scanning
-     * Dependency audit
-   - Create CD workflow for:
-     * Automatic deployment to staging
-     * Manual approval for production
-     * Database migrations
-     * Rollback capability
-
-2. **Docker Configuration**
-   - Create production Dockerfile
-   - Create docker-compose.yml for local development
-   - Include all services (Next.js, PostgreSQL, Redis)
-   - Add health checks
-   - Optimize image size with multi-stage builds
-   - Add .dockerignore
-
-3. **Environment Management**
-   - Set up environments:
-     * Development (local)
-     * Staging (preview)
-     * Production
-   - Configure environment variables per environment
-   - Add secrets management (GitHub Secrets, Vault)
-   - Implement feature flags
-
-4. **Infrastructure as Code**
-   - Terraform configuration for cloud resources
-   - Or CloudFormation/Pulumi based on platform
-   - Define:
-     * Database instances
-     * Redis cache
-     * CDN configuration
-     * Load balancers
-     * SSL certificates
-     * DNS records
-     * Monitoring services
-
-5. **Deployment Strategy**
-   - Implement blue-green deployment
-   - Add canary releases for gradual rollout
-   - Configure automatic rollback on errors
-   - Add deployment notifications (Slack)
-   - Implement database migration strategy
-   - Add smoke tests post-deployment
-
-6. **Monitoring & Observability**
-   - Set up application monitoring (New Relic/Datadog)
-   - Configure logging aggregation (Elasticsearch/Logtail)
-   - Add distributed tracing (Jaeger/Zipkin)
-   - Implement metrics collection (Prometheus)
-   - Create dashboards (Grafana)
-   - Set up alerting rules
-
-7. **Security Scanning**
-   - Add dependency scanning (Dependabot/Snyk)
-   - Implement SAST (Static Application Security Testing)
-   - Add DAST (Dynamic Application Security Testing)
-   - Container scanning
-   - Secret scanning
-   - License compliance checking
-
-8. **Backup & Disaster Recovery**
-   - Automated database backups
-   - Configuration backups
-   - Backup restoration testing
-   - Define RTO/RPO targets
-   - Document recovery procedures
+9. **Webhook Support** (if applicable)
+   - Implement webhook endpoints
+   - Add webhook signature verification
+   - Retry logic for failed webhooks
+   - Webhook event logging
 
 Deliverables:
-- .github/workflows/ci.yml
-- .github/workflows/cd.yml
-- Dockerfile and docker-compose.yml
-- .dockerignore
-- Terraform/CloudFormation files in /infrastructure/
-- Deployment scripts in /scripts/deploy/
-- Environment configuration templates
-- Monitoring dashboards configuration
-- Backup scripts
-- Disaster recovery runbook
-- Documentation in docs/DEVOPS.md
+- Refactored API structure in /src/app/api/v1/
+- Validation schemas in /src/schemas/api/
+- Middleware in /src/lib/api/middleware/
+- OpenAPI specification in /openapi.yaml
+- API documentation UI at /api-docs
+- Postman collection
+- API testing suite
+- API client SDK (optional)
+- Documentation in docs/API.md
 
-Pipeline Stages:
-1. Commit → Lint → Type Check → Unit Tests
-2. Build → Integration Tests → E2E Tests
-3. Security Scan → Build Docker Image
-4. Deploy to Staging → Smoke Tests
-5. Manual Approval → Deploy to Production
-6. Monitoring & Alerts
+API Standards:
+- RESTful conventions
+- JSON request/response
+- UTF-8 encoding
+- ISO 8601 dates
+- Pagination for lists
+- Proper HTTP status codes
+- HATEOAS where appropriate
 ```
