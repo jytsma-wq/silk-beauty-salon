@@ -1,101 +1,118 @@
-### 📌 PROMPT 9: Advanced Internationalization & Localization
+### 📌 PROMPT 10: Security Hardening & Compliance
 
 ```
-Task: Enhance internationalization system with advanced features and automation
+Task: Implement enterprise-grade security measures and compliance standards
 
 Context:
-- Current i18n uses next-intl with 6 languages
-- Manual translation management
-- Need translation automation and quality assurance
+- Good security foundation exists
+- Need to harden for production enterprise use
+- Implement security best practices and compliance
 
 Requirements:
 
-1. **Translation Management**
-   - Integrate translation management system (Crowdin/Phrase/Locize)
-   - Automate translation workflow
-   - Add translation memory
-   - Implement glossary management
-   - Add context for translators
-   - Support collaborative translation
+1. **Authentication & Authorization** (if needed for admin panel)
+   - Implement NextAuth.js or similar
+   - Add multi-factor authentication (2FA)
+   - Implement role-based access control (RBAC)
+   - Add session management
+   - Implement password policies
+   - Add account lockout mechanism
+   - Social login integration (optional)
 
-2. **Translation Automation**
-   - Add machine translation fallback (DeepL/Google Translate)
-   - Implement translation quality scoring
-   - Add missing translation detection
-   - Create automated translation extraction
-   - Generate translation keys automatically
-   - Add translation coverage reports
+2. **Advanced CSRF Protection**
+   - Enhance double-submit cookie pattern
+   - Add synchronizer token pattern
+   - Implement SameSite cookie strategy
+   - Add Origin and Referer validation
+   - Custom request headers validation
 
-3. **Pluralization & Formatting**
-   - Implement ICU message format
-   - Add plural rules for all languages
-   - Support gender-specific translations
-   - Implement number formatting per locale
-   - Add date/time formatting
-   - Currency formatting
-   - Address formatting
+3. **Enhanced Rate Limiting**
+   - Migrate to Redis for distributed rate limiting
+   - Implement sliding window algorithm
+   - Add distributed rate limiting
+   - Per-user and per-IP limits
+   - Add rate limit bypass for trusted IPs
+   - Implement adaptive rate limiting
 
-4. **Dynamic Content Translation**
-   - Translate database content (treatments, blog posts)
-   - Implement rich text translation
-   - Add markdown translation support
-   - Handle variables in translations
-   - Support HTML in translations safely
+4. **Security Headers Enhancement**
+   - Add Permissions-Policy
+   - Implement Expect-CT
+   - Add Cross-Origin-Embedder-Policy
+   - Cross-Origin-Opener-Policy
+   - Cross-Origin-Resource-Policy
+   - Document-Policy
+   - Timing-Allow-Origin
 
-5. **RTL Optimization**
-   - Enhance RTL support for Arabic and Hebrew
-   - Add RTL-specific styles
-   - Mirror UI components properly
-   - Test layout in RTL mode
-   - Add RTL-specific assets if needed
+5. **Data Protection**
+   - Implement data encryption at rest
+   - Add field-level encryption for sensitive data
+   - Implement PII (Personal Identifiable Information) handling
+   - Add data anonymization utilities
+   - Implement right to be forgotten (GDPR)
+   - Data retention policies
+   - Secure data deletion
 
-6. **SEO for Multilingual**
-   - Implement hreflang tags
-   - Add locale-specific sitemaps
-   - Configure language-specific meta tags
-   - Add structured data per locale
-   - Implement canonical URLs
+6. **GDPR Compliance**
+   - Implement cookie consent (enhance existing)
+   - Add privacy policy
+   - Terms of service
+   - Data processing agreements
+   - Cookie policy
+   - Right to access data
+   - Right to data portability
+   - Right to be forgotten
+   - Consent management
+   - Data breach notification procedure
 
-7. **Translation Validation**
-   - Enhance validation script
-   - Check for:
-     * Missing translations
-     * Unused translations
-     * Inconsistent translations
-     * Placeholder mismatches
-     * Length constraints
-     * Character encoding issues
-   - Add pre-commit hooks for validation
+7. **Security Monitoring**
+   - Enhance security logging
+   - Add intrusion detection
+   - Implement security information and event management (SIEM)
+   - Add anomaly detection
+   - Implement honeypot endpoints
+   - Add security metrics dashboard
 
-8. **Locale Detection**
-   - Implement smart locale detection
-   - Use Accept-Language header
-   - Add geolocation-based suggestion
-   - Remember user preference
-   - Add manual locale switcher
+8. **Vulnerability Management**
+   - Regular dependency updates
+   - Automated security scanning
+   - Penetration testing schedule
+   - Bug bounty program setup
+   - Security incident response plan
+   - Regular security audits
 
-9. **Performance Optimization**
-   - Lazy load translation files
-   - Implement translation splitting
-   - Cache translations client-side
-   - Minimize translation bundle size
-   - Add compression for translation files
+9. **Secrets Management**
+   - Implement proper secrets rotation
+   - Add secrets encryption
+   - Use environment-specific secrets
+   - Add secrets scanning in code
+   - Document secrets management
+
+10. **Compliance Documentation**
+    - Create security policy
+    - Add incident response plan
+    - Document data flow diagrams
+    - Create security training materials
+    - Add compliance checklist
 
 Deliverables:
-- Enhanced translation files in /messages/
-- Translation management integration
-- Improved i18n utilities in /src/lib/i18n-formatters.ts
-- Validation script enhancements in /scripts/validate-translations.ts
-- RTL-optimized styles
-- SEO metadata per locale
-- Translation workflow documentation
-- Translator guidelines
-- Documentation in docs/INTERNATIONALIZATION.md
+- Enhanced security middleware
+- Authentication system (if needed)
+- Redis-based rate limiting
+- Security headers configuration
+- Data encryption utilities in /src/lib/encryption.ts
+- GDPR compliance pages and utilities
+- Security monitoring dashboard
+- Compliance documentation
+- Security audit reports
+- Incident response playbook
+- Documentation in docs/SECURITY_ENHANCED.md
 
-Translation Coverage:
-- Code coverage: 100%
-- Database content: 100%
-- Error messages: 100%
-- Email templates: 100%
-- Meta descriptions: 100%
+Security Standards:
+- OWASP Top 10 compliance
+- GDPR compliance
+- SOC 2 readiness
+- ISO 27001 alignment
+- PCI DSS (if handling payments)
 ```
+
+---
