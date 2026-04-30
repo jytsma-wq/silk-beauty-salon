@@ -1,4 +1,5 @@
 #!/usr/bin/env tsx
+/* eslint-disable no-console */
 /**
  * Translation Validation Script
  * Validates all translation files against en.json (source of truth)
@@ -7,20 +8,18 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-interface ValidationIssue {
-  file: string;
-  type: 'missing' | 'extra' | 'interpolation' | 'structure';
-  key: string;
-  details?: string;
-}
-
 interface ValidationResult {
   file: string;
   valid: boolean;
   missingKeys: string[];
   extraKeys: string[];
+  unusedKeys: string[];
   interpolationIssues: string[];
   structureIssues: string[];
+  lengthIssues: string[];
+  encodingIssues: string[];
+  coverage: number;
+  qualityScore: number;
 }
 
 /**
@@ -103,6 +102,29 @@ function validateInterpolation(
 }
 
 /**
+ * Check for encoding issues in translation strings
+ */
+function checkEncoding(value: string, key: string): string | null {
+  // Check for non-UTF8 characters or encoding issues
+  const problematicChars = /[\x00-\x08\x0b\x0c\x0e-\x1f]/g;
+  if (problematicChars.test(value)) {
+    return `${key} - contains control characters`;
+  }
+  return null;
+}
+
+/**
+ * Check for length constraints
+ */
+function checkLength(sourceValue: string, targetValue: string, key: string): string | null {
+  // Flag if target is significantly longer than source (could indicate issues)
+  if (targetValue.length > sourceValue.length * 1.5 && targetValue.length > 100) {
+    return `${key} - translation is 50%+ longer than source`;
+  }
+  return null;
+}
+
+/**
  * Validate a single translation file against source
  */
 function validateFile(source: unknown, target: unknown, fileName: string): ValidationResult {
@@ -111,10 +133,13 @@ function validateFile(source: unknown, target: unknown, fileName: string): Valid
   
   const missingKeys: string[] = [];
   const extraKeys: string[] = [];
+  const unusedKeys: string[] = []; // Would require code analysis to detect
   const interpolationIssues: string[] = [];
   const structureIssues: string[] = [];
+  const lengthIssues: string[] = [];
+  const encodingIssues: string[] = [];
   
-  // Find missing keys
+  // Find missing keys and validate existing ones
   for (const key of sourceKeys) {
     if (!targetKeys.has(key)) {
       missingKeys.push(key);
@@ -126,6 +151,14 @@ function validateFile(source: unknown, target: unknown, fileName: string): Valid
       if (typeof sourceValue === 'string' && typeof targetValue === 'string') {
         const issue = validateInterpolation(sourceValue, targetValue, key);
         if (issue) interpolationIssues.push(issue);
+        
+        // Check length constraints
+        const lengthIssue = checkLength(sourceValue, targetValue, key);
+        if (lengthIssue) lengthIssues.push(lengthIssue);
+        
+        // Check encoding
+        const encodingIssue = checkEncoding(targetValue, key);
+        if (encodingIssue) encodingIssues.push(encodingIssue);
       }
       
       // Check type consistency
@@ -149,13 +182,27 @@ function validateFile(source: unknown, target: unknown, fileName: string): Valid
     }
   }
   
+  // Calculate coverage percentage
+  const coverage = sourceKeys.size > 0 
+    ? Math.round(((sourceKeys.size - missingKeys.length) / sourceKeys.size) * 100)
+    : 100;
+  
+  // Calculate quality score (0-100)
+  const totalIssues = interpolationIssues.length + structureIssues.length + lengthIssues.length + encodingIssues.length;
+  const qualityScore = Math.max(0, 100 - (totalIssues * 2));
+  
   return {
     file: fileName,
     valid: missingKeys.length === 0 && interpolationIssues.length === 0 && structureIssues.length === 0,
     missingKeys,
     extraKeys,
+    unusedKeys,
     interpolationIssues,
     structureIssues,
+    lengthIssues,
+    encodingIssues,
+    coverage,
+    qualityScore,
   };
 }
 
@@ -173,6 +220,7 @@ function printResults(results: ValidationResult[]): void {
   for (const result of results) {
     const status = result.valid ? '✅ PASS' : '❌ FAIL';
     console.log(`${status} - ${result.file}`);
+    console.log(`   Coverage: ${result.coverage}% | Quality: ${result.qualityScore}/100`);
     
     if (result.missingKeys.length > 0) {
       console.log(`   Missing keys: ${result.missingKeys.length}`);
@@ -207,6 +255,16 @@ function printResults(results: ValidationResult[]): void {
         console.log(`     ... and ${result.structureIssues.length - 3} more`);
       }
       totalIssues += result.structureIssues.length;
+    }
+    
+    if (result.lengthIssues.length > 0) {
+      console.log(`   Length issues: ${result.lengthIssues.length}`);
+      totalIssues += result.lengthIssues.length;
+    }
+    
+    if (result.encodingIssues.length > 0) {
+      console.log(`   Encoding issues: ${result.encodingIssues.length}`);
+      totalIssues += result.encodingIssues.length;
     }
     
     console.log('');
@@ -297,8 +355,13 @@ function main(): void {
         valid: false,
         missingKeys: [],
         extraKeys: [],
+        unusedKeys: [],
         interpolationIssues: [],
         structureIssues: [`Failed to parse: ${error}`],
+        lengthIssues: [],
+        encodingIssues: [],
+        coverage: 0,
+        qualityScore: 0,
       });
     }
   }

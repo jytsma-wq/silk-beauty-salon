@@ -1,129 +1,101 @@
-### 📌 PROMPT 8: API Architecture & Documentation
+### 📌 PROMPT 9: Advanced Internationalization & Localization
 
 ```
-Task: Refactor and document API architecture with versioning, validation, and OpenAPI specification
+Task: Enhance internationalization system with advanced features and automation
 
 Context:
-- Current API routes in /src/app/api/ lack structure
-- No API documentation
-- Missing validation middleware
-- No versioning strategy
+- Current i18n uses next-intl with 6 languages
+- Manual translation management
+- Need translation automation and quality assurance
 
 Requirements:
 
-1. **API Structure Refactoring**
-   - Organize API routes by version:
-     * /api/v1/contact
-     * /api/v1/booking
-     * /api/v1/newsletter
-     * /api/v1/treatments
-   - Create shared middleware:
-     * Request validation
-     * Authentication (if needed)
-     * Rate limiting
-     * CORS handling
-     * Response formatting
-   - Implement consistent error responses
-   - Add request/response logging
+1. **Translation Management**
+   - Integrate translation management system (Crowdin/Phrase/Locize)
+   - Automate translation workflow
+   - Add translation memory
+   - Implement glossary management
+   - Add context for translators
+   - Support collaborative translation
 
-2. **Request Validation**
-   - Use Zod for all API route validation
-   - Create schemas in /src/schemas/api/
-   - Validate:
-     * Request body
-     * Query parameters
-     * Headers
-     * Path parameters
-   - Return detailed validation errors
-   - Add validation middleware
+2. **Translation Automation**
+   - Add machine translation fallback (DeepL/Google Translate)
+   - Implement translation quality scoring
+   - Add missing translation detection
+   - Create automated translation extraction
+   - Generate translation keys automatically
+   - Add translation coverage reports
 
-3. **Response Standardization**
-   - Create standard response wrapper:
-     ```typescript
-     {
-       success: boolean;
-       data?: any;
-       error?: {
-         code: string;
-         message: string;
-         details?: any;
-       };
-       meta?: {
-         requestId: string;
-         timestamp: string;
-         version: string;
-       };
-     }
-     ```
-   - Implement in all API routes
-   - Add TypeScript types for responses
+3. **Pluralization & Formatting**
+   - Implement ICU message format
+   - Add plural rules for all languages
+   - Support gender-specific translations
+   - Implement number formatting per locale
+   - Add date/time formatting
+   - Currency formatting
+   - Address formatting
 
-4. **OpenAPI/Swagger Documentation**
-   - Generate OpenAPI 3.0 specification
-   - Use swagger-jsdoc or similar
-   - Document all endpoints:
-     * Description
-     * Parameters
-     * Request body schema
-     * Response schema
-     * Error responses
-     * Examples
-   - Add interactive API documentation UI (Swagger UI)
-   - Auto-generate TypeScript types from spec
+4. **Dynamic Content Translation**
+   - Translate database content (treatments, blog posts)
+   - Implement rich text translation
+   - Add markdown translation support
+   - Handle variables in translations
+   - Support HTML in translations safely
 
-5. **API Versioning Strategy**
-   - Implement version in URL path
-   - Add deprecation headers
-   - Maintain backward compatibility
-   - Document breaking changes
-   - Create migration guides
+5. **RTL Optimization**
+   - Enhance RTL support for Arabic and Hebrew
+   - Add RTL-specific styles
+   - Mirror UI components properly
+   - Test layout in RTL mode
+   - Add RTL-specific assets if needed
 
-6. **Rate Limiting Per Endpoint**
-   - Different limits for different endpoints:
-     * Form submissions: 5/15min
-     * Data fetching: 100/min
-     * Authentication: 10/min
-   - Per-user rate limiting
-   - Add rate limit headers in response
+6. **SEO for Multilingual**
+   - Implement hreflang tags
+   - Add locale-specific sitemaps
+   - Configure language-specific meta tags
+   - Add structured data per locale
+   - Implement canonical URLs
 
-7. **API Testing**
-   - Create Postman/Insomnia collection
-   - Add integration tests for all endpoints
-   - Add contract testing
-   - Test error scenarios
-   - Load testing for performance
+7. **Translation Validation**
+   - Enhance validation script
+   - Check for:
+     * Missing translations
+     * Unused translations
+     * Inconsistent translations
+     * Placeholder mismatches
+     * Length constraints
+     * Character encoding issues
+   - Add pre-commit hooks for validation
 
-8. **API Security**
-   - Implement API key authentication (if needed)
-   - Add CORS configuration
-   - Input sanitization
-   - Output encoding
-   - SQL injection prevention
-   - Rate limiting
+8. **Locale Detection**
+   - Implement smart locale detection
+   - Use Accept-Language header
+   - Add geolocation-based suggestion
+   - Remember user preference
+   - Add manual locale switcher
 
-9. **Webhook Support** (if applicable)
-   - Implement webhook endpoints
-   - Add webhook signature verification
-   - Retry logic for failed webhooks
-   - Webhook event logging
+9. **Performance Optimization**
+   - Lazy load translation files
+   - Implement translation splitting
+   - Cache translations client-side
+   - Minimize translation bundle size
+   - Add compression for translation files
 
 Deliverables:
-- Refactored API structure in /src/app/api/v1/
-- Validation schemas in /src/schemas/api/
-- Middleware in /src/lib/api/middleware/
-- OpenAPI specification in /openapi.yaml
-- API documentation UI at /api-docs
-- Postman collection
-- API testing suite
-- API client SDK (optional)
-- Documentation in docs/API.md
+- Enhanced translation files in /messages/
+- Translation management integration
+- Improved i18n utilities in /src/lib/i18n-formatters.ts
+- Validation script enhancements in /scripts/validate-translations.ts
+- RTL-optimized styles
+- SEO metadata per locale
+- Translation workflow documentation
+- Translator guidelines
+- Documentation in docs/INTERNATIONALIZATION.md
 
-API Standards:
-- RESTful conventions
-- JSON request/response
-- UTF-8 encoding
-- ISO 8601 dates
-- Pagination for lists
-- Proper HTTP status codes
-- HATEOAS where appropriate
+Translation Coverage:
+- Code coverage: 100%
+- Database content: 100%
+- Error messages: 100%
+- Email templates: 100%
+- Meta descriptions: 100%
 ```
