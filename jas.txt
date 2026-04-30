@@ -1,96 +1,80 @@
-### 📌 PROMPT 4: Robust Error Handling & Monitoring
+### 📌 PROMPT 5: Advanced State Management & Data Fetching
 
 ```
-Task: Implement comprehensive error handling, logging, and monitoring system
+Task: Implement robust state management and optimized data fetching strategy
 
 Context:
-- Need production-grade error handling
-- Implement centralized logging
-- Add real-time error monitoring
-- Set up alerting for critical issues
+- Currently using basic React context and props drilling
+- Need global state management for complex features
+- Optimize data fetching with caching and deduplication
 
 Requirements:
 
-1. **Error Boundaries**
-   - Create global error boundary component
-   - Add route-specific error boundaries
-   - Implement error recovery strategies
-   - Add user-friendly error messages in all 6 languages
-   - Create error fallback UI components
-   - Add retry mechanisms
+1. **State Management Implementation**
+   - Integrate Zustand for global state (lightweight alternative to Redux)
+   - Create stores for:
+     * User preferences (language, theme, consent)
+     * Booking flow state
+     * Form state management
+     * UI state (modals, drawers, notifications)
+     * Shopping cart (if applicable)
+   - Implement persistence with zustand/middleware
+   - Add DevTools integration for debugging
+   - Type-safe store definitions
 
-2. **API Error Handling**
-   - Create standardized API error response format
-   - Implement error classification (4xx vs 5xx)
-   - Add request ID tracking
-   - Implement retry logic with exponential backoff
-   - Add circuit breaker pattern for external APIs
-   - Create error mapping for internationalization
+2. **Data Fetching Strategy**
+   - Integrate TanStack Query (React Query) for server state
+   - Implement data caching strategy
+   - Add optimistic updates for better UX
+   - Implement background refetching
+   - Add stale-while-revalidate pattern
+   - Configure cache invalidation strategies
+   - Add offline support with persistence
 
-3. **Error Logging**
-   - Integrate Sentry or similar service
-   - Add structured logging with Winston or Pino
-   - Implement log levels (error, warn, info, debug)
-   - Add request/response logging middleware
-   - Log security events separately
-   - Add performance logging
-   - Implement log rotation
-   - Add PII redaction in logs
+3. **Form State Management**
+   - Integrate React Hook Form for complex forms
+   - Add Zod schema validation
+   - Implement multi-step forms for booking
+   - Add form persistence (local storage)
+   - Implement field-level validation
+   - Add async validation (email/phone check)
+   - Create reusable form components
 
-4. **Frontend Error Tracking**
-   - Track JavaScript errors
-   - Track unhandled promise rejections
-   - Track resource loading errors
-   - Track API call failures
-   - Add user session tracking
-   - Track custom events
-   - Add source map support for debugging
+4. **Real-time Updates** (if needed)
+   - Add WebSocket support for live bookings
+   - Implement Server-Sent Events for notifications
+   - Add optimistic UI updates
+   - Sync state across tabs
 
-5. **Backend Error Tracking**
-   - Track API route errors
-   - Track database errors
-   - Track external API failures
-   - Track middleware errors
-   - Track cron job errors (if any)
+5. **Performance Optimization**
+   - Implement memoization strategies
+   - Add selector optimization
+   - Use shallow comparison for state updates
+   - Implement virtualization for large lists
+   - Add pagination/infinite scroll
 
-6. **Monitoring & Alerting**
-   - Set up uptime monitoring (Pingdom/UptimeRobot)
-   - Add health check endpoints
-   - Implement status page
-   - Set up PagerDuty/Opsgenie alerts
-   - Add Slack notifications for critical errors
-   - Monitor error rates and trends
-   - Set up custom dashboards
-
-7. **Graceful Degradation**
-   - Implement fallback strategies for API failures
-   - Add offline mode support
-   - Cache critical data locally
-   - Show meaningful error messages
-   - Provide alternative actions
-
-8. **Error Recovery**
-   - Add automatic retry mechanisms
-   - Implement queue for failed operations
-   - Add manual retry UI components
-   - Clear cache on certain errors
-   - Redirect to safe pages on critical errors
+6. **Developer Experience**
+   - Add state debugging tools
+   - Create custom hooks for common patterns
+   - Add TypeScript types for all state
+   - Document state flow diagrams
+   - Add state migration utilities
 
 Deliverables:
-- Global error boundary in /src/components/error-boundary.tsx
-- API error handling middleware in /src/lib/api-error-handler.ts
-- Centralized logger in /src/lib/logger.ts
-- Sentry configuration in /src/lib/sentry.ts
-- Health check routes in /src/app/api/health/
-- Error monitoring dashboard setup
-- Alert configuration
-- Error message translations in all language files
-- Documentation in docs/ERROR_HANDLING.md
+- Zustand stores in /src/stores/
+- React Query configuration in /src/lib/react-query.ts
+- Form schemas in /src/schemas/
+- Custom hooks in /src/hooks/
+- Form components in /src/components/forms/
+- State persistence utilities
+- WebSocket client (if applicable)
+- DevTools configuration
+- Documentation in docs/STATE_MANAGEMENT.md
 
-Error Handling Standards:
-- All errors must be logged with context
-- User-facing errors must be translated
-- Critical errors must trigger alerts
-- All API errors must include request ID
-- Production errors must not leak sensitive data
+State Architecture:
+- Server state: React Query (API data, database queries)
+- Global client state: Zustand (user preferences, UI state)
+- Local component state: useState/useReducer
+- Form state: React Hook Form
+- URL state: Next.js router (search params, query strings)
 ```
