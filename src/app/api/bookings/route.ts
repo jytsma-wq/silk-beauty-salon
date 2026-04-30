@@ -29,7 +29,7 @@ export async function GET(request: NextRequest) {
         where: {
           date: date,
           status: {
-            not: "cancelled",
+            not: "CANCELLED",
           },
         },
         select: {
@@ -124,7 +124,7 @@ export async function POST(request: NextRequest) {
         date: sanitized.date,
         timeSlot: sanitized.timeSlot,
         status: {
-          not: "cancelled",
+          not: "CANCELLED",
         },
       },
     });
@@ -146,7 +146,7 @@ export async function POST(request: NextRequest) {
         date: sanitized.date,
         timeSlot: sanitized.timeSlot,
         message: sanitized.message,
-        status: "pending",
+        status: "PENDING",
       },
     });
 

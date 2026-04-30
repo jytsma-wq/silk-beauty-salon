@@ -8,12 +8,13 @@ export default defineConfig({
     setupFiles: ['./src/test/setup.ts'],
     coverage: {
       provider: 'v8',
-      reporter: ['text', 'json', 'html'],
+      reporter: ['text', 'json', 'html', 'lcov'],
+      reportOnFailure: true,
       thresholds: {
-        statements: 70,
-        branches: 60,
-        functions: 70,
-        lines: 70,
+        statements: 80,
+        branches: 75,
+        functions: 80,
+        lines: 80,
       },
       exclude: [
         'node_modules/',
@@ -21,6 +22,9 @@ export default defineConfig({
         '**/*.d.ts',
         '**/*.config.*',
         '**/e2e/**',
+        '**/__tests__/**',
+        'src/app/api/**/route.ts',
+        'src/components/ui/**',
       ],
     },
     include: ['src/**/*.{test,spec}.{ts,tsx}'],

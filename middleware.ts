@@ -9,6 +9,18 @@ function generateNonce(): string {
   return btoa(String.fromCharCode(...array));
 }
 
+// Rate limiting store type
+interface RateLimitRecord {
+  count: number;
+  resetTime: number;
+}
+
+// Path check result type
+interface PathCheckResult {
+  blocked: boolean;
+  suspicious: boolean;
+}
+
 // Generate CSRF token using Web Crypto API
 function generateCsrfToken(): string {
   const array = new Uint8Array(32);
@@ -42,7 +54,7 @@ function buildCSPHeader(nonce: string): string {
 
 // Rate limiting - in-memory store (resets on function cold start)
 // For production with multiple instances, use Redis or Upstash
-const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
+const rateLimitStore = new Map<string, RateLimitRecord>();
 const RATE_LIMIT_WINDOW = 60; // seconds
 const RATE_LIMIT_MAX = 100; // requests per window
 
@@ -136,7 +148,7 @@ function checkUserAgent(userAgent: string | null): boolean {
   return false;
 }
 
-function checkPath(pathname: string): { blocked: boolean; suspicious: boolean } {
+function checkPath(pathname: string): PathCheckResult {
   const lowerPath = pathname.toLowerCase();
   
   // Check blocked patterns
@@ -173,11 +185,43 @@ function logSuspicious(request: NextRequest, reason: string) {
     userAgent: userAgent.substring(0, 100),
   };
 
-  console.log(JSON.stringify(logEntry));
+  console.warn(JSON.stringify(logEntry));
 }
 
 // Create the i18n middleware
 const i18nMiddleware = createMiddleware(routing);
+
+/**
+ * Add performance-related caching headers
+ * @param response - NextResponse object
+ * @param pathname - Request pathname
+ */
+function addPerformanceHeaders(response: NextResponse, pathname: string): void {
+  // Static assets - long cache
+  if (pathname.startsWith('/_next/static') || pathname.match(/\.(js|css|woff2?|png|jpg|jpeg|gif|svg|webp|avif)$/)) {
+    response.headers.set('Cache-Control', 'public, max-age=31536000, immutable');
+    return;
+  }
+
+  // API routes - no cache for dynamic content
+  if (pathname.startsWith('/api/')) {
+    response.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+    return;
+  }
+
+  // HTML pages - revalidate with stale-while-revalidate
+  if (pathname.endsWith('/') || pathname.endsWith('.html')) {
+    response.headers.set('Cache-Control', 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400');
+    return;
+  }
+
+  // Default - moderate caching
+  response.headers.set('Cache-Control', 'public, max-age=300, stale-while-revalidate=3600');
+
+  // Add performance hints
+  response.headers.set('X-DNS-Prefetch-Control', 'on');
+  response.headers.set('Accept-CH', 'DPR, Width, Viewport-Width');
+}
 
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -243,6 +287,9 @@ export default function middleware(request: NextRequest) {
 
   // Add CSP header with nonce (other security headers handled by Caddyfile)
   response.headers.set('Content-Security-Policy', buildCSPHeader(nonce));
+
+  // Add performance headers
+  addPerformanceHeaders(response, pathname);
 
   return response;
 }

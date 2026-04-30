@@ -65,23 +65,23 @@ export default async function LocaleLayout({
         {csrfToken ? <meta name="csrf-token" content={csrfToken} /> : null}
       </head>
       <body>
-      <ConsentProvider>
-        <AnalyticsScripts
-          gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
-          gtmId={process.env.NEXT_PUBLIC_GTM_ID}
-          fbPixelId={process.env.NEXT_PUBLIC_FB_PIXEL_ID}
-        />
         <NextIntlClientProvider messages={messages}>
-          <AnnouncerProvider>
-            <SkipLink />
-            <GaldermaHeader />
-            <main id="main-content">{children}</main>
-            <GaldermaFooter />
-            <WhatsAppWidget />
-            <Toaster />
-          </AnnouncerProvider>
+          <ConsentProvider>
+            <AnalyticsScripts
+              gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
+              gtmId={process.env.NEXT_PUBLIC_GTM_ID}
+              fbPixelId={process.env.NEXT_PUBLIC_FB_PIXEL_ID}
+            />
+            <AnnouncerProvider>
+              <SkipLink />
+              <GaldermaHeader />
+              <main id="main-content">{children}</main>
+              <GaldermaFooter />
+              <WhatsAppWidget />
+              <Toaster />
+            </AnnouncerProvider>
+          </ConsentProvider>
         </NextIntlClientProvider>
-      </ConsentProvider>
       </body>
     </html>
   );

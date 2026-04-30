@@ -9,25 +9,50 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_DATABASE_URL")
 }
 
-// Status types (using String instead of enum for SQLite compatibility)
+// PostgreSQL Enums for status fields
+
+enum ContactStatus {
+  NEW
+  IN_PROGRESS
+  COMPLETED
+  ARCHIVED
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+}
+
+enum SubscriberStatus {
+  ACTIVE
+  UNSUBSCRIBED
+  BOUNCED
+}
 
 model ContactSubmission {
-  id        String        @id @default(cuid())
+  id        String         @id @default(uuid()) @db.Uuid
   name      String
   email     String
   phone     String?
   message   String
-  locale    String        @default("en")
-  createdAt DateTime      @default(now())
-  status    String   @default("NEW")
+  locale    String         @default("en")
+  createdAt DateTime       @default(now())
+  status    ContactStatus  @default(NEW)
+
+  @@index([status, createdAt])
+  @@index([email])
 }
 
 model BookingRequest {
-  id            String        @id @default(cuid())
+  id            String        @id @default(uuid()) @db.Uuid
   name          String
   email         String
   phone         String
@@ -37,21 +62,25 @@ model BookingRequest {
   message       String?
   locale        String        @default("en")
   createdAt     DateTime      @default(now())
-  status        String   @default("PENDING")
+  status        BookingStatus @default(PENDING)
+
+  @@index([status, createdAt])
+  @@index([email])
+  @@index([preferredDate])
+}
+
+model NewsletterSubscriber {
+  id        String           @id @default(uuid()) @db.Uuid
+  email     String           @unique
+  locale    String           @default("en")
+  createdAt DateTime         @default(now())
+  status    SubscriberStatus @default(ACTIVE)
 
   @@index([status, createdAt])
 }
 
-model NewsletterSubscriber {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  locale    String   @default("en")
-  createdAt DateTime @default(now())
-  active    Boolean  @default(true)
-}
-
 model BlogPost {
-  id         String   @id @default(cuid())
+  id         String   @id @default(uuid()) @db.Uuid
   title      String
   slug       String
   excerpt    String   @default("")
@@ -66,11 +95,13 @@ model BlogPost {
   updatedAt  DateTime @updatedAt
 
   @@unique([slug, locale])
+  @@index([published, createdAt])
+  @@index([category, locale])
 }
 
 // Treatment Category - base data (images, slugs are non-translatable)
 model TreatmentCategory {
-  id          String   @id @default(cuid())
+  id          String   @id @default(uuid()) @db.Uuid
   slug        String   @unique
   image       String
   sortOrder   Int      @default(0)
@@ -88,9 +119,9 @@ model TreatmentCategory {
 
 // Treatment Category Translations (i18n content)
 model TreatmentCategoryTranslation {
-  id          String   @id @default(cuid())
-  categoryId  String
-  locale      String   // en, ka, ru, ar, he, tr
+  id          String            @id @default(uuid()) @db.Uuid
+  categoryId  String            @db.Uuid
+  locale      String            // en, ka, ru, ar, he, tr
   name        String
   description String
 
@@ -103,7 +134,7 @@ model TreatmentCategoryTranslation {
 
 // Individual Treatment - base data
 model Treatment {
-  id          String   @id @default(cuid())
+  id          String   @id @default(uuid()) @db.Uuid
   slug        String   @unique
   image       String
   price       String?  // e.g., "From ₾200"
@@ -114,7 +145,7 @@ model Treatment {
   updatedAt   DateTime @updatedAt
 
   // Relations
-  categoryId  String
+  categoryId  String   @db.Uuid
   category    TreatmentCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   translations TreatmentTranslation[]
   benefits     TreatmentBenefit[]
@@ -127,9 +158,9 @@ model Treatment {
 
 // Treatment Translations (i18n content)
 model TreatmentTranslation {
-  id              String   @id @default(cuid())
-  treatmentId     String
-  locale          String   // en, ka, ru, ar, he, tr
+  id              String    @id @default(uuid()) @db.Uuid
+  treatmentId     String    @db.Uuid
+  locale          String    // en, ka, ru, ar, he, tr
   name            String
   description     String
   shortDescription String
@@ -145,11 +176,11 @@ model TreatmentTranslation {
 
 // Treatment Benefits (translatable array items)
 model TreatmentBenefit {
-  id          String   @id @default(cuid())
-  treatmentId String
+  id          String    @id @default(uuid()) @db.Uuid
+  treatmentId String    @db.Uuid
   locale      String
   text        String
-  sortOrder   Int      @default(0)
+  sortOrder   Int       @default(0)
 
   // Relations
   treatment   Treatment @relation(fields: [treatmentId], references: [id], onDelete: Cascade)
@@ -160,12 +191,12 @@ model TreatmentBenefit {
 
 // Treatment FAQs (translatable Q&A)
 model TreatmentFAQ {
-  id          String   @id @default(cuid())
-  treatmentId String
+  id          String    @id @default(uuid()) @db.Uuid
+  treatmentId String    @db.Uuid
   locale      String
   question    String
   answer      String
-  sortOrder   Int      @default(0)
+  sortOrder   Int       @default(0)
 
   // Relations
   treatment   Treatment @relation(fields: [treatmentId], references: [id], onDelete: Cascade)
@@ -176,7 +207,7 @@ model TreatmentFAQ {
 
 // Booking model for calendar-based appointment system
 model Booking {
-  id          String        @id @default(cuid())
+  id          String        @id @default(uuid()) @db.Uuid
   name        String
   email       String
   phone       String?
@@ -184,10 +215,11 @@ model Booking {
   date        DateTime
   timeSlot    String        // e.g. "09:00 - 10:00"
   message     String?
-  status      String   @default("PENDING")
+  status      BookingStatus @default(PENDING)
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
 
   @@index([date, status])
   @@index([status, createdAt])
+  @@index([email])
 }

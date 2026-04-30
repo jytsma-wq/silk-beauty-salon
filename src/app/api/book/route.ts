@@ -126,7 +126,7 @@ export async function POST(request: NextRequest) {
         preferredDate: sanitized.preferredDate,
         preferredTime: sanitized.preferredTime,
         message: sanitized.message,
-        status: 'pending',
+        status: 'PENDING',
       },
     });
 
