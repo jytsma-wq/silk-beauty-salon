@@ -113,7 +113,7 @@ export async function POST(request: NextRequest) {
                <p><b>Message:</b> ${sanitized.message ? escapeHtml(sanitized.message) : 'None'}</p>`,
       });
     } else {
-      console.log('Booking form submission (Resend not configured):', sanitized);
+      console.warn('Booking form submission (Resend not configured):', sanitized);
     }
 
     // Save to database

@@ -1,10 +1,10 @@
-# Accessibility Documentation
+# Accessibility Guide
 
-This document outlines the accessibility features implemented in the Silk Beauty Salon website and provides guidance for maintaining WCAG 2.1 AA compliance.
+Comprehensive accessibility implementation for WCAG 2.1 AA compliance.
 
 ## Overview
 
-The Silk Beauty Salon website is built with accessibility as a core requirement. We aim to meet WCAG 2.1 AA standards and provide an inclusive experience for all users.
+The Silk Beauty Salon website is built with accessibility as a core requirement. We aim to meet WCAG 2.1 AA standards and provide an inclusive experience for all users, including those using screen readers, keyboard navigation, and assistive technologies.
 
 ## Implemented Features
 
