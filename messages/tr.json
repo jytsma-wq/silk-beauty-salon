@@ -1781,5 +1781,31 @@
     "skipToTreatments": "Tedavilere geç",
     "skipToBooking": "Rezervasyona geç",
     "skipNavigation": "Gezinti Atla Bağlantıları"
+  },
+  "errors": {
+    "title": "Bir şeyler yanlış gitti",
+    "description": "Rahatsızlık için özür dileriz. Beklenmeyen bir hata oluştu.",
+    "retry": "Tekrar Dene",
+    "goHome": "Ana Sayfaya Git",
+    "referenceId": "Hata Referansı",
+    "api": {
+      "BAD_REQUEST": "Geçersiz istek. Lütfen girdilerinizi kontrol edin.",
+      "VALIDATION_ERROR": "Bazı alanlar hatalar içeriyor. Lütfen düzeltin.",
+      "UNAUTHORIZED": "Devam etmek için lütfen oturum açın.",
+      "FORBIDDEN": "Bu kaynağa erişim izniniz yok.",
+      "NOT_FOUND": "İstenen kaynak bulunamadı.",
+      "INTERNAL_ERROR": "Bir iç hata oluştu. Lütfen daha sonra tekrar deneyin.",
+      "SERVICE_UNAVAILABLE": "Hizmet geçici olarak kullanılamıyor. Lütfen daha sonra tekrar deneyin.",
+      "RATE_LIMITED": "Çok fazla istek. Lütfen biraz bekleyin ve tekrar deneyin."
+    },
+    "network": {
+      "title": "Bağlantı Hatası",
+      "description": "Sunucuya bağlanılamıyor. Lütfen internet bağlantınızı kontrol edin.",
+      "retry": "Bağlantıyı Yeniden Dene"
+    },
+    "form": {
+      "submitError": "Form gönderilemedi. Lütfen tekrar deneyin.",
+      "loadError": "Form verileri yüklenemedi. Lütfen sayfayı yenileyin."
+    }
   }
 }

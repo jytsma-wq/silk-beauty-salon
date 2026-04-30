@@ -1474,5 +1474,31 @@
   "metadata": {
     "homeTitle": "Silk Beauty Salon | Premier Medical Aesthetics in Batumi",
     "homeDescription": "Premier medical aesthetic clinic in Batumi, Georgia. Expert Botox, dermal fillers, laser treatments & advanced skin care. Book your consultation today."
+  },
+  "errors": {
+    "title": "Something went wrong",
+    "description": "We apologize for the inconvenience. An unexpected error has occurred.",
+    "retry": "Try Again",
+    "goHome": "Go Home",
+    "referenceId": "Error Reference",
+    "api": {
+      "BAD_REQUEST": "Invalid request. Please check your input.",
+      "VALIDATION_ERROR": "Some fields contain errors. Please correct them.",
+      "UNAUTHORIZED": "Please sign in to continue.",
+      "FORBIDDEN": "You don't have permission to access this resource.",
+      "NOT_FOUND": "The requested resource was not found.",
+      "INTERNAL_ERROR": "An internal error occurred. Please try again later.",
+      "SERVICE_UNAVAILABLE": "Service temporarily unavailable. Please try again later.",
+      "RATE_LIMITED": "Too many requests. Please wait a moment and try again."
+    },
+    "network": {
+      "title": "Connection Error",
+      "description": "Unable to connect to the server. Please check your internet connection.",
+      "retry": "Retry Connection"
+    },
+    "form": {
+      "submitError": "Failed to submit form. Please try again.",
+      "loadError": "Failed to load form data. Please refresh the page."
+    }
   }
 }
