@@ -1,7 +1,7 @@
 'use client';
 
 import { useLocale } from 'next-intl';
-import { useRouter, usePathname } from '@/i18n/routing';
+import { useRouter, usePathname } from 'next/navigation';
 import { locales, localeNames, type Locale } from '@/i18n';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
@@ -19,8 +19,11 @@ export function LanguageSwitcher() {
   const pathname = usePathname();
 
   const handleLocaleChange = (newLocale: Locale) => {
+    if (newLocale === locale) return;
     trackLanguageChange(locale, newLocale);
-    router.replace(pathname, { locale: newLocale });
+    // Navigate to same page with new locale
+    const newPath = pathname.replace(/^\/[a-z]{2}/, `/${newLocale}`);
+    router.push(newPath);
   };
 
   return (

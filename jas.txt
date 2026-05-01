@@ -1,2 +1,1 @@
-1/ put the logo center 2/ put the menus under the logo menus are a/ treatments b/ skin conditions c/ pricelist d/ offers e/ international clients 3/ top header with f/ about g/ contact us.
-make the header white and the top header darker whiter. it must match the colours of the website
+1/about and contact us left side 2/ translations bar is not working, fix it 3/ book tab is not in the header, must be at the right side 4/ menus treatement and skin conditions down menu is not there, fix it

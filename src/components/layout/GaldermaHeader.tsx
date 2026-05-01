@@ -2,11 +2,19 @@
 
 import { useState, useEffect } from 'react';
 import { Link } from '@/i18n/routing';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone, ChevronDown } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { siteConfig } from '@/data/site-config';
 import { motion, AnimatePresence } from 'framer-motion';
+import { baseTreatmentCategories } from '@/data/treatments';
+import { baseConditions } from '@/data/conditions';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 export function GaldermaHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -45,17 +53,8 @@ export function GaldermaHeader() {
         animate={{ y: isHidden ? -100 : 0 }}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-2 flex items-center justify-between text-xs">
-          {/* Left: Contact Phone */}
-          <a
-            href={`tel:${siteConfig.contact.phone}`}
-            className="flex items-center gap-2 text-stone-600 hover:text-[#b5453a] transition-colors"
-          >
-            <Phone className="w-3.5 h-3.5" />
-            <span>{siteConfig.contact.phone}</span>
-          </a>
-
-          {/* Center: Top Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          {/* Left: Top Navigation (About & Contact) */}
+          <nav className="hidden md:flex items-center gap-6">
             <Link
               href={`/${locale}/about`}
               className="uppercase tracking-[0.15em] text-stone-600 hover:text-[#b5453a] transition-colors"
@@ -69,6 +68,15 @@ export function GaldermaHeader() {
               {t('contact', { defaultValue: 'Contact Us' })}
             </Link>
           </nav>
+
+          {/* Mobile: Just phone */}
+          <a
+            href={`tel:${siteConfig.contact.phone}`}
+            className="md:hidden flex items-center gap-2 text-stone-600 hover:text-[#b5453a] transition-colors"
+          >
+            <Phone className="w-3.5 h-3.5" />
+            <span>{siteConfig.contact.phone}</span>
+          </a>
 
           {/* Right: Language Switcher */}
           <div className="flex items-center gap-4">
@@ -98,42 +106,96 @@ export function GaldermaHeader() {
             </Link>
           </div>
 
-          {/* Main Navigation - Under Logo */}
-          <nav
-            aria-label={t('mainNavigation', { defaultValue: 'Main navigation' })}
-            className="hidden md:flex items-center justify-center gap-10"
-          >
-            <Link
-              href={`/${locale}/treatments`}
-              className="text-xs uppercase tracking-[0.2em] text-stone-700 hover:text-[#b5453a] transition-colors"
+          {/* Main Navigation - Under Logo with Book button on right */}
+          <div className="hidden md:flex items-center justify-between">
+            {/* Left spacer for balance */}
+            <div className="w-24" />
+
+            {/* Center Navigation */}
+            <nav
+              aria-label={t('mainNavigation', { defaultValue: 'Main navigation' })}
+              className="flex items-center justify-center gap-10"
             >
-              {t('treatments', { defaultValue: 'Treatments' })}
-            </Link>
+              {/* Treatments Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex items-center gap-1 text-xs uppercase tracking-[0.2em] text-stone-700 hover:text-[#b5453a] transition-colors outline-none">
+                  {t('treatments', { defaultValue: 'Treatments' })}
+                  <ChevronDown className="w-3 h-3" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="center" className="w-56">
+                  <DropdownMenuItem asChild>
+                    <Link href={`/${locale}/treatments`} className="cursor-pointer font-medium">
+                      {t('allTreatments', { defaultValue: 'All Treatments' })}
+                    </Link>
+                  </DropdownMenuItem>
+                  <div className="h-px bg-stone-200 my-1" />
+                  {baseTreatmentCategories.map((category: { slug: string; name: string }) => (
+                    <DropdownMenuItem key={category.slug} asChild>
+                      <Link
+                        href={`/${locale}/treatments#${category.slug}`}
+                        className="cursor-pointer text-sm"
+                      >
+                        {category.name}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              {/* Conditions Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex items-center gap-1 text-xs uppercase tracking-[0.2em] text-stone-700 hover:text-[#b5453a] transition-colors outline-none">
+                  {t('conditions', { defaultValue: 'Skin Conditions' })}
+                  <ChevronDown className="w-3 h-3" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="center" className="w-56">
+                  <DropdownMenuItem asChild>
+                    <Link href={`/${locale}/conditions`} className="cursor-pointer font-medium">
+                      {t('allConditions', { defaultValue: 'All Conditions' })}
+                    </Link>
+                  </DropdownMenuItem>
+                  <div className="h-px bg-stone-200 my-1" />
+                  {baseConditions.slice(0, 6).map((condition: { slug: string; name: string }) => (
+                    <DropdownMenuItem key={condition.slug} asChild>
+                      <Link
+                        href={`/${locale}/conditions/${condition.slug}`}
+                        className="cursor-pointer text-sm"
+                      >
+                        {condition.name}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              <Link
+                href={`/${locale}/pricelist`}
+                className="text-xs uppercase tracking-[0.2em] text-stone-700 hover:text-[#b5453a] transition-colors"
+              >
+                {t('pricelist', { defaultValue: 'Pricelist' })}
+              </Link>
+              <Link
+                href={`/${locale}/offers`}
+                className="text-xs uppercase tracking-[0.2em] text-stone-700 hover:text-[#b5453a] transition-colors"
+              >
+                {t('offers', { defaultValue: 'Offers' })}
+              </Link>
+              <Link
+                href={`/${locale}/international-clients`}
+                className="text-xs uppercase tracking-[0.2em] text-stone-700 hover:text-[#b5453a] transition-colors"
+              >
+                {t('international', { defaultValue: 'International Clients' })}
+              </Link>
+            </nav>
+
+            {/* Right: Book Button */}
             <Link
-              href={`/${locale}/conditions`}
-              className="text-xs uppercase tracking-[0.2em] text-stone-700 hover:text-[#b5453a] transition-colors"
+              href={`/${locale}/book`}
+              className="w-24 px-4 py-2 bg-[#b5453a] text-white text-xs uppercase tracking-[0.15em] text-center hover:bg-[#8e3229] transition-colors"
             >
-              {t('conditions', { defaultValue: 'Skin Conditions' })}
+              {t('book', { defaultValue: 'Book' })}
             </Link>
-            <Link
-              href={`/${locale}/pricelist`}
-              className="text-xs uppercase tracking-[0.2em] text-stone-700 hover:text-[#b5453a] transition-colors"
-            >
-              {t('pricelist', { defaultValue: 'Pricelist' })}
-            </Link>
-            <Link
-              href={`/${locale}/offers`}
-              className="text-xs uppercase tracking-[0.2em] text-stone-700 hover:text-[#b5453a] transition-colors"
-            >
-              {t('offers', { defaultValue: 'Offers' })}
-            </Link>
-            <Link
-              href={`/${locale}/international-clients`}
-              className="text-xs uppercase tracking-[0.2em] text-stone-700 hover:text-[#b5453a] transition-colors"
-            >
-              {t('international', { defaultValue: 'International Clients' })}
-            </Link>
-          </nav>
+          </div>
 
           {/* Mobile: Logo + Menu Button Row */}
           <div className="flex md:hidden items-center justify-between">
