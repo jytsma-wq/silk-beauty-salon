@@ -3,8 +3,9 @@
 import { useState, useEffect } from 'react';
 import { Link } from '@/i18n/routing';
 import { Menu, X } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { siteConfig } from '@/data/site-config';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export function GaldermaHeader() {
@@ -13,6 +14,7 @@ export function GaldermaHeader() {
   const [isHidden, setIsHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const t = useTranslations('nav');
+  const locale = useLocale();
 
   // Scroll behavior - hide on scroll down, show on scroll up
   useEffect(() => {
@@ -48,28 +50,28 @@ export function GaldermaHeader() {
         animate={{ y: isHidden ? -100 : 0 }}
         transition={{ duration: 0.3 }}
       >
-        <nav className="max-w-7xl mx-auto px-6 lg:px-8 py-6 flex items-center justify-between">
+        <nav aria-label={t('mainNavigation', { defaultValue: 'Main navigation' })} className="max-w-7xl mx-auto px-6 lg:px-8 py-6 flex items-center justify-between">
           {/* Left: Minimal Logo */}
-          <Link href="/" className="font-serif text-xl tracking-tight text-stone-900">
-            Silk
+          <Link href={`/${locale}`} className="font-serif text-xl tracking-tight text-stone-900">
+            {siteConfig.name}
           </Link>
 
           {/* Center: Main nav (hidden on mobile) */}
           <div className="hidden md:flex items-center gap-12">
             <Link
-              href="/treatments"
+              href={`/${locale}/treatments`}
               className="text-sm uppercase tracking-[0.2em] text-stone-700 hover:text-stone-900 transition-colors"
             >
               {t('treatments', { defaultValue: 'Treatments' })}
             </Link>
             <Link
-              href="/gallery"
+              href={`/${locale}/gallery`}
               className="text-sm uppercase tracking-[0.2em] text-stone-700 hover:text-stone-900 transition-colors"
             >
-              Gallery
+              {t('gallery', { defaultValue: 'Gallery' })}
             </Link>
             <Link
-              href="/about"
+              href={`/${locale}/about`}
               className="text-sm uppercase tracking-[0.2em] text-stone-700 hover:text-stone-900 transition-colors"
             >
               {t('about', { defaultValue: 'About' })}
@@ -85,10 +87,10 @@ export function GaldermaHeader() {
 
             {/* Book CTA - minimal */}
             <Link
-              href="/book"
+              href={`/${locale}/book`}
               className="hidden sm:block px-6 py-3 border border-stone-900 text-xs uppercase tracking-[0.2em] text-stone-900 hover:bg-stone-900 hover:text-stone-50 transition-all duration-300"
             >
-              Book
+              {t('book', { defaultValue: 'Book' })}
             </Link>
 
             {/* Mobile menu button */}
@@ -133,7 +135,7 @@ export function GaldermaHeader() {
                     </span>
 
                     <Link
-                      href="/treatments"
+                      href={`/${locale}/treatments`}
                       onClick={() => setIsMenuOpen(false)}
                       className="block group"
                     >
@@ -141,26 +143,26 @@ export function GaldermaHeader() {
                         {t('treatments', { defaultValue: 'Treatments' })}
                       </h2>
                       <p className="text-sm text-stone-500">
-                        Browse our premium aesthetic services
+                        {t('treatmentsDescription', { defaultValue: 'Browse our premium aesthetic services' })}
                       </p>
                     </Link>
                   </div>
 
                   <Link
-                    href="/gallery"
+                    href={`/${locale}/gallery`}
                     onClick={() => setIsMenuOpen(false)}
                     className="block group"
                   >
                     <h2 className="text-5xl md:text-6xl font-serif font-light text-stone-900 group-hover:text-stone-600 transition-colors mb-2">
-                      Gallery
+                      {t('gallery', { defaultValue: 'Gallery' })}
                     </h2>
                     <p className="text-sm text-stone-500">
-                      View real patient results
+                      {t('galleryDescription', { defaultValue: 'View real patient results' })}
                     </p>
                   </Link>
 
                   <Link
-                    href="/about"
+                    href={`/${locale}/about`}
                     onClick={() => setIsMenuOpen(false)}
                     className="block group"
                   >
@@ -168,7 +170,7 @@ export function GaldermaHeader() {
                       {t('about', { defaultValue: 'About' })}
                     </h2>
                     <p className="text-sm text-stone-500">
-                      Meet our expert team
+                      {t('aboutDescription', { defaultValue: 'Meet our expert team' })}
                     </p>
                   </Link>
                 </nav>
@@ -181,28 +183,28 @@ export function GaldermaHeader() {
 
                   <nav className="space-y-4">
                     <Link
-                      href="/contact-us"
+                      href={`/${locale}/contact-us`}
                       onClick={() => setIsMenuOpen(false)}
                       className="block text-lg text-stone-700 hover:text-stone-900"
                     >
                       {t('contact', { defaultValue: 'Contact' })}
                     </Link>
                     <Link
-                      href="/faq"
+                      href={`/${locale}/faq`}
                       onClick={() => setIsMenuOpen(false)}
                       className="block text-lg text-stone-700 hover:text-stone-900"
                     >
-                      FAQ
+                      {t('faq', { defaultValue: 'FAQ' })}
                     </Link>
                     <Link
-                      href="/blog"
+                      href={`/${locale}/blog`}
                       onClick={() => setIsMenuOpen(false)}
                       className="block text-lg text-stone-700 hover:text-stone-900"
                     >
-                      Journal
+                      {t('blog', { defaultValue: 'Journal' })}
                     </Link>
                     <Link
-                      href="/pricelist"
+                      href={`/${locale}/pricelist`}
                       onClick={() => setIsMenuOpen(false)}
                       className="block text-lg text-stone-700 hover:text-stone-900"
                     >
@@ -213,27 +215,27 @@ export function GaldermaHeader() {
                   {/* Contact info */}
                   <div className="mt-16">
                     <span className="text-xs uppercase tracking-[0.4em] text-stone-400 mb-4 block">
-                      Visit Us
+                      {t('visitUs', { defaultValue: 'Visit Us' })}
                     </span>
                     <p className="text-sm text-stone-600 leading-relaxed">
-                      123 Rustaveli Avenue<br />
-                      Batumi, Georgia 6010
+                      {siteConfig.contact.address}<br />
+                      {siteConfig.contact.city}, {siteConfig.contact.country} {siteConfig.contact.postcode}
                     </p>
                     <a
-                      href="tel:+995555123456"
+                      href={`tel:${siteConfig.contact.phone}`}
                       className="block mt-4 text-sm text-stone-900 hover:underline"
                     >
-                      +995 555 123 456
+                      {siteConfig.contact.phone}
                     </a>
                   </div>
 
                   {/* CTA */}
                   <Link
-                    href="/book"
+                    href={`/${locale}/book`}
                     onClick={() => setIsMenuOpen(false)}
                     className="mt-12 block w-full py-5 bg-stone-900 text-stone-50 text-center text-sm uppercase tracking-widest hover:bg-stone-800 transition-colors"
                   >
-                    Book Consultation
+                    {t('bookConsultation', { defaultValue: 'Book Consultation' })}
                   </Link>
                 </div>
               </div>

@@ -42,7 +42,7 @@ function buildCSPHeader(nonce: string): string {
     "media-src 'self' https://cdn.coverr.co https://storage.googleapis.com blob:",
     "font-src 'self'",
     "connect-src 'self' https://www.google-analytics.com https://vitals.vercel-insights.com https://cdn.coverr.co",
-    "frame-src 'self'",
+    "frame-src 'self' https://cal.com https://*.cal.com",
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",
