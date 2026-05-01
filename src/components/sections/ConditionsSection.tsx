@@ -40,7 +40,7 @@ export function ConditionsSection() {
           {conditions.map((condition) => (
             <Link
               key={condition.slug}
-              href={`/conditions/${condition.slug}`}
+              href={`/${locale}/conditions/${condition.slug}`}
               className="group p-6 transition-colors hover:bg-stone-50"
             >
               <h3
@@ -61,7 +61,7 @@ export function ConditionsSection() {
         {/* View All Link */}
         <div className="text-center mt-12">
           <Link
-            href="/conditions"
+            href={`/${locale}/conditions`}
             className="inline-flex items-center gap-2 text-foreground font-medium hover:text-[#b5453a] transition-colors"
           >
             {t('viewAll')}

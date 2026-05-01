@@ -1,11 +1,12 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import { StickySplitSection } from './StickySplitSection';
 
 export function ConsultationCTA() {
   const t = useTranslations('consultation');
+  const locale = useLocale();
 
   return (
     <StickySplitSection
@@ -30,7 +31,7 @@ export function ConsultationCTA() {
 
       {/* CTA Button */}
       <Link
-        href="/book"
+        href={`/${locale}/book`}
         className="inline-flex items-center justify-center px-8 py-4 bg-[#1c1c1c] text-white text-sm tracking-widest uppercase transition-colors hover:bg-[#b5453a]"
       >
         {t('cta.button')}

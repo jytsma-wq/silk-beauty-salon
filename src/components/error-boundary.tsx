@@ -1,10 +1,10 @@
 'use client';
 
 import { Component, type ReactNode, type ErrorInfo } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { AlertTriangle, RefreshCw, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
 
 interface Props {
   children: ReactNode;
@@ -75,6 +75,7 @@ function ErrorFallback({
   onRetry: () => void;
 }) {
   const t = useTranslations('errors');
+  const locale = useLocale();
 
   return (
     <div className="min-h-[60vh] flex items-center justify-center p-4">
@@ -111,7 +112,7 @@ function ErrorFallback({
             variant="outline"
             asChild
           >
-            <Link href="/" className="flex items-center justify-center gap-2">
+            <Link href={`/${locale}`} className="flex items-center justify-center gap-2">
               <Home className="w-4 h-4" />
               {t('goHome')}
             </Link>

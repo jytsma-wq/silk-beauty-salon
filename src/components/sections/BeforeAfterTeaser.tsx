@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { motion } from 'framer-motion';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 
 // The 3 most impressive cases — shown on homepage
 const TEASER_CASES = [
@@ -36,6 +36,7 @@ const TEASER_CASES = [
 
 export function BeforeAfterTeaser() {
   const t = useTranslations('beforeAfterPage');
+  const locale = useLocale();
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   return (
@@ -53,7 +54,7 @@ export function BeforeAfterTeaser() {
             </h2>
           </div>
           <Link
-            href="/before-after"
+            href={`/${locale}/before-after`}
             className="link-french text-gray-600 self-start md:self-auto whitespace-nowrap"
           >
             {t('seeMoreResults', { defaultValue: 'See all results' })} →

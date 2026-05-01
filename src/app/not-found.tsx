@@ -1,7 +1,11 @@
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
+import { routing } from '@/i18n/routing';
 
 export default function NotFound() {
+  // Root not-found should redirect to default locale
+  const locale = routing.defaultLocale;
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-background">
       <div className="text-center max-w-md px-4">
@@ -16,12 +20,12 @@ export default function NotFound() {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button asChild className="btn-gold">
-            <Link href="/">
+            <Link href={`/${locale}`}>
               Go Home
             </Link>
           </Button>
           <Button asChild variant="outline">
-            <Link href="/contact-us">
+            <Link href={`/${locale}/contact-us`}>
               Contact Us
             </Link>
           </Button>

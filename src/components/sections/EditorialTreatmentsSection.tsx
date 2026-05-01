@@ -1,7 +1,7 @@
 'use client';
 
 import { Link } from '@/i18n/routing';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { treatmentCategories } from '@/data/navigation';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -49,6 +49,7 @@ function MagazinePullQuote() {
 
 export function EditorialTreatmentsSection() {
   const t = useTranslations('treatments');
+  const locale = useLocale();
 
   // Treatment items with broken grid spans
   const treatments: TreatmentItem[] = treatmentCategories.slice(0, 6).map((cat, index) => ({
@@ -136,7 +137,7 @@ export function EditorialTreatmentsSection() {
 
                   {/* Link - appears on hover */}
                   <Link
-                    href={`/treatments/${treatment.slug}`}
+                    href={`/${locale}/treatments/${treatment.slug}`}
                     className="inline-flex items-center mt-4 text-sm text-stone-50 underline underline-offset-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100"
                   >
                     Explore treatment →
@@ -158,7 +159,7 @@ export function EditorialTreatmentsSection() {
           viewport={{ once: true }}
         >
           <Link
-            href="/treatments"
+            href={`/${locale}/treatments`}
             className="group inline-flex items-center gap-3 text-sm tracking-[0.2em] uppercase text-stone-600 hover:text-stone-900 transition-colors"
           >
             <span>{t('viewAll', { defaultValue: 'View All Treatments' })}</span>

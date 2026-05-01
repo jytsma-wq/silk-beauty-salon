@@ -1,40 +1,41 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { HelpCircle, MapPin, Users, Newspaper, ChevronRight } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 
 export function QuickLinksSection() {
   const t = useTranslations('quickLinks');
   const tCommon = useTranslations('common');
+  const locale = useLocale();
 
   const quickLinks = [
     {
       title: t('faq.title'),
       description: t('faq.description'),
       icon: HelpCircle,
-      href: '/faq',
+      href: `/${locale}/faq`,
       color: 'bg-blue-50 text-blue-600',
     },
     {
       title: t('contact.title'),
       description: t('contact.description'),
       icon: MapPin,
-      href: '/contact-us',
+      href: `/${locale}/contact-us`,
       color: 'bg-green-50 text-green-600',
     },
     {
       title: t('team.title'),
       description: t('team.description'),
       icon: Users,
-      href: '/about#team',
+      href: `/${locale}/about#team`,
       color: 'bg-purple-50 text-purple-600',
     },
     {
       title: t('press.title'),
       description: t('press.description'),
       icon: Newspaper,
-      href: '/media-press',
+      href: `/${locale}/media-press`,
       color: 'bg-amber-50 text-amber-600',
     },
   ];
