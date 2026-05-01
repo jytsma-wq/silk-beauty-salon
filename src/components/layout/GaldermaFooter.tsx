@@ -3,6 +3,7 @@
 import { Link } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 import { siteConfig } from '@/data/site-config';
+import { Facebook, Instagram } from 'lucide-react';
 
 export function GaldermaFooter() {
   const currentYear = new Date().getFullYear();
@@ -12,137 +13,185 @@ export function GaldermaFooter() {
   return (
     <footer
       role="contentinfo"
-      className="bg-white"
-      style={{
-        backgroundImage: 'url(/footer-pattern.svg?v=2)',
-        backgroundRepeat: 'repeat',
-        backgroundSize: '200px 200px'
-      }}
+      className="border-t border-stone-200 bg-white"
     >
-
-      {/* ── Stay Connected ── */}
-      <div className="bg-white/90 py-20 backdrop-blur-sm">
-        <div className="flex flex-col items-center text-center">
-
-          <h2 className="font-serif text-3xl font-light tracking-[0.25em] uppercase text-gray-900 mb-5">
-            {t('stayConnected')}
-          </h2>
-
-          <p className="text-sm text-gray-600 leading-relaxed text-center mb-10 max-w-[20rem]">
-            {t('socialDescription')}
-          </p>
-
-          {/* Social icons — square outlined boxes, Galderma style */}
-          <div className="flex items-center gap-5">
-
-            {/* Facebook */}
-            <a
-              href={siteConfig.social?.facebook ?? 'https://facebook.com/silkbeauty'}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-11 h-11 border border-gray-900 flex items-center justify-center hover:bg-gray-900 hover:text-white transition-all duration-200 group"
-              aria-label="Facebook"
-            >
-              <svg
-                className="w-5 h-5 fill-current text-gray-900 group-hover:text-white transition-colors"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-              </svg>
-            </a>
-
-            {/* Instagram */}
-            <a
-              href={siteConfig.social?.instagram ?? 'https://instagram.com/silkbeauty'}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-11 h-11 border border-gray-900 flex items-center justify-center hover:bg-gray-900 hover:text-white transition-all duration-200 group"
-              aria-label="Instagram"
-            >
-              <svg
-                className="w-5 h-5 fill-current text-gray-900 group-hover:text-white transition-colors"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-              </svg>
-            </a>
-
+      {/* ── Magazine Colophon Layout ── */}
+      <div className="max-w-7xl mx-auto px-8 py-24 md:py-32">
+        
+        {/* Top Section - Newsletter / Stay Connected */}
+        <div className="mb-20 md:mb-32 max-w-3xl">
+          {/* Chapter marker */}
+          <div className="flex items-center gap-4 mb-8">
+            <div className="w-12 h-px bg-stone-300" />
+            <span className="text-xs tracking-[0.3em] uppercase text-stone-400">
+              {t('stayConnected', { defaultValue: 'Stay Connected' })}
+            </span>
           </div>
-        </div>
-      </div>
 
-      {/* ── Bottom bar ── */}
-      <div className="bg-white border-t border-gray-200">
-        <div className="container-custom py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-
-            {/* Copyright */}
-            <p className="text-[10px] tracking-[0.15em] uppercase text-gray-500">
-              © Silk Beauty {currentYear}
-            </p>
-
-            {/* Legal + utility links */}
-            <nav
-              className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2"
-              aria-label="Legal navigation"
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-stone-900 mb-6">
+            {t('newsletterTitle', { defaultValue: 'Join Our World' })}
+          </h2>
+          
+          <p className="text-lg text-stone-600 mb-10 max-w-xl leading-relaxed">
+            {t('socialDescription', { defaultValue: 'Receive updates on new treatments, exclusive offers, and beauty insights delivered to your inbox.' })}
+          </p>
+          
+          {/* Newsletter form - elegant underline style */}
+          <form className="flex flex-col sm:flex-row gap-4 max-w-lg" onSubmit={(e) => e.preventDefault()}>
+            <input 
+              type="email"
+              placeholder={t('emailPlaceholder', { defaultValue: 'Your email address' })}
+              className="flex-1 px-0 py-4 border-b-2 border-stone-300 focus:border-[#b5453a] bg-transparent text-base outline-none transition-colors placeholder:text-stone-400"
+            />
+            <button 
+              type="submit"
+              className="px-8 py-4 bg-stone-900 text-stone-50 text-sm uppercase tracking-wide hover:bg-[#b5453a] transition-colors"
             >
-              <Link
-                href="/contact-us"
-                className="text-[10px] tracking-[0.15em] uppercase text-gray-500 hover:text-gray-900 transition-colors"
+              {t('subscribe', { defaultValue: 'Subscribe' })}
+            </button>
+          </form>
+        </div>
+
+        {/* Main Footer Grid - Magazine Credits Style */}
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 md:gap-12 mb-16">
+          
+          {/* Column 1 - About */}
+          <div className="col-span-2">
+            <h3 className="text-xs uppercase tracking-[0.3em] text-stone-400 mb-6">
+              {t('about', { defaultValue: 'About' })}
+            </h3>
+            <p className="text-sm leading-relaxed text-stone-600 max-w-xs">
+              {siteConfig.description}
+            </p>
+            
+            {/* Social - minimal */}
+            <div className="mt-8 flex gap-6">
+              <a 
+                href={siteConfig.social?.instagram ?? 'https://instagram.com/silkbeauty'}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-stone-400 hover:text-[#b5453a] transition-colors"
+                aria-label="Instagram"
               >
-                {tNav('contact')}
+                <Instagram className="w-5 h-5" strokeWidth={1.5} />
+              </a>
+              <a 
+                href={siteConfig.social?.facebook ?? 'https://facebook.com/silkbeauty'}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-stone-400 hover:text-[#b5453a] transition-colors"
+                aria-label="Facebook"
+              >
+                <Facebook className="w-5 h-5" strokeWidth={1.5} />
+              </a>
+            </div>
+          </div>
+          
+          {/* Column 2 - Treatments */}
+          <div>
+            <h3 className="text-xs uppercase tracking-[0.3em] text-stone-400 mb-6">
+              {t('treatments', { defaultValue: 'Treatments' })}
+            </h3>
+            <nav className="space-y-3">
+              <Link href="/treatments" className="block text-sm text-stone-600 hover:text-stone-900 transition-colors">
+                {tNav('treatments')}
               </Link>
-              <Link
-                href="/terms-conditions"
-                className="text-[10px] tracking-[0.15em] uppercase text-gray-500 hover:text-gray-900 transition-colors"
-              >
-                {t('terms')}
+              <Link href="/conditions" className="block text-sm text-stone-600 hover:text-stone-900 transition-colors">
+                {tNav('conditions')}
               </Link>
-              <Link
-                href="/privacy-policy"
-                className="text-[10px] tracking-[0.15em] uppercase text-gray-500 hover:text-gray-900 transition-colors"
-              >
-                {t('privacy')}
-              </Link>
-              <Link
-                href="/privacy-policy"
-                className="text-[10px] tracking-[0.15em] uppercase text-gray-500 hover:text-gray-900 transition-colors"
-              >
-                {t('cookieNotice')}
+              <Link href="/pricelist" className="block text-sm text-stone-600 hover:text-stone-900 transition-colors">
+                {tNav('pricelist')}
               </Link>
             </nav>
-
+          </div>
+          
+          {/* Column 3 - Information */}
+          <div>
+            <h3 className="text-xs uppercase tracking-[0.3em] text-stone-400 mb-6">
+              {t('information', { defaultValue: 'Information' })}
+            </h3>
+            <nav className="space-y-3">
+              <Link href="/about" className="block text-sm text-stone-600 hover:text-stone-900 transition-colors">
+                {tNav('about')}
+              </Link>
+              <Link href="/faq" className="block text-sm text-stone-600 hover:text-stone-900 transition-colors">
+                {tNav('faq')}
+              </Link>
+              <Link href="/blog" className="block text-sm text-stone-600 hover:text-stone-900 transition-colors">
+                {tNav('blog')}
+              </Link>
+            </nav>
+          </div>
+          
+          {/* Column 4 - Visit Us */}
+          <div className="col-span-2">
+            <h3 className="text-xs uppercase tracking-[0.3em] text-stone-400 mb-6">
+              {t('visitUs', { defaultValue: 'Visit Us' })}
+            </h3>
+            <address className="not-italic text-sm text-stone-600 leading-relaxed">
+              <p className="mb-3">
+                {siteConfig.contact.address}
+                <br />
+                {siteConfig.contact.city}, {siteConfig.contact.country} {siteConfig.contact.postcode}
+              </p>
+              <p className="mb-3">
+                <a href={`tel:${siteConfig.contact.phone}`} className="hover:text-[#b5453a] transition-colors">
+                  {siteConfig.contact.phone}
+                </a>
+              </p>
+              <p>
+                <a href={`mailto:${siteConfig.contact.email}`} className="hover:text-[#b5453a] transition-colors">
+                  {siteConfig.contact.email}
+                </a>
+              </p>
+            </address>
+            
+            {/* Hours */}
+            <div className="mt-6 pt-6 border-t border-stone-100">
+              <dl className="text-sm space-y-1">
+                <div className="flex justify-between">
+                  <dt className="text-stone-500">Mon – Fri</dt>
+                  <dd className="text-stone-900">{siteConfig.businessHours.monday}</dd>
+                </div>
+                <div className="flex justify-between">
+                  <dt className="text-stone-500">Sat</dt>
+                  <dd className="text-stone-900">{siteConfig.businessHours.saturday}</dd>
+                </div>
+                <div className="flex justify-between">
+                  <dt className="text-stone-500">Sun</dt>
+                  <dd className="text-stone-900">{siteConfig.businessHours.sunday}</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+        
+        {/* Bottom Credits - Editorial Style */}
+        <div className="pt-8 border-t border-stone-200">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-stone-500">
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+              <span className="uppercase tracking-wider">
+                © {currentYear} {siteConfig.name}
+              </span>
+              <Link href="/privacy-policy" className="hover:text-stone-900 transition-colors uppercase tracking-wider">
+                {t('privacy')}
+              </Link>
+              <Link href="/terms-conditions" className="hover:text-stone-900 transition-colors uppercase tracking-wider">
+                {t('terms')}
+              </Link>
+            </div>
+            
+            <div className="flex items-center gap-4">
+              <span className="uppercase tracking-wider text-stone-400">
+                {t('designedIn', { defaultValue: 'Designed in Batumi' })}
+              </span>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* ── Decorative crosshatch strip (Galderma signature) ── */}
-      <div className="h-16 w-full overflow-hidden bg-white" aria-hidden="true">
-        <svg
-          width="100%"
-          height="100%"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-        >
-          <defs>
-            <pattern
-              id="galderma-hatch"
-              x="0"
-              y="0"
-              width="16"
-              height="16"
-              patternUnits="userSpaceOnUse"
-            >
-              <line x1="0" y1="16" x2="16" y2="0" stroke="#c8c8c8" strokeWidth="0.75" />
-              <line x1="0" y1="0" x2="16" y2="16" stroke="#c8c8c8" strokeWidth="0.75" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#galderma-hatch)" />
-        </svg>
-      </div>
-
+      {/* ── Decorative hairline separator ── */}
+      <div className="h-1 bg-linear-to-r from-transparent via-stone-200 to-transparent" aria-hidden="true" />
     </footer>
   );
 }
