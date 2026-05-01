@@ -15,7 +15,7 @@ const productionSchema = z.object({
 
 // Development schema - optional fields that are ok to skip
 const developmentSchema = z.object({
-  DATABASE_URL: z.string().optional().default('file:./dev.db'),
+  DATABASE_URL: z.string().optional().default('postgresql://localhost:5432/silkbeauty_dev'),
   RESEND_API_KEY: z.string().optional().default(''),
   RESEND_AUDIENCE_ID: z.string().optional().default(''),
   CONTACT_EMAIL: z.string().email().optional().default('info@silkbeauty.ge'),

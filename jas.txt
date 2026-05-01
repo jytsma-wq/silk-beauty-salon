@@ -1,7 +1,3 @@
-12 |   provider  = "postgresql"
-13 |   url       = env("DATABASE_URL")
-   |
-
 Validation Error Count: 1
 prisma:error
 Invalid `prisma.treatment.findUnique()` invocation:
@@ -147,58 +143,6 @@ error: Error validating datasource `db`: the URL must start with the protocol `p
    |
 
 Validation Error Count: 1
-prisma:error
-Invalid `prisma.treatment.findUnique()` invocation:
-
-
-error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
-  -->  schema.prisma:13
-   |
-12 |   provider  = "postgresql"
-13 |   url       = env("DATABASE_URL")
-   |
-
-Validation Error Count: 1
-Error: MISSING_MESSAGE: beforeAfterPage.realPeople (ka)
-    at q (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:5838)
-    at r (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:6026)
-    at s (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:6489)
-    at f (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\[root-of-the-server]__0k2nco3._.js:1:3838) {
-  code: 'MISSING_MESSAGE',
-  originalMessage: 'beforeAfterPage.realPeople (ka)'
-}
-prisma:error 
-Invalid `prisma.treatment.findUnique()` invocation:
-
-
-error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
-  -->  schema.prisma:13
-   |
-12 |   provider  = "postgresql"
-13 |   url       = env("DATABASE_URL")
-   |
-
-Validation Error Count: 1
-prisma:error
-Invalid `prisma.treatment.findUnique()` invocation:
-
-
-error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
-  -->  schema.prisma:13
-   |
-12 |   provider  = "postgresql"
-13 |   url       = env("DATABASE_URL")
-   |
-
-Validation Error Count: 1
-Error: MISSING_MESSAGE: beforeAfterPage.realPeople (en)
-    at q (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:5838)
-    at r (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:6026)
-    at s (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:6489)
-    at f (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\[root-of-the-server]__0k2nco3._.js:1:3838) {
-  code: 'MISSING_MESSAGE',
-  originalMessage: 'beforeAfterPage.realPeople (en)'
-}
 prisma:error 
 Invalid `prisma.treatment.findUnique()` invocation:
 
@@ -547,6 +491,66 @@ error: Error validating datasource `db`: the URL must start with the protocol `p
    |
 
 Validation Error Count: 1
+prisma:error 
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
 prisma:error
 Invalid `prisma.treatment.findUnique()` invocation:
 
@@ -631,86 +635,6 @@ error: Error validating datasource `db`: the URL must start with the protocol `p
    |
 
 Validation Error Count: 1
-prisma:error
-Invalid `prisma.treatment.findUnique()` invocation:
-
-
-error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
-  -->  schema.prisma:13
-   |
-12 |   provider  = "postgresql"
-13 |   url       = env("DATABASE_URL")
-   |
-
-Validation Error Count: 1
-prisma:error
-Invalid `prisma.treatment.findUnique()` invocation:
-
-
-error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
-  -->  schema.prisma:13
-   |
-12 |   provider  = "postgresql"
-13 |   url       = env("DATABASE_URL")
-   |
-
-Validation Error Count: 1
-Error: MISSING_MESSAGE: beforeAfterPage.realPeople (ru)
-    at q (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:5838)
-    at r (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:6026)
-    at s (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:6489)
-    at f (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\[root-of-the-server]__0k2nco3._.js:1:3838) {
-  code: 'MISSING_MESSAGE',
-  originalMessage: 'beforeAfterPage.realPeople (ru)'
-}
-prisma:error
-Invalid `prisma.treatment.findUnique()` invocation:
-
-
-error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
-  -->  schema.prisma:13
-   |
-12 |   provider  = "postgresql"
-13 |   url       = env("DATABASE_URL")
-   |
-
-Validation Error Count: 1
-prisma:error
-Invalid `prisma.treatment.findUnique()` invocation:
-
-
-error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
-  -->  schema.prisma:13
-   |
-12 |   provider  = "postgresql"
-13 |   url       = env("DATABASE_URL")
-   |
-
-Validation Error Count: 1
-Error: MISSING_MESSAGE: beforeAfterPage.realPeople (tr)
-    at q (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:5838)
-    at r (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:6026)
-    at s (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:6489)
-    at f (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\[root-of-the-server]__0k2nco3._.js:1:3838) {
-  code: 'MISSING_MESSAGE',
-  originalMessage: 'beforeAfterPage.realPeople (tr)'
-}
-Error: MISSING_MESSAGE: beforeAfterPage.realPeople (he)
-    at q (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:5838)
-    at r (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:6026)
-    at s (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:6489)
-    at f (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\[root-of-the-server]__0k2nco3._.js:1:3838) {
-  code: 'MISSING_MESSAGE',
-  originalMessage: 'beforeAfterPage.realPeople (he)'
-}
-Error: MISSING_MESSAGE: beforeAfterPage.realPeople (ar)
-    at q (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:5838)
-    at r (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:6026)
-    at s (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:6489)
-    at f (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\[root-of-the-server]__0k2nco3._.js:1:3838) {
-  code: 'MISSING_MESSAGE',
-  originalMessage: 'beforeAfterPage.realPeople (ar)'
-}
 prisma:error
 Invalid `prisma.treatment.findUnique()` invocation:
 
@@ -903,7 +827,7 @@ error: Error validating datasource `db`: the URL must start with the protocol `p
    |
 
 Validation Error Count: 1
-  Generating static pages using 15 workers (487/499)  [    ](node:11496) Warning: `--localstorage-file` was provided without a valid path
+  Generating static pages using 15 workers (486/499)  [    ](node:25048) Warning: `--localstorage-file` was provided without a valid path
 (Use `node --trace-warnings ...` to show where the warning was created)
 prisma:error 
 Invalid `prisma.treatmentCategory.findMany()` invocation:
@@ -953,7 +877,7 @@ error: Error validating datasource `db`: the URL must start with the protocol `p
    |
 
 Validation Error Count: 1
-  Generating static pages using 15 workers (496/499)  [   =]prisma:error 
+prisma:error 
 Invalid `prisma.blogPost.findMany()` invocation:
 
 
@@ -965,8 +889,8 @@ error: Error validating datasource `db`: the URL must start with the protocol `p
    |
 
 Validation Error Count: 1
-✓ Generating static pages using 15 workers (499/499) in 1696ms
-✓ Finalizing page optimization in 819ms
+✓ Generating static pages using 15 workers (499/499) in 1673ms
+✓ Finalizing page optimization in 865ms    
 
 Route (app)
 ┌ ○ /
