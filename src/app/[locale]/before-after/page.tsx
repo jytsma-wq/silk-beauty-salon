@@ -21,45 +21,65 @@ export default async function BeforeAfterPage({
   const t = await getTranslations({ locale, namespace: 'beforeAfterPage' });
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-white">
-        <div className="container-custom">
-          <div className="section-label mb-6">
-            <span>{t('sectionLabel', { defaultValue: 'Real Results' })}</span>
+    <div className="min-h-screen bg-stone-50">
+      {/* Magazine Chapter Header */}
+      <header className="pt-32 pb-20 px-6 md:px-12 lg:px-20">
+        <div className="max-w-6xl mx-auto">
+          {/* Chapter marker */}
+          <div className="flex items-center gap-6 mb-8">
+            <div className="w-16 h-px bg-stone-300" />
+            <span className="text-xs tracking-[0.4em] uppercase text-stone-400">
+              {t('sectionLabel', { defaultValue: 'Portfolio' })}
+            </span>
           </div>
-          <h1 className="font-serif text-5xl md:text-6xl font-light tracking-tight text-gray-900 mb-6">
-            {t('title')}
+
+          {/* Magazine Headline */}
+          <h1 className="text-[clamp(3rem,7vw,6rem)] font-serif font-light leading-[0.95] text-stone-900 mb-8 max-w-4xl">
+            {t('title', { defaultValue: 'Real Results,' })}
+            <br />
+            <em className="italic text-[#b5453a]">
+              {t('realPeople', { defaultValue: 'Real People' })}
+            </em>
           </h1>
-          <p className="text-lg text-gray-500 max-w-2xl leading-relaxed">
-            {t('subtitle')}
+
+          {/* Intro text */}
+          <p className="text-lg md:text-xl leading-relaxed text-stone-600 max-w-2xl">
+            {t('subtitle', { defaultValue: 'Every face tells a story. Browse our curated collection of treatment results, each representing a journey to renewed confidence.' })}
           </p>
         </div>
-      </section>
+      </header>
 
-      {/* Gallery Section */}
-      <section className="py-12 md:py-16">
-        <div className="container-custom">
+      {/* Photo Essay Gallery Section */}
+      <section className="py-12 md:py-20 px-6 md:px-12 lg:px-20">
+        <div className="max-w-7xl mx-auto">
           <EnhancedBeforeAfter showFilters={true} maxItems={8} />
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-12 bg-[#f7f4f0]">
-        <div className="container-custom text-center">
-          <h2 className="font-serif text-2xl md:text-3xl font-semibold mb-4">
-            {t('ctaTitle')}
+      {/* Magazine-style CTA Section */}
+      <section className="py-24 bg-white border-t border-stone-200">
+        <div className="max-w-4xl mx-auto text-center px-6">
+          {/* Decorative line */}
+          <div className="flex items-center justify-center gap-4 mb-8">
+            <div className="w-12 h-px bg-stone-300" />
+            <span className="text-xs tracking-[0.3em] uppercase text-stone-400">Start Your Journey</span>
+            <div className="w-12 h-px bg-stone-300" />
+          </div>
+
+          <h2 className="font-serif text-3xl md:text-4xl font-light text-stone-900 mb-6">
+            {t('ctaTitle', { defaultValue: 'Ready to Transform?' })}
           </h2>
-          <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-            {t('ctaText')}
+          <p className="text-stone-500 mb-10 max-w-xl mx-auto leading-relaxed">
+            {t('ctaText', { defaultValue: 'Book a consultation with one of our expert practitioners to discuss your aesthetic goals.' })}
           </p>
           <a
             href={`https://www.silkbeauty.ge/book`}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-gold inline-flex items-center gap-2 text-lg px-8 py-3"
+            className="inline-flex items-center gap-3 px-10 py-4 bg-stone-900 text-stone-50 text-sm uppercase tracking-widest hover:bg-[#b5453a] transition-colors duration-300"
           >
-            {t('bookNow')}
+            {t('bookNow', { defaultValue: 'Book Now' })}
+            <span className="text-lg">→</span>
           </a>
         </div>
       </section>

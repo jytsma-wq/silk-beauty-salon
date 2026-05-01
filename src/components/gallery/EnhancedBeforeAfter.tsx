@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { Link } from '@/i18n/routing';
-import { ChevronLeft, ChevronRight, ZoomIn, Info } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface BeforeAfterItem {
@@ -19,9 +19,10 @@ interface BeforeAfterItem {
   sessions?: number;
   concerns: string[];
   results: string[];
+  span?: string;
 }
 
-// Enhanced gallery data matching Galderma's style
+// Magazine-style gallery data with varied grid spans
 const galleryData: BeforeAfterItem[] = [
   {
     id: '1',
@@ -34,7 +35,8 @@ const galleryData: BeforeAfterItem[] = [
     duration: '6 months',
     sessions: 1,
     concerns: ['Loss of volume', 'Sagging cheeks'],
-    results: ['Restored cheek volume', 'Lifted appearance']
+    results: ['Restored cheek volume', 'Lifted appearance'],
+    span: 'col-span-2 row-span-2'
   },
   {
     id: '2',
@@ -47,7 +49,8 @@ const galleryData: BeforeAfterItem[] = [
     duration: '8 months',
     sessions: 2,
     concerns: ['Dehydrated skin', 'Fine lines'],
-    results: ['Improved hydration', 'Smoother skin texture']
+    results: ['Improved hydration', 'Smoother skin texture'],
+    span: 'col-span-1 row-span-1'
   },
   {
     id: '3',
@@ -60,7 +63,8 @@ const galleryData: BeforeAfterItem[] = [
     duration: '12+ months',
     sessions: 2,
     concerns: ['Volume loss', 'Skin laxity'],
-    results: ['Gradual volume restoration', 'Natural collagen stimulation']
+    results: ['Gradual volume restoration', 'Natural collagen stimulation'],
+    span: 'col-span-1 row-span-2'
   },
   {
     id: '4',
@@ -73,7 +77,8 @@ const galleryData: BeforeAfterItem[] = [
     duration: '9 months',
     sessions: 1,
     concerns: ['Weak jawline', 'Facial imbalance'],
-    results: ['Defined jawline', 'Improved facial contour']
+    results: ['Defined jawline', 'Improved facial contour'],
+    span: 'col-span-2 row-span-1'
   },
   {
     id: '5',
@@ -86,7 +91,8 @@ const galleryData: BeforeAfterItem[] = [
     duration: '9 months',
     sessions: 1,
     concerns: ['Thin lips', 'Asymmetry'],
-    results: ['Fuller lips', 'Natural proportion']
+    results: ['Fuller lips', 'Natural proportion'],
+    span: 'col-span-1 row-span-1'
   },
   {
     id: '6',
@@ -99,7 +105,8 @@ const galleryData: BeforeAfterItem[] = [
     duration: '4 months',
     sessions: 1,
     concerns: ['Forehead lines', 'Frown lines'],
-    results: ['Smooth forehead', 'Refreshed look']
+    results: ['Smooth forehead', 'Refreshed look'],
+    span: 'col-span-1 row-span-1'
   },
   {
     id: '7',
@@ -112,7 +119,8 @@ const galleryData: BeforeAfterItem[] = [
     duration: '6 months',
     sessions: 3,
     concerns: ['Dull skin', 'Uneven texture'],
-    results: ['Radiant skin', 'Even tone']
+    results: ['Radiant skin', 'Even tone'],
+    span: 'col-span-2 row-span-2'
   },
   {
     id: '8',
@@ -125,9 +133,12 @@ const galleryData: BeforeAfterItem[] = [
     duration: '4 months',
     sessions: 1,
     concerns: ['Deep frown lines', 'Angry resting expression'],
-    results: ['Smooth glabella', 'Relaxed appearance']
+    results: ['Smooth glabella', 'Relaxed appearance'],
+    span: 'col-span-1 row-span-1'
   }
 ];
+
+const CATEGORIES = ['All', 'Botox', 'Dermal Fillers', 'Skin Boosters', 'Jawline', 'Skin'];
 
 interface EnhancedBeforeAfterProps {
   locale?: string;
@@ -135,303 +146,283 @@ interface EnhancedBeforeAfterProps {
   maxItems?: number;
 }
 
-const CATEGORIES = ['All', 'Botox', 'Dermal Fillers', 'Skin Boosters', 'Jawline', 'Skin'];
-
 export function EnhancedBeforeAfter({ 
   locale: _locale, 
   showFilters = true,
-  maxItems = 6 
+  maxItems = 8 
 }: EnhancedBeforeAfterProps) {
-  const t = useTranslations('gallery');
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [selectedTreatment, setSelectedTreatment] = useState<string | null>(null);
+  const t = useTranslations('beforeAfterPage');
   const [activeFilter, setActiveFilter] = useState('All');
-  const [showInfo, setShowInfo] = useState(false);
+  const [lightboxItem, setLightboxItem] = useState<BeforeAfterItem | null>(null);
+  const [lightboxTab, setLightboxTab] = useState<'before' | 'after'>('after');
 
   const filteredItems = activeFilter === 'All'
-    ? (selectedTreatment ? galleryData.filter(item => item.treatment === selectedTreatment) : galleryData)
+    ? galleryData.slice(0, maxItems)
     : galleryData.filter(item =>
         item.treatment.toLowerCase().includes(activeFilter.toLowerCase()) ||
         (activeFilter === 'Botox' && (item.treatment.includes('Botox') || item.treatment.includes('Frown') || item.treatment.includes('Anti-Wrinkle'))) ||
-        (activeFilter === 'Dermal Fillers' && (item.treatment.includes('Fillers') || item.treatment.includes('Lip') || item.treatment.includes('Chin') || item.treatment.includes('Jaw'))) ||
+        (activeFilter === 'Dermal Fillers' && (item.treatment.includes('Fillers') || item.treatment.includes('Lip') || item.treatment.includes('Jaw'))) ||
         (activeFilter === 'Skin Boosters' && item.treatment.includes('Skinbooster')) ||
         (activeFilter === 'Skin' && (item.treatment.includes('Skin') || item.treatment.includes('PRP')))
-      );
+      ).slice(0, maxItems);
 
-  const displayItems = filteredItems.slice(0, maxItems);
-  const currentItem = displayItems[activeIndex];
-
-  const treatments = Array.from(new Set(galleryData.map(item => item.treatment)));
-
-  const nextSlide = () => {
-    setActiveIndex((prev) => (prev + 1) % displayItems.length);
+  const nextLightbox = () => {
+    if (!lightboxItem) return;
+    const currentIdx = filteredItems.findIndex(i => i.id === lightboxItem.id);
+    const nextIdx = (currentIdx + 1) % filteredItems.length;
+    setLightboxItem(filteredItems[nextIdx]);
   };
 
-  const prevSlide = () => {
-    setActiveIndex((prev) => (prev - 1 + displayItems.length) % displayItems.length);
+  const prevLightbox = () => {
+    if (!lightboxItem) return;
+    const currentIdx = filteredItems.findIndex(i => i.id === lightboxItem.id);
+    const prevIdx = (currentIdx - 1 + filteredItems.length) % filteredItems.length;
+    setLightboxItem(filteredItems[prevIdx]);
   };
 
-  if (!currentItem) {
-    return (
-      <div className="text-center py-16">
-        <p className="text-muted-foreground">{t('noResults', { defaultValue: 'No gallery items found.' })}</p>
-      </div>
-    );
-  }
+  // Magazine-style grid layout
+  const getGridPosition = (index: number) => {
+    const positions = [
+      'col-span-2 row-span-2', // Large
+      'col-span-1 row-span-1', // Small
+      'col-span-1 row-span-2',   // Tall
+      'col-span-2 row-span-1', // Wide
+      'col-span-1 row-span-1', // Small
+      'col-span-1 row-span-1', // Small
+      'col-span-2 row-span-2', // Large
+      'col-span-1 row-span-1', // Small
+    ];
+    return positions[index % positions.length];
+  };
 
   return (
-    <div className="space-y-8">
-      {/* Disclaimer Banner */}
-      <div className="bg-amber-50 border border-amber-200 rounded-sm p-4">
-        <div className="flex items-start gap-3">
-          <Info className="w-5 h-5 text-amber-600 mt-0.5 shrink-0" />
-          <p className="text-sm text-amber-800">
-            {t('disclaimer', { 
-              defaultValue: 'Individual results may vary. Photos are of actual clients with their consent. Results achieved after specified number of sessions.' 
-            })}
-          </p>
-        </div>
-      </div>
-
-      {/* Category Filter Tabs */}
+    <div className="space-y-12">
+      {/* Magazine Filter Navigation */}
       {showFilters && (
-        <div className="flex flex-wrap gap-2 mb-8">
-          {CATEGORIES.map(cat => (
-            <button
-              key={cat}
-              onClick={() => { setActiveFilter(cat); setActiveIndex(0); setSelectedTreatment(null); }}
-              className={cn(
-                'text-[0.625rem] tracking-[0.15em] uppercase px-4 py-2 border transition-colors',
-                activeFilter === cat
-                  ? 'bg-[#1c1c1c] text-white border-[#1c1c1c]'
-                  : 'bg-transparent text-gray-600 border-gray-300 hover:border-[#1c1c1c]'
-              )}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+        <nav className="flex items-center justify-between border-b border-stone-200 pb-8">
+          <div className="flex flex-wrap gap-3">
+            {CATEGORIES.map(cat => (
+              <button
+                key={cat}
+                onClick={() => setActiveFilter(cat)}
+                className={cn(
+                  'px-6 py-3 text-sm tracking-wide uppercase border transition-all duration-300',
+                  activeFilter === cat
+                    ? 'bg-stone-900 text-stone-50 border-stone-900'
+                    : 'bg-transparent text-stone-600 border-stone-300 hover:border-stone-900'
+                )}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+          
+          <span className="text-sm text-stone-500 hidden md:block">
+            {filteredItems.length} {t('results', { defaultValue: 'results' })}
+          </span>
+        </nav>
       )}
 
-      {/* Treatment Filters */}
-      {showFilters && activeFilter === 'All' && (
-        <div className="flex flex-wrap gap-2">
-          <button
-            onClick={() => {
-              setSelectedTreatment(null);
-              setActiveIndex(0);
-            }}
-            className={cn(
-              'px-4 py-2 rounded-full text-sm font-medium transition-colors',
-              selectedTreatment === null
-                ? 'bg-[#b5453a] text-white'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-            )}
-          >
-            {t('allTreatments', { defaultValue: 'All Treatments' })}
-          </button>
-          {treatments.map((treatment) => (
-            <button
-              key={treatment}
-              onClick={() => {
-                setSelectedTreatment(treatment);
-                setActiveIndex(0);
-              }}
+      {/* Photo Essay Masonry Grid */}
+      <div className="grid grid-cols-3 md:grid-cols-4 auto-rows-[200px] md:auto-rows-[250px] gap-4 md:gap-6">
+        <AnimatePresence mode="popLayout">
+          {filteredItems.map((item, index) => (
+            <motion.figure
+              key={item.id}
+              layout
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               className={cn(
-                'px-4 py-2 rounded-full text-sm font-medium transition-colors',
-                selectedTreatment === treatment
-                  ? 'bg-[#b5453a] text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                'relative group cursor-pointer overflow-hidden',
+                item.span || getGridPosition(index)
               )}
+              onClick={() => { setLightboxItem(item); setLightboxTab('after'); }}
             >
-              {treatment}
-            </button>
-          ))}
-        </div>
-      )}
-
-      {/* Main Gallery Display */}
-      <div className="bg-white rounded-sm shadow-lg border border-border overflow-hidden">
-        {/* Treatment Label Header */}
-        <div className="bg-primary text-white px-6 py-4 flex items-center justify-between">
-          <div>
-            <h3 className="font-serif text-xl">{currentItem.treatment}</h3>
-            <p className="text-sm text-white/80">{currentItem.treatmentDetails}</p>
-          </div>
-          <button
-            onClick={() => setShowInfo(!showInfo)}
-            className="p-2 hover:bg-white/10 rounded-full transition-colors"
-          >
-            <Info className="w-5 h-5" />
-          </button>
-        </div>
-
-        {/* Before/After Images */}
-        <div className="relative">
-          <div className="grid grid-cols-2 gap-1">
-            {/* Before Image */}
-            <div className="relative aspect-3/4 bg-gray-100">
-              <Image
-                src={currentItem.beforeImage}
-                alt={`${currentItem.patientName} - Before ${currentItem.treatment}`}
-                fill
-                className="object-cover"
-              />
-              <div className="absolute bottom-4 left-4 bg-black/70 text-white px-3 py-1.5 rounded-sm text-sm font-medium">
-                {t('before', { defaultValue: 'Before' })}
-              </div>
-              <div className="absolute top-4 right-4">
-                <button className="p-2 bg-white/90 rounded-full hover:bg-white transition-colors">
-                  <ZoomIn className="w-4 h-4 text-gray-700" />
-                </button>
-              </div>
-            </div>
-
-            {/* After Image */}
-            <div className="relative aspect-3/4 bg-gray-100">
-              <Image
-                src={currentItem.afterImage}
-                alt={`${currentItem.patientName} - After ${currentItem.treatment}`}
-                fill
-                className="object-cover"
-              />
-              <div className="absolute bottom-4 left-4 bg-[#b5453a] text-white px-3 py-1.5 rounded-sm text-sm font-medium">
-                {t('after', { defaultValue: 'After' })}
-              </div>
-              <div className="absolute top-4 right-4">
-                <button className="p-2 bg-white/90 rounded-full hover:bg-white transition-colors">
-                  <ZoomIn className="w-4 h-4 text-gray-700" />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Navigation Arrows */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg transition-colors"
-          >
-            <ChevronLeft className="w-5 h-5 text-gray-700" />
-          </button>
-          <button
-            onClick={nextSlide}
-            className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg transition-colors"
-          >
-            <ChevronRight className="w-5 h-5 text-gray-700" />
-          </button>
-        </div>
-
-        {/* Patient Info Panel */}
-        {showInfo && (
-          <div className="border-t bg-gray-50 p-6">
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <h4 className="font-serif text-lg text-primary mb-3">
-                  {currentItem.patientName}, {currentItem.age}
-                </h4>
-                <div className="space-y-2 text-sm">
-                  <p>
-                    <span className="font-medium">{t('treatment', { defaultValue: 'Treatment' })}:</span>{' '}
-                    {currentItem.treatmentDetails}
-                  </p>
-                  <p>
-                    <span className="font-medium">{t('duration', { defaultValue: 'Results duration' })}:</span>{' '}
-                    {currentItem.duration}
-                  </p>
-                  <p>
-                    <span className="font-medium">{t('sessions', { defaultValue: 'Sessions' })}:</span>{' '}
-                    {currentItem.sessions}
-                  </p>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <h5 className="font-medium text-sm text-gray-700 mb-2">
-                    {t('concerns', { defaultValue: 'Concerns' })}
-                  </h5>
-                  <ul className="space-y-1">
-                    {currentItem.concerns.map((concern, idx) => (
-                      <li key={idx} className="text-sm text-muted-foreground flex items-center gap-1">
-                        <span className="w-1 h-1 bg-gray-400 rounded-full" />
-                        {concern}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h5 className="font-medium text-sm text-gray-700 mb-2">
-                    {t('results', { defaultValue: 'Results' })}
-                  </h5>
-                  <ul className="space-y-1">
-                    {currentItem.results.map((result, idx) => (
-                      <li key={idx} className="text-sm text-[#b5453a] flex items-center gap-1">
-                        <span className="w-1 h-1 bg-[#b5453a] rounded-full" />
-                        {result}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Slide Indicators */}
-        <div className="border-t px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              {displayItems.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setActiveIndex(idx)}
-                  className={cn(
-                    'w-2 h-2 rounded-full transition-colors',
-                    idx === activeIndex ? 'bg-[#b5453a]' : 'bg-gray-300 hover:bg-gray-400'
-                  )}
+              {/* Image with parallax-like hover */}
+              <div className="relative w-full h-full">
+                <Image
+                  src={item.afterImage}
+                  alt={`${item.patientName} - ${item.treatment}`}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 50vw, 33vw"
                 />
-              ))}
-            </div>
-            <p className="text-sm text-muted-foreground">
-              {activeIndex + 1} / {displayItems.length}
-            </p>
-          </div>
-        </div>
+                
+                {/* Gradient overlay on hover */}
+                <div className="absolute inset-0 bg-linear-to-t from-stone-900/90 via-stone-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Caption appears on hover */}
+                <figcaption className="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                  <p className="text-sm italic text-stone-50 mb-2">
+                    {item.treatment}
+                  </p>
+                  <p className="text-xs text-stone-300 uppercase tracking-wider">
+                    {item.patientName}, {item.age} • {item.duration}
+                  </p>
+                </figcaption>
+
+                {/* Before/After indicator */}
+                <div className="absolute top-4 right-4 bg-stone-900/80 text-white px-3 py-1 text-xs uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  {t('viewComparison', { defaultValue: 'View' })}
+                </div>
+              </div>
+            </motion.figure>
+          ))}
+        </AnimatePresence>
       </div>
 
-      {/* Thumbnail Grid */}
-      <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
-        {displayItems.map((item, idx) => (
-          <button
-            key={item.id}
-            onClick={() => setActiveIndex(idx)}
-            className={cn(
-              'relative aspect-square rounded-sm overflow-hidden border-2 transition-colors',
-              idx === activeIndex ? 'border-[#b5453a]' : 'border-transparent hover:border-gray-300'
-            )}
+      {/* Editorial Lightbox */}
+      <AnimatePresence>
+        {lightboxItem && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-stone-50 z-50"
           >
-            <Image
-              src={item.afterImage}
-              alt={item.patientName}
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/70 to-transparent p-2">
-              <p className="text-white text-xs font-medium">{item.treatment}</p>
-            </div>
-          </button>
-        ))}
-      </div>
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] h-full">
+              {/* Image Side */}
+              <div className="relative flex items-center justify-center p-8 lg:p-12 bg-stone-100">
+                {/* Tab Switcher */}
+                <div className="absolute top-6 left-1/2 -translate-x-1/2 flex bg-white rounded-none shadow-sm">
+                  <button
+                    onClick={() => setLightboxTab('before')}
+                    className={cn(
+                      'px-6 py-3 text-sm uppercase tracking-wide transition-colors',
+                      lightboxTab === 'before' ? 'bg-stone-900 text-white' : 'text-stone-600 hover:bg-stone-50'
+                    )}
+                  >
+                    {t('before', { defaultValue: 'Before' })}
+                  </button>
+                  <button
+                    onClick={() => setLightboxTab('after')}
+                    className={cn(
+                      'px-6 py-3 text-sm uppercase tracking-wide transition-colors',
+                      lightboxTab === 'after' ? 'bg-[#b5453a] text-white' : 'text-stone-600 hover:bg-stone-50'
+                    )}
+                  >
+                    {t('after', { defaultValue: 'After' })}
+                  </button>
+                </div>
 
-      {/* CTA */}
-      <div className="text-center">
-        <Link
-          href="/before-after"
-          className="inline-flex items-center gap-2 text-[#b5453a] hover:underline font-medium"
-        >
-          {t('seeMoreResults', { defaultValue: 'See more results' })}
-          <ChevronRight className="w-4 h-4" />
-        </Link>
-      </div>
+                {/* Main Image */}
+                <div className="relative w-full h-full max-w-3xl max-h-[80vh]">
+                  <Image
+                    src={lightboxTab === 'before' ? lightboxItem.beforeImage : lightboxItem.afterImage}
+                    alt={`${lightboxItem.patientName} - ${lightboxTab}`}
+                    fill
+                    className="object-contain"
+                    priority
+                  />
+                </div>
+
+                {/* Navigation Arrows */}
+                <button
+                  onClick={prevLightbox}
+                  className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg transition-colors"
+                >
+                  <ChevronLeft className="w-6 h-6 text-stone-700" />
+                </button>
+                <button
+                  onClick={nextLightbox}
+                  className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg transition-colors"
+                >
+                  <ChevronRight className="w-6 h-6 text-stone-700" />
+                </button>
+              </div>
+
+              {/* Details Panel */}
+              <aside className="bg-white p-8 lg:p-12 overflow-y-auto border-l border-stone-200">
+                {/* Close Button */}
+                <button
+                  onClick={() => setLightboxItem(null)}
+                  className="absolute top-6 right-6 p-2 hover:bg-stone-100 rounded-full transition-colors"
+                >
+                  <X className="w-6 h-6 text-stone-500" />
+                </button>
+
+                {/* Treatment Title */}
+                <div className="mb-8">
+                  <p className="text-xs uppercase tracking-[0.3em] text-stone-400 mb-3">
+                    {lightboxItem.treatment}
+                  </p>
+                  <h3 className="text-3xl lg:text-4xl font-serif font-light text-stone-900">
+                    {lightboxItem.patientName}
+                  </h3>
+                  <p className="text-stone-500 mt-2">{lightboxItem.treatmentDetails}</p>
+                </div>
+
+                {/* Details Grid */}
+                <dl className="space-y-6 border-t border-stone-200 pt-8">
+                  <div className="grid grid-cols-2 gap-6">
+                    <div>
+                      <dt className="text-xs uppercase tracking-widest text-stone-400 mb-1">
+                        {t('duration', { defaultValue: 'Results Duration' })}
+                      </dt>
+                      <dd className="text-lg font-serif text-stone-900">{lightboxItem.duration}</dd>
+                    </div>
+                    <div>
+                      <dt className="text-xs uppercase tracking-widest text-stone-400 mb-1">
+                        {t('sessions', { defaultValue: 'Sessions' })}
+                      </dt>
+                      <dd className="text-lg font-serif text-stone-900">{lightboxItem.sessions}</dd>
+                    </div>
+                  </div>
+
+                  {/* Concerns */}
+                  <div>
+                    <dt className="text-xs uppercase tracking-widest text-stone-400 mb-3">
+                      {t('concerns', { defaultValue: 'Concerns Addressed' })}
+                    </dt>
+                    <dd className="flex flex-wrap gap-2">
+                      {lightboxItem.concerns.map((concern, idx) => (
+                        <span
+                          key={idx}
+                          className="px-3 py-1 bg-stone-100 text-stone-600 text-sm"
+                        >
+                          {concern}
+                        </span>
+                      ))}
+                    </dd>
+                  </div>
+
+                  {/* Results */}
+                  <div>
+                    <dt className="text-xs uppercase tracking-widest text-stone-400 mb-3">
+                      {t('results', { defaultValue: 'Results Achieved' })}
+                    </dt>
+                    <dd className="space-y-2">
+                      {lightboxItem.results.map((result, idx) => (
+                        <p key={idx} className="text-stone-700 flex items-start gap-2">
+                          <span className="w-1.5 h-1.5 bg-[#b5453a] rounded-full mt-2 shrink-0" />
+                          {result}
+                        </p>
+                      ))}
+                    </dd>
+                  </div>
+                </dl>
+
+                {/* Testimonial */}
+                <div className="mt-10 pt-8 border-t border-stone-200">
+                  <blockquote className="text-lg font-serif italic text-stone-700 leading-relaxed">
+                    &ldquo;The results exceeded my expectations. Natural, subtle, and exactly what I was hoping for.&rdquo;
+                  </blockquote>
+                  <p className="mt-4 text-sm text-stone-500">
+                    — {lightboxItem.patientName}, {lightboxItem.age}
+                  </p>
+                </div>
+
+                {/* CTA */}
+                <button className="mt-10 w-full py-4 bg-stone-900 text-stone-50 text-sm uppercase tracking-wide hover:bg-stone-800 transition-colors">
+                  {t('bookNow', { defaultValue: 'Book Similar Treatment' })}
+                </button>
+              </aside>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
