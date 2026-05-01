@@ -24,9 +24,14 @@
     "mainNavigation": "ניווט ראשי",
     "findSpecialist": "מצא מומחה",
     "internationalClients": "לקוחות בינלאומיים",
+    "international": "לקוחות בינלאומיים",
+    "book": "קבע תור",
+    "allTreatments": "כל הטיפולים",
+    "allConditions": "כל מצבי העור",
     "viewAll": "הצג הכל",
     "exploreAll": "חקור הכל",
-    "consultation": "ייעוץ"
+    "consultation": "ייעוץ",
+    "visitUs": "בקרו אותנו"
   },
   "header": {
     "announcement": "זוכת פרסים | סלון היופי הטוב בבתומי | פורסם במגזין האופנה והיופי הגיאורגי"
@@ -352,6 +357,13 @@
     "terms": "תנאי שימוש",
     "cookieNotice": "הודעת עוגיות",
     "stayConnected": "הישארו מחוברים",
+    "newsletterTitle": "הצטרפו לעולם שלנו",
+    "emailPlaceholder": "כתובת האימייל שלך",
+    "subscribe": "הרשמה",
+    "about": "אודות",
+    "information": "מידע",
+    "visitUs": "בקרו אותנו",
+    "designedIn": "עוצב בבתומי",
     "socialDescription": "עקבו אחרינו ברשתות החברתיות לחדשות עדכניות וסיפורי מטופלים",
     "disclaimer": "תמיד התייעצו עם איש מקצוע בריאות לקבלת המלצות טיפול מותאמות אישית ולדון במידע בטיחות חשוב וסיכונים הקשורים לשימוש במוצרים."
   },

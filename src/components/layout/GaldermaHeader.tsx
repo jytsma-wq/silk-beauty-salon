@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from '@/i18n/routing';
 import { Menu, X, Phone, ChevronDown } from 'lucide-react';
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { siteConfig } from '@/data/site-config';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -21,7 +21,6 @@ export function GaldermaHeader() {
   const [isHidden, setIsHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const t = useTranslations('nav');
-  const locale = useLocale();
 
   // Scroll behavior - hide on scroll down, show on scroll up
   useEffect(() => {
@@ -56,13 +55,13 @@ export function GaldermaHeader() {
           {/* Left: Top Navigation (About & Contact) */}
           <nav className="hidden md:flex items-center gap-6">
             <Link
-              href={`/${locale}/about`}
+              href="/about"
               className="uppercase tracking-[0.15em] text-stone-600 hover:text-[#b5453a] transition-colors"
             >
               {t('about', { defaultValue: 'About' })}
             </Link>
             <Link
-              href={`/${locale}/contact-us`}
+              href="/contact-us"
               className="uppercase tracking-[0.15em] text-stone-600 hover:text-[#b5453a] transition-colors"
             >
               {t('contact', { defaultValue: 'Contact Us' })}
@@ -99,7 +98,7 @@ export function GaldermaHeader() {
           {/* Logo - Centered */}
           <div className="flex justify-center mb-4">
             <Link
-              href={`/${locale}`}
+              href="/"
               className="font-serif text-2xl tracking-tight text-[#1c1c1c] hover:text-[#b5453a] transition-colors"
             >
               {siteConfig.name}
@@ -124,7 +123,7 @@ export function GaldermaHeader() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="center" className="w-56">
                   <DropdownMenuItem asChild>
-                    <Link href={`/${locale}/treatments`} className="cursor-pointer font-medium">
+                    <Link href="/treatments" className="cursor-pointer font-medium">
                       {t('allTreatments', { defaultValue: 'All Treatments' })}
                     </Link>
                   </DropdownMenuItem>
@@ -132,7 +131,7 @@ export function GaldermaHeader() {
                   {baseTreatmentCategories.map((category: { slug: string; name: string }) => (
                     <DropdownMenuItem key={category.slug} asChild>
                       <Link
-                        href={`/${locale}/treatments#${category.slug}`}
+                        href={`/treatments#${category.slug}`}
                         className="cursor-pointer text-sm"
                       >
                         {category.name}
@@ -150,7 +149,7 @@ export function GaldermaHeader() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="center" className="w-56">
                   <DropdownMenuItem asChild>
-                    <Link href={`/${locale}/conditions`} className="cursor-pointer font-medium">
+                    <Link href="/conditions" className="cursor-pointer font-medium">
                       {t('allConditions', { defaultValue: 'All Conditions' })}
                     </Link>
                   </DropdownMenuItem>
@@ -158,7 +157,7 @@ export function GaldermaHeader() {
                   {baseConditions.slice(0, 6).map((condition: { slug: string; name: string }) => (
                     <DropdownMenuItem key={condition.slug} asChild>
                       <Link
-                        href={`/${locale}/conditions/${condition.slug}`}
+                        href={`/conditions/${condition.slug}`}
                         className="cursor-pointer text-sm"
                       >
                         {condition.name}
@@ -169,19 +168,19 @@ export function GaldermaHeader() {
               </DropdownMenu>
 
               <Link
-                href={`/${locale}/pricelist`}
+                href="/pricelist"
                 className="text-xs uppercase tracking-[0.2em] text-stone-700 hover:text-[#b5453a] transition-colors"
               >
                 {t('pricelist', { defaultValue: 'Pricelist' })}
               </Link>
               <Link
-                href={`/${locale}/offers`}
+                href="/offers"
                 className="text-xs uppercase tracking-[0.2em] text-stone-700 hover:text-[#b5453a] transition-colors"
               >
                 {t('offers', { defaultValue: 'Offers' })}
               </Link>
               <Link
-                href={`/${locale}/international-clients`}
+                href="/international-clients"
                 className="text-xs uppercase tracking-[0.2em] text-stone-700 hover:text-[#b5453a] transition-colors"
               >
                 {t('international', { defaultValue: 'International Clients' })}
@@ -190,7 +189,7 @@ export function GaldermaHeader() {
 
             {/* Right: Book Button */}
             <Link
-              href={`/${locale}/book`}
+              href="/book"
               className="w-24 px-4 py-2 bg-[#b5453a] text-white text-xs uppercase tracking-[0.15em] text-center hover:bg-[#8e3229] transition-colors"
             >
               {t('book', { defaultValue: 'Book' })}
@@ -200,7 +199,7 @@ export function GaldermaHeader() {
           {/* Mobile: Logo + Menu Button Row */}
           <div className="flex md:hidden items-center justify-between">
             <Link
-              href={`/${locale}`}
+              href="/"
               className="font-serif text-xl tracking-tight text-[#1c1c1c]"
             >
               {siteConfig.name}
@@ -240,7 +239,7 @@ export function GaldermaHeader() {
               {/* Logo in mobile menu */}
               <div className="text-center mb-12">
                 <Link
-                  href={`/${locale}`}
+                  href="/"
                   onClick={() => setIsMenuOpen(false)}
                   className="font-serif text-3xl tracking-tight text-[#1c1c1c]"
                 >
@@ -256,7 +255,7 @@ export function GaldermaHeader() {
                   </span>
 
                   <Link
-                    href={`/${locale}/treatments`}
+                    href="/treatments"
                     onClick={() => setIsMenuOpen(false)}
                     className="block text-3xl font-serif font-light text-stone-900 hover:text-[#b5453a] transition-colors"
                   >
@@ -264,7 +263,7 @@ export function GaldermaHeader() {
                   </Link>
 
                   <Link
-                    href={`/${locale}/conditions`}
+                    href="/conditions"
                     onClick={() => setIsMenuOpen(false)}
                     className="block text-3xl font-serif font-light text-stone-900 hover:text-[#b5453a] transition-colors"
                   >
@@ -272,7 +271,7 @@ export function GaldermaHeader() {
                   </Link>
 
                   <Link
-                    href={`/${locale}/pricelist`}
+                    href="/pricelist"
                     onClick={() => setIsMenuOpen(false)}
                     className="block text-3xl font-serif font-light text-stone-900 hover:text-[#b5453a] transition-colors"
                   >
@@ -280,7 +279,7 @@ export function GaldermaHeader() {
                   </Link>
 
                   <Link
-                    href={`/${locale}/offers`}
+                    href="/offers"
                     onClick={() => setIsMenuOpen(false)}
                     className="block text-3xl font-serif font-light text-stone-900 hover:text-[#b5453a] transition-colors"
                   >
@@ -288,7 +287,7 @@ export function GaldermaHeader() {
                   </Link>
 
                   <Link
-                    href={`/${locale}/international-clients`}
+                    href="/international-clients"
                     onClick={() => setIsMenuOpen(false)}
                     className="block text-3xl font-serif font-light text-stone-900 hover:text-[#b5453a] transition-colors"
                   >
@@ -304,28 +303,28 @@ export function GaldermaHeader() {
 
                   <nav className="space-y-4 mb-8">
                     <Link
-                      href={`/${locale}/about`}
+                      href="/about"
                       onClick={() => setIsMenuOpen(false)}
                       className="block text-lg text-stone-700 hover:text-[#b5453a] transition-colors"
                     >
                       {t('about', { defaultValue: 'About' })}
                     </Link>
                     <Link
-                      href={`/${locale}/contact-us`}
+                      href="/contact-us"
                       onClick={() => setIsMenuOpen(false)}
                       className="block text-lg text-stone-700 hover:text-[#b5453a] transition-colors"
                     >
                       {t('contact', { defaultValue: 'Contact Us' })}
                     </Link>
                     <Link
-                      href={`/${locale}/faq`}
+                      href="/faq"
                       onClick={() => setIsMenuOpen(false)}
                       className="block text-lg text-stone-700 hover:text-[#b5453a] transition-colors"
                     >
                       {t('faq', { defaultValue: 'FAQ' })}
                     </Link>
                     <Link
-                      href={`/${locale}/blog`}
+                      href="/blog"
                       onClick={() => setIsMenuOpen(false)}
                       className="block text-lg text-stone-700 hover:text-[#b5453a] transition-colors"
                     >
@@ -352,7 +351,7 @@ export function GaldermaHeader() {
 
                   {/* CTA */}
                   <Link
-                    href={`/${locale}/book`}
+                    href="/book"
                     onClick={() => setIsMenuOpen(false)}
                     className="mt-12 block w-full py-5 bg-stone-900 text-stone-50 text-center text-sm uppercase tracking-widest hover:bg-stone-800 transition-colors"
                   >

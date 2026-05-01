@@ -24,9 +24,14 @@
     "mainNavigation": "Ana Navigasyon",
     "findSpecialist": "Uzman Bul",
     "internationalClients": "Uluslararası Müşteriler",
+    "international": "Uluslararası Müşteriler",
+    "book": "Randevu Al",
+    "allTreatments": "Tüm Tedaviler",
+    "allConditions": "Tüm Durumlar",
     "viewAll": "Tümünü Gör",
     "exploreAll": "Tümünü Keşfet",
-    "consultation": "Konsültasyon"
+    "consultation": "Konsültasyon",
+    "visitUs": "Bizi Ziyaret Edin"
   },
   "header": {
     "announcement": "Ödüllü | Batumi'nin En İyi Güzellik Salonu | Gürcistan Moda ve Güzellik Dergisi'nde yayınlandı"
@@ -344,6 +349,13 @@
     "terms": "Kullanım Koşulları",
     "cookieNotice": "Çerez Bildirimi",
     "stayConnected": "Bağlı kalın",
+    "newsletterTitle": "Dünyamıza Katılın",
+    "emailPlaceholder": "E-posta adresiniz",
+    "subscribe": "Abone Ol",
+    "about": "Hakkımızda",
+    "information": "Bilgi",
+    "visitUs": "Bizi Ziyaret Edin",
+    "designedIn": "Batumi'de Tasarlandı",
     "socialDescription": "Güncel haberler ve hasta hikayeleri için sosyal medyada bizi takip edin",
     "disclaimer": "Her zaman ürünlerin kullanımıyla ilgili bireyselleştirilmiş tedavi önerileri ve önemli güvenlik bilgileri ile riskleri tartışmak için bir sağlık uzmanına danışın."
   },

@@ -1,180 +1,612 @@
-Task: Comprehensive Route Connectivity Audit for Silk Beauty Salon Next.js Application
-
-Context:
-- Next.js 16 App Router application
-- Multilingual routing with next-intl (6 languages: en, ka, ru, tr, ar, he)
-- Route structure: /[locale]/[...pages]
-- Files located in: /src/app/[locale]/
-
-Objective:
-Perform a complete audit of all routes, links, navigation elements, and redirects to ensure every path is properly connected, functional, and error-free.
-
-Instructions:
-
-STEP 1: ROUTE DISCOVERY
-1. Scan /src/app/[locale]/ directory recursively
-2. List all route segments (folders) and page.tsx files
-3. Identify all dynamic routes ([id], [...slug], etc.)
-4. Document the complete route tree structure
-5. Check for any missing page.tsx, layout.tsx, or error.tsx files
-6. Verify all route groups (parentheses folders) are properly configured
-
-STEP 2: LINK EXTRACTION
-1. Search all .tsx and .ts files for navigation elements:
-   - <Link> components from 'next/link'
-   - <a> tags with href attributes
-   - useRouter() and router.push() calls
-   - redirect() function calls
-   - Router.push() calls
-   - Any navigation in middleware.ts
-2. Extract every unique href/path value
-3. Categorize links:
-   - Internal routes (starting with /)
-   - External URLs (http/https)
-   - Hash links (#)
-   - Relative links
-   - Dynamic links with variables
-
-STEP 3: ROUTE VALIDATION
-For each discovered link:
-1. Check if the target route exists in the file structure
-2. Verify locale prefix is correctly applied
-3. Check if dynamic parameters are properly handled
-4. Validate anchor links point to existing IDs
-5. Ensure API routes (/api/*) exist
-6. Check for typos in route paths
-7. Verify all treatment slugs in links match database/data
-
-STEP 4: NAVIGATION COMPONENTS AUDIT
-Check these specific components:
-1. /src/components/layout/Header.tsx - all nav links
-2. /src/components/layout/Footer.tsx - all footer links
-3. /src/components/layout/MobileNav.tsx - mobile menu links
-4. Language switcher - all locale switching links
-5. Breadcrumb components - path generation
-6. Treatment navigation - all treatment links
-7. CTA buttons - booking and contact links
-8. Social media links - verify they exist
-
-STEP 5: MIDDLEWARE & REDIRECTS
-1. Check /middleware.ts:
-   - Locale detection logic
-   - Redirect rules
-   - Matcher configuration
-2. Check next.config.ts:
-   - Redirects array
-   - Rewrites array
-3. Verify 404 handling with not-found.tsx files
-
-STEP 6: INTERNATIONALIZATION ROUTES
-For each of the 6 locales (en, ka, ru, tr, ar, he):
-1. Verify all routes are accessible with locale prefix
-2. Check translation files have keys for all route names
-3. Verify RTL routes (ar, he) load correctly
-4. Check locale switcher redirects to correct pages
-5. Validate alternate language links (hreflang)
-
-STEP 7: API ROUTES
-1. List all API routes in /src/app/api/
-2. Check all fetch() calls point to existing API routes
-3. Verify API route methods (GET, POST, etc.) match usage
-4. Check for any hardcoded API URLs that should be relative
-
-STEP 8: SPECIAL CASES
-1. Check booking flow routes and steps
-2. Verify contact form submission endpoints
-3. Check newsletter signup endpoints
-4. Verify sitemap.xml generation includes all routes
-5. Check robots.txt allows all necessary routes
-6. Verify any auth-protected routes (if applicable)
-
-STEP 9: BROKEN LINK DETECTION
-Create a report of:
-1. Dead links (pointing to non-existent routes)
-2. Orphaned pages (routes that nothing links to)
-3. Circular redirects
-4. Missing translation keys for route names
-5. Inconsistent route naming (kebab-case violations)
-6. Links missing locale prefix
-7. External links that should be internal
-8. Duplicate routes or conflicting paths
-
-STEP 10: AUTOMATED FIX GENERATION
-For each issue found:
-1. Identify the exact file and line number
-2. Show the current incorrect code
-3. Provide the corrected code
-4. Explain why it's incorrect
-5. Categorize by severity: Critical, High, Medium, Low
-
-OUTPUT FORMAT:
-Generate a comprehensive report with these sections:
-
-## 1. Route Tree Structure
-[Complete visual tree of all routes]
-
-## 2. Route Statistics
-- Total pages: X
-- Total API routes: X
-- Total links found: X
-- Unique internal routes: X
-- External links: X
-
-## 3. Critical Issues (MUST FIX)
-[List of broken links, missing pages, 404s]
-
-## 4. High Priority Issues
-[List of incorrect locale handling, redirect loops]
-
-## 5. Medium Priority Issues
-[List of orphaned pages, inconsistent naming]
-
-## 6. Low Priority Issues
-[List of suggestions, optimizations]
-
-## 7. Fix Instructions
-For each issue, provide:
-FILE: /src/components/example.tsx
-LINE: 42
-CURRENT: <Link href="/about">About</Link>
-CORRECT: <Link href={/${locale}/about}>About</Link>
-REASON: Missing locale prefix for i18n routing
-SEVERITY: High
-
-## 8. Automated Fixes
-[Generate a script or list of str_replace commands to fix all issues]
-
-## 9. Testing Commands
-[Provide commands to verify all routes work]
-
-## 10. Recommendations
-[Suggest route architecture improvements]
-
-VALIDATION RULES:
-✓ All internal links must start with /${locale}/ or use Link component from next-intl
-✓ All page routes must have corresponding page.tsx
-✓ All dynamic routes must have fallback handling
-✓ No hardcoded locales in links (use {locale} variable)
-✓ All treatment slugs must match database entries
-✓ No broken external links (verify with HEAD request if possible)
-✓ All API routes called must exist
-✓ No duplicate route definitions
-✓ All redirects must point to valid routes
-✓ Language switcher must preserve current page path
-
-IGNORE:
-- node_modules/
-- .next/
-- Public asset URLs (/images/, /videos/, etc.)
-- External CDN links
-- mailto: and tel: links
-- Social media share URLs with dynamic content
-
-After completing the audit, provide:
-1. A summary score (X/100) for route health
-2. Total issues found by severity
-3. Estimated time to fix all issues
-4. Priority order for fixes
-5. Any architectural recommendations
-
-Begin the audit now and provide the complete report.
+    at renderWithHooks (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:42)
+    at updateFunctionComponent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:131)
+    at performUnitOfWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopConcurrentByScheduler (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9551:75)
+    at renderRootConcurrent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9534:71)
+    at performWorkOnRoot (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:26)
+    at performWorkUntilDeadline (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:72)
+    at LocaleLayout (src\app\[locale]\layout.tsx:77:15)
+  75 |             <AnnouncerProvider>
+  76 |               <SkipLink />
+> 77 |               <GaldermaHeader />
+     |               ^
+  78 |               <main id="main-content" className="pt-[140px]">{children}</main>
+  79 |               <GaldermaFooter />
+  80 |               <WhatsAppWidget /> (file://G:/website-Silk-beauty/jas (2)
+[browser] Error: MISSING_MESSAGE: Could not resolve `nav.international` in messages for locale `en`.
+    at IntlError (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:103:9)
+    at getFallbackFromErrorAndNotify (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:397:23)
+    at translateBaseFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:427:28)
+    at translateFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:455:39)
+    at GaldermaHeader (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/src_0__p~.k._.js:3727:55)
+    at react_stack_bottom_frame (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:42)
+    at updateFunctionComponent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:131)
+    at performUnitOfWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopConcurrentByScheduler (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9551:75)
+    at renderRootConcurrent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9534:71)
+    at performWorkOnRoot (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:26)
+    at performWorkUntilDeadline (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:72)
+    at LocaleLayout (src\app\[locale]\layout.tsx:77:15)
+  75 |             <AnnouncerProvider>
+  76 |               <SkipLink />
+> 77 |               <GaldermaHeader />
+     |               ^
+  78 |               <main id="main-content" className="pt-[140px]">{children}</main>
+  79 |               <GaldermaFooter />
+  80 |               <WhatsAppWidget /> (file://G:/website-Silk-beauty/jas (2)
+[browser] Error: MISSING_MESSAGE: Could not resolve `nav.book` in messages for locale `en`.
+    at IntlError (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:103:9)
+    at getFallbackFromErrorAndNotify (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:397:23)
+    at translateBaseFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:427:28)
+    at translateFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:455:39)
+    at GaldermaHeader (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/src_0__p~.k._.js:3744:47)
+    at react_stack_bottom_frame (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:42)
+    at updateFunctionComponent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:131)
+    at performUnitOfWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopConcurrentByScheduler (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9551:75)
+    at renderRootConcurrent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9534:71)
+    at performWorkOnRoot (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:26)
+    at performWorkUntilDeadline (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:72)
+    at LocaleLayout (src\app\[locale]\layout.tsx:77:15)
+  75 |             <AnnouncerProvider>
+  76 |               <SkipLink />
+> 77 |               <GaldermaHeader />
+     |               ^
+  78 |               <main id="main-content" className="pt-[140px]">{children}</main>
+  79 |               <GaldermaFooter />
+  80 |               <WhatsAppWidget /> (file://G:/website-Silk-beauty/jas (2)
+[browser] Error: MISSING_MESSAGE: Could not resolve `nav.allTreatments` in messages for locale `en`.
+    at IntlError (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:103:9)
+    at getFallbackFromErrorAndNotify (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:397:23)
+    at translateBaseFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:427:28)
+    at translateFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:455:39)
+    at GaldermaHeader (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/src_0__p~.k._.js:3576:75)
+    at react_stack_bottom_frame (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooksAgain (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4675:24)
+    at renderWithHooks (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4626:28)
+    at updateFunctionComponent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:131)
+    at performUnitOfWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopConcurrentByScheduler (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9551:75)
+    at renderRootConcurrent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9534:71)
+    at performWorkOnRoot (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:26)
+    at performWorkUntilDeadline (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:72)
+    at LocaleLayout (src\app\[locale]\layout.tsx:77:15)
+  75 |             <AnnouncerProvider>
+  76 |               <SkipLink />
+> 77 |               <GaldermaHeader />
+     |               ^
+  78 |               <main id="main-content" className="pt-[140px]">{children}</main>
+  79 |               <GaldermaFooter />
+  80 |               <WhatsAppWidget /> (file://G:/website-Silk-beauty/jas (2)
+[browser] Error: MISSING_MESSAGE: Could not resolve `nav.allConditions` in messages for locale `en`.
+    at IntlError (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:103:9)
+    at getFallbackFromErrorAndNotify (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:397:23)
+    at translateBaseFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:427:28)
+    at translateFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:455:39)
+    at GaldermaHeader (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/src_0__p~.k._.js:3654:75)
+    at react_stack_bottom_frame (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooksAgain (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4675:24)
+    at renderWithHooks (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4626:28)
+    at updateFunctionComponent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:131)
+    at performUnitOfWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopConcurrentByScheduler (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9551:75)
+    at renderRootConcurrent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9534:71)
+    at performWorkOnRoot (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:26)
+    at performWorkUntilDeadline (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:72)
+    at LocaleLayout (src\app\[locale]\layout.tsx:77:15)
+  75 |             <AnnouncerProvider>
+  76 |               <SkipLink />
+> 77 |               <GaldermaHeader />
+     |               ^
+  78 |               <main id="main-content" className="pt-[140px]">{children}</main>
+  79 |               <GaldermaFooter />
+  80 |               <WhatsAppWidget /> (file://G:/website-Silk-beauty/jas (2)
+[browser] Error: MISSING_MESSAGE: Could not resolve `nav.international` in messages for locale `en`.
+    at IntlError (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:103:9)
+    at getFallbackFromErrorAndNotify (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:397:23)
+    at translateBaseFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:427:28)
+    at translateFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:455:39)
+    at GaldermaHeader (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/src_0__p~.k._.js:3727:55)
+    at react_stack_bottom_frame (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooksAgain (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4675:24)
+    at renderWithHooks (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4626:28)
+    at updateFunctionComponent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:131)
+    at performUnitOfWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopConcurrentByScheduler (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9551:75)
+    at renderRootConcurrent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9534:71)
+    at performWorkOnRoot (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:26)
+    at performWorkUntilDeadline (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:72)
+    at LocaleLayout (src\app\[locale]\layout.tsx:77:15)
+  75 |             <AnnouncerProvider>
+  76 |               <SkipLink />
+> 77 |               <GaldermaHeader />
+     |               ^
+  78 |               <main id="main-content" className="pt-[140px]">{children}</main>
+  79 |               <GaldermaFooter />
+  80 |               <WhatsAppWidget /> (file://G:/website-Silk-beauty/jas (2)
+[browser] Error: MISSING_MESSAGE: Could not resolve `nav.book` in messages for locale `en`.
+    at IntlError (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:103:9)
+    at getFallbackFromErrorAndNotify (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:397:23)
+    at translateBaseFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:427:28)
+    at translateFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:455:39)
+    at GaldermaHeader (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/src_0__p~.k._.js:3744:47)
+    at react_stack_bottom_frame (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooksAgain (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4675:24)
+    at renderWithHooks (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4626:28)
+    at updateFunctionComponent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:131)
+    at performUnitOfWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopConcurrentByScheduler (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9551:75)
+    at renderRootConcurrent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9534:71)
+    at performWorkOnRoot (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:26)
+    at performWorkUntilDeadline (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:72)
+    at LocaleLayout (src\app\[locale]\layout.tsx:77:15)
+  75 |             <AnnouncerProvider>
+  76 |               <SkipLink />
+> 77 |               <GaldermaHeader />
+     |               ^
+  78 |               <main id="main-content" className="pt-[140px]">{children}</main>
+  79 |               <GaldermaFooter />
+  80 |               <WhatsAppWidget /> (file://G:/website-Silk-beauty/jas (2)
+[browser] Error: MISSING_MESSAGE: Could not resolve `footer.newsletterTitle` in messages for locale `en`.
+    at IntlError (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:103:9)
+    at getFallbackFromErrorAndNotify (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:397:23)
+    at translateBaseFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:427:28)
+    at translateFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:455:39)
+    at GaldermaFooter (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/src_0__p~.k._.js:4174:43)
+    at react_stack_bottom_frame (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:42)
+    at updateFunctionComponent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:131)
+    at performUnitOfWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopConcurrentByScheduler (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9551:75)
+    at renderRootConcurrent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9534:71)
+    at performWorkOnRoot (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:26)
+    at performWorkUntilDeadline (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:72)
+    at LocaleLayout (src\app\[locale]\layout.tsx:79:15)
+  77 |               <GaldermaHeader />
+  78 |               <main id="main-content" className="pt-[140px]">{children}</main>
+> 79 |               <GaldermaFooter />
+     |               ^
+  80 |               <WhatsAppWidget />
+  81 |               <Toaster />
+  82 |             </AnnouncerProvider> (file://G:/website-Silk-beauty/jas (2)
+[browser] Error: MISSING_MESSAGE: Could not resolve `footer.emailPlaceholder` in messages for locale `en`.
+    at IntlError (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:103:9)
+    at getFallbackFromErrorAndNotify (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:397:23)
+    at translateBaseFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:427:28)
+    at translateFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:455:39)
+    at GaldermaFooter (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/src_0__p~.k._.js:4198:54)
+    at react_stack_bottom_frame (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:42)
+    at updateFunctionComponent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:131)
+    at performUnitOfWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopConcurrentByScheduler (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9551:75)
+    at renderRootConcurrent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9534:71)
+    at performWorkOnRoot (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:26)
+    at performWorkUntilDeadline (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:72)
+    at LocaleLayout (src\app\[locale]\layout.tsx:79:15)
+  77 |               <GaldermaHeader />
+  78 |               <main id="main-content" className="pt-[140px]">{children}</main>
+> 79 |               <GaldermaFooter />
+     |               ^
+  80 |               <WhatsAppWidget />
+  81 |               <Toaster />
+  82 |             </AnnouncerProvider> (file://G:/website-Silk-beauty/jas (2)
+[browser] Error: MISSING_MESSAGE: Could not resolve `footer.subscribe` in messages for locale `en`.
+    at IntlError (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:103:9)
+    at getFallbackFromErrorAndNotify (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:397:23)
+    at translateBaseFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:427:28)
+    at translateFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:455:39)
+    at GaldermaFooter (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/src_0__p~.k._.js:4210:51)
+    at react_stack_bottom_frame (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:42)
+    at updateFunctionComponent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:131)
+    at performUnitOfWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopConcurrentByScheduler (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9551:75)
+    at renderRootConcurrent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9534:71)
+    at performWorkOnRoot (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:26)
+    at performWorkUntilDeadline (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:72)
+    at LocaleLayout (src\app\[locale]\layout.tsx:79:15)
+  77 |               <GaldermaHeader />
+  78 |               <main id="main-content" className="pt-[140px]">{children}</main>
+> 79 |               <GaldermaFooter />
+     |               ^
+  80 |               <WhatsAppWidget />
+  81 |               <Toaster />
+  82 |             </AnnouncerProvider> (file://G:/website-Silk-beauty/jas (2)
+[browser] Error: MISSING_MESSAGE: Could not resolve `footer.about` in messages for locale `en`.     
+    at IntlError (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:103:9)
+    at getFallbackFromErrorAndNotify (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:397:23)
+    at translateBaseFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:427:28)
+    at translateFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:455:39)
+    at GaldermaFooter (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/src_0__p~.k._.js:4238:51)
+    at react_stack_bottom_frame (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:42)
+    at updateFunctionComponent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:131)
+    at performUnitOfWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopConcurrentByScheduler (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9551:75)
+    at renderRootConcurrent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9534:71)
+    at performWorkOnRoot (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:26)
+    at performWorkUntilDeadline (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:72)
+    at LocaleLayout (src\app\[locale]\layout.tsx:79:15)
+  77 |               <GaldermaHeader />
+  78 |               <main id="main-content" className="pt-[140px]">{children}</main>
+> 79 |               <GaldermaFooter />
+     |               ^
+  80 |               <WhatsAppWidget />
+  81 |               <Toaster />
+  82 |             </AnnouncerProvider> (file://G:/website-Silk-beauty/jas (2)
+[browser] Error: MISSING_MESSAGE: Could not resolve `footer.information` in messages for locale `en`.
+    at IntlError (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:103:9)
+    at getFallbackFromErrorAndNotify (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:397:23)
+    at translateBaseFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:427:28)
+    at translateFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:455:39)
+    at GaldermaFooter (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/src_0__p~.k._.js:4365:51)
+    at react_stack_bottom_frame (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:42)
+    at updateFunctionComponent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:131)
+    at performUnitOfWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopConcurrentByScheduler (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9551:75)
+    at renderRootConcurrent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9534:71)
+    at performWorkOnRoot (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:26)
+    at performWorkUntilDeadline (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:72)
+    at LocaleLayout (src\app\[locale]\layout.tsx:79:15)
+  77 |               <GaldermaHeader />
+  78 |               <main id="main-content" className="pt-[140px]">{children}</main>
+> 79 |               <GaldermaFooter />
+     |               ^
+  80 |               <WhatsAppWidget />
+  81 |               <Toaster />
+  82 |             </AnnouncerProvider> (file://G:/website-Silk-beauty/jas (2)
+[browser] Error: MISSING_MESSAGE: Could not resolve `footer.visitUs` in messages for locale `en`.
+    at IntlError (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:103:9)
+    at getFallbackFromErrorAndNotify (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:397:23)
+    at translateBaseFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:427:28)
+    at translateFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:455:39)
+    at GaldermaFooter (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/src_0__p~.k._.js:4420:51)
+    at react_stack_bottom_frame (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:42)
+    at updateFunctionComponent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:131)
+    at performUnitOfWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopConcurrentByScheduler (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9551:75)
+    at renderRootConcurrent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9534:71)
+    at performWorkOnRoot (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:26)
+    at performWorkUntilDeadline (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:72)
+    at LocaleLayout (src\app\[locale]\layout.tsx:79:15)
+  77 |               <GaldermaHeader />
+  78 |               <main id="main-content" className="pt-[140px]">{children}</main>
+> 79 |               <GaldermaFooter />
+     |               ^
+  80 |               <WhatsAppWidget />
+  81 |               <Toaster />
+  82 |             </AnnouncerProvider> (file://G:/website-Silk-beauty/jas (2)
+[browser] Error: MISSING_MESSAGE: Could not resolve `footer.designedIn` in messages for locale `en`.
+    at IntlError (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:103:9)
+    at getFallbackFromErrorAndNotify (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:397:23)
+    at translateBaseFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:427:28)
+    at translateFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:455:39)
+    at GaldermaFooter (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/src_0__p~.k._.js:4640:51)
+    at react_stack_bottom_frame (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:42)
+    at updateFunctionComponent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:131)
+    at performUnitOfWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopConcurrentByScheduler (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9551:75)
+    at renderRootConcurrent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9534:71)
+    at performWorkOnRoot (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:26)
+    at performWorkUntilDeadline (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:72)
+    at LocaleLayout (src\app\[locale]\layout.tsx:79:15)
+  77 |               <GaldermaHeader />
+  78 |               <main id="main-content" className="pt-[140px]">{children}</main>
+> 79 |               <GaldermaFooter />
+     |               ^
+  80 |               <WhatsAppWidget />
+  81 |               <Toaster />
+  82 |             </AnnouncerProvider> (file://G:/website-Silk-beauty/jas (2)
+[browser] Error: MISSING_MESSAGE: Could not resolve `footer.newsletterTitle` in messages for locale `en`.
+    at IntlError (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:103:9)
+    at getFallbackFromErrorAndNotify (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:397:23)
+    at translateBaseFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:427:28)
+    at translateFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:455:39)
+    at GaldermaFooter (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/src_0__p~.k._.js:4174:43)
+    at react_stack_bottom_frame (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooksAgain (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4675:24)
+    at renderWithHooks (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4626:28)
+    at updateFunctionComponent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:131)
+    at performUnitOfWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopConcurrentByScheduler (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9551:75)
+    at renderRootConcurrent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9534:71)
+    at performWorkOnRoot (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:26)
+    at performWorkUntilDeadline (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:72)
+    at LocaleLayout (src\app\[locale]\layout.tsx:79:15)
+  77 |               <GaldermaHeader />
+  78 |               <main id="main-content" className="pt-[140px]">{children}</main>
+> 79 |               <GaldermaFooter />
+     |               ^
+  80 |               <WhatsAppWidget />
+  81 |               <Toaster />
+  82 |             </AnnouncerProvider> (file://G:/website-Silk-beauty/jas (2)
+[browser] Error: MISSING_MESSAGE: Could not resolve `footer.emailPlaceholder` in messages for locale `en`.
+    at IntlError (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:103:9)
+    at getFallbackFromErrorAndNotify (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:397:23)
+    at translateBaseFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:427:28)
+    at translateFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:455:39)
+    at GaldermaFooter (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/src_0__p~.k._.js:4198:54)
+    at react_stack_bottom_frame (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooksAgain (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4675:24)
+    at renderWithHooks (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4626:28)
+    at updateFunctionComponent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:131)
+    at performUnitOfWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopConcurrentByScheduler (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9551:75)
+    at renderRootConcurrent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9534:71)
+    at performWorkOnRoot (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:26)
+    at performWorkUntilDeadline (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:72)
+    at LocaleLayout (src\app\[locale]\layout.tsx:79:15)
+  77 |               <GaldermaHeader />
+  78 |               <main id="main-content" className="pt-[140px]">{children}</main>
+> 79 |               <GaldermaFooter />
+     |               ^
+  80 |               <WhatsAppWidget />
+  81 |               <Toaster />
+  82 |             </AnnouncerProvider> (file://G:/website-Silk-beauty/jas (2)
+[browser] Error: MISSING_MESSAGE: Could not resolve `footer.subscribe` in messages for locale `en`.
+    at IntlError (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:103:9)
+    at getFallbackFromErrorAndNotify (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:397:23)
+    at translateBaseFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:427:28)
+    at translateFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:455:39)
+    at GaldermaFooter (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/src_0__p~.k._.js:4210:51)
+    at react_stack_bottom_frame (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooksAgain (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4675:24)
+    at renderWithHooks (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4626:28)
+    at updateFunctionComponent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:131)
+    at performUnitOfWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopConcurrentByScheduler (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9551:75)
+    at renderRootConcurrent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9534:71)
+    at performWorkOnRoot (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:26)
+    at performWorkUntilDeadline (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:72)
+    at LocaleLayout (src\app\[locale]\layout.tsx:79:15)
+  77 |               <GaldermaHeader />
+  78 |               <main id="main-content" className="pt-[140px]">{children}</main>
+> 79 |               <GaldermaFooter />
+     |               ^
+  80 |               <WhatsAppWidget />
+  81 |               <Toaster />
+  82 |             </AnnouncerProvider> (file://G:/website-Silk-beauty/jas (2)
+[browser] Error: MISSING_MESSAGE: Could not resolve `footer.about` in messages for locale `en`.     
+    at IntlError (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:103:9)
+    at getFallbackFromErrorAndNotify (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:397:23)
+    at translateBaseFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:427:28)
+    at translateFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:455:39)
+    at GaldermaFooter (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/src_0__p~.k._.js:4238:51)
+    at react_stack_bottom_frame (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooksAgain (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4675:24)
+    at renderWithHooks (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4626:28)
+    at updateFunctionComponent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:131)
+    at performUnitOfWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopConcurrentByScheduler (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9551:75)
+    at renderRootConcurrent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9534:71)
+    at performWorkOnRoot (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:26)
+    at performWorkUntilDeadline (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:72)
+    at LocaleLayout (src\app\[locale]\layout.tsx:79:15)
+  77 |               <GaldermaHeader />
+  78 |               <main id="main-content" className="pt-[140px]">{children}</main>
+> 79 |               <GaldermaFooter />
+     |               ^
+  80 |               <WhatsAppWidget />
+  81 |               <Toaster />
+  82 |             </AnnouncerProvider> (file://G:/website-Silk-beauty/jas (2)
+[browser] Error: MISSING_MESSAGE: Could not resolve `footer.information` in messages for locale `en`.
+    at IntlError (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:103:9)
+    at getFallbackFromErrorAndNotify (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:397:23)
+    at translateBaseFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:427:28)
+    at translateFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:455:39)
+    at GaldermaFooter (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/src_0__p~.k._.js:4365:51)
+    at react_stack_bottom_frame (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooksAgain (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4675:24)
+    at renderWithHooks (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4626:28)
+    at updateFunctionComponent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:131)
+    at performUnitOfWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopConcurrentByScheduler (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9551:75)
+    at renderRootConcurrent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9534:71)
+    at performWorkOnRoot (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:26)
+    at performWorkUntilDeadline (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:72)
+    at LocaleLayout (src\app\[locale]\layout.tsx:79:15)
+  77 |               <GaldermaHeader />
+  78 |               <main id="main-content" className="pt-[140px]">{children}</main>
+> 79 |               <GaldermaFooter />
+     |               ^
+  80 |               <WhatsAppWidget />
+  81 |               <Toaster />
+  82 |             </AnnouncerProvider> (file://G:/website-Silk-beauty/jas (2)
+[browser] Error: MISSING_MESSAGE: Could not resolve `footer.visitUs` in messages for locale `en`.
+    at IntlError (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:103:9)
+    at getFallbackFromErrorAndNotify (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:397:23)
+    at translateBaseFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:427:28)
+    at translateFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:455:39)
+    at GaldermaFooter (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/src_0__p~.k._.js:4420:51)
+    at react_stack_bottom_frame (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooksAgain (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4675:24)
+    at renderWithHooks (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4626:28)
+    at updateFunctionComponent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:131)
+    at performUnitOfWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopConcurrentByScheduler (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9551:75)
+    at renderRootConcurrent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9534:71)
+    at performWorkOnRoot (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:26)
+    at performWorkUntilDeadline (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:72)
+    at LocaleLayout (src\app\[locale]\layout.tsx:79:15)
+  77 |               <GaldermaHeader />
+  78 |               <main id="main-content" className="pt-[140px]">{children}</main>
+> 79 |               <GaldermaFooter />
+     |               ^
+  80 |               <WhatsAppWidget />
+  81 |               <Toaster />
+  82 |             </AnnouncerProvider> (file://G:/website-Silk-beauty/jas (2)
+[browser] Error: MISSING_MESSAGE: Could not resolve `footer.designedIn` in messages for locale `en`.
+    at IntlError (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:103:9)
+    at getFallbackFromErrorAndNotify (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:397:23)
+    at translateBaseFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:427:28)
+    at translateFn (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0x~6.s7._.js:455:39)
+    at GaldermaFooter (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/src_0__p~.k._.js:4640:51)
+    at react_stack_bottom_frame (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooksAgain (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4675:24)
+    at renderWithHooks (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4626:28)
+    at updateFunctionComponent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6081:21)
+    at beginWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6665:639)
+    at runWithFiberInDEV (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:131)
+    at performUnitOfWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopConcurrentByScheduler (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9551:75)
+    at renderRootConcurrent (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9534:71)
+    at performWorkOnRoot (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:26)
+    at performWorkUntilDeadline (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:72)
+    at LocaleLayout (src\app\[locale]\layout.tsx:79:15)
+  77 |               <GaldermaHeader />
+  78 |               <main id="main-content" className="pt-[140px]">{children}</main>
+> 79 |               <GaldermaFooter />
+     |               ^
+  80 |               <WhatsAppWidget />
+  81 |               <Toaster />
+  82 |             </AnnouncerProvider> (file://G:/website-Silk-beauty/jas (2)
+ GET /en/en/pricelist 404 in 30ms (next.js: 8ms, application-code: 21ms)
+⨯ Error: No intl context found. Have you configured the provider? See https://next-intl.dev/docs/usage/configuration#server-client-components
+    at ignore-listed frames {
+  digest: '3828854351'
+}
+⨯ Error: No intl context found. Have you configured the provider? See https://next-intl.dev/docs/usage/configuration#server-client-components
+    at ignore-listed frames {
+  digest: '3828854351'
+}
+ GET /en/en/pricelist 500 in 83ms (next.js: 3ms, application-code: 80ms)
+ GET /icon?dbc5ddf005831638 200 in 41ms (next.js: 30ms, application-code: 11ms)
+[browser] Root error: Error: No intl context found. Have you configured the provider? See https://next-intl.dev/docs/usage/configuration#server-client-components
+    at useIntlContext (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0sw6qrm._.js:5022:15)
+    at useLocale (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0sw6qrm._.js:5084:12)
+    at BaseLink (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0sw6qrm._.js:5587:206)
+    at react_stack_bottom_frame (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:42)
+    at updateForwardRef (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:5908:21)
+    at beginWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6671:46)
+    at runWithFiberInDEV (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:131)
+    at performUnitOfWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopSync (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:57)
+    at renderRootSync (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
+    at performWorkOnRoot (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9098:47)
+    at performWorkOnRootViaSchedulerTask (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:26)
+    at performWorkUntilDeadline (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:72)
+    at render (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:1556:55)
+    at ErrorBoundary (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:1574:50)
+    at OuterLayoutRouter (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_0tt2wve._.js:700:51) (file://G:/website-Silk-beauty/jas (2)
+⨯ Error: No intl context found. Have you configured the provider? See https://next-intl.dev/docs/usage/configuration#server-client-components
+    at ignore-listed frames {
+  digest: '3828854351'
+}
+⨯ Error: No intl context found. Have you configured the provider? See https://next-intl.dev/docs/usage/configuration#server-client-components
+    at ignore-listed frames {
+  digest: '3828854351'
+}
+ GET /en/en/offers 500 in 50ms (next.js: 3ms, application-code: 47ms)
+[browser] Root error: Error: No intl context found. Have you configured the provider? See https://next-intl.dev/docs/usage/configuration#server-client-components
+    at useIntlContext (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0sw6qrm._.js:5022:15)
+    at useLocale (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0sw6qrm._.js:5084:12)
+    at BaseLink (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0sw6qrm._.js:5587:206)
+    at react_stack_bottom_frame (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:42)
+    at updateForwardRef (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:5908:21)
+    at beginWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6671:46)
+    at runWithFiberInDEV (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:131)
+    at performUnitOfWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopSync (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:57)
+    at renderRootSync (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
+    at performWorkOnRoot (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9098:47)
+    at performWorkOnRootViaSchedulerTask (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:26)
+    at performWorkUntilDeadline (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:72)
+    at render (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:1556:55)
+    at ErrorBoundary (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:1574:50)
+    at OuterLayoutRouter (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_0tt2wve._.js:700:51) (file://G:/website-Silk-beauty/jas (2)
+⨯ Error: No intl context found. Have you configured the provider? See https://next-intl.dev/docs/usage/configuration#server-client-components
+    at ignore-listed frames {
+  digest: '3828854351'
+}
+⨯ Error: No intl context found. Have you configured the provider? See https://next-intl.dev/docs/usage/configuration#server-client-components
+    at ignore-listed frames {
+  digest: '3828854351'
+}
+ GET /en/en/international-clients 500 in 57ms (next.js: 4ms, application-code: 53ms)
+[browser] Root error: Error: No intl context found. Have you configured the provider? See https://next-intl.dev/docs/usage/configuration#server-client-components
+    at useIntlContext (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0sw6qrm._.js:5022:15)
+    at useLocale (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0sw6qrm._.js:5084:12)
+    at BaseLink (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_0sw6qrm._.js:5587:206)
+    at react_stack_bottom_frame (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:15037:24)
+    at renderWithHooks (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:4620:42)
+    at updateForwardRef (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:5908:21)
+    at beginWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6671:46)
+    at runWithFiberInDEV (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:131)
+    at performUnitOfWork (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopSync (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9449:57)
+    at renderRootSync (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9433:13)
+    at performWorkOnRoot (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9098:47)
+    at performWorkOnRootViaSchedulerTask (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:26)
+    at performWorkUntilDeadline (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:72)
+    at render (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:1556:55)
+    at ErrorBoundary (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:1574:50)
+    at OuterLayoutRouter (file://G:/website-Silk-beauty/jas (2)/.next/dev/static/chunks/node_modules_next_dist_0tt2wve._.js:700:51) (file://G:/website-Silk-beauty/jas (2)

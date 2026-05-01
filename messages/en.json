@@ -23,8 +23,13 @@
     "team": "Our Team",
     "mainNavigation": "Main navigation",
     "internationalClients": "International Clients",
+    "international": "International Clients",
+    "book": "Book",
+    "allTreatments": "All Treatments",
+    "allConditions": "All Conditions",
     "viewAll": "View All",
-    "exploreAll": "Explore All"
+    "exploreAll": "Explore All",
+    "visitUs": "Visit Us"
   },
   "header": {
     "announcement": "Award Winning | Batumi's Premier Beauty Salon | Featured in Georgian Fashion & Beauty Magazine"
@@ -237,6 +242,13 @@
     "terms": "Terms of Use",
     "cookieNotice": "Cookie Notice",
     "stayConnected": "Stay connected",
+    "newsletterTitle": "Join Our World",
+    "emailPlaceholder": "Your email address",
+    "subscribe": "Subscribe",
+    "about": "About",
+    "information": "Information",
+    "visitUs": "Visit Us",
+    "designedIn": "Designed in Batumi",
     "socialDescription": "Follow us on Social Media for current news and patients stories",
     "disclaimer": "Always consult a healthcare professional for individualized treatment recommendations and to discuss important safety information and risks associated with the use of the products."
   },
