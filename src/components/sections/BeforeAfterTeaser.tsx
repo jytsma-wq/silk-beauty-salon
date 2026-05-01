@@ -76,7 +76,7 @@ export function BeforeAfterTeaser() {
               {/* Before/After image pair */}
               <div className="grid grid-cols-2 gap-1 mb-4">
                 {/* Before */}
-                <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
+                <div className="relative aspect-3/4 overflow-hidden bg-gray-100">
                   <Image src={item.beforeImage} alt={`Before ${item.treatment}`}
                     fill className="object-cover object-top
                       transition-transform duration-700 ease-out
@@ -89,7 +89,7 @@ export function BeforeAfterTeaser() {
                   </div>
                 </div>
                 {/* After */}
-                <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
+                <div className="relative aspect-3/4 overflow-hidden bg-gray-100">
                   <Image src={item.afterImage} alt={`After ${item.treatment}`}
                     fill className="object-cover object-top
                       transition-transform duration-700 ease-out"
@@ -107,7 +107,7 @@ export function BeforeAfterTeaser() {
                 <h3 className="font-serif text-lg font-light text-gray-900 mb-1">
                   {item.treatment}
                 </h3>
-                <p className="text-[0.625rem] tracking-[0.1em] uppercase text-gray-400 mb-2">
+                <p className="text-[0.625rem] tracking-widest uppercase text-gray-400 mb-2">
                   {item.patient}
                 </p>
                 <p className="text-sm text-gray-500">{item.result}</p>

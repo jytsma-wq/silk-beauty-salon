@@ -1,1 +1,0 @@
-1/about and contact us left side 2/ translations bar is not working, fix it 3/ book tab is not in the header, must be at the right side 4/ menus treatement and skin conditions down menu is not there, fix it
