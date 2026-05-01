@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { Link } from '@/i18n/routing';
-import { ChevronRight, Tag, Percent } from 'lucide-react';
+import { ChevronRight, Percent } from 'lucide-react';
 import { siteConfig } from '@/data/site-config';
 import { Button } from '@/components/ui/button';
 import { getTranslations } from 'next-intl/server';

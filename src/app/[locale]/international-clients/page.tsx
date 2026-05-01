@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
-import { ChevronRight, Globe, Gift, CreditCard, Shield, Award, MessageCircle, Phone, MapPin, Mail, CheckCircle, AlertCircle } from 'lucide-react';
+import { ChevronRight, Globe, Gift, CreditCard, Shield, Award, MessageCircle, Phone, MapPin, Mail, CheckCircle } from 'lucide-react';
 import { siteConfig } from '@/data/site-config';
 import { Button } from '@/components/ui/button';
 import { getTranslations } from 'next-intl/server';

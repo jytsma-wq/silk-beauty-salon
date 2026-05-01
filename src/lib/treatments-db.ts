@@ -1,10 +1,12 @@
 /**
  * Database layer for treatments using Prisma
  * React Server Component compatible
+ * Falls back to static data when database is unavailable
  */
 
 import { cache } from 'react';
 import { db } from '@/lib/db';
+import { baseTreatmentCategories } from '@/data/treatments';
 
 // Cached function to get treatment categories by locale
 export const getTreatmentCategoriesByLocale = cache(async (locale: string) => {
@@ -62,10 +64,33 @@ export const getTreatmentCategoriesByLocale = cache(async (locale: string) => {
     })),
   }));
   } catch {
-    // Return empty array if database is not available
-    return [];
+    // Fallback to static data when database is not available
+    return getStaticCategories(locale);
   }
 });
+
+// Fallback function using static data
+function getStaticCategories(_locale: string) {
+  return baseTreatmentCategories.map((category) => ({
+    slug: category.slug,
+    image: category.image,
+    name: category.name,
+    description: category.description,
+    treatments: category.treatments.map((treatment) => ({
+      slug: treatment.slug,
+      image: treatment.image,
+      price: treatment.price,
+      duration: treatment.duration,
+      name: treatment.name,
+      description: treatment.description,
+      shortDescription: treatment.shortDescription,
+      howItWorks: treatment.howItWorks,
+      aftercare: treatment.aftercare,
+      benefits: treatment.benefits || [],
+      faqs: treatment.faqs || [],
+    })),
+  }));
+}
 
 // Cached function to get all treatment slugs (for generateStaticParams)
 export const getAllTreatmentSlugs = cache(async () => {
@@ -76,8 +101,10 @@ export const getAllTreatmentSlugs = cache(async () => {
     });
     return treatments.map((t) => t.slug);
   } catch {
-    // Return empty array if database is not available (e.g., during build)
-    return [];
+    // Fallback to static data slugs when database is not available
+    return baseTreatmentCategories.flatMap((cat) => 
+      cat.treatments.map((t) => t.slug)
+    );
   }
 });
 
@@ -90,8 +117,8 @@ export const getAllCategorySlugs = cache(async () => {
     });
     return categories.map((c) => c.slug);
   } catch {
-    // Return empty array if database is not available (e.g., during build)
-    return [];
+    // Fallback to static category slugs when database is not available
+    return baseTreatmentCategories.map((c) => c.slug);
   }
 });
 
@@ -123,7 +150,10 @@ export const getTreatmentBySlug = cache(async (slug: string, locale: string) => 
     },
   });
 
-  if (!treatment) return null;
+  if (!treatment) {
+    // Fallback to static data
+    return getStaticTreatmentBySlug(slug);
+  }
 
   return {
     slug: treatment.slug,
@@ -147,6 +177,33 @@ export const getTreatmentBySlug = cache(async (slug: string, locale: string) => 
   };
 });
 
+// Fallback function to get treatment from static data
+function getStaticTreatmentBySlug(slug: string) {
+  for (const category of baseTreatmentCategories) {
+    const treatment = category.treatments.find((t) => t.slug === slug);
+    if (treatment) {
+      return {
+        slug: treatment.slug,
+        image: treatment.image,
+        price: treatment.price,
+        duration: treatment.duration,
+        name: treatment.name,
+        description: treatment.description,
+        shortDescription: treatment.shortDescription,
+        howItWorks: treatment.howItWorks,
+        aftercare: treatment.aftercare,
+        benefits: treatment.benefits || [],
+        faqs: treatment.faqs || [],
+        category: {
+          slug: category.slug,
+          name: category.name,
+        },
+      };
+    }
+  }
+  return null;
+}
+
 // Cached function to get category by slug
 export const getCategoryBySlug = cache(async (slug: string, locale: string) => {
   const category = await db.treatmentCategory.findUnique({
@@ -169,7 +226,10 @@ export const getCategoryBySlug = cache(async (slug: string, locale: string) => {
     },
   });
 
-  if (!category) return null;
+  if (!category) {
+    // Fallback to static data
+    return getStaticCategoryBySlug(slug);
+  }
 
   return {
     slug: category.slug,
@@ -188,15 +248,37 @@ export const getCategoryBySlug = cache(async (slug: string, locale: string) => {
   };
 });
 
+// Fallback function to get category from static data
+function getStaticCategoryBySlug(slug: string) {
+  const category = baseTreatmentCategories.find((c) => c.slug === slug);
+  if (!category) return null;
+
+  return {
+    slug: category.slug,
+    image: category.image,
+    name: category.name,
+    description: category.description,
+    treatments: category.treatments.map((treatment) => ({
+      slug: treatment.slug,
+      image: treatment.image,
+      price: treatment.price,
+      duration: treatment.duration,
+      name: treatment.name,
+      description: treatment.description,
+      shortDescription: treatment.shortDescription,
+    })),
+  };
+}
+
 // Cached function to get category by treatment slug
-export const getCategoryByTreatmentSlug = cache(async (treatmentSlug: string, locale: string) => {
+export const getCategoryByTreatmentSlug = cache(async (treatmentSlug: string, _locale: string) => {
   const treatment = await db.treatment.findUnique({
     where: { slug: treatmentSlug },
     include: {
       category: {
         include: {
           translations: {
-            where: { locale },
+            where: { locale: _locale },
             take: 1,
           },
           treatments: {
@@ -204,7 +286,7 @@ export const getCategoryByTreatmentSlug = cache(async (treatmentSlug: string, lo
             orderBy: { sortOrder: 'asc' },
             include: {
               translations: {
-                where: { locale },
+                where: { locale: _locale },
                 take: 1,
               },
             },
@@ -214,7 +296,10 @@ export const getCategoryByTreatmentSlug = cache(async (treatmentSlug: string, lo
     },
   });
 
-  if (!treatment) return null;
+  if (!treatment) {
+    // Fallback to static data
+    return getStaticCategoryByTreatmentSlug(treatmentSlug);
+  }
 
   return {
     slug: treatment.category.slug,
@@ -232,3 +317,28 @@ export const getCategoryByTreatmentSlug = cache(async (treatmentSlug: string, lo
     })),
   };
 });
+
+// Fallback function to get category by treatment slug from static data
+function getStaticCategoryByTreatmentSlug(treatmentSlug: string) {
+  for (const category of baseTreatmentCategories) {
+    const treatment = category.treatments.find((t) => t.slug === treatmentSlug);
+    if (treatment) {
+      return {
+        slug: category.slug,
+        image: category.image,
+        name: category.name,
+        description: category.description,
+        treatments: category.treatments.map((t) => ({
+          slug: t.slug,
+          image: t.image,
+          price: t.price,
+          duration: t.duration,
+          name: t.name,
+          description: t.description,
+          shortDescription: t.shortDescription,
+        })),
+      };
+    }
+  }
+  return null;
+}

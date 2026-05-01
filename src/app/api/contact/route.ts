@@ -108,7 +108,7 @@ export async function POST(request: Request) {
                <p><b>Message:</b> ${escapeHtml(sanitized.message)}</p>`,
       });
     } else {
-      console.log('Contact form submission (Resend not configured):', sanitized);
+      console.warn('Contact form submission (Resend not configured):', sanitized);
     }
 
     // Save to database

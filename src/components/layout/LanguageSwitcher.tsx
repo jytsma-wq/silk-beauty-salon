@@ -32,8 +32,7 @@ export function LanguageSwitcher() {
             alt={localeNames[locale]?.name || locale}
             width={24}
             height={16}
-            style={{ width: 'auto', height: 'auto' }}
-            className="rounded-sm"
+            className="rounded-sm w-6 h-4"
           />
           <span className="hidden sm:inline">{localeNames[locale]?.nativeName || locale.toUpperCase()}</span>
           <span className="sm:hidden">
@@ -42,8 +41,7 @@ export function LanguageSwitcher() {
               alt={localeNames[locale]?.name || locale}
               width={24}
               height={16}
-              style={{ width: 'auto', height: 'auto' }}
-              className="rounded-sm"
+              className="rounded-sm w-6 h-4"
             />
           </span>
         </Button>
@@ -62,7 +60,7 @@ export function LanguageSwitcher() {
                   alt={localeNames[loc]?.name || loc}
                   width={24}
                   height={16}
-                  className="rounded-sm"
+                  className="rounded-sm w-6 h-4"
                 />
                 <span>{localeNames[loc]?.nativeName}</span>
               </span>

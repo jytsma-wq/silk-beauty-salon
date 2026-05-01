@@ -3,8 +3,6 @@
  * Supports multiple log levels and PII redaction
  */
 
-/* eslint-disable no-console */
-
 type LogLevel = 'debug' | 'info' | 'warn' | 'error';
 
 interface LogContext {

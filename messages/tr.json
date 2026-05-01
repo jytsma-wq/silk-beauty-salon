@@ -1807,5 +1807,59 @@
       "submitError": "Form gönderilemedi. Lütfen tekrar deneyin.",
       "loadError": "Form verileri yüklenemedi. Lütfen sayfayı yenileyin."
     }
+  },
+  "mediaGallery": {
+    "metadata": {
+      "title": "Medya Galerisi | Silk Beauty Salon",
+      "description": "Silk Beauty Salon'dan video kütüphanemizi, tedavi galerimizi ve sahneler arkası içeriğimizi keşfedin."
+    },
+    "hero": {
+      "title": "Silk Beauty'yi Deneyimleyin",
+      "subtitle": "Lüks estetiğimizin ve dönüştürücü tedavilerimizin dünyasına dalın"
+    },
+    "sectionLabel": "Galeri",
+    "pageTitle": "Videolar ve Görseller",
+    "pageDescription": "Silk Beauty deneyimini sergileyen tedavi videoları, müşteri yorumları ve galeri görselleri koleksiyonumuza göz atın.",
+    "tabs": {
+      "allVideos": "Tüm Videolar",
+      "treatments": "Tedaviler",
+      "testimonials": "Yorumlar",
+      "gallery": "Fotoğraf Galerisi"
+    },
+    "allVideos": {
+      "title": "Tam Video Koleksiyonu",
+      "description": "Tedaviler, yorumlar ve sahneler arkası içerik dahil olmak üzere tüm videolarımıza göz atın."
+    },
+    "treatments": {
+      "title": "Tedavi Videoları",
+      "description": "Tedavilerimizi iş başında görün ve ziyaretiniz sırasında ne bekleyeceğinizi öğrenin."
+    },
+    "testimonials": {
+      "title": "Müşteri Yorumları",
+      "description": "Memnun müşterilerimizin deneyimleri ve dönüşümleri hakkında bilgi edinin."
+    },
+    "gallery": {
+      "title": "Fotoğraf Galerisi",
+      "description": "Tesislerimizi, tedavi odalarımızı ve fotoğraf galerimizdeki etkileyici sonuçları keşfedin."
+    },
+    "featured": {
+      "label": "Öne Çıkan",
+      "title": "Sanal Salon Turu",
+      "description": "Batumi'deki lüks tesislerimizde gezinin. Sıcak karşılama alanımızdan son teknoloji tedavi odalarımıza kadar, kapıdan içeri adım atmadan önce Silk Beauty farkını deneyimleyin.",
+      "duration": "Süre: 2:00"
+    }
+  },
+  "testimonials": {
+    "title": "Müşterilerimiz Ne Diyor",
+    "subtitle": "Gerçek müşterilerden gerçek sonuçlar",
+    "viewAll": "Tüm Yorumları Gör",
+    "sectionLabel": "Müşteri Hikayeleri",
+    "description": "Görünümlerini ve özgüvenlerini bizimle dönüştüren gerçek müşterilerden gerçek hikayeler.",
+    "stats": {
+      "clients": "Mutlu Müşteri",
+      "rating": "Ortalama Puan",
+      "recommend": "Tavsiye Ediyor",
+      "years": "Yıllık Deneyim"
+    }
   }
 }

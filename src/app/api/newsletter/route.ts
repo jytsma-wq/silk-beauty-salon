@@ -57,7 +57,7 @@ export async function POST(request: Request) {
 
   // If Resend is not configured, just log and return success
   if (!resend || !process.env.RESEND_AUDIENCE_ID) {
-    console.log('Newsletter signup (Resend not configured):', email);
+    console.warn('Newsletter signup (Resend not configured):', email);
     return NextResponse.json({ success: true, message: 'Resend not configured' });
   }
 

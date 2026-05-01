@@ -90,7 +90,7 @@ export function ParallaxImage({
       className={`overflow-hidden ${fill ? 'absolute inset-0' : 'relative'}`}
     >
       <div
-        className="will-change-transform"
+        className="will-change-transform relative"
         style={{
           transform: `translateY(${translateY}px) scale(1.1)`,
           height: fill ? '120%' : 'auto',

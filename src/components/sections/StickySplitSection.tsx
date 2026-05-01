@@ -46,8 +46,6 @@ export function StickySplitSection({
 
       const rect = sectionRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-      const sectionHeight = rect.height;
-
       // Calculate progress: 0 when section enters viewport, 1 when it leaves
       const start = rect.top - windowHeight;
       const end = rect.bottom;

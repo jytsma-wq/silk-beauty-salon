@@ -2,9 +2,8 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { getTranslations } from 'next-intl/server';
-import { ChevronRight, Search, MapPin, Phone, Clock, Star, ArrowRight } from 'lucide-react';
+import { ChevronRight, MapPin, Phone, Clock, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { siteConfig } from '@/data/site-config';
 import { treatmentCategories } from '@/data/navigation';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {

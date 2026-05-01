@@ -108,39 +108,60 @@ function StepIndicator({ step }: { step: string }) {
   );
 }
 
+// Consolidated form state interface
+interface FormState {
+  step: "datetime" | "details" | "confirmation";
+  selectedService: string;
+  selectedDate: Date | undefined;
+  selectedTime: string;
+  bookedSlots: string[];
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}
+
+const INITIAL_FORM_STATE: FormState = {
+  step: "datetime",
+  selectedService: "",
+  selectedDate: undefined,
+  selectedTime: "",
+  bookedSlots: [],
+  name: "",
+  email: "",
+  phone: "",
+  message: "",
+};
+
 export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
   const t = useTranslations("booking");
-  // Step state
-  const [step, setStep] = useState<"datetime" | "details" | "confirmation">("datetime");
 
-  // Form state
-  const [selectedService, setSelectedService] = useState("");
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
-  const [selectedTime, setSelectedTime] = useState("");
-  const [bookedSlots, setBookedSlots] = useState<string[]>([]);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [message, setMessage] = useState("");
+  // Consolidated form state
+  const [formState, setFormState] = useState<FormState>(INITIAL_FORM_STATE);
 
-  // UI state
+  // UI state (separate as it's transient)
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+
+  // Destructure for convenience
+  const {
+    step,
+    selectedService,
+    selectedDate,
+    selectedTime,
+    bookedSlots,
+    name,
+    email,
+    phone,
+    message,
+  } = formState;
 
   // Reset state when dialog closes
   useEffect(() => {
     if (!open) {
       // Delay reset to allow close animation
       const timer = setTimeout(() => {
-        setStep("datetime");
-        setSelectedService("");
-        setSelectedDate(undefined);
-        setSelectedTime("");
-        setBookedSlots([]);
-        setName("");
-        setEmail("");
-        setPhone("");
-        setMessage("");
+        setFormState(INITIAL_FORM_STATE);
         setError("");
       }, 300);
       return () => clearTimeout(timer);
@@ -153,7 +174,9 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
       const dateStr = format(selectedDate, "yyyy-MM-dd");
       fetch(`/api/bookings?date=${dateStr}`)
         .then((res) => res.json())
-        .then((data) => setBookedSlots(data.bookedSlots || []))
+        .then((data) =>
+          setFormState((prev) => ({ ...prev, bookedSlots: data.bookedSlots || [] }))
+        )
         .catch((err) => console.error("Error fetching booked slots:", err));
     }
   }, [selectedDate]);
@@ -168,7 +191,7 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
 
   const handleNext = () => {
     if (step === "datetime" && selectedService && selectedDate && selectedTime) {
-      setStep("details");
+      setFormState((prev) => ({ ...prev, step: "details" }));
     } else if (step === "details" && name && email) {
       handleSubmit();
     }
@@ -176,7 +199,7 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
 
   const handleBack = () => {
     if (step === "details") {
-      setStep("datetime");
+      setFormState((prev) => ({ ...prev, step: "datetime" }));
     }
   };
 
@@ -212,8 +235,8 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
         return;
       }
 
-      setStep("confirmation");
-    } catch (_err) {
+      setFormState((prev) => ({ ...prev, step: "confirmation" }));
+    } catch {
       setError(t('unexpectedError'));
     } finally {
       setIsLoading(false);
@@ -251,7 +274,12 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
                 <MessageSquare className="w-4 h-4 text-[#b5453a]" />
                 {t('selectService')}
               </Label>
-              <Select value={selectedService} onValueChange={setSelectedService}>
+              <Select
+                value={selectedService}
+                onValueChange={(value) =>
+                  setFormState((prev) => ({ ...prev, selectedService: value }))
+                }
+              >
                 <SelectTrigger>
                   <SelectValue placeholder={t('servicePlaceholder')} />
                 </SelectTrigger>
@@ -275,7 +303,9 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
                 <Calendar
                   mode="single"
                   selected={selectedDate}
-                  onSelect={setSelectedDate}
+                  onSelect={(date) =>
+                    setFormState((prev) => ({ ...prev, selectedDate: date }))
+                  }
                   disabled={isDateDisabled}
                   className="rounded-md border-0"
                 />
@@ -297,7 +327,9 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
                       <button
                         key={slot}
                         disabled={isBooked}
-                        onClick={() => setSelectedTime(slot)}
+                        onClick={() =>
+                          setFormState((prev) => ({ ...prev, selectedTime: slot }))
+                        }
                         className={cn(
                           "py-2 px-3 text-sm border rounded-sm transition-colors",
                           isSelected
@@ -355,7 +387,9 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
                 </Label>
                 <Input
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) =>
+                    setFormState((prev) => ({ ...prev, name: e.target.value }))
+                  }
                   placeholder={t('namePlaceholder')}
                   required
                 />
@@ -369,7 +403,9 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
                 <Input
                   type="email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) =>
+                    setFormState((prev) => ({ ...prev, email: e.target.value }))
+                  }
                   placeholder={t('emailPlaceholder')}
                   required
                 />
@@ -383,7 +419,9 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
                 <Input
                   type="tel"
                   value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  onChange={(e) =>
+                    setFormState((prev) => ({ ...prev, phone: e.target.value }))
+                  }
                   placeholder={t('phonePlaceholder')}
                 />
               </div>
@@ -395,7 +433,9 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
                 </Label>
                 <Textarea
                   value={message}
-                  onChange={(e) => setMessage(e.target.value)}
+                  onChange={(e) =>
+                    setFormState((prev) => ({ ...prev, message: e.target.value }))
+                  }
                   placeholder={t('messagePlaceholder')}
                   rows={3}
                 />

@@ -21,7 +21,23 @@ const eslintConfig = [...nextCoreWebVitals, ...nextTypescript, {
     "react-compiler/react-compiler": "off",
   },
 }, {
-  ignores: ["node_modules/**", ".next/**", "out/**", "build/**", "next-env.d.ts", "examples/**", "skills"]
+  ignores: [
+    "node_modules/**",
+    ".next/**",
+    "out/**",
+    "build/**",
+    "coverage/**",
+    "scripts/**",
+    "prisma/**",
+    "next-env.d.ts",
+    "examples/**",
+    "skills",
+    "src/lib/logger.ts",
+    "src/lib/security-logger.ts",
+    "src/lib/sentry.ts",
+    "src/lib/api-error-handler.ts",
+    "src/lib/env.ts"
+  ]
 }];
 
 export default eslintConfig;

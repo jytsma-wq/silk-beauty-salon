@@ -16,8 +16,7 @@ function TikTokIcon({ className }: { className?: string }) {
   );
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params;
+export async function generateMetadata(): Promise<Metadata> {
   return {
     title: 'Contact Us | Silk Beauty Salon',
     description: 'Get in touch with Silk Beauty Salon. Book your consultation today.',

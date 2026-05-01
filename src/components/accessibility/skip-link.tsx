@@ -55,7 +55,7 @@ export function SkipLink({
         // Base styles - hidden by default
         'sr-only focus:not-sr-only',
         // Focus styles - visible and styled
-        'fixed top-4 left-4 z-[100]',
+        'fixed top-4 left-4 z-100',
         'px-4 py-3',
         'bg-background text-foreground',
         'border-2 border-primary',
@@ -145,7 +145,7 @@ export function SkipLinks({
       aria-label="Skip links"
       className={cn(
         // Container styles
-        'fixed top-0 left-0 right-0 z-[100]',
+        'fixed top-0 left-0 right-0 z-100',
         'flex flex-col sm:flex-row gap-2',
         'p-4',
         // Hidden until focused

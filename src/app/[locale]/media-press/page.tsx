@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { ChevronRight, ExternalLink } from 'lucide-react';
 import { siteConfig } from '@/data/site-config';

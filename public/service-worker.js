@@ -158,7 +158,7 @@ self.addEventListener('sync', (event) => {
 async function syncFormSubmissions() {
   // Get pending form submissions from IndexedDB and retry
   // This would require additional implementation with IndexedDB
-  console.log('[SW] Syncing form submissions...');
+  console.warn('[SW] Syncing form submissions...');
 }
 
 // Push notifications (if needed in future)

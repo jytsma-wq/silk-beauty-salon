@@ -124,7 +124,15 @@
   "testimonials": {
     "title": "What Our Clients Say",
     "subtitle": "Real results from real clients",
-    "viewAll": "View All Testimonials"
+    "viewAll": "View All Testimonials",
+    "sectionLabel": "Client Stories",
+    "description": "Real stories from real clients who have transformed their look and confidence with us.",
+    "stats": {
+      "clients": "Happy Clients",
+      "rating": "Average Rating",
+      "recommend": "Would Recommend",
+      "years": "Years Experience"
+    }
   },
   "pressBar": {
     "ariaLabel": "Clinic credentials",
@@ -1499,6 +1507,47 @@
     "form": {
       "submitError": "Failed to submit form. Please try again.",
       "loadError": "Failed to load form data. Please refresh the page."
+    }
+  },
+  "mediaGallery": {
+    "metadata": {
+      "title": "Media Gallery | Silk Beauty Salon",
+      "description": "Explore our video library, treatment galleries, and behind-the-scenes content from Silk Beauty Salon in Batumi."
+    },
+    "hero": {
+      "title": "Experience Silk Beauty",
+      "subtitle": "Immerse yourself in our world of luxury aesthetics and transformative treatments"
+    },
+    "sectionLabel": "Gallery",
+    "pageTitle": "Videos & Images",
+    "pageDescription": "Browse our collection of treatment videos, client testimonials, and gallery images showcasing the Silk Beauty experience.",
+    "tabs": {
+      "allVideos": "All Videos",
+      "treatments": "Treatments",
+      "testimonials": "Testimonials",
+      "gallery": "Photo Gallery"
+    },
+    "allVideos": {
+      "title": "Complete Video Collection",
+      "description": "Browse all our videos including treatments, testimonials, and behind-the-scenes content."
+    },
+    "treatments": {
+      "title": "Treatment Videos",
+      "description": "See our treatments in action and learn more about what to expect during your visit."
+    },
+    "testimonials": {
+      "title": "Client Testimonials",
+      "description": "Hear from our satisfied clients about their experiences and transformations."
+    },
+    "gallery": {
+      "title": "Photo Gallery",
+      "description": "Explore our facilities, treatment rooms, and stunning results in our photo gallery."
+    },
+    "featured": {
+      "label": "Featured",
+      "title": "Virtual Salon Tour",
+      "description": "Take a virtual walk through our luxurious facilities in Batumi. From our welcoming reception to our state-of-the-art treatment rooms, experience the Silk Beauty difference before you even step through our doors.",
+      "duration": "Duration: 2:00"
     }
   }
 }

@@ -222,8 +222,8 @@ export function PerformanceProvider({ children }: { children: React.ReactNode })
 
     // Send to Vercel Analytics if available
     if (typeof window !== 'undefined' && (window as Window & { vercelAnalytics?: unknown }).vercelAnalytics) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (window as any).vercelAnalytics.track(metric.name, {
+      // Access Vercel Analytics - type assertion needed for external API
+      (window as Window & { vercelAnalytics?: { track: (name: string, data: Record<string, unknown>) => void } }).vercelAnalytics?.track?.(metric.name, {
         value: metric.value,
         rating: metric.rating,
       });
@@ -248,7 +248,6 @@ export function PerformanceProvider({ children }: { children: React.ReactNode })
       const slowResources = resources.filter((r) => r.duration > 1000);
 
       if (slowResources.length > 0 && process.env.NODE_ENV === 'development') {
-        // eslint-disable-next-line no-console
         console.warn('[Performance] Slow resources:', slowResources.map((r) => ({ name: r.name, duration: r.duration })));
       }
     };

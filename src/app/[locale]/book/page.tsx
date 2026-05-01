@@ -10,6 +10,28 @@ interface Props {
   params: Promise<{ locale: string }>;
 }
 
+// Hoisted static data - defined once at module level
+const CONSULTATION_TYPE_KEYS = [
+  { key: 'facial', bookingType: 'facial-consultation' },
+  { key: 'skin', bookingType: 'skin-consultation' },
+  { key: 'body', bookingType: 'body-consultation' },
+  { key: 'virtual', bookingType: 'virtual-consultation' },
+] as const;
+
+const JSON_LD_BASE = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalBusiness',
+  name: 'Silk Beauty Salon',
+  image: 'https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=1920&q=80',
+  priceRange: '$$',
+  acceptsOffers: [
+    { '@type': 'Offer', name: 'Facial Consultation', price: '50', priceCurrency: 'USD' },
+    { '@type': 'Offer', name: 'Skin Consultation', price: '60', priceCurrency: 'USD' },
+    { '@type': 'Offer', name: 'Body Treatment Consultation', price: '50', priceCurrency: 'USD' },
+    { '@type': 'Offer', name: 'Virtual Consultation', price: '40', priceCurrency: 'USD' },
+  ],
+} as const;
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'bookingPage' });
@@ -28,73 +50,25 @@ export default async function BookPage({
   const t = await getTranslations({ locale, namespace: 'bookingPage' });
   const tCommon = await getTranslations({ locale, namespace: 'common' });
 
-  const consultationTypes = [
-    {
-      title: t('consultations.facial.title'),
-      duration: t('consultations.facial.duration'),
-      description: t('consultations.facial.description'),
-      bookingType: 'facial-consultation',
-    },
-    {
-      title: t('consultations.skin.title'),
-      duration: t('consultations.skin.duration'),
-      description: t('consultations.skin.description'),
-      bookingType: 'skin-consultation',
-    },
-    {
-      title: t('consultations.body.title'),
-      duration: t('consultations.body.duration'),
-      description: t('consultations.body.description'),
-      bookingType: 'body-consultation',
-    },
-    {
-      title: t('consultations.virtual.title'),
-      duration: t('consultations.virtual.duration'),
-      description: t('consultations.virtual.description'),
-      bookingType: 'virtual-consultation',
-    },
-  ];
+  // Build consultation types from translation keys
+  const consultationTypes = CONSULTATION_TYPE_KEYS.map(({ key, bookingType }) => ({
+    title: t(`consultations.${key}.title`),
+    duration: t(`consultations.${key}.duration`),
+    description: t(`consultations.${key}.description`),
+    bookingType,
+  }));
 
+  // Build JSON-LD with dynamic address data
   const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'MedicalBusiness',
-    name: 'Silk Beauty Salon',
-    image: 'https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=1920&q=80',
+    ...JSON_LD_BASE,
     address: {
-      '@type': 'PostalAddress',
+      '@type': 'PostalAddress' as const,
       streetAddress: siteConfig.contact.address,
       addressLocality: siteConfig.contact.city,
       addressCountry: 'GE',
     },
     telephone: siteConfig.contact.phone,
     email: siteConfig.contact.email,
-    priceRange: '$$',
-    acceptsOffers: [
-      {
-        '@type': 'Offer',
-        name: 'Facial Consultation',
-        price: '50',
-        priceCurrency: 'USD',
-      },
-      {
-        '@type': 'Offer',
-        name: 'Skin Consultation',
-        price: '60',
-        priceCurrency: 'USD',
-      },
-      {
-        '@type': 'Offer',
-        name: 'Body Treatment Consultation',
-        price: '50',
-        priceCurrency: 'USD',
-      },
-      {
-        '@type': 'Offer',
-        name: 'Virtual Consultation',
-        price: '40',
-        priceCurrency: 'USD',
-      },
-    ],
   };
 
   return (

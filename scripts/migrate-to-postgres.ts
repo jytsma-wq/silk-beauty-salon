@@ -161,8 +161,7 @@ async function migrateNewsletterSubscribers(): Promise<MigrationStats> {
   const records = await sqlitePrisma.newsletterSubscriber.findMany();
 
   for (const record of records) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await (postgresPrisma.newsletterSubscriber.create as any)({
+    await ((postgresPrisma.newsletterSubscriber.create as unknown) as (args: { data: Record<string, unknown> }) => Promise<unknown>)({
       data: {
         id: record.id,
         email: record.email,

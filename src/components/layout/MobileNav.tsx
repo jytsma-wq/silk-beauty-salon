@@ -6,7 +6,6 @@ import { Link } from '@/i18n/routing';
 import { X, ChevronDown, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { siteConfig } from '@/data/site-config';
-import { cn } from '@/lib/utils';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { TreatmentCategory } from '@/data/treatments';

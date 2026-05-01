@@ -148,7 +148,7 @@ export function useDebouncedLocalStorage<T>(
   initialValue: T,
   delay: number = 1000
 ): [T, (value: T | ((val: T) => T)) => void] {
-  const [storedValue, setStoredValue, removeValue] = useLocalStorage(key, initialValue);
+  const [storedValue, setStoredValue] = useLocalStorage(key, initialValue);
   const [debouncedValue, setDebouncedValue] = useState(storedValue);
   
   useEffect(() => {
