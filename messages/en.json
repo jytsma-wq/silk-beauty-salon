@@ -301,8 +301,9 @@
     "ctaButton": "Book a Consultation"
   },
   "beforeAfterPage": {
-    "title": "Before & After",
-    "subtitle": "See the real results from our treatments. Transform your look with our expert aesthetic treatments.",
+    "title": "Real Results,",
+    "realPeople": "Real People",
+    "subtitle": "Every face tells a story. Browse our curated collection of treatment results, each representing a journey to renewed confidence.",
     "sectionLabel": "Real Results",
     "before": "Before",
     "after": "After",

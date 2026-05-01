@@ -408,7 +408,8 @@
     "ctaButton": "Konsültasyon Randevusu Al"
   },
   "beforeAfterPage": {
-    "title": "Öncesi ve Sonrası",
+    "title": "Gerçek Sonuçlar,",
+    "realPeople": "Gerçek İnsanlar",
     "subtitle": "Tedavilerimizin gerçek sonuçlarını görün. Uzman estetik tedavilerimizle görünümünüzü dönüştürün.",
     "sectionLabel": "Gerçek Sonuçlar",
     "before": "Öncesi",

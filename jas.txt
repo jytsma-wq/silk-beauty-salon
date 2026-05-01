@@ -1,2 +1,1019 @@
-execute t 4 md files in the right order. After each prompt do this: 1/ npm run build 2/ fix errors, zero errors! Do not start whit the first prompt unless evrything is 100%. 3/ Then commit and 
-docs/MAGAZINE_COMPONENTS.md, docs/MAGAZINE_QUICKSTART.md, docs/MAGAZINE_REDESIGN_PROMPTS.md, docs/MASTER_INDEX.md
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+Error: MISSING_MESSAGE: beforeAfterPage.realPeople (ka)
+    at q (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:5838)
+    at r (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:6026)
+    at s (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:6489)
+    at f (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\[root-of-the-server]__0k2nco3._.js:1:3838) {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'beforeAfterPage.realPeople (ka)'
+}
+prisma:error 
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+Error: MISSING_MESSAGE: beforeAfterPage.realPeople (en)
+    at q (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:5838)
+    at r (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:6026)
+    at s (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:6489)
+    at f (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\[root-of-the-server]__0k2nco3._.js:1:3838) {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'beforeAfterPage.realPeople (en)'
+}
+prisma:error 
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error 
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error 
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+Error: MISSING_MESSAGE: beforeAfterPage.realPeople (ru)
+    at q (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:5838)
+    at r (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:6026)
+    at s (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:6489)
+    at f (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\[root-of-the-server]__0k2nco3._.js:1:3838) {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'beforeAfterPage.realPeople (ru)'
+}
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+Error: MISSING_MESSAGE: beforeAfterPage.realPeople (tr)
+    at q (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:5838)
+    at r (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:6026)
+    at s (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:6489)
+    at f (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\[root-of-the-server]__0k2nco3._.js:1:3838) {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'beforeAfterPage.realPeople (tr)'
+}
+Error: MISSING_MESSAGE: beforeAfterPage.realPeople (he)
+    at q (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:5838)
+    at r (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:6026)
+    at s (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:6489)
+    at f (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\[root-of-the-server]__0k2nco3._.js:1:3838) {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'beforeAfterPage.realPeople (he)'
+}
+Error: MISSING_MESSAGE: beforeAfterPage.realPeople (ar)
+    at q (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:5838)
+    at r (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:6026)
+    at s (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\_0s~y2vr._.js:3:6489)
+    at f (G:\website-Silk-beauty\jas (2)\.next\server\chunks\ssr\[root-of-the-server]__0k2nco3._.js:1:3838) {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'beforeAfterPage.realPeople (ar)'
+}
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error 
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatment.findUnique()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error 
+Invalid `prisma.blogPost.findMany()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error 
+Invalid `prisma.blogPost.findMany()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.blogPost.findMany()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.blogPost.findMany()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+  Generating static pages using 15 workers (476/499)  [ ===]prisma:error 
+Invalid `prisma.blogPost.findMany()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.blogPost.findMany()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+  Generating static pages using 15 workers (487/499)  [    ](node:11496) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+prisma:error 
+Invalid `prisma.treatmentCategory.findMany()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatmentCategory.findMany()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatmentCategory.findMany()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+prisma:error
+Invalid `prisma.treatmentCategory.findMany()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+  Generating static pages using 15 workers (496/499)  [   =]prisma:error 
+Invalid `prisma.blogPost.findMany()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:13
+   |
+12 |   provider  = "postgresql"
+13 |   url       = env("DATABASE_URL")
+   |
+
+Validation Error Count: 1
+✓ Generating static pages using 15 workers (499/499) in 1696ms
+✓ Finalizing page optimization in 819ms
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /[locale]
+├ ƒ /[locale]/about
+├ ƒ /[locale]/accessibility
+├ ƒ /[locale]/before-after
+├ ƒ /-/before-after/opengraph-image
+├ ƒ /[locale]/blog
+├ ● /[locale]/blog/[slug]
+├ ƒ /-/blog/opengraph-image
+├ ƒ /[locale]/book
+├ ƒ /[locale]/careers
+├ ƒ /[locale]/conditions
+├ ƒ /[locale]/conditions/[slug]
+├ ƒ /[locale]/consultation
+├ ƒ /[locale]/contact-us
+├ ƒ /[locale]/faq
+├ ƒ /[locale]/international-clients
+├ ƒ /[locale]/media-gallery
+├ ƒ /[locale]/media-press
+├ ƒ /[locale]/offers
+├ ƒ /-/opengraph-image
+├ ƒ /[locale]/pricelist
+├ ƒ /[locale]/privacy-policy
+├ ƒ /[locale]/sitemap.xml
+├ ƒ /[locale]/terms-conditions
+├ ƒ /[locale]/treatments
+├ ƒ /[locale]/treatments/[slug]
+├ ƒ /-/treatments/opengraph-image
+├ ○ /api-docs
+├ ƒ /api/book
+├ ƒ /api/bookings
+├ ƒ /api/contact
+├ ƒ /api/csrf
+├ ƒ /api/health/db
+├ ƒ /api/newsletter
+├ ƒ /api/v1/health
+├ ○ /icon
+└ ○ /sitemap.xml
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
+PS G:\website-Silk-beauty\jas (2)> 
