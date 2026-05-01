@@ -9,7 +9,7 @@ export const db =
   globalForPrisma.prisma ??
   new PrismaClient({
     datasourceUrl: env.DATABASE_URL,
-    log: env.NODE_ENV === 'development' ? ['query', 'warn', 'error'] : ['error'],
+    log: [], // Suppress Prisma logs - errors are handled gracefully in application code
   })
 
 if (env.NODE_ENV !== 'production') globalForPrisma.prisma = db
