@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link } from '@/i18n/routing';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { siteConfig } from '@/data/site-config';
@@ -10,7 +10,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export function GaldermaHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const t = useTranslations('nav');
@@ -28,8 +27,6 @@ export function GaldermaHeader() {
         setIsHidden(false);
       }
 
-      // Track if scrolled for styling
-      setIsScrolled(currentScrollY > 50);
       setLastScrollY(currentScrollY);
     };
 
@@ -39,70 +36,122 @@ export function GaldermaHeader() {
 
   return (
     <>
-      {/* ── Floating Minimal Header ── */}
-      <motion.header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled
-            ? 'backdrop-blur-md bg-stone-50/90'
-            : 'bg-transparent'
+      {/* ── Top Bar (Darker White/Warm Beige) ── */}
+      <motion.div
+        className={`fixed top-0 left-0 right-0 z-50 bg-[#f7f4f0] border-b border-[#e8e4df] transition-all duration-300 ${
+          isHidden ? '-translate-y-full' : 'translate-y-0'
         }`}
         initial={{ y: 0 }}
         animate={{ y: isHidden ? -100 : 0 }}
+      >
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-2 flex items-center justify-between text-xs">
+          {/* Left: Contact Phone */}
+          <a
+            href={`tel:${siteConfig.contact.phone}`}
+            className="flex items-center gap-2 text-stone-600 hover:text-[#b5453a] transition-colors"
+          >
+            <Phone className="w-3.5 h-3.5" />
+            <span>{siteConfig.contact.phone}</span>
+          </a>
+
+          {/* Center: Top Navigation */}
+          <nav className="hidden md:flex items-center gap-8">
+            <Link
+              href={`/${locale}/about`}
+              className="uppercase tracking-[0.15em] text-stone-600 hover:text-[#b5453a] transition-colors"
+            >
+              {t('about', { defaultValue: 'About' })}
+            </Link>
+            <Link
+              href={`/${locale}/contact-us`}
+              className="uppercase tracking-[0.15em] text-stone-600 hover:text-[#b5453a] transition-colors"
+            >
+              {t('contact', { defaultValue: 'Contact Us' })}
+            </Link>
+          </nav>
+
+          {/* Right: Language Switcher */}
+          <div className="flex items-center gap-4">
+            <LanguageSwitcher />
+          </div>
+        </div>
+      </motion.div>
+
+      {/* ── Main Header (White) ── */}
+      <motion.header
+        className={`fixed left-0 right-0 z-40 bg-white border-b border-[#e8e4df] transition-all duration-300 ${
+          isHidden ? '-translate-y-full' : 'translate-y-0'
+        }`}
+        style={{ top: '40px' }}
+        initial={{ y: 0 }}
+        animate={{ y: isHidden ? -140 : 0 }}
         transition={{ duration: 0.3 }}
       >
-        <nav aria-label={t('mainNavigation', { defaultValue: 'Main navigation' })} className="max-w-7xl mx-auto px-6 lg:px-8 py-6 flex items-center justify-between">
-          {/* Left: Minimal Logo */}
-          <Link href={`/${locale}`} className="font-serif text-xl tracking-tight text-stone-900">
-            {siteConfig.name}
-          </Link>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4">
+          {/* Logo - Centered */}
+          <div className="flex justify-center mb-4">
+            <Link
+              href={`/${locale}`}
+              className="font-serif text-2xl tracking-tight text-[#1c1c1c] hover:text-[#b5453a] transition-colors"
+            >
+              {siteConfig.name}
+            </Link>
+          </div>
 
-          {/* Center: Main nav (hidden on mobile) */}
-          <div className="hidden md:flex items-center gap-12">
+          {/* Main Navigation - Under Logo */}
+          <nav
+            aria-label={t('mainNavigation', { defaultValue: 'Main navigation' })}
+            className="hidden md:flex items-center justify-center gap-10"
+          >
             <Link
               href={`/${locale}/treatments`}
-              className="text-sm uppercase tracking-[0.2em] text-stone-700 hover:text-stone-900 transition-colors"
+              className="text-xs uppercase tracking-[0.2em] text-stone-700 hover:text-[#b5453a] transition-colors"
             >
               {t('treatments', { defaultValue: 'Treatments' })}
             </Link>
             <Link
-              href={`/${locale}/gallery`}
-              className="text-sm uppercase tracking-[0.2em] text-stone-700 hover:text-stone-900 transition-colors"
+              href={`/${locale}/conditions`}
+              className="text-xs uppercase tracking-[0.2em] text-stone-700 hover:text-[#b5453a] transition-colors"
             >
-              {t('gallery', { defaultValue: 'Gallery' })}
+              {t('conditions', { defaultValue: 'Skin Conditions' })}
             </Link>
             <Link
-              href={`/${locale}/about`}
-              className="text-sm uppercase tracking-[0.2em] text-stone-700 hover:text-stone-900 transition-colors"
+              href={`/${locale}/pricelist`}
+              className="text-xs uppercase tracking-[0.2em] text-stone-700 hover:text-[#b5453a] transition-colors"
             >
-              {t('about', { defaultValue: 'About' })}
+              {t('pricelist', { defaultValue: 'Pricelist' })}
             </Link>
-          </div>
-
-          {/* Right: Actions */}
-          <div className="flex items-center gap-6">
-            {/* Language selector - minimal */}
-            <div className="hidden sm:block">
-              <LanguageSwitcher />
-            </div>
-
-            {/* Book CTA - minimal */}
             <Link
-              href={`/${locale}/book`}
-              className="hidden sm:block px-6 py-3 border border-stone-900 text-xs uppercase tracking-[0.2em] text-stone-900 hover:bg-stone-900 hover:text-stone-50 transition-all duration-300"
+              href={`/${locale}/offers`}
+              className="text-xs uppercase tracking-[0.2em] text-stone-700 hover:text-[#b5453a] transition-colors"
             >
-              {t('book', { defaultValue: 'Book' })}
+              {t('offers', { defaultValue: 'Offers' })}
             </Link>
+            <Link
+              href={`/${locale}/international-clients`}
+              className="text-xs uppercase tracking-[0.2em] text-stone-700 hover:text-[#b5453a] transition-colors"
+            >
+              {t('international', { defaultValue: 'International Clients' })}
+            </Link>
+          </nav>
 
-            {/* Mobile menu button */}
+          {/* Mobile: Logo + Menu Button Row */}
+          <div className="flex md:hidden items-center justify-between">
+            <Link
+              href={`/${locale}`}
+              className="font-serif text-xl tracking-tight text-[#1c1c1c]"
+            >
+              {siteConfig.name}
+            </Link>
             <button
               onClick={() => setIsMenuOpen(true)}
-              className="md:hidden p-2 text-stone-900"
+              className="p-2 text-[#1c1c1c]"
               aria-label="Open menu"
             >
               <Menu className="w-6 h-6" strokeWidth={1} />
             </button>
           </div>
-        </nav>
+        </div>
       </motion.header>
 
       {/* ── Full-Screen Menu Overlay ── */}
@@ -124,91 +173,101 @@ export function GaldermaHeader() {
               <X className="w-8 h-8" strokeWidth={1} />
             </button>
 
-            {/* Menu content - magazine contents style */}
+            {/* Menu content - updated structure */}
             <div className="max-w-5xl w-full px-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
-                {/* Left column - main nav */}
-                <nav className="space-y-8">
-                  <div>
-                    <span className="text-xs uppercase tracking-[0.4em] text-stone-400 mb-6 block">
-                      Explore
-                    </span>
+              {/* Logo in mobile menu */}
+              <div className="text-center mb-12">
+                <Link
+                  href={`/${locale}`}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="font-serif text-3xl tracking-tight text-[#1c1c1c]"
+                >
+                  {siteConfig.name}
+                </Link>
+              </div>
 
-                    <Link
-                      href={`/${locale}/treatments`}
-                      onClick={() => setIsMenuOpen(false)}
-                      className="block group"
-                    >
-                      <h2 className="text-5xl md:text-6xl font-serif font-light text-stone-900 group-hover:text-stone-600 transition-colors mb-2">
-                        {t('treatments', { defaultValue: 'Treatments' })}
-                      </h2>
-                      <p className="text-sm text-stone-500">
-                        {t('treatmentsDescription', { defaultValue: 'Browse our premium aesthetic services' })}
-                      </p>
-                    </Link>
-                  </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
+                {/* Left column - main nav (5 items under logo) */}
+                <nav className="space-y-6">
+                  <span className="text-xs uppercase tracking-[0.4em] text-stone-400 mb-6 block">
+                    Menu
+                  </span>
 
                   <Link
-                    href={`/${locale}/gallery`}
+                    href={`/${locale}/treatments`}
                     onClick={() => setIsMenuOpen(false)}
-                    className="block group"
+                    className="block text-3xl font-serif font-light text-stone-900 hover:text-[#b5453a] transition-colors"
                   >
-                    <h2 className="text-5xl md:text-6xl font-serif font-light text-stone-900 group-hover:text-stone-600 transition-colors mb-2">
-                      {t('gallery', { defaultValue: 'Gallery' })}
-                    </h2>
-                    <p className="text-sm text-stone-500">
-                      {t('galleryDescription', { defaultValue: 'View real patient results' })}
-                    </p>
+                    {t('treatments', { defaultValue: 'Treatments' })}
                   </Link>
 
                   <Link
-                    href={`/${locale}/about`}
+                    href={`/${locale}/conditions`}
                     onClick={() => setIsMenuOpen(false)}
-                    className="block group"
+                    className="block text-3xl font-serif font-light text-stone-900 hover:text-[#b5453a] transition-colors"
                   >
-                    <h2 className="text-5xl md:text-6xl font-serif font-light text-stone-900 group-hover:text-stone-600 transition-colors mb-2">
-                      {t('about', { defaultValue: 'About' })}
-                    </h2>
-                    <p className="text-sm text-stone-500">
-                      {t('aboutDescription', { defaultValue: 'Meet our expert team' })}
-                    </p>
+                    {t('conditions', { defaultValue: 'Skin Conditions' })}
+                  </Link>
+
+                  <Link
+                    href={`/${locale}/pricelist`}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block text-3xl font-serif font-light text-stone-900 hover:text-[#b5453a] transition-colors"
+                  >
+                    {t('pricelist', { defaultValue: 'Pricelist' })}
+                  </Link>
+
+                  <Link
+                    href={`/${locale}/offers`}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block text-3xl font-serif font-light text-stone-900 hover:text-[#b5453a] transition-colors"
+                  >
+                    {t('offers', { defaultValue: 'Offers' })}
+                  </Link>
+
+                  <Link
+                    href={`/${locale}/international-clients`}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block text-3xl font-serif font-light text-stone-900 hover:text-[#b5453a] transition-colors"
+                  >
+                    {t('international', { defaultValue: 'International Clients' })}
                   </Link>
                 </nav>
 
-                {/* Right column - secondary */}
+                {/* Right column - top bar items + quick links */}
                 <div>
                   <span className="text-xs uppercase tracking-[0.4em] text-stone-400 mb-6 block">
-                    Quick Links
+                    More
                   </span>
 
-                  <nav className="space-y-4">
+                  <nav className="space-y-4 mb-8">
+                    <Link
+                      href={`/${locale}/about`}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="block text-lg text-stone-700 hover:text-[#b5453a] transition-colors"
+                    >
+                      {t('about', { defaultValue: 'About' })}
+                    </Link>
                     <Link
                       href={`/${locale}/contact-us`}
                       onClick={() => setIsMenuOpen(false)}
-                      className="block text-lg text-stone-700 hover:text-stone-900"
+                      className="block text-lg text-stone-700 hover:text-[#b5453a] transition-colors"
                     >
-                      {t('contact', { defaultValue: 'Contact' })}
+                      {t('contact', { defaultValue: 'Contact Us' })}
                     </Link>
                     <Link
                       href={`/${locale}/faq`}
                       onClick={() => setIsMenuOpen(false)}
-                      className="block text-lg text-stone-700 hover:text-stone-900"
+                      className="block text-lg text-stone-700 hover:text-[#b5453a] transition-colors"
                     >
                       {t('faq', { defaultValue: 'FAQ' })}
                     </Link>
                     <Link
                       href={`/${locale}/blog`}
                       onClick={() => setIsMenuOpen(false)}
-                      className="block text-lg text-stone-700 hover:text-stone-900"
+                      className="block text-lg text-stone-700 hover:text-[#b5453a] transition-colors"
                     >
                       {t('blog', { defaultValue: 'Journal' })}
-                    </Link>
-                    <Link
-                      href={`/${locale}/pricelist`}
-                      onClick={() => setIsMenuOpen(false)}
-                      className="block text-lg text-stone-700 hover:text-stone-900"
-                    >
-                      {t('pricelist', { defaultValue: 'Prices' })}
                     </Link>
                   </nav>
 

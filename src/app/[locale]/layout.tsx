@@ -75,7 +75,7 @@ export default async function LocaleLayout({
             <AnnouncerProvider>
               <SkipLink />
               <GaldermaHeader />
-              <main id="main-content">{children}</main>
+              <main id="main-content" className="pt-[140px]">{children}</main>
               <GaldermaFooter />
               <WhatsAppWidget />
               <Toaster />
