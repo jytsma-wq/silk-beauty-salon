@@ -1,7 +1,7 @@
 'use client';
 
 import { Link } from '@/i18n/routing';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { siteConfig } from '@/data/site-config';
 import { Facebook, Instagram } from 'lucide-react';
 
@@ -9,6 +9,7 @@ export function GaldermaFooter() {
   const currentYear = new Date().getFullYear();
   const t = useTranslations('footer');
   const tNav = useTranslations('nav');
+  const locale = useLocale();
 
   return (
     <footer
@@ -93,13 +94,13 @@ export function GaldermaFooter() {
               {t('treatments', { defaultValue: 'Treatments' })}
             </h3>
             <nav className="space-y-3">
-              <Link href="/treatments" className="block text-sm text-stone-600 hover:text-stone-900 transition-colors">
+              <Link href={`/${locale}/treatments`} className="block text-sm text-stone-600 hover:text-stone-900 transition-colors">
                 {tNav('treatments')}
               </Link>
-              <Link href="/conditions" className="block text-sm text-stone-600 hover:text-stone-900 transition-colors">
+              <Link href={`/${locale}/conditions`} className="block text-sm text-stone-600 hover:text-stone-900 transition-colors">
                 {tNav('conditions')}
               </Link>
-              <Link href="/pricelist" className="block text-sm text-stone-600 hover:text-stone-900 transition-colors">
+              <Link href={`/${locale}/pricelist`} className="block text-sm text-stone-600 hover:text-stone-900 transition-colors">
                 {tNav('pricelist')}
               </Link>
             </nav>
@@ -111,13 +112,13 @@ export function GaldermaFooter() {
               {t('information', { defaultValue: 'Information' })}
             </h3>
             <nav className="space-y-3">
-              <Link href="/about" className="block text-sm text-stone-600 hover:text-stone-900 transition-colors">
+              <Link href={`/${locale}/about`} className="block text-sm text-stone-600 hover:text-stone-900 transition-colors">
                 {tNav('about')}
               </Link>
-              <Link href="/faq" className="block text-sm text-stone-600 hover:text-stone-900 transition-colors">
+              <Link href={`/${locale}/faq`} className="block text-sm text-stone-600 hover:text-stone-900 transition-colors">
                 {tNav('faq')}
               </Link>
-              <Link href="/blog" className="block text-sm text-stone-600 hover:text-stone-900 transition-colors">
+              <Link href={`/${locale}/blog`} className="block text-sm text-stone-600 hover:text-stone-900 transition-colors">
                 {tNav('blog')}
               </Link>
             </nav>
@@ -173,10 +174,10 @@ export function GaldermaFooter() {
               <span className="uppercase tracking-wider">
                 © {currentYear} {siteConfig.name}
               </span>
-              <Link href="/privacy-policy" className="hover:text-stone-900 transition-colors uppercase tracking-wider">
+              <Link href={`/${locale}/privacy-policy`} className="hover:text-stone-900 transition-colors uppercase tracking-wider">
                 {t('privacy')}
               </Link>
-              <Link href="/terms-conditions" className="hover:text-stone-900 transition-colors uppercase tracking-wider">
+              <Link href={`/${locale}/terms-conditions`} className="hover:text-stone-900 transition-colors uppercase tracking-wider">
                 {t('terms')}
               </Link>
             </div>
