@@ -2,16 +2,11 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
-import { ChevronRight, Clock, Check } from 'lucide-react';
+import { ChevronRight, Check } from 'lucide-react';
 import { getTreatmentBySlug, getAllTreatmentSlugs, getCategoryByTreatmentSlug } from '@/lib/treatments-db';
 import { siteConfig } from '@/data/site-config';
 import { getTranslations } from 'next-intl/server';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Button } from '@/components/ui/button';
 
 // Revalidate every 24 hours
 export const revalidate = 86400;
@@ -69,239 +64,257 @@ export default async function TreatmentPage({ params }: Props) {
     .slice(0, 3) || [];
 
   return (
-    <>
-      {/* Hero Section */}
-      <section className="relative bg-[#1c1c1c] py-20">
-        <div className="container-custom">
-          {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-sm mb-8 text-gray-300">
-            <Link href="/" className="hover:text-gold">
-              {tCommon('home')}
-            </Link>
-            <ChevronRight className="w-4 h-4" />
-            <Link href="/treatments" className="hover:text-gold">
-              {tCommon('treatments')}
-            </Link>
-            <ChevronRight className="w-4 h-4" />
-            <span className="text-gold">{treatment.name}</span>
-          </nav>
-
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              {category && (
-                <Link 
-                  href={`/treatments#${category.slug}`}
-                  className="text-gold text-sm font-medium hover:underline mb-4 inline-block"
-                >
-                  {category.name}
-                </Link>
-              )}
-              <h1 
-                className="text-4xl md:text-5xl font-serif font-semibold text-white mb-6"
-                              >
-                {treatment.name}
-              </h1>
-              <p className="text-lg text-gray-300 mb-6 leading-relaxed">
-                {treatment.shortDescription}
-              </p>
-
-              <div className="flex flex-wrap gap-4 mb-8">
-                {treatment.price && (
-                <div className="inline-block mr-6">
-                  <span className="text-sm text-gray-300 block">{t('price') || 'Price from'}</span>
-                  <p className="text-xl font-semibold text-gold">{treatment.price}</p>
-                </div>
-              )}
-              {treatment.duration && (
-                <div className="inline-block">
-                  <span className="text-sm text-gray-300 block">{t('duration') || 'Duration'}</span>
-                  <p className="text-xl font-semibold text-white flex items-center gap-2">
-                    <Clock className="w-5 h-5 text-gold" />
-                    {treatment.duration}
-                  </p>
-                </div>
-              )}
+    <article className="min-h-screen bg-white">
+      {/* Magazine Article Hero - Full Immersive */}
+      <header className="relative h-[70vh] md:h-[85vh] flex items-end">
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <Image
+            src={treatment.image}
+            alt={treatment.name}
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-linear-to-t from-stone-900/90 via-stone-900/40 to-transparent" />
+        </div>
+        
+        {/* Breadcrumb */}
+        <nav className="absolute top-32 left-8 md:left-16 z-10 flex items-center gap-3 text-xs uppercase tracking-widest text-stone-300">
+          <Link href="/" className="hover:text-stone-50 transition-colors">
+            {tCommon('home')}
+          </Link>
+          <ChevronRight className="w-4 h-4" />
+          <Link href="/treatments" className="hover:text-stone-50 transition-colors">
+            {tCommon('treatments')}
+          </Link>
+          <ChevronRight className="w-4 h-4" />
+          <span className="text-stone-400">{treatment.name}</span>
+        </nav>
+        
+        {/* Hero Content */}
+        <div className="relative z-10 w-full max-w-5xl mx-auto px-8 md:px-16 pb-16 md:pb-24">
+          {/* Treatment Type */}
+          <p className="text-xs uppercase tracking-[0.3em] text-stone-400 mb-4">
+            {category?.name || 'Treatment'}
+          </p>
+          
+          {/* Title */}
+          <h1 className="text-[clamp(2.5rem,6vw,5rem)] font-serif font-light leading-[0.95] text-stone-50 mb-6">
+            {treatment.name}
+          </h1>
+          
+          {/* Deck/Subtitle */}
+          <p className="text-lg md:text-xl leading-relaxed text-stone-200 max-w-2xl">
+            {treatment.shortDescription}
+          </p>
+          
+          {/* Meta Stats */}
+          <div className="mt-10 flex flex-wrap gap-8 text-sm text-stone-400">
+            {treatment.duration && (
+              <div>
+                <span className="block text-xs uppercase tracking-wider text-stone-500 mb-1">{t('duration') || 'Duration'}</span>
+                <span className="text-stone-200">{treatment.duration}</span>
               </div>
-
-            </div>
-
-            <div className="relative aspect-3/4 w-full overflow-hidden">
-              <Image
-                src={treatment.image}
-                alt={treatment.name}
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                priority
-              />
-            </div>
+            )}
+            {treatment.price && (
+              <div>
+                <span className="block text-xs uppercase tracking-wider text-stone-500 mb-1">{t('price') || 'Price from'}</span>
+                <span className="text-stone-200">{treatment.price}</span>
+              </div>
+            )}
           </div>
         </div>
-      </section>
+        
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+          <div className="w-px h-16 bg-linear-to-b from-stone-300 to-transparent animate-pulse" />
+        </div>
+      </header>
 
-      {/* Main Content */}
-      <section className="section-spacing">
-        <div className="container-custom">
-          <div className="grid lg:grid-cols-3 gap-12">
-            {/* Main Column */}
-            <div className="lg:col-span-2">
-              {/* Description */}
-              <div className="mb-12">
-                <h2 
-                  className="text-2xl font-serif font-semibold text-primary mb-6"
-                                  >
-                  {t('aboutTreatment') || 'About This Treatment'}
-                </h2>
-                <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
-                  {treatment.description}
+      {/* Article Body */}
+      <div className="max-w-4xl mx-auto px-8 md:px-16 py-16 md:py-24">
+        
+        {/* Quick Facts Sidebar - Float Right */}
+        <aside className="float-right ml-8 mb-8 w-full max-w-xs p-6 md:p-8 bg-stone-50 border-l-2 border-[#b5453a]">
+          <h3 className="text-xs uppercase tracking-widest text-stone-400 mb-6">
+            {t('atAGlance') || 'At a Glance'}
+          </h3>
+          <dl className="space-y-4 text-sm">
+            {treatment.duration && (
+              <div>
+                <dt className="text-stone-500 mb-1">{t('duration') || 'Procedure Time'}</dt>
+                <dd className="font-serif text-stone-900">{treatment.duration}</dd>
+              </div>
+            )}
+            {treatment.price && (
+              <div>
+                <dt className="text-stone-500 mb-1">{t('price') || 'Price From'}</dt>
+                <dd className="font-serif text-stone-900">{treatment.price}</dd>
+              </div>
+            )}
+            <div>
+              <dt className="text-stone-500 mb-1">{t('results') || 'Results'}</dt>
+              <dd className="font-serif text-stone-900">3-6 months</dd>
+            </div>
+            <div>
+              <dt className="text-stone-500 mb-1">{t('downtime') || 'Downtime'}</dt>
+              <dd className="font-serif text-stone-900">None to minimal</dd>
+            </div>
+          </dl>
+          
+          <Button asChild className="mt-8 w-full bg-stone-900 text-stone-50 hover:bg-[#b5453a] text-xs uppercase tracking-wide">
+            <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
+              {t('bookNow') || 'Book Now'}
+            </a>
+          </Button>
+        </aside>
+        
+        {/* Drop Cap First Paragraph */}
+        <p className="text-lg leading-relaxed text-stone-700 mb-8">
+          <span className="float-left text-7xl md:text-8xl font-serif leading-none mr-4 mt-1 text-[#b5453a]">
+            {treatment.description.charAt(0)}
+          </span>
+          {treatment.description.slice(1)}
+        </p>
+        
+        {/* Main Description */}
+        <div className="prose prose-stone max-w-none">
+          {treatment.howItWorks && (
+            <div>
+              <h2 className="text-2xl md:text-3xl font-serif font-light text-stone-900 mt-16 mb-6">
+                {t('howItWorks') || 'How It Works'}
+              </h2>
+              <p className="text-base leading-relaxed text-stone-700 mb-6">
+                {treatment.howItWorks}
+              </p>
+            </div>
+          )}
+          
+          {/* Benefits Section */}
+          {treatment.benefits && treatment.benefits.length > 0 && (
+            <div>
+              <h2 className="text-2xl md:text-3xl font-serif font-light text-stone-900 mt-16 mb-6">
+                {t('benefits') || 'Benefits'}
+              </h2>
+              <ul className="space-y-3">
+                {treatment.benefits.map((benefit, index) => (
+                  <li key={index} className="flex items-start gap-3 text-stone-700">
+                    <Check className="w-5 h-5 text-[#b5453a] mt-0.5 shrink-0" />
+                    {benefit}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          
+          {/* Aftercare */}
+          {treatment.aftercare && (
+            <div>
+              <h2 className="text-2xl md:text-3xl font-serif font-light text-stone-900 mt-16 mb-6">
+                {t('aftercare') || 'Aftercare'}
+              </h2>
+              <div className="p-6 bg-stone-50 border border-stone-200">
+                <p className="text-stone-700 leading-relaxed">
+                  {treatment.aftercare}
                 </p>
               </div>
-
-              {/* Benefits */}
-              {treatment.benefits && treatment.benefits.length > 0 && (
-                <div className="mb-12">
-                  <h2 
-                    className="text-2xl font-serif font-semibold text-primary mb-6"
-                                      >
-                    {t('benefits') || 'Benefits'}
-                  </h2>
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    {treatment.benefits.map((benefit, index) => (
-                      <div key={index} className="flex items-start gap-3 py-3 border-t border-[#e8e4df]">
-                        <Check className="w-5 h-5 text-gold mt-0.5 shrink-0" />
-                        <span className="text-sm">{benefit}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* How It Works */}
-              {treatment.howItWorks && (
-                <div className="mb-12">
-                  <h2 
-                    className="text-2xl font-serif font-semibold text-primary mb-6"
-                                      >
-                    {t('howItWorks') || 'How It Works'}
-                  </h2>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {treatment.howItWorks}
-                  </p>
-                </div>
-              )}
-
-              {/* Aftercare */}
-              {treatment.aftercare && (
-                <div className="mb-12">
-                  <h2 
-                    className="text-2xl font-serif font-semibold text-primary mb-6"
-                                      >
-                    {t('aftercare') || 'Aftercare'}
-                  </h2>
-                  <div className="border-t border-[#e8e4df] pt-6">
-                    <p className="text-muted-foreground leading-relaxed">
-                      {treatment.aftercare}
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              {/* FAQs */}
-              {treatment.faqs && treatment.faqs.length > 0 && (
-                <div>
-                  <h2 
-                    className="text-2xl font-serif font-semibold text-primary mb-6"
-                                      >
-                    {t('faqs') || 'Frequently Asked Questions'}
-                  </h2>
-                  <Accordion type="single" collapsible className="w-full">
-                    {treatment.faqs.map((faq, index) => (
-                      <AccordionItem key={index} value={`item-${index}`}>
-                        <AccordionTrigger className="text-left">
-                          {faq.question}
-                        </AccordionTrigger>
-                        <AccordionContent className="text-muted-foreground">
-                          {faq.answer}
-                        </AccordionContent>
-                      </AccordionItem>
-                    ))}
-                  </Accordion>
-                </div>
-              )}
             </div>
+          )}
+        </div>
+        
+        {/* Clear float */}
+        <div className="clear-both" />
+      </div>
 
-            {/* Sidebar */}
-            <div className="lg:col-span-1">
-              {/* Book CTA */}
-              <div className="border-t border-[#e8e4df] py-8 text-center mb-8">
-                <h3 className="font-serif text-xl text-primary mb-4">
-                  {t('readyToStart') || 'Ready to get started?'}
-                </h3>
-              </div>
-
-              {/* Contact Info */}
-              <div className="border-t border-[#e8e4df] py-8">
-                <h3 className="font-serif text-lg font-semibold text-primary mb-4">
-                  {t('contactUs') || 'Contact Us'}
-                </h3>
-                <ul className="space-y-3 text-sm">
-                  <li>
-                    <span className="text-muted-foreground">{t('phone') || 'Phone'}:</span>
-                    <br />
-                    <a href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`} className="text-primary hover:text-gold">
-                      {siteConfig.contact.phone}
-                    </a>
-                  </li>
-                  <li>
-                    <span className="text-muted-foreground">{t('email') || 'Email'}:</span>
-                    <br />
-                    <a href={`mailto:${siteConfig.contact.email}`} className="text-primary hover:text-gold">
-                      {siteConfig.contact.email}
-                    </a>
-                  </li>
-                  <li>
-                    <span className="text-muted-foreground">{t('address') || 'Address'}:</span>
-                    <br />
-                    <span className="text-primary">
-                      {siteConfig.contact.address}<br />
-                      {siteConfig.contact.city}, {siteConfig.contact.postcode}
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+      {/* Pull Quote Section */}
+      <section className="py-16 md:py-24 border-t border-b border-stone-200">
+        <div className="max-w-4xl mx-auto px-8 md:px-16 text-center">
+          <blockquote className="text-2xl md:text-3xl lg:text-4xl font-serif italic leading-tight text-stone-800 max-w-3xl mx-auto">
+            &ldquo;The goal is not to erase expression, but to refine it&mdash;to let your natural beauty shine through without the interference of unwanted lines.&rdquo;
+          </blockquote>
+          <footer className="mt-8">
+            <cite className="not-italic text-sm text-stone-500">
+              &mdash; Dr. Ana Beridze, Medical Director
+            </cite>
+          </footer>
         </div>
       </section>
 
-      {/* Related Treatments */}
+      {/* FAQ Section - Magazine Q&A Format */}
+      {treatment.faqs && treatment.faqs.length > 0 && (
+        <section className="py-16 md:py-24 max-w-3xl mx-auto px-8 md:px-16">
+          <h2 className="text-3xl md:text-4xl font-serif font-light text-stone-900 mb-12">
+            {t('faqs') || 'Questions & Answers'}
+          </h2>
+          
+          <div className="space-y-10">
+            {treatment.faqs.map((faq, index) => (
+              <article key={index} className="border-b border-stone-200 pb-10">
+                <h3 className="text-xl font-serif font-light text-stone-900 mb-4">
+                  {faq.question}
+                </h3>
+                <p className="text-base leading-relaxed text-stone-600">
+                  {faq.answer}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Related Treatments - Magazine "You Might Also Like" */}
       {relatedTreatments.length > 0 && (
-        <section className="section-spacing bg-secondary">
-          <div className="container-custom">
-            <h2 
-              className="text-2xl font-serif font-semibold text-primary mb-8"
-                          >
-              {t('relatedTreatments') || 'Related Treatments'}
-            </h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <section className="py-16 md:py-24 bg-stone-50">
+          <div className="max-w-7xl mx-auto px-8 md:px-16">
+            <p className="text-xs uppercase tracking-[0.3em] text-stone-400 mb-8">
+              {t('youMightAlsoLike') || 'You Might Also Like'}
+            </p>
+            
+            <div className="grid md:grid-cols-3 gap-8 md:gap-12">
               {relatedTreatments.map((related: { slug: string; image: string; name: string; shortDescription: string }) => (
-                <Link
-                  key={related.slug}
-                  href={`/treatments/${related.slug}`}
-                  className="group block py-6 border-t border-[#e8e4df]"
-                >
-                  <h3 className="font-serif font-semibold text-primary group-hover:text-gold transition-colors mb-2">
-                    {related.name}
-                  </h3>
-                  <p className="text-sm text-muted-foreground line-clamp-2">
-                    {related.shortDescription}
-                  </p>
-                </Link>
+                <article key={related.slug} className="group cursor-pointer">
+                  <Link href={`/treatments/${related.slug}`}>
+                    <div className="relative aspect-4/5 mb-6 overflow-hidden">
+                      <Image
+                        src={related.image}
+                        alt={related.name}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                    </div>
+                    
+                    <h3 className="text-xl md:text-2xl font-serif font-light mb-3 text-stone-900 group-hover:text-[#b5453a] transition-colors">
+                      {related.name}
+                    </h3>
+                    <p className="text-sm text-stone-600 leading-relaxed">
+                      {related.shortDescription}
+                    </p>
+                    <span className="inline-block mt-4 text-sm text-stone-900 underline underline-offset-4">
+                      {t('learnMore') || 'Learn more'}
+                    </span>
+                  </Link>
+                </article>
               ))}
             </div>
           </div>
         </section>
       )}
-    </>
+
+      {/* Sticky CTA Footer */}
+      <div className="sticky bottom-0 bg-white border-t border-stone-200 py-4 px-8 z-40">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="hidden md:block">
+            <p className="text-sm font-serif text-stone-900">{treatment.name}</p>
+            <p className="text-xs text-stone-500">{treatment.duration} • {treatment.price}</p>
+          </div>
+          <Button asChild className="bg-stone-900 text-stone-50 hover:bg-[#b5453a] px-8 py-3 text-sm uppercase tracking-wide">
+            <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
+              {t('bookNow') || 'Book This Treatment'}
+            </a>
+          </Button>
+        </div>
+      </div>
+    </article>
   );
 }
