@@ -1,5 +1,11 @@
-import { Redis } from 'ioredis';
-import { getRedisClient } from './rate-limit';
+/**
+ * Security Event Logging
+ *
+ * Note: Redis persistence for security events has been temporarily disabled
+ * during migration from ioredis to Upstash. Events are logged to console only.
+ * To re-enable Redis persistence, this module would need to use Upstash Redis
+ * with different data structures (hashes/lists instead of sorted sets).
+ */
 
 interface SecurityEvent {
   type: 'rate_limit' | 'csrf_fail' | 'auth_fail' | 'xss_attempt' | 'sql_injection' | 'nosql_injection' | 'validation_fail';
@@ -17,12 +23,13 @@ interface SecurityMetrics {
   topPaths: Record<string, number>;
 }
 
-const SECURITY_EVENTS_KEY = 'security:events';
-const SECURITY_ALERTS_KEY = 'security:alerts';
-const EVENT_RETENTION_DAYS = 30;
+// In-memory store for recent events (last 1000)
+const recentEvents: SecurityEvent[] = [];
+const MAX_MEMORY_EVENTS = 1000;
 
 /**
  * Log security event for analysis
+ * Currently logs to console and in-memory store only.
  */
 export async function logSecurityEvent(event: Omit<SecurityEvent, 'timestamp'>): Promise<void> {
   const fullEvent: SecurityEvent = {
@@ -33,135 +40,54 @@ export async function logSecurityEvent(event: Omit<SecurityEvent, 'timestamp'>):
   // Log to console for immediate visibility
   console.warn('[SECURITY]', event.type, event.ip, event.path, event.details);
 
-  const redis = getRedisClient();
-  if (redis) {
-    try {
-      // Store event in Redis sorted set with timestamp as score
-      await redis.zadd(
-        SECURITY_EVENTS_KEY,
-        fullEvent.timestamp,
-        JSON.stringify(fullEvent)
-      );
-
-      // Set expiration on the key
-      await redis.expire(SECURITY_EVENTS_KEY, EVENT_RETENTION_DAYS * 24 * 60 * 60);
-
-      // Check if we need to alert (e.g., high volume from single IP)
-      await checkForAlerts(redis, event);
-    } catch (error) {
-      console.error('Failed to log security event to Redis:', error);
-    }
+  // Store in memory (limited size)
+  recentEvents.push(fullEvent);
+  if (recentEvents.length > MAX_MEMORY_EVENTS) {
+    recentEvents.shift();
   }
-}
-
-/**
- * Check if security alert should be triggered
- */
-async function checkForAlerts(redis: Redis, event: Omit<SecurityEvent, 'timestamp'>): Promise<void> {
-  const windowStart = Date.now() - 5 * 60 * 1000; // 5 minute window
-  const ipKey = `security:ip:${event.ip}`;
-
-  // Count events from this IP in last 5 minutes
-  const count = await redis.zcount(ipKey, windowStart, '+inf');
-
-  if (count > 10) {
-    // High volume from single IP - create alert
-    const alert = {
-      type: 'high_volume',
-      ip: event.ip,
-      count,
-      timestamp: Date.now(),
-    };
-    await redis.lpush(SECURITY_ALERTS_KEY, JSON.stringify(alert));
-    await redis.expire(SECURITY_ALERTS_KEY, 7 * 24 * 60 * 60); // 7 days
-
-    // Also add IP to potential block list
-    await redis.setex(`security:block:${event.ip}`, 60 * 60, 'true'); // 1 hour block
-  }
-
-  // Add event to IP-specific list
-  await redis.zadd(ipKey, Date.now(), JSON.stringify(event));
-  await redis.expire(ipKey, 60 * 60); // 1 hour retention
 }
 
 /**
  * Get security metrics for dashboard
+ * Returns metrics from in-memory store only.
  */
 export async function getSecurityMetrics(timeWindowHours: number = 24): Promise<SecurityMetrics> {
-  const redis = getRedisClient();
-  if (!redis) {
-    return {
-      totalEvents: 0,
-      byType: {},
-      byIp: {},
-      topPaths: {},
-    };
-  }
-
   const since = Date.now() - timeWindowHours * 60 * 60 * 1000;
 
-  try {
-    // Get events in time window
-    const events = await redis.zrangebyscore(SECURITY_EVENTS_KEY, since, '+inf');
+  const events = recentEvents.filter(e => e.timestamp > since);
 
-    const metrics: SecurityMetrics = {
-      totalEvents: events.length,
-      byType: {},
-      byIp: {},
-      topPaths: {},
-    };
+  const metrics: SecurityMetrics = {
+    totalEvents: events.length,
+    byType: {},
+    byIp: {},
+    topPaths: {},
+  };
 
-    for (const eventStr of events) {
-      try {
-        const event: SecurityEvent = JSON.parse(eventStr);
-        metrics.byType[event.type] = (metrics.byType[event.type] || 0) + 1;
-        metrics.byIp[event.ip] = (metrics.byIp[event.ip] || 0) + 1;
-        metrics.topPaths[event.path] = (metrics.topPaths[event.path] || 0) + 1;
-      } catch {
-        // Skip invalid events
-      }
-    }
-
-    return metrics;
-  } catch (error) {
-    console.error('Failed to get security metrics:', error);
-    return {
-      totalEvents: 0,
-      byType: {},
-      byIp: {},
-      topPaths: {},
-    };
+  for (const event of events) {
+    metrics.byType[event.type] = (metrics.byType[event.type] || 0) + 1;
+    metrics.byIp[event.ip] = (metrics.byIp[event.ip] || 0) + 1;
+    metrics.topPaths[event.path] = (metrics.topPaths[event.path] || 0) + 1;
   }
+
+  return metrics;
 }
 
 /**
  * Check if IP is blocked due to suspicious activity
+ * Currently always returns false (no Redis persistence).
  */
-export async function isIpBlocked(ip: string): Promise<boolean> {
-  const redis = getRedisClient();
-  if (!redis) return false;
-
-  try {
-    const blocked = await redis.get(`security:block:${ip}`);
-    return blocked === 'true';
-  } catch {
-    return false;
-  }
+export async function isIpBlocked(_ip: string): Promise<boolean> {
+  // IP blocking temporarily disabled - would need Upstash Redis implementation
+  return false;
 }
 
 /**
  * Get active security alerts
+ * Currently returns empty (no Redis persistence).
  */
-export async function getActiveAlerts(limit: number = 50): Promise<Array<{ type: string; ip: string; count: number; timestamp: number }>> {
-  const redis = getRedisClient();
-  if (!redis) return [];
-
-  try {
-    const alerts = await redis.lrange(SECURITY_ALERTS_KEY, 0, limit - 1);
-    return alerts.map(a => JSON.parse(a));
-  } catch {
-    return [];
-  }
+export async function getActiveAlerts(_limit: number = 50): Promise<Array<{ type: string; ip: string; count: number; timestamp: number }>> {
+  // Alerts temporarily disabled - would need Upstash Redis implementation
+  return [];
 }
 
 /**
@@ -169,7 +95,7 @@ export async function getActiveAlerts(limit: number = 50): Promise<Array<{ type:
  * Use in API routes to check blocked IPs
  */
 export async function securityCheck(ip: string, _path: string): Promise<{ blocked: boolean; reason?: string }> {
-  // Check if IP is blocked
+  // Check if IP is blocked (currently always false)
   if (await isIpBlocked(ip)) {
     return { blocked: true, reason: 'IP temporarily blocked due to suspicious activity' };
   }
