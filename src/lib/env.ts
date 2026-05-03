@@ -1,70 +1,127 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
-// Production schema - all required fields must be present
-const productionSchema = z.object({
-  DATABASE_URL: z.string().min(1, 'DATABASE_URL is required'),
-  RESEND_API_KEY: z.string().min(1, 'RESEND_API_KEY is required'),
-  RESEND_AUDIENCE_ID: z.string().min(1, 'RESEND_AUDIENCE_ID is required'),
-  CONTACT_EMAIL: z.string().email('CONTACT_EMAIL must be a valid email'),
-  API_SECRET_KEY: z.string().min(1, 'API_SECRET_KEY is required'),
-  NEXT_PUBLIC_GA_MEASUREMENT_ID: z.string().optional(),
-  NEXT_PUBLIC_FB_PIXEL_ID: z.string().optional(),
-  NEXT_PUBLIC_CALCOM_USERNAME: z.string().optional(),
-  NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
-})
+/**
+ * Comprehensive Environment Variable Validation
+ * Parses all env vars at module load time and throws on any invalid/missing
+ */
 
-// Development schema - optional fields that are ok to skip
-const developmentSchema = z.object({
-  DATABASE_URL: z.string().optional().default('postgresql://localhost:5432/silkbeauty_dev'),
-  RESEND_API_KEY: z.string().optional().default(''),
-  RESEND_AUDIENCE_ID: z.string().optional().default(''),
-  CONTACT_EMAIL: z.string().email().optional().default('info@silkbeauty.ge'),
-  API_SECRET_KEY: z.string().optional().default('dev-secret-key'),
-  REDIS_URL: z.string().url().optional(),
-  NEXT_PUBLIC_GA_MEASUREMENT_ID: z.string().optional(),
-  NEXT_PUBLIC_FB_PIXEL_ID: z.string().optional(),
-  NEXT_PUBLIC_CALCOM_USERNAME: z.string().optional(),
-  NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
-})
+// ============================================================================
+// SERVER-SIDE ENVIRONMENT VARIABLES (never exposed to client)
+// ============================================================================
+const serverEnvSchema = z.object({
+  NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
 
-export type Env = z.infer<typeof productionSchema>
+  DATABASE_URL: z.string().url('DATABASE_URL must be a valid URL'),
 
-// ✅ Export the schemas for testing
-export { productionSchema, developmentSchema }
+  RESEND_API_KEY: z.string().min(20, 'RESEND_API_KEY must be at least 20 characters'),
 
-// ✅ Export a factory function for dependency injection
-export function parseEnv(input: Record<string, unknown>): Env {
-  const isProduction = input.NODE_ENV === 'production'
-  const schema = isProduction ? productionSchema : developmentSchema
-  return schema.parse(input)
+  RESEND_AUDIENCE_ID: z.string().uuid('RESEND_AUDIENCE_ID must be a valid UUID'),
+
+  CONTACT_EMAIL: z.string().email('CONTACT_EMAIL must be a valid email address'),
+
+  API_SECRET_KEY: z.string().min(32, 'API_SECRET_KEY must be at least 32 characters (use: openssl rand -hex 32)'),
+
+  UPSTASH_REDIS_REST_URL: z.string().url('UPSTASH_REDIS_REST_URL must be a valid URL'),
+
+  UPSTASH_REDIS_REST_TOKEN: z.string().min(20, 'UPSTASH_REDIS_REST_TOKEN must be at least 20 characters'),
+});
+
+// ============================================================================
+// PUBLIC ENVIRONMENT VARIABLES (safe for client bundle)
+// ============================================================================
+const publicEnvSchema = z.object({
+  NEXT_PUBLIC_SITE_URL: z.string().url().optional().default('https://silkbeauty.ge'),
+
+  NEXT_PUBLIC_GA_MEASUREMENT_ID: z.string().regex(/^G-[A-Z0-9]{10,}$/).optional(),
+
+  NEXT_PUBLIC_GTM_ID: z.string().regex(/^GTM-[A-Z0-9]{7,}$/).optional(),
+
+  NEXT_PUBLIC_FB_PIXEL_ID: z.string().regex(/^\d+$/).optional(),
+
+  NEXT_PUBLIC_CALCOM_USERNAME: z.string().min(1).optional(),
+});
+
+// ============================================================================
+// COMBINED SCHEMA FOR FULL VALIDATION
+// ============================================================================
+const fullEnvSchema = serverEnvSchema.merge(publicEnvSchema);
+
+// ============================================================================
+// TYPE DEFINITIONS
+// ============================================================================
+export type ServerEnv = z.infer<typeof serverEnvSchema>;
+export type PublicEnv = z.infer<typeof publicEnvSchema>;
+export type FullEnv = z.infer<typeof fullEnvSchema>;
+
+// ============================================================================
+// CLIENT-SIDE ACCESS GUARD
+// ============================================================================
+// Only throw in actual browser environment, not in test/jsdom
+if (typeof window !== 'undefined' && !process.env.VITEST && !process.env.NODE_ENV?.includes('test')) {
+  throw new Error(
+    '❌ Server environment variables were accessed on the client side. ' +
+    'This is a security risk. Use only NEXT_PUBLIC_* variables in client code.'
+  );
 }
 
-// Runtime initialization with process.env
-function initializeEnv(): Env {
-  const isProduction = process.env.NODE_ENV === 'production'
-  const schema = isProduction ? productionSchema : developmentSchema
-  const parsed = schema.safeParse(process.env)
+// ============================================================================
+// VALIDATION FUNCTION - Throws with ALL errors, not just first one
+// ============================================================================
+function validateEnv(): FullEnv {
+  const result = fullEnvSchema.safeParse(process.env);
 
-  if (!parsed.success) {
-    console.error('Environment validation failed:')
-    console.error(parsed.error.flatten().fieldErrors)
-    throw new Error('Invalid environment configuration')
+  if (!result.success) {
+    const issues = result.error.issues;
+    const formattedErrors = issues.map((issue) => {
+      const path = issue.path.join('.');
+      return `  - ${path}: ${issue.message}`;
+    }).join('\n');
+
+    const errorMessage = `\n❌ Environment validation failed with ${issues.length} error(s):\n${formattedErrors}\n\nPlease check your .env file and ensure all required variables are set.`;
+
+    throw new Error(errorMessage);
   }
 
-  // Warn about missing optional variables in development
-  if (!isProduction) {
-    const optionalVars = ['DATABASE_URL', 'RESEND_API_KEY', 'RESEND_AUDIENCE_ID', 'API_SECRET_KEY']
-    const missing = optionalVars.filter(key => !process.env[key])
-
-    if (missing.length > 0) {
-      console.warn('⚠️  Missing optional environment variables (using defaults):')
-      missing.forEach(key => console.warn(`   - ${key}`))
-      console.warn('   Set these in .env.local for full functionality.\n')
-    }
-  }
-
-  return parsed.data
+  return result.data;
 }
 
-// ✅ Export the parsed env for runtime use (evaluated once)
-export const env = initializeEnv()
+// ============================================================================
+// EXPORT TYPED ENV OBJECTS
+// ============================================================================
+// Only auto-validate in non-test environments
+const env = process.env.VITEST || process.env.NODE_ENV === 'test'
+  ? {} as FullEnv  // Empty object for tests (schemas used directly)
+  : validateEnv();
+
+export { env };
+
+// Export server-only env subset (only in non-test)
+export const serverEnv: ServerEnv = process.env.VITEST || process.env.NODE_ENV === 'test'
+  ? {} as ServerEnv
+  : {
+      NODE_ENV: env.NODE_ENV,
+      DATABASE_URL: env.DATABASE_URL,
+      RESEND_API_KEY: env.RESEND_API_KEY,
+      RESEND_AUDIENCE_ID: env.RESEND_AUDIENCE_ID,
+      CONTACT_EMAIL: env.CONTACT_EMAIL,
+      API_SECRET_KEY: env.API_SECRET_KEY,
+      UPSTASH_REDIS_REST_URL: env.UPSTASH_REDIS_REST_URL,
+      UPSTASH_REDIS_REST_TOKEN: env.UPSTASH_REDIS_REST_TOKEN,
+    };
+
+// Export public env subset (only in non-test)
+export const publicEnv: PublicEnv = process.env.VITEST || process.env.NODE_ENV === 'test'
+  ? {} as PublicEnv
+  : {
+      NEXT_PUBLIC_SITE_URL: env.NEXT_PUBLIC_SITE_URL,
+      NEXT_PUBLIC_GA_MEASUREMENT_ID: env.NEXT_PUBLIC_GA_MEASUREMENT_ID,
+      NEXT_PUBLIC_GTM_ID: env.NEXT_PUBLIC_GTM_ID,
+      NEXT_PUBLIC_FB_PIXEL_ID: env.NEXT_PUBLIC_FB_PIXEL_ID,
+      NEXT_PUBLIC_CALCOM_USERNAME: env.NEXT_PUBLIC_CALCOM_USERNAME,
+    };
+
+// Export validation function for tests
+export { validateEnv };
+
+// Re-export schemas for testing
+export { serverEnvSchema, publicEnvSchema, fullEnvSchema };
