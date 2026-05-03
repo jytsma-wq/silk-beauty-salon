@@ -1,6 +1,16 @@
 import type { ReactNode } from 'react';
+import { headers } from 'next/headers';
+import { rtlLocales } from '@/i18n';
 
-export default function RootLayout({ children }: { children: ReactNode }) {
-  // Locale layout will render the actual <html> element with proper lang/dir
-  return children;
+export default async function RootLayout({ children }: { children: ReactNode }) {
+  const headersList = await headers();
+  const pathname = headersList.get('x-pathname') || '';
+  const locale = pathname.split('/')[1] || 'en';
+  const isRtl = rtlLocales.includes(locale as 'ar' | 'he');
+
+  return (
+    <html lang={locale} dir={isRtl ? 'rtl' : 'ltr'} suppressHydrationWarning>
+      <body>{children}</body>
+    </html>
+  );
 }

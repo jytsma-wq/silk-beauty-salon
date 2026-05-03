@@ -210,23 +210,18 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
         </div>
       </section>
 
-      {/* Map Section */}
-      <section className="h-100 bg-secondary">
-        <div className="w-full h-full flex items-center justify-center">
-          <div className="text-center">
-            <MapPin className="w-12 h-12 text-gold mx-auto mb-4" />
-            <h3 className="font-serif text-xl text-primary mb-2">{t('mapAddress')}</h3>
-            <p className="text-muted-foreground">{t('mapCity')}</p>
-            <a
-              href="https://maps.google.com/?q=63+Zurab+Gorgiladze+Street+Batumi+Georgia"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block mt-4 text-gold hover:underline"
-            >
-              {t('viewOnMap')} →
-            </a>
-          </div>
-        </div>
+      {/* Map Section - Full Width */}
+      <section className="w-full h-[500px]">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2981.1234567890123!2d41.6167!3d41.6500!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDM5JzAwLjAiTiA0McKwMzcnMDAuMCJF!5e0!3m2!1sen!2sge!4v1234567890123!5m2!1sen!2sge"
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Silk Beauty Salon Location"
+        />
       </section>
     </>
   );

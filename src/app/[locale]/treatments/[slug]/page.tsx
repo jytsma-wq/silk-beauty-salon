@@ -32,10 +32,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+export const dynamicParams = true;
+
 export async function generateStaticParams() {
   const locales = ['en', 'ka', 'ru', 'ar', 'he', 'tr'];
   const slugs = await getAllTreatmentSlugs();
-  
+
   const params = [];
   for (const locale of locales) {
     for (const slug of slugs) {

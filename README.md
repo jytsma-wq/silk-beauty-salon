@@ -8,7 +8,7 @@ A modern, multilingual Next.js website for Silk Beauty Salon in Batumi, Georgia.
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS + shadcn/ui components
 - **Internationalization**: next-intl (6 locales: EN, KA, RU, TR, AR, HE)
-- **Database**: Prisma ORM with SQLite
+- **Database**: Prisma ORM with PostgreSQL
 - **Email**: Resend API
 - **Deployment**: Standalone output with Caddy reverse proxy
 
@@ -41,7 +41,11 @@ A modern, multilingual Next.js website for Silk Beauty Salon in Batumi, Georgia.
 
 4. **Set up the database**
    ```bash
-   npx prisma migrate dev
+   # Start PostgreSQL with Docker
+   docker-compose up -d postgres
+
+   # Run migrations
+   npm run db:migrate:dev
    ```
 
 5. **Run the development server**
@@ -62,6 +66,11 @@ A modern, multilingual Next.js website for Silk Beauty Salon in Batumi, Georgia.
 | `npm run start` | Start production server (after build) |
 | `npm run lint` | Run ESLint |
 | `npm run typecheck` | Run TypeScript type checking |
+| `npm run db:migrate:dev` | Run Prisma migrations in development |
+| `npm run db:migrate` | Deploy Prisma migrations in production |
+| `npm run db:studio` | Open Prisma Studio database GUI |
+| `npm run db:docker:up` | Start PostgreSQL container |
+| `npm run db:docker:down` | Stop PostgreSQL container |
 
 ## Project Structure
 
@@ -174,7 +183,8 @@ silkbeauty.ge {
 
 Ensure all [REQUIRED] variables in `.env.example` are set:
 
-- `DATABASE_URL` - Production database connection
+- `DATABASE_URL` - PostgreSQL connection string
+- `DIRECT_DATABASE_URL` - Direct PostgreSQL connection (for migrations, bypasses PgBouncer)
 - `RESEND_API_KEY` - For email functionality
 - `RESEND_AUDIENCE_ID` - Newsletter audience
 - `CONTACT_EMAIL` - Contact form recipient

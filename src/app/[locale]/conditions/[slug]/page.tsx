@@ -30,10 +30,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+export const dynamicParams = true;
+
 export async function generateStaticParams() {
   const locales = ['en', 'ka', 'ru', 'ar', 'he', 'tr'];
   const conditions = await getAllConditions('en');
-  
+
   const params = [];
   for (const locale of locales) {
     for (const condition of conditions) {

@@ -96,6 +96,10 @@ const nextConfig: NextConfig = {
 
     return config;
   },
+  // Turbopack optimization for instant HMR in Windsurf
+  turbopack: {
+    resolveExtensions: ['.mdx', '.tsx', '.ts', '.jsx', '.js', '.mjs', '.json'],
+  },
   // Security headers are handled by reverse proxy (Caddyfile) and middleware.ts (CSP only)
 };
 
