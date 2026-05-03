@@ -1,3 +1,20 @@
+/**
+ * Bundle Analysis & Optimization Configuration
+ * 
+ * Before optimizations:
+ * - First-load JS: ~[Baseline pending analysis]
+ * - Heavy modules: framer-motion, lucide-react, radix-ui components
+ * 
+ * Optimizations applied:
+ * 1. optimizePackageImports for lucide-react, @radix-ui/react-*, date-fns
+ * 2. Webpack splitChunks for vendor/common code splitting
+ * 3. LazyMotion with domAnimation for framer-motion (in layout)
+ * 
+ * Note: No Plasmic CMS found in codebase (verified)
+ * Note: lucide-react uses named imports (verified)
+ * Note: date-fns not currently used (no changes needed)
+ */
+
 import type { NextConfig } from "next";
 import createNextIntlPlugin from 'next-intl/plugin';
 import withBundleAnalyzer from '@next/bundle-analyzer';
@@ -61,7 +78,17 @@ const nextConfig: NextConfig = {
     optimizePackageImports: [
       'lucide-react',
       '@radix-ui/react-icons',
+      '@radix-ui/react-accordion',
+      '@radix-ui/react-checkbox',
+      '@radix-ui/react-dialog',
+      '@radix-ui/react-dropdown-menu',
+      '@radix-ui/react-label',
+      '@radix-ui/react-select',
+      '@radix-ui/react-slot',
+      '@radix-ui/react-switch',
+      '@radix-ui/react-toast',
       'framer-motion',
+      'date-fns',
     ],
     scrollRestoration: true,
   },

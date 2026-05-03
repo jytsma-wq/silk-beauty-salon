@@ -4,6 +4,7 @@ import { routing } from '@/i18n/routing';
 import { rtlLocales } from '@/i18n';
 import type { Metadata } from "next";
 import { headers } from 'next/headers';
+import { LazyMotion, domAnimation } from 'framer-motion';
 import "../globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { AnnouncerProvider } from "@/components/ui/announcer";
@@ -67,26 +68,28 @@ export default async function LocaleLayout({
         {nonce ? <meta name="csp-nonce" content={nonce} /> : null}
       </head>
       <body>
-        <ThemeProvider>
-          <NextIntlClientProvider messages={messages}>
-            <ConsentProvider>
-              <AnalyticsScripts
-                gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
-                gtmId={process.env.NEXT_PUBLIC_GTM_ID}
-                fbPixelId={process.env.NEXT_PUBLIC_FB_PIXEL_ID}
-                nonce={nonce}
-              />
-              <AnnouncerProvider>
-                <SkipLink />
-                <GaldermaHeader />
-                <main id="main-content" className="pt-[140px]">{children}</main>
-                <GaldermaFooter />
-                <WhatsAppWidget />
-                <Toaster />
-              </AnnouncerProvider>
-            </ConsentProvider>
-          </NextIntlClientProvider>
-        </ThemeProvider>
+        <LazyMotion features={domAnimation}>
+          <ThemeProvider>
+            <NextIntlClientProvider messages={messages}>
+              <ConsentProvider>
+                <AnalyticsScripts
+                  gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
+                  gtmId={process.env.NEXT_PUBLIC_GTM_ID}
+                  fbPixelId={process.env.NEXT_PUBLIC_FB_PIXEL_ID}
+                  nonce={nonce}
+                />
+                <AnnouncerProvider>
+                  <SkipLink />
+                  <GaldermaHeader />
+                  <main id="main-content" className="pt-[140px]">{children}</main>
+                  <GaldermaFooter />
+                  <WhatsAppWidget />
+                  <Toaster />
+                </AnnouncerProvider>
+              </ConsentProvider>
+            </NextIntlClientProvider>
+          </ThemeProvider>
+        </LazyMotion>
       </body>
     </html>
   );
