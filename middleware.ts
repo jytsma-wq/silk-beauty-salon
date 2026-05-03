@@ -5,13 +5,7 @@ import { Redis } from '@upstash/redis';
 import { routing } from './src/i18n/routing';
 import { locales } from './src/i18n';
 import { structuredLog } from './src/lib/logger';
-
-// Generate cryptographically secure nonce using Web Crypto API (Edge Runtime compatible)
-function generateNonce(): string {
-  const array = new Uint8Array(16);
-  crypto.getRandomValues(array);
-  return btoa(String.fromCharCode(...array));
-}
+import { buildCSPHeader, generateNonce } from './src/lib/csp';
 
 // Path check result type
 interface PathCheckResult {
@@ -27,28 +21,6 @@ function generateCsrfToken(): string {
     .replace(/\+/g, '-')
     .replace(/\//g, '_')
     .replace(/=/g, '');
-}
-
-// Build Content Security Policy header with nonce
-// Note: Other security headers are handled by reverse proxy (Caddyfile)
-// Note: 'unsafe-inline' is removed from script-src because nonce makes it redundant and weaker
-function buildCSPHeader(nonce: string): string {
-  const directives = [
-    "default-src 'self'",
-    "script-src 'self' 'nonce-" + nonce + "' 'strict-dynamic' https://www.google-analytics.com https://www.googletagmanager.com",
-    "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: https: blob:",
-    "media-src 'self' https://cdn.coverr.co https://storage.googleapis.com blob:",
-    "font-src 'self'",
-    "connect-src 'self' https://www.google-analytics.com https://vitals.vercel-insights.com https://cdn.coverr.co",
-    "frame-src 'self' https://cal.com https://*.cal.com",
-    "object-src 'none'",
-    "base-uri 'self'",
-    "form-action 'self'",
-    "frame-ancestors 'none'",
-    "upgrade-insecure-requests",
-  ];
-  return directives.join('; ');
 }
 
 // Upstash Redis rate limiting configuration

@@ -27,7 +27,9 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
 
-  // Security headers including CSP
+  // CSP is handled exclusively by middleware.ts (nonce-based, per-request).
+  // DO NOT add a Content-Security-Policy header here — it would shadow the
+  // middleware nonce and re-enable 'unsafe-inline', breaking XSS protection.
   async headers() {
     return [
       {
@@ -53,10 +55,8 @@ const nextConfig: NextConfig = {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()',
           },
-          {
-            key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google-analytics.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: blob: https://picsum.photos https://flagcdn.com; media-src 'self' https://cdn.coverr.co https://storage.googleapis.com blob:; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://vitals.vercel-insights.com https://cdn.coverr.co; frame-src 'self' https://cal.com https://*.cal.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests;",
-          },
+          // Note: Content-Security-Policy is intentionally omitted here.
+          // It is generated per-request with a unique nonce in middleware.ts.
         ],
       },
     ];
@@ -68,7 +68,7 @@ const nextConfig: NextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     remotePatterns: [
       { protocol: 'https', hostname: 'images.unsplash.com', pathname: '/photo-**' },
-      { protocol: 'https', hostname: 'flagcdn.com' },
+      // Note: flagcdn.com and picsum.photos removed — these were development placeholders
       { protocol: 'https', hostname: 'cdn.coverr.co' },
       { protocol: 'https', hostname: 'res.cloudinary.com' },
     ],
