@@ -1,18 +1,15 @@
 import createMiddleware from 'next-intl/middleware';
 import { NextRequest, NextResponse } from 'next/server';
+import { Ratelimit } from '@upstash/ratelimit';
+import { Redis } from '@upstash/redis';
 import { routing } from './src/i18n/routing';
+import { locales } from './src/i18n';
 
 // Generate cryptographically secure nonce using Web Crypto API (Edge Runtime compatible)
 function generateNonce(): string {
   const array = new Uint8Array(16);
   crypto.getRandomValues(array);
   return btoa(String.fromCharCode(...array));
-}
-
-// Rate limiting store type
-interface RateLimitRecord {
-  count: number;
-  resetTime: number;
 }
 
 // Path check result type
@@ -33,6 +30,7 @@ function generateCsrfToken(): string {
 
 // Build Content Security Policy header with nonce
 // Note: Other security headers are handled by reverse proxy (Caddyfile)
+// Note: 'unsafe-inline' is removed from script-src because nonce makes it redundant and weaker
 function buildCSPHeader(nonce: string): string {
   const directives = [
     "default-src 'self'",
@@ -52,11 +50,26 @@ function buildCSPHeader(nonce: string): string {
   return directives.join('; ');
 }
 
-// Rate limiting - in-memory store (resets on function cold start)
-// For production with multiple instances, use Redis or Upstash
-const rateLimitStore = new Map<string, RateLimitRecord>();
-const RATE_LIMIT_WINDOW = 60; // seconds
-const RATE_LIMIT_MAX = 100; // requests per window
+// Upstash Redis rate limiting configuration
+const UPSTASH_REDIS_REST_URL = process.env.UPSTASH_REDIS_REST_URL;
+const UPSTASH_REDIS_REST_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN;
+
+// Validate environment variables at startup
+if (!UPSTASH_REDIS_REST_URL || !UPSTASH_REDIS_REST_TOKEN) {
+  throw new Error(
+    'Missing Upstash Redis credentials. Please set UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN environment variables.'
+  );
+}
+
+// Create singleton Ratelimit client with sliding window (100 requests per 60 seconds)
+const ratelimit = new Ratelimit({
+  redis: new Redis({
+    url: UPSTASH_REDIS_REST_URL,
+    token: UPSTASH_REDIS_REST_TOKEN,
+  }),
+  limiter: Ratelimit.slidingWindow(100, '60 s'),
+  analytics: true,
+});
 
 // Always allow these search engine bots
 const ALWAYS_ALLOW_UA = [/googlebot/i, /bingbot/i, /twitterbot/i, /facebookexternalhit/i];
@@ -112,22 +125,6 @@ function getClientIp(request: NextRequest): string {
     || 'unknown';
 }
 
-function isRateLimited(key: string): boolean {
-  const now = Date.now();
-  const record = rateLimitStore.get(key);
-  
-  if (!record || now > record.resetTime) {
-    rateLimitStore.set(key, { count: 1, resetTime: now + RATE_LIMIT_WINDOW * 1000 });
-    return false;
-  }
-  
-  if (record.count >= RATE_LIMIT_MAX) {
-    return true;
-  }
-  
-  record.count++;
-  return false;
-}
 
 function checkUserAgent(userAgent: string | null): boolean {
   if (!userAgent) return true; // Block if no user agent
@@ -188,6 +185,84 @@ function logSuspicious(request: NextRequest, reason: string) {
   console.warn(JSON.stringify(logEntry));
 }
 
+// Supported locales for matching
+const SUPPORTED_LOCALES = locales as unknown as string[];
+
+/**
+ * Parse Accept-Language header and extract language tags with quality values.
+ * Returns sorted array of { tag, quality } objects (highest quality first).
+ * Example: "en-US,en;q=0.9,ka;q=0.8" -> [{tag: "en-US", quality: 1}, {tag: "en", quality: 0.9}, {tag: "ka", quality: 0.8}]
+ */
+function parseAcceptLanguage(header: string | null): Array<{ tag: string; quality: number }> {
+  if (!header) return [];
+  
+  return header
+    .split(',')
+    .map((part) => {
+      const [tag, ...qParts] = part.trim().split(';');
+      let quality = 1;
+      
+      if (qParts.length > 0) {
+        const qMatch = qParts.join(';').match(/q=([0-9.]+)/);
+        if (qMatch) {
+          quality = parseFloat(qMatch[1]) || 0;
+        }
+      }
+      
+      return { tag: tag.trim().toLowerCase(), quality };
+    })
+    .sort((a, b) => b.quality - a.quality);
+}
+
+/**
+ * Map a BCP 47 language tag to one of our supported locales.
+ * Handles primary language matching (e.g., "ar-AE" -> "ar").
+ * Returns null if no match found.
+ */
+function mapToSupportedLocale(tag: string): string | null {
+  const normalizedTag = tag.toLowerCase();
+  
+  // Exact match
+  if (SUPPORTED_LOCALES.includes(normalizedTag)) {
+    return normalizedTag;
+  }
+  
+  // Try primary language subtag (e.g., "ar-AE" -> "ar")
+  const primaryTag = normalizedTag.split('-')[0];
+  if (SUPPORTED_LOCALES.includes(primaryTag)) {
+    return primaryTag;
+  }
+  
+  return null;
+}
+
+/**
+ * Detect locale from Accept-Language header or cookie.
+ * Falls back to 'en' if no match found.
+ */
+function detectLocale(request: NextRequest): string {
+  // Check for existing locale cookie first
+  const localeCookie = request.cookies.get('NEXT_LOCALE')?.value;
+  if (localeCookie && SUPPORTED_LOCALES.includes(localeCookie)) {
+    return localeCookie;
+  }
+  
+  // Parse Accept-Language header
+  const acceptLanguage = request.headers.get('accept-language');
+  const parsedLanguages = parseAcceptLanguage(acceptLanguage);
+  
+  // Find first matching supported locale
+  for (const { tag } of parsedLanguages) {
+    const matchedLocale = mapToSupportedLocale(tag);
+    if (matchedLocale) {
+      return matchedLocale;
+    }
+  }
+  
+  // Fall back to default locale
+  return 'en';
+}
+
 // Create the i18n middleware
 const i18nMiddleware = createMiddleware(routing);
 
@@ -223,14 +298,26 @@ function addPerformanceHeaders(response: NextResponse, pathname: string): void {
   response.headers.set('Accept-CH', 'DPR, Width, Viewport-Width');
 }
 
-export default function middleware(request: NextRequest) {
+export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const ip = getClientIp(request);
   const userAgent = request.headers.get('user-agent') || null;
 
-  // 0. Redirect root to default locale
+  // 0. Redirect root to detected locale (307 Temporary Redirect)
   if (pathname === '/') {
-    return NextResponse.redirect(new URL('/en', request.url));
+    const detectedLocale = detectLocale(request);
+    const response = NextResponse.redirect(new URL(`/${detectedLocale}`, request.url), 307);
+    
+    // Set NEXT_LOCALE cookie for subsequent requests (same settings as CSRF cookie)
+    response.cookies.set('NEXT_LOCALE', detectedLocale, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      path: '/',
+      maxAge: 60 * 60 * 24, // 24 hours
+    });
+    
+    return response;
   }
 
   // 1. Check for blocked user agents
@@ -252,13 +339,15 @@ export default function middleware(request: NextRequest) {
   // 3. Rate limiting (skip for static files and health checks)
   if (!pathname.startsWith('/_next') && !pathname.includes('.') && pathname !== '/health') {
     const rateLimitKey = `rl:${ip}`;
-    if (isRateLimited(rateLimitKey)) {
+    const { success, reset } = await ratelimit.limit(rateLimitKey);
+    
+    if (!success) {
       logSuspicious(request, 'RATE_LIMITED');
       return new NextResponse('Too Many Requests', { 
         status: 429,
         headers: {
-          'Retry-After': '60',
-          'X-RateLimit-Limit': String(RATE_LIMIT_MAX),
+          'Retry-After': String(Math.ceil((reset - Date.now()) / 1000)),
+          'X-RateLimit-Limit': '100',
           'X-RateLimit-Remaining': '0',
         }
       });
@@ -287,6 +376,12 @@ export default function middleware(request: NextRequest) {
 
   // Add CSP header with nonce (other security headers handled by Caddyfile)
   response.headers.set('Content-Security-Policy', buildCSPHeader(nonce));
+
+  // Forward nonce to React Server Components via header
+  response.headers.set('x-nonce', nonce);
+
+  // Add pathname header for root layout to determine locale
+  response.headers.set('x-pathname', pathname);
 
   // Add performance headers
   addPerformanceHeaders(response, pathname);

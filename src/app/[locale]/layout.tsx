@@ -50,11 +50,11 @@ export default async function LocaleLayout({
 
   const messages = await getMessages();
 
-  // Get CSRF token from middleware header
+  // Get CSRF token and nonce from middleware headers
   const headersList = await headers();
   const csrfToken = headersList.get('X-CSRF-Token') || '';
+  const nonce = headersList.get('x-nonce') || '';
 
-  // Check if RTL language
   const isRtl = rtlLocales.includes(validLocale as 'ar' | 'he');
 
   return (
@@ -63,6 +63,7 @@ export default async function LocaleLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {csrfToken ? <meta name="csrf-token" content={csrfToken} /> : null}
+        {nonce ? <meta name="csp-nonce" content={nonce} /> : null}
       </head>
       <body>
         <NextIntlClientProvider messages={messages}>
@@ -71,6 +72,7 @@ export default async function LocaleLayout({
               gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
               gtmId={process.env.NEXT_PUBLIC_GTM_ID}
               fbPixelId={process.env.NEXT_PUBLIC_FB_PIXEL_ID}
+              nonce={nonce}
             />
             <AnnouncerProvider>
               <SkipLink />

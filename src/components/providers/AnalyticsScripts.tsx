@@ -10,9 +10,10 @@ interface ScriptLoaderProps {
   gaId?: string
   fbPixelId?: string
   elfsightId?: string
+  nonce?: string
 }
 
-export function AnalyticsScripts({ gtmId, gaId, fbPixelId, elfsightId }: ScriptLoaderProps) {
+export function AnalyticsScripts({ gtmId, gaId, fbPixelId, elfsightId, nonce }: ScriptLoaderProps) {
   const { consent, hasConsented } = useConsent()
 
   // Initialize analytics config when consent is given and IDs are available
@@ -28,7 +29,7 @@ export function AnalyticsScripts({ gtmId, gaId, fbPixelId, elfsightId }: ScriptL
     <>
       {/* Google Tag Manager - loads all tags based on dataLayer */}
       {consent.marketing && gtmId && (
-        <Script id="gtm" strategy="afterInteractive">
+        <Script id="gtm" strategy="afterInteractive" nonce={nonce}>
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -40,8 +41,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       {/* Google Analytics 4 - requires marketing consent for ads */}
       {consent.analytics && gaId && (
         <>
-          <Script id="ga-config" strategy="afterInteractive" />
-          <Script id="ga" strategy="afterInteractive">
+          <Script id="ga-config" strategy="afterInteractive" nonce={nonce} />
+          <Script id="ga" strategy="afterInteractive" nonce={nonce}>
             {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
@@ -52,7 +53,7 @@ gtag('config', '${gaId}', {'allow_enhanced_conversions': ${consent.marketing}});
 
       {/* Facebook Pixel - requires explicit consent for marketing */}
       {consent.marketing && fbPixelId && (
-        <Script id="fb-pixel" strategy="afterInteractive">
+        <Script id="fb-pixel" strategy="afterInteractive" nonce={nonce}>
           {`!function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -70,7 +71,8 @@ fbq('track', 'PageView');`}
       {consent.functional && elfsightId && (
         <Script 
           src={`https://static.elfsight.com/platform/platform.js`} 
-          strategy="lazyOnload" 
+          strategy="lazyOnload"
+          nonce={nonce}
         />
       )}
     </>
