@@ -74,6 +74,9 @@ const ratelimit = new Ratelimit({
 // Always allow these search engine bots
 const ALWAYS_ALLOW_UA = [/googlebot/i, /bingbot/i, /twitterbot/i, /facebookexternalhit/i];
 
+// API routes prefix
+const API_ROUTES_PREFIX = '/api';
+
 // Bad user agents - only known malicious security scanners
 const BLOCKED_USER_AGENTS = [
   /masscan/i,
@@ -88,6 +91,7 @@ const BLOCKED_USER_AGENTS = [
   /hydra/i,
 ];
 
+// Blocked patterns for public pages (includes WordPress/PHP scanners)
 const BLOCKED_PATTERNS = [
   /\.\./,  // Directory traversal
   /\/wp-admin/i,
@@ -95,6 +99,19 @@ const BLOCKED_PATTERNS = [
   /\/phpinfo/i,
   /\.env$/,
   /\.git\//,
+  /\?exec\=/i,
+  /\?cmd\=/i,
+  /\?shell\=/i,
+  /\?ping\=/i,
+  /base64_decode/i,
+  /eval\(/i,
+  /union.*select/i,
+  /concat\(/i,
+];
+
+// API-only patterns (SQL injection and traversal only - no WordPress/PHP patterns)
+const API_BLOCKED_PATTERNS = [
+  /\.\./,  // Directory traversal
   /\?exec\=/i,
   /\?cmd\=/i,
   /\?shell\=/i,
@@ -145,11 +162,14 @@ function checkUserAgent(userAgent: string | null): boolean {
   return false;
 }
 
-function checkPath(pathname: string): PathCheckResult {
+function checkPath(pathname: string, isApiRoute = false): PathCheckResult {
   const lowerPath = pathname.toLowerCase();
   
+  // Use API-specific patterns for API routes
+  const patternsToCheck = isApiRoute ? API_BLOCKED_PATTERNS : BLOCKED_PATTERNS;
+  
   // Check blocked patterns
-  for (const pattern of BLOCKED_PATTERNS) {
+  for (const pattern of patternsToCheck) {
     if (pattern.test(lowerPath)) {
       return { blocked: true, suspicious: true };
     }
@@ -163,6 +183,60 @@ function checkPath(pathname: string): PathCheckResult {
   }
   
   return { blocked: false, suspicious: false };
+}
+
+// Verify API Authorization Bearer token
+function verifyApiAuth(request: NextRequest): { valid: boolean; error?: string } {
+  const authHeader = request.headers.get('Authorization');
+  
+  if (!authHeader) {
+    return { valid: false, error: 'Missing Authorization header' };
+  }
+  
+  const expectedToken = process.env.API_SECRET_KEY;
+  if (!expectedToken) {
+    // In development, allow if no secret key is set
+    if (process.env.NODE_ENV !== 'production') {
+      return { valid: true };
+    }
+    return { valid: false, error: 'API_SECRET_KEY not configured' };
+  }
+  
+  const expectedBearer = `Bearer ${expectedToken}`;
+  if (authHeader !== expectedBearer) {
+    return { valid: false, error: 'Invalid token' };
+  }
+  
+  return { valid: true };
+}
+
+// Create unauthorized JSON response
+function createUnauthorizedResponse(error: string): NextResponse {
+  return new NextResponse(
+    JSON.stringify({ error: 'Unauthorized' }),
+    {
+      status: 401,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  );
+}
+
+// Create rate limited JSON response
+function createApiRateLimitResponse(reset: number): NextResponse {
+  return new NextResponse(
+    JSON.stringify({ error: 'Rate limit exceeded' }),
+    {
+      status: 429,
+      headers: {
+        'Content-Type': 'application/json',
+        'Retry-After': String(Math.ceil((reset - Date.now()) / 1000)),
+        'X-RateLimit-Limit': '30',
+        'X-RateLimit-Remaining': '0',
+      },
+    }
+  );
 }
 
 function logSuspicious(request: NextRequest, reason: string) {
@@ -302,6 +376,7 @@ export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const ip = getClientIp(request);
   const userAgent = request.headers.get('user-agent') || null;
+  const isApiRoute = pathname.startsWith(API_ROUTES_PREFIX);
 
   // 0. Redirect root to detected locale (307 Temporary Redirect)
   if (pathname === '/') {
@@ -326,8 +401,8 @@ export default async function middleware(request: NextRequest) {
     return new NextResponse('Forbidden', { status: 403 });
   }
 
-  // 2. Check path for blocked/suspicious patterns
-  const pathCheck = checkPath(pathname);
+  // 2. Check path for blocked/suspicious patterns (use API-specific patterns for API routes)
+  const pathCheck = checkPath(pathname, isApiRoute);
   if (pathCheck.blocked) {
     logSuspicious(request, 'BLOCKED_PATH');
     return new NextResponse('Forbidden', { status: 403 });
@@ -336,8 +411,41 @@ export default async function middleware(request: NextRequest) {
     logSuspicious(request, 'SUSPICIOUS_PATH');
   }
 
-  // 3. Rate limiting (skip for static files and health checks)
-  if (!pathname.startsWith('/_next') && !pathname.includes('.') && pathname !== '/health') {
+  // 3. API Route Protection (Bearer token auth + stricter rate limiting)
+  if (isApiRoute) {
+    // Skip auth for health check endpoint
+    const isHealthCheck = pathname === '/api/health' && request.method === 'GET';
+    
+    if (!isHealthCheck) {
+      // Verify Authorization Bearer token
+      const authResult = verifyApiAuth(request);
+      if (!authResult.valid) {
+        logSuspicious(request, `API_AUTH_FAILED: ${authResult.error}`);
+        return createUnauthorizedResponse(authResult.error || 'Unauthorized');
+      }
+    }
+    
+    // Apply stricter rate limit for API routes (30 req/60s per IP)
+    const apiRateLimitKey = `api-rl:${ip}`;
+    const { success, reset } = await ratelimit.limit(apiRateLimitKey);
+    
+    if (!success) {
+      logSuspicious(request, 'API_RATE_LIMITED');
+      return createApiRateLimitResponse(reset);
+    }
+    
+    // Pass through to API handler (no i18n middleware for API routes)
+    const response = NextResponse.next();
+    
+    // Add security headers for API responses
+    response.headers.set('X-Content-Type-Options', 'nosniff');
+    response.headers.set('X-Frame-Options', 'DENY');
+    
+    return response;
+  }
+
+  // 4. Standard rate limiting for public pages (skip for static files)
+  if (!pathname.startsWith('/_next') && !pathname.includes('.')) {
     const rateLimitKey = `rl:${ip}`;
     const { success, reset } = await ratelimit.limit(rateLimitKey);
     
