@@ -5,6 +5,7 @@ import { Link } from '@/i18n/routing';
 import { Menu, X, Phone, ChevronDown } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { siteConfig } from '@/data/site-config';
 import { motion, AnimatePresence } from 'framer-motion';
 import { baseTreatmentCategories } from '@/data/treatments';
@@ -77,8 +78,9 @@ export function GaldermaHeader() {
             <span>{siteConfig.contact.phone}</span>
           </a>
 
-          {/* Right: Language Switcher */}
-          <div className="flex items-center gap-4">
+          {/* Right: Language Switcher & Theme Toggle */}
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
             <LanguageSwitcher />
           </div>
         </div>

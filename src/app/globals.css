@@ -47,50 +47,50 @@
 
 :root {
   --radius: 0;
-  
+
   /* Primary Colors - Deep Navy/Black */
   --primary: #1c1c1c;
   --primary-foreground: #ffffff;
-  
-  /* Secondary - Light Gray */
+
+  /* Secondary - Light Gray (Deep Cream #F5EFE6) */
   --secondary: #f7f4f0;
   --secondary-foreground: #1a1a2e;
-  
+
   /* Accent - Elegant Gold */
   --accent: #b5453a;
   --accent-foreground: #1a1a2e;
-  
+
   /* Background & Foreground */
   --background: #ffffff;
   --foreground: #1a1a2e;
-  
+
   /* Muted */
   --muted: #f7f4f0;
   --muted-foreground: #6b6b6b;
-  
+
   /* Card */
   --card: #ffffff;
   --card-foreground: #1a1a2e;
-  
+
   /* Popover */
   --popover: #ffffff;
   --popover-foreground: #1a1a2e;
-  
+
   /* Border & Input */
   --border: #e0e0e0;
   --input: #e0e0e0;
   --ring: #b5453a;
-  
+
   /* Destructive */
   --destructive: #ef4444;
-  
+
   /* Chart colors */
   --chart-1: #b5453a;
   --chart-2: #1a1a2e;
   --chart-3: #666666;
   --chart-4: #f5f5f5;
   --chart-5: #e0e0e0;
-  
+
   /* Sidebar */
   --sidebar: #ffffff;
   --sidebar-foreground: #1a1a2e;
@@ -100,6 +100,62 @@
   --sidebar-accent-foreground: #1a1a2e;
   --sidebar-border: #e0e0e0;
   --sidebar-ring: #b5453a;
+}
+
+/* Dark Mode - Deep Charcoal #1A1714 */
+.dark {
+  /* Primary Colors - Inverted for dark mode */
+  --primary: #f5f5f5;
+  --primary-foreground: #1a1714;
+
+  /* Secondary - Deep Charcoal instead of cream */
+  --secondary: #2a2520;
+  --secondary-foreground: #f5f5f5;
+
+  /* Accent - Elegant Gold (slightly brighter for dark mode) */
+  --accent: #c85a4f;
+  --accent-foreground: #f5f5f5;
+
+  /* Background & Foreground - Deep Charcoal */
+  --background: #1a1714;
+  --foreground: #f5f5f5;
+
+  /* Muted */
+  --muted: #2a2520;
+  --muted-foreground: #a0a0a0;
+
+  /* Card - Slightly lighter than background */
+  --card: #252019;
+  --card-foreground: #f5f5f5;
+
+  /* Popover */
+  --popover: #252019;
+  --popover-foreground: #f5f5f5;
+
+  /* Border & Input - Subtle borders */
+  --border: #3a3530;
+  --input: #3a3530;
+  --ring: #c85a4f;
+
+  /* Destructive */
+  --destructive: #ef4444;
+
+  /* Chart colors - Adjusted for dark backgrounds */
+  --chart-1: #c85a4f;
+  --chart-2: #f5f5f5;
+  --chart-3: #a0a0a0;
+  --chart-4: #3a3530;
+  --chart-5: #2a2520;
+
+  /* Sidebar */
+  --sidebar: #252019;
+  --sidebar-foreground: #f5f5f5;
+  --sidebar-primary: #f5f5f5;
+  --sidebar-primary-foreground: #1a1714;
+  --sidebar-accent: #3a3530;
+  --sidebar-accent-foreground: #f5f5f5;
+  --sidebar-border: #3a3530;
+  --sidebar-ring: #c85a4f;
 }
 
 @layer base {

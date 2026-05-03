@@ -13,6 +13,7 @@ import { ConsentProvider } from "@/components/providers/ConsentProvider";
 import { AnalyticsScripts } from "@/components/providers/AnalyticsScripts";
 import { WhatsAppWidget } from "@/components/layout/WhatsAppWidget";
 import { SkipLink } from "@/components/layout/SkipLink";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -66,24 +67,26 @@ export default async function LocaleLayout({
         {nonce ? <meta name="csp-nonce" content={nonce} /> : null}
       </head>
       <body>
-        <NextIntlClientProvider messages={messages}>
-          <ConsentProvider>
-            <AnalyticsScripts
-              gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
-              gtmId={process.env.NEXT_PUBLIC_GTM_ID}
-              fbPixelId={process.env.NEXT_PUBLIC_FB_PIXEL_ID}
-              nonce={nonce}
-            />
-            <AnnouncerProvider>
-              <SkipLink />
-              <GaldermaHeader />
-              <main id="main-content" className="pt-[140px]">{children}</main>
-              <GaldermaFooter />
-              <WhatsAppWidget />
-              <Toaster />
-            </AnnouncerProvider>
-          </ConsentProvider>
-        </NextIntlClientProvider>
+        <ThemeProvider>
+          <NextIntlClientProvider messages={messages}>
+            <ConsentProvider>
+              <AnalyticsScripts
+                gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
+                gtmId={process.env.NEXT_PUBLIC_GTM_ID}
+                fbPixelId={process.env.NEXT_PUBLIC_FB_PIXEL_ID}
+                nonce={nonce}
+              />
+              <AnnouncerProvider>
+                <SkipLink />
+                <GaldermaHeader />
+                <main id="main-content" className="pt-[140px]">{children}</main>
+                <GaldermaFooter />
+                <WhatsAppWidget />
+                <Toaster />
+              </AnnouncerProvider>
+            </ConsentProvider>
+          </NextIntlClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
