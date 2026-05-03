@@ -4,6 +4,7 @@ import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
 import { routing } from './src/i18n/routing';
 import { locales } from './src/i18n';
+import { structuredLog } from './src/lib/logger';
 
 // Generate cryptographically secure nonce using Web Crypto API (Edge Runtime compatible)
 function generateNonce(): string {
@@ -239,24 +240,43 @@ function createApiRateLimitResponse(reset: number): NextResponse {
   );
 }
 
-function logSuspicious(request: NextRequest, reason: string) {
-  const timestamp = new Date().toISOString();
+function logSuspicious(request: NextRequest, reason: string, requestId: string) {
   const ip = getClientIp(request);
   const userAgent = request.headers.get('user-agent') || 'unknown';
   const path = request.nextUrl.pathname;
 
-  // Structured security logging
-  const logEntry = {
-    timestamp,
+  // Structured security logging with request ID
+  structuredLog({
+    timestamp: new Date().toISOString(),
     level: 'WARN',
     type: 'SECURITY',
+    requestId,
     reason,
     ip,
     path,
+    method: request.method,
     userAgent: userAgent.substring(0, 100),
-  };
+  });
+}
 
-  console.warn(JSON.stringify(logEntry));
+/**
+ * Log request info at INFO level
+ */
+function logRequest(request: NextRequest, response: NextResponse, requestId: string, durationMs: number): void {
+  const ip = getClientIp(request);
+  const path = request.nextUrl.pathname;
+  const status = response.status;
+
+  structuredLog({
+    timestamp: new Date().toISOString(),
+    level: 'INFO',
+    requestId,
+    ip,
+    method: request.method,
+    path,
+    status,
+    durationMs,
+  });
 }
 
 // Supported locales for matching
@@ -373,16 +393,23 @@ function addPerformanceHeaders(response: NextResponse, pathname: string): void {
 }
 
 export default async function middleware(request: NextRequest) {
+  const startTime = Date.now();
   const { pathname } = request.nextUrl;
   const ip = getClientIp(request);
   const userAgent = request.headers.get('user-agent') || null;
   const isApiRoute = pathname.startsWith(API_ROUTES_PREFIX);
 
-  // 0. Redirect root to detected locale (307 Temporary Redirect)
+  // 0. Generate request ID at the very top (before any early returns)
+  const requestId = crypto.randomUUID();
+
+  // Add request ID to request headers for downstream use
+  request.headers.set('x-request-id', requestId);
+
+  // 1. Redirect root to detected locale (307 Temporary Redirect)
   if (pathname === '/') {
     const detectedLocale = detectLocale(request);
     const response = NextResponse.redirect(new URL(`/${detectedLocale}`, request.url), 307);
-    
+
     // Set NEXT_LOCALE cookie for subsequent requests (same settings as CSRF cookie)
     response.cookies.set('NEXT_LOCALE', detectedLocale, {
       httpOnly: true,
@@ -391,78 +418,97 @@ export default async function middleware(request: NextRequest) {
       path: '/',
       maxAge: 60 * 60 * 24, // 24 hours
     });
-    
+
+    // Add request ID to response header
+    response.headers.set('x-request-id', requestId);
     return response;
   }
 
-  // 1. Check for blocked user agents
+  // 2. Check for blocked user agents
   if (checkUserAgent(userAgent)) {
-    logSuspicious(request, 'BLOCKED_UA');
-    return new NextResponse('Forbidden', { status: 403 });
+    logSuspicious(request, 'BLOCKED_UA', requestId);
+    const response = new NextResponse('Forbidden', { status: 403 });
+    response.headers.set('x-request-id', requestId);
+    return response;
   }
 
-  // 2. Check path for blocked/suspicious patterns (use API-specific patterns for API routes)
+  // 3. Check path for blocked/suspicious patterns (use API-specific patterns for API routes)
   const pathCheck = checkPath(pathname, isApiRoute);
   if (pathCheck.blocked) {
-    logSuspicious(request, 'BLOCKED_PATH');
-    return new NextResponse('Forbidden', { status: 403 });
+    logSuspicious(request, 'BLOCKED_PATH', requestId);
+    const response = new NextResponse('Forbidden', { status: 403 });
+    response.headers.set('x-request-id', requestId);
+    return response;
   }
   if (pathCheck.suspicious) {
-    logSuspicious(request, 'SUSPICIOUS_PATH');
+    logSuspicious(request, 'SUSPICIOUS_PATH', requestId);
   }
 
-  // 3. API Route Protection (Bearer token auth + stricter rate limiting)
+  // 4. API Route Protection (Bearer token auth + stricter rate limiting)
   if (isApiRoute) {
     // Skip auth for health check endpoint
     const isHealthCheck = pathname === '/api/health' && request.method === 'GET';
-    
+
     if (!isHealthCheck) {
       // Verify Authorization Bearer token
       const authResult = verifyApiAuth(request);
       if (!authResult.valid) {
-        logSuspicious(request, `API_AUTH_FAILED: ${authResult.error}`);
-        return createUnauthorizedResponse(authResult.error || 'Unauthorized');
+        logSuspicious(request, `API_AUTH_FAILED: ${authResult.error}`, requestId);
+        const response = createUnauthorizedResponse(authResult.error || 'Unauthorized');
+        response.headers.set('x-request-id', requestId);
+        return response;
       }
     }
-    
+
     // Apply stricter rate limit for API routes (30 req/60s per IP)
     const apiRateLimitKey = `api-rl:${ip}`;
     const { success, reset } = await ratelimit.limit(apiRateLimitKey);
-    
+
     if (!success) {
-      logSuspicious(request, 'API_RATE_LIMITED');
-      return createApiRateLimitResponse(reset);
+      logSuspicious(request, 'API_RATE_LIMITED', requestId);
+      const response = createApiRateLimitResponse(reset);
+      response.headers.set('x-request-id', requestId);
+      return response;
     }
-    
+
     // Pass through to API handler (no i18n middleware for API routes)
     const response = NextResponse.next();
-    
+
     // Add security headers for API responses
     response.headers.set('X-Content-Type-Options', 'nosniff');
     response.headers.set('X-Frame-Options', 'DENY');
-    
+    response.headers.set('x-request-id', requestId);
+
+    // Log API request (skip logging for health check to reduce noise)
+    if (!isHealthCheck) {
+      const durationMs = Date.now() - startTime;
+      logRequest(request, response, requestId, durationMs);
+    }
+
     return response;
   }
 
-  // 4. Standard rate limiting for public pages (skip for static files)
+  // 5. Standard rate limiting for public pages (skip for static files)
   if (!pathname.startsWith('/_next') && !pathname.includes('.')) {
     const rateLimitKey = `rl:${ip}`;
     const { success, reset } = await ratelimit.limit(rateLimitKey);
-    
+
     if (!success) {
-      logSuspicious(request, 'RATE_LIMITED');
-      return new NextResponse('Too Many Requests', { 
+      logSuspicious(request, 'RATE_LIMITED', requestId);
+      const response = new NextResponse('Too Many Requests', {
         status: 429,
         headers: {
           'Retry-After': String(Math.ceil((reset - Date.now()) / 1000)),
           'X-RateLimit-Limit': '100',
           'X-RateLimit-Remaining': '0',
+          'x-request-id': requestId,
         }
       });
+      return response;
     }
   }
 
-  // 4. Pass to i18n middleware and add security headers
+  // 6. Pass to i18n middleware and add security headers
   const response = i18nMiddleware(request);
 
   // Generate nonce for CSP
@@ -491,8 +537,17 @@ export default async function middleware(request: NextRequest) {
   // Add pathname header for root layout to determine locale
   response.headers.set('x-pathname', pathname);
 
+  // Add request ID to response header
+  response.headers.set('x-request-id', requestId);
+
   // Add performance headers
   addPerformanceHeaders(response, pathname);
+
+  // Log request for non-static, non-health pages
+  if (!pathname.startsWith('/_next') && !pathname.includes('.') && pathname !== '/api/health') {
+    const durationMs = Date.now() - startTime;
+    logRequest(request, response, requestId, durationMs);
+  }
 
   return response;
 }

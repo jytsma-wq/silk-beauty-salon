@@ -287,6 +287,55 @@ export const requestLogger = new RequestLogger();
 export { Logger, SecurityLogger, PerformanceLogger, RequestLogger };
 
 /**
+ * Simple structured log function for Edge Runtime and API routes
+ * Works in both production (JSON) and development (pretty print)
+ */
+export interface StructuredLogEntry {
+  timestamp: string;
+  level: 'DEBUG' | 'INFO' | 'WARN' | 'ERROR';
+  message?: string;
+  requestId?: string;
+  ip?: string;
+  method?: string;
+  path?: string;
+  status?: number;
+  durationMs?: number;
+  reason?: string;
+  userAgent?: string;
+  type?: string;
+  [key: string]: unknown;
+}
+
+/**
+ * Write a structured log entry
+ * - Production: JSON.stringify to stdout
+ * - Development: pretty-print with console.log
+ */
+export function structuredLog(entry: StructuredLogEntry): void {
+  const logEntry = {
+    ...entry,
+    timestamp: entry.timestamp || new Date().toISOString(),
+  };
+
+  if (process.env.NODE_ENV === 'production') {
+    // In production, output valid JSON for log aggregation
+    console.log(JSON.stringify(logEntry));
+  } else {
+    // In development, pretty print
+    const color = logEntry.level === 'ERROR' ? '\x1b[31m' :
+                  logEntry.level === 'WARN' ? '\x1b[33m' :
+                  logEntry.level === 'INFO' ? '\x1b[32m' : '\x1b[36m';
+    const reset = '\x1b[0m';
+    console.log(
+      `${color}[${logEntry.timestamp}] ${logEntry.level}${reset}`,
+      logEntry.message || '',
+      logEntry.requestId ? `requestId=${logEntry.requestId}` : '',
+      logEntry
+    );
+  }
+}
+
+/**
  * Log rotation helper
  * In production, use proper log rotation (e.g., with Winston or external tools)
  */
