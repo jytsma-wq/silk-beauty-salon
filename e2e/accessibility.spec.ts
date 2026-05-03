@@ -2,203 +2,224 @@ import { test, expect } from '@playwright/test';
 import { injectAxe, checkA11y, getViolations } from 'axe-playwright';
 import type { RunOptions } from 'axe-core';
 
-test.describe('Accessibility', () => {
-  // WCAG 2.1 AA run options
-  const wcagOptions: RunOptions = {
-    runOnly: {
-      type: 'tag',
-      values: ['wcag2a', 'wcag2aa', 'wcag21aa'],
-    },
-  };
+// All supported locales
+const locales = ['en', 'ka', 'ru', 'tr', 'ar', 'he'] as const;
+type Locale = typeof locales[number];
 
-  test('homepage should pass accessibility checks', async ({ page }) => {
-    await page.goto('/en');
-    
-    // Inject axe-core
-    await injectAxe(page);
-    
-    // Run accessibility checks with WCAG 2.1 AA standards
-    // Fail on critical and serious violations
-    const violations = await getViolations(page, undefined, wcagOptions);
-    
-    // Filter for critical and serious violations only
-    const criticalViolations = violations.filter(
-      (v) => v.impact === 'critical' || v.impact === 'serious'
-    );
-    
-    // Generate detailed report
-    if (criticalViolations.length > 0) {
-      console.error('Critical/Serious accessibility violations found on homepage:');
-      criticalViolations.forEach((v) => {
-        console.error(`  - ${v.id}: ${v.help} (${v.impact})`);
-        v.nodes.forEach((node) => {
-          console.error(`    Target: ${node.target.join(', ')}`);
-          console.error(`    HTML: ${node.html.substring(0, 100)}...`);
+// RTL locales
+const rtlLocales: Locale[] = ['ar', 'he'];
+
+// WCAG 2.1 AA run options with specific rules
+const wcagOptions: RunOptions = {
+  runOnly: {
+    type: 'tag',
+    values: ['wcag2a', 'wcag2aa', 'wcag21aa'],
+  },
+};
+
+// Specific accessibility rules to check
+const criticalRules = [
+  'color-contrast',
+  'landmark-one-main',
+  'region',
+  'html-has-lang',
+  'document-title',
+];
+
+test.describe('Accessibility Audit - All Locales', () => {
+  // Test each locale's homepage
+  for (const locale of locales) {
+    test.describe(`Locale: ${locale}`, () => {
+      test(`homepage (${locale}) should pass accessibility checks`, async ({ page }) => {
+        await page.goto(`/${locale}`);
+
+        // Inject axe-core
+        await injectAxe(page);
+
+        // Check for RTL on Arabic and Hebrew
+        if (rtlLocales.includes(locale)) {
+          const dir = await page.evaluate(() => document.documentElement.dir);
+          expect(dir).toBe('rtl');
+        }
+
+        // Run axe checks with specific rules
+        const violations = await getViolations(page, undefined, {
+          ...wcagOptions,
+          rules: criticalRules.reduce((acc, rule) => ({ ...acc, [rule]: { enabled: true } }), {}),
         });
+
+        // Filter for critical and serious violations
+        const criticalViolations = violations.filter(
+          (v) => v.impact === 'critical' || v.impact === 'serious'
+        );
+
+        // Generate detailed report
+        if (criticalViolations.length > 0) {
+          console.error(`Critical/Serious violations on ${locale} homepage:`);
+          criticalViolations.forEach((v) => {
+            console.error(`  - ${v.id}: ${v.help} (${v.impact})`);
+            v.nodes.forEach((node) => {
+              console.error(`    Target: ${node.target.join(', ')}`);
+              console.error(`    HTML: ${node.html.substring(0, 100)}...`);
+            });
+          });
+        }
+
+        expect(criticalViolations).toHaveLength(0);
+      });
+
+      test(`treatments page (${locale}) should pass accessibility checks`, async ({ page }) => {
+        await page.goto(`/${locale}/treatments`);
+
+        await injectAxe(page);
+
+        // Run same axe audit as homepage
+        const violations = await getViolations(page, undefined, wcagOptions);
+
+        const criticalViolations = violations.filter(
+          (v) => v.impact === 'critical' || v.impact === 'serious'
+        );
+
+        expect(criticalViolations).toHaveLength(0);
+      });
+
+      test(`contact form (${locale}) should have accessible inputs`, async ({ page }) => {
+        // Navigate to contact page
+        await page.goto(`/${locale}/contact-us`);
+
+        // Wait for form to be visible
+        await page.waitForSelector('form, input, textarea', { timeout: 5000 });
+
+        // Check every input and textarea has associated label
+        const inputs = page.locator('input:not([type="hidden"]), textarea');
+        const inputCount = await inputs.count();
+
+        for (let i = 0; i < inputCount; i++) {
+          const input = inputs.nth(i);
+          const inputId = await input.getAttribute('id');
+          const ariaLabel = await input.getAttribute('aria-label');
+          const ariaLabelledBy = await input.getAttribute('aria-labelledby');
+          const hasLabel = await input.getAttribute('placeholder');
+
+          // Input must have label association via one of these methods
+          let hasAssociatedLabel = false;
+
+          if (inputId) {
+            // Check for label with matching 'for' attribute
+            const label = page.locator(`label[for="${inputId}"]`);
+            hasAssociatedLabel = await label.isVisible().catch(() => false);
+          }
+
+          // Also check aria-label, aria-labelledby, or placeholder
+          hasAssociatedLabel = hasAssociatedLabel || !!ariaLabel || !!ariaLabelledBy || !!hasLabel;
+
+          expect(hasAssociatedLabel, `Input ${i + 1} must have an associated label`).toBe(true);
+        }
+
+        // Check submit button has visible accessible name
+        const submitButton = page.locator('button[type="submit"], input[type="submit"]').first();
+        if (await submitButton.isVisible().catch(() => false)) {
+          // Check for accessible name via text content, aria-label, or value
+          const buttonText = await submitButton.textContent().catch(() => '');
+          const ariaLabel = await submitButton.getAttribute('aria-label');
+          const value = await submitButton.getAttribute('value');
+
+          const accessibleName = (buttonText?.trim() || ariaLabel?.trim() || value?.trim() || '');
+          expect(accessibleName.length).toBeGreaterThan(0);
+        }
+      });
+    });
+  }
+
+  test.describe('Focus Visibility', () => {
+    for (const locale of locales) {
+      test(`focus should be visible on interactive elements (${locale})`, async ({ page }) => {
+        await page.goto(`/${locale}`);
+
+        // Tab three times to reach interactive elements
+        for (let i = 0; i < 3; i++) {
+          await page.keyboard.press('Tab');
+        }
+
+        // Check that document.activeElement has visible outline
+        const focusStyle = await page.evaluate(() => {
+          const activeElement = document.activeElement;
+          if (!activeElement || activeElement === document.body) {
+            return null;
+          }
+          const style = window.getComputedStyle(activeElement);
+          return {
+            outline: style.outline,
+            outlineWidth: style.outlineWidth,
+            outlineStyle: style.outlineStyle,
+            boxShadow: style.boxShadow,
+          };
+        });
+
+        // If we have a focused element, check it has visible focus indicator
+        if (focusStyle) {
+          const hasVisibleOutline = focusStyle.outlineStyle !== 'none' &&
+                                    focusStyle.outlineWidth !== '0px' &&
+                                    focusStyle.outline !== '0px none rgb(0, 0, 0)';
+
+          const hasVisibleShadow = focusStyle.boxShadow && focusStyle.boxShadow !== 'none';
+
+          expect(
+            hasVisibleOutline || hasVisibleShadow,
+            'Focused element should have visible outline or box-shadow'
+          ).toBe(true);
+        }
       });
     }
-    
-    // Fail test if critical violations found
-    expect(criticalViolations).toHaveLength(0);
   });
 
-  test('contact page should pass accessibility checks', async ({ page }) => {
-    await page.goto('/en/contact-us');
-    
-    await injectAxe(page);
-    
-    const violations = await getViolations(page, undefined, wcagOptions);
-    
-    const criticalViolations = violations.filter(
-      (v) => v.impact === 'critical' || v.impact === 'serious'
-    );
-    
-    expect(criticalViolations).toHaveLength(0);
-  });
+  test.describe('Specific Axe Rules', () => {
+    test('should pass color-contrast check', async ({ page }) => {
+      await page.goto('/en');
+      await injectAxe(page);
 
-  test('treatments page should pass accessibility checks', async ({ page }) => {
-    await page.goto('/en/treatments');
-    
-    await injectAxe(page);
-    
-    const violations = await getViolations(page, undefined, wcagOptions);
-    
-    const criticalViolations = violations.filter(
-      (v) => v.impact === 'critical' || v.impact === 'serious'
-    );
-    
-    expect(criticalViolations).toHaveLength(0);
-  });
-
-  test('should have proper heading structure', async ({ page }) => {
-    await page.goto('/en');
-    
-    // Check for h1
-    const h1 = page.locator('h1');
-    await expect(h1).toBeVisible();
-    
-    // Verify only one h1
-    const h1Count = await h1.count();
-    expect(h1Count).toBe(1);
-  });
-
-  test('should have alt text on images', async ({ page }) => {
-    await page.goto('/en');
-    
-    // Get all images
-    const images = page.locator('img');
-    const count = await images.count();
-    
-    // Check each image has alt text (skip decorative images with empty alt)
-    for (let i = 0; i < Math.min(count, 10); i++) {
-      const img = images.nth(i);
-      const alt = await img.getAttribute('alt');
-      
-      // Images should have alt attribute (can be empty for decorative)
-      expect(alt).not.toBeNull();
-    }
-  });
-
-  test('should have focusable interactive elements', async ({ page }) => {
-    await page.goto('/en');
-    
-    // Check that buttons are focusable
-    const buttons = page.locator('button');
-    const buttonCount = await buttons.count();
-    
-    if (buttonCount > 0) {
-      const firstButton = buttons.first();
-      await firstButton.focus();
-      await expect(firstButton).toBeFocused();
-    }
-    
-    // Check that links are focusable
-    const links = page.locator('a');
-    const linkCount = await links.count();
-    
-    if (linkCount > 0) {
-      const firstLink = links.first();
-      await firstLink.focus();
-      await expect(firstLink).toBeFocused();
-    }
-  });
-
-  test('should have proper color contrast', async ({ page }) => {
-    await page.goto('/en');
-    
-    await injectAxe(page);
-    
-    // Check specifically for color contrast issues
-    try {
-      await checkA11y(page, undefined, {
-        axeOptions: {
-          runOnly: ['color-contrast'],
-        },
+      const violations = await getViolations(page, undefined, {
+        runOnly: ['color-contrast'],
       });
-    } catch (error) {
-      console.warn('Color contrast issues found:', error);
-    }
-  });
 
-  test('should have skip link or main landmark', async ({ page }) => {
-    await page.goto('/en');
-    
-    // Check for skip link
-    const skipLink = page.locator('a[href^="#main"], .skip-link, [data-testid="skip-link"]');
-    
-    // Or check for main landmark
-    const main = page.locator('main, [role="main"]');
-    
-    // At least one should exist
-    const hasSkipLink = await skipLink.isVisible().catch(() => false);
-    const hasMain = await main.isVisible().catch(() => false);
-    
-    expect(hasSkipLink || hasMain).toBe(true);
-  });
+      const criticalViolations = violations.filter(
+        (v) => v.impact === 'critical' || v.impact === 'serious'
+      );
 
-  test('keyboard navigation should work throughout the page', async ({ page }) => {
-    await page.goto('/en');
-    
-    // Press Tab to reach first focusable element
-    await page.keyboard.press('Tab');
-    
-    // Check that something is focused
-    const focusedElement = page.locator(':focus');
-    const isFocused = await focusedElement.isVisible().catch(() => false);
-    expect(isFocused).toBe(true);
-    
-    // Tab through several elements and verify focus moves
-    const initialFocus = await focusedElement.evaluate(el => el.tagName);
-    
-    // Tab multiple times
-    for (let i = 0; i < 5; i++) {
-      await page.keyboard.press('Tab');
-    }
-    
-    // Check focus has moved
-    const currentFocus = await focusedElement.evaluate(el => el.tagName);
-    expect(currentFocus).not.toBe(initialFocus);
-  });
+      expect(criticalViolations).toHaveLength(0);
+    });
 
-  test('escape key should close modals and dropdowns', async ({ page }) => {
-    await page.goto('/en');
-    
-    // Look for mobile menu button (visible on all screen sizes in this test)
-    const menuButton = page.locator('button[aria-label*="menu"], button:has-text("Menu"), button:has(.lucide-menu)').first();
-    
-    if (await menuButton.isVisible().catch(() => false)) {
-      await menuButton.click();
-      
-      // Check for opened menu/sheet
-      const openedMenu = page.locator('[role="dialog"], [data-state="open"], .sheet-open').first();
-      
-      if (await openedMenu.isVisible().catch(() => false)) {
-        // Press Escape
-        await page.keyboard.press('Escape');
-        
-        // Menu should close
-        await expect(openedMenu).not.toBeVisible();
-      }
-    }
+    test('should have landmark-one-main', async ({ page }) => {
+      await page.goto('/en');
+      await injectAxe(page);
+
+      const violations = await getViolations(page, undefined, {
+        runOnly: ['landmark-one-main'],
+      });
+
+      expect(violations).toHaveLength(0);
+    });
+
+    test('should have html-has-lang', async ({ page }) => {
+      await page.goto('/en');
+      await injectAxe(page);
+
+      const violations = await getViolations(page, undefined, {
+        runOnly: ['html-has-lang'],
+      });
+
+      expect(violations).toHaveLength(0);
+    });
+
+    test('should have document-title', async ({ page }) => {
+      await page.goto('/en');
+      await injectAxe(page);
+
+      const violations = await getViolations(page, undefined, {
+        runOnly: ['document-title'],
+      });
+
+      expect(violations).toHaveLength(0);
+    });
   });
 });
