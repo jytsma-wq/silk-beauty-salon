@@ -68,6 +68,11 @@ db/*.db
 dev.db
 prisma/*.db
 
+# Database backups (never commit)
+backups/
+*.sql
+*.dump
+
 # Internal documents
 download/
 text.txt

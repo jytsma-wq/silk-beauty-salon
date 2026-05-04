@@ -24,6 +24,8 @@ const serverEnvSchema = z.object({
   UPSTASH_REDIS_REST_URL: z.string().url('UPSTASH_REDIS_REST_URL must be a valid URL'),
 
   UPSTASH_REDIS_REST_TOKEN: z.string().min(20, 'UPSTASH_REDIS_REST_TOKEN must be at least 20 characters'),
+
+  BUILD_TIMESTAMP: z.string().datetime().optional(),
 });
 
 // ============================================================================

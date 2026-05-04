@@ -370,6 +370,11 @@
       "submit": "Gönder",
       "success": "Teşekkürler! En kısa sürede size dönüş yapacağız."
     },
+    "successTitle": "Mesaj Gönderildi",
+    "successMessage": "Mesajınız için teşekkür ederiz. Kısa sürede size döneceğiz.",
+    "errorTitle": "Hata",
+    "errorMessage": "Mesaj gönderilemedi. Lütfen tekrar deneyin.",
+    "rateLimitMessage": "Çok fazla gönderim. Lütfen 15 dakika bekleyin.",
     "info": {
       "title": "Bizi Ziyaret Edin",
       "address": "Zurab Gorgiladze Cad. 63",
@@ -656,6 +661,12 @@
     "tr": "Türkçe",
     "ar": "العربية",
     "he": "עברית"
+  },
+  "notFound": {
+    "title": "Sayfa Bulunamadı",
+    "description": "Üzgünüz, aradığınız sayfayı bulamadık. Taşınmış veya silinmiş olabilir.",
+    "goHome": "Ana Sayfaya Dön",
+    "contactUs": "Bize Ulaşın"
   },
   "common": {
     "loading": "Yükleniyor...",

@@ -71,13 +71,16 @@ export default async function InternationalClientsPage({
     <>
       {/* Hero Section */}
       <section className="relative w-full h-[60vh] md:h-[80vh] flex items-center">
-        <Image
-          src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=80"
-          alt="Silk Beauty Salon"
-          fill
-          className="object-cover"
-          priority
-        />
+        <div className="absolute inset-0">
+          <Image
+            src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=80"
+            alt="Silk Beauty Salon"
+            fill
+            className="object-cover"
+            priority
+            sizes="100vw"
+          />
+        </div>
         <div className="absolute inset-0 bg-[#1c1c1c]/40" />
         <div className="absolute inset-0 flex items-center">
           <div className="container-custom">
@@ -164,6 +167,7 @@ export default async function InternationalClientsPage({
                   fill
                   className="object-cover object-top"
                   sizes="(max-width: 1024px) 100vw, 50vw"
+                  unoptimized={!!team?.image}
                 />
               </div>
             </div>

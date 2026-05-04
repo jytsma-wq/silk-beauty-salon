@@ -20,7 +20,7 @@ const TEASER_CASES = [
     id: '5',
     treatment: 'Lip Enhancement',
     patient: 'Georgia, 41',
-    beforeImage: 'https://images.unsplash.com/photo-1541779408-c355f9d288b0?w=600&q=80',
+    beforeImage: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=80',
     afterImage:  'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=600&q=80',
     result: 'Natural-looking volume',
   },

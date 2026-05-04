@@ -12,6 +12,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - postgres_backups:/backups
       - ./prisma/migrations:/docker-entrypoint-initdb.d/migrations:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U silkbeauty -d silkbeauty"]
@@ -88,6 +89,8 @@ services:
 
 volumes:
   postgres_data:
+    driver: local
+  postgres_backups:
     driver: local
 
 networks:

@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
+import Script from 'next/script';
 import { Link } from '@/i18n/routing';
 import { ChevronRight, Calendar } from 'lucide-react';
 import { siteConfig } from '@/data/site-config';
@@ -74,7 +75,8 @@ export default async function BookPage({
 
   return (
     <>
-      <script
+      <Script
+        id="json-ld-booking"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />

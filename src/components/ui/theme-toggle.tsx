@@ -5,7 +5,35 @@ import { useTheme } from '@/components/providers/theme-provider';
 import { Button } from '@/components/ui/button';
 
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+  // Handle case where ThemeProvider context might not be available during SSR
+  let theme = 'light' as 'light' | 'dark';
+  let setTheme = (_theme: 'light' | 'dark') => {};
+  let mounted = false;
+
+  try {
+    const context = useTheme();
+    theme = context.theme;
+    setTheme = context.setTheme;
+    mounted = true;
+  } catch {
+    // Context not available during SSR, use defaults
+    mounted = false;
+  }
+
+  // Don't render interactive button until mounted to prevent hydration mismatch
+  if (!mounted) {
+    return (
+      <Button
+        variant="ghost"
+        size="icon"
+        className="h-8 w-8 rounded-full opacity-0"
+        aria-label="Loading theme toggle"
+        disabled
+      >
+        <Sun className="h-4 w-4" />
+      </Button>
+    );
+  }
 
   return (
     <Button

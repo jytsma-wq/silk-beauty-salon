@@ -5,6 +5,8 @@ on:
     branches: [main, develop]
   pull_request:
     branches: [main, develop]
+  schedule:
+    - cron: '0 3 * * *'  # Daily at 03:00 UTC
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -89,6 +91,8 @@ jobs:
 
       - name: Build application
         run: npm run build
+        env:
+          BUILD_TIMESTAMP: ${{ github.event.repository.updated_at || github.event.head_commit.timestamp || github.event.push.timestamp }}
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
@@ -226,3 +230,29 @@ jobs:
 
       - name: Run accessibility tests
         run: npm run test:a11y
+
+  # Job 8: Daily Database Backup
+  backup:
+    name: Daily database backup
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      BACKUP_DIR: /tmp/backups
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      BACKUP_S3_BUCKET: ${{ secrets.BACKUP_S3_BUCKET }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: mkdir -p /tmp/backups && npm run db:backup
+      - name: Upload to S3
+        run: |
+          aws s3 cp /tmp/backups/ s3://$BACKUP_S3_BUCKET/postgres/$(date +%Y/%m/%d)/ --recursive
+      - run: npm run db:backup:verify
+        env:
+          BACKUP_DIR: /tmp/backups

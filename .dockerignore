@@ -74,6 +74,11 @@ pids
 *.sqlite3
 *.db
 
+# Database backups (never commit)
+backups/
+*.sql
+*.dump
+
 # Misc
 .cache
 temp

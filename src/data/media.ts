@@ -219,7 +219,7 @@ export const imageGalleries: ImageGallery[] = [
     images: [
       'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=1200&q=80',
       'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=1200&q=80',
-      'https://images.unsplash.com/photo-1541779408-c355f9d288b0?w=1200&q=80',
+      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1200&q=80',
       'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=1200&q=80',
       'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=1200&q=80',
       'https://images.unsplash.com/photo-1553514029-1318c9127859?w=1200&q=80',

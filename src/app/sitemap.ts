@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 import { baseTreatmentCategories } from '@/data/treatments';
-import { getAllBlogSlugs } from '@/data/blog';
 import { locales } from '@/i18n';
+import { db } from '@/lib/db';
 
 const BASE = 'https://www.silkbeauty.ge';
 const LOCALES = [...locales];
@@ -14,36 +14,59 @@ const PAGES = [
   '/careers','/media-press',
 ];
 
+// Reflects when this build was deployed — static pages "changed" at deploy time
+const BUILD_TIME = new Date(process.env.BUILD_TIMESTAMP || Date.now());
+
+// Revalidate sitemap at most once per hour to reduce DB load
+export const revalidate = 3600;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // Generate static page URLs
+  // Generate static page URLs with build time
   const staticPages = LOCALES.flatMap(locale =>
     PAGES.map(page => ({
       url: `${BASE}/${locale}${page}`,
-      lastModified: new Date(),
+      lastModified: BUILD_TIME,
       changeFrequency: (page === '' ? 'daily' : 'weekly') as 'daily' | 'weekly',
       priority: page === '' ? 1.0 : 0.8,
     }))
   );
 
-  // Generate treatment URLs
+  // Fetch real treatment update timestamps from database
+  const treatmentUpdates = await db.treatment.findMany({
+    select: { slug: true, updatedAt: true, category: { select: { slug: true } } },
+  });
+
+  const treatmentUpdateMap = new Map(
+    treatmentUpdates.map(t => [`${t.category.slug}/${t.slug}`, t.updatedAt])
+  );
+
+  // Generate treatment URLs with real timestamps
   const treatmentPages = LOCALES.flatMap(locale =>
     baseTreatmentCategories.flatMap(category =>
-      category.treatments.map(treatment => ({
-        url: `${BASE}/${locale}/treatments/${category.slug}/${treatment.slug}`,
-        lastModified: new Date(),
-        changeFrequency: 'monthly' as 'daily' | 'weekly' | 'monthly',
-        priority: 0.7,
-      }))
+      category.treatments.map(treatment => {
+        const key = `${category.slug}/${treatment.slug}`;
+        return {
+          url: `${BASE}/${locale}/treatments/${key}`,
+          lastModified: treatmentUpdateMap.get(key) ?? BUILD_TIME,
+          changeFrequency: 'monthly' as const,
+          priority: 0.7,
+        };
+      })
     )
   );
 
-  // Generate blog URLs
-  const blogSlugs = await getAllBlogSlugs();
+  // Fetch blog posts with real timestamps from database
+  const blogPosts = await db.blogPost.findMany({
+    where: { published: true },
+    select: { slug: true, updatedAt: true },
+  });
+
+  // Generate blog URLs with real timestamps
   const blogPages = LOCALES.flatMap(locale =>
-    blogSlugs.map(slug => ({
-      url: `${BASE}/${locale}/blog/${slug}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as 'daily' | 'weekly' | 'monthly',
+    blogPosts.map(post => ({
+      url: `${BASE}/${locale}/blog/${post.slug}`,
+      lastModified: post.updatedAt,
+      changeFrequency: 'weekly' as const,
       priority: 0.6,
     }))
   );

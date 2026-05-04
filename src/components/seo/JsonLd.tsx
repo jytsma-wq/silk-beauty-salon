@@ -1,3 +1,4 @@
+import Script from 'next/script';
 import { siteConfig } from "@/data/site-config"
 
 export function generateLocalBusinessSchema(locale: string = "en") {
@@ -230,7 +231,8 @@ export function generateServiceSchema(service: {
 
 export function JsonLd({ schema }: { schema: string }) {
   return (
-    <script
+    <Script
+      id="json-ld"
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: schema }}
     />

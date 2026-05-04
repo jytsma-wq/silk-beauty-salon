@@ -6,6 +6,7 @@ import { routing } from './src/i18n/routing';
 import { locales } from './src/i18n';
 import { structuredLog } from './src/lib/logger';
 import { buildCSPHeader, generateNonce } from './src/lib/csp';
+import { isIpBlocked } from './src/lib/security-logger';
 
 // Path check result type
 interface PathCheckResult {
@@ -376,6 +377,19 @@ export default async function middleware(request: NextRequest) {
 
   // Add request ID to request headers for downstream use
   request.headers.set('x-request-id', requestId);
+
+  // Check if IP is on the security block list (before rate limiting)
+  const blocked = await isIpBlocked(ip);
+  if (blocked) {
+    logSuspicious(request, 'IP_BLOCKED', requestId);
+    return new NextResponse('Forbidden', {
+      status: 403,
+      headers: {
+        'x-request-id': requestId,
+        'Content-Type': 'text/plain',
+      },
+    });
+  }
 
   // 1. Redirect root to detected locale (307 Temporary Redirect)
   if (pathname === '/') {

@@ -5,6 +5,8 @@ import { useTranslations } from "next-intl";
 import { format, isBefore, isToday } from "date-fns";
 import { cn } from "@/lib/utils";
 import { Calendar } from "@/components/ui/calendar";
+import { apiPost, apiGet, API_ENDPOINTS, ApiError } from "@/lib/api-client";
+import { useClientCsrfToken } from "@/lib/csrf-client";
 import {
   Dialog,
   DialogContent,
@@ -168,12 +170,13 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
     }
   }, [open]);
 
+  const csrfToken = useClientCsrfToken();
+
   // Fetch booked slots when date changes
   useEffect(() => {
     if (selectedDate) {
       const dateStr = format(selectedDate, "yyyy-MM-dd");
-      fetch(`/api/bookings?date=${dateStr}`)
-        .then((res) => res.json())
+      apiGet<{ bookedSlots: string[] }>(`${API_ENDPOINTS.bookings}?date=${dateStr}`)
         .then((data) =>
           setFormState((prev) => ({ ...prev, bookedSlots: data.bookedSlots || [] }))
         )
@@ -208,36 +211,29 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
     setError("");
 
     try {
-      const response = await fetch("/api/bookings", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          email,
-          phone,
-          service: selectedService,
-          date: format(selectedDate!, "yyyy-MM-dd"),
-          timeSlot: selectedTime,
-          message,
-        }),
-      });
-
-      if (response.status === 409) {
-        setError(t('slotConflict'));
-        setIsLoading(false);
-        return;
-      }
-
-      if (!response.ok) {
-        const data = await response.json();
-        setError(data.error || t('bookingFailed'));
-        setIsLoading(false);
-        return;
-      }
+      await apiPost(API_ENDPOINTS.bookings, {
+        name,
+        email,
+        phone,
+        service: selectedService,
+        date: format(selectedDate!, "yyyy-MM-dd"),
+        timeSlot: selectedTime,
+        message,
+      }, { csrfToken });
 
       setFormState((prev) => ({ ...prev, step: "confirmation" }));
-    } catch {
-      setError(t('unexpectedError'));
+    } catch (err) {
+      if (err instanceof ApiError) {
+        if (err.status === 409) {
+          setError(t('slotConflict'));
+        } else if (err.isRateLimit()) {
+          setError(t('rateLimitMessage'));
+        } else {
+          setError(err.message || t('bookingFailed'));
+        }
+      } else {
+        setError(t('unexpectedError'));
+      }
     } finally {
       setIsLoading(false);
     }

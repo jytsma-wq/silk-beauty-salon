@@ -69,10 +69,18 @@ export const defaultSecurityHeaders: SecurityHeadersConfig = {
   },
   
   // Content Security Policy
+  // NOTE: This is a BASE configuration. For production, use middleware.ts which adds nonces per-request.
+  // Do NOT use this static CSP directly in next.config.ts - it would defeat nonce protection.
   contentSecurityPolicy: {
     'default-src': ["'self'"],
-    'script-src': ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
-    'style-src': ["'self'", "'unsafe-inline'"],
+    // script-src intentionally has no unsafe values here.
+    // The nonce is injected per-request by middleware.ts via buildCSPHeader(nonce).
+    // Do NOT add 'unsafe-inline' or 'unsafe-eval' — they defeat nonce protection.
+    // Usage: call buildCSPHeader(nonce) from src/lib/csp.ts in middleware instead.
+    'script-src': ["'self'", "'strict-dynamic'"],
+    // 'unsafe-inline' for styles is acceptable — style injection cannot execute JavaScript
+    // and the risk is low for a marketing site. Style nonces add complexity without meaningful security benefit.
+    'style-src': ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
     'img-src': ["'self'", 'data:', 'https:', 'blob:'],
     'font-src': ["'self'", 'data:', 'https:'],
     'connect-src': ["'self'", 'https:'],
@@ -100,7 +108,10 @@ export const defaultSecurityHeaders: SecurityHeadersConfig = {
   },
   
   // Cross-Origin policies
-  crossOriginEmbedderPolicy: 'require-corp',
+  // 'require-corp' blocks Google Fonts, CDN video, and most external resources.
+  // Use 'unsafe-none' for sites loading third-party fonts/media.
+  // Set to 'require-corp' only if ALL resources are self-hosted.
+  crossOriginEmbedderPolicy: 'unsafe-none',
   crossOriginOpenerPolicy: 'same-origin',
   crossOriginResourcePolicy: 'same-origin',
   
@@ -110,8 +121,11 @@ export const defaultSecurityHeaders: SecurityHeadersConfig = {
   // Content Type Options
   contentTypeOptions: 'nosniff',
   
-  // XSS Protection
-  xssProtection: '1; mode=block',
+  // XSS Protection - REMOVED
+  // This header was deprecated and removed from Chrome 78+.
+  // In older browsers it can actually introduce XSS vulnerabilities.
+  // The correct protection is CSP via middleware.ts with nonces.
+  // xssProtection: undefined,
   
   // Referrer Policy
   referrerPolicy: 'strict-origin-when-cross-origin',
@@ -121,14 +135,15 @@ export const defaultSecurityHeaders: SecurityHeadersConfig = {
     'force-load-at-top': '?0',
   },
   
-  // Timing Allow Origin
-  timingAllowOrigin: '*',
+  // Timing Allow Origin - DISABLED
+  // '*' leaks resource timing data to ANY origin, enabling cross-origin timing side-channel attacks.
+  // Only enable if you control the consuming origin and understand the privacy implications.
+  // timingAllowOrigin: 'https://your-trusted-domain.com',
   
-  // Expect CT
-  expectCT: {
-    maxAge: 86400,
-    enforce: true,
-  },
+  // Expect CT - REMOVED (deprecated 2021)
+  // This header was deprecated by all major browsers in 2021 and removed from the HTTP spec.
+  // Chrome 107+ ignores it. Use Certificate Transparency monitoring instead.
+  // expectCT: undefined,
 };
 
 /**
@@ -302,16 +317,18 @@ export function generateSecurityHeaders(config: Partial<SecurityHeadersConfig> =
 }
 
 /**
- * Security headers for Next.js config
- * Usage in next.config.js:
+ * ⚠️ WARNING: DO NOT USE IN next.config.ts
  * 
- * async headers() {
- *   return [
- *     {
- *       source: '/:path*',
- *       headers: securityHeaders,
- *     },
- *   ];
- * },
+ * This export is kept for reference/audit purposes only.
+ * Using it in next.config.ts would inject a static CSP that:
+ * 1. Lacks nonces (defeating XSS protection)
+ * 2. Shadows the nonce-based CSP from middleware.ts
+ * 3. Breaks all inline script protections
+ * 
+ * The correct CSP is injected per-request by middleware.ts using
+ * buildCSPHeader(nonce) from src/lib/csp.ts.
+ * 
+ * If you need custom headers for a specific route, import generateSecurityHeaders()
+ * and merge carefully, ensuring you don't override the CSP from middleware.
  */
 export const securityHeaders = generateSecurityHeaders();

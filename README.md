@@ -190,6 +190,16 @@ Ensure all [REQUIRED] variables in `.env.example` are set:
 - `CONTACT_EMAIL` - Contact form recipient
 - `API_SECRET_KEY` - Secure random string
 
+## Database Backup & Recovery
+
+Backups run automatically daily at 03:00 UTC via GitHub Actions and are stored in S3. Locally:
+
+- Create backup: `npm run db:backup`
+- Verify latest backup: `npm run db:backup:verify`
+- Restore from backup: `npm run db:restore`
+
+Retention: 30 daily backups, 12 monthly backups (configure in S3 lifecycle rules).
+
 ## License
 
 Copyright © Silk Beauty Salon. All rights reserved.

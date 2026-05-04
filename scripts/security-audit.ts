@@ -38,10 +38,17 @@ console.log('🔒 Running security audit...\n');
 
 // Check 1: Environment variables
 check(
-  'REDIS_URL configured',
-  !!process.env.REDIS_URL,
-  'Redis URL is configured',
-  'REDIS_URL not set - Redis rate limiting will use in-memory fallback'
+  'UPSTASH_REDIS_REST_URL configured',
+  !!process.env.UPSTASH_REDIS_REST_URL,
+  'Upstash Redis URL is configured',
+  'UPSTASH_REDIS_REST_URL not set — rate limiting and security logging will fail'
+);
+
+check(
+  'UPSTASH_REDIS_REST_TOKEN configured',
+  !!process.env.UPSTASH_REDIS_REST_TOKEN,
+  'Upstash Redis token is configured',
+  'UPSTASH_REDIS_REST_TOKEN not set — Redis connection will fail'
 );
 
 check(
@@ -119,10 +126,10 @@ try {
   const deps = { ...packageJson.dependencies, ...packageJson.devDependencies };
   
   check(
-    'ioredis installed',
-    !!deps.ioredis,
-    'ioredis is installed for Redis support',
-    'ioredis not installed - npm install ioredis'
+    '@upstash/redis installed',
+    !!deps['@upstash/redis'],
+    '@upstash/redis is installed for Redis support',
+    '@upstash/redis not installed - npm install @upstash/redis'
   );
   
   check(

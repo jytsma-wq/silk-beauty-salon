@@ -32,5 +32,13 @@ export async function GET(request: NextRequest) {
   }
 
   const token = await setCsrfToken();
-  return NextResponse.json({ token });
+  return NextResponse.json(
+    { token },
+    {
+      headers: {
+        'X-RateLimit-Limit': String(rateLimitResult.limit),
+        'X-RateLimit-Remaining': String(rateLimitResult.remaining),
+      },
+    }
+  );
 }

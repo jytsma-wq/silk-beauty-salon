@@ -17,6 +17,8 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { FormField, FormSection, FormErrorSummary } from './form-field';
 import { useToast } from '@/stores';
 import { Loader2, Send } from 'lucide-react';
+import { apiPost, API_ENDPOINTS, ApiError } from '@/lib/api-client';
+import { useClientCsrfToken } from '@/lib/csrf-client';
 
 interface ContactFormProps {
   /** Optional callback on successful submission */
@@ -48,26 +50,21 @@ export function ContactForm({ onSuccess }: ContactFormProps): React.JSX.Element 
 
   const consent = watch('consent');
 
+  const csrfToken = useClientCsrfToken();
+
   async function onSubmit(data: ContactFormInput): Promise<void> {
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to send message');
-      }
-
+      await apiPost(API_ENDPOINTS.contact, data, { csrfToken });
       success(t('successTitle'), t('successMessage'));
       reset();
       onSuccess?.();
     } catch (err) {
-      showError(
-        t('errorTitle'),
-        err instanceof Error ? err.message : t('errorMessage')
-      );
+      const message = err instanceof ApiError
+        ? err.isRateLimit()
+          ? t('rateLimitMessage')
+          : err.message
+        : t('errorMessage');
+      showError(t('errorTitle'), message);
     }
   }
 
