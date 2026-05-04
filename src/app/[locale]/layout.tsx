@@ -11,6 +11,8 @@ import { AnnouncerProvider } from "@/components/ui/announcer";
 import { GaldermaHeader } from "@/components/layout/GaldermaHeader";
 import { GaldermaFooter } from "@/components/layout/GaldermaFooter";
 import { ConsentProvider } from "@/components/providers/ConsentProvider";
+import { ScrollProgressBar } from "@/components/ui/ScrollProgressBar";
+import { PageTransition } from "@/components/providers/PageTransition";
 import { AnalyticsScripts } from "@/components/providers/AnalyticsScripts";
 import { WhatsAppWidget } from "@/components/layout/WhatsAppWidget";
 import { SkipLink } from "@/components/layout/SkipLink";
@@ -79,9 +81,12 @@ export default async function LocaleLayout({
                   nonce={nonce}
                 />
                 <AnnouncerProvider>
+                  <ScrollProgressBar />
                   <SkipLink />
                   <GaldermaHeader />
-                  <main id="main-content" className="pt-[140px]">{children}</main>
+                  <main id="main-content" className="pt-[140px]">
+                    <PageTransition>{children}</PageTransition>
+                  </main>
                   <GaldermaFooter />
                   <WhatsAppWidget />
                   <Toaster />

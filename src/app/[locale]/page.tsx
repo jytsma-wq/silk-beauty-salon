@@ -10,6 +10,7 @@ import { PullQuoteTestimonial } from '@/components/sections/PullQuoteTestimonial
 import { BeforeAfterTeaser } from '@/components/sections/BeforeAfterTeaser';
 import { ConsultationCTA } from '@/components/sections/ConsultationCTA';
 import { AboutSection } from '@/components/sections/AboutSection';
+import { SectionDivider } from '@/components/ui/SectionDivider';
 import { JsonLd, generateLocalBusinessSchema } from '@/components/seo/JsonLd';
 
 // Lazy load below-fold components for better performance
@@ -112,14 +113,21 @@ export default async function HomePage({
     <>
       <JsonLd schema={generateLocalBusinessSchema(locale)} />
       <CinematicHeroSection />          {/* Video + kinetic text */}
+      <SectionDivider variant="light" symbol="✦" />
       <RevealSection><BrandManifestoSection /></RevealSection>
+      <SectionDivider variant="light" symbol="—" />
       <RevealSection direction="left"><EditorialTreatmentsSection /></RevealSection>
+      <SectionDivider variant="light" symbol="◆" />
       <TreatmentsMarquee />
+      <SectionDivider variant="light" symbol="×" />
       <RevealSection direction="right"><ConditionsSection /></RevealSection>
+      <SectionDivider variant="light" symbol="✦" />
       <RevealSection direction="left"><AboutSection /></RevealSection>
       <StatisticsStrip />              {/* Already has internal motion */}
       <PullQuoteTestimonial />         {/* Already has internal motion */}
+      <SectionDivider variant="light" symbol="—" />
       <RevealSection><BeforeAfterTeaser /></RevealSection>
+      <SectionDivider variant="light" symbol="◆" />
       <RevealSection><ConsultationCTA /></RevealSection>
     </>
   );

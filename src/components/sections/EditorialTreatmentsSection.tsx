@@ -5,6 +5,8 @@ import { useTranslations, useLocale } from 'next-intl';
 import { treatmentCategories } from '@/data/navigation';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { TiltCard } from '@/components/ui/TiltCard';
 
 // Treatment data with magazine styling
 interface TreatmentItem {
@@ -50,6 +52,14 @@ function MagazinePullQuote() {
 export function EditorialTreatmentsSection() {
   const t = useTranslations('treatments');
   const locale = useLocale();
+  const [isMobile, setIsMobile] = useState(true);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768 || 'ontouchstart' in window);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Treatment items with broken grid spans
   const treatments: TreatmentItem[] = treatmentCategories.slice(0, 6).map((cat, index) => ({
@@ -92,21 +102,26 @@ export function EditorialTreatmentsSection() {
         {/* Broken grid layout */}
         <div className="grid grid-cols-2 lg:grid-cols-3 auto-rows-[250px] lg:auto-rows-[300px] gap-4 lg:gap-6">
           {treatments.map((treatment, index) => (
-            <motion.div
+            <TiltCard
               key={treatment.id}
               className={`relative group cursor-pointer ${treatment.span}`}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
+              maxTilt={6}
+              disabled={isMobile}
             >
-              {/* Background number - oversized, low opacity */}
-              <div className="absolute -top-8 -left-4 text-[8rem] lg:text-[12rem] font-serif text-stone-200/40 leading-none select-none pointer-events-none z-0">
-                {treatment.id}
-              </div>
+              <motion.div
+                className="h-full will-change-transform"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+              >
+                {/* Background number - oversized, low opacity */}
+                <div className="absolute -top-8 -left-4 text-[8rem] lg:text-[12rem] font-serif text-stone-200/40 leading-none select-none pointer-events-none z-0">
+                  {treatment.id}
+                </div>
 
-              {/* Image container */}
-              <div className="relative h-full overflow-hidden z-10">
+                {/* Image container */}
+                <div className="relative h-full overflow-hidden z-10">
                 {treatment.image ? (
                   <Image
                     src={treatment.image}
@@ -145,6 +160,7 @@ export function EditorialTreatmentsSection() {
                 </div>
               </div>
             </motion.div>
+            </TiltCard>
           ))}
 
           {/* Pull quote in grid */}

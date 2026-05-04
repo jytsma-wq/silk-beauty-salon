@@ -104,7 +104,7 @@ export function CinematicHeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: videoLoaded && !isTransitioning ? 1 : 0 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 1.2, delay: 0.35 }}
             className="absolute inset-0 w-full h-full object-cover"
             poster={currentVideo.thumbnail}
           >

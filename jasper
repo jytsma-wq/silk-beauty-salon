@@ -1,149 +1,157 @@
-## PROMPT D14 — IMAGES: Add Image Tilt-on-Hover to Treatment Cards
+## PROMPT D15 — MOVEMENT: Add Scroll-Progress Reading Bar and Section Transitions
 
 **Problem:**
-The treatment cards in `EditorialTreatmentsSection` have a `scale-105`
-hover transform on the image — but the card container doesn't move at all.
-On premium editorial sites, treatment or product cards perform a
-**3D perspective tilt** that follows the cursor — the card rotates slightly
-on the X and Y axis, creating a depth illusion that makes the image feel
-physical and tactile. This works especially well on portrait-orientation
-cards.
+There is no reading progress indicator. On a content-rich page with 15 sections
+(cinematic hero → treatments → statistics → testimonials → before/after → CTA),
+users have no sense of how far they've scrolled. Luxury editorial sites use
+a thin line along the top or left edge that fills as the user reads.
 
-**Task:** Add cursor-tracking 3D tilt to treatment cards.
+Additionally, transitions between sections on the home page are all abrupt —
+sections stack directly with no visual breath between them. A horizontal
+divider line that reveals on scroll, used consistently between alternating
+light and dark sections, would add editorial structure.
+
+**Task:** Add a global scroll progress bar and systematic section dividers.
 
 Requirements:
 
-1. Create `src/hooks/use-tilt.ts`:
-
-```ts
-import { useRef, useCallback } from 'react';
-import { useSpring } from 'framer-motion';
-
-interface TiltOptions {
-  maxTilt?: number;      // degrees. Default 8
-  perspective?: number;  // px. Default 800
-  scale?: number;        // Default 1.02
-}
-
-export function useTilt({
-  maxTilt = 8,
-  perspective = 800,
-  scale = 1.02,
-}: TiltOptions = {}) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  const rotateX = useSpring(0, { stiffness: 200, damping: 25 });
-  const rotateY = useSpring(0, { stiffness: 200, damping: 25 });
-  const scaleSpring = useSpring(1, { stiffness: 300, damping: 25 });
-
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    if (!ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    const cx = rect.left + rect.width / 2;
-    const cy = rect.top + rect.height / 2;
-    const dx = (e.clientX - cx) / (rect.width / 2);  // –1 to 1
-    const dy = (e.clientY - cy) / (rect.height / 2); // –1 to 1
-    rotateY.set(dx * maxTilt);
-    rotateX.set(-dy * maxTilt);
-    scaleSpring.set(scale);
-  }, [maxTilt, scale, rotateX, rotateY, scaleSpring]);
-
-  const handleMouseLeave = useCallback(() => {
-    rotateX.set(0);
-    rotateY.set(0);
-    scaleSpring.set(1);
-  }, [rotateX, rotateY, scaleSpring]);
-
-  return {
-    ref,
-    rotateX,
-    rotateY,
-    scale: scaleSpring,
-    perspective,
-    handleMouseMove,
-    handleMouseLeave,
-  };
-}
-```
-
-2. Create a `TiltCard` wrapper in `src/components/ui/TiltCard.tsx`:
+1. Create `src/components/ui/ScrollProgressBar.tsx`:
 
 ```tsx
 'use client';
 
-import { motion } from 'framer-motion';
-import { useTilt } from '@/hooks/use-tilt';
+import { useScroll, useSpring, motion } from 'framer-motion';
 
-interface TiltCardProps {
-  children: React.ReactNode;
-  className?: string;
-  maxTilt?: number;
-  disabled?: boolean; // pass true on mobile
+interface ScrollProgressBarProps {
+  /** 'top' | 'left'. Default 'top' */
+  position?: 'top' | 'left';
+  color?: string;
+  thickness?: number;
 }
 
-export function TiltCard({
-  children,
-  className = '',
-  maxTilt = 7,
-  disabled = false,
-}: TiltCardProps) {
-  const { ref, rotateX, rotateY, scale, perspective, handleMouseMove, handleMouseLeave } = useTilt({ maxTilt });
+export function ScrollProgressBar({
+  position = 'top',
+  color = '#b5453a',
+  thickness = 2,
+}: ScrollProgressBarProps) {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
-  if (disabled) {
-    return <div className={className}>{children}</div>;
+  if (position === 'top') {
+    return (
+      <motion.div
+        className="fixed top-0 left-0 right-0 z-[100] origin-left pointer-events-none"
+        style={{
+          height: thickness,
+          backgroundColor: color,
+          scaleX,
+        }}
+      />
+    );
   }
 
   return (
     <motion.div
-      ref={ref}
-      className={className}
+      className="fixed left-0 top-0 bottom-0 z-[100] origin-top pointer-events-none"
       style={{
-        perspective,
-        rotateX,
-        rotateY,
-        scale,
-        transformStyle: 'preserve-3d',
+        width: thickness,
+        backgroundColor: color,
+        scaleY: scaleX,
       }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-    >
-      {children}
-    </motion.div>
+    />
   );
 }
 ```
 
-3. In `EditorialTreatmentsSection.tsx`, wrap each treatment card's
-   `motion.div` with `TiltCard`. Replace:
+2. Add `<ScrollProgressBar />` to `src/app/[locale]/layout.tsx`:
    ```tsx
-   <motion.div key={treatment.id} className={`relative group cursor-pointer ${treatment.span}`} ...>
+   import { ScrollProgressBar } from '@/components/ui/ScrollProgressBar';
+
+   // Inside the layout, above the <main>:
+   <ScrollProgressBar color="#b5453a" thickness={2} />
    ```
-   With:
-   ```tsx
-   <TiltCard
-     key={treatment.id}
-     className={`relative group cursor-pointer ${treatment.span}`}
-     maxTilt={6}
-     disabled={isMobile}
-   >
-     <motion.div ...>
-       {/* existing card content */}
-     </motion.div>
-   </TiltCard>
-   ```
-   Detect mobile with `useMediaQuery('(max-width: 768px)')` or the existing
-   `isMobile` pattern already in `StickySplitSection`.
 
-4. Also apply `TiltCard` to any treatment cards on the `/treatments` page —
-   find the treatment listing page component and wrap each card.
+3. Create `src/components/ui/SectionDivider.tsx` — a full-width line with
+   a centered diamond or cross symbol that reveals on scroll:
 
-5. Add `will-change: transform` to the card container via className to
-   hint the browser to composite it: `className="... will-change-transform"`.
+```tsx
+'use client';
 
-6. Run `npm run typecheck` — must pass.
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 
-Files to create: `src/hooks/use-tilt.ts`, `src/components/ui/TiltCard.tsx`
-Files to modify: `src/components/sections/EditorialTreatmentsSection.tsx`,
-  `src/app/[locale]/treatments/` components
+interface SectionDividerProps {
+  /** 'light' for dark-on-light, 'dark' for light-on-dark */
+  variant?: 'light' | 'dark';
+  symbol?: '✦' | '×' | '—' | '◆';
+}
+
+export function SectionDivider({
+  variant = 'light',
+  symbol = '✦',
+}: SectionDividerProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: '-40px' });
+
+  const lineColor = variant === 'light' ? '#e0e0e0' : 'rgba(255,255,255,0.12)';
+  const textColor = variant === 'light' ? '#b5453a' : 'rgba(181,69,58,0.7)';
+
+  return (
+    <div
+      ref={ref}
+      className="flex items-center gap-6 px-8 lg:px-0 max-w-7xl mx-auto py-2"
+      aria-hidden="true"
+    >
+      <motion.div
+        className="h-px flex-1 origin-left"
+        style={{ backgroundColor: lineColor }}
+        initial={{ scaleX: 0 }}
+        animate={isInView ? { scaleX: 1 } : {}}
+        transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+      />
+      <motion.span
+        className="text-xs flex-shrink-0"
+        style={{ color: textColor }}
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={isInView ? { opacity: 1, scale: 1 } : {}}
+        transition={{ duration: 0.5, delay: 0.4 }}
+      >
+        {symbol}
+      </motion.span>
+      <motion.div
+        className="h-px flex-1 origin-right"
+        style={{ backgroundColor: lineColor }}
+        initial={{ scaleX: 0 }}
+        animate={isInView ? { scaleX: 1 } : {}}
+        transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+      />
+    </div>
+  );
+}
+```
+
+4. Insert `<SectionDivider>` in `src/app/[locale]/page.tsx` between each
+   major section transition:
+
+```tsx
+// Between BrandManifestoSection and EditorialTreatmentsSection:
+<SectionDivider variant="light" symbol="✦" />
+
+// Between TreatmentsMarquee (dark bg) and StatisticsStrip (light bg):
+<SectionDivider variant="dark" symbol="◆" />
+
+// Between StatisticsStrip and PullQuoteTestimonial:
+<SectionDivider variant="light" symbol="—" />
+
+// Between PullQuoteTestimonial and BeforeAfterTeaser:
+<SectionDivider variant="light" symbol="✦" />
+```
+
+5. Run `npm run typecheck` — must pass.
+
+Files to create: `src/components/ui/ScrollProgressBar.tsx`,
+  `src/components/ui/SectionDivider.tsx`
+Files to modify: `src/app/[locale]/layout.tsx`,
+  `src/app/[locale]/page.tsx`
 
 ---
