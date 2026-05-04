@@ -3,6 +3,7 @@
 import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import { StickySplitSection } from './StickySplitSection';
+import { MagneticButton } from '@/components/ui/MagneticButton';
 
 export function ConsultationCTA() {
   const t = useTranslations('consultation');
@@ -30,12 +31,14 @@ export function ConsultationCTA() {
       </p>
 
       {/* CTA Button */}
-      <Link
-        href={`/${locale}/book`}
-        className="inline-flex items-center justify-center px-8 py-4 bg-[#1c1c1c] text-white text-sm tracking-widest uppercase transition-colors hover:bg-[#b5453a]"
-      >
-        {t('cta.button')}
-      </Link>
+      <MagneticButton strength={0.4} radius={90}>
+        <Link
+          href={`/${locale}/book`}
+          className="inline-flex items-center justify-center px-8 py-4 bg-[#1c1c1c] text-white text-sm tracking-widest uppercase transition-colors hover:bg-[#b5453a]"
+        >
+          {t('cta.button')}
+        </Link>
+      </MagneticButton>
     </StickySplitSection>
   );
 }

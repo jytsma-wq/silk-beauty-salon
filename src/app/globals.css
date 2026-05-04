@@ -460,26 +460,6 @@ body {
   animation: scroll 1.5s infinite;
 }
 
-/* Marquee animation for awards/press ticker */
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.marquee-track {
-  display: flex;
-  animation: marquee 30s linear infinite;
-  width: max-content;
-}
-
-.marquee-track:hover {
-  animation-play-state: paused;
-}
-
 /* Consultation CTA section */
 .consultation-section {
   background: #f7f4f0;

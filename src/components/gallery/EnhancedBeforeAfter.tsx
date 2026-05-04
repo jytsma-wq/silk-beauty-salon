@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { BeforeAfterSlider } from '@/components/gallery/BeforeAfterSlider';
 
 interface BeforeAfterItem {
   id: string;
@@ -240,21 +241,21 @@ export function EnhancedBeforeAfter({
               )}
               onClick={() => { setLightboxItem(item); setLightboxTab('after'); }}
             >
-              {/* Image with parallax-like hover */}
+              {/* Drag-to-reveal Before/After slider */}
               <div className="relative w-full h-full">
-                <Image
-                  src={item.afterImage}
-                  alt={`${item.patientName} - ${item.treatment}`}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  sizes="(max-width: 768px) 50vw, 33vw"
+                <BeforeAfterSlider
+                  beforeSrc={item.beforeImage}
+                  afterSrc={item.afterImage}
+                  beforeAlt={`${item.patientName} before ${item.treatment}`}
+                  afterAlt={`${item.patientName} after ${item.treatment}`}
+                  initialPosition={55}
                 />
-                
+
                 {/* Gradient overlay on hover */}
-                <div className="absolute inset-0 bg-linear-to-t from-stone-900/90 via-stone-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
+                <div className="absolute inset-0 bg-linear-to-t from-stone-900/90 via-stone-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
                 {/* Caption appears on hover */}
-                <figcaption className="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                <figcaption className="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-20">
                   <p className="text-sm italic text-stone-50 mb-2">
                     {item.treatment}
                   </p>
@@ -264,7 +265,7 @@ export function EnhancedBeforeAfter({
                 </figcaption>
 
                 {/* Before/After indicator */}
-                <div className="absolute top-4 right-4 bg-stone-900/80 text-white px-3 py-1 text-xs uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute top-4 right-4 bg-stone-900/80 text-white px-3 py-1 text-xs uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
                   {t('viewComparison', { defaultValue: 'View' })}
                 </div>
               </div>

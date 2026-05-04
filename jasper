@@ -1,840 +1,149 @@
-# Kimi 2.5 Prompts — Silk Beauty Salon · jasper (full source)
-> Paste each block directly into Windsurf's AI chat panel with Kimi 2.5 selected.
-> Ordered by severity: Critical → High → Medium → Low.
-> Each prompt is fully self-contained.
-
----
-
-## PROMPT 1 — CRITICAL: Remove the Static CSP from next.config.ts
+## PROMPT D14 — IMAGES: Add Image Tilt-on-Hover to Treatment Cards
 
 **Problem:**
-`next.config.ts` defines a static `Content-Security-Policy` header inside the
-`async headers()` function that includes `'unsafe-inline'` AND `'unsafe-eval'`
-in `script-src`. At the same time, `middleware.ts` generates a per-request
-nonce via `buildCSPHeader(nonce)` which correctly omits those unsafe directives.
+The treatment cards in `EditorialTreatmentsSection` have a `scale-105`
+hover transform on the image — but the card container doesn't move at all.
+On premium editorial sites, treatment or product cards perform a
+**3D perspective tilt** that follows the cursor — the card rotates slightly
+on the X and Y axis, creating a depth illusion that makes the image feel
+physical and tactile. This works especially well on portrait-orientation
+cards.
 
-In Next.js 16 the static `headers()` response runs at the edge/CDN layer and
-can shadow the middleware's response headers. The weaker `'unsafe-inline'` CSP
-wins, completely defeating the nonce strategy and making the entire CSP
-meaningless. The browser sees `'unsafe-inline'` and ignores the nonce requirement.
-
-**Task:** Make `middleware.ts` the single authoritative source of CSP.
+**Task:** Add cursor-tracking 3D tilt to treatment cards.
 
 Requirements:
-1. Open `next.config.ts`. Inside the `async headers()` function, remove the
-   entire `Content-Security-Policy` key-value pair from the headers array.
-   Leave all other headers intact: `X-Frame-Options`, `X-Content-Type-Options`,
-   `Strict-Transport-Security`, `Referrer-Policy`, `Permissions-Policy`.
-2. Also remove `https://picsum.photos` and `https://flagcdn.com` from any
-   remaining `img-src` references — these are development placeholders and
-   must not appear in a production policy.
-3. Add a comment directly above the `headers()` function:
-   ```ts
-   // CSP is handled exclusively by middleware.ts (nonce-based, per-request).
-   // DO NOT add a Content-Security-Policy header here — it would shadow the
-   // middleware nonce and re-enable 'unsafe-inline', breaking XSS protection.
-   ```
-4. Extract `buildCSPHeader` from `middleware.ts` into a dedicated module
-   `src/lib/csp.ts` so it can be imported and tested independently.
-   Export it: `export function buildCSPHeader(nonce: string): string { ... }`.
-   Update `middleware.ts` to import it: `import { buildCSPHeader } from './src/lib/csp';`
-5. Create `src/__tests__/csp.test.ts`:
-   ```ts
-   import { buildCSPHeader } from '@/lib/csp';
 
-   describe('buildCSPHeader', () => {
-     it('contains the nonce in script-src', () => {
-       const csp = buildCSPHeader('test-nonce-abc');
-       expect(csp).toContain("'nonce-test-nonce-abc'");
-     });
-     it('does NOT contain unsafe-inline', () => {
-       expect(buildCSPHeader('x')).not.toContain("'unsafe-inline'");
-     });
-     it('does NOT contain unsafe-eval', () => {
-       expect(buildCSPHeader('x')).not.toContain("'unsafe-eval'");
-     });
-     it('contains strict-dynamic', () => {
-       expect(buildCSPHeader('x')).toContain("'strict-dynamic'");
-     });
-     it('blocks object-src', () => {
-       expect(buildCSPHeader('x')).toContain("object-src 'none'");
-     });
-   });
-   ```
-6. Run `npm run typecheck` and `npm run test` — both must pass with zero errors.
+1. Create `src/hooks/use-tilt.ts`:
 
-Files to create: `src/lib/csp.ts`, `src/__tests__/csp.test.ts`
-Files to modify: `next.config.ts`, `middleware.ts`
-
----
-
-## PROMPT 2 — CRITICAL: Unify the Dual Rate-Limit Architecture
-
-**Problem:**
-The codebase has **two completely separate rate-limiting systems**:
-
-- **System A** — `middleware.ts` uses `@upstash/ratelimit` with Upstash Redis
-  (env vars: `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`).
-  Applied at the Edge before the request reaches a route handler.
-
-- **System B** — `src/lib/rate-limit.ts` uses `ioredis` connecting to
-  `process.env.REDIS_URL`. Used inside individual API route handlers
-  (`contactRateLimit`, `bookRateLimit`, `newsletterRateLimit`, etc.).
-
-These two systems use entirely separate Redis connections and do not share
-rate-limit windows. A client that is NOT limited by System A's 30-req/60s
-window can still be hammered in System B, and vice versa. The contact form,
-booking, and newsletter handlers each maintain their own separate counters
-in a different Redis instance from the middleware — the limits are not additive.
-Additionally, the `ioredis` fallback stores data in an in-memory Map that
-resets on every cold start.
-
-**Task:** Consolidate everything onto System A (Upstash) and delete System B.
-
-Requirements:
-1. In `src/lib/rate-limit.ts`, completely rewrite the file to use
-   `@upstash/ratelimit` and `@upstash/redis` instead of `ioredis`.
-   Export the same function signatures so callers don't need to change.
-
-   New implementation:
-   ```ts
-   import { Ratelimit } from '@upstash/ratelimit';
-   import { Redis } from '@upstash/redis';
-
-   const redis = new Redis({
-     url: process.env.UPSTASH_REDIS_REST_URL!,
-     token: process.env.UPSTASH_REDIS_REST_TOKEN!,
-   });
-
-   // Contact form: 5 requests per 15 minutes per IP
-   const contactLimiter = new Ratelimit({
-     redis,
-     limiter: Ratelimit.fixedWindow(5, '15 m'),
-     analytics: true,
-     prefix: 'contact-rl',
-   });
-
-   // Booking form: 5 requests per 15 minutes per IP
-   const bookLimiter = new Ratelimit({
-     redis,
-     limiter: Ratelimit.fixedWindow(5, '15 m'),
-     analytics: true,
-     prefix: 'book-rl',
-   });
-
-   // Newsletter: 3 requests per 15 minutes per IP
-   const newsletterLimiter = new Ratelimit({
-     redis,
-     limiter: Ratelimit.fixedWindow(3, '15 m'),
-     analytics: true,
-     prefix: 'newsletter-rl',
-   });
-
-   // CSRF endpoint: 20 requests per minute per IP
-   const csrfLimiter = new Ratelimit({
-     redis,
-     limiter: Ratelimit.slidingWindow(20, '60 s'),
-     analytics: true,
-     prefix: 'csrf-rl',
-   });
-
-   export interface RateLimitResult {
-     allowed: boolean;
-     limit: number;
-     remaining: number;
-     resetTime: number;
-   }
-
-   async function applyLimit(limiter: Ratelimit, ip: string): Promise<RateLimitResult> {
-     const { success, limit, remaining, reset } = await limiter.limit(ip);
-     return { allowed: success, limit, remaining, resetTime: reset };
-   }
-
-   export const contactRateLimit = (ip: string) => applyLimit(contactLimiter, ip);
-   export const bookRateLimit    = (ip: string) => applyLimit(bookLimiter, ip);
-   export const newsletterRateLimit = (ip: string) => applyLimit(newsletterLimiter, ip);
-   export const csrfRateLimit    = (ip: string) => applyLimit(csrfLimiter, ip);
-   export const strictRateLimit  = (ip: string) => applyLimit(contactLimiter, ip);
-   export const apiRateLimit     = (ip: string) => applyLimit(contactLimiter, ip);
-   export const bookingsApiRateLimit = (ip: string) => applyLimit(bookLimiter, ip);
-   ```
-
-2. Remove `ioredis` from `package.json` `dependencies` entirely.
-   Remove `REDIS_URL` from `.env.example`.
-   Run `grep -r "ioredis\|REDIS_URL\|getRedisClient" src/` and remove all
-   remaining references.
-
-3. Run `npm install` to update `package-lock.json`.
-
-4. Run `npm run typecheck` and `npm run test` — both must pass.
-
-5. Add to `src/__tests__/rate-limit.test.ts` (create if absent):
-   - Mock `@upstash/ratelimit` to return `{ success: true, limit: 5, remaining: 4, reset: Date.now() + 900000 }`.
-   - Call `contactRateLimit('127.0.0.1')` and assert `allowed === true`.
-   - Mock to return `success: false` and assert `allowed === false`.
-
-Files to modify: `src/lib/rate-limit.ts`, `package.json`, `.env.example`
-Files to create (if missing): `src/__tests__/rate-limit.test.ts`
-Run: `npm install` after editing `package.json`
-
----
-
-## PROMPT 3 — HIGH: Fix the Broken Multi-Stage Dockerfile
-
-**Problem:**
-The Dockerfile has a logical error in its multi-stage build:
-
-- **Stage 1 (deps)** runs `npm ci --only=production` — this installs ONLY
-  production dependencies. TypeScript, Prisma CLI, `tsx`, and all other
-  `devDependencies` are absent.
-- **Stage 2 (builder)** copies `node_modules` from Stage 1 and then runs
-  `npm run build`, which needs TypeScript for compilation and Prisma CLI for
-  `prisma generate`. Both are `devDependencies` and are NOT available.
-  The build will fail with `tsc: command not found` or equivalent.
-
-**Task:** Fix the multi-stage build so all dependencies are available when needed.
-
-Requirements:
-1. Rewrite the Dockerfile with this corrected structure:
-
-   **Stage 1 (deps)** — install ALL dependencies (including dev):
-   ```dockerfile
-   FROM node:20-alpine AS deps
-   RUN apk add --no-cache libc6-compat openssl
-   WORKDIR /app
-   COPY package.json package-lock.json* ./
-   RUN npm ci && npm cache clean --force
-   ```
-   Remove `--only=production`. The pruning happens in Stage 3.
-
-   **Stage 2 (builder)** — build with full deps available:
-   ```dockerfile
-   FROM node:20-alpine AS builder
-   WORKDIR /app
-   COPY --from=deps /app/node_modules ./node_modules
-   COPY . .
-   ENV NEXT_TELEMETRY_DISABLED=1
-   ENV NODE_ENV=production
-   RUN npx prisma generate
-   RUN npm run build
-   ```
-   This now works because TypeScript and Prisma CLI are in `node_modules`.
-
-   **Stage 3 (runner)** — copy only what production needs:
-   ```dockerfile
-   FROM node:20-alpine AS runner
-   WORKDIR /app
-   RUN apk add --no-cache curl ca-certificates
-   RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
-   ENV NODE_ENV=production
-   ENV NEXT_TELEMETRY_DISABLED=1
-   ENV PORT=3000
-   ENV HOSTNAME="0.0.0.0"
-   COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-   COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-   COPY --from=builder --chown=nextjs:nodejs /app/public ./public
-   COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
-   COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
-   COPY --from=builder --chown=nextjs:nodejs /app/package.json ./
-   COPY --from=builder --chown=nextjs:nodejs /app/package-lock.json ./
-   USER nextjs
-   EXPOSE 3000
-   HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 \
-     CMD curl -f http://localhost:3000/api/health || exit 1
-   CMD ["node", "server.js"]
-   ```
-
-2. Add a `.dockerignore` file at the project root to speed up the Docker build
-   context (reduces image size and build time):
-   ```
-   node_modules
-   .next
-   .git
-   *.md
-   .env*
-   !.env.example
-   coverage
-   playwright-report
-   .lighthouseci
-   prisma/*.db
-   prisma/*.db-shm
-   prisma/*.db-wal
-   ```
-
-3. Add a `docker-build` script to `package.json`:
-   ```json
-   "docker:build": "docker build -t silk-beauty-salon:latest .",
-   "docker:run": "docker run -p 3000:3000 --env-file .env silk-beauty-salon:latest"
-   ```
-
-4. In the `README.md` Deployment section, update the Docker instructions to
-   reference the corrected build process and note that a `.env` file with all
-   required variables must be present before `docker:run`.
-
-Files to modify: `Dockerfile`, `package.json`, `README.md`
-Files to create: `.dockerignore`
-
----
-
-## PROMPT 4 — HIGH: Fix PrismaClient Singleton Violation in Health Route
-
-**Problem:**
-`src/app/api/v1/health/route.ts` instantiates `new PrismaClient()` on every
-single health check request:
 ```ts
-const prisma = new PrismaClient();
-try {
-  await prisma.$queryRaw`SELECT 1`;
-} finally {
-  await prisma.$disconnect();
+import { useRef, useCallback } from 'react';
+import { useSpring } from 'framer-motion';
+
+interface TiltOptions {
+  maxTilt?: number;      // degrees. Default 8
+  perspective?: number;  // px. Default 800
+  scale?: number;        // Default 1.02
+}
+
+export function useTilt({
+  maxTilt = 8,
+  perspective = 800,
+  scale = 1.02,
+}: TiltOptions = {}) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  const rotateX = useSpring(0, { stiffness: 200, damping: 25 });
+  const rotateY = useSpring(0, { stiffness: 200, damping: 25 });
+  const scaleSpring = useSpring(1, { stiffness: 300, damping: 25 });
+
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = (e.clientX - cx) / (rect.width / 2);  // –1 to 1
+    const dy = (e.clientY - cy) / (rect.height / 2); // –1 to 1
+    rotateY.set(dx * maxTilt);
+    rotateX.set(-dy * maxTilt);
+    scaleSpring.set(scale);
+  }, [maxTilt, scale, rotateX, rotateY, scaleSpring]);
+
+  const handleMouseLeave = useCallback(() => {
+    rotateX.set(0);
+    rotateY.set(0);
+    scaleSpring.set(1);
+  }, [rotateX, rotateY, scaleSpring]);
+
+  return {
+    ref,
+    rotateX,
+    rotateY,
+    scale: scaleSpring,
+    perspective,
+    handleMouseMove,
+    handleMouseLeave,
+  };
 }
 ```
-This creates a new database connection pool on each request, immediately
-disconnects it, and forces PostgreSQL to accept a new connection on the next
-call. Under any monitoring frequency (30s Caddy health interval + Uptime Robot
-+ CI health checks), this causes dozens of unnecessary connection open/close
-cycles per minute. The singleton from `src/lib/db.ts` already exists for exactly
-this purpose.
 
-**Task:** Refactor the health route to use the shared Prisma singleton and
-enhance it with environment version reporting.
+2. Create a `TiltCard` wrapper in `src/components/ui/TiltCard.tsx`:
 
-Requirements:
-1. In `src/app/api/v1/health/route.ts`, replace `new PrismaClient()` with
-   the singleton import:
-   ```ts
-   import { db } from '@/lib/db';
-   ```
-   Remove the local `const prisma = new PrismaClient()` and the
-   `finally { await prisma.$disconnect() }` block entirely. The singleton
-   manages its own connection pool — do not disconnect it.
+```tsx
+'use client';
 
-2. Keep the `SELECT 1` health check but use the singleton:
-   ```ts
-   await db.$queryRaw`SELECT 1`;
-   ```
+import { motion } from 'framer-motion';
+import { useTilt } from '@/hooks/use-tilt';
 
-3. Extend the health response to include `NEXT_PUBLIC_APP_VERSION`:
-   ```ts
-   version: process.env.NEXT_PUBLIC_APP_VERSION ?? process.env.npm_package_version ?? '0.2.0',
-   ```
-   This falls back to the npm package version from `process.env.npm_package_version`
-   (automatically set by npm) so no additional env var configuration is needed.
+interface TiltCardProps {
+  children: React.ReactNode;
+  className?: string;
+  maxTilt?: number;
+  disabled?: boolean; // pass true on mobile
+}
 
-4. Add `NEXT_PUBLIC_APP_VERSION` to `src/lib/env.ts` in the `publicEnvSchema`:
-   ```ts
-   NEXT_PUBLIC_APP_VERSION: z.string().regex(/^\d+\.\d+\.\d+$/).optional(),
-   ```
+export function TiltCard({
+  children,
+  className = '',
+  maxTilt = 7,
+  disabled = false,
+}: TiltCardProps) {
+  const { ref, rotateX, rotateY, scale, perspective, handleMouseMove, handleMouseLeave } = useTilt({ maxTilt });
 
-5. Add a simple response time measurement to the health check:
-   ```ts
-   const dbStart = Date.now();
-   await db.$queryRaw`SELECT 1`;
-   const dbLatencyMs = Date.now() - dbStart;
-   ```
-   Include `dbLatencyMs` in the checks object so monitoring can alert on
-   slow database responses.
+  if (disabled) {
+    return <div className={className}>{children}</div>;
+  }
 
-6. Also fix `src/app/api/health/db/route.ts` — it has the same `new PrismaClient()`
-   anti-pattern. Apply the same singleton fix there.
-
-7. Run `npm run typecheck` — must pass with zero errors.
-
-Files to modify: `src/app/api/v1/health/route.ts`,
-  `src/app/api/health/db/route.ts`, `src/lib/env.ts`
-
----
-
-## PROMPT 5 — HIGH: Replace Sentry Stub with Real Sentry Integration
-
-**Problem:**
-`src/lib/sentry.ts` is entirely fake:
-```ts
-export function initSentryClient(): void {
-  console.warn('[Sentry Stub] Client Sentry would initialize here...');
+  return (
+    <motion.div
+      ref={ref}
+      className={className}
+      style={{
+        perspective,
+        rotateX,
+        rotateY,
+        scale,
+        transformStyle: 'preserve-3d',
+      }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      {children}
+    </motion.div>
+  );
 }
 ```
-When the production application throws an unhandled exception — a database
-timeout, a failed Resend API call, an unexpected null in a treatment query —
-it fails silently. No alert is sent. No stack trace is captured. No user
-session context is recorded.
 
-**Task:** Replace the stub with a real `@sentry/nextjs` integration.
-
-Requirements:
-1. Install: `npm install @sentry/nextjs`
-
-2. Create `sentry.client.config.ts` at the project root:
-   ```ts
-   import * as Sentry from '@sentry/nextjs';
-   Sentry.init({
-     dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
-     environment: process.env.NODE_ENV,
-     enabled: process.env.NODE_ENV === 'production',
-     tracesSampleRate: 0.1,
-     replaysOnErrorSampleRate: 1.0,
-     replaysSessionSampleRate: 0,
-   });
-   ```
-
-3. Create `sentry.server.config.ts` at the project root:
-   ```ts
-   import * as Sentry from '@sentry/nextjs';
-   Sentry.init({
-     dsn: process.env.SENTRY_DSN,
-     environment: process.env.NODE_ENV,
-     enabled: process.env.NODE_ENV === 'production',
-     tracesSampleRate: 0.05,
-     integrations: [Sentry.prismaIntegration()],
-   });
-   ```
-   The `prismaIntegration()` automatically traces all Prisma queries — you'll
-   see slow queries directly in Sentry without any additional instrumentation.
-
-4. Create `sentry.edge.config.ts` at the project root:
-   ```ts
-   import * as Sentry from '@sentry/nextjs';
-   Sentry.init({
-     dsn: process.env.SENTRY_DSN,
-     environment: process.env.NODE_ENV,
-     enabled: process.env.NODE_ENV === 'production',
-     tracesSampleRate: 0.01,
-   });
-   ```
-
-5. In `next.config.ts`, wrap the export with `withSentryConfig`:
-   ```ts
-   import { withSentryConfig } from '@sentry/nextjs';
-   // ... existing config ...
-   export default withSentryConfig(
-     withAnalyzer(withNextIntl(nextConfig)),
-     {
-       silent: true,
-       org: process.env.SENTRY_ORG,
-       project: process.env.SENTRY_PROJECT,
-       widenClientFileUpload: true,
-       disableLogger: true,
-       automaticVercelMonitors: false,
-     }
-   );
-   ```
-
-6. Create `src/app/global-error.tsx`:
+3. In `EditorialTreatmentsSection.tsx`, wrap each treatment card's
+   `motion.div` with `TiltCard`. Replace:
    ```tsx
-   'use client';
-   import * as Sentry from '@sentry/nextjs';
-   import { useEffect } from 'react';
-   export default function GlobalError({ error, reset }: {
-     error: Error & { digest?: string };
-     reset: () => void;
-   }) {
-     useEffect(() => { Sentry.captureException(error); }, [error]);
-     return (
-       <html><body>
-         <div style={{ padding: '2rem', textAlign: 'center' }}>
-           <h2>Something went wrong</h2>
-           <button onClick={reset}>Try again</button>
-         </div>
-       </body></html>
-     );
-   }
+   <motion.div key={treatment.id} className={`relative group cursor-pointer ${treatment.span}`} ...>
    ```
-
-7. Add to `src/lib/env.ts` `publicEnvSchema`:
-   ```ts
-   NEXT_PUBLIC_SENTRY_DSN: z.string().url().optional(),
+   With:
+   ```tsx
+   <TiltCard
+     key={treatment.id}
+     className={`relative group cursor-pointer ${treatment.span}`}
+     maxTilt={6}
+     disabled={isMobile}
+   >
+     <motion.div ...>
+       {/* existing card content */}
+     </motion.div>
+   </TiltCard>
    ```
-   Add to `serverEnvSchema`:
-   ```ts
-   SENTRY_DSN: z.string().url().optional(),
-   SENTRY_ORG: z.string().optional(),
-   SENTRY_PROJECT: z.string().optional(),
-   ```
+   Detect mobile with `useMediaQuery('(max-width: 768px)')` or the existing
+   `isMobile` pattern already in `StickySplitSection`.
 
-8. Delete `src/lib/sentry.ts` (the stub) entirely.
-   Run `grep -r "sentry\|initSentry" src/` and replace any remaining stub
-   imports with `import * as Sentry from '@sentry/nextjs'`.
+4. Also apply `TiltCard` to any treatment cards on the `/treatments` page —
+   find the treatment listing page component and wrap each card.
 
-9. Add all Sentry env vars to `.env.example` with comments.
+5. Add `will-change: transform` to the card container via className to
+   hint the browser to composite it: `className="... will-change-transform"`.
 
-Files to create: `sentry.client.config.ts`, `sentry.server.config.ts`,
-  `sentry.edge.config.ts`, `src/app/global-error.tsx`
-Files to modify: `next.config.ts`, `src/lib/env.ts`, `.env.example`
-Files to delete: `src/lib/sentry.ts`
-Run: `npm install @sentry/nextjs`
+6. Run `npm run typecheck` — must pass.
+
+Files to create: `src/hooks/use-tilt.ts`, `src/components/ui/TiltCard.tsx`
+Files to modify: `src/components/sections/EditorialTreatmentsSection.tsx`,
+  `src/app/[locale]/treatments/` components
 
 ---
-
-## PROMPT 6 — HIGH: Remove Webpack splitChunks Override
-
-**Problem:**
-`next.config.ts` manually overrides `config.optimization.splitChunks` with a
-flat `vendors` + `common` strategy. Next.js 16's App Router has a highly
-sophisticated built-in chunking algorithm optimised for RSC (React Server
-Components) streaming. The manual override replaces it with a blunt single
-`vendors` bundle — every page loads ALL vendor code regardless of what it uses.
-Additionally, the font loader alias `'next/font/google': require.resolve(...)` 
-points to an internal path that breaks silently between Next.js patch versions.
-
-**Task:** Remove the entire webpack override and let Next.js own chunking.
-
-Requirements:
-1. In `next.config.ts`, delete the entire `webpack` callback:
-   ```ts
-   // DELETE THIS ENTIRE BLOCK:
-   webpack: (config, { isServer }) => {
-     config.optimization.splitChunks = { ... };
-     if (!isServer) { config.resolve.alias = { ... } }
-     return config;
-   },
-   ```
-2. Remove the `webpack` key from the `nextConfig` object entirely.
-3. Keep ALL other properties: `output`, `reactStrictMode`, `poweredByHeader`,
-   `compress`, `headers()`, `images`, `experimental`, `turbopack`.
-4. Update the comment block at the top of `next.config.ts`:
-   ```ts
-   /**
-    * Bundle Optimization Strategy — next.config.ts
-    *
-    * Tree-shaking:  experimental.optimizePackageImports (below)
-    * Code-splitting: Next.js 16 App Router built-in (do NOT override webpack)
-    * Bundle analysis: npm run analyze (BUNDLE_ANALYZE=true)
-    *
-    * The webpack splitChunks override was removed — it conflicted with RSC
-    * streaming and Next.js 16's granular per-route chunk strategy.
-    */
-   ```
-5. Run `npm run build`. Verify the build completes successfully.
-6. Run `npm run analyze` (sets `BUNDLE_ANALYZE=true`). Confirm the output
-   shows granular per-route chunks rather than a monolithic `vendors` bundle.
-   Document the first-load JS total in the comment block above.
-
-Files to modify: `next.config.ts`
-
----
-
-## PROMPT 7 — MEDIUM: Fix Caddyfile Health URI and Add Rate-Limit Headers
-
-**Problem A:**
-The Caddyfile configures `health_uri /api` for Caddy's upstream health check.
-`/api` is not a valid route — it returns a 404 or falls through to the i18n
-middleware. The correct endpoint is `/api/health`. This means Caddy's health
-probe silently succeeds on a broken app (a 404 still gets a response).
-
-**Problem B:**
-Security headers in the Caddyfile are duplicated — they already exist in
-`next.config.ts` `headers()`. Headers set by both the reverse proxy and the
-Next.js app may be sent twice, which some browsers flag as a misconfiguration.
-
-**Task:**
-1. In `Caddyfile`, find the `health_uri /api` line inside `reverse_proxy` and
-   change it to:
-   ```caddyfile
-   health_uri /api/health
-   health_interval 30s
-   health_timeout 5s
-   health_status 200
-   ```
-   The `health_status 200` ensures Caddy only considers the upstream healthy
-   when the response is exactly 200 — not 404, not 502.
-
-2. Add rate-limit response headers that Caddy should forward from the upstream:
-   ```caddyfile
-   reverse_proxy localhost:3000 {
-     header_up Host {host}
-     header_up X-Forwarded-For {remote_host}
-     header_up X-Forwarded-Proto {scheme}
-     header_up X-Real-IP {remote_host}
-     header_down X-RateLimit-Limit X-RateLimit-Limit
-     header_down X-RateLimit-Remaining X-RateLimit-Remaining
-     header_down Retry-After Retry-After
-     health_uri /api/health
-     health_interval 30s
-     health_timeout 5s
-     health_status 200
-   }
-   ```
-
-3. Remove the duplicate security headers from `Caddyfile` that are already
-   set by `next.config.ts` — specifically `X-Frame-Options`, `X-Content-Type-Options`,
-   and `Referrer-Policy`. Keep only headers that Next.js does NOT set:
-   the `-Server` header removal (strips the "Caddy" server header) and
-   the `Strict-Transport-Security` header (Caddy should own HSTS as the TLS
-   terminator, not the app server).
-   
-   The final `header` block should be:
-   ```caddyfile
-   header {
-     Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
-     -Server
-   }
-   ```
-
-4. Add the `www` redirect domain entry if not already present:
-   ```caddyfile
-   www.silkbeauty.ge {
-     redir https://silkbeauty.ge{uri} permanent
-   }
-   ```
-
-Files to modify: `Caddyfile`
-
----
-
-## PROMPT 8 — MEDIUM: Fix Playwright Config and Add GitHub Actions CI/CD
-
-**Problem A — Playwright:**
-`playwright.config.ts` has two `['html', ...]` reporter entries. Both attempt
-to write HTML output and the second one's `outputFolder: 'playwright-report/a11y/'`
-conflicts with the first reporter's default. In CI this causes both reporters
-to compete for the same output paths, creating corrupted or incomplete reports.
-
-Also the `webServer.command` runs `npm run build && npm start` even locally,
-meaning each `playwright test` invocation rebuilds the entire app (3–8 minutes)
-before running any test.
-
-**Problem B — No CI/CD pipeline:**
-All quality gates (Vitest, Playwright, Lighthouse, lint, typecheck) exist
-locally only. No automated pipeline enforces them on pull requests.
-
-**Task — Part 1: Fix Playwright config**
-1. In `playwright.config.ts`, replace the reporter array:
-   ```ts
-   reporter: [
-     ['html', { outputFolder: 'playwright-report/', open: 'never' }],
-     ['junit', { outputFile: 'playwright-report/results.xml' }],
-     ['list'],
-   ],
-   ```
-   Remove the duplicate HTML reporter entirely.
-
-2. Fix the `webServer` config:
-   ```ts
-   webServer: {
-     command: process.env.CI
-       ? 'npm run build && npm start'
-       : 'npm run dev',
-     url: 'http://localhost:3000',
-     reuseExistingServer: !process.env.CI,
-     timeout: process.env.CI ? 180_000 : 60_000,
-     stdout: 'pipe',
-     stderr: 'pipe',
-   },
-   ```
-   Locally this starts the dev server (instant). In CI it builds production.
-
-**Task — Part 2: Create GitHub Actions pipeline**
-
-3. Create `.github/workflows/ci.yml`:
-   ```yaml
-   name: CI
-
-   on:
-     push:
-       branches: [main]
-     pull_request:
-       branches: [main]
-
-   env:
-     NODE_VERSION: '20'
-
-   jobs:
-     quality:
-       name: Type-check, lint, unit tests
-       runs-on: ubuntu-latest
-       steps:
-         - uses: actions/checkout@v4
-         - uses: actions/setup-node@v4
-           with:
-             node-version: ${{ env.NODE_VERSION }}
-             cache: npm
-         - run: npm ci
-         - run: npm run typecheck
-         - run: npm run lint
-         - run: npm run test -- --coverage
-         - run: npm run validate:i18n
-
-     e2e:
-       name: Playwright E2E (Chromium)
-       runs-on: ubuntu-latest
-       needs: quality
-       env:
-         UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
-         UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
-         DATABASE_URL: ${{ secrets.DATABASE_URL }}
-         DIRECT_DATABASE_URL: ${{ secrets.DIRECT_DATABASE_URL }}
-         RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-         RESEND_AUDIENCE_ID: ${{ secrets.RESEND_AUDIENCE_ID }}
-         CONTACT_EMAIL: ${{ secrets.CONTACT_EMAIL }}
-         API_SECRET_KEY: ${{ secrets.API_SECRET_KEY }}
-       steps:
-         - uses: actions/checkout@v4
-         - uses: actions/setup-node@v4
-           with:
-             node-version: ${{ env.NODE_VERSION }}
-             cache: npm
-         - run: npm ci
-         - run: npx playwright install --with-deps chromium
-         - run: npm run test:e2e -- --project=chromium
-         - uses: actions/upload-artifact@v4
-           if: always()
-           with:
-             name: playwright-report
-             path: playwright-report/
-             retention-days: 7
-
-     lighthouse:
-       name: Lighthouse CI
-       runs-on: ubuntu-latest
-       needs: quality
-       steps:
-         - uses: actions/checkout@v4
-         - uses: actions/setup-node@v4
-           with:
-             node-version: ${{ env.NODE_VERSION }}
-             cache: npm
-         - run: npm ci
-         - run: npm run build
-           env:
-             SKIP_ENV_VALIDATION: true
-         - run: npx @lhci/cli@0.14.x autorun
-         - uses: actions/upload-artifact@v4
-           if: always()
-           with:
-             name: lighthouse-report
-             path: .lighthouseci/
-             retention-days: 7
-
-     security:
-       name: Security audit
-       runs-on: ubuntu-latest
-       if: github.event_name == 'push'
-       steps:
-         - uses: actions/checkout@v4
-         - uses: actions/setup-node@v4
-           with:
-             node-version: ${{ env.NODE_VERSION }}
-             cache: npm
-         - run: npm ci
-         - run: npm audit --audit-level=high
-         - run: npm run security:audit
-   ```
-
-4. Create `.github/dependabot.yml`:
-   ```yaml
-   version: 2
-   updates:
-     - package-ecosystem: npm
-       directory: /
-       schedule:
-         interval: weekly
-         day: monday
-       open-pull-requests-limit: 5
-       ignore:
-         - dependency-name: next
-           update-types: [version-update:semver-major]
-         - dependency-name: react
-           update-types: [version-update:semver-major]
-     - package-ecosystem: docker
-       directory: /
-       schedule:
-         interval: weekly
-   ```
-
-5. Add a CI badge to `README.md`:
-   ```md
-   [![CI](https://github.com/YOUR_ORG/silk-beauty-salon/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_ORG/silk-beauty-salon/actions/workflows/ci.yml)
-   ```
-   Replace `YOUR_ORG` with the actual GitHub organisation name.
-
-Files to modify: `playwright.config.ts`, `README.md`
-Files to create: `.github/workflows/ci.yml`, `.github/dependabot.yml`
-
----
-
-## PROMPT 9 — MEDIUM: Add NEXT_PUBLIC_APP_VERSION to Env Schema
-
-**Problem:**
-`src/app/api/v1/health/route.ts` reads `process.env.NEXT_PUBLIC_APP_VERSION`
-which is not validated in `src/lib/env.ts`. If the variable is missing,
-the health response silently returns `'0.2.0'` (the hardcoded fallback) even
-in production where the actual deployed version may differ. This makes it
-impossible to verify exactly which version is running.
-
-**Task:**
-1. In `src/lib/env.ts`, add to `publicEnvSchema`:
-   ```ts
-   NEXT_PUBLIC_APP_VERSION: z
-     .string()
-     .regex(/^\d+\.\d+\.\d+(-[a-zA-Z0-9.]+)?$/, 'Must be a semver string like 1.2.3')
-     .optional(),
-   ```
-
-2. Add to `.env.example`:
-   ```env
-   # App version (injected by CI/CD during build, e.g. git tag or package.json version)
-   NEXT_PUBLIC_APP_VERSION=0.2.0
-   ```
-
-3. In `src/app/api/v1/health/route.ts`, use the validated env:
-   ```ts
-   import { publicEnv } from '@/lib/env';
-   // ...
-   version: publicEnv.NEXT_PUBLIC_APP_VERSION
-     ?? process.env.npm_package_version
-     ?? '0.2.0',
-   ```
-
-4. In `.github/workflows/ci.yml` (from Prompt 8), set the version from
-   `package.json` during the build step:
-   ```yaml
-   - name: Set app version
-     run: echo "NEXT_PUBLIC_APP_VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
-   ```
-
-5. Run `npm run typecheck` — must pass with zero errors.
-
-Files to modify: `src/lib/env.ts`, `.env.example`,
-  `src/app/api/v1/health/route.ts`, `.github/workflows/ci.yml`
-
----
-
-## PROMPT 10 — LOW: Move Dev-Only Packages to devDependencies
-
-**Problem:**
-Several packages that are never imported in the production application bundle
-are listed in `dependencies` (which get installed in the production Docker image)
-instead of `devDependencies`:
-
-| Package | Reason it belongs in devDeps |
-|---|---|
-| `pa11y` | CLI-only accessibility test runner — never imported in app code |
-| `@axe-core/react` | React a11y overlay for development — should only run in dev |
-| `swagger-ui-express` | Express middleware — never used in a Next.js app |
-| `next-swagger-doc` | OpenAPI generator — build-time only |
-| `swagger-jsdoc` | JSDoc-to-OpenAPI — build-time only |
-| `swagger-ui-react` | React OpenAPI viewer — loaded in `/api-docs` but only in dev |
-
-**Task:**
-1. In `package.json`, move all six packages from `dependencies` to
-   `devDependencies`. Copy the version strings exactly — only move the key,
-   do not change the version specifiers.
-
-2. Run `grep -r "pa11y\|swagger-ui-express\|next-swagger-doc\|swagger-jsdoc" src/`
-   to confirm none are imported in production route handlers.
-   If `swagger-ui-react` is imported in `src/app/api-docs/`, confirm that
-   page is protected from public access (e.g. only renders in `NODE_ENV !== 'production'`).
-
-3. Run `npm install` to regenerate `package-lock.json`.
-
-4. Run `npm run build` and confirm the production bundle size decreased.
-
-5. Add a comment above the `devDependencies` section in `package.json`:
-   ```json
-   "_comment_devDeps": "Test, lint, build tools. NOT bundled in production image."
-   ```
-   Note: JSON doesn't support comments natively — use a `_comment_` key as a
-   convention. Alternatively, document this in `README.md`.
-
-Files to modify: `package.json`
-Run: `npm install` after editing

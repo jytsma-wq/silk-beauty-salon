@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { heroVideos } from '@/data/media';
+import { MagneticButton } from '@/components/ui/MagneticButton';
 
 // Organic blob shape for magazine overlay
 function OrganicShape({ className }: { className?: string }) {
@@ -195,15 +196,17 @@ export function CinematicHeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.8, duration: 0.6 }}
             >
-              <Link
-                href="/book"
-                className="group relative inline-flex items-center overflow-hidden px-10 py-5 border border-stone-50/80"
-              >
-                <span className="relative z-10 text-sm tracking-[0.2em] uppercase text-stone-50 group-hover:text-stone-900 transition-colors duration-500">
-                  Book Consultation
-                </span>
-                <div className="absolute inset-0 bg-stone-50 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
-              </Link>
+              <MagneticButton strength={0.5} radius={100}>
+                <Link
+                  href="/book"
+                  className="group relative inline-flex items-center overflow-hidden px-10 py-5 border border-stone-50/80"
+                >
+                  <span className="relative z-10 text-sm tracking-[0.2em] uppercase text-stone-50 group-hover:text-stone-900 transition-colors duration-500">
+                    Book Consultation
+                  </span>
+                  <div className="absolute inset-0 bg-stone-50 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
+                </Link>
+              </MagneticButton>
             </motion.div>
           </div>
 
