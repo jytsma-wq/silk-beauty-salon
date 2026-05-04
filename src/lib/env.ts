@@ -26,6 +26,10 @@ const serverEnvSchema = z.object({
   UPSTASH_REDIS_REST_TOKEN: z.string().min(20, 'UPSTASH_REDIS_REST_TOKEN must be at least 20 characters'),
 
   BUILD_TIMESTAMP: z.string().datetime().optional(),
+
+  SENTRY_DSN: z.string().url().optional(),
+  SENTRY_ORG: z.string().optional(),
+  SENTRY_PROJECT: z.string().optional(),
 });
 
 // ============================================================================
@@ -41,6 +45,13 @@ const publicEnvSchema = z.object({
   NEXT_PUBLIC_FB_PIXEL_ID: z.string().regex(/^\d+$/).optional(),
 
   NEXT_PUBLIC_CALCOM_USERNAME: z.string().min(1).optional(),
+
+  NEXT_PUBLIC_APP_VERSION: z
+    .string()
+    .regex(/^\d+\.\d+\.\d+(-[a-zA-Z0-9.]+)?$/, 'Must be a semver string like 1.2.3')
+    .optional(),
+
+  NEXT_PUBLIC_SENTRY_DSN: z.string().url().optional(),
 });
 
 // ============================================================================
@@ -120,6 +131,8 @@ export const publicEnv: PublicEnv = process.env.VITEST || process.env.NODE_ENV =
       NEXT_PUBLIC_GTM_ID: env.NEXT_PUBLIC_GTM_ID,
       NEXT_PUBLIC_FB_PIXEL_ID: env.NEXT_PUBLIC_FB_PIXEL_ID,
       NEXT_PUBLIC_CALCOM_USERNAME: env.NEXT_PUBLIC_CALCOM_USERNAME,
+      NEXT_PUBLIC_APP_VERSION: env.NEXT_PUBLIC_APP_VERSION,
+      NEXT_PUBLIC_SENTRY_DSN: env.NEXT_PUBLIC_SENTRY_DSN,
     };
 
 // Export validation function for tests

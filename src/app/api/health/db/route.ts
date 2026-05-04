@@ -1,10 +1,5 @@
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
-
-// Initialize Prisma client for health checks
-const prisma = new PrismaClient({
-  log: ['error'],
-});
+import { db } from '@/lib/db';
 
 interface HealthCheckResult {
   status: 'healthy' | 'degraded' | 'unhealthy';
@@ -50,7 +45,7 @@ const SLOW_QUERY_THRESHOLD = 1000; // 1 second
  * Get database connection metrics
  */
 async function getConnectionMetrics(): Promise<DatabaseMetrics> {
-  const result = await prisma.$queryRaw`
+  const result = await db.$queryRaw`
     SELECT
       current_setting('max_connections')::int as connection_pool_size,
       count(*) filter (where state = 'active') as active_connections,
@@ -82,7 +77,7 @@ async function checkDatabase(): Promise<HealthCheckResult['checks']['database']>
       setTimeout(() => reject(new Error('Database health check timeout')), HEALTH_CHECK_TIMEOUT);
     });
 
-    const healthCheckPromise = prisma.$queryRaw`SELECT 1 as health`;
+    const healthCheckPromise = db.$queryRaw`SELECT 1 as health`;
 
     await Promise.race([healthCheckPromise, timeoutPromise]);
     const responseTime = Date.now() - startTime;
@@ -116,11 +111,11 @@ async function checkTables(): Promise<HealthCheckResult['checks']['tables']> {
   try {
     const [contactSubmissions, bookingRequests, newsletterSubscribers, blogPosts, bookings] =
       await Promise.all([
-        prisma.contactSubmission.count(),
-        prisma.bookingRequest.count(),
-        prisma.newsletterSubscriber.count(),
-        prisma.blogPost.count(),
-        prisma.booking.count(),
+        db.contactSubmission.count(),
+        db.bookingRequest.count(),
+        db.newsletterSubscriber.count(),
+        db.blogPost.count(),
+        db.booking.count(),
       ]);
 
     const counts = {
@@ -154,7 +149,7 @@ async function checkPerformance(): Promise<HealthCheckResult['checks']['performa
     // Run a simple query multiple times to measure average response time
     for (let i = 0; i < 3; i++) {
       const start = Date.now();
-      await prisma.$queryRaw`SELECT pg_sleep(0.001)`; // 1ms sleep
+      await db.$queryRaw`SELECT pg_sleep(0.001)`; // 1ms sleep
       queryTimes.push(Date.now() - start);
     }
 
@@ -279,7 +274,7 @@ export async function GET(): Promise<Response> {
  */
 export async function HEAD(): Promise<Response> {
   try {
-    await prisma.$queryRaw`SELECT 1`;
+    await db.$queryRaw`SELECT 1`;
 
     return new Response(null, {
       status: 200,
@@ -299,7 +294,3 @@ export async function HEAD(): Promise<Response> {
   }
 }
 
-// Ensure Prisma client is disconnected on process exit
-process.on('beforeExit', async () => {
-  await prisma.$disconnect();
-});

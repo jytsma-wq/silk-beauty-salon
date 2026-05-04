@@ -8,7 +8,8 @@ import {
   createJsonResponse,
   generateRequestId,
 } from '@/lib/api/types';
-import { PrismaClient } from '@prisma/client';
+import { db } from '@/lib/db';
+import { publicEnv } from '@/lib/env';
 
 /**
  * @swagger
@@ -48,28 +49,28 @@ import { PrismaClient } from '@prisma/client';
  *         description: Service is unhealthy
  */
 export async function GET(): Promise<Response> {
-  const checks: { database: 'ok' | 'error' } = { database: 'error' };
+  const checks: { database: 'ok' | 'error'; dbLatencyMs?: number } = { database: 'error' };
   let status: 'healthy' | 'degraded' | 'unhealthy' = 'unhealthy';
 
-  const prisma = new PrismaClient();
-  
   try {
-    // Check database connection
-    await prisma.$queryRaw`SELECT 1`;
+    // Check database connection with latency measurement
+    const dbStart = Date.now();
+    await db.$queryRaw`SELECT 1`;
+    checks.dbLatencyMs = Date.now() - dbStart;
     checks.database = 'ok';
     status = 'healthy';
   } catch (error) {
     console.error('Health check - Database error:', error);
     status = 'unhealthy';
-  } finally {
-    await prisma.$disconnect();
   }
 
   const response = createSuccessResponse(
     {
       status,
       timestamp: new Date().toISOString(),
-      version: process.env.NEXT_PUBLIC_APP_VERSION ?? '0.2.0',
+      version: publicEnv.NEXT_PUBLIC_APP_VERSION
+        ?? process.env.npm_package_version
+        ?? '0.2.0',
       checks,
     },
     { requestId: generateRequestId() }

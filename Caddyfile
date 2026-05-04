@@ -3,9 +3,6 @@ silkbeauty.ge {
 
 	header {
 		Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
-		X-Frame-Options DENY
-		X-Content-Type-Options nosniff
-		Referrer-Policy strict-origin-when-cross-origin
 		-Server
 	}
 
@@ -14,8 +11,13 @@ silkbeauty.ge {
 		header_up X-Forwarded-For {remote_host}
 		header_up X-Forwarded-Proto {scheme}
 		header_up X-Real-IP {remote_host}
-		health_uri /api
+		header_down X-RateLimit-Limit X-RateLimit-Limit
+		header_down X-RateLimit-Remaining X-RateLimit-Remaining
+		header_down Retry-After Retry-After
+		health_uri /api/health
 		health_interval 30s
+		health_timeout 5s
+		health_status 200
 	}
 }
 

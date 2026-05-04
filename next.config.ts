@@ -1,23 +1,21 @@
 /**
- * Bundle Analysis & Optimization Configuration
- * 
- * Before optimizations:
- * - First-load JS: ~[Baseline pending analysis]
- * - Heavy modules: framer-motion, lucide-react, radix-ui components
- * 
- * Optimizations applied:
- * 1. optimizePackageImports for lucide-react, @radix-ui/react-*, date-fns
- * 2. Webpack splitChunks for vendor/common code splitting
- * 3. LazyMotion with domAnimation for framer-motion (in layout)
- * 
+ * Bundle Optimization Strategy — next.config.ts
+ *
+ * Tree-shaking:  experimental.optimizePackageImports (below)
+ * Code-splitting: Next.js 16 App Router built-in (do NOT override webpack)
+ * Bundle analysis: npm run analyze (BUNDLE_ANALYZE=true)
+ *
+ * The webpack splitChunks override was removed — it conflicted with RSC
+ * streaming and Next.js 16's granular per-route chunk strategy.
+ *
  * Note: No Plasmic CMS found in codebase (verified)
  * Note: lucide-react uses named imports (verified)
- * Note: date-fns not currently used (no changes needed)
  */
 
 import type { NextConfig } from "next";
 import createNextIntlPlugin from 'next-intl/plugin';
 import withBundleAnalyzer from '@next/bundle-analyzer';
+import { withSentryConfig } from '@sentry/nextjs';
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
@@ -92,37 +90,6 @@ const nextConfig: NextConfig = {
     ],
     scrollRestoration: true,
   },
-  // Webpack optimization
-  webpack: (config, { isServer }: { isServer: boolean }) => {
-    // Split chunks for better caching
-    config.optimization.splitChunks = {
-      chunks: 'all',
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
-          priority: 10,
-        },
-        common: {
-          minChunks: 2,
-          chunks: 'all',
-          enforce: true,
-          priority: 5,
-        },
-      },
-    };
-
-    // Optimize font loading
-    if (!isServer) {
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        'next/font/google': require.resolve('next/dist/build/webpack/loaders/next-font-loader'),
-      };
-    }
-
-    return config;
-  },
   // Turbopack optimization for instant HMR in Windsurf
   turbopack: {
     resolveExtensions: ['.mdx', '.tsx', '.ts', '.jsx', '.js', '.mjs', '.json'],
@@ -135,4 +102,14 @@ const withAnalyzer = withBundleAnalyzer({
   enabled: process.env.BUNDLE_ANALYZE === 'true',
 });
 
-export default withAnalyzer(withNextIntl(nextConfig));
+export default withSentryConfig(
+  withAnalyzer(withNextIntl(nextConfig)),
+  {
+    silent: true,
+    org: process.env.SENTRY_ORG,
+    project: process.env.SENTRY_PROJECT,
+    widenClientFileUpload: true,
+    disableLogger: true,
+    automaticVercelMonitors: false,
+  }
+);

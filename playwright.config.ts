@@ -7,8 +7,9 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: [
-    ['html'],
-    ['html', { outputFolder: 'playwright-report/a11y/', open: 'never' }],
+    ['html', { outputFolder: 'playwright-report/', open: 'never' }],
+    ['junit', { outputFile: 'playwright-report/results.xml' }],
+    ['list'],
   ],
   use: {
     baseURL: 'http://localhost:3000',
@@ -38,9 +39,13 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'npm run build && npm start',
+    command: process.env.CI
+      ? 'npm run build && npm start'
+      : 'npm run dev',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
-    timeout: 120000,
+    timeout: process.env.CI ? 180_000 : 60_000,
+    stdout: 'pipe',
+    stderr: 'pipe',
   },
 });
