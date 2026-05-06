@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { Menu, X, Phone, ChevronDown } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -8,19 +9,144 @@ import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { siteConfig } from '@/data/site-config';
 import { motion, AnimatePresence } from 'framer-motion';
-import { baseTreatmentCategories } from '@/data/treatments';
 import { baseConditions } from '@/data/conditions';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+
+type MegaMenuItem = {
+  title: string;
+  href: string;
+  description: string;
+};
+
+const treatmentMegaMenuItems: MegaMenuItem[] = [
+  {
+    title: 'Botox',
+    href: '/treatments/category/botox',
+    description: 'Anti-wrinkle injections and targeted medical Botox treatments.',
+  },
+  {
+    title: 'Dermal fillers',
+    href: '/treatments/category/dermal-fillers',
+    description: 'Lip, cheek, chin, jawline, and facial balancing treatments.',
+  },
+  {
+    title: 'Skin treatments',
+    href: '/treatments/category/skin-treatments',
+    description: 'Clinical facials, peels, hydration, and skin-quality protocols.',
+  },
+  {
+    title: 'Laser treatments',
+    href: '/treatments/category/laser-treatments',
+    description: 'Laser-led resurfacing, pigmentation, and collagen-renewal care.',
+  },
+  {
+    title: 'Hair and hair extensions',
+    href: '/treatments/category/hair-and-hair-extensions',
+    description: 'Hair restoration consultations and tailored scalp treatment plans.',
+  },
+  {
+    title: 'Nails',
+    href: '/treatments/category/nails',
+    description: 'Book a salon consultation for manicure, pedicure, and nail services.',
+  },
+  {
+    title: 'Lashes',
+    href: '/treatments/category/lashes',
+    description: 'Book lash appointments for lifts, styling, and beauty finishing services.',
+  },
+];
+
+const skinConditionMegaMenuItems: MegaMenuItem[] = [
+  {
+    title: 'All',
+    href: '/conditions',
+    description: 'See the full condition library and recommended treatment pathways.',
+  },
+  ...baseConditions.map((condition) => ({
+    title: condition.name,
+    href: `/conditions/${condition.slug}`,
+    description: condition.shortDescription,
+  })),
+];
+
+function MegaMenuPanel({
+  eyebrow,
+  title,
+  overviewHref,
+  overviewLabel,
+  description,
+  image,
+  items,
+}: {
+  eyebrow: string;
+  title: string;
+  overviewHref: string;
+  overviewLabel: string;
+  description: string;
+  image: string;
+  items: MegaMenuItem[];
+}) {
+  return (
+    <div className="absolute left-1/2 top-full z-50 w-[min(1120px,calc(100vw-3rem))] -translate-x-1/2 pt-4">
+      <div className="overflow-hidden rounded-[8px] border border-[#e8e4df] bg-[#fbf8f4] shadow-[0_24px_70px_rgba(36,31,27,0.12)]">
+        <div className="grid lg:grid-cols-[320px_1fr]">
+          <div className="border-r border-[#e8e4df] bg-white">
+            <div className="relative aspect-[4/5] overflow-hidden">
+              <Image
+                src={image}
+                alt=""
+                fill
+                className="object-cover"
+                sizes="320px"
+              />
+            </div>
+            <div className="p-8">
+              <p className="mb-3 text-[0.68rem] uppercase tracking-[0.24em] text-[#8d6f58]">
+                {eyebrow}
+              </p>
+              <h3 className="font-sans text-4xl font-light leading-[1.02] text-[#241f1b]">
+                {title}
+              </h3>
+              <p className="mt-4 text-sm leading-7 text-stone-600">
+                {description}
+              </p>
+              <Link
+                href={overviewHref}
+                className="mt-8 inline-flex h-11 items-center rounded-md border border-[#241f1b] px-6 text-[0.68rem] font-medium uppercase tracking-[0.18em] text-[#241f1b] transition-colors hover:bg-[#241f1b] hover:text-white"
+              >
+                {overviewLabel}
+              </Link>
+            </div>
+          </div>
+
+          <div className="p-8 md:p-10">
+            <div className="grid gap-x-8 gap-y-6 md:grid-cols-2 xl:grid-cols-3">
+              {items.map((item) => (
+                <Link
+                  key={`${item.title}-${item.href}`}
+                  href={item.href}
+                  className="group rounded-[6px] border border-transparent bg-white/70 p-5 transition-colors hover:border-[#e8e4df] hover:bg-white"
+                >
+                  <h4 className="text-sm font-medium uppercase tracking-[0.16em] text-[#241f1b]">
+                    {item.title}
+                  </h4>
+                  <p className="mt-3 text-sm leading-6 text-stone-600">
+                    {item.description}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function GaldermaHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [activeMegaMenu, setActiveMegaMenu] = useState<'treatments' | 'conditions' | null>(null);
   const t = useTranslations('nav');
 
   // Scroll behavior - hide on scroll down, show on scroll up
@@ -115,59 +241,34 @@ export function GaldermaHeader() {
             {/* Center Navigation */}
             <nav
               aria-label={t('mainNavigation', { defaultValue: 'Main navigation' })}
-              className="flex items-center justify-center gap-10"
+              className="relative flex items-center justify-center gap-10"
+              onMouseLeave={() => setActiveMegaMenu(null)}
             >
-              {/* Treatments Dropdown */}
-              <DropdownMenu>
-                <DropdownMenuTrigger className="flex items-center gap-1 text-xs uppercase tracking-[0.2em] text-stone-700 hover:text-[#b5453a] transition-colors outline-none">
+              <div
+                onMouseEnter={() => setActiveMegaMenu('treatments')}
+              >
+                <button
+                  type="button"
+                  className="flex items-center gap-1 text-xs uppercase tracking-[0.2em] text-stone-700 transition-colors hover:text-[#b5453a] outline-none"
+                  aria-expanded={activeMegaMenu === 'treatments'}
+                >
                   {t('treatments', { defaultValue: 'Treatments' })}
-                  <ChevronDown className="w-3 h-3" />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="center" className="w-56">
-                  <DropdownMenuItem asChild>
-                    <Link href="/treatments" className="cursor-pointer font-medium">
-                      {t('allTreatments', { defaultValue: 'All Treatments' })}
-                    </Link>
-                  </DropdownMenuItem>
-                  <div className="h-px bg-stone-200 my-1" />
-                  {baseTreatmentCategories.map((category: { slug: string; name: string }) => (
-                    <DropdownMenuItem key={category.slug} asChild>
-                      <Link
-                        href={`/treatments#${category.slug}`}
-                        className="cursor-pointer text-sm"
-                      >
-                        {category.name}
-                      </Link>
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
+                  <ChevronDown className="h-3 w-3" />
+                </button>
+              </div>
 
-              {/* Conditions Dropdown */}
-              <DropdownMenu>
-                <DropdownMenuTrigger className="flex items-center gap-1 text-xs uppercase tracking-[0.2em] text-stone-700 hover:text-[#b5453a] transition-colors outline-none">
+              <div
+                onMouseEnter={() => setActiveMegaMenu('conditions')}
+              >
+                <button
+                  type="button"
+                  className="flex items-center gap-1 text-xs uppercase tracking-[0.2em] text-stone-700 transition-colors hover:text-[#b5453a] outline-none"
+                  aria-expanded={activeMegaMenu === 'conditions'}
+                >
                   {t('conditions', { defaultValue: 'Skin Conditions' })}
-                  <ChevronDown className="w-3 h-3" />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="center" className="w-56">
-                  <DropdownMenuItem asChild>
-                    <Link href="/conditions" className="cursor-pointer font-medium">
-                      {t('allConditions', { defaultValue: 'All Conditions' })}
-                    </Link>
-                  </DropdownMenuItem>
-                  <div className="h-px bg-stone-200 my-1" />
-                  {baseConditions.slice(0, 6).map((condition: { slug: string; name: string }) => (
-                    <DropdownMenuItem key={condition.slug} asChild>
-                      <Link
-                        href={`/conditions/${condition.slug}`}
-                        className="cursor-pointer text-sm"
-                      >
-                        {condition.name}
-                      </Link>
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
+                  <ChevronDown className="h-3 w-3" />
+                </button>
+              </div>
 
               <Link
                 href="/pricelist"
@@ -187,12 +288,36 @@ export function GaldermaHeader() {
               >
                 {t('international', { defaultValue: 'International Clients' })}
               </Link>
+
+              {activeMegaMenu === 'treatments' ? (
+                <MegaMenuPanel
+                  eyebrow="Treatments"
+                  title="Aesthetic treatments"
+                  overviewHref="/treatments"
+                  overviewLabel="Treatments overview"
+                  description="A wide treatment portfolio with a Galderma-style editorial layout: clear categories, clinical framing, and direct pathways into consultation."
+                  image="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=1000&q=80"
+                  items={treatmentMegaMenuItems}
+                />
+              ) : null}
+
+              {activeMegaMenu === 'conditions' ? (
+                <MegaMenuPanel
+                  eyebrow="Skin concerns"
+                  title="Skin conditions"
+                  overviewHref="/conditions"
+                  overviewLabel="Skin concerns overview"
+                  description="Explore the main conditions treated at the clinic, then move directly into the most relevant aesthetic pathway."
+                  image="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1000&q=80"
+                  items={skinConditionMegaMenuItems}
+                />
+              ) : null}
             </nav>
 
             {/* Right: Book Button */}
             <Link
               href="/book"
-              className="w-24 px-4 py-2 bg-[#b5453a] text-white text-xs uppercase tracking-[0.15em] text-center hover:bg-[#8e3229] transition-colors"
+              className="w-24 rounded-md border border-[#d8cbbb] bg-[#f3ece3] px-4 py-2 text-[#241f1b] text-xs uppercase tracking-[0.15em] text-center transition-colors hover:bg-[#e7ddd1]"
             >
               {t('book', { defaultValue: 'Book' })}
             </Link>
@@ -355,7 +480,7 @@ export function GaldermaHeader() {
                   <Link
                     href="/book"
                     onClick={() => setIsMenuOpen(false)}
-                    className="mt-12 block w-full py-5 bg-stone-900 text-stone-50 text-center text-sm uppercase tracking-widest hover:bg-stone-800 transition-colors"
+                    className="mt-12 block w-full rounded-md border border-[#d8cbbb] bg-[#f3ece3] py-5 text-center text-sm uppercase tracking-widest text-[#241f1b] transition-colors hover:bg-[#e7ddd1]"
                   >
                     {t('bookConsultation', { defaultValue: 'Book Consultation' })}
                   </Link>

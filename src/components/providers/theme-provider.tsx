@@ -12,25 +12,17 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>('light');
-  const [mounted, setMounted] = useState(false);
+  const [theme, setThemeState] = useState<Theme>(() => {
+    if (typeof window === 'undefined') return 'light';
 
-  useEffect(() => {
-    // Read theme from localStorage on mount
     const storedTheme = localStorage.getItem('theme') as Theme | null;
-    if (storedTheme) {
-      setThemeState(storedTheme);
-    } else {
-      // Check system preference
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setThemeState(prefersDark ? 'dark' : 'light');
-    }
-    setMounted(true);
-  }, []);
+    if (storedTheme) return storedTheme;
+
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return prefersDark ? 'dark' : 'light';
+  });
 
   useEffect(() => {
-    if (!mounted) return;
-
     // Sync theme to localStorage and DOM
     localStorage.setItem('theme', theme);
 
@@ -40,16 +32,11 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     } else {
       root.classList.remove('dark');
     }
-  }, [theme, mounted]);
+  }, [theme]);
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
   };
-
-  // Prevent hydration mismatch by rendering nothing until mounted
-  if (!mounted) {
-    return <>{children}</>;
-  }
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>

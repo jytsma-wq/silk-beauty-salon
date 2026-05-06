@@ -1,28 +1,7 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Metadata } from 'next';
-import dynamic from 'next/dynamic';
-import { CinematicHeroSection } from '@/components/sections/CinematicHeroSection';
-import { BrandManifestoSection } from '@/components/sections/BrandManifestoSection';
-import { RevealSection } from '@/components/ui/RevealSection';
-import { EditorialTreatmentsSection } from '@/components/sections/EditorialTreatmentsSection';
-import { StatisticsStrip } from '@/components/sections/StatisticsStrip';
-import { PullQuoteTestimonial } from '@/components/sections/PullQuoteTestimonial';
-import { BeforeAfterTeaser } from '@/components/sections/BeforeAfterTeaser';
-import { ConsultationCTA } from '@/components/sections/ConsultationCTA';
-import { AboutSection } from '@/components/sections/AboutSection';
-import { SectionDivider } from '@/components/ui/SectionDivider';
+import { GaldermaInspiredHome } from '@/components/sections/galderma-home/GaldermaInspiredHome';
 import { JsonLd, generateLocalBusinessSchema } from '@/components/seo/JsonLd';
-
-// Lazy load below-fold components for better performance
-const TreatmentsMarquee = dynamic(
-  () => import('@/components/sections/TreatmentsMarquee').then(mod => mod.TreatmentsMarquee),
-  { loading: () => null }
-);
-
-const ConditionsSection = dynamic(
-  () => import('@/components/sections/ConditionsSection').then(mod => mod.ConditionsSection),
-  { loading: () => null }
-);
 
 const localeMap: Record<string, string> = {
   en: 'en_US',
@@ -40,10 +19,19 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: {
       default: t('homeTitle'),
-      template: '%s | Silk Beauty Salon'
+      template: '%s | Silk Beauty Salon',
     },
     description: t('homeDescription'),
-    keywords: ['botox', 'dermal fillers', 'laser treatment', 'skin care', 'aesthetic clinic', 'Batumi', 'Georgia', 'beauty salon'],
+    keywords: [
+      'botox',
+      'dermal fillers',
+      'laser treatment',
+      'skin care',
+      'aesthetic clinic',
+      'Batumi',
+      'Georgia',
+      'beauty salon',
+    ],
     authors: [{ name: 'Silk Beauty Salon' }],
     creator: 'Silk Beauty Salon',
     publisher: 'Silk Beauty Salon',
@@ -56,12 +44,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     alternates: {
       canonical: `https://www.silkbeauty.ge/${locale}`,
       languages: {
-        'en': 'https://www.silkbeauty.ge/en',
-        'ka': 'https://www.silkbeauty.ge/ka',
-        'ru': 'https://www.silkbeauty.ge/ru',
-        'tr': 'https://www.silkbeauty.ge/tr',
-        'ar': 'https://www.silkbeauty.ge/ar',
-        'he': 'https://www.silkbeauty.ge/he',
+        en: 'https://www.silkbeauty.ge/en',
+        ka: 'https://www.silkbeauty.ge/ka',
+        ru: 'https://www.silkbeauty.ge/ru',
+        tr: 'https://www.silkbeauty.ge/tr',
+        ar: 'https://www.silkbeauty.ge/ar',
+        he: 'https://www.silkbeauty.ge/he',
       },
     },
     openGraph: {
@@ -108,27 +96,11 @@ export default async function HomePage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  
+
   return (
     <>
       <JsonLd schema={generateLocalBusinessSchema(locale)} />
-      <CinematicHeroSection />          {/* Video + kinetic text */}
-      <SectionDivider variant="light" symbol="✦" />
-      <RevealSection><BrandManifestoSection /></RevealSection>
-      <SectionDivider variant="light" symbol="—" />
-      <RevealSection direction="left"><EditorialTreatmentsSection /></RevealSection>
-      <SectionDivider variant="light" symbol="◆" />
-      <TreatmentsMarquee />
-      <SectionDivider variant="light" symbol="×" />
-      <RevealSection direction="right"><ConditionsSection /></RevealSection>
-      <SectionDivider variant="light" symbol="✦" />
-      <RevealSection direction="left"><AboutSection /></RevealSection>
-      <StatisticsStrip />              {/* Already has internal motion */}
-      <PullQuoteTestimonial />         {/* Already has internal motion */}
-      <SectionDivider variant="light" symbol="—" />
-      <RevealSection><BeforeAfterTeaser /></RevealSection>
-      <SectionDivider variant="light" symbol="◆" />
-      <RevealSection><ConsultationCTA /></RevealSection>
+      <GaldermaInspiredHome />
     </>
   );
 }

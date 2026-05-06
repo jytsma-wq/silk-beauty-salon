@@ -8,7 +8,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: "Inter", system-ui, sans-serif;
-  --font-serif: "DM Serif Display", Georgia, serif;
+  --font-serif: "Inter", system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -48,58 +48,50 @@
 :root {
   --radius: 0;
 
-  /* Primary Colors - Deep Navy/Black */
-  --primary: #1c1c1c;
+  /* Clinical editorial palette */
+  --primary: #241f1b;
   --primary-foreground: #ffffff;
 
-  /* Secondary - Light Gray (Deep Cream #F5EFE6) */
-  --secondary: #f7f4f0;
-  --secondary-foreground: #1a1a2e;
+  --secondary: #f7f2eb;
+  --secondary-foreground: #241f1b;
 
-  /* Accent - Elegant Gold */
-  --accent: #b5453a;
-  --accent-foreground: #1a1a2e;
+  --accent: #8d6f58;
+  --accent-foreground: #ffffff;
 
-  /* Background & Foreground */
   --background: #ffffff;
-  --foreground: #1a1a2e;
+  --foreground: #241f1b;
 
-  /* Muted */
-  --muted: #f7f4f0;
-  --muted-foreground: #6b6b6b;
+  --muted: #f7f2eb;
+  --muted-foreground: #6d6259;
 
-  /* Card */
   --card: #ffffff;
-  --card-foreground: #1a1a2e;
+  --card-foreground: #241f1b;
 
-  /* Popover */
   --popover: #ffffff;
-  --popover-foreground: #1a1a2e;
+  --popover-foreground: #241f1b;
 
-  /* Border & Input */
-  --border: #e0e0e0;
-  --input: #e0e0e0;
-  --ring: #b5453a;
+  --border: #e5ded5;
+  --input: #e5ded5;
+  --ring: #8d6f58;
 
   /* Destructive */
   --destructive: #ef4444;
 
-  /* Chart colors */
-  --chart-1: #b5453a;
-  --chart-2: #1a1a2e;
-  --chart-3: #666666;
-  --chart-4: #f5f5f5;
-  --chart-5: #e0e0e0;
+  --chart-1: #8d6f58;
+  --chart-2: #241f1b;
+  --chart-3: #6d6259;
+  --chart-4: #f7f2eb;
+  --chart-5: #e5ded5;
 
   /* Sidebar */
   --sidebar: #ffffff;
-  --sidebar-foreground: #1a1a2e;
-  --sidebar-primary: #1a1a2e;
+  --sidebar-foreground: #241f1b;
+  --sidebar-primary: #241f1b;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f5f5f5;
-  --sidebar-accent-foreground: #1a1a2e;
-  --sidebar-border: #e0e0e0;
-  --sidebar-ring: #b5453a;
+  --sidebar-accent: #f7f2eb;
+  --sidebar-accent-foreground: #241f1b;
+  --sidebar-border: #e5ded5;
+  --sidebar-ring: #8d6f58;
 }
 
 /* Dark Mode - Deep Charcoal #1A1714 */
@@ -166,11 +158,16 @@
     @apply bg-background text-foreground font-sans antialiased;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-serif), serif;
-    letter-spacing: -0.02em;
+    font-family: var(--font-sans), sans-serif;
+    letter-spacing: 0;
+    font-weight: 300;
+    line-height: 1.05;
   }
-  h1 {
-    letter-spacing: -0.03em;
+  p,
+  li,
+  dd,
+  dt {
+    letter-spacing: 0;
   }
 }
 
@@ -279,30 +276,35 @@ body {
 
 /* Button styles */
 .btn-gold {
-  background: #b5453a;
-  color: #ffffff;
+  background: #f7f2eb;
+  color: #241f1b;
+  border: 1px solid #d9cec1;
   padding: 12px 28px;
   font-weight: 500;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
   transition: all 0.3s ease;
 }
 
 .btn-gold:hover {
-  background: #8e3229;
+  background: #241f1b;
   color: #ffffff;
 }
 
 .btn-outline {
-  border: 1px solid #b5453a;
-  color: #b5453a;
+  border: 1px solid #d9cec1;
+  color: #241f1b;
   padding: 12px 28px;
   font-weight: 500;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
   transition: all 0.3s ease;
 }
 
 .btn-outline:hover {
-  background: #b5453a;
+  background: #241f1b;
   color: #ffffff;
 }
 
@@ -409,7 +411,7 @@ body {
 
 /* Navigation link active state */
 .nav-link-active {
-  color: #b5453a;
+  color: #8d6f58;
 }
 
 /* Hero overlay - darker, more cinematic */
@@ -419,17 +421,17 @@ body {
 
 /* Gold border accent */
 .border-gold {
-  border-color: #b5453a;
+  border-color: #8d6f58;
 }
 
 /* Background gold */
 .bg-gold {
-  background-color: #b5453a;
+  background-color: #8d6f58;
 }
 
 /* Text gold - darkened for WCAG AA contrast (4.5:1 on white) */
 .text-gold {
-  color: #b5453a;
+  color: #8d6f58;
 }
 
 /* Animate fadeIn */

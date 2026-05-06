@@ -81,34 +81,39 @@ export default async function BookPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {/* Hero Section */}
-      <section className="relative py-20 bg-[#1c1c1c]">
-        <div className="absolute inset-0 opacity-20">
-          <Image
-            src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=1920&q=80"
-            alt="Salon interior"
-            fill
-            className="object-cover"
-          />
-        </div>
-        <div className="container-custom relative z-10">
+      <section className="bg-[#f7f2eb] pt-[170px] md:pt-[188px]">
+        <div className="container-custom py-16 md:py-20">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-sm mb-8 text-gray-300">
-            <Link href="/" className="hover:text-[#b5453a]">
+          <nav className="mb-8 flex items-center gap-2 text-[0.68rem] uppercase tracking-[0.18em] text-stone-500">
+            <Link href="/" className="hover:text-[#241f1b]">
               {tCommon('home')}
             </Link>
-            <ChevronRight className="w-4 h-4" />
-            <span className="text-[#b5453a]">{t('title')}</span>
+            <ChevronRight className="h-3.5 w-3.5" />
+            <span className="text-[#241f1b]">{t('title')}</span>
           </nav>
 
-          <div className="max-w-3xl">
-            <h1 
-              className="text-4xl md:text-5xl font-serif font-semibold text-white mb-6"
-                          >
-              {t('title')}
-            </h1>
-            <p className="text-lg text-gray-300 leading-relaxed">
-              {t('subtitle')}
-            </p>
+          <div className="grid items-center gap-12 lg:grid-cols-[48%_52%]">
+            <div className="max-w-3xl">
+              <p className="mb-5 text-[0.68rem] font-medium uppercase tracking-[0.28em] text-[#8d6f58]">
+                Consultation booking
+              </p>
+              <h1 
+                className="font-sans text-[clamp(2.9rem,5.6vw,5.8rem)] font-light leading-[1.02] text-[#241f1b] mb-6"
+                            >
+                {t('title')}
+              </h1>
+              <p className="text-lg text-stone-700 leading-8">
+                {t('subtitle')}
+              </p>
+            </div>
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[8px]">
+              <Image
+                src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=1920&q=80"
+                alt="Salon interior"
+                fill
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -122,15 +127,13 @@ export default async function BookPage({
               <div className="border-t border-[#e8e4df] pt-8">
                 <div className="flex items-center gap-3 mb-6">
                   <Calendar className="w-6 h-6 text-[#b5453a]" />
-                  <h2 
-                    className="text-2xl font-serif font-semibold text-primary"
-                                      >
+                  <h2 className="font-sans text-2xl font-light text-[#241f1b] md:text-3xl">
                     {t('selectDateTime')}
                   </h2>
                 </div>
 
-                {/* Booking Form */}
-                <div id="booking-embed" className="bg-[#f7f4f0] p-8">
+                {/* Local Booking Calendar + Form */}
+                <div className="rounded-md bg-[#f7f4f0] p-8">
                   <BookingForm consultationTypes={consultationTypes} />
                 </div>
               </div>
@@ -140,9 +143,7 @@ export default async function BookPage({
             <div className="lg:col-span-1 space-y-6">
               {/* Consultation Types */}
               <div className="border-t border-[#e8e4df] py-8">
-                <h3 
-                  className="font-serif text-lg font-semibold text-primary mb-4"
-                                  >
+                <h3 className="mb-4 font-sans text-lg font-light text-[#241f1b]">
                   {t('consultationTypes')}
                 </h3>
                 <ConsultationTypeButtons types={consultationTypes} />
@@ -150,9 +151,7 @@ export default async function BookPage({
 
               {/* What to Expect */}
               <div className="border-t border-[#e8e4df] py-8">
-                <h3 
-                  className="font-serif text-lg font-semibold mb-4"
-                                  >
+                <h3 className="mb-4 font-sans text-lg font-light text-[#241f1b]">
                   {t('whatToExpect.title')}
                 </h3>
                 <ul className="space-y-3 text-sm">
@@ -177,9 +176,7 @@ export default async function BookPage({
 
               {/* Contact Info */}
               <div className="border-t border-[#e8e4df] py-8">
-                <h3 
-                  className="font-serif text-lg font-semibold text-primary mb-4"
-                              >
+                <h3 className="mb-4 font-sans text-lg font-light text-[#241f1b]">
                   {t('needHelp')}
                 </h3>
                 <div className="space-y-3 text-sm">
@@ -220,9 +217,7 @@ export default async function BookPage({
       {/* FAQ Section */}
       <section className="section-spacing bg-[#f7f4f0]">
         <div className="container-custom">
-          <h2 
-            className="text-2xl font-serif font-semibold text-primary text-center mb-8"
-                      >
+          <h2 className="mb-8 text-center font-sans text-2xl font-light text-[#241f1b] md:text-3xl">
             {t('faq.title')}
           </h2>
           <div className="max-w-2xl mx-auto space-y-4">

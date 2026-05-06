@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { ChevronRight, Award, Heart, Shield, Sparkles } from 'lucide-react';
-import { siteConfig } from '@/data/site-config';
 import { Button } from '@/components/ui/button';
+import { siteConfig } from '@/data/site-config';
 import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -28,85 +28,59 @@ export default async function AboutPage({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'aboutPage' });
   const tCommon = await getTranslations({ locale, namespace: 'common' });
+
   const values = [
-    {
-      icon: Heart,
-      titleKey: 'patientCare',
-    },
-    {
-      icon: Award,
-      titleKey: 'excellence',
-    },
-    {
-      icon: Shield,
-      titleKey: 'safety',
-    },
-    {
-      icon: Sparkles,
-      titleKey: 'naturalResults',
-    },
+    { icon: Heart, titleKey: 'patientCare' },
+    { icon: Award, titleKey: 'excellence' },
+    { icon: Shield, titleKey: 'safety' },
+    { icon: Sparkles, titleKey: 'naturalResults' },
   ];
 
   return (
     <>
-      {/* Full Screen Hero Image */}
-      <section className="relative w-full h-[60vh] md:h-[80vh]">
-        <Image
-          src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=80"
-          alt="Silk Beauty Salon Interior"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-[#1c1c1c]/40" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="container-custom text-center">
-            <h1 
-              className="text-4xl md:text-6xl font-serif font-semibold text-white mb-4"
-                          >
-              {t('title')}
-            </h1>
-            <p className="text-gray-200 max-w-2xl mx-auto text-lg">
-              {t('subtitle')}
-            </p>
+      <section className="bg-[#f7f2eb] pt-[170px] md:pt-[188px]">
+        <div className="container-custom py-16 md:py-20">
+          <nav className="mb-8 flex items-center gap-2 text-[0.68rem] uppercase tracking-[0.18em] text-stone-500">
+            <Link href="/" className="hover:text-[#241f1b]">
+              {tCommon('home')}
+            </Link>
+            <ChevronRight className="h-3.5 w-3.5" />
+            <span className="text-[#241f1b]">{t('title')}</span>
+          </nav>
+
+          <div className="grid items-center gap-12 lg:grid-cols-[48%_52%]">
+            <div className="max-w-3xl">
+              <p className="mb-5 text-[0.68rem] font-medium uppercase tracking-[0.28em] text-[#8d6f58]">
+                About the clinic
+              </p>
+              <h1 className="mb-6 font-sans text-[clamp(2.9rem,5.6vw,5.8rem)] font-light leading-[1.02] text-[#241f1b]">
+                {t('title')}
+              </h1>
+              <p className="text-lg leading-8 text-stone-700">{t('subtitle')}</p>
+            </div>
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[8px]">
+              <Image
+                src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=80"
+                alt="Silk Beauty Salon Interior"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Breadcrumb */}
-      <div className="bg-secondary py-4">
-        <div className="container-custom">
-          <nav className="flex items-center gap-2 text-sm">
-            <Link href="/" className="text-muted-foreground hover:text-gold">
-              {tCommon('home')}
-            </Link>
-            <ChevronRight className="w-4 h-4 text-muted-foreground" />
-            <span className="text-primary font-medium">{t('title')}</span>
-          </nav>
-        </div>
-      </div>
-
-      {/* Our Story */}
       <section className="section-spacing">
         <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
-              <h2 
-                className="text-3xl font-serif font-semibold text-primary mb-6"
-                              >
-                {t('ourStory')}
-              </h2>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                {t('storyP1')}
-              </p>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                {t('storyP2')}
-              </p>
-              <p className="text-gray-300 text-sm">
-                {t('storyP3')}
-              </p>
+              <h2 className="mb-6 font-sans text-3xl font-light text-[#241f1b] md:text-4xl">{t('ourStory')}</h2>
+              <p className="mb-4 leading-relaxed text-muted-foreground">{t('storyP1')}</p>
+              <p className="mb-4 leading-relaxed text-muted-foreground">{t('storyP2')}</p>
+              <p className="text-sm text-stone-600">{t('storyP3')}</p>
             </div>
-            <div className="relative aspect-4/5 overflow-hidden">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[8px]">
               <Image
                 src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80"
                 alt="Silk Beauty Salon Clinic"
@@ -119,21 +93,16 @@ export default async function AboutPage({
         </div>
       </section>
 
-      {/* Our Values */}
       <section className="section-spacing bg-secondary">
         <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 
-              className="text-3xl font-serif font-semibold text-primary mb-4"
-                          >
-              {t('ourValues')}
-            </h2>
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 font-sans text-3xl font-light text-[#241f1b] md:text-4xl">{t('ourValues')}</h2>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((value) => (
-              <div key={value.titleKey} className="p-8 text-center border-t border-[#e8e4df]">
-                <value.icon className="w-7 h-7 text-gold mx-auto mb-4" />
-                <h3 className="font-serif font-semibold text-primary mb-2">{t(`values.${value.titleKey}`)}</h3>
+              <div key={value.titleKey} className="border-t border-[#e8e4df] p-8 text-center">
+                <value.icon className="mx-auto mb-4 h-7 w-7 text-[#8d6f58]" />
+                <h3 className="mb-2 font-sans text-xl font-light text-[#241f1b]">{t(`values.${value.titleKey}`)}</h3>
                 <p className="text-sm text-muted-foreground">{t(`values.${value.titleKey}Desc`)}</p>
               </div>
             ))}
@@ -141,23 +110,16 @@ export default async function AboutPage({
         </div>
       </section>
 
-      {/* Meet the Team */}
       <section className="section-spacing" id="team">
         <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 
-              className="text-3xl font-serif font-semibold text-primary mb-4"
-                          >
-              {t('meetTeam')}
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              {t('teamSubtitle')}
-            </p>
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 font-sans text-3xl font-light text-[#241f1b] md:text-4xl">{t('meetTeam')}</h2>
+            <p className="mx-auto max-w-2xl text-muted-foreground">{t('teamSubtitle')}</p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 max-w-7xl mx-auto">
+          <div className="mx-auto grid max-w-7xl gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {siteConfig.team.map((member) => (
               <div key={member.name} className="text-center">
-                <div className="relative aspect-4/5 overflow-hidden mb-4 max-w-xs mx-auto">
+                <div className="relative mx-auto mb-4 aspect-[4/5] max-w-xs overflow-hidden rounded-[8px]">
                   <Image
                     src={member.image}
                     alt={member.name}
@@ -166,13 +128,13 @@ export default async function AboutPage({
                     sizes="(max-width: 640px) 50vw, 400px"
                   />
                 </div>
-                <h3 className="font-serif font-semibold text-primary text-lg">{member.name}</h3>
-                <p className="text-gold text-sm mb-2">{member.role}</p>
-                <p className="text-sm text-muted-foreground max-w-sm mx-auto">{member.bio}</p>
+                <h3 className="text-lg font-light text-[#241f1b]">{member.name}</h3>
+                <p className="mb-2 text-[0.68rem] font-medium uppercase tracking-[0.18em] text-[#8d6f58]">
+                  {member.role}
+                </p>
+                <p className="mx-auto max-w-sm text-sm text-muted-foreground">{member.bio}</p>
                 {member.languages && (
-                  <p className="text-xs text-muted-foreground mt-2">
-                    Languages: {member.languages.join(', ')}
-                  </p>
+                  <p className="mt-2 text-xs text-muted-foreground">Languages: {member.languages.join(', ')}</p>
                 )}
               </div>
             ))}
@@ -180,44 +142,24 @@ export default async function AboutPage({
         </div>
       </section>
 
-      {/* Awards */}
       <section className="section-spacing bg-[#f7f4f0]">
         <div className="container-custom text-center">
-          <h2 className="text-3xl font-serif font-semibold text-[#1c1c1c] mb-8">
-            {t('awards.title')}
-          </h2>
-          <div className="flex flex-wrap justify-center gap-8 mb-8">
-            <span className="text-[#1c1c1c] text-sm tracking-wider uppercase">
-              {t('awards.awardWinning')}
-            </span>
-            <span className="text-[#1c1c1c] text-sm tracking-wider uppercase">
-              {t('awards.premierSalon')}
-            </span>
-            <span className="text-[#1c1c1c] text-sm tracking-wider uppercase">
-              {t('awards.featuredIn')}
-            </span>
+          <h2 className="mb-8 font-sans text-3xl font-light text-[#241f1b] md:text-4xl">{t('awards.title')}</h2>
+          <div className="mb-8 flex flex-wrap justify-center gap-8">
+            <span className="text-sm uppercase tracking-wider text-[#1c1c1c]">{t('awards.awardWinning')}</span>
+            <span className="text-sm uppercase tracking-wider text-[#1c1c1c]">{t('awards.premierSalon')}</span>
+            <span className="text-sm uppercase tracking-wider text-[#1c1c1c]">{t('awards.featuredIn')}</span>
           </div>
-          <p className="text-[#9a9a9a] text-sm">
-            {t('featuredIn')}
-          </p>
+          <p className="text-sm text-[#9a9a9a]">{t('featuredIn')}</p>
         </div>
       </section>
 
-      {/* CTA */}
       <section className="section-spacing">
         <div className="container-custom text-center">
-          <h2 
-            className="text-3xl font-serif font-semibold text-primary mb-4"
-                      >
-            {t('ctaTitle')}
-          </h2>
-          <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-            {t('ctaSubtitle')}
-          </p>
+          <h2 className="mb-4 font-sans text-3xl font-light text-[#241f1b] md:text-4xl">{t('ctaTitle')}</h2>
+          <p className="mx-auto mb-8 max-w-xl text-muted-foreground">{t('ctaSubtitle')}</p>
           <Button asChild className="btn-gold">
-            <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
-              {t('ctaButton')}
-            </a>
+            <Link href="/book">{t('ctaButton')}</Link>
           </Button>
         </div>
       </section>

@@ -11,146 +11,131 @@ export function GaldermaFooter() {
   const tNav = useTranslations('nav');
 
   return (
-    <footer
-      role="contentinfo"
-      className="border-t border-stone-200 bg-white"
-    >
-      {/* ── Magazine Colophon Layout ── */}
-      <div className="max-w-7xl mx-auto px-8 py-24 md:py-32">
-        
-        {/* Top Section - Newsletter / Stay Connected */}
-        <div className="mb-20 md:mb-32 max-w-3xl">
-          {/* Chapter marker */}
-          <div className="flex items-center gap-4 mb-8">
-            <div className="w-12 h-px bg-stone-300" />
-            <span className="text-xs tracking-[0.3em] uppercase text-stone-400">
+    <footer role="contentinfo" className="border-t border-stone-200 bg-white">
+      <div className="mx-auto max-w-7xl px-8 py-24 md:py-32">
+        <div className="mb-20 max-w-3xl md:mb-32">
+          <div className="mb-8 flex items-center gap-4">
+            <div className="h-px w-12 bg-stone-300" />
+            <span className="text-xs uppercase tracking-[0.3em] text-stone-400">
               {t('stayConnected', { defaultValue: 'Stay Connected' })}
             </span>
           </div>
 
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-stone-900 mb-6">
+          <h2 className="mb-6 font-sans text-4xl font-light text-stone-900 md:text-5xl lg:text-6xl">
             {t('newsletterTitle', { defaultValue: 'Join Our World' })}
           </h2>
-          
-          <p className="text-lg text-stone-600 mb-10 max-w-xl leading-relaxed">
-            {t('socialDescription', { defaultValue: 'Receive updates on new treatments, exclusive offers, and beauty insights delivered to your inbox.' })}
+
+          <p className="mb-10 max-w-xl text-lg leading-relaxed text-stone-600">
+            {t('socialDescription', {
+              defaultValue:
+                'Receive updates on new treatments, exclusive offers, and beauty insights delivered to your inbox.',
+            })}
           </p>
-          
-          {/* Newsletter form - elegant underline style */}
-          <form className="flex flex-col sm:flex-row gap-4 max-w-lg" onSubmit={(e) => e.preventDefault()}>
-            <input 
+
+          <form className="flex max-w-lg flex-col gap-4 sm:flex-row" onSubmit={(e) => e.preventDefault()}>
+            <input
               type="email"
               placeholder={t('emailPlaceholder', { defaultValue: 'Your email address' })}
-              className="flex-1 px-0 py-4 border-b-2 border-stone-300 focus:border-[#b5453a] bg-transparent text-base outline-none transition-colors placeholder:text-stone-400"
+              className="flex-1 border-b-2 border-stone-300 bg-transparent px-0 py-4 text-base outline-none transition-colors placeholder:text-stone-400 focus:border-[#8d6f58]"
             />
-            <button 
+            <button
               type="submit"
-              className="px-8 py-4 bg-stone-900 text-stone-50 text-sm uppercase tracking-wide hover:bg-[#b5453a] transition-colors"
+              className="bg-stone-900 px-8 py-4 text-sm uppercase tracking-wide text-stone-50 transition-colors hover:bg-[#8d6f58]"
             >
               {t('subscribe', { defaultValue: 'Subscribe' })}
             </button>
           </form>
         </div>
 
-        {/* Main Footer Grid - Magazine Credits Style */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 md:gap-12 mb-16">
-          
-          {/* Column 1 - About */}
+        <div className="mb-16 grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-12 lg:grid-cols-6">
           <div className="col-span-2">
-            <h3 className="text-xs uppercase tracking-[0.3em] text-stone-400 mb-6">
+            <h3 className="mb-6 text-xs uppercase tracking-[0.3em] text-stone-400">
               {t('about', { defaultValue: 'About' })}
             </h3>
-            <p className="text-sm leading-relaxed text-stone-600 max-w-xs">
-              {siteConfig.description}
-            </p>
-            
-            {/* Social - minimal */}
+            <p className="max-w-xs text-sm leading-relaxed text-stone-600">{siteConfig.description}</p>
+
             <div className="mt-8 flex gap-6">
-              <a 
+              <a
                 href={siteConfig.social?.instagram ?? 'https://instagram.com/silkbeauty'}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-stone-400 hover:text-[#b5453a] transition-colors"
+                className="text-stone-400 transition-colors hover:text-[#8d6f58]"
                 aria-label="Instagram"
               >
-                <Instagram className="w-5 h-5" strokeWidth={1.5} />
+                <Instagram className="h-5 w-5" strokeWidth={1.5} />
               </a>
-              <a 
+              <a
                 href={siteConfig.social?.facebook ?? 'https://facebook.com/silkbeauty'}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-stone-400 hover:text-[#b5453a] transition-colors"
+                className="text-stone-400 transition-colors hover:text-[#8d6f58]"
                 aria-label="Facebook"
               >
-                <Facebook className="w-5 h-5" strokeWidth={1.5} />
+                <Facebook className="h-5 w-5" strokeWidth={1.5} />
               </a>
             </div>
           </div>
-          
-          {/* Column 2 - Treatments */}
+
           <div>
-            <h3 className="text-xs uppercase tracking-[0.3em] text-stone-400 mb-6">
+            <h3 className="mb-6 text-xs uppercase tracking-[0.3em] text-stone-400">
               {t('treatments', { defaultValue: 'Treatments' })}
             </h3>
             <nav className="space-y-3">
-              <Link href="/treatments" className="block text-sm text-stone-600 hover:text-stone-900 transition-colors">
+              <Link href="/treatments" className="block text-sm text-stone-600 transition-colors hover:text-stone-900">
                 {tNav('treatments')}
               </Link>
-              <Link href="/conditions" className="block text-sm text-stone-600 hover:text-stone-900 transition-colors">
+              <Link href="/conditions" className="block text-sm text-stone-600 transition-colors hover:text-stone-900">
                 {tNav('conditions')}
               </Link>
-              <Link href="/pricelist" className="block text-sm text-stone-600 hover:text-stone-900 transition-colors">
+              <Link href="/pricelist" className="block text-sm text-stone-600 transition-colors hover:text-stone-900">
                 {tNav('pricelist')}
               </Link>
             </nav>
           </div>
-          
-          {/* Column 3 - Information */}
+
           <div>
-            <h3 className="text-xs uppercase tracking-[0.3em] text-stone-400 mb-6">
+            <h3 className="mb-6 text-xs uppercase tracking-[0.3em] text-stone-400">
               {t('information', { defaultValue: 'Information' })}
             </h3>
             <nav className="space-y-3">
-              <Link href="/about" className="block text-sm text-stone-600 hover:text-stone-900 transition-colors">
+              <Link href="/about" className="block text-sm text-stone-600 transition-colors hover:text-stone-900">
                 {tNav('about')}
               </Link>
-              <Link href="/faq" className="block text-sm text-stone-600 hover:text-stone-900 transition-colors">
+              <Link href="/faq" className="block text-sm text-stone-600 transition-colors hover:text-stone-900">
                 {tNav('faq')}
               </Link>
-              <Link href="/blog" className="block text-sm text-stone-600 hover:text-stone-900 transition-colors">
+              <Link href="/blog" className="block text-sm text-stone-600 transition-colors hover:text-stone-900">
                 {tNav('blog')}
               </Link>
             </nav>
           </div>
-          
-          {/* Column 4 - Visit Us */}
+
           <div className="col-span-2">
-            <h3 className="text-xs uppercase tracking-[0.3em] text-stone-400 mb-6">
+            <h3 className="mb-6 text-xs uppercase tracking-[0.3em] text-stone-400">
               {t('visitUs', { defaultValue: 'Visit Us' })}
             </h3>
-            <address className="not-italic text-sm text-stone-600 leading-relaxed">
+            <address className="not-italic text-sm leading-relaxed text-stone-600">
               <p className="mb-3">
                 {siteConfig.contact.address}
                 <br />
                 {siteConfig.contact.city}, {siteConfig.contact.country} {siteConfig.contact.postcode}
               </p>
               <p className="mb-3">
-                <a href={`tel:${siteConfig.contact.phone}`} className="hover:text-[#b5453a] transition-colors">
+                <a href={`tel:${siteConfig.contact.phone}`} className="transition-colors hover:text-[#8d6f58]">
                   {siteConfig.contact.phone}
                 </a>
               </p>
               <p>
-                <a href={`mailto:${siteConfig.contact.email}`} className="hover:text-[#b5453a] transition-colors">
+                <a href={`mailto:${siteConfig.contact.email}`} className="transition-colors hover:text-[#8d6f58]">
                   {siteConfig.contact.email}
                 </a>
               </p>
             </address>
-            
-            {/* Hours */}
-            <div className="mt-6 pt-6 border-t border-stone-100">
-              <dl className="text-sm space-y-1">
+
+            <div className="mt-6 border-t border-stone-100 pt-6">
+              <dl className="space-y-1 text-sm">
                 <div className="flex justify-between">
-                  <dt className="text-stone-500">Mon – Fri</dt>
+                  <dt className="text-stone-500">Mon - Fri</dt>
                   <dd className="text-stone-900">{siteConfig.businessHours.monday}</dd>
                 </div>
                 <div className="flex justify-between">
@@ -165,33 +150,34 @@ export function GaldermaFooter() {
             </div>
           </div>
         </div>
-        
-        {/* Bottom Credits - Editorial Style */}
-        <div className="pt-8 border-t border-stone-200">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-stone-500">
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-              <span className="uppercase tracking-wider">
-                © {currentYear} {siteConfig.name}
-              </span>
-              <Link href="/privacy-policy" className="hover:text-stone-900 transition-colors uppercase tracking-wider">
-                {t('privacy')}
+
+        <div className="border-t border-stone-200 pt-8">
+          <div className="flex flex-col gap-6 text-[0.68rem] font-medium uppercase tracking-[0.28em] text-stone-500 lg:flex-row lg:items-center lg:justify-between">
+            <span className="text-[#241f1b]">&copy; {currentYear} {siteConfig.name}</span>
+            <div className="flex flex-wrap gap-x-8 gap-y-3">
+              <Link href="/book" className="transition-colors hover:text-[#241f1b]">
+                Find a Specialist
               </Link>
-              <Link href="/terms-conditions" className="hover:text-stone-900 transition-colors uppercase tracking-wider">
-                {t('terms')}
+              <Link href="/terms-conditions" className="transition-colors hover:text-[#241f1b]">
+                Terms of Use
               </Link>
-            </div>
-            
-            <div className="flex items-center gap-4">
-              <span className="uppercase tracking-wider text-stone-400">
-                {t('designedIn', { defaultValue: 'Designed in Batumi' })}
-              </span>
+              <Link href="/privacy-policy" className="transition-colors hover:text-[#241f1b]">
+                Privacy
+              </Link>
+              <Link href="/terms-conditions" className="transition-colors hover:text-[#241f1b]">
+                Cookie Notice
+              </Link>
             </div>
           </div>
         </div>
       </div>
 
-      {/* ── Decorative hairline separator ── */}
-      <div className="h-1 bg-linear-to-r from-transparent via-stone-200 to-transparent" aria-hidden="true" />
+      <img
+        aria-hidden="true"
+        src="/footer-pattern-preview.svg"
+        alt=""
+        className="block w-full border-t border-stone-200"
+      />
     </footer>
   );
 }

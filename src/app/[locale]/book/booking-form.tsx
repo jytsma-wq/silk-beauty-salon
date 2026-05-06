@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Calendar, Clock, User, Mail, Phone, MessageSquare, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Calendar as DatePicker } from '@/components/ui/calendar';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
@@ -27,6 +28,7 @@ function getCsrfToken(): string | null {
 export function BookingForm({ consultationTypes }: BookingFormProps) {
   const t = useTranslations('bookingPage');
   const tCommon = useTranslations('common');
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -41,6 +43,31 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const timeSlots = [
+    { value: '10:00', label: '10:00' },
+    { value: '11:00', label: '11:00' },
+    { value: '12:00', label: '12:00' },
+    { value: '14:00', label: '14:00' },
+    { value: '15:00', label: '15:00' },
+    { value: '16:00', label: '16:00' },
+    { value: '17:00', label: '17:00' },
+    { value: '18:00', label: '18:00' },
+  ];
+
+  const formatDateValue = (date: Date) => {
+    const year = date.getFullYear();
+    const month = `${date.getMonth() + 1}`.padStart(2, '0');
+    const day = `${date.getDate()}`.padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+  const formatDateLabel = (date: Date) =>
+    new Intl.DateTimeFormat(document.documentElement.lang || 'en', {
+      weekday: 'short',
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    }).format(date);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -76,6 +103,7 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
         preferredTime: '',
         message: '',
       });
+      setSelectedDate(undefined);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
@@ -85,6 +113,11 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
 
   const handleChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleDateSelect = (date: Date | undefined) => {
+    setSelectedDate(date);
+    handleChange('preferredDate', date ? formatDateValue(date) : '');
   };
 
   if (isSuccess) {
@@ -110,7 +143,7 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form id="booking-embed" onSubmit={handleSubmit} className="space-y-8">
       {error && (
         <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-sm">
           {error}
@@ -193,37 +226,69 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
       </div>
 
       {/* Preferred Date & Time */}
-      <div className="grid md:grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <Label htmlFor="preferredDate" className="flex items-center gap-2">
-            <Calendar className="w-4 h-4 text-[#b5453a]" />
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,360px)_1fr]">
+        <div className="space-y-3">
+          <Label className="flex items-center gap-2">
+            <Calendar className="w-4 h-4 text-[#8d6f58]" />
             {t('preferredDate', { defaultValue: 'Preferred Date' })}
           </Label>
-          <Input
-            id="preferredDate"
-            type="date"
-            value={formData.preferredDate}
-            onChange={(e) => handleChange('preferredDate', e.target.value)}
-            className="rounded-none border-border"
-            min={new Date().toISOString().split('T')[0]}
-          />
+          <div className="rounded-md border border-[#e8e4df] bg-white p-3">
+            <DatePicker
+              mode="single"
+              selected={selectedDate}
+              onSelect={handleDateSelect}
+              disabled={(date) => {
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                return date < today;
+              }}
+              classNames={{
+                day_selected:
+                  'bg-[#241f1b] text-white hover:bg-[#241f1b] hover:text-white focus:bg-[#241f1b] focus:text-white',
+                day_today: 'bg-[#f3ece3] text-[#241f1b]',
+              }}
+            />
+          </div>
+          <input type="hidden" name="preferredDate" value={formData.preferredDate} />
+          {selectedDate ? (
+            <p className="text-sm text-stone-600">{formatDateLabel(selectedDate)}</p>
+          ) : (
+            <p className="text-sm text-stone-500">
+              {t('selectDateTime', { defaultValue: 'Select Date & Time' })}
+            </p>
+          )}
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="preferredTime" className="flex items-center gap-2">
-            <Clock className="w-4 h-4 text-[#b5453a]" />
+        <div className="space-y-3">
+          <Label className="flex items-center gap-2">
+            <Clock className="w-4 h-4 text-[#8d6f58]" />
             {t('preferredTime', { defaultValue: 'Preferred Time' })}
           </Label>
-          <select
-            value={formData.preferredTime}
-            onChange={(e) => handleChange('preferredTime', e.target.value)}
-            className="w-full h-10 px-3 py-2 bg-white border border-border rounded-none text-sm focus:outline-none focus:ring-2 focus:ring-[#b5453a]/20 focus:border-[#b5453a]"
-          >
-            <option value="">{t('selectTime', { defaultValue: 'Select time' })}</option>
-            <option value="morning">{t('morning', { defaultValue: 'Morning (10:00 - 12:00)' })}</option>
-            <option value="afternoon">{t('afternoon', { defaultValue: 'Afternoon (12:00 - 16:00)' })}</option>
-            <option value="evening">{t('evening', { defaultValue: 'Evening (16:00 - 19:00)' })}</option>
-          </select>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {timeSlots.map((slot) => {
+              const isSelected = formData.preferredTime === slot.value;
+              return (
+                <button
+                  key={slot.value}
+                  type="button"
+                  onClick={() => handleChange('preferredTime', slot.value)}
+                  className={`inline-flex h-12 items-center justify-center rounded-md border text-sm transition-colors ${
+                    isSelected
+                      ? 'border-[#241f1b] bg-[#241f1b] text-white'
+                      : 'border-[#d8cbbb] bg-[#f7f2eb] text-[#241f1b] hover:bg-[#ece3d7]'
+                  }`}
+                >
+                  {slot.label}
+                </button>
+              );
+            })}
+          </div>
+          <input type="hidden" name="preferredTime" value={formData.preferredTime} />
+          <p className="text-sm text-stone-500">
+            {formData.preferredTime
+              ? `${t('preferredTime', { defaultValue: 'Preferred Time' })}: ${formData.preferredTime}`
+              : t('selectTime', { defaultValue: 'Select time' })}
+          </p>
         </div>
       </div>
 

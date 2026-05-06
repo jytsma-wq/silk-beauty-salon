@@ -9,7 +9,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'blogPage' });
   return {
     title: t('metaTitle', { defaultValue: 'Blog | Silk Beauty Salon' }),
-    description: t('metaDescription', { defaultValue: 'Read our latest articles on aesthetic treatments, skincare tips, and industry insights.' }),
+    description: t('metaDescription', {
+      defaultValue: 'Read our latest articles on aesthetic treatments, skincare tips, and industry insights.',
+    }),
   };
 }
 
@@ -30,72 +32,65 @@ export default async function BlogPage({
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="bg-[#1c1c1c] py-20">
-        <div className="container-custom text-center">
-          <h1 
-            className="text-4xl md:text-5xl font-serif font-semibold text-white mb-4"
-                      >
-            {t('title')}
-          </h1>
-          <p className="text-gray-300 max-w-2xl mx-auto">
-            {t('subtitle')}
-          </p>
+      <section className="bg-[#f7f2eb] pt-[170px] md:pt-[188px]">
+        <div className="container-custom py-16 md:py-20">
+          <nav className="mb-8 flex items-center gap-2 text-[0.68rem] uppercase tracking-[0.18em] text-stone-500">
+            <Link href="/" className="hover:text-[#241f1b]">
+              {tCommon('home')}
+            </Link>
+            <ChevronRight className="h-3.5 w-3.5" />
+            <span className="text-[#241f1b]">{t('breadcrumb')}</span>
+          </nav>
+
+          <div className="max-w-4xl">
+            <p className="mb-5 text-[0.68rem] font-medium uppercase tracking-[0.28em] text-[#8d6f58]">
+              Journal
+            </p>
+            <h1 className="mb-6 font-sans text-[clamp(2.9rem,5.4vw,5.4rem)] font-light leading-[1.02] text-[#241f1b]">
+              {t('title')}
+            </h1>
+            <p className="max-w-2xl text-lg leading-8 text-stone-700">{t('subtitle')}</p>
+          </div>
         </div>
       </section>
 
-      {/* Breadcrumb */}
-      <div className="bg-secondary py-4">
-        <div className="container-custom">
-          <nav className="flex items-center gap-2 text-sm">
-            <Link href="/" className="text-muted-foreground hover:text-gold">
-              {tCommon('home')}
-            </Link>
-            <ChevronRight className="w-4 h-4 text-muted-foreground" />
-            <span className="text-primary font-medium">{t('breadcrumb')}</span>
-          </nav>
-        </div>
-      </div>
-
-      {/* Blog Posts */}
       <section className="section-spacing">
         <div className="container-custom">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {blogPosts.map((post) => (
-              <article key={post.slug} className="group py-8 border-t border-[#e8e4df] hover:border-[#b5453a] transition-colors">
+              <article
+                key={post.slug}
+                className="group border-t border-[#e8e4df] py-8 transition-colors hover:border-[#8d6f58]"
+              >
                 <div className="mb-4">
-                  <span className="text-gold text-xs tracking-[0.15em] uppercase">
+                  <span className="text-[0.68rem] font-medium uppercase tracking-[0.18em] text-[#8d6f58]">
                     {post.category}
                   </span>
                 </div>
-                <div className="flex items-center gap-4 text-xs text-muted-foreground mb-3">
+                <div className="mb-3 flex items-center gap-4 text-xs text-muted-foreground">
                   <span className="flex items-center gap-1">
-                    <Calendar className="w-3 h-3" />
+                    <Calendar className="h-3 w-3" />
                     {new Date(post.createdAt).toLocaleDateString(locale, {
                       year: 'numeric',
                       month: 'long',
-                      day: 'numeric'
+                      day: 'numeric',
                     })}
                   </span>
                   <span className="flex items-center gap-1">
-                    <Clock className="w-3 h-3" />
+                    <Clock className="h-3 w-3" />
                     {post.readTime}
                   </span>
                 </div>
-                <h2 
-                  className="text-lg font-serif font-semibold text-primary mb-2 group-hover:text-gold transition-colors"
-                                    >
+                <h2 className="mb-2 font-sans text-xl font-light text-[#241f1b] transition-colors group-hover:text-[#8d6f58]">
                   {post.title}
                 </h2>
-                <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                  {post.excerpt}
-                </p>
+                <p className="mb-4 line-clamp-2 text-sm text-muted-foreground">{post.excerpt}</p>
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="inline-flex items-center gap-1 text-sm font-medium text-gold hover:underline"
+                  className="inline-flex items-center gap-1 text-[0.68rem] font-medium uppercase tracking-[0.18em] text-[#8d6f58] hover:text-[#241f1b]"
                 >
                   {tCommon('readMore')}
-                  <ChevronRight className="w-4 h-4" />
+                  <ChevronRight className="h-4 w-4" />
                 </Link>
               </article>
             ))}
@@ -103,21 +98,13 @@ export default async function BlogPage({
         </div>
       </section>
 
-      {/* Newsletter CTA */}
       <section className="section-spacing bg-[#f7f4f0]">
         <div className="container-custom text-center">
-          <h2 
-            className="text-2xl font-serif font-semibold text-primary mb-4"
-                      >
+          <h2 className="mb-4 font-sans text-2xl font-light text-[#241f1b] md:text-3xl">
             {t('stayUpdated')}
           </h2>
-          <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-            {t('newsletterDesc')}
-          </p>
-          <Link
-            href="/#newsletter"
-            className="inline-flex items-center gap-2 btn-gold px-6 py-3 text-primary font-medium hover:bg-gold/90 transition-colors"
-          >
+          <p className="mx-auto mb-6 max-w-xl text-muted-foreground">{t('newsletterDesc')}</p>
+          <Link href="/#newsletter" className="btn-gold inline-flex items-center gap-2 px-6 py-3">
             {t('subscribeButton')}
           </Link>
         </div>
