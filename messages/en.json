@@ -4,6 +4,7 @@
     "description": "Batumi's premier beauty salon on Zurab Gorgiladze Street. Expert practitioners, cutting-edge treatments & luxury care."
   },
   "nav": {
+    "home": "Home",
     "treatments": "Treatments",
     "conditions": "Skin Conditions",
     "about": "About",
@@ -15,8 +16,10 @@
     "pricelist": "Price List",
     "offers": "Offers",
     "beforeAfter": "Before & After",
+    "gallery": "Gallery",
     "contact": "Contact",
     "bookAppointment": "Book Appointment",
+    "bookConsultation": "Book Consultation",
     "faq": "FAQ",
     "press": "Press",
     "blog": "Blog",

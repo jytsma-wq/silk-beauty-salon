@@ -698,6 +698,17 @@
     "bookViaWhatsApp": "احجز عبر واتساب",
     "searchPlaceholder": "البحث عن العلاجات والحالات..."
   },
+  "nav": {
+    "home": "الرئيسية",
+    "gallery": "معرض الصور",
+    "about": "من نحن",
+    "bookConsultation": "احجز استشارة",
+    "contact": "اتصل بنا",
+    "treatments": "العلاجات",
+    "conditions": "الحالات",
+    "offers": "عروض",
+    "internationalClients": "عملاء دوليين"
+  },
   "siteConfig": {
     "awards": {
       "awardWinning": "حائز على جائزة",

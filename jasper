@@ -1,29 +1,26 @@
-Analyze this Next.js App Router repo and remove dead code safely.
+## Error Type
+Build Error
 
-Goals:
-- Make the codebase leaner without changing visible behavior.
-- Prefer deletion over refactor where code is clearly unused.
-- Keep TypeScript strict and keep App Router conventions.
-- Run lint and typecheck after changes.
+## Error Message
+Expected '</', got ')'
 
-Tasks:
-1. Confirm and delete orphaned/generated files that are not used by runtime:
-   - middleware.zip
-   - repomix-output.xml
-   - src/app/[locale]/contact-us/page-server.tsx
-2. Audit src/components/sections and delete old homepage/editorial section files that are no longer imported by any live route.
-3. If those old sections are removed, also delete now-unused files in src/components/effects.
-4. Delete obviously unused utility/provider files if they have no runtime imports:
-   - src/components/providers/performance-provider.tsx
-   - src/lib/image-optimizer.ts
-   - src/lib/gdpr.ts
-5. Remove any barrel exports that become stale after deletion.
-6. Do not change product behavior unless required by the deletion.
-7. At the end, report:
-   - deleted files
-   - imports cleaned up
-   - any files that looked unused but were kept due to uncertainty
+## Build Output
+./src/components/layout/GaldermaHeaderInteractive.tsx:182:21
+Expected '</', got ')'
+  180 |                         </DropdownMenuItem>
+  181 |                       ))
+> 182 |                     )}
+      |                     ^
+  183 |                   </DropdownMenuContent>
+  184 |                 </DropdownMenu>
+  185 |
 
-Validation:
-- npm run lint
-- npm run typecheck
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/layout/GaldermaHeaderInteractive.tsx
+    ./src/components/layout/GaldermaHeader.tsx
+    ./src/app/[locale]/layout.tsx
+
+Next.js version: 16.2.5 (Turbopack)

@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
-import NextLink from 'next/link';
+import { Link } from '@/i18n/routing';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { getLocalizedTreatmentCategories } from '@/data/treatments';
 
@@ -60,7 +60,7 @@ export default async function TreatmentsPage({
 
   return (
     <>
-      <section className="bg-[#f7f2eb] pt-[170px] md:pt-[188px]">
+      <section className="bg-[#f7f2eb] pt-42.5 md:pt-47">
         <div className="grid min-h-[70svh] grid-cols-1 lg:grid-cols-[44%_56%]">
           <div className="flex items-end px-6 py-14 md:px-12 lg:px-16 xl:px-24">
             <div className="max-w-xl">
@@ -125,7 +125,7 @@ export default async function TreatmentsPage({
               </div>
 
               <div className="mb-10 grid gap-px bg-stone-200 lg:grid-cols-[32%_68%]">
-                <div className="relative min-h-[320px] overflow-hidden bg-stone-100">
+                <div className="relative min-h-80 overflow-hidden bg-stone-100">
                   <Image
                     src={category.image}
                     alt=""
@@ -145,7 +145,7 @@ export default async function TreatmentsPage({
 
               <div className="grid gap-px bg-stone-200 md:grid-cols-2 xl:grid-cols-3">
                 {category.treatments.map((treatment) => (
-                  <NextLink
+                  <Link
                     key={treatment.slug}
                     href={`/${locale}/treatments/${treatment.slug}`}
                     className="group bg-white p-7 transition-colors hover:bg-[#f7f2eb]"
@@ -174,7 +174,7 @@ export default async function TreatmentsPage({
                     <span className="mt-6 inline-block text-[0.68rem] font-medium uppercase tracking-[0.18em] text-[#241f1b]">
                       View treatment
                     </span>
-                  </NextLink>
+                  </Link>
                 ))}
               </div>
             </section>
@@ -196,12 +196,12 @@ export default async function TreatmentsPage({
             <p className="max-w-lg text-base leading-8 text-stone-700 md:text-lg">
               {t('ctaSubtitle')}
             </p>
-            <NextLink
+            <Link
               href={`/${locale}/book`}
               className="mt-8 inline-flex h-12 items-center justify-center rounded-md border border-[#d9cec1] bg-white px-7 text-xs font-medium uppercase tracking-[0.18em] text-[#241f1b] transition-colors hover:bg-[#241f1b] hover:text-white"
             >
               {t('ctaButton')}
-            </NextLink>
+            </Link>
           </div>
         </div>
       </section>
