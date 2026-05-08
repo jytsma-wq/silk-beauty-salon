@@ -1,14 +1,74 @@
 'use client';
 
-import { Link } from '@/i18n/routing';
+import { FormEvent, useState } from 'react';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { siteConfig } from '@/data/site-config';
 import { Facebook, Instagram } from 'lucide-react';
+import { Link } from '@/i18n/routing';
+import { siteConfig } from '@/data/site-config';
+import { useAnnouncer } from '@/components/ui/announcer';
 
 export function GaldermaFooter() {
   const currentYear = new Date().getFullYear();
   const t = useTranslations('footer');
   const tNav = useTranslations('nav');
+  const tNewsletter = useTranslations('newsletter');
+  const tErrors = useTranslations('errors');
+  const tCommon = useTranslations('common');
+  const { announceError, announceSuccess } = useAnnouncer();
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState<string | null>(null);
+
+  const handleNewsletterSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!email.trim()) return;
+
+    setIsSubmitting(true);
+    setStatusMessage(null);
+
+    try {
+      const csrfToken =
+        document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') ?? '';
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': csrfToken,
+        },
+        body: JSON.stringify({ email }),
+      });
+      const data = await response.json().catch(() => null);
+
+      if (!response.ok) {
+        throw new Error(
+          typeof data?.error === 'string'
+            ? data.error
+            : tErrors('form.submitError', {
+                defaultValue: 'Failed to submit form. Please try again.',
+              })
+        );
+      }
+
+      const successMessage = tNewsletter('success', {
+        defaultValue: 'Thank you for subscribing!',
+      });
+      setEmail('');
+      setStatusMessage(successMessage);
+      announceSuccess(successMessage);
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : tErrors('form.submitError', {
+              defaultValue: 'Failed to submit form. Please try again.',
+            });
+      setStatusMessage(message);
+      announceError(message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <footer role="contentinfo" className="border-t border-stone-200 bg-white">
@@ -32,19 +92,27 @@ export function GaldermaFooter() {
             })}
           </p>
 
-          <form className="flex max-w-lg flex-col gap-4 sm:flex-row" onSubmit={(e) => e.preventDefault()}>
+          <form className="flex max-w-lg flex-col gap-4 sm:flex-row" onSubmit={handleNewsletterSubmit}>
             <input
               type="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
               placeholder={t('emailPlaceholder', { defaultValue: 'Your email address' })}
+              aria-label={t('emailPlaceholder', { defaultValue: 'Your email address' })}
+              required
               className="flex-1 border-b-2 border-stone-300 bg-transparent px-0 py-4 text-base outline-none transition-colors placeholder:text-stone-400 focus:border-[#8d6f58]"
             />
             <button
               type="submit"
-              className="bg-stone-900 px-8 py-4 text-sm uppercase tracking-wide text-stone-50 transition-colors hover:bg-[#8d6f58]"
+              disabled={isSubmitting}
+              className="bg-stone-900 px-8 py-4 text-sm uppercase tracking-wide text-stone-50 transition-colors hover:bg-[#8d6f58] disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {t('subscribe', { defaultValue: 'Subscribe' })}
+              {isSubmitting
+                ? tCommon('submitting', { defaultValue: 'Submitting...' })
+                : t('subscribe', { defaultValue: 'Subscribe' })}
             </button>
           </form>
+          {statusMessage ? <p className="mt-4 text-sm text-stone-600">{statusMessage}</p> : null}
         </div>
 
         <div className="mb-16 grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-12 lg:grid-cols-6">
@@ -156,26 +224,28 @@ export function GaldermaFooter() {
             <span className="text-[#241f1b]">&copy; {currentYear} {siteConfig.name}</span>
             <div className="flex flex-wrap gap-x-8 gap-y-3">
               <Link href="/book" className="transition-colors hover:text-[#241f1b]">
-                Find a Specialist
+                {tNav('findSpecialist', { defaultValue: 'Find a Specialist' })}
               </Link>
               <Link href="/terms-conditions" className="transition-colors hover:text-[#241f1b]">
-                Terms of Use
+                {t('terms', { defaultValue: 'Terms of Use' })}
               </Link>
               <Link href="/privacy-policy" className="transition-colors hover:text-[#241f1b]">
-                Privacy
+                {t('privacy', { defaultValue: 'Privacy' })}
               </Link>
               <Link href="/terms-conditions" className="transition-colors hover:text-[#241f1b]">
-                Cookie Notice
+                {t('cookieNotice', { defaultValue: 'Cookie Notice' })}
               </Link>
             </div>
           </div>
         </div>
       </div>
 
-      <img
+      <Image
         aria-hidden="true"
         src="/footer-pattern-preview.svg"
         alt=""
+        width={1920}
+        height={240}
         className="block w-full border-t border-stone-200"
       />
     </footer>

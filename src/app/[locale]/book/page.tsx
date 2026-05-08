@@ -95,7 +95,7 @@ export default async function BookPage({
           <div className="grid items-center gap-12 lg:grid-cols-[48%_52%]">
             <div className="max-w-3xl">
               <p className="mb-5 text-[0.68rem] font-medium uppercase tracking-[0.28em] text-[#8d6f58]">
-                Consultation booking
+                {t('eyebrow')}
               </p>
               <h1 
                 className="font-sans text-[clamp(2.9rem,5.6vw,5.8rem)] font-light leading-[1.02] text-[#241f1b] mb-6"
@@ -109,7 +109,7 @@ export default async function BookPage({
             <div className="relative aspect-[4/3] overflow-hidden rounded-[8px]">
               <Image
                 src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=1920&q=80"
-                alt="Salon interior"
+                alt={t('heroImageAlt')}
                 fill
                 className="object-cover"
               />
@@ -120,93 +120,83 @@ export default async function BookPage({
 
       {/* Booking Section */}
       <section className="section-spacing">
-        <div className="container-custom">
-          <div className="grid lg:grid-cols-3 gap-12">
-            {/* Cal.com Embed */}
-            <div className="lg:col-span-2">
-              <div className="border-t border-[#e8e4df] pt-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <Calendar className="w-6 h-6 text-[#b5453a]" />
-                  <h2 className="font-sans text-2xl font-light text-[#241f1b] md:text-3xl">
-                    {t('selectDateTime')}
-                  </h2>
-                </div>
-
-                {/* Local Booking Calendar + Form */}
-                <div className="rounded-md bg-[#f7f4f0] p-8">
-                  <BookingForm consultationTypes={consultationTypes} />
-                </div>
-              </div>
+        <div className="w-full px-6 md:px-12 lg:px-20">
+          <div className="border-t border-[#e8e4df] pt-8">
+            <div className="flex items-center gap-3 mb-6">
+              <Calendar className="w-6 h-6 text-[#b5453a]" />
+              <h2 className="font-sans text-2xl font-light text-[#241f1b] md:text-3xl">
+                {t('selectDateTime')}
+              </h2>
             </div>
 
-            {/* Sidebar */}
-            <div className="lg:col-span-1 space-y-6">
-              {/* Consultation Types */}
-              <div className="border-t border-[#e8e4df] py-8">
-                <h3 className="mb-4 font-sans text-lg font-light text-[#241f1b]">
-                  {t('consultationTypes')}
-                </h3>
-                <ConsultationTypeButtons types={consultationTypes} />
-              </div>
+            <div className="rounded-md bg-[#f7f4f0] p-4 md:p-8">
+              <BookingForm consultationTypes={consultationTypes} />
+            </div>
+          </div>
 
-              {/* What to Expect */}
-              <div className="border-t border-[#e8e4df] py-8">
-                <h3 className="mb-4 font-sans text-lg font-light text-[#241f1b]">
-                  {t('whatToExpect.title')}
-                </h3>
-                <ul className="space-y-3 text-sm">
-                  <li className="flex items-start gap-2 text-muted-foreground">
-                    <span className="text-[#b5453a] text-xs tracking-[0.15em] uppercase">01</span>
-                    <span>{t('whatToExpect.step1')}</span>
-                  </li>
-                  <li className="flex items-start gap-2 text-muted-foreground">
-                    <span className="text-[#b5453a] text-xs tracking-[0.15em] uppercase">02</span>
-                    <span>{t('whatToExpect.step2')}</span>
-                  </li>
-                  <li className="flex items-start gap-2 text-muted-foreground">
-                    <span className="text-[#b5453a] text-xs tracking-[0.15em] uppercase">03</span>
-                    <span>{t('whatToExpect.step3')}</span>
-                  </li>
-                  <li className="flex items-start gap-2 text-muted-foreground">
-                    <span className="text-[#b5453a] text-xs tracking-[0.15em] uppercase">04</span>
-                    <span>{t('whatToExpect.step4')}</span>
-                  </li>
-                </ul>
-              </div>
+          <div className="mt-12 grid gap-8 lg:grid-cols-3">
+            <div className="border-t border-[#e8e4df] py-8 lg:col-span-1">
+              <h3 className="mb-4 font-sans text-lg font-light text-[#241f1b]">
+                {t('consultationTypes')}
+              </h3>
+              <ConsultationTypeButtons types={consultationTypes} />
+            </div>
 
-              {/* Contact Info */}
-              <div className="border-t border-[#e8e4df] py-8">
-                <h3 className="mb-4 font-sans text-lg font-light text-[#241f1b]">
-                  {t('needHelp')}
-                </h3>
-                <div className="space-y-3 text-sm">
-                  <div>
-                    <span className="text-muted-foreground">{t('phone')}:</span>
-                    <br />
-                    <a 
-                      href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`}
-                      className="text-primary hover:text-[#b5453a]"
-                    >
-                      {siteConfig.contact.phone}
-                    </a>
-                  </div>
-                  <div>
-                    <span className="text-muted-foreground">{t('email')}:</span>
-                    <br />
-                    <a 
-                      href={`mailto:${siteConfig.contact.email}`}
-                      className="text-primary hover:text-[#b5453a]"
-                    >
-                      {siteConfig.contact.email}
-                    </a>
-                  </div>
-                  <div>
-                    <span className="text-muted-foreground">{t('address')}:</span>
-                    <br />
-                    <span className="text-primary">
-                      {siteConfig.contact.address}, {siteConfig.contact.city}
-                    </span>
-                  </div>
+            <div className="border-t border-[#e8e4df] py-8 lg:col-span-1">
+              <h3 className="mb-4 font-sans text-lg font-light text-[#241f1b]">
+                {t('whatToExpect.title')}
+              </h3>
+              <ul className="space-y-3 text-sm">
+                <li className="flex items-start gap-2 text-muted-foreground">
+                  <span className="text-[#b5453a] text-xs tracking-[0.15em] uppercase">01</span>
+                  <span>{t('whatToExpect.step1')}</span>
+                </li>
+                <li className="flex items-start gap-2 text-muted-foreground">
+                  <span className="text-[#b5453a] text-xs tracking-[0.15em] uppercase">02</span>
+                  <span>{t('whatToExpect.step2')}</span>
+                </li>
+                <li className="flex items-start gap-2 text-muted-foreground">
+                  <span className="text-[#b5453a] text-xs tracking-[0.15em] uppercase">03</span>
+                  <span>{t('whatToExpect.step3')}</span>
+                </li>
+                <li className="flex items-start gap-2 text-muted-foreground">
+                  <span className="text-[#b5453a] text-xs tracking-[0.15em] uppercase">04</span>
+                  <span>{t('whatToExpect.step4')}</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="border-t border-[#e8e4df] py-8 lg:col-span-1">
+              <h3 className="mb-4 font-sans text-lg font-light text-[#241f1b]">
+                {t('needHelp')}
+              </h3>
+              <div className="space-y-3 text-sm">
+                <div>
+                  <span className="text-muted-foreground">{t('phone')}:</span>
+                  <br />
+                  <a 
+                    href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`}
+                    className="text-primary hover:text-[#b5453a]"
+                  >
+                    {siteConfig.contact.phone}
+                  </a>
+                </div>
+                <div>
+                  <span className="text-muted-foreground">{t('email')}:</span>
+                  <br />
+                  <a 
+                    href={`mailto:${siteConfig.contact.email}`}
+                    className="text-primary hover:text-[#b5453a]"
+                  >
+                    {siteConfig.contact.email}
+                  </a>
+                </div>
+                <div>
+                  <span className="text-muted-foreground">{t('address')}:</span>
+                  <br />
+                  <span className="text-primary">
+                    {siteConfig.contact.address}, {siteConfig.contact.city}
+                  </span>
                 </div>
               </div>
             </div>

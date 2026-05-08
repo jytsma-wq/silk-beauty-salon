@@ -694,7 +694,8 @@
     "conditions": "Conditions",
     "notFound": "Not Found",
     "social": "Follow Us",
-    "searchPlaceholder": "Search treatments, conditions..."
+    "searchPlaceholder": "Search treatments, conditions...",
+    "submitting": "Submitting..."
   },
   "siteConfig": {
     "awards": {
@@ -1097,7 +1098,13 @@
           "name": "Anti-Wrinkle Injections",
           "shortDescription": "Smooth away wrinkles and fine lines for a refreshed, youthful appearance.",
           "description": "Anti-wrinkle injections are one of the most popular non-surgical cosmetic treatments available. Using botulinum toxin, we temporarily relax the facial muscles that cause wrinkles, resulting in smoother, younger-looking skin.",
-          "benefits": ["Reduces the appearance of fine lines and wrinkles", "Prevents new wrinkles from forming", "Quick treatment with minimal downtime", "Natural-looking results", "Long-lasting effects (3-6 months)"],
+          "benefits": [
+            "Reduces the appearance of fine lines and wrinkles",
+            "Prevents new wrinkles from forming",
+            "Quick treatment with minimal downtime",
+            "Natural-looking results",
+            "Long-lasting effects (3-6 months)"
+          ],
           "howItWorks": "Botulinum toxin is injected into specific facial muscles using a fine needle. The toxin blocks nerve signals to these muscles, preventing them from contracting and creating wrinkles.",
           "aftercare": "Avoid lying down for 4 hours, avoid exercise for 24 hours, and avoid rubbing the treated area."
         },
@@ -1105,19 +1112,34 @@
           "name": "Masseter Botox",
           "shortDescription": "Slim the jawline and relieve teeth grinding with targeted Botox treatment.",
           "description": "Masseter Botox is a specialized treatment that targets the masseter muscles to slim the face and treat teeth grinding.",
-          "benefits": ["Slims and contours the lower face", "Reduces jaw tension and pain", "Treats teeth grinding", "Non-surgical facial contouring"]
+          "benefits": [
+            "Slims and contours the lower face",
+            "Reduces jaw tension and pain",
+            "Treats teeth grinding",
+            "Non-surgical facial contouring"
+          ]
         },
         "hyperhidrosis": {
           "name": "Hyperhidrosis Treatment",
           "shortDescription": "Effectively treat excessive sweating with long-lasting results.",
           "description": "Hyperhidrosis treatment with Botox is a highly effective solution for excessive sweating.",
-          "benefits": ["Dramatically reduces excessive sweating", "Results last 6-12 months", "Quick and minimally invasive", "Improves confidence"]
+          "benefits": [
+            "Dramatically reduces excessive sweating",
+            "Results last 6-12 months",
+            "Quick and minimally invasive",
+            "Improves confidence"
+          ]
         },
         "migraine-treatment": {
           "name": "Migraine Treatment",
           "shortDescription": "Reduce the frequency and severity of chronic migraines.",
           "description": "Botox is an FDA-approved treatment for chronic migraines.",
-          "benefits": ["Reduces frequency of migraine attacks", "Decreases severity of headaches", "FDA-approved for chronic migraines", "Long-lasting relief"]
+          "benefits": [
+            "Reduces frequency of migraine attacks",
+            "Decreases severity of headaches",
+            "FDA-approved for chronic migraines",
+            "Long-lasting relief"
+          ]
         }
       }
     },
@@ -1129,49 +1151,89 @@
           "name": "Lip Fillers",
           "shortDescription": "Enhance lip volume and shape for beautiful, natural-looking results.",
           "description": "Lip fillers are one of our most popular treatments for enhancing the shape, volume, and definition of your lips.",
-          "benefits": ["Adds volume and definition", "Creates natural-looking enhancement", "Improves lip symmetry", "Results last 6-12 months"]
+          "benefits": [
+            "Adds volume and definition",
+            "Creates natural-looking enhancement",
+            "Improves lip symmetry",
+            "Results last 6-12 months"
+          ]
         },
         "cheek-fillers": {
           "name": "Cheek Fillers",
           "shortDescription": "Restore volume and define cheekbones for a youthful, lifted appearance.",
           "description": "Cheek fillers are an excellent way to restore volume to the mid-face and create beautiful cheekbone definition.",
-          "benefits": ["Restores lost volume in cheeks", "Defines and enhances cheekbones", "Lifts mid-face area", "Results last 12-18 months"]
+          "benefits": [
+            "Restores lost volume in cheeks",
+            "Defines and enhances cheekbones",
+            "Lifts mid-face area",
+            "Results last 12-18 months"
+          ]
         },
         "chin-fillers": {
           "name": "Chin Fillers",
           "shortDescription": "Enhance chin projection and improve facial balance.",
           "description": "Chin fillers can dramatically improve your facial profile and proportions.",
-          "benefits": ["Improves facial proportions", "Enhances chin projection", "Creates better jawline definition", "Non-surgical alternative to implants"]
+          "benefits": [
+            "Improves facial proportions",
+            "Enhances chin projection",
+            "Creates better jawline definition",
+            "Non-surgical alternative to implants"
+          ]
         },
         "jaw-fillers": {
           "name": "Jaw Fillers",
           "shortDescription": "Define and contour your jawline for a sculpted profile.",
           "description": "Jaw fillers are an excellent treatment for defining and contouring the jawline.",
-          "benefits": ["Creates more defined jawline", "Improves facial symmetry", "Non-surgical procedure", "Immediate results"]
+          "benefits": [
+            "Creates more defined jawline",
+            "Improves facial symmetry",
+            "Non-surgical procedure",
+            "Immediate results"
+          ]
         },
         "tear-fill": {
           "name": "Tear Fillers",
           "shortDescription": "Reduce the appearance of under-eye hollows and dark circles.",
           "description": "Tear filler treatment addresses under-eye hollows and dark circles for a more refreshed appearance.",
-          "benefits": ["Reduces under-eye hollows", "Minimizes dark circles", "Creates refreshed appearance", "Results last 12-18 months"]
+          "benefits": [
+            "Reduces under-eye hollows",
+            "Minimizes dark circles",
+            "Creates refreshed appearance",
+            "Results last 12-18 months"
+          ]
         },
         "nose-fillers": {
           "name": "Non-Surgical Rhinoplasty",
           "shortDescription": "Reshape your nose without surgery using dermal fillers.",
           "description": "Non-surgical rhinoplasty uses dermal fillers to reshape and contour the nose.",
-          "benefits": ["Non-surgical alternative", "No downtime", "Immediate results", "Reversible if needed"]
+          "benefits": [
+            "Non-surgical alternative",
+            "No downtime",
+            "Immediate results",
+            "Reversible if needed"
+          ]
         },
         "temple-fillers": {
           "name": "Temple Fillers",
           "shortDescription": "Restore volume to the temples for a more youthful appearance.",
           "description": "Temple fillers restore volume to the temporal area, creating a more balanced and youthful appearance.",
-          "benefits": ["Restores lost volume", "Creates youthful contour", "Balances facial proportions", "Results last 12-18 months"]
+          "benefits": [
+            "Restores lost volume",
+            "Creates youthful contour",
+            "Balances facial proportions",
+            "Results last 12-18 months"
+          ]
         },
         "hand-fillers": {
           "name": "Hand Fillers",
           "shortDescription": "Rejuvenate aging hands with volume restoration.",
           "description": "Hand fillers restore volume to the hands, reducing the appearance of veins and tendons.",
-          "benefits": ["Reduces visible veins", "Creates youthful hands", "Quick procedure", "Results last 12-18 months"]
+          "benefits": [
+            "Reduces visible veins",
+            "Creates youthful hands",
+            "Quick procedure",
+            "Results last 12-18 months"
+          ]
         }
       }
     },
@@ -1183,31 +1245,56 @@
           "name": "Skin Boosters",
           "shortDescription": "Deep hydration for glowing, radiant skin.",
           "description": "Skin boosters provide deep hydration to improve skin quality and create a radiant glow.",
-          "benefits": ["Deep hydration", "Improved skin texture", "Radiant glow", "Long-lasting results"]
+          "benefits": [
+            "Deep hydration",
+            "Improved skin texture",
+            "Radiant glow",
+            "Long-lasting results"
+          ]
         },
         "chemical-peels": {
           "name": "Chemical Peels",
           "shortDescription": "Renew your skin with professional chemical peel treatments.",
           "description": "Chemical peels exfoliate the skin to reveal fresher, younger-looking skin underneath.",
-          "benefits": ["Skin renewal", "Improved texture", "Reduced pigmentation", "Even skin tone"]
+          "benefits": [
+            "Skin renewal",
+            "Improved texture",
+            "Reduced pigmentation",
+            "Even skin tone"
+          ]
         },
         "microneedling": {
           "name": "Microneedling",
           "shortDescription": "Stimulate collagen production for firmer, smoother skin.",
           "description": "Microneedling stimulates the skin's natural healing process to produce collagen and elastin.",
-          "benefits": ["Stimulates collagen", "Reduces scars", "Improves skin texture", "Minimizes pores"]
+          "benefits": [
+            "Stimulates collagen",
+            "Reduces scars",
+            "Improves skin texture",
+            "Minimizes pores"
+          ]
         },
         "prp-therapy": {
           "name": "PRP Facial",
           "shortDescription": "Rejuvenate your skin using your body's own growth factors.",
           "description": "PRP therapy uses your own blood platelets to rejuvenate and refresh your skin.",
-          "benefits": ["Natural rejuvenation", "Improved skin tone", "Reduced fine lines", "Enhanced glow"]
+          "benefits": [
+            "Natural rejuvenation",
+            "Improved skin tone",
+            "Reduced fine lines",
+            "Enhanced glow"
+          ]
         },
         "laser-hair": {
           "name": "Laser Hair Removal",
           "shortDescription": "Permanent hair reduction for smooth, hair-free skin.",
           "description": "Laser hair removal provides long-lasting hair reduction for smooth skin.",
-          "benefits": ["Permanent reduction", "Smooth skin", "Safe and effective", "Saves time"]
+          "benefits": [
+            "Permanent reduction",
+            "Smooth skin",
+            "Safe and effective",
+            "Saves time"
+          ]
         }
       }
     },
@@ -1219,19 +1306,34 @@
           "name": "CO2 Laser Resurfacing",
           "shortDescription": "Dramatic skin resurfacing for a youthful complexion.",
           "description": "CO2 laser resurfacing removes layers of damaged skin to reveal smoother, younger skin.",
-          "benefits": ["Dramatic results", "Reduces wrinkles", "Improves scars", "Even skin tone"]
+          "benefits": [
+            "Dramatic results",
+            "Reduces wrinkles",
+            "Improves scars",
+            "Even skin tone"
+          ]
         },
         "ipl-therapy": {
           "name": "IPL Therapy",
           "shortDescription": "Treat pigmentation, sun damage, and vascular lesions.",
           "description": "IPL therapy uses light to treat various skin concerns including pigmentation and sun damage.",
-          "benefits": ["Treats pigmentation", "Reduces sun damage", "Improves skin tone", "Minimal downtime"]
+          "benefits": [
+            "Treats pigmentation",
+            "Reduces sun damage",
+            "Improves skin tone",
+            "Minimal downtime"
+          ]
         },
         "laser-vein": {
           "name": "Laser Vein Removal",
           "shortDescription": "Remove unwanted veins and spider veins.",
           "description": "Laser vein removal safely eliminates unwanted veins on the face and body.",
-          "benefits": ["Removes spider veins", "Safe procedure", "No downtime", "Clearer skin"]
+          "benefits": [
+            "Removes spider veins",
+            "Safe procedure",
+            "No downtime",
+            "Clearer skin"
+          ]
         }
       }
     },
@@ -1243,19 +1345,34 @@
           "name": "CoolSculpting",
           "shortDescription": "Non-surgical fat reduction using advanced cooling technology.",
           "description": "CoolSculpting freezes and eliminates stubborn fat cells without surgery.",
-          "benefits": ["Non-surgical", "No downtime", "Permanent fat reduction", "Natural results"]
+          "benefits": [
+            "Non-surgical",
+            "No downtime",
+            "Permanent fat reduction",
+            "Natural results"
+          ]
         },
         "emtone": {
           "name": "Emtone",
           "shortDescription": "Treat cellulite and improve skin texture.",
           "description": "Emtone combines thermal and mechanical energy to treat cellulite effectively.",
-          "benefits": ["Reduces cellulite", "Improves skin texture", "Tightens skin", "No downtime"]
+          "benefits": [
+            "Reduces cellulite",
+            "Improves skin texture",
+            "Tightens skin",
+            "No downtime"
+          ]
         },
         "skin-tightening": {
           "name": "Radiofrequency Skin Tightening",
           "shortDescription": "Non-surgical skin tightening for firmer, younger-looking skin.",
           "description": "Radiofrequency skin tightening stimulates collagen production for firmer skin.",
-          "benefits": ["Firmer skin", "Reduced sagging", "Non-surgical", "No downtime"]
+          "benefits": [
+            "Firmer skin",
+            "Reduced sagging",
+            "Non-surgical",
+            "No downtime"
+          ]
         }
       }
     },
@@ -1267,13 +1384,23 @@
           "name": "Vaginal Rejuvenation",
           "shortDescription": "Restore comfort and confidence with intimate rejuvenation.",
           "description": "Vaginal rejuvenation uses laser technology to improve vaginal health and function.",
-          "benefits": ["Improved comfort", "Enhanced confidence", "Non-surgical", "Quick recovery"]
+          "benefits": [
+            "Improved comfort",
+            "Enhanced confidence",
+            "Non-surgical",
+            "Quick recovery"
+          ]
         },
         "labia-filler": {
           "name": "Labia Filler",
           "shortDescription": "Enhance comfort and aesthetics with labial filler treatment.",
           "description": "Labia filler treatment addresses cosmetic concerns and improves comfort.",
-          "benefits": ["Improved aesthetics", "Enhanced comfort", "Non-surgical", "Natural results"]
+          "benefits": [
+            "Improved aesthetics",
+            "Enhanced comfort",
+            "Non-surgical",
+            "Natural results"
+          ]
         }
       }
     },
@@ -1285,13 +1412,23 @@
           "name": "HydraFacial",
           "shortDescription": "Deep cleansing, exfoliation, and hydration for radiant skin.",
           "description": "HydraFacial provides deep cleansing, exfoliation, and hydration in one treatment.",
-          "benefits": ["Deep cleansing", "Instant glow", "Hydration", "Suitable for all skin types"]
+          "benefits": [
+            "Deep cleansing",
+            "Instant glow",
+            "Hydration",
+            "Suitable for all skin types"
+          ]
         },
         "deraplaning": {
           "name": "Dermaplaning",
           "shortDescription": "Exfoliate and remove peach fuzz for smooth, radiant skin.",
           "description": "Dermaplaning uses a surgical blade to gently exfoliate and remove vellus hair.",
-          "benefits": ["Smoother skin", "Better product absorption", "Radiant glow", "Makeup applies better"]
+          "benefits": [
+            "Smoother skin",
+            "Better product absorption",
+            "Radiant glow",
+            "Makeup applies better"
+          ]
         }
       }
     },
@@ -1303,13 +1440,23 @@
           "name": "PRP Hair Restoration",
           "shortDescription": "Stimulate hair growth with your body's own growth factors.",
           "description": "PRP hair restoration uses your own platelets to stimulate hair follicles and promote growth.",
-          "benefits": ["Stimulates growth", "Thicker hair", "Natural treatment", "No downtime"]
+          "benefits": [
+            "Stimulates growth",
+            "Thicker hair",
+            "Natural treatment",
+            "No downtime"
+          ]
         },
         "mesotherapy-hair": {
           "name": "Hair Mesotherapy",
           "shortDescription": "Nutrient-rich injections to nourish the scalp and hair follicles.",
           "description": "Hair mesotherapy delivers essential nutrients directly to the scalp to promote hair growth.",
-          "benefits": ["Nourishes scalp", "Promotes growth", "Reduces hair loss", "Improved hair quality"]
+          "benefits": [
+            "Nourishes scalp",
+            "Promotes growth",
+            "Reduces hair loss",
+            "Improved hair quality"
+          ]
         }
       }
     }
@@ -1319,81 +1466,380 @@
       "name": "Ageing Skin",
       "shortDescription": "Address fine lines, wrinkles, and loss of elasticity with our anti-ageing treatments.",
       "description": "Ageing skin is a natural process characterized by the development of fine lines, wrinkles, loss of elasticity, and changes in skin texture and tone.",
-      "symptoms": ["Fine lines and wrinkles", "Loss of skin elasticity", "Sagging skin", "Volume loss in cheeks", "Deep nasolabial folds", "Marionette lines"],
-      "causes": ["Natural decrease in collagen production", "Sun damage", "Loss of facial fat", "Decreased skin hydration", "Repetitive facial expressions"],
-      "treatments": ["Anti-wrinkle injections", "Dermal fillers", "Skin tightening treatments", "Laser resurfacing", "Medical-grade skincare"]
+      "symptoms": [
+        "Fine lines and wrinkles",
+        "Loss of skin elasticity",
+        "Sagging skin",
+        "Volume loss in cheeks",
+        "Deep nasolabial folds",
+        "Marionette lines"
+      ],
+      "causes": [
+        "Natural decrease in collagen production",
+        "Sun damage",
+        "Loss of facial fat",
+        "Decreased skin hydration",
+        "Repetitive facial expressions"
+      ],
+      "treatments": [
+        "Anti-wrinkle injections",
+        "Dermal fillers",
+        "Skin tightening treatments",
+        "Laser resurfacing",
+        "Medical-grade skincare"
+      ]
     },
     "acne": {
       "name": "Acne & Breakouts",
       "shortDescription": "Effective treatments for clearer, healthier skin.",
       "description": "Acne is a common skin condition that affects people of all ages.",
-      "symptoms": ["Blackheads", "Whiteheads", "Papules", "Pustules", "Cysts", "Scarring"],
-      "causes": ["Excess oil production", "Bacteria", "Hormonal changes", "Certain medications"],
-      "treatments": ["Chemical peels", "Laser therapy", "Medical facials", "Skincare recommendations"]
+      "symptoms": [
+        "Blackheads",
+        "Whiteheads",
+        "Papules",
+        "Pustules",
+        "Cysts",
+        "Scarring"
+      ],
+      "causes": [
+        "Excess oil production",
+        "Bacteria",
+        "Hormonal changes",
+        "Certain medications"
+      ],
+      "treatments": [
+        "Chemical peels",
+        "Laser therapy",
+        "Medical facials",
+        "Skincare recommendations"
+      ]
     },
     "pigmentation": {
       "name": "Pigmentation Issues",
       "shortDescription": "Even out skin tone and reduce dark spots.",
       "description": "Pigmentation issues include dark spots, melasma, and uneven skin tone.",
-      "symptoms": ["Dark spots", "Uneven skin tone", "Melasma", "Sun spots", "Age spots"],
-      "causes": ["Sun exposure", "Hormonal changes", "Inflammation", "Genetics"],
-      "treatments": ["IPL therapy", "Laser treatments", "Chemical peels", "Skin boosters"]
+      "symptoms": [
+        "Dark spots",
+        "Uneven skin tone",
+        "Melasma",
+        "Sun spots",
+        "Age spots"
+      ],
+      "causes": [
+        "Sun exposure",
+        "Hormonal changes",
+        "Inflammation",
+        "Genetics"
+      ],
+      "treatments": [
+        "IPL therapy",
+        "Laser treatments",
+        "Chemical peels",
+        "Skin boosters"
+      ]
     },
     "scars": {
       "name": "Scarring",
       "shortDescription": "Reduce the appearance of scars for smoother skin.",
       "description": "Scarring can result from acne, injuries, or surgery.",
-      "symptoms": ["Indented scars", "Raised scars", "Discoloration", "Textural changes"],
-      "causes": ["Acne", "Injuries", "Surgery", "Burns"],
-      "treatments": ["Microneedling", "Laser therapy", "Dermal fillers", "Chemical peels"]
+      "symptoms": [
+        "Indented scars",
+        "Raised scars",
+        "Discoloration",
+        "Textural changes"
+      ],
+      "causes": [
+        "Acne",
+        "Injuries",
+        "Surgery",
+        "Burns"
+      ],
+      "treatments": [
+        "Microneedling",
+        "Laser therapy",
+        "Dermal fillers",
+        "Chemical peels"
+      ]
     },
     "hair-loss": {
       "name": "Hair Loss",
       "shortDescription": "Restore hair growth with advanced treatments.",
       "description": "Hair loss can affect both men and women.",
-      "symptoms": ["Thinning hair", "Receding hairline", "Bald patches", "Excessive shedding"],
-      "causes": ["Genetics", "Hormonal changes", "Stress", "Nutritional deficiencies"],
-      "treatments": ["PRP therapy", "Mesotherapy", "Hair restoration treatments"]
+      "symptoms": [
+        "Thinning hair",
+        "Receding hairline",
+        "Bald patches",
+        "Excessive shedding"
+      ],
+      "causes": [
+        "Genetics",
+        "Hormonal changes",
+        "Stress",
+        "Nutritional deficiencies"
+      ],
+      "treatments": [
+        "PRP therapy",
+        "Mesotherapy",
+        "Hair restoration treatments"
+      ]
     },
     "rosacea": {
       "name": "Rosacea",
       "shortDescription": "Manage rosacea symptoms for clearer skin.",
       "description": "Rosacea is a chronic skin condition causing redness and visible blood vessels.",
-      "symptoms": ["Facial redness", "Visible blood vessels", "Bumps and pimples", "Eye irritation"],
-      "causes": ["Genetics", "Environmental factors", "Blood vessel abnormalities"],
-      "treatments": ["IPL therapy", "Laser treatment", "Skincare management", "Medical treatments"]
+      "symptoms": [
+        "Facial redness",
+        "Visible blood vessels",
+        "Bumps and pimples",
+        "Eye irritation"
+      ],
+      "causes": [
+        "Genetics",
+        "Environmental factors",
+        "Blood vessel abnormalities"
+      ],
+      "treatments": [
+        "IPL therapy",
+        "Laser treatment",
+        "Skincare management",
+        "Medical treatments"
+      ]
     },
     "stretch-marks": {
       "name": "Stretch Marks",
       "shortDescription": "Reduce the appearance of stretch marks.",
       "description": "Stretch marks appear when skin stretches rapidly.",
-      "symptoms": ["Pink or red streaks", "Purple or brown streaks", "Indented lines", "Smooth texture"],
-      "causes": ["Pregnancy", "Weight gain", "Growth spurts", "Hormonal changes"],
-      "treatments": ["Laser therapy", "Microneedling", "Radiofrequency treatments", "Topical treatments"]
+      "symptoms": [
+        "Pink or red streaks",
+        "Purple or brown streaks",
+        "Indented lines",
+        "Smooth texture"
+      ],
+      "causes": [
+        "Pregnancy",
+        "Weight gain",
+        "Growth spurts",
+        "Hormonal changes"
+      ],
+      "treatments": [
+        "Laser therapy",
+        "Microneedling",
+        "Radiofrequency treatments",
+        "Topical treatments"
+      ]
     },
     "cellulite": {
       "name": "Cellulite",
       "shortDescription": "Smooth and firm skin with our body treatments.",
       "description": "Cellulite causes a dimpled appearance on the skin.",
-      "symptoms": ["Dimpled skin", "Orange peel texture", "Lumpy appearance", "Common on thighs and buttocks"],
-      "causes": ["Fat deposits", "Poor circulation", "Genetics", "Lifestyle factors"],
-      "treatments": ["Emtone", "CoolSculpting", "Radiofrequency", "Massage therapies"]
+      "symptoms": [
+        "Dimpled skin",
+        "Orange peel texture",
+        "Lumpy appearance",
+        "Common on thighs and buttocks"
+      ],
+      "causes": [
+        "Fat deposits",
+        "Poor circulation",
+        "Genetics",
+        "Lifestyle factors"
+      ],
+      "treatments": [
+        "Emtone",
+        "CoolSculpting",
+        "Radiofrequency",
+        "Massage therapies"
+      ]
     },
     "dry-skin": {
       "name": "Dry & Dehydrated Skin",
       "shortDescription": "Restore moisture and hydration to your skin.",
       "description": "Dry skin can be caused by various factors including weather and aging.",
-      "symptoms": ["Tightness", "Flaking", "Rough texture", "Itching", "Redness"],
-      "causes": ["Weather", "Aging", "Hot showers", "Harsh soaps", "Dehydration"],
-      "treatments": ["Skin boosters", "HydraFacial", "Medical-grade skincare", "Moisturizing treatments"]
+      "symptoms": [
+        "Tightness",
+        "Flaking",
+        "Rough texture",
+        "Itching",
+        "Redness"
+      ],
+      "causes": [
+        "Weather",
+        "Aging",
+        "Hot showers",
+        "Harsh soaps",
+        "Dehydration"
+      ],
+      "treatments": [
+        "Skin boosters",
+        "HydraFacial",
+        "Medical-grade skincare",
+        "Moisturizing treatments"
+      ]
     },
     "sensitive-skin": {
       "name": "Sensitive Skin",
       "shortDescription": "Gentle treatments for reactive skin types.",
       "description": "Sensitive skin reacts easily to products and environmental factors.",
-      "symptoms": ["Redness", "Burning", "Stinging", "Tightness", "Rashes"],
-      "causes": ["Genetics", "Barrier dysfunction", "Allergens", "Environmental factors"],
-      "treatments": ["Gentle facials", "Calming treatments", "Customized skincare", "LED therapy"]
+      "symptoms": [
+        "Redness",
+        "Burning",
+        "Stinging",
+        "Tightness",
+        "Rashes"
+      ],
+      "causes": [
+        "Genetics",
+        "Barrier dysfunction",
+        "Allergens",
+        "Environmental factors"
+      ],
+      "treatments": [
+        "Gentle facials",
+        "Calming treatments",
+        "Customized skincare",
+        "LED therapy"
+      ]
+    }
+  },
+  "homeEditorial": {
+    "carousel": {
+      "previousSlide": "Previous slide",
+      "nextSlide": "Next slide"
+    },
+    "heroSlides": {
+      "slide1": {
+        "eyebrow": "Medical aesthetics in Batumi",
+        "title": "Confidence in your skin starts with a precise consultation.",
+        "description": "Natural-looking injectables, skin quality treatments, and advanced device procedures planned around your anatomy, skin health, and lifestyle.",
+        "cta": "Book a consultation"
+      },
+      "slide2": {
+        "eyebrow": "Skin quality",
+        "title": "Real solutions for real skin concerns.",
+        "description": "From texture and pigmentation to hydration, firmness, and facial balance, every plan begins with a skin-first diagnosis.",
+        "cta": "Explore concerns"
+      },
+      "slide3": {
+        "eyebrow": "Injectables and contour",
+        "title": "Subtle volume. Considered contours. You, refreshed.",
+        "description": "Dermal fillers and anti-wrinkle treatments delivered with restraint, symmetry, and respect for natural expression.",
+        "cta": "View treatments"
+      }
+    },
+    "philosophy": {
+      "eyebrow": "Our approach",
+      "title": "A skin-first aesthetic practice.",
+      "description": "The Galderma-inspired direction is clean, clinical, and product-aware: fewer decorative effects, more trust, more education, and a calmer visual rhythm.",
+      "statement": "We study your skin, facial structure, and goals before recommending a treatment. The result should look considered, balanced, and quietly confident."
+    },
+    "concerns": {
+      "eyebrow": "Skin concerns",
+      "title": "Real solutions for real skin concerns.",
+      "description": "Explore common concerns and the treatment pathways that can support healthier, more confident skin."
+    },
+    "concernItems": {
+      "item1": {
+        "name": "Fine lines and wrinkles",
+        "description": "Soften expression lines while preserving natural movement."
+      },
+      "item2": {
+        "name": "Loss of firmness",
+        "description": "Support collagen, lift laxity, and refine facial structure."
+      },
+      "item3": {
+        "name": "Uneven tone",
+        "description": "Target pigmentation, dullness, and post-inflammatory marks."
+      },
+      "item4": {
+        "name": "Dry skin",
+        "description": "Restore hydration, barrier function, and lasting luminosity."
+      },
+      "item5": {
+        "name": "Acne and scarring",
+        "description": "Improve active breakouts, marks, and uneven texture."
+      }
+    },
+    "portfolio": {
+      "eyebrow": "Portfolio",
+      "title": "Holistic aesthetic treatments.",
+      "description": "A considered portfolio for facial balance, skin quality, and long-term confidence.",
+      "viewAll": "View all treatments",
+      "explore": "Explore",
+      "items": {
+        "item1": {
+          "title": "Dermal fillers",
+          "description": "Hyaluronic acid treatments for lips, cheeks, jawline, chin, under-eyes, and facial balancing."
+        },
+        "item2": {
+          "title": "Anti-wrinkle injectables",
+          "description": "Precise neuromodulator treatments for forehead lines, frown lines, crow's feet, masseter, and sweating."
+        },
+        "item3": {
+          "title": "Skin quality",
+          "description": "Medical facials, peels, boosters, microneedling, and laser-led plans for stronger, brighter skin."
+        }
+      }
+    },
+    "stats": {
+      "item1": {
+        "label": "Consultation-first plans"
+      },
+      "item2": {
+        "label": "Languages supported"
+      },
+      "item3": {
+        "label": "Skin and facial assessment"
+      }
+    },
+    "results": {
+      "eyebrow": "Real results",
+      "title": "The proof is in the plan.",
+      "description": "Before-and-after stories should be read as clinical examples, not promises. Your result depends on anatomy, product choice, dosage, and aftercare.",
+      "cta": "See results",
+      "before": "Before",
+      "after": "After",
+      "disclaimer": "Individual results vary. All treatment plans require clinical consultation."
+    },
+    "resultItems": {
+      "item1": {
+        "treatment": "Cheek and mid-face support",
+        "detail": "Restored volume with a soft, lifted contour."
+      },
+      "item2": {
+        "treatment": "Lip hydration and shape",
+        "detail": "Defined border, balanced volume, natural finish."
+      },
+      "item3": {
+        "treatment": "Skin radiance plan",
+        "detail": "Improved brightness, texture, and surface refinement."
+      }
+    },
+    "cta": {
+      "eyebrow": "Find your specialist",
+      "title": "Begin with a clinical consultation.",
+      "description": "Visit {clinicName} in Batumi for a structured assessment and a treatment plan tailored to your skin, anatomy, timing, and comfort.",
+      "bookNow": "Book now",
+      "contactUs": "Contact us"
+    },
+    "journal": {
+      "eyebrow": "Skin trends",
+      "title": "Aesthetic insight, without the noise.",
+      "description": "Educational notes for patients who want to understand treatment planning before they book.",
+      "cta": "Read journal"
+    },
+    "trendItems": {
+      "item1": {
+        "category": "Treatment planning",
+        "title": "How to plan injectables without looking overdone"
+      },
+      "item2": {
+        "category": "Skin health",
+        "title": "Skin quality is the new foundation"
+      },
+      "item3": {
+        "category": "Consultation",
+        "title": "What to know before a first filler consultation"
+      }
     }
   },
   "bookingPage": {
@@ -1403,6 +1849,8 @@
       "title": "Book an Appointment | Silk Beauty Salon",
       "description": "Book your consultation or treatment appointment at Silk Beauty Salon in Batumi, Georgia."
     },
+    "eyebrow": "Consultation booking",
+    "heroImageAlt": "Salon interior",
     "selectDateTime": "Select Date & Time",
     "bookingNotConfigured": "Online Booking Coming Soon",
     "bookingNotConfiguredDesc": "We're setting up our online booking system. In the meantime, please call or email us to schedule your appointment.",

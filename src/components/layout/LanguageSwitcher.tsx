@@ -1,16 +1,16 @@
 'use client';
 
-import { useLocale } from 'next-intl';
-import { useRouter, usePathname } from 'next/navigation';
-import { locales, localeNames, type Locale } from '@/i18n';
-import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import { useLocale } from 'next-intl';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { locales, localeNames, type Locale } from '@/i18n';
+import { usePathname, useRouter } from '@/i18n/routing';
 import { trackLanguageChange } from '@/lib/analytics';
 
 export function LanguageSwitcher() {
@@ -21,9 +21,7 @@ export function LanguageSwitcher() {
   const handleLocaleChange = (newLocale: Locale) => {
     if (newLocale === locale) return;
     trackLanguageChange(locale, newLocale);
-    // Navigate to same page with new locale
-    const newPath = pathname.replace(/^\/[a-z]{2}/, `/${newLocale}`);
-    router.push(newPath);
+    router.replace(pathname, { locale: newLocale });
   };
 
   return (
@@ -35,7 +33,7 @@ export function LanguageSwitcher() {
             alt={localeNames[locale]?.name || locale}
             width={24}
             height={16}
-            className="rounded-sm w-6 h-4"
+            className="h-4 w-6 rounded-sm"
           />
           <span className="hidden sm:inline">{localeNames[locale]?.nativeName || locale.toUpperCase()}</span>
           <span className="sm:hidden">
@@ -44,7 +42,7 @@ export function LanguageSwitcher() {
               alt={localeNames[locale]?.name || locale}
               width={24}
               height={16}
-              className="rounded-sm w-6 h-4"
+              className="h-4 w-6 rounded-sm"
             />
           </span>
         </Button>
@@ -56,20 +54,18 @@ export function LanguageSwitcher() {
             onClick={() => handleLocaleChange(loc)}
             className={`cursor-pointer ${locale === loc ? 'bg-accent' : ''}`}
           >
-            <span className="flex items-center justify-between w-full">
+            <span className="flex w-full items-center justify-between">
               <span className="flex items-center gap-2">
                 <Image
                   src={localeNames[loc]?.flag}
                   alt={localeNames[loc]?.name || loc}
                   width={24}
                   height={16}
-                  className="rounded-sm w-6 h-4"
+                  className="h-4 w-6 rounded-sm"
                 />
                 <span>{localeNames[loc]?.nativeName}</span>
               </span>
-              {locale === loc && (
-                <span className="text-[#b5453a] text-xs">✓</span>
-              )}
+              {locale === loc ? <span className="text-xs text-[#b5453a]">✓</span> : null}
             </span>
           </DropdownMenuItem>
         ))}

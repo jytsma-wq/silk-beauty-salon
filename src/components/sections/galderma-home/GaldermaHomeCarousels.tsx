@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { Link } from '@/i18n/routing';
@@ -16,10 +17,12 @@ function CarouselButton({
   direction,
   onClick,
   disabled,
+  label,
 }: {
   direction: 'previous' | 'next';
   onClick: () => void;
   disabled: boolean;
+  label: string;
 }) {
   const Icon = direction === 'previous' ? ArrowLeft : ArrowRight;
 
@@ -28,7 +31,7 @@ function CarouselButton({
       type="button"
       onClick={onClick}
       disabled={disabled}
-      aria-label={direction === 'previous' ? 'Previous slide' : 'Next slide'}
+      aria-label={label}
       className="grid size-11 place-items-center border border-stone-300 bg-white text-stone-950 transition-colors hover:border-stone-950 disabled:pointer-events-none disabled:opacity-30"
     >
       <Icon className="size-4" strokeWidth={1.5} />
@@ -77,6 +80,14 @@ function useCarouselControls(options?: { loop?: boolean }) {
 }
 
 export function ClinicalHeroCarousel() {
+  const t = useTranslations('homeEditorial');
+  const slides = homeHeroSlides.map((slide, index) => ({
+    ...slide,
+    eyebrow: t(`heroSlides.slide${index + 1}.eyebrow`),
+    title: t(`heroSlides.slide${index + 1}.title`),
+    description: t(`heroSlides.slide${index + 1}.description`),
+    cta: t(`heroSlides.slide${index + 1}.cta`),
+  }));
   const {
     emblaRef,
     scrollPrev,
@@ -90,7 +101,7 @@ export function ClinicalHeroCarousel() {
     <section className="relative bg-[#f7f2eb] pt-[170px] md:pt-[188px]">
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">
-          {homeHeroSlides.map((slide, index) => (
+          {slides.map((slide, index) => (
             <article key={slide.title} className="min-w-0 flex-[0_0_100%]">
               <div className="grid min-h-[calc(100svh-152px)] grid-cols-1 lg:grid-cols-[46%_54%]">
                 <div className="order-2 flex items-center px-6 py-14 md:px-12 md:py-16 lg:order-1 lg:px-16 xl:px-24">
@@ -130,11 +141,21 @@ export function ClinicalHeroCarousel() {
       </div>
 
       <div className="absolute bottom-6 right-6 flex items-center gap-3 md:bottom-10 md:right-10">
-        <CarouselButton direction="previous" onClick={scrollPrev} disabled={!canScrollPrev} />
-        <CarouselButton direction="next" onClick={scrollNext} disabled={!canScrollNext} />
+        <CarouselButton
+          direction="previous"
+          onClick={scrollPrev}
+          disabled={!canScrollPrev}
+          label={t('carousel.previousSlide')}
+        />
+        <CarouselButton
+          direction="next"
+          onClick={scrollNext}
+          disabled={!canScrollNext}
+          label={t('carousel.nextSlide')}
+        />
       </div>
       <div className="absolute bottom-8 left-6 flex gap-2 md:left-12 lg:left-16 xl:left-24">
-        {homeHeroSlides.map((slide, index) => (
+        {slides.map((slide, index) => (
           <span
             key={slide.title}
             className={`h-px transition-all ${
@@ -148,6 +169,12 @@ export function ClinicalHeroCarousel() {
 }
 
 export function ConcernCarousel() {
+  const t = useTranslations('homeEditorial');
+  const concerns = skinConcernHighlights.map((item, index) => ({
+    ...item,
+    name: t(`concernItems.item${index + 1}.name`),
+    description: t(`concernItems.item${index + 1}.description`),
+  }));
   const { emblaRef, emblaApi, scrollPrev, scrollNext, canScrollPrev, canScrollNext } =
     useCarouselControls({ loop: true });
 
@@ -164,12 +191,22 @@ export function ConcernCarousel() {
   return (
     <div>
       <div className="mb-8 flex justify-end gap-3">
-        <CarouselButton direction="previous" onClick={scrollPrev} disabled={!canScrollPrev} />
-        <CarouselButton direction="next" onClick={scrollNext} disabled={!canScrollNext} />
+        <CarouselButton
+          direction="previous"
+          onClick={scrollPrev}
+          disabled={!canScrollPrev}
+          label={t('carousel.previousSlide')}
+        />
+        <CarouselButton
+          direction="next"
+          onClick={scrollNext}
+          disabled={!canScrollNext}
+          label={t('carousel.nextSlide')}
+        />
       </div>
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="-ml-5 flex">
-          {skinConcernHighlights.map((item) => (
+          {concerns.map((item) => (
             <article
               key={item.name}
               className="min-w-0 flex-[0_0_86%] pl-5 sm:flex-[0_0_48%] lg:flex-[0_0_31%]"
@@ -202,18 +239,34 @@ export function ConcernCarousel() {
 }
 
 export function ResultsCarousel() {
+  const t = useTranslations('homeEditorial');
+  const cases = resultCases.map((item, index) => ({
+    ...item,
+    treatment: t(`resultItems.item${index + 1}.treatment`),
+    detail: t(`resultItems.item${index + 1}.detail`),
+  }));
   const { emblaRef, scrollPrev, scrollNext, canScrollPrev, canScrollNext } =
     useCarouselControls();
 
   return (
     <div>
       <div className="mb-8 flex justify-end gap-3">
-        <CarouselButton direction="previous" onClick={scrollPrev} disabled={!canScrollPrev} />
-        <CarouselButton direction="next" onClick={scrollNext} disabled={!canScrollNext} />
+        <CarouselButton
+          direction="previous"
+          onClick={scrollPrev}
+          disabled={!canScrollPrev}
+          label={t('carousel.previousSlide')}
+        />
+        <CarouselButton
+          direction="next"
+          onClick={scrollNext}
+          disabled={!canScrollNext}
+          label={t('carousel.nextSlide')}
+        />
       </div>
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="-ml-6 flex">
-          {resultCases.map((item) => (
+          {cases.map((item) => (
             <article
               key={item.treatment}
               className="min-w-0 flex-[0_0_92%] pl-6 md:flex-[0_0_58%] lg:flex-[0_0_42%]"
@@ -229,7 +282,7 @@ export function ResultsCarousel() {
                       sizes="(max-width: 768px) 46vw, 24vw"
                     />
                     <span className="absolute bottom-0 left-0 bg-[#241f1b] px-4 py-2 text-[0.62rem] uppercase tracking-[0.18em] text-white">
-                      Before
+                      {t('results.before')}
                     </span>
                   </div>
                 </div>
@@ -243,7 +296,7 @@ export function ResultsCarousel() {
                       sizes="(max-width: 768px) 46vw, 24vw"
                     />
                     <span className="absolute bottom-0 left-0 bg-[#8d6f58] px-4 py-2 text-[0.62rem] uppercase tracking-[0.18em] text-white">
-                      After
+                      {t('results.after')}
                     </span>
                   </div>
                 </div>
@@ -259,25 +312,41 @@ export function ResultsCarousel() {
         </div>
       </div>
       <p className="mt-8 text-center text-[0.68rem] uppercase tracking-[0.16em] text-stone-500">
-        Individual results vary. All treatment plans require clinical consultation.
+        {t('results.disclaimer')}
       </p>
     </div>
   );
 }
 
 export function TrendsCarousel() {
+  const t = useTranslations('homeEditorial');
+  const articles = skinTrendArticles.map((article, index) => ({
+    ...article,
+    category: t(`trendItems.item${index + 1}.category`),
+    title: t(`trendItems.item${index + 1}.title`),
+  }));
   const { emblaRef, scrollPrev, scrollNext, canScrollPrev, canScrollNext } =
     useCarouselControls();
 
   return (
     <div>
       <div className="mb-8 flex justify-end gap-3">
-        <CarouselButton direction="previous" onClick={scrollPrev} disabled={!canScrollPrev} />
-        <CarouselButton direction="next" onClick={scrollNext} disabled={!canScrollNext} />
+        <CarouselButton
+          direction="previous"
+          onClick={scrollPrev}
+          disabled={!canScrollPrev}
+          label={t('carousel.previousSlide')}
+        />
+        <CarouselButton
+          direction="next"
+          onClick={scrollNext}
+          disabled={!canScrollNext}
+          label={t('carousel.nextSlide')}
+        />
       </div>
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="-ml-5 flex">
-          {skinTrendArticles.map((article) => (
+          {articles.map((article) => (
             <article
               key={article.title}
               className="min-w-0 flex-[0_0_88%] pl-5 md:flex-[0_0_48%] lg:flex-[0_0_32%]"

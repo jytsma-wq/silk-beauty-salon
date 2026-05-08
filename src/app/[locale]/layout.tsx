@@ -17,10 +17,11 @@ import { AnalyticsScripts } from "@/components/providers/AnalyticsScripts";
 import { WhatsAppWidget } from "@/components/layout/WhatsAppWidget";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { siteConfig } from '@/data/site-config';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://silkbeautysalon.com'),
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || siteConfig.url),
     title: "Premier Beauty Salon in Batumi | Silk Beauty Salon",
     description: "Batumi's premier beauty salon on Zurab Gorgiladze Street.",
     keywords: ["beauty salon", "botox", "dermal fillers", "laser treatments", "skin treatments", "Batumi", "Georgia", "cosmetic clinic"],

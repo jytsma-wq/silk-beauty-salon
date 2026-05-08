@@ -8,6 +8,7 @@ import { Calendar as DatePicker } from '@/components/ui/calendar';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { siteConfig } from '@/data/site-config';
 
 interface BookingFormProps {
   consultationTypes: Array<{
@@ -18,7 +19,6 @@ interface BookingFormProps {
   }>;
 }
 
-// Client-side CSRF token getter
 function getCsrfToken(): string | null {
   if (typeof window === 'undefined') return null;
   const meta = document.querySelector('meta[name="csrf-token"]');
@@ -43,16 +43,43 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const timeSlots = [
-    { value: '10:00', label: '10:00' },
-    { value: '11:00', label: '11:00' },
-    { value: '12:00', label: '12:00' },
-    { value: '14:00', label: '14:00' },
-    { value: '15:00', label: '15:00' },
-    { value: '16:00', label: '16:00' },
-    { value: '17:00', label: '17:00' },
-    { value: '18:00', label: '18:00' },
-  ];
+
+  const getHoursForDate = (date?: Date) => {
+    switch (date?.getDay()) {
+      case 0:
+        return siteConfig.businessHours.sunday;
+      case 1:
+        return siteConfig.businessHours.monday;
+      case 2:
+        return siteConfig.businessHours.tuesday;
+      case 3:
+        return siteConfig.businessHours.wednesday;
+      case 4:
+        return siteConfig.businessHours.thursday;
+      case 5:
+        return siteConfig.businessHours.friday;
+      case 6:
+        return siteConfig.businessHours.saturday;
+      default:
+        return siteConfig.businessHours.monday;
+    }
+  };
+
+  const buildTimeSlots = (date?: Date) => {
+    const [start, end] = getHoursForDate(date).split(' - ');
+    const startHour = Number.parseInt(start.split(':')[0] ?? '10', 10);
+    const endHour = Number.parseInt(end.split(':')[0] ?? '19', 10);
+
+    return Array.from({ length: Math.max(endHour - startHour, 0) }, (_, index) => {
+      const hour = `${startHour + index}`.padStart(2, '0');
+      return {
+        value: `${hour}:00`,
+        label: `${hour}:00`,
+      };
+    });
+  };
+
+  const timeSlots = buildTimeSlots(selectedDate);
 
   const formatDateValue = (date: Date) => {
     const year = date.getFullYear();
@@ -118,13 +145,17 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
   const handleDateSelect = (date: Date | undefined) => {
     setSelectedDate(date);
     handleChange('preferredDate', date ? formatDateValue(date) : '');
+    const nextSlots = buildTimeSlots(date);
+    if (!nextSlots.some((slot) => slot.value === formData.preferredTime)) {
+      handleChange('preferredTime', '');
+    }
   };
 
   if (isSuccess) {
     return (
       <div className="text-center py-12">
-        <div className="w-16 h-16 bg-[#b5453a]/10 rounded-full flex items-center justify-center mx-auto mb-6">
-          <CheckCircle className="w-8 h-8 text-[#b5453a]" />
+        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#8d6f58]/10">
+          <CheckCircle className="h-8 w-8 text-[#8d6f58]" />
         </div>
         <h3 className="font-serif text-2xl text-primary mb-4">
           {t('successTitle', { defaultValue: 'Booking Request Submitted' })}
@@ -134,7 +165,7 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
         </p>
         <Button
           onClick={() => setIsSuccess(false)}
-          className="bg-[#b5453a] hover:bg-[#8e3229] text-white rounded-none px-6 py-3 text-xs tracking-widest uppercase"
+          className="rounded-md border border-[#d9cec1] bg-[#f7f2eb] px-6 py-3 text-xs uppercase tracking-widest text-[#241f1b] transition-colors hover:bg-[#241f1b] hover:text-white"
         >
           {t('bookAnother', { defaultValue: 'Book Another Appointment' })}
         </Button>
@@ -150,7 +181,6 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
         </div>
       )}
 
-      {/* Service Selection */}
       <div className="space-y-2">
         <Label htmlFor="service" className="flex items-center gap-2">
           <Calendar className="w-4 h-4 text-[#b5453a]" />
@@ -171,7 +201,6 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
         </select>
       </div>
 
-      {/* Personal Information */}
       <div className="grid md:grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="name" className="flex items-center gap-2">
@@ -208,7 +237,6 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
         </div>
       </div>
 
-      {/* Email */}
       <div className="space-y-2">
         <Label htmlFor="email" className="flex items-center gap-2">
           <Mail className="w-4 h-4 text-[#b5453a]" />
@@ -225,14 +253,13 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
         />
       </div>
 
-      {/* Preferred Date & Time */}
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,360px)_1fr]">
+      <div className="grid gap-8 xl:grid-cols-2">
         <div className="space-y-3">
           <Label className="flex items-center gap-2">
             <Calendar className="w-4 h-4 text-[#8d6f58]" />
             {t('preferredDate', { defaultValue: 'Preferred Date' })}
           </Label>
-          <div className="rounded-md border border-[#e8e4df] bg-white p-3">
+          <div className="aspect-square w-full max-w-[520px] rounded-md border border-[#e8e4df] bg-white p-3">
             <DatePicker
               mode="single"
               selected={selectedDate}
@@ -243,10 +270,11 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
                 return date < today;
               }}
               classNames={{
-                day_selected:
+                selected:
                   'bg-[#241f1b] text-white hover:bg-[#241f1b] hover:text-white focus:bg-[#241f1b] focus:text-white',
-                day_today: 'bg-[#f3ece3] text-[#241f1b]',
+                today: 'bg-[#f3ece3] text-[#241f1b]',
               }}
+              className="w-full"
             />
           </div>
           <input type="hidden" name="preferredDate" value={formData.preferredDate} />
@@ -264,7 +292,7 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
             <Clock className="w-4 h-4 text-[#8d6f58]" />
             {t('preferredTime', { defaultValue: 'Preferred Time' })}
           </Label>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-6">
             {timeSlots.map((slot) => {
               const isSelected = formData.preferredTime === slot.value;
               return (
@@ -292,7 +320,6 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
         </div>
       </div>
 
-      {/* Message */}
       <div className="space-y-2">
         <Label htmlFor="message" className="flex items-center gap-2">
           <MessageSquare className="w-4 h-4 text-[#b5453a]" />
@@ -308,11 +335,10 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
         />
       </div>
 
-      {/* Submit Button */}
       <Button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-[#b5453a] hover:bg-[#8e3229] text-white rounded-none px-6 py-4 text-xs tracking-widest uppercase font-medium transition-colors disabled:opacity-50"
+        className="w-full rounded-md border border-[#d9cec1] bg-[#f7f2eb] px-6 py-4 text-xs font-medium uppercase tracking-widest text-[#241f1b] transition-colors hover:bg-[#241f1b] hover:text-white disabled:opacity-50"
       >
         {isSubmitting ? tCommon('submitting', { defaultValue: 'Submitting...' }) : t('requestBooking', { defaultValue: 'Request Booking' })}
       </Button>

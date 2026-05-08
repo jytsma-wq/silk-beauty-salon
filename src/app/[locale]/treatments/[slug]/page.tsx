@@ -76,6 +76,7 @@ export default async function TreatmentPage({ params }: Props) {
     category?.treatments
       .filter((item: { slug: string }) => item.slug !== treatment.slug)
       .slice(0, 3) || [];
+  const stickyMeta = [treatment.duration, treatment.price].filter(Boolean).join(' • ');
 
   return (
     <article className="min-h-screen bg-white">
@@ -306,9 +307,7 @@ export default async function TreatmentPage({ params }: Props) {
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <div className="hidden md:block">
             <p className="font-serif text-sm text-stone-900">{treatment.name}</p>
-            <p className="text-xs text-stone-500">
-              {treatment.duration} • {treatment.price}
-            </p>
+            {stickyMeta ? <p className="text-xs text-stone-500">{stickyMeta}</p> : null}
           </div>
           <Button
             asChild
