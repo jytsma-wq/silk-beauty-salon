@@ -1,26 +1,105 @@
-## Error Type
-Build Error
+6. Quick Reference: Complete List of Hardcoded Strings by File
+This section provides the full inventory of all hardcoded English strings discovered during the audit, organized by file. Use this as a checklist when verifying that all strings have been converted to i18n keys.
+6.1 Root-Level Pages (Outside [locale] Route)
+File	Line	String	Category
+src/app/global-error.tsx	21	Something went wrong	JSX text
+src/app/global-error.tsx	22	Try again	JSX text
+src/app/error.tsx	22	Something Went Wrong	JSX text
+src/app/error.tsx	25	We apologize for the inconvenience...	JSX text
+src/app/error.tsx	36	Try Again	JSX text
+src/app/not-found.tsx	16	Page Not Found	JSX text
+src/app/not-found.tsx	19	Sorry, we couldn't find the page...	JSX text
+src/app/not-found.tsx	24	Go Home	JSX text
+src/app/not-found.tsx	29	Contact Us	JSX text
+6.2 Component Files
+File	String	Category
+GaldermaHeaderClient.tsx	Menu / More / Open menu / Close menu / Treatment portfolio / Skin conditions	JSX + aria + title
+GaldermaFooter.tsx	Sat / Sun / Instagram / Facebook	JSX + aria
+WhatsAppWidget.tsx	Silk Beauty Salon	JSX text
+MobileNav.tsx	Silk Beauty	JSX text
+MobileMenuSheet.tsx	Toggle menu	aria-label
+theme-toggle.tsx	Loading theme toggle	aria-label
+VideoGallery.tsx	Close video / Toggle fullscreen	aria-label
+GalleryGrid.tsx	View / Close gallery / Previous image / Next image	JSX + aria
+skip-link.tsx	Skip links	aria-label
+dialog.tsx	Close	aria-label (sr-only)
+sheet.tsx	Close	aria-label (sr-only)
+GaldermaInspiredHome.tsx	5 title attribute strings	title attrs
+6.3 Locale Page Files
+File	Hardcoded Strings Found
+page.tsx (home)	Hero alt text, various metadata
+treatments/page.tsx	alt='Luxury Beauty Salon'
+treatments/[slug]/page.tsx	'3-6 months', 'None to minimal', metadata title
+treatments/category/[slug]/page.tsx	Hardcoded metadata title
+conditions/page.tsx	alt='Skin Care Treatment'
+conditions/[slug]/page.tsx	Hardcoded metadata
+about/page.tsx	2 alt texts, metadata
+contact-us/page.tsx	'Contact', alt, 3 social aria-labels, map title, metadata
+ContactForm.tsx	3x aria-label='required'
+consultation/page.tsx	'Consultation', 2 alt texts
+before-after/page.tsx	'Start Your Journey'
+book/page.tsx	'Book Your Consultation', alt='Salon interior', metadata
+offers/page.tsx	alt='Special Offers'
+accessibility/page.tsx	'Tab', 'Escape'
+blog/[slug]/page.tsx	'Post not found', 'Expert Practitioner', metadata
+international-clients/page.tsx	2 alt texts
+layout.tsx	Hardcoded title template
+5 opengraph-image.tsx files	Hardcoded OG text
+6.4 Data Files with English Content
+File	Content Type	Approximate English Word Count
+src/data/site-config.ts	Site config, awards, team bios, FAQs, international	~1,500 words
+src/data/treatments.ts	Treatment names, descriptions, details	~2,000 words
+src/data/conditions.ts	Condition names, descriptions, symptoms, causes	~1,200 words
+src/data/media.ts	Video/gallery titles and descriptions	~500 words
+src/data/testimonials.ts	Testimonial quotes, names, locations	~300 words
+src/data/blog.ts	Blog post titles, excerpts, content	~1,500 words
+src/data/navigation.ts	Navigation labels	~100 words
+src/data/homepage.ts	Homepage section content	~400 words
+src/data/treatment-collections.ts	Collection names, descriptions	~300 words
+7. Recommended Execution Order
+The prompts should be executed in the following order to avoid conflicts and ensure each step builds on the previous one correctly. Each prompt is independent enough to be run as a separate Windsurf session, but the order matters for consistency.
+1. Prompt 1 (Missing Translation Keys) — Run FIRST. This fills in all gaps in the existing JSON message files. Estimated effort: Medium. This is the most straightforward task with the least risk of breaking things.
+2. Prompt 2 (Hardcoded Strings) — Run SECOND. This requires adding new keys to en.json and all language files, then modifying source code. The keys added in Prompt 1 are already in place, so you only need to add the NEW keys for previously-hardcoded strings. Estimated effort: Large. This touches many files across the project.
+3. Prompt 3 (Data Files) — Run THIRD. This is the most architecturally significant change. It requires restructuring how data files work, adding large amounts of translation content, and updating all consuming components. Estimated effort: Very Large. Consider breaking this into sub-prompts per data file.
+4. Prompt 4 (Quality Audit) — Run LAST. This verifies everything is correct and catches any remaining issues. Estimated effort: Medium.
 
-## Error Message
-Expected '</', got ')'
-
-## Build Output
-./src/components/layout/GaldermaHeaderInteractive.tsx:182:21
-Expected '</', got ')'
-  180 |                         </DropdownMenuItem>
-  181 |                       ))
-> 182 |                     )}
-      |                     ^
-  183 |                   </DropdownMenuContent>
-  184 |                 </DropdownMenu>
-  185 |
-
-Parsing ecmascript source code failed
-
-Import trace:
-  Server Component:
-    ./src/components/layout/GaldermaHeaderInteractive.tsx
-    ./src/components/layout/GaldermaHeader.tsx
-    ./src/app/[locale]/layout.tsx
-
-Next.js version: 16.2.5 (Turbopack)
+7.1 Sub-Prompt Strategy for Data Files
+Prompt 3 is extremely large. If Windsurf struggles with it, break it into these sub-prompts executed in sequence:
+•  Sub-prompt 3a: Internationalize src/data/site-config.ts only
+•  Sub-prompt 3b: Internationalize src/data/treatments.ts and src/data/treatment-collections.ts
+•  Sub-prompt 3c: Internationalize src/data/conditions.ts
+•  Sub-prompt 3d: Internationalize src/data/media.ts, src/data/testimonials.ts, and src/data/blog.ts
+•  Sub-prompt 3e: Internationalize src/data/navigation.ts and src/data/homepage.ts
+8. Language-Specific Translation Notes
+These notes should be included in or referenced by each prompt to ensure translation quality across all target languages.
+8.1 Arabic (ar)
+•  RTL language — ensure text direction is properly handled in all components
+•  Use Modern Standard Arabic (MSA/\u0627\u0644\u0639\u0631\u0628\u064A\u0629 \u0627\u0644\u0641\u0635\u062D\u0649), not dialectal Arabic
+•  Aesthetic/medical terminology should use accepted Arabic medical terms
+•  Brand names (Silk Beauty Salon, Allergan, Juvederm, Galderma, Restylane, Merz) stay in English/Latin script
+•  Personal names stay in their original form
+•  The ₾ (Georgian Lari) symbol should be kept as-is or written as \u0644\u064A\u0631\u064A \u062C\u0648\u0631\u062C\u064A in context
+8.2 Hebrew (he)
+•  RTL language — same RTL considerations as Arabic
+•  Use formal/modern Hebrew, not biblical or slang
+•  Medical/aesthetic terminology often uses borrowed English terms with Hebrew spelling — follow industry convention
+•  Brand names stay in English/Latin script
+•  Place names: Batumi = \u05D1\u05D0\u05EA\u05D5\u05DE\u05D9, Georgia = \u05D2\u05D0\u05D5\u05E8\u05D2\u05D9\u05D4
+8.3 Georgian (ka)
+•  LTR language using unique Georgian alphabet (Mkhedruli script)
+•  Do NOT use Russian/Cyrillic characters for Georgian translations
+•  Georgian has its own medical terminology — use established Georgian medical terms
+•  Some international terms (like Botox, Hydrafacial) are commonly used in their English form in Georgian aesthetic context
+•  Georgian names (Nino, Ketevan, Mariam, Sophia) stay in Georgian script: \u10DC\u10D8\u10DC\u10DD, \u10E5\u10D4\u10D7\u10D4\u10D5\u10D0\u10DC\u10D8, \u10DB\u10D0\u10E0\u10D8\u10D0\u10DB\u10D8, \u10E1\u10DD\u10E4\u10D8\u10D0
+8.4 Russian (ru)
+•  LTR language using Cyrillic script
+•  Use standard Russian, not regional dialects
+•  Medical/aesthetic terminology has well-established Russian equivalents
+•  Brand names stay in English/Latin script (very common in Russian aesthetic medicine marketing)
+•  Georgian personal names can be transliterated to Russian: \u041D\u0438\u043D\u043E, \u041A\u0435\u0442\u0435\u0432\u0430\u043D, \u041C\u0430\u0440\u0438\u0430\u043C, \u0421\u043E\u0444\u0438\u044F
+8.5 Turkish (tr)
+•  LTR language using Latin script with Turkish-specific characters (\u00E7, \u011F, \u0131, \u00F6, \u015F, \u00FC)
+•  Use standard Istanbul Turkish, not regional dialects
+•  Medical/aesthetic terminology often uses international terms adapted to Turkish phonology
+•  Brand names stay in English/Latin script
+•  Some aesthetic terms have well-established Turkish equivalents (e.g., cilt gen\u00E7le\u015Ftirme = skin rejuvenation)
