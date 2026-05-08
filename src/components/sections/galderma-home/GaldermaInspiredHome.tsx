@@ -169,7 +169,6 @@ function SpecialistCta() {
 }
 
 export function GaldermaInspiredHome() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const t = useTranslations('home');
   return (
     <>
