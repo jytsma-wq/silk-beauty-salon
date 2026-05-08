@@ -4,6 +4,7 @@
     "description": "صالون تجميل فاخر في باتومي في شارع زوراب غورغيلادزه. خبراء متخصصون، علاجات متطورة ورعاية فاخرة."
   },
   "nav": {
+    "home": "الرئيسية",
     "treatments": "العلاجات",
     "conditions": "حالات البشرة",
     "about": "من نحن",
@@ -14,15 +15,16 @@
     "findSpecialist": "ابحث عن أخصائي",
     "pricelist": "قائمة الأسعار",
     "offers": "العروض",
+    "beforeAfter": "قبل وبعد",
+    "gallery": "المعرض",
     "contact": "اتصل بنا",
     "bookAppointment": "احجز موعد",
+    "bookConsultation": "احجز استشارة",
     "faq": "الأسئلة الشائعة",
     "press": "الصحافة",
     "blog": "المدونة",
     "team": "فريقنا",
-    "beforeAfter": "قبل وبعد",
     "mainNavigation": "التنقل الرئيسي",
-    "findSpecialist": "العثور على أخصائي",
     "internationalClients": "العملاء الدوليون",
     "international": "العملاء الدوليون",
     "book": "احجز",
@@ -30,7 +32,6 @@
     "allConditions": "جميع الحالات",
     "viewAll": "عرض الكل",
     "exploreAll": "استكشاف الكل",
-    "consultation": "استشارة",
     "visitUs": "زورونا"
   },
   "header": {
@@ -301,6 +302,15 @@
     "servicePeel": "تقشير كيميائي",
     "serviceMicroneedling": "الإبر الدقيقة",
     "serviceHydrafacial": "هايدرافيشل"
+  },
+  "bookingPage": {
+    "preferredDate": "التاريخ المفضل",
+    "preferredTime": "الوقت المفضل",
+    "personalInfo": "المعلومات الشخصية",
+    "appointmentDetails": "تفاصيل الموعد",
+    "confirmDetails": "تأكيد التفاصيل",
+    "bookingSuccess": "تم الحجز بنجاح",
+    "bookingError": "خطأ في الحجز"
   },
   "statistics": {
     "years": "سنوات الخبرة",

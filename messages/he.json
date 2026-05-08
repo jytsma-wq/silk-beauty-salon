@@ -4,6 +4,7 @@
     "description": "סלון יופי פרימיום בבתומי ברחוב זוראב גורגילדזה. מומחים, טיפולים מתקדמים ושירות יוקרתי."
   },
   "nav": {
+    "home": "בית",
     "treatments": "טיפולים",
     "conditions": "מצבי עור",
     "about": "אודות",
@@ -14,15 +15,16 @@
     "findSpecialist": "מצא מומחה",
     "pricelist": "מחירון",
     "offers": "הצעות",
+    "beforeAfter": "לפני ואחרי",
+    "gallery": "גלריה",
     "contact": "צור קשר",
     "bookAppointment": "קבע תור",
+    "bookConsultation": "קבע ייעוץ",
     "faq": "שאלות נפוצות",
     "press": "עיתונות",
     "blog": "בלוג",
     "team": "הצוות שלנו",
-    "beforeAfter": "לפני ואחרי",
     "mainNavigation": "ניווט ראשי",
-    "findSpecialist": "מצא מומחה",
     "internationalClients": "לקוחות בינלאומיים",
     "international": "לקוחות בינלאומיים",
     "book": "קבע תור",
@@ -30,7 +32,6 @@
     "allConditions": "כל מצבי העור",
     "viewAll": "הצג הכל",
     "exploreAll": "חקור הכל",
-    "consultation": "ייעוץ",
     "visitUs": "בקרו אותנו"
   },
   "header": {
@@ -301,6 +302,15 @@
     "servicePeel": "פילינג כימי",
     "serviceMicroneedling": "מיקרונידלינג",
     "serviceHydrafacial": "הידרה פישיאל"
+  },
+  "bookingPage": {
+    "preferredDate": "תאריך מועדף",
+    "preferredTime": "זמן מועדף",
+    "personalInfo": "מידע אישי",
+    "appointmentDetails": "פרטי תור",
+    "confirmDetails": "אישור פרטים",
+    "bookingSuccess": "התור נקבע בהצלחה",
+    "bookingError": "שגיאה בקביעת תור"
   },
   "statistics": {
     "years": "שנות ניסיון",

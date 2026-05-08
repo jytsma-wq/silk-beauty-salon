@@ -4,6 +4,7 @@
     "description": "Zurab Gorgiladze Caddesi'ndeki Batumi'nin premium güzellik salonu. Uzman pratisyenler, gelişmiş tedaviler ve lüks bakım."
   },
   "nav": {
+    "home": "Ana Sayfa",
     "treatments": "Tedaviler",
     "conditions": "Cilt Sorunları",
     "about": "Hakkımızda",
@@ -14,15 +15,16 @@
     "findSpecialist": "Uzman Bul",
     "pricelist": "Fiyat Listesi",
     "offers": "Teklifler",
+    "beforeAfter": "Öncesi ve Sonrası",
+    "gallery": "Galeri",
     "contact": "İletişim",
     "bookAppointment": "Randevu Al",
+    "bookConsultation": "Konsültasyon Randevusu",
     "faq": "SSS",
     "press": "Basın",
     "blog": "Blog",
     "team": "Ekibimiz",
-    "beforeAfter": "Öncesi ve Sonrası",
     "mainNavigation": "Ana Navigasyon",
-    "findSpecialist": "Uzman Bul",
     "internationalClients": "Uluslararası Müşteriler",
     "international": "Uluslararası Müşteriler",
     "book": "Randevu Al",
@@ -30,7 +32,6 @@
     "allConditions": "Tüm Durumlar",
     "viewAll": "Tümünü Gör",
     "exploreAll": "Tümünü Keşfet",
-    "consultation": "Konsültasyon",
     "visitUs": "Bizi Ziyaret Edin"
   },
   "header": {
@@ -293,6 +294,15 @@
     "servicePeel": "Kimyasal Peeling",
     "serviceMicroneedling": "Mikro İğneleme",
     "serviceHydrafacial": "Hydrafacial"
+  },
+  "bookingPage": {
+    "preferredDate": "Tercih Edilen Tarih",
+    "preferredTime": "Tercih Edilen Saat",
+    "personalInfo": "Kişisel Bilgiler",
+    "appointmentDetails": "Randevu Detayları",
+    "confirmDetails": "Detayları Onayla",
+    "bookingSuccess": "Randevu Başarılı",
+    "bookingError": "Randevu Hatası"
   },
   "statistics": {
     "years": "Yıllık Deneyim",

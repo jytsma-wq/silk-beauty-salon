@@ -4,6 +4,7 @@
     "description": "Премиальный салон красоты в Батуми на улице Зураба Горгиладзе. Специалисты, передовые методы лечения и роскошный сервис."
   },
   "nav": {
+    "home": "Главная",
     "treatments": "Процедуры",
     "conditions": "Состояния",
     "about": "О нас",
@@ -14,15 +15,16 @@
     "findSpecialist": "Найти специалиста",
     "pricelist": "Прайс-лист",
     "offers": "Акции",
+    "beforeAfter": "До и После",
+    "gallery": "Галерея",
     "contact": "Контакты",
     "bookAppointment": "Записаться",
+    "bookConsultation": "Записаться на консультацию",
     "faq": "Вопросы",
     "press": "Пресса",
     "blog": "Блог",
     "team": "Наша команда",
-    "beforeAfter": "До и После",
     "mainNavigation": "Главная навигация",
-    "findSpecialist": "Найти специалиста",
     "internationalClients": "Международные клиенты",
     "international": "Международные клиенты",
     "book": "Записаться",
@@ -30,7 +32,6 @@
     "allConditions": "Все состояния",
     "viewAll": "Смотреть все",
     "exploreAll": "Изучить все",
-    "consultation": "Консультация",
     "visitUs": "Посетите нас"
   },
   "header": {
@@ -301,6 +302,15 @@
     "servicePeel": "Химический пилинг",
     "serviceMicroneedling": "Микронидлинг",
     "serviceHydrafacial": "Гидрапилинг"
+  },
+  "bookingPage": {
+    "preferredDate": "Предпочитаемая дата",
+    "preferredTime": "Предпочитаемое время",
+    "personalInfo": "Личная информация",
+    "appointmentDetails": "Детали назначения",
+    "confirmDetails": "Подтвердить детали",
+    "bookingSuccess": "Бронирование успешно",
+    "bookingError": "Ошибка бронирования"
   },
   "statistics": {
     "years": "Лет опыта",

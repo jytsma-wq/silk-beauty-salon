@@ -452,6 +452,15 @@
     "serviceMicroneedling": "Microneedling",
     "serviceHydrafacial": "Hydrafacial"
   },
+  "bookingPage": {
+    "preferredDate": "Preferred Date",
+    "preferredTime": "Preferred Time",
+    "personalInfo": "Personal Information",
+    "appointmentDetails": "Appointment Details",
+    "confirmDetails": "Confirm Details",
+    "bookingSuccess": "Booking Successful",
+    "bookingError": "Booking Error"
+  },
   "statistics": {
     "years": "Years Experience",
     "clients": "Happy Clients",

@@ -4,6 +4,7 @@
     "description": "ბათუმის პრემიუმ სილამაზის სალონი ზურაბ გორგილაძის ქუჩაზე. ექსპერტ სპეციალისტები, თანამედროვე მკურნალობა და ძვირფასი მომსახურება."
   },
   "nav": {
+    "home": "მთავარი",
     "treatments": "მკურნალობა",
     "conditions": "მდგომარეობები",
     "about": "ჩვენს შესახებ",
@@ -14,15 +15,16 @@
     "findSpecialist": "სპეციალისტის პოვნა",
     "pricelist": "ფასები",
     "offers": "შეთავაზებები",
+    "beforeAfter": "სანამ და მერე",
+    "gallery": "გალერეა",
     "contact": "კონტაქტი",
     "bookAppointment": "დაჯავშნეთ",
+    "bookConsultation": "კონსულტაციის დაჯავშნა",
     "faq": "კითხვები",
     "press": "პრესა",
     "blog": "ბლოგი",
     "team": "ჩვენი გუნდი",
-    "beforeAfter": "სანამ და მერე",
     "mainNavigation": "მთავარი ნავიგაცია",
-    "findSpecialist": "სპეციალისტის პოვნა",
     "internationalClients": "საერთაშორისო კლიენტები",
     "international": "საერთაშორისო კლიენტები",
     "book": "დაჯავშნა",
@@ -30,7 +32,6 @@
     "allConditions": "ყველა მდგომარეობა",
     "viewAll": "ყველა მკურნალობის ნახვა",
     "exploreAll": "ყველას გამოკვლევა",
-    "consultation": "კონსულტაცია",
     "visitUs": "გვეწვიეთ"
   },
   "header": {
@@ -295,17 +296,6 @@
     "done": "დასრულება",
     "serviceConsultation": "კონსულტაცია",
     "serviceBotox": "ბოტოქსის მკურნალობა",
-    "serviceFillers": "დერმალური ფილერები",
-    "serviceLaser": "ლაზერული ეპილაცია",
-    "serviceRejuvenation": "კანის განახლება",
-    "servicePeel": "ქიმიური პილინგი",
-    "serviceMicroneedling": "მიკრონიდლინგი",
-    "serviceHydrafacial": "ჰიდრაფეშიალი"
-  },
-  "statistics": {
-    "years": "წლის გამოცდილება",
-    "clients": "კმაყოფილი კლიენტი",
-    "satisfaction": "კმაყოფილების დონე",
     "awards": "სამრეწველო ჯილდოები"
   },
   "testimonial": {
