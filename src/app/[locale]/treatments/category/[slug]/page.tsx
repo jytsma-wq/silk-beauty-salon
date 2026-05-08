@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { ChevronRight } from 'lucide-react';
 import { Link } from '@/i18n/routing';
+import { getTranslations } from 'next-intl/server';
 import { getAllTreatments, getTreatmentBySlug } from '@/data/treatments';
 import {
   getTreatmentCollectionBySlug,
@@ -27,12 +28,13 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'treatmentsPage' });
   const collection = getTreatmentCollectionBySlug(slug);
 
   if (!collection) {
     return {
-      title: 'Treatments | Silk Beauty Salon',
+      title: t('title'),
     };
   }
 
@@ -69,7 +71,7 @@ export default async function TreatmentCollectionPage({ params }: Props) {
 
   return (
     <>
-      <section className="bg-[#f7f2eb] pt-[170px] md:pt-[188px]">
+      <section className="bg-[#f7f2eb] pt-42.5 md:pt-47">
         <div className="grid min-h-[68svh] grid-cols-1 lg:grid-cols-[44%_56%]">
           <div className="flex items-end px-6 py-14 md:px-12 lg:px-16 xl:px-24">
             <div className="max-w-xl">

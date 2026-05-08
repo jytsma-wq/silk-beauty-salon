@@ -1,7 +1,9 @@
 {
   "site": {
     "title": "Premier Beauty Salon in Batumi | Silk Beauty Salon",
-    "description": "Batumi's premier beauty salon on Zurab Gorgiladze Street. Expert practitioners, cutting-edge treatments & luxury care."
+    "description": "Batumi's premier beauty salon on Zurab Gorgiladze Street. Expert practitioners, cutting-edge treatments & luxury care.",
+    "brandName": "Silk Beauty Salon",
+    "brandShort": "Silk Beauty"
   },
   "nav": {
     "home": "Home",
@@ -32,7 +34,11 @@
     "allConditions": "All Conditions",
     "viewAll": "View All",
     "exploreAll": "Explore All",
-    "visitUs": "Visit Us"
+    "visitUs": "Visit Us",
+    "menu": "Menu",
+    "more": "More",
+    "treatmentPortfolio": "Treatment portfolio",
+    "skinConditions": "Skin conditions"
   },
   "header": {
     "announcement": "Award Winning | Batumi's Premier Beauty Salon | Featured in Georgian Fashion & Beauty Magazine"
@@ -132,14 +138,14 @@
   "testimonials": {
     "title": "What Our Clients Say",
     "subtitle": "Real results from real clients",
-    "viewAll": "View All Testimonials",
+    "viewAll": "View All Reviews",
     "sectionLabel": "Client Stories",
-    "description": "Real stories from real clients who have transformed their look and confidence with us.",
+    "description": "Real stories from real clients about how they transformed their appearance and confidence with us.",
     "stats": {
       "clients": "Happy Clients",
       "rating": "Average Rating",
       "recommend": "Would Recommend",
-      "years": "Years Experience"
+      "years": "Years of Experience"
     }
   },
   "pressBar": {
@@ -154,10 +160,10 @@
   "about": {
     "sectionLabel": "About Us",
     "imageAlt": "Silk Beauty Salon",
-    "category": "",
+    "category": "About Us",
     "title": "ABOUT US",
     "description": "Our clinic is equipped with the latest state-of-the-art technologies, from advanced skin-tightening devices to non-invasive body contouring machines. We are committed to staying at the forefront of aesthetic innovation, offering treatments that deliver outstanding results with minimal downtime.",
-    "descriptionExtended": "",
+    "descriptionExtended": "Experience the perfect blend of advanced technology and personalized care at Silk Beauty Salon, where we combine cutting-edge aesthetic treatments with a commitment to your safety and satisfaction.",
     "readMore": "Read More",
     "stats": {
       "years": "Years",
@@ -452,16 +458,7 @@
     "serviceMicroneedling": "Microneedling",
     "serviceHydrafacial": "Hydrafacial"
   },
-  "bookingPage": {
-    "preferredDate": "Preferred Date",
-    "preferredTime": "Preferred Time",
-    "personalInfo": "Personal Information",
-    "appointmentDetails": "Appointment Details",
-    "confirmDetails": "Confirm Details",
-    "bookingSuccess": "Booking Successful",
-    "bookingError": "Booking Error"
-  },
-  "statistics": {
+    "statistics": {
     "years": "Years Experience",
     "clients": "Happy Clients",
     "satisfaction": "Satisfaction Rate",
@@ -1598,5 +1595,89 @@
       "description": "Take a virtual walk through our luxurious facilities in Batumi. From our welcoming reception to our state-of-the-art treatment rooms, experience the Silk Beauty difference before you even step through our doors.",
       "duration": "Duration: 2:00"
     }
+  },
+  "common": {
+    "tryAgain": "Try Again",
+    "view": "View"
+  },
+  "errorPage": {
+    "somethingWentWrong": "Something Went Wrong",
+    "apologyMessage": "We apologize for the inconvenience. An unexpected error has occurred.",
+    "tryAgain": "Try Again",
+    "globalError": "Something went wrong"
+  },
+  "accessibility": {
+    "loadingThemeToggle": "Loading theme toggle",
+    "closeVideo": "Close video",
+    "toggleFullscreen": "Toggle fullscreen",
+    "closeGallery": "Close gallery",
+    "previousImage": "Previous image",
+    "nextImage": "Next image",
+    "skipLinks": "Skip links",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "required": "required",
+    "keyTab": "Tab",
+    "keyEscape": "Escape"
+  },
+  "social": {
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "tiktok": "TikTok",
+    "specialOffers": "Special Offers",
+    "luxuryBeautySalon": "Luxury Beauty Salon",
+    "contactSilkBeautySalon": "Contact Silk Beauty Salon",
+    "silkBeautySalon": "Silk Beauty Salon",
+    "teamMember": "{name} - Team Member",
+    "consultation": "Consultation",
+    "bookConsultation": "Book consultation",
+    "skinCareTreatment": "Skin Care Treatment",
+    "salonInterior": "Salon interior"
+  },
+  "footer": {
+    "hours": {
+      "sat": "Sat",
+      "sun": "Sun"
+    }
+  },
+  "blogPage": {
+    "postNotFound": "Post not found",
+    "expertPractitioner": "Expert Practitioner"
+  },
+  "treatmentPage": {
+    "heroAlt": "Luxury Beauty Salon",
+    "durationResults": "3-6 months",
+    "minimalDowntime": "None to minimal"
+  },
+  "international": {
+    "imageAlt": "Silk Beauty Salon",
+    "teamAlt": "Nana Gviniashvili"
+  },
+  "contactPage": {
+    "imageAlt": "Contact Silk Beauty Salon",
+    "mapTitle": "Silk Beauty Salon Location"
+  },
+  "consultation": {
+    "bookImageAlt": "Book consultation"
+  },
+  "conditionsPage": {
+    "imageAlt": "Skin Care Treatment"
+  },
+  "offersPage": {
+    "imageAlt": "Special Offers"
+  },
+  "bookingPage": {
+    "imageAlt": "Salon interior"
+  },
+  "aboutPage": {
+    "interiorAlt": "Silk Beauty Salon Interior",
+    "clinicAlt": "Silk Beauty Salon Clinic"
+  },
+  "home": {
+    "section1Title": "Treatment portfolio",
+    "section2Title": "Skin conditions",
+    "section3Title": "Treatment portfolio",
+    "section4Title": "Skin conditions",
+    "section5Title": "Treatment portfolio"
   }
 }

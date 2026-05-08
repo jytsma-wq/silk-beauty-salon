@@ -23,6 +23,8 @@ export default async function ConsultationPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'consultation' });
+  const tCommon = await getTranslations({ locale, namespace: 'common' });
+  const tNav = await getTranslations({ locale, namespace: 'nav' });
 
   const features = [
     {
@@ -72,7 +74,7 @@ export default async function ConsultationPage({
         <div className="absolute inset-0">
           <Image
             src="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=1920&q=80"
-            alt="Consultation"
+            alt={t('consultation')}
             fill
             className="object-cover"
             priority
@@ -84,10 +86,10 @@ export default async function ConsultationPage({
           <div className="max-w-2xl text-white">
             <nav className="flex items-center gap-2 text-sm mb-8 text-white/80">
               <Link href="/" className="hover:text-white">
-                Home
+                {tCommon('home')}
               </Link>
               <ChevronRight className="w-4 h-4" />
-              <span className="text-[#b5453a]">Consultation</span>
+              <span className="text-[#b5453a]">{tNav('consultation')}</span>
             </nav>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-semibold mb-6">
@@ -218,7 +220,7 @@ export default async function ConsultationPage({
         <div className="absolute inset-0">
           <Image
             src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=1920&q=80"
-            alt="Book consultation"
+            alt={t('bookConsultation')}
             fill
             className="object-cover"
           />

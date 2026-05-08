@@ -246,8 +246,8 @@ export function EnhancedBeforeAfter({
                 <BeforeAfterSlider
                   beforeSrc={item.beforeImage}
                   afterSrc={item.afterImage}
-                  beforeAlt={`${item.patientName} before ${item.treatment}`}
-                  afterAlt={`${item.patientName} after ${item.treatment}`}
+                  beforeAlt={t('beforeImageAlt', { patientName: item.patientName, treatment: item.treatment })}
+                  afterAlt={t('afterImageAlt', { patientName: item.patientName, treatment: item.treatment })}
                   initialPosition={55}
                 />
 
@@ -312,7 +312,7 @@ export function EnhancedBeforeAfter({
                 <div className="relative w-full h-full max-w-3xl max-h-[80vh]">
                   <Image
                     src={lightboxTab === 'before' ? lightboxItem.beforeImage : lightboxItem.afterImage}
-                    alt={`${lightboxItem.patientName} - ${lightboxTab}`}
+                    alt={t('lightboxImageAlt', { patientName: lightboxItem.patientName, tab: lightboxTab })}
                     fill
                     className="object-contain"
                     priority

@@ -3,6 +3,7 @@
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { Link } from '@/i18n/routing';
+import { useTranslations } from 'next-intl';
 
 interface MagazineCardProps {
   image: string;
@@ -25,10 +26,11 @@ function MagazineCard({
   aspectRatio = 'portrait',
   className,
 }: MagazineCardProps) {
+  const t = useTranslations('common');
   const aspectClasses = {
     square: 'aspect-square',
-    portrait: 'aspect-4/5',
-    landscape: 'aspect-16/9',
+    portrait: 'aspect-[4/5]',
+    landscape: 'aspect-[4/3]',
     video: 'aspect-video',
   };
 
@@ -39,7 +41,7 @@ function MagazineCard({
         <div className={cn('relative mb-6 overflow-hidden', aspectClasses[aspectRatio])}>
           <Image
             src={image}
-            alt={title}
+            alt={t('cardImageAlt', { title })}
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -95,12 +97,13 @@ function MagazineArticleCard({
   readTime,
   className,
 }: MagazineArticleCardProps) {
+  const t = useTranslations('common');
   return (
     <article className={cn('group grid md:grid-cols-2 gap-6 md:gap-10', className)}>
       <Link href={href} className="block relative aspect-4/5 md:aspect-square overflow-hidden">
         <Image
           src={image}
-          alt={title}
+          alt={t('cardImageAlt', { title })}
           fill
           className="object-cover transition-transform duration-700 group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, 50vw"

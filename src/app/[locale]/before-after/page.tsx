@@ -62,7 +62,7 @@ export default async function BeforeAfterPage({
           {/* Decorative line */}
           <div className="flex items-center justify-center gap-4 mb-8">
             <div className="w-12 h-px bg-stone-300" />
-            <span className="text-xs tracking-[0.3em] uppercase text-stone-400">Start Your Journey</span>
+            <span className="text-xs tracking-[0.3em] uppercase text-stone-400">{t('startJourney', { defaultValue: 'Start Your Journey' })}</span>
             <div className="w-12 h-px bg-stone-300" />
           </div>
 

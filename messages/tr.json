@@ -1,7 +1,9 @@
 {
   "site": {
     "title": "Batumi'nin Premium Güzellik Salonu | Silk Beauty Salon",
-    "description": "Zurab Gorgiladze Caddesi'ndeki Batumi'nin premium güzellik salonu. Uzman pratisyenler, gelişmiş tedaviler ve lüks bakım."
+    "description": "Zurab Gorgiladze Caddesi'ndeki Batumi'nin premium güzellik salonu. Uzman pratisyenler, gelişmiş tedaviler ve lüks bakım.",
+    "brandName": "Silk Beauty Salon",
+    "brandShort": "Silk Beauty"
   },
   "nav": {
     "home": "Ana Sayfa",
@@ -32,7 +34,11 @@
     "allConditions": "Tüm Durumlar",
     "viewAll": "Tümünü Gör",
     "exploreAll": "Tümünü Keşfet",
-    "visitUs": "Bizi Ziyaret Edin"
+    "visitUs": "Bizi Ziyaret Edin",
+    "menu": "Menü",
+    "more": "Daha Fazla",
+    "treatmentPortfolio": "Tedavi Portföyü",
+    "skinConditions": "Cilt Durumları"
   },
   "header": {
     "announcement": "Ödüllü | Batumi'nin En İyi Güzellik Salonu | Gürcistan Moda ve Güzellik Dergisi'nde yayınlandı"
@@ -278,6 +284,7 @@
     "slotConflict": "Bu saat dilimi zaten rezerve edilmiş. Lütfen başka bir saat seçin.",
     "bookingFailed": "Rezervasyon oluşturulamadı",
     "unexpectedError": "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.",
+    "rateLimitMessage": "Çok fazla istek. Lütfen 15 dakika bekleyin.",
     "bookingSummary": "Rezervasyon Özeti",
     "service": "Hizmet",
     "date": "Tarih",
@@ -298,11 +305,17 @@
   "bookingPage": {
     "preferredDate": "Tercih Edilen Tarih",
     "preferredTime": "Tercih Edilen Saat",
-    "personalInfo": "Kişisel Bilgiler",
-    "appointmentDetails": "Randevu Detayları",
-    "confirmDetails": "Detayları Onayla",
-    "bookingSuccess": "Randevu Başarılı",
-    "bookingError": "Randevu Hatası"
+    "selectService": "Hizmet Seçin",
+    "selectServicePlaceholder": "Konsültasyon türünü seçin",
+    "fullName": "Tam Ad",
+    "namePlaceholder": "Tam adınızı girin",
+    "phoneNumber": "Telefon Numarası",
+    "phonePlaceholder": "+995 599 123 456",
+    "emailAddress": "E-posta Adresi",
+    "emailPlaceholder": "your@email.com",
+    "successTitle": "Rezervasyon Talebi Gönderildi",
+    "successMessage": "Rezervasyon talebiniz için teşekkürler. Yakında randevunuzu onaylamak için sizinle iletişime geçeceğiz.",
+    "bookAnother": "Başka Randevu Al"
   },
   "statistics": {
     "years": "Yıllık Deneyim",
@@ -1895,5 +1908,89 @@
       "recommend": "Tavsiye Ediyor",
       "years": "Yıllık Deneyim"
     }
+  },
+  "common": {
+    "tryAgain": "Tekrar Dene",
+    "view": "Görüntüle"
+  },
+  "errorPage": {
+    "somethingWentWrong": "Bir Şey Yanlış Gitti",
+    "apologyMessage": "Bu rahatsızlık için özür dileriz. Beklenmedik bir hata oluştu.",
+    "tryAgain": "Tekrar Dene",
+    "globalError": "Bir Şey Yanlış Gitti"
+  },
+  "accessibility": {
+    "loadingThemeToggle": "Tema geçişi yükleniyor",
+    "closeVideo": "Videoyu kapat",
+    "toggleFullscreen": "Tam ekranı değiştir",
+    "closeGallery": "Galeriyi kapat",
+    "previousImage": "Önceki görüntü",
+    "nextImage": "Sonraki görüntü",
+    "skipLinks": "Bağlantıları atla",
+    "openMenu": "Menüyü aç",
+    "closeMenu": "Menüyü kapat",
+    "required": "gerekli",
+    "keyTab": "Tab",
+    "keyEscape": "Escape"
+  },
+  "social": {
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "tiktok": "TikTok",
+    "specialOffers": "Özel Teklifler",
+    "luxuryBeautySalon": "Lüks Güzellik Salonu",
+    "contactSilkBeautySalon": "Silk Beauty Salon ile iletişime geçin",
+    "silkBeautySalon": "Silk Beauty Salon",
+    "salonInterior": "Salon içi",
+    "teamMember": "{name} - Ekip Üyesi",
+    "consultation": "Danışmanlık",
+    "bookConsultation": "Danışmanlık Rezervasyonu",
+    "skinCareTreatment": "Cilt Bakım Tedavisi"
+  },
+  "footer": {
+    "hours": {
+      "sat": "Cmt",
+      "sun": "Paz"
+    }
+  },
+  "blogPage": {
+    "postNotFound": "Gönderi bulunamadı",
+    "expertPractitioner": "Uzman Uygulayıcı"
+  },
+  "treatmentPage": {
+    "heroAlt": "Lüks Güzellik Salonu",
+    "durationResults": "3-6 ay",
+    "minimalDowntime": "Yoktan minimuma"
+  },
+  "international": {
+    "imageAlt": "Silk Beauty Salon",
+    "teamAlt": "Nana Gviniashvili"
+  },
+  "contactPage": {
+    "imageAlt": "Silk Beauty Salon ile İletişime Geçin",
+    "mapTitle": "Silk Beauty Salon Konumu"
+  },
+  "consultation": {
+    "bookImageAlt": "Konsültasyon rezervasyonu"
+  },
+  "conditionsPage": {
+    "imageAlt": "Cilt Bakımı Tedavisi"
+  },
+  "offersPage": {
+    "imageAlt": "Özel Teklifler"
+  },
+  "bookingPage": {
+    "imageAlt": "Salon içi"
+  },
+  "aboutPage": {
+    "interiorAlt": "Silk Beauty Salon İç Mekan",
+    "clinicAlt": "Silk Beauty Salon Kliniği"
+  },
+  "home": {
+    "section1Title": "Tedavi Portföyü",
+    "section2Title": "Cilt Durumları",
+    "section3Title": "Tedavi Portföyü",
+    "section4Title": "Cilt Durumları",
+    "section5Title": "Tedavi Portföyü"
   }
 }

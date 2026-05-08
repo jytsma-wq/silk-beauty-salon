@@ -1,7 +1,9 @@
 {
   "site": {
-    "title": "صالون تجميل فاخر في باتومي | ‪Silk Beauty Salon‬",
-    "description": "صالون تجميل فاخر في باتومي في شارع زوراب غورغيلادزه. خبراء متخصصون، علاجات متطورة ورعاية فاخرة."
+    "title": "صالون الجميل الرائد في باتومي | Silk Beauty Salon",
+    "description": "صالون التجميل الرائد في باتومي في شارع زوراب غورغيلادزه. أخصائيون خبراء، علاجات متطورة و رعاية فاخرة.",
+    "brandName": "Silk Beauty Salon",
+    "brandShort": "Silk Beauty"
   },
   "nav": {
     "home": "الرئيسية",
@@ -32,7 +34,11 @@
     "allConditions": "جميع الحالات",
     "viewAll": "عرض الكل",
     "exploreAll": "استكشاف الكل",
-    "visitUs": "زورونا"
+    "visitUs": "زيارتنا",
+    "menu": "القائمة",
+    "more": "المزيد",
+    "treatmentPortfolio": "مجموعة العلاجات",
+    "skinConditions": "حالات البشرة"
   },
   "header": {
     "announcement": "حائزة على جوائز | أفضل صالون تجميل في باتومي | نُشرت في مجلة الجمال والموضة الجورجية"
@@ -132,7 +138,15 @@
   "testimonials": {
     "title": "ماذا يقول عملاؤنا",
     "subtitle": "نتائج حقيقية من عملاء حقيقيين",
-    "viewAll": "عرض جميع الآراء"
+    "viewAll": "عرض جميع الآراء",
+    "sectionLabel": "قصص العملاء",
+    "description": "قصص حقيقية من عملاء حقيقيين حول تحول مظهرهم وثقتهم معنا.",
+    "stats": {
+      "clients": "عملاء سعداء",
+      "rating": "متوسط التقييم",
+      "recommend": "سيوصون",
+      "years": "سنوات خبرة"
+    }
   },
   "pressBar": {
     "ariaLabel": "شهادات العيادة",
@@ -277,6 +291,7 @@
     "slotConflict": "هذا الوقت محجوز بالفعل. يرجى اختيار وقت آخر.",
     "bookingFailed": "فشل في إنشاء الحجز",
     "unexpectedError": "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.",
+    "rateLimitMessage": "الكثير من الطلبات. يرجى الانتظار 15 دقيقة.",
     "bookingSummary": "ملخص الحجز",
     "service": "الخدمة",
     "date": "التاريخ",
@@ -295,13 +310,83 @@
     "serviceHydrafacial": "هايدرافيشل"
   },
   "bookingPage": {
+    "title": "احجز موعد",
+    "subtitle": "جدولة استشارتك أو علاجك مع ممارسينا الخبراء",
+    "metadata": {
+      "title": "احجز موعد | Silk Beauty Salon",
+      "description": "احجز استشارتك أو موعد علاجك في Silk Beauty Salon في باتومي، جورجيا."
+    },
+    "selectDateTime": "اختر التاريخ والوقت",
+    "bookingNotConfigured": "الحجز الإلكتروني قريباً",
+    "bookingNotConfiguredDesc": "نحن نقوم بإعداد نظام الحجز الإلكتروني. في هذه الأثناء، يرجى الاتصال بنا أو مراسلتنا لجدولة موعدك.",
+    "callToBook": "اتصل للحجز",
+    "emailToBook": "راسلنا للحجز",
+    "consultationTypes": "أنواع الاستشارات",
+    "consultations": {
+      "facial": {
+        "title": "استشارة الوجه",
+        "duration": "30 دقيقة",
+        "description": "ناقش علاجات مكافحة التجاعيد والفيلر الجلدي"
+      },
+      "skin": {
+        "title": "استشارة البشرة",
+        "duration": "45 دقيقة",
+        "description": "تحليل شامل للبشرة وتخطيط العلاج"
+      },
+      "body": {
+        "title": "استشارة الجسم",
+        "duration": "30 دقيقة",
+        "description": "خيارات نحت الجسم وشد البشرة"
+      },
+      "virtual": {
+        "title": "استشارة افتراضية",
+        "duration": "20 دقيقة",
+        "description": "استشارة عبر الإنترنت للعملاء عن بعد"
+      }
+    },
+    "whatToExpect": {
+      "title": "ماذا تتوقع",
+      "step1": "أكمل استبياننا الطبي",
+      "step2": "ناقش أهدافك ومخاوفك",
+      "step3": "احصل على توصيات علاج مخصصة",
+      "step4": "احصل على سعر واضح بدون تكاليف خفية"
+    },
+    "needHelp": "تحتاج مساعدة؟",
+    "phone": "الهاتف",
+    "email": "البريد الإلكتروني",
+    "address": "العنوان",
+    "faq": {
+      "title": "الأسئلة الشائعة للحجز",
+      "q1": "كم مدة الاستشارة؟",
+      "a1": "الاستشارات الأولية تستغرق عادة 30-45 دقيقة، مما يسمح بالوقت الكافي للتقييم الشامل ومناقشة أهدافك.",
+      "q2": "هل يوجد دفعة مطلوبة؟",
+      "a2": "مطلوب دفعة 20% لتأكيد موعدك، يتم خصمها من تكلفة علاجك.",
+      "q3": "ما هي سياسة الإلغاء؟",
+      "a3": "نطلب إشعاراً 48 ساعة قبل الإلغاء. الإلغاءات المتأخرة قد تفقد الدفعة.",
+      "q4": "هل يمكنني إعادة جدولة موعدي؟",
+      "a4": "نعم، يمكنك إعادة جدولة موعدك حتى 24 ساعة قبل وقتك المحدد. يرجى الاتصال بنا بالهاتف أو البريد الإلكتروني لترتيب وقت جديد يناسبك."
+    },
     "preferredDate": "التاريخ المفضل",
     "preferredTime": "الوقت المفضل",
-    "personalInfo": "المعلومات الشخصية",
-    "appointmentDetails": "تفاصيل الموعد",
-    "confirmDetails": "تأكيد التفاصيل",
-    "bookingSuccess": "تم الحجز بنجاح",
-    "bookingError": "خطأ في الحجز"
+    "selectTime": "اختر وقتاً",
+    "morning": "الصباح",
+    "afternoon": "بعد الظهر",
+    "evening": "المساء",
+    "selectService": "اختر الخدمة",
+    "selectServicePlaceholder": "اختر نوع الاستشارة",
+    "fullName": "الاسم الكامل",
+    "namePlaceholder": "أدخل اسمك الكامل",
+    "phoneNumber": "رقم الهاتف",
+    "phonePlaceholder": "+995 599 123 456",
+    "emailAddress": "البريد الإلكتروني",
+    "emailPlaceholder": "your@email.com",
+    "successTitle": "تم إرسال طلب الحجز",
+    "successMessage": "شكراً لطلب حجزك. سنتواصل معك قريباً لتأكيد موعدك.",
+    "bookAnother": "احجز موعداً آخر",
+    "additionalNotes": "ملاحظات إضافية",
+    "notesPlaceholder": "أي طلبات خاصة أو معلومات يجب أن نعرفها...",
+    "requestBooking": "طلب الحجز",
+    "bookingNote": "سؤكد موعدك خلال 24 ساعة"
   },
   "statistics": {
     "years": "سنوات الخبرة",
@@ -1739,11 +1824,7 @@
     "mainDesc": "نظرة عامة للسياح العلاجيين",
     "packagesDesc": "باقات خاصة بخصومات",
     "pricingDesc": "تسعير شفاف بـ GEL و USD",
-    "faqDesc": "إجابات على الأسئلة الشائعة",
-    "additionalNotes": "ملاحظات إضافية",
-    "notesPlaceholder": "أي طلبات خاصة أو معلومات يجب أن نعرفها...",
-    "requestBooking": "طلب حجز",
-    "bookingNote": "سنؤكد موعدك في غضون 24 ساعة"
+    "faqDesc": "إجابات على الأسئلة الشائعة"
   },
   "accessibility": {
     "skipToContent": "تخطى إلى المحتوى الرئيسي",
@@ -1818,5 +1899,89 @@
       "description": "تجول في مرافقنا الفاخرة في باتومي. من استقبالنا الودود إلى غرف العلاج الحديثة، جرب فرق سيلك بيوتي قبل أن تخطو عتبة بابنا.",
       "duration": "المدة: 2:00"
     }
+  },
+  "common": {
+    "tryAgain": "حاول مرة أخرى",
+    "view": "عرض"
+  },
+  "errorPage": {
+    "somethingWentWrong": "حدث خطأ ما",
+    "apologyMessage": "نعتذر عن الإزعاج. حدث خطأ غير متوقع.",
+    "tryAgain": "حاول مرة أخرى",
+    "globalError": "حدث خطأ ما"
+  },
+  "accessibility": {
+    "loadingThemeToggle": "تحميل تبديل الموضوع",
+    "closeVideo": "إغلاق الفيديو",
+    "toggleFullscreen": "تبديل وضع ملء الشاشة",
+    "closeGallery": "إغلاق المعرض",
+    "previousImage": "الصورة السابقة",
+    "nextImage": "الصورة التالية",
+    "skipLinks": "تخطي الروابط",
+    "openMenu": "فتح القائمة",
+    "closeMenu": "إغلاق القائمة",
+    "required": "مطلوب",
+    "keyTab": "Tab",
+    "keyEscape": "Escape"
+  },
+  "social": {
+    "instagram": "انستغرام",
+    "facebook": "فيسبوك",
+    "tiktok": "تيك توك",
+    "specialOffers": "عروض خاصة",
+    "luxuryBeautySalon": "صالون تجميل فاخر",
+    "contactSilkBeautySalon": "تواصل مع صالون تجميل سيلك",
+    "silkBeautySalon": "صالون تجميل سيلك",
+    "teamMember": "{name} - عضو في الفريق",
+    "consultation": "استشارة",
+    "bookConsultation": "احجز استشارة",
+    "skinCareTreatment": "علاج العناية بالبشرة",
+    "salonInterior": "داخل الصالون"
+  },
+  "footer": {
+    "hours": {
+      "sat": "السبت",
+      "sun": "الأحد"
+    }
+  },
+  "blogPage": {
+    "postNotFound": "لم يتم العثور على المشاركة",
+    "expertPractitioner": "أخصائي خبراء"
+  },
+  "treatmentPage": {
+    "heroAlt": "صالون تجميل فاخر",
+    "durationResults": "3-6 أشهر",
+    "minimalDowntime": "لا شيء إلى الحد الأدنى"
+  },
+  "international": {
+    "imageAlt": "Silk Beauty Salon",
+    "teamAlt": "نانا جفينياشفيلي"
+  },
+  "contactPage": {
+    "imageAlt": "اتصل بصالون سيلك بيوتي",
+    "mapTitle": "موقع صالون سيلك بيوتي"
+  },
+  "consultation": {
+    "bookImageAlt": "احجز استشارة"
+  },
+  "conditionsPage": {
+    "imageAlt": "علاج العناية بالبشرة"
+  },
+  "offersPage": {
+    "imageAlt": "عروض خاصة"
+  },
+  "bookingPage": {
+    "imageAlt": "داخل الصالون"
+  },
+  "aboutPage": {
+    "interiorAlt": "داخل صالون سيلك بيوتي",
+    "clinicAlt": "عيادة صالون سيلك بيوتي"
+  },
+  "home": {
+    "section1Title": "مجموعة العلاجات",
+    "section2Title": "حالات البشرة",
+    "section3Title": "مجموعة العلاجات",
+    "section4Title": "حالات البشرة",
+    "section5Title": "مجموعة العلاجات"
   }
 }

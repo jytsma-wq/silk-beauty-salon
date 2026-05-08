@@ -1,7 +1,9 @@
 {
   "site": {
-    "title": "סלון יופי פרימיום בבתומי | Silk Beauty Salon",
-    "description": "סלון יופי פרימיום בבתומי ברחוב זוראב גורגילדזה. מומחים, טיפולים מתקדמים ושירות יוקרתי."
+    "title": "סלון יופי מוביל בבתומי | Silk Beauty Salon",
+    "description": "סלון היופי המוביל בבתומי ברחוב זוראב גורגילאדזה. מומחים מקצועיים, טיפולים חדשניים וטיפול יוקרתי.",
+    "brandName": "Silk Beauty Salon",
+    "brandShort": "Silk Beauty"
   },
   "nav": {
     "home": "בית",
@@ -32,7 +34,11 @@
     "allConditions": "כל מצבי העור",
     "viewAll": "הצג הכל",
     "exploreAll": "חקור הכל",
-    "visitUs": "בקרו אותנו"
+    "visitUs": "בקרו אותנו",
+    "menu": "תפריט",
+    "more": "עוד",
+    "treatmentPortfolio": "תיק טיפולים",
+    "skinConditions": "מצבי עור"
   },
   "header": {
     "announcement": "זוכת פרסים | סלון היופי הטוב בבתומי | פורסם במגזין האופנה והיופי הגיאורגי"
@@ -286,6 +292,7 @@
     "slotConflict": "השעה הזו כבר תפוסה. אנא בחר שעה אחרת.",
     "bookingFailed": "נכשל ביצירת ההזמנה",
     "unexpectedError": "אירעה שגיאה בלתי צפויה. אנא נסה שוב.",
+    "rateLimitMessage": "יותר מדי פניות. אנא המתן 15 דקות.",
     "bookingSummary": "סיכום הזמנה",
     "service": "שירות",
     "date": "תאריך",
@@ -310,7 +317,18 @@
     "appointmentDetails": "פרטי תור",
     "confirmDetails": "אישור פרטים",
     "bookingSuccess": "התור נקבע בהצלחה",
-    "bookingError": "שגיאה בקביעת תור"
+    "bookingError": "שגיאה בקביעת תור",
+    "selectService": "בחר שירות",
+    "selectServicePlaceholder": "בחר סוג ייעוץ",
+    "fullName": "שם מלא",
+    "namePlaceholder": "הכנס את השם המלא שלך",
+    "phoneNumber": "מספר טלפון",
+    "phonePlaceholder": "+995 599 123 456",
+    "emailAddress": "כתובת אימייל",
+    "emailPlaceholder": "your@email.com",
+    "successTitle": "בקשת התור נשלחה",
+    "successMessage": "תודה על בקשת התור שלך. נחזור אליך בקרוב כדי לאשר את התור שלך.",
+    "bookAnother": "קבע תור נוסף"
   },
   "statistics": {
     "years": "שנות ניסיון",
@@ -323,14 +341,6 @@
     "name": "שרה מיטשל",
     "location": "בתומי, גאורגיה",
     "imageAlt": "תמונת פורטרט של לקוח מרוצה"
-  },
-  "manifesto": {
-    "label": "הפילוסופיה שלנו",
-    "statement": "היכן שהמדע פוגש את אמנות העור היפה.",
-    "value1": "דיוק",
-    "value2": "דיסקרטיות",
-    "value3": "מצוינות",
-    "cta": "גלה את הסיפור שלנו"
   },
   "newsletter": {
     "title": "הישאר מעודכן",
@@ -1903,5 +1913,89 @@
       "recommend": "ממליצים",
       "years": "שנות ניסיון"
     }
+  },
+  "common": {
+    "tryAgain": "נסה שוב",
+    "view": "צפה"
+  },
+  "errorPage": {
+    "somethingWentWrong": "משה השתבש",
+    "apologyMessage": "אנו מתנצלים על האי נוחות. אירעה שגיאה בלת צפויה.",
+    "tryAgain": "נסה שוב",
+    "globalError": "משה השתבש"
+  },
+  "accessibility": {
+    "loadingThemeToggle": "טעינת ערכתת נושא",
+    "closeVideo": "סגור וידאו",
+    "toggleFullscreen": "החלף מסך מלא מסך",
+    "closeGallery": "סגור גלריה",
+    "previousImage": "תמונה קודמת",
+    "nextImage": "תמונה הבאה",
+    "skipLinks": "דלג על קישורים",
+    "openMenu": "פתח תפריט",
+    "closeMenu": "סגור תפריט",
+    "required": "נדרש",
+    "keyTab": "Tab",
+    "keyEscape": "Escape"
+  },
+  "social": {
+    "instagram": "אינסטגרם",
+    "facebook": "פייסבוק",
+    "tiktok": "טיק טוק",
+    "specialOffers": "הצעות מיוחדות",
+    "luxuryBeautySalon": "סלון יופי מפואר",
+    "contactSilkBeautySalon": "צור קשר עם סלק ביוטי סילק",
+    "silkBeautySalon": "סלק ביוטי סילק",
+    "salonInterior": "פנימי הסלון",
+    "teamMember": "{name} - חבר הצוותה",
+    "consultation": "ייעוצ",
+    "bookConsultation": "הזמן ייעוצ",
+    "skinCareTreatment": "טיפול עור אכילה"
+  },
+  "footer": {
+    "hours": {
+      "sat": "שבת",
+      "sun": "ראשון"
+    }
+  },
+  "blogPage": {
+    "postNotFound": "פוסט לא נמצא",
+    "expertPractitioner": "מומחה מוסמך"
+  },
+  "treatmentPage": {
+    "heroAlt": "סלון יופי יוקרתי",
+    "durationResults": "3-6 חודשים",
+    "minimalDowntime": "ללא למינימלי"
+  },
+  "international": {
+    "imageAlt": "Silk Beauty Salon",
+    "teamAlt": "נאנה גויניאשווילי"
+  },
+  "contactPage": {
+    "imageAlt": "צור קשר עם Silk Beauty Salon",
+    "mapTitle": "מיקום Silk Beauty Salon"
+  },
+  "consultation": {
+    "bookImageAlt": "הזמן ייעוץ"
+  },
+  "conditionsPage": {
+    "imageAlt": "טיפול טיפול עור"
+  },
+  "offersPage": {
+    "imageAlt": "הצעות מיוחדות"
+  },
+  "bookingPage": {
+    "imageAlt": "פנימי הסלון"
+  },
+  "aboutPage": {
+    "interiorAlt": "פנימי סלון Silk Beauty Salon",
+    "clinicAlt": "מרפאת סלון Silk Beauty Salon"
+  },
+  "home": {
+    "section1Title": "תיק טיפולים",
+    "section2Title": "מצבי עור",
+    "section3Title": "תיק טיפולים",
+    "section4Title": "מצבי עור",
+    "section5Title": "תיק טיפולים"
   }
 }

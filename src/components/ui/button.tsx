@@ -12,7 +12,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-[#b5453a] hover:bg-[#8e3229] text-white shadow-xs rounded-none px-6 py-3 font-medium transition-colors text-xs tracking-widest uppercase",
+          "bg-[#f7f2eb] hover:bg-[#241f1b] text-[#241f1b] hover:text-white border border-[#d9cec1] shadow-xs rounded-md px-6 py-3 font-medium transition-colors text-xs tracking-widest uppercase",
         destructive:
           "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
         outline:
@@ -23,7 +23,7 @@ const buttonVariants = cva(
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
         galderma:
-          "bg-[#b5453a] hover:bg-[#8e3229] text-white rounded-none px-6 py-3 font-medium transition-colors text-xs tracking-widest uppercase",
+          "bg-[#f7f2eb] hover:bg-[#241f1b] text-[#241f1b] hover:text-white border border-[#d9cec1] rounded-md px-6 py-3 font-medium transition-colors text-xs tracking-widest uppercase",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

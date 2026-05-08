@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 import { siteConfig } from '@/data/site-config';
@@ -60,7 +61,7 @@ export function GaldermaFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-stone-400 transition-colors hover:text-[#8d6f58]"
-                aria-label="Instagram"
+                aria-label={t('instagram')}
               >
                 <Instagram className="h-5 w-5" strokeWidth={1.5} />
               </a>
@@ -69,7 +70,7 @@ export function GaldermaFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-stone-400 transition-colors hover:text-[#8d6f58]"
-                aria-label="Facebook"
+                aria-label={t('facebook')}
               >
                 <Facebook className="h-5 w-5" strokeWidth={1.5} />
               </a>
@@ -139,11 +140,11 @@ export function GaldermaFooter() {
                   <dd className="text-stone-900">{siteConfig.businessHours.monday}</dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-stone-500">Sat</dt>
+                  <dt className="text-stone-500">{t('hours.sat')}</dt>
                   <dd className="text-stone-900">{siteConfig.businessHours.saturday}</dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-stone-500">Sun</dt>
+                  <dt className="text-stone-500">{t('hours.sun')}</dt>
                   <dd className="text-stone-900">{siteConfig.businessHours.sunday}</dd>
                 </div>
               </dl>
@@ -172,10 +173,12 @@ export function GaldermaFooter() {
         </div>
       </div>
 
-      <img
+      <Image
         aria-hidden="true"
         src="/footer-pattern-preview.svg"
         alt=""
+        width={1200}
+        height={1}
         className="block w-full border-t border-stone-200"
       />
     </footer>

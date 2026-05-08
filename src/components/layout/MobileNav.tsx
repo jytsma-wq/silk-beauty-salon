@@ -44,6 +44,7 @@ const itemVariants = {
 export function MobileNav({ onClose, treatmentCategories, conditions }: MobileNavProps) {
   const t = useTranslations('nav');
   const tInternational = useTranslations('internationalNav');
+  const tSite = useTranslations('site');
   const locale = useLocale();
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
 
@@ -53,7 +54,7 @@ export function MobileNav({ onClose, treatmentCategories, conditions }: MobileNa
       <div className="flex items-center justify-between p-4 border-b">
         <div className="flex flex-col">
           <span className="font-serif text-xl font-semibold text-primary">
-            Silk Beauty
+            {tSite('brandShort')}
           </span>
           <span className="text-xs text-[#b5453a] tracking-[0.2em] uppercase">
             Salon
@@ -281,7 +282,7 @@ export function MobileNav({ onClose, treatmentCategories, conditions }: MobileNa
       <div className="p-4 border-t bg-secondary">
         <Button
           asChild
-          className="w-full bg-[#b5453a] hover:bg-[#8e3229] text-white rounded-none px-6 py-3 font-medium transition-colors text-xs tracking-widest uppercase"
+          className="w-full rounded-md border border-[#d9cec1] bg-[#f7f2eb] px-6 py-3 text-xs font-medium uppercase tracking-widest text-[#241f1b] transition-colors hover:bg-[#241f1b] hover:text-white"
         >
           <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
             {t('bookAppointment')}
@@ -290,7 +291,7 @@ export function MobileNav({ onClose, treatmentCategories, conditions }: MobileNa
         <div className="mt-4 text-center">
           <a
             href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`}
-            className="text-sm text-muted-foreground hover:text-[#b5453a] transition-colors"
+            className="text-sm text-muted-foreground transition-colors hover:text-[#241f1b]"
           >
             {siteConfig.contact.phone}
           </a>

@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Link } from '@/i18n/routing';
+import { useTranslations } from 'next-intl';
 import { siteConfig } from '@/data/site-config';
 import { portfolioHighlights, proofStats } from '@/data/homepage';
 import {
@@ -18,6 +19,7 @@ function SectionHeading({
   title: string;
   description?: string;
 }) {
+  const t = useTranslations('home');
   return (
     <div className="max-w-3xl">
       <p className="mb-4 text-[0.68rem] font-medium uppercase tracking-[0.28em] text-[#8d6f58]">
@@ -36,13 +38,14 @@ function SectionHeading({
 }
 
 function PhilosophySection() {
+  const t = useTranslations('home');
   return (
     <section className="bg-white px-6 py-24 md:px-12 md:py-32 lg:px-16 xl:px-24">
       <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-[42%_58%] lg:items-end">
         <SectionHeading
-          eyebrow="Our approach"
-          title="A skin-first aesthetic practice."
-          description="The Galderma-inspired direction is clean, clinical, and product-aware: fewer decorative effects, more trust, more education, and a calmer visual rhythm."
+          eyebrow={t('ourApproach')}
+          title={t('skinFirstAestheticPractice')}
+          description={t('galdermaInspiredDescription')}
         />
         <div className="border-t border-stone-200 pt-8">
           <p className="font-sans text-[clamp(2rem,3.8vw,3.8rem)] font-light leading-tight text-[#241f1b]">
@@ -56,14 +59,15 @@ function PhilosophySection() {
 }
 
 function PortfolioSection() {
+  const t = useTranslations('home');
   return (
     <section className="bg-white px-6 py-24 md:px-12 md:py-32 lg:px-16 xl:px-24">
       <div className="mx-auto max-w-7xl">
         <div className="mb-14 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <SectionHeading
-            eyebrow="Portfolio"
-            title="Holistic aesthetic treatments."
-            description="A considered portfolio for facial balance, skin quality, and long-term confidence."
+            eyebrow={t('portfolio')}
+            title={t('holisticAestheticTreatments')}
+            description={t('consideredPortfolioDescription')}
           />
           <Link
             href="/treatments"
@@ -80,7 +84,7 @@ function PortfolioSection() {
               href={item.href}
               className="group bg-white"
             >
-              <div className="relative aspect-[4/5] overflow-hidden bg-stone-100">
+              <div className="relative aspect-4/5 overflow-hidden bg-stone-100">
                 <Image
                   src={item.image}
                   alt=""
@@ -165,6 +169,7 @@ function SpecialistCta() {
 }
 
 export function GaldermaInspiredHome() {
+  const t = useTranslations('home');
   return (
     <>
       <ClinicalHeroCarousel />
@@ -174,9 +179,9 @@ export function GaldermaInspiredHome() {
         <div className="mx-auto max-w-7xl">
           <div className="mb-12">
             <SectionHeading
-              eyebrow="Skin concerns"
-              title="Real solutions for real skin concerns."
-              description="Explore common concerns and the treatment pathways that can support healthier, more confident skin."
+              eyebrow="Skin Concerns"
+              title="Real Solutions for Skin Concerns"
+              description="Explore common concerns and find solutions"
             />
           </div>
           <ConcernCarousel />
@@ -190,9 +195,9 @@ export function GaldermaInspiredHome() {
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <SectionHeading
-              eyebrow="Real results"
-              title="The proof is in the plan."
-              description="Before-and-after stories should be read as clinical examples, not promises. Your result depends on anatomy, product choice, dosage, and aftercare."
+              eyebrow={t('realResults')}
+              title={t('proofIsInThePlan')}
+              description={t('beforeAfterStoriesDescription')}
             />
             <Link
               href="/before-after"
@@ -211,9 +216,9 @@ export function GaldermaInspiredHome() {
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <SectionHeading
-              eyebrow="Skin trends"
-              title="Aesthetic insight, without the noise."
-              description="Educational notes for patients who want to understand treatment planning before they book."
+              eyebrow={t('skinTrends')}
+              title={t('aestheticInsightWithoutNoise')}
+              description={t('educationalNotesDescription')}
             />
             <Link
               href="/blog"

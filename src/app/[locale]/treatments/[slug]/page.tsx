@@ -50,13 +50,13 @@ export async function generateStaticParams() {
 
 export default async function TreatmentPage({ params }: Props) {
   const resolvedParams = await params;
-  const t = await getTranslations({
-    locale: resolvedParams.locale,
-    namespace: 'treatmentPage',
-  });
   const tCommon = await getTranslations({
     locale: resolvedParams.locale,
     namespace: 'common',
+  });
+  const tTreatmentPage = await getTranslations({
+    locale: resolvedParams.locale,
+    namespace: 'treatmentPage',
   });
   const treatment = await getTreatmentBySlug(
     resolvedParams.slug,
@@ -77,9 +77,25 @@ export default async function TreatmentPage({ params }: Props) {
       .filter((item: { slug: string }) => item.slug !== treatment.slug)
       .slice(0, 3) || [];
 
+  const detailLabels = {
+    atAGlance: 'At a Glance',
+    procedureTime: 'Procedure Time',
+    priceFrom: 'Price From',
+    results: 'Results',
+    downtime: 'Downtime',
+    howItWorks: 'How It Works',
+    benefits: 'Benefits',
+    aftercare: 'Aftercare',
+    questions: 'Questions & Answers',
+    youMightAlsoLike: 'You Might Also Like',
+    learnMore: 'Learn more',
+    bookNow: 'Book Now',
+    bookThisTreatment: 'Book This Treatment',
+  };
+
   return (
     <article className="min-h-screen bg-white">
-      <header className="bg-[#f7f2eb] pt-[170px] md:pt-[188px]">
+      <header className="bg-[#f7f2eb] pt-42.5 md:pt-47">
         <div className="grid min-h-[70svh] grid-cols-1 lg:grid-cols-[44%_56%]">
           <div className="flex items-end px-6 py-14 md:px-12 lg:px-16 xl:px-24">
             <div className="max-w-xl">
@@ -109,7 +125,7 @@ export default async function TreatmentPage({ params }: Props) {
                 {treatment.duration ? (
                   <div>
                     <span className="mb-1 block text-xs uppercase tracking-wider text-stone-500">
-                      {t('duration') || 'Duration'}
+                      Duration
                     </span>
                     <span className="text-[#241f1b]">{treatment.duration}</span>
                   </div>
@@ -117,7 +133,7 @@ export default async function TreatmentPage({ params }: Props) {
                 {treatment.price ? (
                   <div>
                     <span className="mb-1 block text-xs uppercase tracking-wider text-stone-500">
-                      {t('price') || 'Price from'}
+                      Price from
                     </span>
                     <span className="text-[#241f1b]">{treatment.price}</span>
                   </div>
@@ -141,32 +157,28 @@ export default async function TreatmentPage({ params }: Props) {
       <div className="mx-auto max-w-4xl px-8 py-16 md:px-16 md:py-24">
         <aside className="float-right ml-8 mb-8 w-full max-w-xs border-l-2 border-[#d8cbbb] bg-stone-50 p-6 md:p-8">
           <h3 className="mb-6 text-xs uppercase tracking-widest text-stone-400">
-            {t('atAGlance') || 'At a Glance'}
+            {detailLabels.atAGlance}
           </h3>
           <dl className="space-y-4 text-sm">
             {treatment.duration ? (
               <div>
-                <dt className="mb-1 text-stone-500">
-                  {t('duration') || 'Procedure Time'}
-                </dt>
+                <dt className="mb-1 text-stone-500">{detailLabels.procedureTime}</dt>
                 <dd className="font-serif text-stone-900">{treatment.duration}</dd>
               </div>
             ) : null}
             {treatment.price ? (
               <div>
-                <dt className="mb-1 text-stone-500">
-                  {t('price') || 'Price From'}
-                </dt>
+                <dt className="mb-1 text-stone-500">{detailLabels.priceFrom}</dt>
                 <dd className="font-serif text-stone-900">{treatment.price}</dd>
               </div>
             ) : null}
             <div>
-              <dt className="mb-1 text-stone-500">{t('results') || 'Results'}</dt>
-              <dd className="font-serif text-stone-900">3-6 months</dd>
+              <dt className="mb-1 text-stone-500">{detailLabels.results}</dt>
+              <dd className="font-serif text-stone-900">{tTreatmentPage('durationResults')}</dd>
             </div>
             <div>
-              <dt className="mb-1 text-stone-500">{t('downtime') || 'Downtime'}</dt>
-              <dd className="font-serif text-stone-900">None to minimal</dd>
+              <dt className="mb-1 text-stone-500">{detailLabels.downtime}</dt>
+              <dd className="font-serif text-stone-900">{tTreatmentPage('minimalDowntime')}</dd>
             </div>
           </dl>
 
@@ -174,7 +186,7 @@ export default async function TreatmentPage({ params }: Props) {
             asChild
             className="mt-8 w-full rounded-md border border-[#241f1b] bg-transparent text-xs uppercase tracking-wide text-[#241f1b] hover:bg-[#241f1b] hover:text-white"
           >
-            <Link href="/book">{t('bookNow') || 'Book Now'}</Link>
+            <Link href="/book">{detailLabels.bookNow}</Link>
           </Button>
         </aside>
 
@@ -189,7 +201,7 @@ export default async function TreatmentPage({ params }: Props) {
           {treatment.howItWorks ? (
             <div>
               <h2 className="mt-16 mb-6 font-serif text-2xl font-light text-stone-900 md:text-3xl">
-                {t('howItWorks') || 'How It Works'}
+                {detailLabels.howItWorks}
               </h2>
               <p className="mb-6 text-base leading-relaxed text-stone-700">
                 {treatment.howItWorks}
@@ -200,7 +212,7 @@ export default async function TreatmentPage({ params }: Props) {
           {treatment.benefits && treatment.benefits.length > 0 ? (
             <div>
               <h2 className="mt-16 mb-6 font-serif text-2xl font-light text-stone-900 md:text-3xl">
-                {t('benefits') || 'Benefits'}
+                {detailLabels.benefits}
               </h2>
               <ul className="space-y-3">
                 {treatment.benefits.map((benefit, index) => (
@@ -216,7 +228,7 @@ export default async function TreatmentPage({ params }: Props) {
           {treatment.aftercare ? (
             <div>
               <h2 className="mt-16 mb-6 font-serif text-2xl font-light text-stone-900 md:text-3xl">
-                {t('aftercare') || 'Aftercare'}
+                {detailLabels.aftercare}
               </h2>
               <div className="border border-stone-200 bg-stone-50 p-6">
                 <p className="text-stone-700 leading-relaxed">{treatment.aftercare}</p>
@@ -245,7 +257,7 @@ export default async function TreatmentPage({ params }: Props) {
       {treatment.faqs && treatment.faqs.length > 0 ? (
         <section className="mx-auto max-w-3xl px-8 py-16 md:px-16 md:py-24">
           <h2 className="mb-12 font-serif text-3xl font-light text-stone-900 md:text-4xl">
-            {t('faqs') || 'Questions & Answers'}
+            {detailLabels.questions}
           </h2>
           <div className="space-y-10">
             {treatment.faqs.map((faq, index) => (
@@ -264,7 +276,7 @@ export default async function TreatmentPage({ params }: Props) {
         <section className="bg-stone-50 py-16 md:py-24">
           <div className="mx-auto max-w-7xl px-8 md:px-16">
             <p className="mb-8 text-xs uppercase tracking-[0.3em] text-stone-400">
-              {t('youMightAlsoLike') || 'You Might Also Like'}
+              {detailLabels.youMightAlsoLike}
             </p>
             <div className="grid gap-8 md:grid-cols-3 md:gap-12">
               {relatedTreatments.map(
@@ -291,7 +303,7 @@ export default async function TreatmentPage({ params }: Props) {
                         {related.shortDescription}
                       </p>
                       <span className="mt-4 inline-block text-sm text-stone-900 underline underline-offset-4">
-                        {t('learnMore') || 'Learn more'}
+                        {detailLabels.learnMore}
                       </span>
                     </Link>
                   </article>
@@ -307,14 +319,14 @@ export default async function TreatmentPage({ params }: Props) {
           <div className="hidden md:block">
             <p className="font-serif text-sm text-stone-900">{treatment.name}</p>
             <p className="text-xs text-stone-500">
-              {treatment.duration} • {treatment.price}
+              {treatment.duration} â€¢ {treatment.price}
             </p>
           </div>
           <Button
             asChild
             className="rounded-md border border-[#241f1b] bg-transparent px-8 py-3 text-sm uppercase tracking-wide text-[#241f1b] hover:bg-[#241f1b] hover:text-white"
           >
-            <Link href="/book">{t('bookNow') || 'Book This Treatment'}</Link>
+            <Link href="/book">{detailLabels.bookThisTreatment}</Link>
           </Button>
         </div>
       </div>

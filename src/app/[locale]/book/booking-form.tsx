@@ -123,8 +123,8 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
   if (isSuccess) {
     return (
       <div className="text-center py-12">
-        <div className="w-16 h-16 bg-[#b5453a]/10 rounded-full flex items-center justify-center mx-auto mb-6">
-          <CheckCircle className="w-8 h-8 text-[#b5453a]" />
+        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#8d6f58]/10">
+          <CheckCircle className="h-8 w-8 text-[#8d6f58]" />
         </div>
         <h3 className="font-serif text-2xl text-primary mb-4">
           {t('successTitle', { defaultValue: 'Booking Request Submitted' })}
@@ -134,7 +134,7 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
         </p>
         <Button
           onClick={() => setIsSuccess(false)}
-          className="bg-[#b5453a] hover:bg-[#8e3229] text-white rounded-none px-6 py-3 text-xs tracking-widest uppercase"
+          className="rounded-md border border-[#d9cec1] bg-[#f7f2eb] px-6 py-3 text-xs uppercase tracking-widest text-[#241f1b] transition-colors hover:bg-[#241f1b] hover:text-white"
         >
           {t('bookAnother', { defaultValue: 'Book Another Appointment' })}
         </Button>
@@ -312,7 +312,7 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
       <Button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-[#b5453a] hover:bg-[#8e3229] text-white rounded-none px-6 py-4 text-xs tracking-widest uppercase font-medium transition-colors disabled:opacity-50"
+        className="w-full rounded-md border border-[#d9cec1] bg-[#f7f2eb] px-6 py-4 text-xs font-medium uppercase tracking-widest text-[#241f1b] transition-colors hover:bg-[#241f1b] hover:text-white disabled:opacity-50"
       >
         {isSubmitting ? tCommon('submitting', { defaultValue: 'Submitting...' }) : t('requestBooking', { defaultValue: 'Request Booking' })}
       </Button>

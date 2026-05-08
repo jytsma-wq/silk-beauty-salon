@@ -5,6 +5,7 @@ import Image from 'next/image';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { Link } from '@/i18n/routing';
+import { useTranslations } from 'next-intl';
 import {
   homeHeroSlides,
   resultCases,
@@ -19,8 +20,9 @@ function CarouselButton({
 }: {
   direction: 'previous' | 'next';
   onClick: () => void;
-  disabled: boolean;
+  disabled?: boolean;
 }) {
+  const t = useTranslations('accessibility');
   const Icon = direction === 'previous' ? ArrowLeft : ArrowRight;
 
   return (
@@ -28,7 +30,7 @@ function CarouselButton({
       type="button"
       onClick={onClick}
       disabled={disabled}
-      aria-label={direction === 'previous' ? 'Previous slide' : 'Next slide'}
+      aria-label={direction === 'previous' ? t('previousSlide') : t('nextSlide')}
       className="grid size-11 place-items-center border border-stone-300 bg-white text-stone-950 transition-colors hover:border-stone-950 disabled:pointer-events-none disabled:opacity-30"
     >
       <Icon className="size-4" strokeWidth={1.5} />
@@ -87,7 +89,7 @@ export function ClinicalHeroCarousel() {
   } = useCarouselControls();
 
   return (
-    <section className="relative bg-[#f7f2eb] pt-[170px] md:pt-[188px]">
+    <section className="relative bg-[#f7f2eb] pt-42.5 md:pt-47">
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">
           {homeHeroSlides.map((slide, index) => (
@@ -121,7 +123,7 @@ export function ClinicalHeroCarousel() {
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 55vw"
                   />
-                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/20 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-black/20 to-transparent" />
                 </div>
               </div>
             </article>
@@ -175,7 +177,7 @@ export function ConcernCarousel() {
               className="min-w-0 flex-[0_0_86%] pl-5 sm:flex-[0_0_48%] lg:flex-[0_0_31%]"
             >
               <Link href={item.href} className="group block">
-                <div className="relative aspect-[4/5] overflow-hidden bg-stone-100">
+                <div className="relative aspect-4/5 overflow-hidden bg-stone-100">
                   <Image
                     src={item.image}
                     alt=""
@@ -220,7 +222,7 @@ export function ResultsCarousel() {
             >
               <div className="grid grid-cols-2 gap-1 bg-white">
                 <div>
-                  <div className="relative aspect-[3/4] overflow-hidden bg-stone-100">
+                  <div className="relative aspect-3/4 overflow-hidden bg-stone-100">
                     <Image
                       src={item.beforeImage}
                       alt=""
@@ -234,7 +236,7 @@ export function ResultsCarousel() {
                   </div>
                 </div>
                 <div>
-                  <div className="relative aspect-[3/4] overflow-hidden bg-stone-100">
+                  <div className="relative aspect-3/4 overflow-hidden bg-stone-100">
                     <Image
                       src={item.afterImage}
                       alt=""
@@ -283,7 +285,7 @@ export function TrendsCarousel() {
               className="min-w-0 flex-[0_0_88%] pl-5 md:flex-[0_0_48%] lg:flex-[0_0_32%]"
             >
               <Link href={article.href} className="group block">
-                <div className="relative aspect-[4/3] overflow-hidden bg-stone-100">
+                <div className="relative aspect-4/3 overflow-hidden bg-stone-100">
                   <Image
                     src={article.image}
                     alt=""

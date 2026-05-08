@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 
 interface GalleryGridProps {
@@ -19,6 +20,7 @@ export function GalleryGrid({
   className,
   columns = 3 
 }: GalleryGridProps) {
+  const t = useTranslations('common');
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
@@ -84,7 +86,7 @@ export function GalleryGrid({
           >
             <Image
               src={image}
-              alt={`${category || 'Gallery'} image ${index + 1}`}
+              alt={t('galleryImage', { category: category || t('gallery'), index: index + 1 })}
               fill
               className={cn(
                 'object-cover transition-transform duration-700 ease-out',
@@ -106,7 +108,7 @@ export function GalleryGrid({
                 }}
                 className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center"
               >
-                <span className="text-[#b5453a] text-xs font-medium">View</span>
+                <span className="text-[#b5453a] text-xs font-medium">{t('view')}</span>
               </motion.div>
             </div>
           </motion.div>
@@ -129,7 +131,7 @@ export function GalleryGrid({
             <button
               onClick={closeLightbox}
               className="absolute top-6 right-6 z-10 p-2 text-white/70 hover:text-white transition-colors rounded-full bg-white/10 hover:bg-white/20"
-              aria-label="Close gallery"
+              aria-label={t('closeGallery')}
             >
               <X className="w-6 h-6" />
             </button>
@@ -138,7 +140,7 @@ export function GalleryGrid({
             <button
               onClick={(e) => { e.stopPropagation(); goToPrevious(); }}
               className="absolute left-6 top-1/2 -translate-y-1/2 z-10 p-3 text-white/70 hover:text-white transition-colors rounded-full bg-white/10 hover:bg-white/20"
-              aria-label="Previous image"
+              aria-label={t('previousImage')}
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
@@ -146,7 +148,7 @@ export function GalleryGrid({
             <button
               onClick={(e) => { e.stopPropagation(); goToNext(); }}
               className="absolute right-6 top-1/2 -translate-y-1/2 z-10 p-3 text-white/70 hover:text-white transition-colors rounded-full bg-white/10 hover:bg-white/20"
-              aria-label="Next image"
+              aria-label={t('nextImage')}
             >
               <ChevronRight className="w-6 h-6" />
             </button>
@@ -169,7 +171,7 @@ export function GalleryGrid({
               <div className="relative w-full h-full max-w-5xl max-h-[80vh]">
                 <Image
                   src={images[selectedImage]}
-                  alt={`Gallery image ${selectedImage + 1}`}
+                  alt={t('galleryImage', { category: t('gallery'), index: selectedImage + 1 })}
                   fill
                   className="object-contain"
                   sizes="90vw"
@@ -191,7 +193,7 @@ export function GalleryGrid({
                 >
                   <Image
                     src={img}
-                    alt={`Thumbnail ${idx + 1}`}
+                    alt={t('thumbnail', { index: idx + 1 })}
                     width={64}
                     height={64}
                     className="object-cover w-full h-full"

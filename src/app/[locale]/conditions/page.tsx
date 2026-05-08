@@ -38,7 +38,7 @@ export default async function ConditionsPage({
       <section className="relative w-full h-[60vh] md:h-[80vh]">
         <Image
           src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1920&q=80"
-          alt="Skin Care Treatment"
+          alt={t('skinCareTreatment')}
           fill
           className="object-cover"
           priority

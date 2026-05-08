@@ -1,5 +1,5 @@
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, setRequestLocale } from 'next-intl/server';
+import { getMessages, setRequestLocale, getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import type { Metadata } from "next";
 import "../globals.css";
@@ -12,12 +12,19 @@ import { WhatsAppWidget } from "@/components/layout/WhatsAppWidget";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'metadata' });
+  
   return {
     metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://silkbeautysalon.com'),
-    title: "Premier Beauty Salon in Batumi | Silk Beauty Salon",
-    description: "Batumi's premier beauty salon on Zurab Gorgiladze Street.",
-    keywords: ["beauty salon", "botox", "dermal fillers", "laser treatments", "skin treatments", "Batumi", "Georgia", "cosmetic clinic"],
+    title: t('siteTitle'),
+    description: t('siteDescription'),
+    keywords: t('siteKeywords'),
     authors: [{ name: "Silk Beauty Salon" }],
     icons: {
       icon: "/favicon.ico",

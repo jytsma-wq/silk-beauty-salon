@@ -31,10 +31,11 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'contactPage' });
   const tCommon = await getTranslations({ locale, namespace: 'common' });
+  const tNav = await getTranslations({ locale, namespace: 'nav' });
 
   return (
     <>
-      <section className="bg-[#f7f2eb] pt-[170px] md:pt-[188px]">
+      <section className="bg-[#f7f2eb] pt-42.5 md:pt-47">
         <div className="container-custom py-16 md:py-20">
           <nav className="mb-8 flex items-center gap-2 text-[0.68rem] uppercase tracking-[0.18em] text-stone-500">
             <Link href="/" className="hover:text-[#241f1b]">
@@ -46,16 +47,16 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
 
           <div className="grid items-center gap-12 lg:grid-cols-[48%_52%]">
             <div className="max-w-3xl">
-              <p className="mb-5 text-[0.68rem] font-medium uppercase tracking-[0.28em] text-[#8d6f58]">Contact</p>
+              <p className="mb-5 text-[0.68rem] font-medium uppercase tracking-[0.28em] text-[#8d6f58]">{tNav('contact')}</p>
               <h1 className="mb-6 font-sans text-[clamp(2.9rem,5.6vw,5.8rem)] font-light leading-[1.02] text-[#241f1b]">
                 {t('title')}
               </h1>
               <p className="text-lg leading-8 text-stone-700">{t('subtitle')}</p>
             </div>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-[8px]">
+            <div className="relative aspect-4/3 overflow-hidden rounded-xl">
               <Image
                 src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1920&q=80"
-                alt="Contact Silk Beauty Salon"
+                alt={t('contactSilkBeautySalon')}
                 fill
                 className="object-cover"
                 priority
@@ -155,7 +156,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[#8d6f58] transition-opacity hover:opacity-80"
-                    aria-label="Instagram"
+                    aria-label={t('instagram')}
                   >
                     <Instagram className="h-6 w-6" />
                   </a>
@@ -164,7 +165,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[#8d6f58] transition-opacity hover:opacity-80"
-                    aria-label="Facebook"
+                    aria-label={t('facebook')}
                   >
                     <Facebook className="h-6 w-6" />
                   </a>
@@ -173,7 +174,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary transition-opacity hover:opacity-80"
-                    aria-label="TikTok"
+                    aria-label={t('tiktok')}
                   >
                     <TikTokIcon className="h-6 w-6" />
                   </a>
@@ -192,7 +193,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
         </div>
       </section>
 
-      <section className="h-[500px] w-full">
+      <section className="h-125 w-full">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2981.1234567890123!2d41.6167!3d41.6500!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDM5JzAwLjAiTiA0McKwMzcnMDAuMCJF!5e0!3m2!1sen!2sge!4v1234567890123!5m2!1sen!2sge"
           width="100%"
@@ -201,7 +202,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          title="Silk Beauty Salon Location"
+          title={tNav('locationTitle')}
         />
       </section>
     </>

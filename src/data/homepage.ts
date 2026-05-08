@@ -74,7 +74,7 @@ export const portfolioHighlights = [
     title: "Dermal fillers",
     description:
       "Hyaluronic acid treatments for lips, cheeks, jawline, chin, under-eyes, and facial balancing.",
-    href: "/treatments/category/dermal-fillers",
+    href: "/treatments#dermal-fillers",
     image:
       "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1200&q=85",
   },
@@ -82,7 +82,7 @@ export const portfolioHighlights = [
     title: "Anti-wrinkle injectables",
     description:
       "Precise neuromodulator treatments for forehead lines, frown lines, crow's feet, masseter, and sweating.",
-    href: "/treatments/category/botox",
+    href: "/treatments#botox",
     image:
       "https://images.unsplash.com/photo-1552693673-1bf958298935?w=1200&q=85",
   },
@@ -90,7 +90,7 @@ export const portfolioHighlights = [
     title: "Skin quality",
     description:
       "Medical facials, peels, boosters, microneedling, and laser-led plans for stronger, brighter skin.",
-    href: "/treatments/category/skin-treatments",
+    href: "/treatments#skin-treatments",
     image:
       "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=85",
   },
