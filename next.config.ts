@@ -14,7 +14,6 @@
 
 import type { NextConfig } from "next";
 import createNextIntlPlugin from 'next-intl/plugin';
-import withBundleAnalyzer from '@next/bundle-analyzer';
 import { withSentryConfig } from '@sentry/nextjs';
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
@@ -97,13 +96,8 @@ const nextConfig: NextConfig = {
   // Security headers are handled by reverse proxy (Caddyfile) and middleware.ts (CSP only)
 };
 
-// Enable bundle analyzer when BUNDLE_ANALYZE=true
-const withAnalyzer = withBundleAnalyzer({
-  enabled: process.env.BUNDLE_ANALYZE === 'true',
-});
-
 export default withSentryConfig(
-  withAnalyzer(withNextIntl(nextConfig)),
+  withNextIntl(nextConfig),
   {
     silent: true,
     org: process.env.SENTRY_ORG,

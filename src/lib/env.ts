@@ -98,13 +98,41 @@ function validateEnv(): FullEnv {
   return result.data;
 }
 
+const shouldSkipEnvValidation =
+  process.env.SKIP_ENV_VALIDATION === '1' ||
+  process.env.NEXT_PHASE === 'phase-production-build';
+
+const buildFallbackEnv: FullEnv = {
+  NODE_ENV: (process.env.NODE_ENV as FullEnv['NODE_ENV']) || 'production',
+  DATABASE_URL: process.env.DATABASE_URL || 'postgresql://build:build@localhost:5432/build',
+  RESEND_API_KEY: process.env.RESEND_API_KEY || 'build_placeholder_resend_key',
+  RESEND_AUDIENCE_ID: process.env.RESEND_AUDIENCE_ID || '00000000-0000-4000-8000-000000000000',
+  CONTACT_EMAIL: process.env.CONTACT_EMAIL || 'info@silkbeauty.ge',
+  API_SECRET_KEY: process.env.API_SECRET_KEY || 'build_placeholder_secret_key_32_chars',
+  UPSTASH_REDIS_REST_URL: process.env.UPSTASH_REDIS_REST_URL || 'https://example.com',
+  UPSTASH_REDIS_REST_TOKEN: process.env.UPSTASH_REDIS_REST_TOKEN || 'build_placeholder_redis_token',
+  BUILD_TIMESTAMP: process.env.BUILD_TIMESTAMP,
+  SENTRY_DSN: process.env.SENTRY_DSN,
+  SENTRY_ORG: process.env.SENTRY_ORG,
+  SENTRY_PROJECT: process.env.SENTRY_PROJECT,
+  NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || 'https://silkbeauty.ge',
+  NEXT_PUBLIC_GA_MEASUREMENT_ID: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID,
+  NEXT_PUBLIC_GTM_ID: process.env.NEXT_PUBLIC_GTM_ID,
+  NEXT_PUBLIC_FB_PIXEL_ID: process.env.NEXT_PUBLIC_FB_PIXEL_ID,
+  NEXT_PUBLIC_CALCOM_USERNAME: process.env.NEXT_PUBLIC_CALCOM_USERNAME,
+  NEXT_PUBLIC_APP_VERSION: process.env.NEXT_PUBLIC_APP_VERSION,
+  NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
+};
+
 // ============================================================================
 // EXPORT TYPED ENV OBJECTS
 // ============================================================================
 // Only auto-validate in non-test environments
 const env = process.env.VITEST || process.env.NODE_ENV === 'test'
   ? {} as FullEnv  // Empty object for tests (schemas used directly)
-  : validateEnv();
+  : shouldSkipEnvValidation
+    ? buildFallbackEnv
+    : validateEnv();
 
 export { env };
 

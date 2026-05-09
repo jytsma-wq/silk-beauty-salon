@@ -188,7 +188,7 @@ export default async function BlogPostPage({
                   </Button>
                   <Button variant="outline" size="sm" asChild>
                     <a 
-                      href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(`${siteConfig.url}/blog/${slug}`)}&title=${encodeURIComponent(post.title)}`}
+                      href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(`${siteConfig.url}/blog/${slug}`)}&title=${encodeURIComponent(t('shareArticleTitle', { title: post.title }))}`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >

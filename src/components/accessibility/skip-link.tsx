@@ -6,6 +6,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import { SKIP_LINK_TARGETS } from '@/lib/a11y';
 
@@ -94,6 +95,7 @@ export function SkipLinks({
   links = DEFAULT_SKIP_LINKS,
   className,
 }: SkipLinksProps): React.JSX.Element {
+  const t = useTranslations('accessibility');
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   // Setup skip link targets on mount
@@ -142,7 +144,7 @@ export function SkipLinks({
 
   return (
     <nav
-      aria-label="Skip links"
+      aria-label={t('skipLinks')}
       className={cn(
         // Container styles
         'fixed top-0 left-0 right-0 z-100',

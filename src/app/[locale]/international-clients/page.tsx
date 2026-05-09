@@ -74,7 +74,7 @@ export default async function InternationalClientsPage({
         <div className="absolute inset-0">
           <Image
             src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=80"
-            alt="Silk Beauty Salon"
+            alt={t('silkBeautySalon')}
             fill
             className="object-cover"
             priority
@@ -163,7 +163,7 @@ export default async function InternationalClientsPage({
               <div className="aspect-4/5 overflow-hidden relative bg-[#f7f4f0]">
                 <Image
                   src={team?.image || "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80"}
-                  alt="Nana Gviniashvili"
+                  alt={t('teamMember', { name: team?.name || 'Team Member' })}
                   fill
                   className="object-cover object-top"
                   sizes="(max-width: 1024px) 100vw, 50vw"

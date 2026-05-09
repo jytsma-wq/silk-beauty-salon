@@ -1,7 +1,5 @@
 import { MetadataRoute } from 'next';
-import { baseTreatmentCategories } from '@/data/treatments';
 import { locales } from '@/i18n';
-import { db } from '@/lib/db';
 
 const BASE = 'https://www.silkbeautysalon.online';
 const LOCALES = [...locales];
@@ -31,45 +29,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
   );
 
-  // Fetch real treatment update timestamps from database
-  const treatmentUpdates = await db.treatment.findMany({
-    select: { slug: true, updatedAt: true, category: { select: { slug: true } } },
-  });
-
-  const treatmentUpdateMap = new Map(
-    treatmentUpdates.map(t => [`${t.category.slug}/${t.slug}`, t.updatedAt])
-  );
-
-  // Generate treatment URLs with real timestamps
-  const treatmentPages = LOCALES.flatMap(locale =>
-    baseTreatmentCategories.flatMap(category =>
-      category.treatments.map(treatment => {
-        const key = `${category.slug}/${treatment.slug}`;
-        return {
-          url: `${BASE}/${locale}/treatments/${key}`,
-          lastModified: treatmentUpdateMap.get(key) ?? BUILD_TIME,
-          changeFrequency: 'monthly' as const,
-          priority: 0.7,
-        };
-      })
-    )
-  );
-
-  // Fetch blog posts with real timestamps from database
-  const blogPosts = await db.blogPost.findMany({
-    where: { published: true },
-    select: { slug: true, updatedAt: true },
-  });
-
-  // Generate blog URLs with real timestamps
-  const blogPages = LOCALES.flatMap(locale =>
-    blogPosts.map(post => ({
-      url: `${BASE}/${locale}/blog/${post.slug}`,
-      lastModified: post.updatedAt,
-      changeFrequency: 'weekly' as const,
-      priority: 0.6,
-    }))
-  );
-
-  return [...staticPages, ...treatmentPages, ...blogPages];
+  return staticPages;
 }

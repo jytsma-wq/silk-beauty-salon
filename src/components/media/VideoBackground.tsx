@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 
 interface VideoBackgroundProps {
@@ -176,6 +177,7 @@ export function RotatingVideoHero({
   className,
   children,
 }: RotatingVideoHeroProps) {
+  const t = useTranslations('accessibility');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
@@ -225,7 +227,7 @@ export function RotatingVideoHero({
                 'h-1 rounded-full transition-all duration-300',
                 index === currentIndex ? 'w-8 bg-white' : 'w-2 bg-white/40 hover:bg-white/60'
               )}
-              aria-label={`Switch to ${videos[index].title}`}
+              aria-label={t('switchToVideo', { title: videos[index].title })}
             />
           ))}
         </div>

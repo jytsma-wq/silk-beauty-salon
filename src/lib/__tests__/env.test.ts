@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { validateEnv, serverEnvSchema, publicEnvSchema, fullEnvSchema } from '../env'
+import { serverEnvSchema, publicEnvSchema, fullEnvSchema } from '../env'
 
 describe('Environment Validation', () => {
   describe('validateEnv - Production', () => {

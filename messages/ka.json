@@ -1,9 +1,12 @@
 {
   "site": {
     "title": "პრემიუმ სილამაზის სალონი ბათუმში | Silk Beauty Salon",
-    "description": "ბათუმის პრემიუმ სილამაზის სალონი ზურაბ გორგილაძის ქუჩაზე. ექსპერტ სპეციალისტები, თანამედროვე მკურნალობა და ძვირფასი მომსახურება."
+    "description": "ბათუმის პრემიუმ სილამაზის სალონი ზურაბ გორგილაძის ქუჩაზე. ექსპერტ სპეციალისტები, თანამედროვე მკურნალობა და ძვირფასი მომსახურება.",
+    "brandName": "Silk Beauty Salon",
+    "brandShort": "Silk Beauty"
   },
   "nav": {
+    "home": "მთავარი",
     "treatments": "მკურნალობა",
     "conditions": "მდგომარეობები",
     "about": "ჩვენს შესახებ",
@@ -14,13 +17,15 @@
     "findSpecialist": "სპეციალისტის პოვნა",
     "pricelist": "ფასები",
     "offers": "შეთავაზებები",
+    "beforeAfter": "სანამ და მერე",
+    "gallery": "გალერეა",
     "contact": "კონტაქტი",
     "bookAppointment": "დაჯავშნეთ",
+    "bookConsultation": "კონსულტაციის დაჯავშნა",
     "faq": "კითხვები",
     "press": "პრესა",
     "blog": "ბლოგი",
     "team": "ჩვენი გუნდი",
-    "beforeAfter": "სანამ და მერე",
     "mainNavigation": "მთავარი ნავიგაცია",
     "internationalClients": "საერთაშორისო კლიენტები",
     "international": "საერთაშორისო კლიენტები",
@@ -29,7 +34,15 @@
     "allConditions": "ყველა მდგომარეობა",
     "viewAll": "ყველა მკურნალობის ნახვა",
     "exploreAll": "ყველას გამოკვლევა",
+<<<<<<< HEAD
     "visitUs": "გვეწვიეთ"
+=======
+    "visitUs": "გვეწვიეთ",
+    "menu": "მენიუ",
+    "more": "მეტი",
+    "treatmentPortfolio": "მკურნალობის ორტფოლიო",
+    "skinConditions": "კანის მდგომარეობები"
+>>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
   },
   "header": {
     "announcement": "ჯილდოს მფლობელი | ბათუმის საუკეთესო სილამაზის სალონი | გამოქვეყნებულია ქართული მოდისა და სილამაზის ჟურნალში"
@@ -291,6 +304,7 @@
     "slotConflict": "ეს დრო უკვე დაჯავშნილია. გთხოვთ აირჩიოთ სხვა დრო.",
     "bookingFailed": "დაჯავშნა ვერ მოხერხდა",
     "unexpectedError": "მოხდა მოულოდნელი შეცდომა. გთხოვთ ცადოთ კვლავ.",
+    "rateLimitMessage": "ძალიან ბევრი მოთხოვნა. გთხოვთ, მოიცადოთ 15 წუთი.",
     "bookingSummary": "დაჯავშნის შეჯამება",
     "service": "სერვისი",
     "date": "თარიღი",
@@ -301,11 +315,12 @@
     "done": "დასრულება",
     "serviceConsultation": "კონსულტაცია",
     "serviceBotox": "ბოტოქსის მკურნალობა",
-    "serviceFillers": "დერმალური ფილერები",
-    "serviceLaser": "ლაზერული ეპილაცია",
-    "serviceRejuvenation": "კანის განახლება",
+    "serviceFillers": "დერმალური შემვსებლები",
+    "serviceLaser": "ლაზერული მკურნალობა",
+    "serviceRejuvenation": "კანის გაახლება",
     "servicePeel": "ქიმიური პილინგი",
     "serviceMicroneedling": "მიკრონიდლინგი",
+<<<<<<< HEAD
     "serviceHydrafacial": "ჰიდრაფეშიალი",
     "rateLimitMessage": "?????? ????? ?????????. ??????, ???????? 15 ????."
   },
@@ -314,6 +329,9 @@
     "clients": "კმაყოფილი კლიენტი",
     "satisfaction": "კმაყოფილების დონე",
     "awards": "სამრეწველო ჯილდოები"
+=======
+    "serviceHydrafacial": "ჰიდროფეიშალი"
+>>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
   },
   "testimonial": {
     "quote": "Silk Beauty Salon-ის გუნდმა შეცვალა ჩემი თავდაჯერებულობა. შედეგები ბუნებრივია და ზუსტად ის არის, რასაც წარმოვიდგენდი.",
@@ -1735,7 +1753,7 @@
       "q4": "შემიძლია ვიზიტის გადანიშნა?",
       "a4": "დიახ, შეგიძლიათ ვიზიტის გადანიშვნა თარიღამდე 24 საათით ადრე. გთხოვთ დაგვიკავშირდეთ ტელეფონით ან ელფოსტით ახალი დროის შესარჩევად."
     },
-    "preferredTime": "პREFERRED დრო",
+    "preferredTime": "სასურველი დრო",
     "selectTime": "აირჩიეთ დროის ფანჯარა",
     "morning": "დილა",
     "afternoon": "შუადღე",
@@ -1792,10 +1810,10 @@
     "serviceHydrafacial": "Hydrafacial"
   },
   "consent": {
-    "title": "ქუქი-ფაილების პრეფერენციები",
-    "bannerLabel": "ქუქი-ფაილების თანხმობის ბანერი",
-    "description": "ჩვენ ვიყენებთ ქუქი-ფაილებს თქვენი დათვალიერების გამოცდილების გასაუმჯობესებლად, პერსონალიზებული კონტენტისთვის და ჩვენი ტრაფიკის ანალიზისთვის. \"ყველას მიღება\"-ზე დაჭერით, თქვენ თანახმა ხართ ქუქი-ფაილების გამოყენებაზე.",
-    "acceptAll": "ყველას მიღება",
+    "title": "ქუქიების პრეფერენციები",
+    "bannerLabel": "ქუქიების თანხმობის ბანერი",
+    "description": "ჩვენ ვიყენებთ ქუქიებს თქვენი ბრაუზინგის გამოცდილების გასაუმჯობესებლად, პერსონალიზებული კონტენტის მისაწოდებლად და ჩვენი ტრაფიკის ანალიზისთვის. \"ყველას დათანხმების\" დაჭერით, თქვენ ეთანხმებით ჩვენს ქუქიების გამოყენებას. შეგიძლიათ მართოთ თქვენი პრეფერენციები ან უარყოთ არასაჭირო ქუქიები.",
+    "acceptAll": "ყველას დათანხმება",
     "rejectAll": "ყველას უარყოფა",
     "managePreferences": "პრეფერენციების მართვა",
     "savePreferences": "პრეფერენციების შენახვა",
@@ -2072,5 +2090,105 @@
         "title": "?? ???? ?????? ?????? ??????? ??????????????"
       }
     }
+  },
+  "common": {
+    "tryAgain": "კვლავ სცადეთ",
+    "view": "ნახვა"
+  },
+  "errorPage": {
+    "somethingWentWrong": "რაღაც არასწორია",
+    "apologyMessage": "ბოდიშს გიხდით უხერხესობისთვის. მოულოდნელი შეცდომა მოხდა.",
+    "tryAgain": "კვლავ სცადეთ",
+    "globalError": "რაღაც არასწორია"
+  },
+  "accessibility": {
+    "loadingThemeToggle": "თემის ჩართვა",
+    "closeVideo": "ვიდეოს დახურვა",
+    "toggleFullscreen": "სრულ ეკრანზე გადართვა",
+    "closeGallery": "გალერეის დახურვა",
+    "previousImage": "წინა სურათი",
+    "nextImage": "შემდეგი სურათი",
+    "skipLinks": "ბმულების გამოტოვება",
+    "openMenu": "მენიუს გახსნა",
+    "closeMenu": "მენიუს დახურვა",
+    "required": "საჭირო",
+    "keyTab": "Tab",
+    "keyEscape": "Escape"
+  },
+  "social": {
+    "instagram": "ინსტაგრამი",
+    "facebook": "ფეისბუქი",
+    "tiktok": "ტიკტოკი",
+    "specialOffers": "სპეციალური შეთავაზებები",
+    "luxuryBeautySalon": "ელიტიური სილამებელი სალონი",
+    "contactSilkBeautySalon": "დაკავშირდით Silk Beauty Salon-თან",
+    "silkBeautySalon": "სილკი სილამებელი სალონი",
+    "salonInterior": "სალონის ინტერიერი",
+    "teamMember": "{name} - გუნდის წევრი",
+    "consultation": "კონსულტაცია",
+    "bookConsultation": "დაჯავშნეთ კონსულტაცია",
+    "skinCareTreatment": "კანის მოვლის მკურნალობა"
+  },
+  "footer": {
+    "hours": {
+      "sat": "შაბ",
+      "sun": "კვ"
+    }
+  },
+  "blogPage": {
+    "postNotFound": "პოსტი არ მოიძებნა",
+    "expertPractitioner": "ექსპერტი პრაქტიკოსი"
+  },
+  "treatmentPage": {
+    "heroAlt": "ლუქსური სილამაზის სალონი",
+    "durationResults": "3-6 თვე",
+    "minimalDowntime": "არაფერიდან მინიმალურამდე"
+  },
+  "international": {
+    "imageAlt": "Silk Beauty Salon",
+    "teamAlt": "ნანა გვინიაშვილი"
+  },
+  "contactPage": {
+    "imageAlt": "დაუკავშირდით Silk Beauty Salon-ს",
+    "mapTitle": "Silk Beauty Salon-ის მდებარეობა"
+  },
+  "consultation": {
+    "bookImageAlt": "კონსულტაციის დაჯავშნა"
+  },
+  "conditionsPage": {
+    "imageAlt": "კანის მოვლის მკურნალობა"
+  },
+  "offersPage": {
+    "imageAlt": "სპეციალური შეთავაზებები"
+  },
+  "bookingPage": {
+    "imageAlt": "სალონის ინტერიერი"
+  },
+  "aboutPage": {
+    "interiorAlt": "Silk Beauty Salon-ის ინტერიერი",
+    "clinicAlt": "Silk Beauty Salon-ის კლინიკა"
+  },
+  "home": {
+    "section1Title": "მკურნალობის ორტფოლიო",
+    "section2Title": "კანის მდგომარეობები",
+    "section3Title": "მკურნალობის ორტფოლიო",
+    "section4Title": "კანის მდგომარეობები",
+    "section5Title": "მკურნალობის ორტფოლიო",
+    "statistics": {
+      "years": "წლიანი გამოცდილება",
+      "clients": "ბედნიერი კლიენტები",
+      "satisfaction": "კმაყოფილების დონე",
+      "awards": "ჯილდოები",
+      "treatments": "მკურნალობები",
+      "consultations": "კონსულტაციები"
+    }
+  },
+  "statistics": {
+    "years": "წლიანი გამოცდილება",
+    "clients": "ბედნიერი კლიენტები",
+    "satisfaction": "კმაყოფილების დონე",
+    "awards": "ჯილდოები",
+    "treatments": "მკურნალობები",
+    "consultations": "კონსულტაციები"
   }
 }

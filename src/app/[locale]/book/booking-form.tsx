@@ -370,7 +370,11 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
 
       <Button
         type="submit"
+<<<<<<< HEAD
         disabled={isSubmitting || !formData.preferredDate || !formData.preferredTime}
+=======
+        disabled={isSubmitting}
+>>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
         className="w-full rounded-md border border-[#d9cec1] bg-[#f7f2eb] px-6 py-4 text-xs font-medium uppercase tracking-widest text-[#241f1b] transition-colors hover:bg-[#241f1b] hover:text-white disabled:opacity-50"
       >
         {isSubmitting ? tCommon('submitting', { defaultValue: 'Submitting...' }) : t('requestBooking', { defaultValue: 'Request Booking' })}

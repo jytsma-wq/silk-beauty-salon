@@ -3,8 +3,10 @@
 import { Sun, Moon } from 'lucide-react';
 import { useTheme } from '@/components/providers/theme-provider';
 import { Button } from '@/components/ui/button';
+import { useTranslations } from 'next-intl';
 
 export function ThemeToggle() {
+  const t = useTranslations('accessibility');
   // Handle case where ThemeProvider context might not be available during SSR
   let theme = 'light' as 'light' | 'dark';
   let setTheme = (_theme: 'light' | 'dark') => {};
@@ -27,7 +29,7 @@ export function ThemeToggle() {
         variant="ghost"
         size="icon"
         className="h-8 w-8 rounded-full opacity-0"
-        aria-label="Loading theme toggle"
+        aria-label={t('loadingThemeToggle')}
         disabled
       >
         <Sun className="h-4 w-4" />
@@ -41,7 +43,7 @@ export function ThemeToggle() {
       size="icon"
       onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
       className="h-8 w-8 rounded-full"
-      aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+      aria-label={theme === 'light' ? t('toggleFullscreen') : t('toggleFullscreen')}
     >
       {theme === 'light' ? (
         <Sun className="h-4 w-4 text-stone-600" />

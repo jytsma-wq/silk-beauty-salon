@@ -44,6 +44,7 @@ const itemVariants = {
 export function MobileNav({ onClose, treatmentCategories, conditions }: MobileNavProps) {
   const t = useTranslations('nav');
   const tInternational = useTranslations('internationalNav');
+  const tSite = useTranslations('site');
   const locale = useLocale();
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
 
@@ -53,7 +54,7 @@ export function MobileNav({ onClose, treatmentCategories, conditions }: MobileNa
       <div className="flex items-center justify-between p-4 border-b">
         <div className="flex flex-col">
           <span className="font-serif text-xl font-semibold text-primary">
-            Silk Beauty
+            {tSite('brandShort')}
           </span>
           <span className="text-xs text-[#b5453a] tracking-[0.2em] uppercase">
             Salon

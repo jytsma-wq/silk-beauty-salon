@@ -1,72 +1,21 @@
-<<<<<<< HEAD
 'use client';
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Link } from '@/i18n/routing';
-import { Menu, X, Phone, ChevronDown, Facebook, Instagram } from 'lucide-react';
+import { Menu, X, Phone, ChevronDown } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { siteConfig } from '@/data/site-config';
 import { motion, AnimatePresence } from 'framer-motion';
-=======
->>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
-import { baseTreatmentCategories } from '@/data/treatments';
-import { baseConditions } from '@/data/conditions';
-import { GaldermaHeaderClient } from './GaldermaHeaderClient';
 
-const treatmentMegaMenuItems = [
-  {
-    title: 'All Treatments',
-    href: '/treatments',
-    description: 'View the full treatment portfolio and browse every category.',
-<<<<<<< HEAD
-  },
-  {
-    title: 'Hair Treatments',
-    href: '/treatments/hair-treatments',
-    description: 'Scalp-focused restoration, strengthening, and hair health treatments.',
-  },
-  {
-    title: 'Hair Extensions',
-    href: '/treatments/hair-extensions',
-    description: 'Color-matched extension planning for fuller, polished salon hair.',
-  },
-  {
-    title: 'Nails',
-    href: '/treatments/nails',
-    description: 'Manicure, pedicure, and nail finishing appointments with detailed care.',
-  },
-  {
-    title: 'Lashes',
-    href: '/treatments/lashes',
-    description: 'Lash lift, styling, and finishing services shaped around your eyes.',
-  },
-  ...baseTreatmentCategories.filter((category) => category.slug !== 'hair').map((category) => ({
-=======
-  },
-  ...baseTreatmentCategories.map((category) => ({
->>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
-    title: category.name,
-    href: `/treatments#${category.slug}`,
-    description: category.description,
-  })),
-];
+type MegaMenuItem = {
+  title: string;
+  href: string;
+  description: string;
+};
 
-const skinConditionMegaMenuItems = [
-  {
-    title: 'All Conditions',
-    href: '/conditions',
-    description: 'Browse the complete skin concerns library and treatment pathways.',
-  },
-  ...baseConditions.map((condition) => ({
-    title: condition.name,
-    href: `/conditions/${condition.slug}`,
-    description: condition.shortDescription,
-  })),
-];
-
-<<<<<<< HEAD
 function MegaMenuPanel({
   eyebrow,
   title,
@@ -86,10 +35,10 @@ function MegaMenuPanel({
 }) {
   return (
     <div className="absolute left-1/2 top-full z-50 w-[min(1120px,calc(100vw-3rem))] -translate-x-1/2 pt-4">
-      <div className="overflow-hidden rounded-[8px] border border-[#e8e4df] bg-[#fbf8f4] shadow-[0_24px_70px_rgba(36,31,27,0.12)]">
+      <div className="overflow-hidden rounded-xl border border-[#e8e4df] bg-[#fbf8f4] shadow-[0_24px_70px_rgba(36,31,27,0.12)]">
         <div className="grid lg:grid-cols-[320px_1fr]">
           <div className="border-r border-[#e8e4df] bg-white">
-            <div className="relative aspect-[4/5] overflow-hidden">
+            <div className="relative aspect-4/5 overflow-hidden">
               <Image src={image} alt="" fill className="object-cover" sizes="320px" />
             </div>
             <div className="p-8">
@@ -131,7 +80,13 @@ function MegaMenuPanel({
   );
 }
 
-export function GaldermaHeader() {
+export function GaldermaHeaderClient({
+  treatmentMegaMenuItems,
+  skinConditionMegaMenuItems,
+}: {
+  treatmentMegaMenuItems: MegaMenuItem[];
+  skinConditionMegaMenuItems: MegaMenuItem[];
+}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -186,27 +141,8 @@ export function GaldermaHeader() {
             <span>{siteConfig.contact.phone}</span>
           </a>
 
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-3">
-              <a
-                href={siteConfig.social?.instagram ?? 'https://instagram.com/silkbeauty'}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#E4405F] transition-opacity hover:opacity-75"
-                aria-label="Instagram"
-              >
-                <Instagram className="h-6 w-6" strokeWidth={1.8} />
-              </a>
-              <a
-                href={siteConfig.social?.facebook ?? 'https://facebook.com/silkbeauty'}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#1877F2] transition-opacity hover:opacity-75"
-                aria-label="Facebook"
-              >
-                <Facebook className="h-6 w-6" strokeWidth={1.8} />
-              </a>
-            </div>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
             <LanguageSwitcher />
           </div>
         </div>
@@ -223,11 +159,7 @@ export function GaldermaHeader() {
       >
         <div className="mx-auto max-w-7xl px-6 py-4 lg:px-8">
           <div className="mb-4 flex justify-center">
-            <Link
-              href="/"
-              className="font-serif leading-none tracking-tight text-[#1c1c1c] transition-colors hover:text-[#8d6f58]"
-              style={{ fontSize: '26px' }}
-            >
+            <Link href="/" className="font-serif text-2xl tracking-tight text-[#1c1c1c] transition-colors hover:text-[#8d6f58]">
               {siteConfig.name}
             </Link>
           </div>
@@ -274,11 +206,11 @@ export function GaldermaHeader() {
 
               {activeMegaMenu === 'treatments' ? (
                 <MegaMenuPanel
-                  eyebrow="Treatments"
-                  title="Treatment portfolio"
+                  eyebrow={t('treatments')}
+                  title={t('treatmentPortfolio')}
                   overviewHref="/treatments"
-                  overviewLabel="All treatments"
-                  description="Navigate the treatment portfolio by category while keeping the original routes and anchors intact."
+                  overviewLabel={t('allTreatments')}
+                  description={t('treatmentPortfolioDescription')}
                   image="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=1000&q=80"
                   items={treatmentMegaMenuItems}
                 />
@@ -286,12 +218,12 @@ export function GaldermaHeader() {
 
               {activeMegaMenu === 'conditions' ? (
                 <MegaMenuPanel
-                  eyebrow="Skin concerns"
-                  title="Skin conditions"
+                  eyebrow={t('skinConcerns')}
+                  title={t('skinConditions')}
                   overviewHref="/conditions"
-                  overviewLabel="All conditions"
-                  description="Browse the complete conditions library and move directly into the right concern page."
-                  image="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1000&q=80"
+                  overviewLabel={t('allConditions')}
+                  description={t('conditionsDescription')}
+                  image="https://images.unsplash.com/photo-1570172619644-dfd40ed531fb?w=1000&q=80"
                   items={skinConditionMegaMenuItems}
                 />
               ) : null}
@@ -306,10 +238,10 @@ export function GaldermaHeader() {
           </div>
 
           <div className="flex items-center justify-between md:hidden">
-            <Link href="/" className="font-serif text-[28px] leading-none tracking-tight text-[#1c1c1c]">
+            <Link href="/" className="font-serif text-xl tracking-tight text-[#1c1c1c]">
               {siteConfig.name}
             </Link>
-            <button onClick={() => setIsMenuOpen(true)} className="p-2 text-[#1c1c1c]" aria-label="Open menu">
+            <button onClick={() => setIsMenuOpen(true)} className="p-2 text-[#1c1c1c]" aria-label={t('openMenu')}>
               <Menu className="h-6 w-6" strokeWidth={1} />
             </button>
           </div>
@@ -328,7 +260,7 @@ export function GaldermaHeader() {
             <button
               onClick={() => setIsMenuOpen(false)}
               className="absolute top-8 right-8 text-4xl font-light text-stone-900 transition-colors hover:text-stone-600"
-              aria-label="Close menu"
+              aria-label={t('closeMenu')}
             >
               <X className="h-8 w-8" strokeWidth={1} />
             </button>
@@ -342,7 +274,7 @@ export function GaldermaHeader() {
 
               <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-20">
                 <nav className="space-y-6">
-                  <span className="mb-6 block text-xs uppercase tracking-[0.4em] text-stone-400">Menu</span>
+                  <span className="mb-6 block text-xs uppercase tracking-[0.4em] text-stone-400">{t('menu')}</span>
                   <Link href="/treatments" onClick={() => setIsMenuOpen(false)} className="block text-3xl font-serif font-light text-stone-900 transition-colors hover:text-[#8d6f58]">
                     {t('treatments', { defaultValue: 'Treatments' })}
                   </Link>
@@ -361,7 +293,7 @@ export function GaldermaHeader() {
                 </nav>
 
                 <div>
-                  <span className="mb-6 block text-xs uppercase tracking-[0.4em] text-stone-400">More</span>
+                  <span className="mb-6 block text-xs uppercase tracking-[0.4em] text-stone-400">{t('more')}</span>
                   <nav className="mb-8 space-y-4">
                     <Link href="/about" onClick={() => setIsMenuOpen(false)} className="block text-lg text-stone-700 transition-colors hover:text-[#8d6f58]">
                       {t('about', { defaultValue: 'About' })}
@@ -405,13 +337,5 @@ export function GaldermaHeader() {
         )}
       </AnimatePresence>
     </>
-=======
-export function GaldermaHeader() {
-  return (
-    <GaldermaHeaderClient
-      treatmentMegaMenuItems={treatmentMegaMenuItems}
-      skinConditionMegaMenuItems={skinConditionMegaMenuItems}
-    />
->>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
   );
 }

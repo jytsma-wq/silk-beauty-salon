@@ -15,7 +15,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { FormField, FormSection, FormErrorSummary } from './form-field';
-import { useToast } from '@/stores';
+import { useToast } from '@/hooks/use-toast';
 import { Loader2, Send } from 'lucide-react';
 import { apiPost, API_ENDPOINTS, ApiError } from '@/lib/api-client';
 import { useClientCsrfToken } from '@/lib/csrf-client';
@@ -31,7 +31,7 @@ interface ContactFormProps {
  */
 export function ContactForm({ onSuccess }: ContactFormProps): React.JSX.Element {
   const t = useTranslations('contact');
-  const { success, error: showError } = useToast();
+  const { toast } = useToast();
   
   const {
     register,
@@ -55,7 +55,10 @@ export function ContactForm({ onSuccess }: ContactFormProps): React.JSX.Element 
   async function onSubmit(data: ContactFormInput): Promise<void> {
     try {
       await apiPost(API_ENDPOINTS.contact, data, { csrfToken });
-      success(t('successTitle'), t('successMessage'));
+      toast({
+        title: t('successTitle'),
+        description: t('successMessage'),
+      });
       reset();
       onSuccess?.();
     } catch (err) {
@@ -64,7 +67,11 @@ export function ContactForm({ onSuccess }: ContactFormProps): React.JSX.Element 
           ? t('rateLimitMessage')
           : err.message
         : t('errorMessage');
-      showError(t('errorTitle'), message);
+      toast({
+        title: t('errorTitle'),
+        description: message,
+        variant: 'destructive',
+      });
     }
   }
 

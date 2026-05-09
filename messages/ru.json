@@ -1,9 +1,12 @@
 {
   "site": {
     "title": "Премиальный салон красоты в Батуми | Silk Beauty Salon",
-    "description": "Премиальный салон красоты в Батуми на улице Зураба Горгиладзе. Специалисты, передовые методы лечения и роскошный сервис."
+    "description": "Премиальный салон красоты в Батуми на улице Зураба Горгиладзе. Специалисты, передовые методы лечения и роскошный сервис.",
+    "brandName": "Silk Beauty Salon",
+    "brandShort": "Silk Beauty"
   },
   "nav": {
+    "home": "Главная",
     "treatments": "Процедуры",
     "conditions": "Состояния",
     "about": "О нас",
@@ -14,13 +17,15 @@
     "findSpecialist": "Найти специалиста",
     "pricelist": "Прайс-лист",
     "offers": "Акции",
+    "beforeAfter": "До и После",
+    "gallery": "Галерея",
     "contact": "Контакты",
     "bookAppointment": "Записаться",
+    "bookConsultation": "Записаться на консультацию",
     "faq": "Вопросы",
     "press": "Пресса",
     "blog": "Блог",
     "team": "Наша команда",
-    "beforeAfter": "До и После",
     "mainNavigation": "Главная навигация",
     "internationalClients": "Международные клиенты",
     "international": "Международные клиенты",
@@ -29,7 +34,15 @@
     "allConditions": "Все состояния",
     "viewAll": "Смотреть все",
     "exploreAll": "Изучить все",
+<<<<<<< HEAD
     "visitUs": "Посетите нас"
+=======
+    "visitUs": "Посетите нас",
+    "menu": "Меню",
+    "more": "Ещё",
+    "treatmentPortfolio": "Портфель процедур",
+    "skinConditions": "Состояния кожи"
+>>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
   },
   "header": {
     "announcement": "Награды | Лучший салон красоты Батуми | Публикации в грузинском журнале моды и красоты"
@@ -291,6 +304,7 @@
     "slotConflict": "Это время уже забронировано. Пожалуйста, выберите другое время.",
     "bookingFailed": "Не удалось создать бронирование",
     "unexpectedError": "Произошла непредвиденная ошибка. Пожалуйста, попробуйте снова.",
+    "rateLimitMessage": "Слишком много запросов. Пожалуйста, подождите 15 минут.",
     "bookingSummary": "Сводка бронирования",
     "service": "Услуга",
     "date": "Дата",
@@ -308,6 +322,21 @@
     "serviceMicroneedling": "Микронидлинг",
     "serviceHydrafacial": "Гидрапилинг",
     "rateLimitMessage": "??????? ????? ????????. ??????????, ????????? 15 ?????."
+  },
+  "bookingPage": {
+    "preferredDate": "Предпочитаемая дата",
+    "preferredTime": "Предпочитаемое время",
+    "selectService": "Выберите услугу",
+    "selectServicePlaceholder": "Выберите тип консультации",
+    "fullName": "Полное имя",
+    "namePlaceholder": "Введите ваше полное имя",
+    "phoneNumber": "Номер телефона",
+    "phonePlaceholder": "+995 599 123 456",
+    "emailAddress": "Адрес электронной почты",
+    "emailPlaceholder": "your@email.com",
+    "successTitle": "Запрос на бронирование отправлен",
+    "successMessage": "Спасибо за ваш запрос на бронирование. Мы свяжемся с вами в ближайшее время, чтобы подтвердить вашу запись.",
+    "bookAnother": "Записаться еще"
   },
   "statistics": {
     "years": "Лет опыта",
@@ -2072,5 +2101,89 @@
         "title": "??? ????? ????? ????? ?????? ????????????? ?? ????????"
       }
     }
+  },
+  "common": {
+    "tryAgain": "Попробовать снова",
+    "view": "Просмотр"
+  },
+  "errorPage": {
+    "somethingWentWrong": "Что-то пошло не так",
+    "apologyMessage": "Приносим извинения за неудобства. Произошла непредвиденная ошибка.",
+    "tryAgain": "Попробовать снова",
+    "globalError": "Что-то пошло не так"
+  },
+  "accessibility": {
+    "loadingThemeToggle": "Загрузка переключения темы",
+    "closeVideo": "Закрыть видео",
+    "toggleFullscreen": "Переключить полноэкранный режим",
+    "closeGallery": "Закрыть галерею",
+    "previousImage": "Предыдущее изображение",
+    "nextImage": "Следующее изображение",
+    "skipLinks": "Пропустить ссылки",
+    "openMenu": "Открыть меню",
+    "closeMenu": "Закрыть меню",
+    "required": "обязательно",
+    "keyTab": "Tab",
+    "keyEscape": "Escape"
+  },
+  "social": {
+    "instagram": "Инстаграм",
+    "facebook": "Фейсбук",
+    "tiktok": "ТикТок",
+    "specialOffers": "Специальные предложения",
+    "luxuryBeautySalon": "Роскошный салон красоты",
+    "contactSilkBeautySalon": "Связаться с салоном Silk Beauty",
+    "silkBeautySalon": "Салон Silk Beauty",
+    "salonInterior": "Интерьер салона",
+    "teamMember": "{name} - Член команды",
+    "consultation": "Консультация",
+    "bookConsultation": "Забронировать консультацию",
+    "skinCareTreatment": "Уход за кожей"
+  },
+  "footer": {
+    "hours": {
+      "sat": "Сб",
+      "sun": "Вс"
+    }
+  },
+  "blogPage": {
+    "postNotFound": "Запись не найдена",
+    "expertPractitioner": "Эксперт-практик"
+  },
+  "treatmentPage": {
+    "heroAlt": "Роскошный салон красоты",
+    "durationResults": "3-6 месяцев",
+    "minimalDowntime": "Отсутствует до минимального"
+  },
+  "international": {
+    "imageAlt": "Silk Beauty Salon",
+    "teamAlt": "Нана Гвиниашвили"
+  },
+  "contactPage": {
+    "imageAlt": "Свяжитесь с Silk Beauty Salon",
+    "mapTitle": "Местоположение Silk Beauty Salon"
+  },
+  "consultation": {
+    "bookImageAlt": "Записаться на консультацию"
+  },
+  "conditionsPage": {
+    "imageAlt": "Лечение кожи"
+  },
+  "offersPage": {
+    "imageAlt": "Специальные предложения"
+  },
+  "bookingPage": {
+    "imageAlt": "Интерьер салона"
+  },
+  "aboutPage": {
+    "interiorAlt": "Интерьер Silk Beauty Salon",
+    "clinicAlt": "Клиника Silk Beauty Salon"
+  },
+  "home": {
+    "section1Title": "Портфель процедур",
+    "section2Title": "Состояния кожи",
+    "section3Title": "Портфель процедур",
+    "section4Title": "Состояния кожи",
+    "section5Title": "Портфель процедур"
   }
 }

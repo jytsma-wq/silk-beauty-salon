@@ -1,6 +1,10 @@
+'use client';
+
+import React from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
+import { useTranslations } from 'next-intl';
 import { siteConfig } from '@/data/site-config';
 import { portfolioHighlights, proofStats } from '@/data/homepage';
 import {
@@ -19,6 +23,7 @@ function SectionHeading({
   title: string;
   description?: string;
 }) {
+  const t = useTranslations('home');
   return (
     <div className="max-w-3xl">
       <p className="mb-4 text-[0.68rem] font-medium uppercase tracking-[0.28em] text-[#8d6f58]">
@@ -37,15 +42,25 @@ function SectionHeading({
 }
 
 function PhilosophySection() {
+<<<<<<< HEAD
   const t = useTranslations('homeEditorial');
 
+=======
+  const t = useTranslations('home');
+>>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
   return (
     <section className="bg-white px-6 py-24 md:px-12 md:py-32 lg:px-16 xl:px-24">
       <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-[42%_58%] lg:items-end">
         <SectionHeading
+<<<<<<< HEAD
           eyebrow={t('philosophy.eyebrow')}
           title={t('philosophy.title')}
           description={t('philosophy.description')}
+=======
+          eyebrow={t('ourApproach')}
+          title={t('skinFirstAestheticPractice')}
+          description={t('galdermaInspiredDescription')}
+>>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
         />
         <div className="border-t border-stone-200 pt-8">
           <p className="font-sans text-[clamp(2rem,3.8vw,3.8rem)] font-light leading-tight text-[#241f1b]">
@@ -58,6 +73,7 @@ function PhilosophySection() {
 }
 
 function PortfolioSection() {
+<<<<<<< HEAD
   const t = useTranslations('homeEditorial');
   const items = portfolioHighlights.map((item, index) => ({
     ...item,
@@ -65,14 +81,23 @@ function PortfolioSection() {
     description: t(`portfolio.items.item${index + 1}.description`),
   }));
 
+=======
+  const t = useTranslations('home');
+>>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
   return (
     <section className="bg-white px-6 py-24 md:px-12 md:py-32 lg:px-16 xl:px-24">
       <div className="mx-auto max-w-7xl">
         <div className="mb-14 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <SectionHeading
+<<<<<<< HEAD
             eyebrow={t('portfolio.eyebrow')}
             title={t('portfolio.title')}
             description={t('portfolio.description')}
+=======
+            eyebrow={t('portfolio')}
+            title={t('holisticAestheticTreatments')}
+            description={t('consideredPortfolioDescription')}
+>>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
           />
           <Link
             href="/treatments"
@@ -83,9 +108,19 @@ function PortfolioSection() {
         </div>
 
         <div className="grid gap-px bg-stone-200 lg:grid-cols-3">
+<<<<<<< HEAD
           {items.map((item) => (
             <Link key={item.title} href={item.href} className="group bg-white">
               <div className="relative aspect-[4/5] overflow-hidden bg-stone-100">
+=======
+          {portfolioHighlights.map((item) => (
+            <Link
+              key={item.title}
+              href={item.href}
+              className="group bg-white"
+            >
+              <div className="relative aspect-4/5 overflow-hidden bg-stone-100">
+>>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
                 <Image
                   src={item.image}
                   alt=""
@@ -173,8 +208,12 @@ function SpecialistCta() {
 }
 
 export function GaldermaInspiredHome() {
+<<<<<<< HEAD
   const t = useTranslations('homeEditorial');
 
+=======
+  const t = useTranslations('home');
+>>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
   return (
     <>
       <ClinicalHeroCarousel />
@@ -184,9 +223,15 @@ export function GaldermaInspiredHome() {
         <div className="mx-auto max-w-7xl">
           <div className="mb-12">
             <SectionHeading
+<<<<<<< HEAD
               eyebrow={t('concerns.eyebrow')}
               title={t('concerns.title')}
               description={t('concerns.description')}
+=======
+              eyebrow="Skin Concerns"
+              title="Real Solutions for Skin Concerns"
+              description="Explore common concerns and find solutions"
+>>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
             />
           </div>
           <ConcernCarousel />
@@ -200,9 +245,15 @@ export function GaldermaInspiredHome() {
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <SectionHeading
+<<<<<<< HEAD
               eyebrow={t('results.eyebrow')}
               title={t('results.title')}
               description={t('results.description')}
+=======
+              eyebrow={t('realResults')}
+              title={t('proofIsInThePlan')}
+              description={t('beforeAfterStoriesDescription')}
+>>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
             />
             <Link
               href="/before-after"
@@ -221,9 +272,15 @@ export function GaldermaInspiredHome() {
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <SectionHeading
+<<<<<<< HEAD
               eyebrow={t('journal.eyebrow')}
               title={t('journal.title')}
               description={t('journal.description')}
+=======
+              eyebrow={t('skinTrends')}
+              title={t('aestheticInsightWithoutNoise')}
+              description={t('educationalNotesDescription')}
+>>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
             />
             <Link
               href="/blog"

@@ -3,6 +3,7 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 interface BeforeAfterSliderProps {
   beforeSrc: string;
@@ -20,6 +21,7 @@ export function BeforeAfterSlider({
   afterAlt,
   initialPosition = 50,
 }: BeforeAfterSliderProps) {
+  const t = useTranslations('accessibility');
   const [position, setPosition] = useState(initialPosition);
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -101,7 +103,7 @@ export function BeforeAfterSlider({
       onMouseDown={handleMouseDown}
       onTouchStart={handleTouchStart}
       role="img"
-      aria-label={`Before/After comparison — ${beforeAlt}`}
+      aria-label={t('beforeAfterComparison', { beforeAlt })}
     >
       {/* After image (bottom layer — full width) */}
       <div className="absolute inset-0">

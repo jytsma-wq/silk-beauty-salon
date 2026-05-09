@@ -1,30 +1,38 @@
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, setRequestLocale } from 'next-intl/server';
+import { getMessages, setRequestLocale, getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
-import { rtlLocales } from '@/i18n';
 import type { Metadata } from "next";
-import { headers } from 'next/headers';
-import { LazyMotion, domAnimation } from 'framer-motion';
 import "../globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { AnnouncerProvider } from "@/components/ui/announcer";
 import { GaldermaHeader } from "@/components/layout/GaldermaHeader";
 import { GaldermaFooter } from "@/components/layout/GaldermaFooter";
 import { ConsentProvider } from "@/components/providers/ConsentProvider";
-import { ScrollProgressBar } from "@/components/ui/ScrollProgressBar";
-import { PageTransition } from "@/components/providers/PageTransition";
-import { AnalyticsScripts } from "@/components/providers/AnalyticsScripts";
 import { WhatsAppWidget } from "@/components/layout/WhatsAppWidget";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { siteConfig } from '@/data/site-config';
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'metadata' });
+  
   return {
+<<<<<<< HEAD
     metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || siteConfig.url),
     title: "Premier Beauty Salon in Batumi | Silk Beauty Salon",
     description: "Batumi's premier beauty salon on Zurab Gorgiladze Street.",
     keywords: ["beauty salon", "botox", "dermal fillers", "laser treatments", "skin treatments", "Batumi", "Georgia", "cosmetic clinic"],
+=======
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://silkbeautysalon.com'),
+    title: t('siteTitle'),
+    description: t('siteDescription'),
+    keywords: t('siteKeywords'),
+>>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
     authors: [{ name: "Silk Beauty Salon" }],
     icons: {
       icon: "/favicon.ico",
@@ -55,48 +63,23 @@ export default async function LocaleLayout({
 
   const messages = await getMessages();
 
-  // Get CSRF token and nonce from middleware headers
-  const headersList = await headers();
-  const csrfToken = headersList.get('X-CSRF-Token') || '';
-  const nonce = headersList.get('x-nonce') || '';
-
-  const isRtl = rtlLocales.includes(validLocale as 'ar' | 'he');
-
+  
   return (
-    <html lang={validLocale} dir={isRtl ? 'rtl' : 'ltr'} suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {csrfToken ? <meta name="csrf-token" content={csrfToken} /> : null}
-        {nonce ? <meta name="csp-nonce" content={nonce} /> : null}
-      </head>
-      <body>
-        <LazyMotion features={domAnimation}>
-          <ThemeProvider>
-            <NextIntlClientProvider messages={messages}>
-              <ConsentProvider>
-                <AnalyticsScripts
-                  gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
-                  gtmId={process.env.NEXT_PUBLIC_GTM_ID}
-                  fbPixelId={process.env.NEXT_PUBLIC_FB_PIXEL_ID}
-                  nonce={nonce}
-                />
-                <AnnouncerProvider>
-                  <ScrollProgressBar />
-                  <SkipLink />
-                  <GaldermaHeader />
-                  <main id="main-content" className="pt-[140px]">
-                    <PageTransition>{children}</PageTransition>
-                  </main>
-                  <GaldermaFooter />
-                  <WhatsAppWidget />
-                  <Toaster />
-                </AnnouncerProvider>
-              </ConsentProvider>
-            </NextIntlClientProvider>
-          </ThemeProvider>
-        </LazyMotion>
-      </body>
-    </html>
+    <ThemeProvider>
+      <NextIntlClientProvider messages={messages}>
+        <ConsentProvider>
+          <AnnouncerProvider>
+            <SkipLink />
+            <GaldermaHeader />
+            <main id="main-content" className="pt-35">
+              {children}
+            </main>
+            <GaldermaFooter />
+            <WhatsAppWidget />
+            <Toaster />
+          </AnnouncerProvider>
+        </ConsentProvider>
+      </NextIntlClientProvider>
+    </ThemeProvider>
   );
 }

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Play, X, Clock, Volume2, VolumeX, Maximize } from 'lucide-react';
 import type { VideoItem } from '@/data/media';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 
 interface VideoGalleryProps {
@@ -20,6 +21,7 @@ export function VideoGallery({
   showCategory = true,
   className 
 }: VideoGalleryProps) {
+  const t = useTranslations('accessibility');
   const [selectedVideo, setSelectedVideo] = useState<VideoItem | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -92,7 +94,7 @@ export function VideoGallery({
             <div className="relative aspect-video overflow-hidden rounded-sm bg-stone-200">
               <Image
                 src={video.thumbnail}
-                alt={video.title}
+                alt={t('videoThumbnail', { title: video.title })}
                 fill
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -161,7 +163,7 @@ export function VideoGallery({
             <button
               onClick={closeModal}
               className="absolute top-6 right-6 z-10 p-2 text-white/70 hover:text-white transition-colors rounded-full bg-white/10 hover:bg-white/20"
-              aria-label="Close video"
+              aria-label={t('closeVideo')}
             >
               <X className="w-6 h-6" />
             </button>
@@ -201,7 +203,7 @@ export function VideoGallery({
                       <button
                         onClick={() => setIsMuted(!isMuted)}
                         className="p-2 text-white/70 hover:text-white rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-                        aria-label={isMuted ? 'Unmute' : 'Mute'}
+                        aria-label={isMuted ? t('closeVideo') : t('closeVideo')}
                       >
                         {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
                       </button>
@@ -210,7 +212,7 @@ export function VideoGallery({
                       <button
                         onClick={toggleFullscreen}
                         className="p-2 text-white/70 hover:text-white rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-                        aria-label="Toggle fullscreen"
+                        aria-label={t('toggleFullscreen')}
                       >
                         <Maximize className="w-5 h-5" />
                       </button>
