@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3000 --turbopack --hostname 0.0.0.0",
+    "dev": "NODE_OPTIONS='--max-old-space-size=4096' next dev -p 3000 --turbopack --hostname 0.0.0.0",
     "dev:alt": "next dev -p 3001",
     "build": "BUILD_TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ) next build && node -e \"const fs=require('fs');const p=require('path');['static','../public'].forEach((s,i)=>{const d=i?'standalone/public':'standalone/.next/static';try{fs.cpSync(s,d,{recursive:true})}catch(e){}})\"",
     "start": "NODE_ENV=production bun .next/standalone/server.js 2>&1 | tee server.log",
