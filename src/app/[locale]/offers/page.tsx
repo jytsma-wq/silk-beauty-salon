@@ -62,11 +62,7 @@ export default async function OffersPage({
       <section className="relative h-screen min-h-37.5">
         <Image
           src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80"
-<<<<<<< HEAD
-          alt="Special Offers"
-=======
           alt={t('specialOffers')}
->>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
           fill
           className="object-cover"
           priority

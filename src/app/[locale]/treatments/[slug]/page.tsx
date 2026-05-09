@@ -319,13 +319,9 @@ export default async function TreatmentPage({ params }: Props) {
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <div className="hidden md:block">
             <p className="font-serif text-sm text-stone-900">{treatment.name}</p>
-<<<<<<< HEAD
-            {stickyMeta ? <p className="text-xs text-stone-500">{stickyMeta}</p> : null}
-=======
             <p className="text-xs text-stone-500">
-              {treatment.duration} â€¢ {treatment.price}
+              {stickyMeta}
             </p>
->>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
           </div>
           <Button
             asChild

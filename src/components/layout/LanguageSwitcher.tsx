@@ -1,23 +1,16 @@
 'use client';
 
-<<<<<<< HEAD
-=======
 import { useLocale, useTranslations } from 'next-intl';
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname, useRouter } from '@/i18n/routing';
 import { locales, localeNames, type Locale } from '@/i18n';
 import { Button } from '@/components/ui/button';
->>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
 import Image from 'next/image';
-import { useLocale } from 'next-intl';
-import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { locales, localeNames, type Locale } from '@/i18n';
-import { usePathname, useRouter } from '@/i18n/routing';
 import { trackLanguageChange } from '@/lib/analytics';
 
 export function LanguageSwitcher() {
@@ -37,7 +30,7 @@ export function LanguageSwitcher() {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="sm" className="gap-2 px-2">
           <Image
-            src={localeNames[locale]?.flag || 'https://flagcdn.com/w40/gb.png'}
+            src={localeNames[locale]?.flag || '/flags/en.svg'}
             alt={t('currentLanguageFlag', { language: localeNames[locale]?.name || locale })}
             width={24}
             height={16}
@@ -46,7 +39,7 @@ export function LanguageSwitcher() {
           <span className="hidden sm:inline">{localeNames[locale]?.nativeName || locale.toUpperCase()}</span>
           <span className="sm:hidden">
             <Image
-              src={localeNames[locale]?.flag || 'https://flagcdn.com/w40/gb.png'}
+              src={localeNames[locale]?.flag || '/flags/en.svg'}
               alt={t('currentLanguageFlag', { language: localeNames[locale]?.name || locale })}
               width={24}
               height={16}

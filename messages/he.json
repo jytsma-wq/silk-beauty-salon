@@ -34,15 +34,12 @@
     "allConditions": "כל מצבי העור",
     "viewAll": "הצג הכל",
     "exploreAll": "חקור הכל",
-<<<<<<< HEAD
-    "visitUs": "בקרו אותנו"
-=======
     "visitUs": "בקרו אותנו",
     "menu": "תפריט",
     "more": "עוד",
     "treatmentPortfolio": "תיק טיפולים",
     "skinConditions": "מצבי עור"
->>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
+
   },
   "header": {
     "announcement": "זוכת פרסים | סלון היופי הטוב בבתומי | פורסם במגזין האופנה והיופי הגיאורגי"

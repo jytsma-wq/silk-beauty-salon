@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { headers } from 'next/headers';
 import { rtlLocales } from '@/i18n';
+import './globals.css';
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   const headersList = await headers();

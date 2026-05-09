@@ -34,15 +34,12 @@
     "allConditions": "ყველა მდგომარეობა",
     "viewAll": "ყველა მკურნალობის ნახვა",
     "exploreAll": "ყველას გამოკვლევა",
-<<<<<<< HEAD
-    "visitUs": "გვეწვიეთ"
-=======
     "visitUs": "გვეწვიეთ",
     "menu": "მენიუ",
     "more": "მეტი",
     "treatmentPortfolio": "მკურნალობის ორტფოლიო",
     "skinConditions": "კანის მდგომარეობები"
->>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
+
   },
   "header": {
     "announcement": "ჯილდოს მფლობელი | ბათუმის საუკეთესო სილამაზის სალონი | გამოქვეყნებულია ქართული მოდისა და სილამაზის ჟურნალში"
@@ -320,18 +317,8 @@
     "serviceRejuvenation": "კანის გაახლება",
     "servicePeel": "ქიმიური პილინგი",
     "serviceMicroneedling": "მიკრონიდლინგი",
-<<<<<<< HEAD
-    "serviceHydrafacial": "ჰიდრაფეშიალი",
-    "rateLimitMessage": "?????? ????? ?????????. ??????, ???????? 15 ????."
-  },
-  "statistics": {
-    "years": "წლის გამოცდილება",
-    "clients": "კმაყოფილი კლიენტი",
-    "satisfaction": "კმაყოფილების დონე",
-    "awards": "სამრეწველო ჯილდოები"
-=======
     "serviceHydrafacial": "ჰიდროფეიშალი"
->>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
+
   },
   "testimonial": {
     "quote": "Silk Beauty Salon-ის გუნდმა შეცვალა ჩემი თავდაჯერებულობა. შედეგები ბუნებრივია და ზუსტად ის არის, რასაც წარმოვიდგენდი.",

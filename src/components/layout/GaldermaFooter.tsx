@@ -1,12 +1,7 @@
 'use client';
 
-<<<<<<< HEAD
 import { FormEvent, useState } from 'react';
 import Image from 'next/image';
-=======
-import Image from 'next/image';
-import { Link } from '@/i18n/routing';
->>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
 import { useTranslations } from 'next-intl';
 import { Facebook, Instagram } from 'lucide-react';
 import { Link } from '@/i18n/routing';
@@ -132,13 +127,8 @@ export function GaldermaFooter() {
                 href={siteConfig.social?.instagram ?? 'https://instagram.com/silkbeauty'}
                 target="_blank"
                 rel="noopener noreferrer"
-<<<<<<< HEAD
-                className="text-[#E4405F] transition-opacity hover:opacity-75"
-                aria-label="Instagram"
-=======
                 className="text-stone-400 transition-colors hover:text-[#8d6f58]"
                 aria-label={t('instagram')}
->>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
               >
                 <Instagram className="h-[26px] w-[26px]" strokeWidth={1.8} />
               </a>
@@ -146,13 +136,8 @@ export function GaldermaFooter() {
                 href={siteConfig.social?.facebook ?? 'https://facebook.com/silkbeauty'}
                 target="_blank"
                 rel="noopener noreferrer"
-<<<<<<< HEAD
-                className="text-[#1877F2] transition-opacity hover:opacity-75"
-                aria-label="Facebook"
-=======
                 className="text-stone-400 transition-colors hover:text-[#8d6f58]"
                 aria-label={t('facebook')}
->>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
               >
                 <Facebook className="h-[26px] w-[26px]" strokeWidth={1.8} />
               </a>
@@ -259,13 +244,8 @@ export function GaldermaFooter() {
         aria-hidden="true"
         src="/footer-pattern-preview.svg"
         alt=""
-<<<<<<< HEAD
-        width={1920}
-        height={240}
-=======
         width={1200}
         height={1}
->>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
         className="block w-full border-t border-stone-200"
       />
     </footer>

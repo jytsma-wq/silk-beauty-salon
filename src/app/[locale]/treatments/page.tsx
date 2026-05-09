@@ -52,11 +52,7 @@ export default async function TreatmentsPage({
       <section className="relative w-full h-[60vh] md:h-[80vh]">
         <Image
           src="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=1920&q=80"
-<<<<<<< HEAD
-          alt="Luxury Beauty Salon"
-=======
           alt={t('luxuryBeautySalon')}
->>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
           fill
           className="object-cover"
           priority

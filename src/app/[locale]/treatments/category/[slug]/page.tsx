@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-import { redirect } from 'next/navigation';
-=======
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
@@ -8,12 +5,8 @@ import { ChevronRight } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { getTranslations } from 'next-intl/server';
 import { getAllTreatments, getTreatmentBySlug } from '@/data/treatments';
-import {
-  getTreatmentCollectionBySlug,
-  treatmentCollections,
-} from '@/data/treatment-collections';
+import { getTreatmentCollectionBySlug } from '@/data/treatment-collections';
 import type { Treatment } from '@/data/treatments';
->>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
 
 interface Props {
   params: Promise<{ locale: string; slug: string }>;
@@ -43,9 +36,6 @@ export async function generateStaticParams() {
   );
 }
 
-<<<<<<< HEAD
-export default async function TreatmentCategoryRedirectPage({ params }: Props) {
-=======
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug, locale } = await params;
   const t = await getTranslations({ locale, namespace: 'treatmentsPage' });
@@ -64,13 +54,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function TreatmentCollectionPage({ params }: Props) {
->>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
   const { locale, slug } = await params;
-  const anchor = legacyCategoryAnchors[slug] ?? 'botox';
+  const collection = getTreatmentCollectionBySlug(slug);
 
-<<<<<<< HEAD
-  redirect(`/${locale}/treatments#${anchor}`);
-=======
   if (!collection) {
     notFound();
   }
@@ -247,5 +233,4 @@ export default async function TreatmentCollectionPage({ params }: Props) {
       </section>
     </>
   );
->>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
 }

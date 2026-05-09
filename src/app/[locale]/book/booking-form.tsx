@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { format, isBefore, isToday } from 'date-fns';
 import { Calendar, Clock, User, Mail, Phone, MessageSquare, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Calendar as DatePicker } from '@/components/ui/calendar';
@@ -78,12 +79,7 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
 
   const timeSlots = buildTimeSlots(selectedDate);
 
-  const formatDateValue = (date: Date) => {
-    const year = date.getFullYear();
-    const month = `${date.getMonth() + 1}`.padStart(2, '0');
-    const day = `${date.getDate()}`.padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  };
+  const formatDateValue = (date: Date) => format(date, 'yyyy-MM-dd');
 
   useEffect(() => {
     if (!selectedDate) {
@@ -91,7 +87,9 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
     }
 
     const dateStr = formatDateValue(selectedDate);
-    fetch(`/api/bookings?date=${dateStr}`)
+    const controller = new AbortController();
+
+    fetch(`/api/bookings?date=${dateStr}`, { signal: controller.signal })
       .then((res) => res.json())
       .then((data: { bookedSlots?: string[] }) => {
         const nextBookedSlots = data.bookedSlots || [];
@@ -102,16 +100,15 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
             : prev
         );
       })
-      .catch((err) => console.error('Error fetching slots:', err));
+      .catch((err) => {
+        if (err instanceof Error && err.name === 'AbortError') return;
+        console.error('Error fetching slots:', err);
+      });
+
+    return () => controller.abort();
   }, [selectedDate]);
 
-  const formatDateLabel = (date: Date) =>
-    new Intl.DateTimeFormat(document.documentElement.lang || 'en', {
-      weekday: 'short',
-      month: 'long',
-      day: 'numeric',
-      year: 'numeric',
-    }).format(date);
+  const formatDateLabel = (date: Date) => format(date, 'EEEE, MMMM d, yyyy');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -123,23 +120,31 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
       const startHour = formData.preferredTime;
       const endHour = `${Number.parseInt(startHour, 10) + 1}:00`.padStart(5, '0');
       const timeSlot = `${startHour} - ${endHour}`;
+      const controller = new AbortController();
+      const timeoutId = window.setTimeout(() => controller.abort(), 30000);
 
-      const response = await fetch('/api/bookings', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRF-Token': csrfToken || '',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          service: formData.service,
-          date: dateStr,
-          timeSlot,
-          message: formData.message,
-        }),
-      });
+      let response: Response;
+      try {
+        response = await fetch('/api/bookings', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': csrfToken || '',
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            service: formData.service,
+            date: dateStr,
+            timeSlot,
+            message: formData.message,
+          }),
+          signal: controller.signal,
+        });
+      } finally {
+        window.clearTimeout(timeoutId);
+      }
 
       const data = await response.json();
 
@@ -294,9 +299,7 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
               selected={selectedDate}
               onSelect={handleDateSelect}
               disabled={(date) => {
-                const today = new Date();
-                today.setHours(0, 0, 0, 0);
-                return date < today;
+                return isBefore(date, new Date()) && !isToday(date);
               }}
               classNames={{
                 selected:
@@ -370,11 +373,7 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
 
       <Button
         type="submit"
-<<<<<<< HEAD
-        disabled={isSubmitting || !formData.preferredDate || !formData.preferredTime}
-=======
         disabled={isSubmitting}
->>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
         className="w-full rounded-md border border-[#d9cec1] bg-[#f7f2eb] px-6 py-4 text-xs font-medium uppercase tracking-widest text-[#241f1b] transition-colors hover:bg-[#241f1b] hover:text-white disabled:opacity-50"
       >
         {isSubmitting ? tCommon('submitting', { defaultValue: 'Submitting...' }) : t('requestBooking', { defaultValue: 'Request Booking' })}

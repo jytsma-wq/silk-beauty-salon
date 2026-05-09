@@ -1,13 +1,11 @@
-'use client';
-
-import { useTranslations, useLocale } from 'next-intl';
+import { getLocale, getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
-import { StickySplitSection } from './StickySplitSection';
+import { StickySplitSection } from '@/components/sections/StickySplitSection';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 
-export function ConsultationCTA() {
-  const t = useTranslations('consultation');
-  const locale = useLocale();
+export async function ConsultationCTA() {
+  const t = await getTranslations('consultation');
+  const locale = await getLocale();
 
   return (
     <StickySplitSection

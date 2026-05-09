@@ -8,8 +8,16 @@ import { cache } from 'react';
 import { db } from '@/lib/db';
 import { baseTreatmentCategories } from '@/data/treatments';
 
+const isPlaceholderBuild =
+  process.env.SKIP_ENV_VALIDATION === '1' &&
+  process.env.DATABASE_URL?.includes('build:build@localhost');
+
 // Cached function to get treatment categories by locale
 export const getTreatmentCategoriesByLocale = cache(async (locale: string) => {
+  if (isPlaceholderBuild) {
+    return getStaticCategories(locale);
+  }
+
   try {
     const categories = await db.treatmentCategory.findMany({
     where: { active: true },
@@ -94,6 +102,12 @@ function getStaticCategories(_locale: string) {
 
 // Cached function to get all treatment slugs (for generateStaticParams)
 export const getAllTreatmentSlugs = cache(async () => {
+  if (isPlaceholderBuild) {
+    return baseTreatmentCategories.flatMap((cat) =>
+      cat.treatments.map((t) => t.slug)
+    );
+  }
+
   try {
     const treatments = await db.treatment.findMany({
       where: { active: true },
@@ -110,6 +124,10 @@ export const getAllTreatmentSlugs = cache(async () => {
 
 // Cached function to get all category slugs (for generateStaticParams)
 export const getAllCategorySlugs = cache(async () => {
+  if (isPlaceholderBuild) {
+    return baseTreatmentCategories.map((c) => c.slug);
+  }
+
   try {
     const categories = await db.treatmentCategory.findMany({
       where: { active: true },
@@ -124,6 +142,10 @@ export const getAllCategorySlugs = cache(async () => {
 
 // Cached function to get single treatment by slug
 export const getTreatmentBySlug = cache(async (slug: string, locale: string) => {
+  if (isPlaceholderBuild) {
+    return getStaticTreatmentBySlug(slug);
+  }
+
   try {
     const treatment = await db.treatment.findUnique({
       where: { slug },
@@ -211,6 +233,10 @@ function getStaticTreatmentBySlug(slug: string) {
 
 // Cached function to get category by slug
 export const getCategoryBySlug = cache(async (slug: string, locale: string) => {
+  if (isPlaceholderBuild) {
+    return getStaticCategoryBySlug(slug);
+  }
+
   try {
     const category = await db.treatmentCategory.findUnique({
       where: { slug },
@@ -282,6 +308,10 @@ function getStaticCategoryBySlug(slug: string) {
 
 // Cached function to get category by treatment slug
 export const getCategoryByTreatmentSlug = cache(async (treatmentSlug: string, _locale: string) => {
+  if (isPlaceholderBuild) {
+    return getStaticCategoryByTreatmentSlug(treatmentSlug);
+  }
+
   try {
     const treatment = await db.treatment.findUnique({
       where: { slug: treatmentSlug },

@@ -5,7 +5,7 @@
 
 'use client';
 
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { contactFormSchema, type ContactFormInput } from '@/schemas';
@@ -38,7 +38,7 @@ export function ContactForm({ onSuccess }: ContactFormProps): React.JSX.Element 
     handleSubmit,
     formState: { errors, isSubmitting },
     setValue,
-    watch,
+    control,
     reset,
   } = useForm<ContactFormInput>({
     resolver: zodResolver(contactFormSchema),
@@ -48,7 +48,8 @@ export function ContactForm({ onSuccess }: ContactFormProps): React.JSX.Element 
     },
   });
 
-  const consent = watch('consent');
+  const consent = useWatch({ control, name: 'consent' });
+  const subject = useWatch({ control, name: 'subject' });
 
   const csrfToken = useClientCsrfToken();
 
@@ -114,7 +115,7 @@ export function ContactForm({ onSuccess }: ContactFormProps): React.JSX.Element 
           
           <FormField label={t('subject')} required error={errors.subject?.message}>
             <Select
-              value={watch('subject')}
+              value={subject}
               onValueChange={(value) => setValue('subject', value)}
               disabled={isSubmitting}
             >

@@ -67,8 +67,16 @@ export async function GET(request: NextRequest) {
         },
       });
 
-      const bookedSlots = bookings.map((booking: { timeSlot: string }) => booking.timeSlot);
+      const bookedSlots = bookings.map((booking) => booking.timeSlot);
       return NextResponse.json({ bookedSlots });
+    }
+
+    const apiKey = request.headers.get("x-api-key");
+    if (apiKey !== process.env.API_SECRET_KEY) {
+      return NextResponse.json(
+        { error: "Date parameter or API key required" },
+        { status: 400 }
+      );
     }
 
     // Return all bookings ordered by createdAt desc

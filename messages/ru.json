@@ -34,15 +34,12 @@
     "allConditions": "Все состояния",
     "viewAll": "Смотреть все",
     "exploreAll": "Изучить все",
-<<<<<<< HEAD
-    "visitUs": "Посетите нас"
-=======
     "visitUs": "Посетите нас",
     "menu": "Меню",
     "more": "Ещё",
     "treatmentPortfolio": "Портфель процедур",
     "skinConditions": "Состояния кожи"
->>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
+
   },
   "header": {
     "announcement": "Награды | Лучший салон красоты Батуми | Публикации в грузинском журнале моды и красоты"

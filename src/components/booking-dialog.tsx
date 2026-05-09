@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { format, isBefore, isToday } from "date-fns";
 import { cn } from "@/lib/utils";
@@ -201,14 +201,22 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
 
   // Fetch booked slots when date changes
   useEffect(() => {
-    if (selectedDate) {
-      const dateStr = format(selectedDate, "yyyy-MM-dd");
-      apiGet<{ bookedSlots: string[] }>(`${API_ENDPOINTS.bookings}?date=${dateStr}`)
-        .then((data) =>
-          setFormState((prev) => ({ ...prev, bookedSlots: data.bookedSlots || [] }))
-        )
-        .catch((err) => console.error("Error fetching booked slots:", err));
-    }
+    if (!selectedDate) return;
+
+    const controller = new AbortController();
+    const dateStr = format(selectedDate, "yyyy-MM-dd");
+    apiGet<{ bookedSlots: string[] }>(`${API_ENDPOINTS.bookings}?date=${dateStr}`, {
+      signal: controller.signal,
+    })
+      .then((data) =>
+        setFormState((prev) => ({ ...prev, bookedSlots: data.bookedSlots || [] }))
+      )
+      .catch((err) => {
+        if (err instanceof Error && err.name === "AbortError") return;
+        console.error("Error fetching booked slots:", err);
+      });
+
+    return () => controller.abort();
   }, [selectedDate]);
 
   // Disable invalid dates (past dates and weekends)
@@ -234,6 +242,8 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
   };
 
   const handleSubmit = async () => {
+    if (!selectedDate || !selectedService || !selectedTime) return;
+
     setIsLoading(true);
     setError("");
 
@@ -243,7 +253,7 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
         email,
         phone,
         service: selectedService,
-        date: format(selectedDate!, "yyyy-MM-dd"),
+        date: selectedDate ? format(selectedDate, "yyyy-MM-dd") : "",
         timeSlot: selectedTime,
         message,
       }, { csrfToken });

@@ -1,5 +1,9 @@
 import { db } from '@/lib/db';
 
+const isPlaceholderBuild =
+  process.env.SKIP_ENV_VALIDATION === '1' &&
+  process.env.DATABASE_URL?.includes('build:build@localhost');
+
 export interface BlogPost {
   id: string;
   title: string;
@@ -31,6 +35,10 @@ export interface BlogPostSummary {
  * Fetch all published blog posts for a given locale
  */
 export async function getBlogPosts(locale: string): Promise<BlogPostSummary[]> {
+  if (isPlaceholderBuild) {
+    return [];
+  }
+
   try {
     const posts = await db.blogPost.findMany({
       where: {
@@ -64,6 +72,10 @@ export async function getBlogPostBySlug(
   slug: string,
   locale: string
 ): Promise<BlogPost | null> {
+  if (isPlaceholderBuild) {
+    return null;
+  }
+
   try {
     const post = await db.blogPost.findFirst({
       where: {
@@ -81,6 +93,10 @@ export async function getBlogPostBySlug(
  * Fetch all blog post slugs for static generation
  */
 export async function getAllBlogSlugs(): Promise<string[]> {
+  if (isPlaceholderBuild) {
+    return [];
+  }
+
   try {
     const posts = await db.blogPost.findMany({
       where: {
@@ -104,6 +120,10 @@ export async function getRelatedBlogPosts(
   locale: string,
   limit: number = 3
 ): Promise<BlogPostSummary[]> {
+  if (isPlaceholderBuild) {
+    return [];
+  }
+
   try {
     const posts = await db.blogPost.findMany({
       where: {

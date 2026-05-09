@@ -65,7 +65,6 @@ const nextConfig: NextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     remotePatterns: [
       { protocol: 'https', hostname: 'images.unsplash.com', pathname: '/photo-**' },
-      { protocol: 'https', hostname: 'flagcdn.com', pathname: '/w40/**' },
       { protocol: 'https', hostname: 'cdn.coverr.co' },
       { protocol: 'https', hostname: 'res.cloudinary.com' },
     ],
@@ -96,14 +95,24 @@ const nextConfig: NextConfig = {
   // Security headers are handled by reverse proxy (Caddyfile) and middleware.ts (CSP only)
 };
 
-export default withSentryConfig(
-  withNextIntl(nextConfig),
-  {
-    silent: true,
-    org: process.env.SENTRY_ORG,
-    project: process.env.SENTRY_PROJECT,
-    widenClientFileUpload: true,
-    disableLogger: true,
+const sentryBuildOptions = {
+  silent: true,
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  widenClientFileUpload: true,
+  webpack: {
+    treeshake: {
+      removeDebugLogging: true,
+    },
     automaticVercelMonitors: false,
-  }
-);
+  },
+} as Parameters<typeof withSentryConfig>[1] & {
+  webpack: {
+    treeshake: {
+      removeDebugLogging: boolean;
+    };
+    automaticVercelMonitors: boolean;
+  };
+};
+
+export default withSentryConfig(withNextIntl(nextConfig), sentryBuildOptions);

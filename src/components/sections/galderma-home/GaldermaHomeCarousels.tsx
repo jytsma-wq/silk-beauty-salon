@@ -6,7 +6,6 @@ import { useTranslations } from 'next-intl';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { Link } from '@/i18n/routing';
-import { useTranslations } from 'next-intl';
 import {
   homeHeroSlides,
   resultCases,
@@ -18,16 +17,10 @@ function CarouselButton({
   direction,
   onClick,
   disabled,
-  label,
 }: {
   direction: 'previous' | 'next';
   onClick: () => void;
-<<<<<<< HEAD
-  disabled: boolean;
-  label: string;
-=======
   disabled?: boolean;
->>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
 }) {
   const t = useTranslations('accessibility');
   const Icon = direction === 'previous' ? ArrowLeft : ArrowRight;
@@ -37,11 +30,7 @@ function CarouselButton({
       type="button"
       onClick={onClick}
       disabled={disabled}
-<<<<<<< HEAD
-      aria-label={label}
-=======
       aria-label={direction === 'previous' ? t('previousSlide') : t('nextSlide')}
->>>>>>> de5da71edb4db271b12ee2cacff18d2a51b6810f
       className="grid size-11 place-items-center border border-stone-300 bg-white text-stone-950 transition-colors hover:border-stone-950 disabled:pointer-events-none disabled:opacity-30"
     >
       <Icon className="size-4" strokeWidth={1.5} />
@@ -155,14 +144,12 @@ export function ClinicalHeroCarousel() {
           direction="previous"
           onClick={scrollPrev}
           disabled={!canScrollPrev}
-          label={t('carousel.previousSlide')}
-        />
+                  />
         <CarouselButton
           direction="next"
           onClick={scrollNext}
           disabled={!canScrollNext}
-          label={t('carousel.nextSlide')}
-        />
+                  />
       </div>
       <div className="absolute bottom-8 left-6 flex gap-2 md:left-12 lg:left-16 xl:left-24">
         {slides.map((slide, index) => (
@@ -205,14 +192,12 @@ export function ConcernCarousel() {
           direction="previous"
           onClick={scrollPrev}
           disabled={!canScrollPrev}
-          label={t('carousel.previousSlide')}
-        />
+                  />
         <CarouselButton
           direction="next"
           onClick={scrollNext}
           disabled={!canScrollNext}
-          label={t('carousel.nextSlide')}
-        />
+                  />
       </div>
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="-ml-5 flex">
@@ -265,14 +250,12 @@ export function ResultsCarousel() {
           direction="previous"
           onClick={scrollPrev}
           disabled={!canScrollPrev}
-          label={t('carousel.previousSlide')}
-        />
+                  />
         <CarouselButton
           direction="next"
           onClick={scrollNext}
           disabled={!canScrollNext}
-          label={t('carousel.nextSlide')}
-        />
+                  />
       </div>
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="-ml-6 flex">
@@ -345,14 +328,12 @@ export function TrendsCarousel() {
           direction="previous"
           onClick={scrollPrev}
           disabled={!canScrollPrev}
-          label={t('carousel.previousSlide')}
-        />
+                  />
         <CarouselButton
           direction="next"
           onClick={scrollNext}
           disabled={!canScrollNext}
-          label={t('carousel.nextSlide')}
-        />
+                  />
       </div>
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="-ml-5 flex">
