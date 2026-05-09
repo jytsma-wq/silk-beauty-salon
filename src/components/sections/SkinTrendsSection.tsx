@@ -61,6 +61,7 @@ export async function SkinTrendsSection({
                   alt={article.title}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
                 <div className="absolute top-4 left-4">
                   <span className="category-pill bg-[#b5453a] text-white text-xs px-3 py-1 rounded-sm font-medium">

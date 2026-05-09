@@ -344,7 +344,7 @@ git commit -m "chore: remove committed databases and dev artifacts"
 ### SECTION 16 — CADDYFILE (PRODUCTION PROXY)
 **File:** `Caddyfile`
 
-- [ ] 16.1 Does it bind to the production domain (`silkbeauty.ge` or configured domain)?
+- [ ] 16.1 Does it bind to the production domain (`silkbeautysalon.online` or configured domain)?
 - [ ] 16.2 Is HTTPS automatic via Let's Encrypt?
 - [ ] 16.3 Is www→non-www redirect in place?
 - [ ] 16.4 Is gzip or zstd compression enabled?

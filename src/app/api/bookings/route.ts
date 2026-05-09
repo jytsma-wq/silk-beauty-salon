@@ -1,10 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+import { Resend } from "resend";
+import React from "react";
 import { db } from "@/lib/db";
 import { verifyCsrfToken } from "@/lib/csrf";
 import { bookingsApiRateLimit } from "@/lib/rate-limit";
 import { logSecurityEvent } from "@/lib/security-logger";
 import { sanitizeText, sanitizeEmail, sanitizeName } from "@/lib/sanitize";
+import { AdminNotificationEmail } from "@/emails/admin-notification";
+import { BookingConfirmationEmail } from "@/emails/booking-confirmation";
+import { senderAddress, emailConfig } from "@/lib/email-config";
+import { renderEmail } from "@/lib/render-email";
+
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 // Zod schema for booking validation
 const bookingSchema = z.object({
@@ -17,6 +25,15 @@ const bookingSchema = z.object({
   message: z.string().max(5000).optional(),
 });
 
+const dateOnlySchema = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
+
+function getBookingDateRange(date: string) {
+  const start = new Date(`${date}T00:00:00.000Z`);
+  const end = new Date(start);
+  end.setUTCDate(end.getUTCDate() + 1);
+  return { start, end };
+}
+
 // GET handler - returns booked slots for a date or all bookings
 export async function GET(request: NextRequest) {
   try {
@@ -24,10 +41,23 @@ export async function GET(request: NextRequest) {
     const date = searchParams.get("date");
 
     if (date) {
+      const dateResult = dateOnlySchema.safeParse(date);
+      if (!dateResult.success) {
+        return NextResponse.json(
+          { error: "Invalid date format (YYYY-MM-DD)" },
+          { status: 400 }
+        );
+      }
+
+      const { start, end } = getBookingDateRange(dateResult.data);
+
       // Return booked time slots for the specified date
       const bookings = await db.booking.findMany({
         where: {
-          date: date,
+          date: {
+            gte: start,
+            lt: end,
+          },
           status: {
             not: "CANCELLED",
           },
@@ -117,11 +147,15 @@ export async function POST(request: NextRequest) {
       timeSlot: sanitizeText(timeSlot),
       message: message ? sanitizeText(message) : null,
     };
+    const bookingDateRange = getBookingDateRange(sanitized.date);
 
     // Check for time slot conflicts
     const existingBooking = await db.booking.findFirst({
       where: {
-        date: sanitized.date,
+        date: {
+          gte: bookingDateRange.start,
+          lt: bookingDateRange.end,
+        },
         timeSlot: sanitized.timeSlot,
         status: {
           not: "CANCELLED",
@@ -143,12 +177,53 @@ export async function POST(request: NextRequest) {
         email: sanitized.email,
         phone: sanitized.phone,
         service: sanitized.service,
-        date: sanitized.date,
+        date: bookingDateRange.start,
         timeSlot: sanitized.timeSlot,
         message: sanitized.message,
         status: "PENDING",
       },
     });
+
+    if (resend) {
+      const patientHtml = await renderEmail(
+        React.createElement(BookingConfirmationEmail, {
+          patientName: sanitized.name,
+          service: sanitized.service,
+          date: sanitized.date,
+          time: sanitized.timeSlot,
+        })
+      );
+
+      await resend.emails.send({
+        from: senderAddress(),
+        to: [sanitized.email],
+        subject: "Your Booking Confirmation - Silk Beauty Salon",
+        html: patientHtml,
+      });
+
+      const adminHtml = await renderEmail(
+        React.createElement(AdminNotificationEmail, {
+          type: "booking",
+          fields: {
+            Name: sanitized.name,
+            Email: sanitized.email,
+            Phone: sanitized.phone ?? "Not provided",
+            Service: sanitized.service,
+            Date: sanitized.date,
+            Time: sanitized.timeSlot,
+            Message: sanitized.message ?? "None",
+          },
+        })
+      );
+
+      await resend.emails.send({
+        from: senderAddress(),
+        to: [emailConfig.adminTo],
+        replyTo: sanitized.email,
+        subject: `New Booking Request from ${sanitized.name}`,
+        html: adminHtml,
+      });
+    }
 
     return NextResponse.json(booking, { status: 201 });
   } catch (error) {

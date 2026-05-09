@@ -223,11 +223,11 @@
     "contact": "Contact Info",
     "address": "Zurab Gorgiladze 63, Batumi 6000, Georgia",
     "phone": "Tel: +995 599 123 456",
-    "email": "info@silkbeauty.ge",
+    "email": "info@silkbeautysalon.online",
     "openingHours": "Opening Hours",
     "hours": {
-      "monFri": "Mon-Fri: 10am - 7pm",
-      "satSun": "Sat-Sun: 9:30am - 5pm"
+      "monFri": "Mon-Fri: 10:00 - 22:00",
+      "satSun": "Sat-Sun: 10:00 - 22:00"
     },
     "social": "Follow Us",
     "faqDesc": "Read some of the most frequently asked questions about the clinic and our treatments.",
@@ -273,7 +273,7 @@
       "address": "Zurab Gorgiladze 63",
       "city": "Batumi 6000, Georgia",
       "phone": "+995 599 123 456",
-      "email": "info@silkbeauty.ge"
+      "email": "info@silkbeautysalon.online"
     }
   },
   "faq": {
@@ -405,7 +405,8 @@
     },
     "treatments": {
       "title": "Treatments We Offer",
-      "subtitle": "Comprehensive aesthetic solutions for every concern."
+      "subtitle": "Comprehensive aesthetic solutions for every concern.",
+      "explore": "Explore treatments ->"
     }
   },
   "booking": {
@@ -642,7 +643,12 @@
     "phone": "Phone",
     "email": "Email",
     "address": "Address",
-    "relatedTreatments": "Related Treatments"
+    "relatedTreatments": "Related Treatments",
+    "atAGlance": "At a Glance",
+    "results": "Results",
+    "downtime": "Downtime",
+    "youMightAlsoLike": "You Might Also Like",
+    "learnMore": "Learn more"
   },
   "conditionPage": {
     "title": "Condition",
@@ -737,7 +743,7 @@
       "downtimeQuestion": "Is there any downtime?",
       "downtimeAnswer": "Many of our treatments have minimal to no downtime. Some treatments may cause temporary swelling, redness, or bruising. We'll provide detailed aftercare instructions and advice on timing treatments around social commitments.",
       "bookingQuestion": "How do I book an appointment?",
-      "bookingAnswer": "You can book online through our website, call us at +995 599 123 456, or email info@silkbeauty.ge. We recommend booking consultations in advance as we often have a waiting list.",
+      "bookingAnswer": "You can book online through our website, call us at +995 599 123 456, or email info@silkbeautysalon.online. We recommend booking consultations in advance as we often have a waiting list.",
       "virtualQuestion": "Do you offer virtual consultations?",
       "virtualAnswer": "Yes, we offer virtual consultations for those who cannot visit the salon initially. However, for treatments requiring precise assessment, an in-person consultation is recommended.",
       "brandsQuestion": "What brands of products do you use?",
@@ -1921,7 +1927,39 @@
     "additionalNotes": "Additional Notes",
     "notesPlaceholder": "Any special requests or information we should know...",
     "requestBooking": "Request Booking",
-    "bookingNote": "We'll confirm your appointment within 24 hours"
+    "bookingNote": "We'll confirm your appointment within 24 hours",
+    "dialogTitle": "Book Appointment",
+    "dialogDescription": "Schedule your consultation with our expert practitioners",
+    "continue": "Continue",
+    "back": "Back",
+    "confirmBooking": "Confirm Booking",
+    "bookingStatus": "Booking...",
+    "booked": "(Booked)",
+    "slotConflict": "This time slot is already booked. Please select another time.",
+    "bookingFailed": "Failed to create booking",
+    "unexpectedError": "An unexpected error occurred. Please try again.",
+    "rateLimitMessage": "Too many submissions. Please wait 15 minutes.",
+    "bookingSummary": "Booking Summary",
+    "bookingConfirmed": "Booking Confirmed!",
+    "thankYou": "Thank you, {name}. Your appointment has been scheduled.",
+    "bookingDetails": "Booking Details",
+    "done": "Done",
+    "selectDate": "Select Date",
+    "selectTimeSlot": "Select Time Slot",
+    "service": "Service",
+    "date": "Date",
+    "time": "Time",
+    "message": "Message (Optional)",
+    "servicePlaceholder": "Choose a service",
+    "messagePlaceholder": "Any specific requirements or questions...",
+    "serviceConsultation": "Consultation",
+    "serviceBotox": "Botox Treatment",
+    "serviceFillers": "Dermal Fillers",
+    "serviceLaser": "Laser Hair Removal",
+    "serviceRejuvenation": "Skin Rejuvenation",
+    "servicePeel": "Chemical Peel",
+    "serviceMicroneedling": "Microneedling",
+    "serviceHydrafacial": "Hydrafacial"
   },
   "consent": {
     "title": "Cookie Preferences",

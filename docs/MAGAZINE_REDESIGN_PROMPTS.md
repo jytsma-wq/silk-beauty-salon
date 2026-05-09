@@ -1022,8 +1022,8 @@ Requirements:
                </a>
              </p>
              <p>
-               <a href="mailto:info@silkbeauty.ge" className="hover:text-stone-900">
-                 info@silkbeauty.ge
+               <a href="mailto:info@silkbeautysalon.online" className="hover:text-stone-900">
+                 info@silkbeautysalon.online
                </a>
              </p>
            </address>

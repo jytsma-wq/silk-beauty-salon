@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { Calendar } from "@/components/ui/calendar";
 import { apiPost, apiGet, API_ENDPOINTS, ApiError } from "@/lib/api-client";
 import { useClientCsrfToken } from "@/lib/csrf-client";
+import { siteConfig } from "@/data/site-config";
 import {
   Dialog,
   DialogContent,
@@ -43,29 +44,22 @@ interface BookingDialogProps {
   onOpenChange: (open: boolean) => void;
 }
 
-const SERVICES = [
-  { key: "serviceConsultation", default: "Consultation" },
-  { key: "serviceBotox", default: "Botox Treatment" },
-  { key: "serviceFillers", default: "Dermal Fillers" },
-  { key: "serviceLaser", default: "Laser Hair Removal" },
-  { key: "serviceRejuvenation", default: "Skin Rejuvenation" },
-  { key: "servicePeel", default: "Chemical Peel" },
-  { key: "serviceMicroneedling", default: "Microneedling" },
-  { key: "serviceHydrafacial", default: "Hydrafacial" },
-];
+const CONSULTATION_KEYS = [
+  { key: "facial", bookingType: "facial-consultation" },
+  { key: "skin", bookingType: "skin-consultation" },
+  { key: "body", bookingType: "body-consultation" },
+  { key: "virtual", bookingType: "virtual-consultation" },
+] as const;
 
-const TIME_SLOTS = [
-  "09:00 - 10:00",
-  "10:00 - 11:00",
-  "11:00 - 12:00",
-  "12:00 - 13:00",
-  "13:00 - 14:00",
-  "14:00 - 15:00",
-  "15:00 - 16:00",
-  "16:00 - 17:00",
-  "17:00 - 18:00",
-  "18:00 - 19:00",
-];
+const TREATMENT_KEYS = [
+  "serviceBotox",
+  "serviceFillers",
+  "serviceLaser",
+  "serviceRejuvenation",
+  "servicePeel",
+  "serviceMicroneedling",
+  "serviceHydrafacial",
+] as const;
 
 // Step indicator component
 function StepIndicator({ step }: { step: string }) {
@@ -136,7 +130,7 @@ const INITIAL_FORM_STATE: FormState = {
 };
 
 export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
-  const t = useTranslations("booking");
+  const t = useTranslations("bookingPage");
 
   // Consolidated form state
   const [formState, setFormState] = useState<FormState>(INITIAL_FORM_STATE);
@@ -172,6 +166,39 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
 
   const csrfToken = useClientCsrfToken();
 
+  const getHoursForDate = (date?: Date) => {
+    switch (date?.getDay()) {
+      case 0:
+        return siteConfig.businessHours.sunday;
+      case 1:
+        return siteConfig.businessHours.monday;
+      case 2:
+        return siteConfig.businessHours.tuesday;
+      case 3:
+        return siteConfig.businessHours.wednesday;
+      case 4:
+        return siteConfig.businessHours.thursday;
+      case 5:
+        return siteConfig.businessHours.friday;
+      case 6:
+        return siteConfig.businessHours.saturday;
+      default:
+        return siteConfig.businessHours.monday;
+    }
+  };
+
+  const buildTimeSlots = (date?: Date) => {
+    const [start, end] = getHoursForDate(date).split(" - ");
+    const startHour = Number.parseInt(start.split(":")[0] ?? "10", 10);
+    const endHour = Number.parseInt(end.split(":")[0] ?? "22", 10);
+
+    return Array.from({ length: Math.max(endHour - startHour, 0) }, (_, index) => {
+      const hour = startHour + index;
+      const nextHour = hour + 1;
+      return `${`${hour}`.padStart(2, "0")}:00 - ${`${nextHour}`.padStart(2, "0")}:00`;
+    });
+  };
+
   // Fetch booked slots when date changes
   useEffect(() => {
     if (selectedDate) {
@@ -187,10 +214,10 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
   // Disable invalid dates (past dates and weekends)
   const isDateDisabled = (date: Date) => {
     if (isBefore(date, new Date()) && !isToday(date)) return true;
-    const day = date.getDay();
-    if (day === 0 || day === 6) return true; // weekends
     return false;
   };
+
+  const timeSlots = buildTimeSlots(selectedDate);
 
   const handleNext = () => {
     if (step === "datetime" && selectedService && selectedDate && selectedTime) {
@@ -280,9 +307,14 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
                   <SelectValue placeholder={t('servicePlaceholder')} />
                 </SelectTrigger>
                 <SelectContent>
-                  {SERVICES.map((service) => (
-                    <SelectItem key={service.key} value={t(service.key)}>
-                      {t(service.key)}
+                  {CONSULTATION_KEYS.map(({ key }) => (
+                    <SelectItem key={key} value={t(`consultations.${key}.title`)}>
+                      {t(`consultations.${key}.title`)} - {t(`consultations.${key}.duration`)}
+                    </SelectItem>
+                  ))}
+                  {TREATMENT_KEYS.map((key) => (
+                    <SelectItem key={key} value={t(key)}>
+                      {t(key)}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -316,7 +348,7 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
                   {t('selectTimeSlot')}
                 </Label>
                 <div className="grid grid-cols-2 gap-2">
-                  {TIME_SLOTS.map((slot) => {
+                  {timeSlots.map((slot) => {
                     const isBooked = bookedSlots.includes(slot);
                     const isSelected = selectedTime === slot;
                     return (
@@ -455,7 +487,7 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
                 {isLoading ? (
                   <>
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                    {t('booking')}
+                    {t('bookingStatus')}
                   </>
                 ) : (
                   t('confirmBooking')

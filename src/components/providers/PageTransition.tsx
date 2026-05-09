@@ -23,7 +23,7 @@ export function PageTransition({ children }: PageTransitionProps) {
   }
 
   return (
-    <AnimatePresence mode="wait" initial={false}>
+    <AnimatePresence initial={false}>
       {/* Exit sweep overlay */}
       <motion.div
         key={`overlay-${pathname}`}

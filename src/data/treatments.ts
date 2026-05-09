@@ -1030,15 +1030,15 @@ export const baseTreatmentCategories: TreatmentCategory[] = [
   {
     name: "Hair Treatments",
     slug: "hair",
-    description: "Advanced treatments for hair loss and scalp health.",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
+    description: "Hair restoration, extensions, nails, and lash finishing services for complete salon care.",
+    image: "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=800&q=80",
     treatments: [
       {
         name: "Hair Treatments",
         slug: "hair-treatments",
         description: "Our comprehensive hair restoration treatments address various forms of hair loss and scalp concerns. Using advanced techniques including PRP therapy, mesotherapy, and specialized products, we stimulate hair follicles, improve scalp health, and promote hair growth. Treatments are customized based on your specific hair loss pattern and goals.",
         shortDescription: "Advanced hair restoration and scalp treatments.",
-        image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
+        image: "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=800&q=80",
         price: "From ₾200",
         duration: "45-60 minutes",
         benefits: [
@@ -1048,6 +1048,60 @@ export const baseTreatmentCategories: TreatmentCategory[] = [
           "Customized approach",
           "Professional guidance"
         ]
+      },
+      {
+        name: "Hair Extensions",
+        slug: "hair-extensions",
+        description: "Hair extensions are planned around your natural color, density, lifestyle, and desired finish. During consultation we assess the hair, select the right extension method, plan the blend, and explain maintenance so the result feels comfortable, polished, and natural from every angle.",
+        shortDescription: "Color-matched extensions for fuller, longer, natural-looking hair.",
+        image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80",
+        price: "Consultation required",
+        duration: "30-120 minutes",
+        benefits: [
+          "Adds length and volume",
+          "Personalized color matching",
+          "Natural blend planning",
+          "Maintenance guidance",
+          "Salon-finished result"
+        ],
+        howItWorks: "We begin with a consultation to match color, review hair condition, and choose the correct extension approach. Application time depends on the chosen method, desired density, and the preparation needed for a seamless blend.",
+        aftercare: "Use recommended products, brush gently from ends upward, avoid heavy oils near the bonds or attachments, and return for maintenance on the schedule advised by your stylist."
+      },
+      {
+        name: "Nails",
+        slug: "nails",
+        description: "Our nail appointments focus on clean shaping, precise cuticle care, polish selection, and a refined finish. Services can be tailored for everyday maintenance, a special event, or a longer-wear look with careful attention to nail health and comfort.",
+        shortDescription: "Manicure, pedicure, and nail finishing services with detailed care.",
+        image: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=800&q=80",
+        price: "From GEL 60",
+        duration: "45-75 minutes",
+        benefits: [
+          "Clean shaping and cuticle care",
+          "Polished salon finish",
+          "Hands and feet options",
+          "Color and finish guidance",
+          "Comfort-focused appointment"
+        ],
+        howItWorks: "Your nail specialist prepares the nails, refines shape and cuticles, then applies the selected finish with care for symmetry, durability, and a polished final look.",
+        aftercare: "Avoid heavy hand work immediately after polish, moisturize cuticles daily, and book maintenance before lifting or visible regrowth affects the finish."
+      },
+      {
+        name: "Lashes",
+        slug: "lashes",
+        description: "Lash services are designed to enhance the eye area with a natural, well-shaped finish. We assess your lash length, direction, and desired result before recommending a lift, styling appointment, or fuller lash finish with clear aftercare.",
+        shortDescription: "Lash lift, styling, and finishing services shaped around your eyes.",
+        image: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=800&q=80",
+        price: "From GEL 80",
+        duration: "30-60 minutes",
+        benefits: [
+          "Enhances natural lashes",
+          "Personalized shape planning",
+          "Opens and defines the eye area",
+          "Low-maintenance finish",
+          "Clear aftercare guidance"
+        ],
+        howItWorks: "We review your natural lash pattern and desired result, prepare the lashes, and complete the selected lift or styling service with a controlled, eye-safe process.",
+        aftercare: "Keep lashes dry for the advised period, avoid oil-heavy products near the lash line, and brush gently to maintain the finished shape."
       }
     ]
   }

@@ -168,7 +168,7 @@ NODE_ENV=production bun .next/standalone/server.js
 A sample `Caddyfile` is included for production deployment:
 
 ```caddyfile
-silkbeauty.ge {
+silkbeautysalon.online {
     reverse_proxy localhost:3000
 }
 ```

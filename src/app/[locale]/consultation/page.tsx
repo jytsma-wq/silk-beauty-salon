@@ -23,6 +23,7 @@ export default async function ConsultationPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'consultation' });
+  const tCommon = await getTranslations({ locale, namespace: 'common' });
 
   const features = [
     {
@@ -84,10 +85,10 @@ export default async function ConsultationPage({
           <div className="max-w-2xl text-white">
             <nav className="flex items-center gap-2 text-sm mb-8 text-white/80">
               <Link href="/" className="hover:text-white">
-                Home
+                {tCommon('home')}
               </Link>
               <ChevronRight className="w-4 h-4" />
-              <span className="text-[#b5453a]">Consultation</span>
+              <span className="text-[#b5453a]">{t('title')}</span>
             </nav>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-semibold mb-6">
@@ -205,7 +206,7 @@ export default async function ConsultationPage({
                   ))}
                 </ul>
                 <span className="text-[#b5453a] text-sm">
-                  Explore treatments →
+                  {t('treatments.explore', { defaultValue: 'Explore treatments ->' })}
                 </span>
               </Link>
             ))}

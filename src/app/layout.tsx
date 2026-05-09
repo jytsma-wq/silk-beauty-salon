@@ -10,7 +10,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   const nonce = headersList.get('x-nonce') || '';
 
   return (
-    <html lang={locale} dir={isRtl ? 'rtl' : 'ltr'} suppressHydrationWarning>
+    <html lang={locale} dir={isRtl ? 'rtl' : 'ltr'} data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
         <script
           nonce={nonce}

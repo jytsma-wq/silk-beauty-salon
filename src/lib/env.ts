@@ -36,7 +36,7 @@ const serverEnvSchema = z.object({
 // PUBLIC ENVIRONMENT VARIABLES (safe for client bundle)
 // ============================================================================
 const publicEnvSchema = z.object({
-  NEXT_PUBLIC_SITE_URL: z.string().url().optional().default('https://silkbeauty.ge'),
+  NEXT_PUBLIC_SITE_URL: z.string().url().optional().default('https://silkbeautysalon.online'),
 
   NEXT_PUBLIC_GA_MEASUREMENT_ID: z.string().regex(/^G-[A-Z0-9]{10,}$/).optional(),
 

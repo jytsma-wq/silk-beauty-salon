@@ -34,7 +34,7 @@ export function ConsultationCTA() {
       <MagneticButton strength={0.4} radius={90}>
         <Link
           href={`/${locale}/book`}
-          className="inline-flex items-center justify-center rounded-md px-8 py-4 bg-[#1c1c1c] text-white text-sm tracking-widest uppercase transition-colors hover:bg-[#b5453a]"
+          className="inline-flex items-center justify-center rounded-md border border-[#d9cec1] bg-[#f7f2eb] px-8 py-4 text-sm uppercase tracking-widest text-[#241f1b] transition-colors hover:bg-[#241f1b] hover:text-white"
         >
           {t('cta.button')}
         </Link>

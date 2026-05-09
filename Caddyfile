@@ -1,4 +1,4 @@
-silkbeauty.ge {
+silkbeautysalon.online {
 	encode gzip zstd
 
 	header {
@@ -21,6 +21,6 @@ silkbeauty.ge {
 	}
 }
 
-www.silkbeauty.ge {
-	redir https://silkbeauty.ge{uri} permanent
+www.silkbeautysalon.online {
+	redir https://silkbeautysalon.online{uri} permanent
 }

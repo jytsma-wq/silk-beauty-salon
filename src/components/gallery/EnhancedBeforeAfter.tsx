@@ -226,7 +226,7 @@ export function EnhancedBeforeAfter({
 
       {/* Photo Essay Masonry Grid */}
       <div className="grid grid-cols-3 md:grid-cols-4 auto-rows-[200px] md:auto-rows-[250px] gap-4 md:gap-6">
-        <AnimatePresence mode="popLayout">
+        <AnimatePresence>
           {filteredItems.map((item, index) => (
             <motion.figure
               key={item.id}

@@ -73,7 +73,7 @@ export default async function BeforeAfterPage({
             {t('ctaText', { defaultValue: 'Book a consultation with one of our expert practitioners to discuss your aesthetic goals.' })}
           </p>
           <a
-            href={`https://www.silkbeauty.ge/book`}
+            href={`https://www.silkbeautysalon.online/book`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-10 py-4 bg-stone-900 text-stone-50 text-sm uppercase tracking-widest hover:bg-[#b5453a] transition-colors duration-300"

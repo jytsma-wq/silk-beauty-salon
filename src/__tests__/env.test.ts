@@ -13,14 +13,14 @@ describe('Environment Variable Validation', () => {
     DATABASE_URL: 'postgresql://user:pass@localhost:5432/db',
     RESEND_API_KEY: 're_abcdefghijklmnopqrstuvwxyz123',
     RESEND_AUDIENCE_ID: '550e8400-e29b-41d4-a716-446655440000',
-    CONTACT_EMAIL: 'info@silkbeauty.ge',
+    CONTACT_EMAIL: 'info@silkbeautysalon.online',
     API_SECRET_KEY: 'a'.repeat(32),
     UPSTASH_REDIS_REST_URL: 'https://upstash-url.upstash.io',
     UPSTASH_REDIS_REST_TOKEN: 'token-with-at-least-20-chars',
   };
 
   const validPublicEnv = {
-    NEXT_PUBLIC_SITE_URL: 'https://silkbeauty.ge',
+    NEXT_PUBLIC_SITE_URL: 'https://silkbeautysalon.online',
     NEXT_PUBLIC_GA_MEASUREMENT_ID: 'G-XXXXXXXXXX',
     NEXT_PUBLIC_GTM_ID: 'GTM-XXXXXXX',
     NEXT_PUBLIC_FB_PIXEL_ID: '1234567890',
@@ -172,7 +172,7 @@ describe('Environment Variable Validation', () => {
 
     it('should set default NEXT_PUBLIC_SITE_URL', () => {
       const result = publicEnvSchema.parse({});
-      expect(result.NEXT_PUBLIC_SITE_URL).toBe('https://silkbeauty.ge');
+      expect(result.NEXT_PUBLIC_SITE_URL).toBe('https://silkbeautysalon.online');
     });
   });
 

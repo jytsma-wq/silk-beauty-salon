@@ -127,19 +127,19 @@ export function GaldermaFooter() {
                 href={siteConfig.social?.instagram ?? 'https://instagram.com/silkbeauty'}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-stone-400 transition-colors hover:text-[#8d6f58]"
+                className="text-[#E4405F] transition-opacity hover:opacity-75"
                 aria-label="Instagram"
               >
-                <Instagram className="h-5 w-5" strokeWidth={1.5} />
+                <Instagram className="h-[26px] w-[26px]" strokeWidth={1.8} />
               </a>
               <a
                 href={siteConfig.social?.facebook ?? 'https://facebook.com/silkbeauty'}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-stone-400 transition-colors hover:text-[#8d6f58]"
+                className="text-[#1877F2] transition-opacity hover:opacity-75"
                 aria-label="Facebook"
               >
-                <Facebook className="h-5 w-5" strokeWidth={1.5} />
+                <Facebook className="h-[26px] w-[26px]" strokeWidth={1.8} />
               </a>
             </div>
           </div>

@@ -264,7 +264,8 @@
     },
     "treatments": {
       "title": "ჩვენ მიერ შემოთავაზებული მკურნალობები",
-      "subtitle": "ყოვლისმომცველი ესთეტიკური გადაწყვეტილებები ყველა საზრუნავისთვის."
+      "subtitle": "ყოვლისმომცველი ესთეტიკური გადაწყვეტილებები ყველა საზრუნავისთვის.",
+      "explore": "Explore treatments ->"
     }
   },
   "booking": {
@@ -336,11 +337,11 @@
     "contact": "საკონტაქტო ინფორმაცია",
     "address": "ზურაბ გორგილაძის ქ. 63, ბათუმი 6000, საქართველო",
     "phone": "ტელ: +995 599 123 456",
-    "email": "info@silkbeauty.ge",
+    "email": "info@silkbeautysalon.online",
     "openingHours": "სამუშაო საათები",
     "hours": {
-      "monFri": "ორშაბათი-პარასკევი: 10:00 - 19:00",
-      "satSun": "შაბათ-კვირა: 9:30 - 17:00"
+      "monFri": "????????-?????????: 10:00 - 22:00",
+      "satSun": "?????-?????: 10:00 - 22:00"
     },
     "social": "გამოგვიწერეთ",
     "faqDesc": "წაიკითხეთ ყველაზე ხშირად დასმული კითხვები კლინიკისა და ჩვენი მკურნალობის შესახებ.",
@@ -386,7 +387,7 @@
       "address": "ზურაბ გორგილაძის ქ. 63",
       "city": "ბათუმი 6000, საქართველო",
       "phone": "+995 599 123 456",
-      "email": "info@silkbeauty.ge"
+      "email": "info@silkbeautysalon.online"
     }
   },
   "faq": {
@@ -621,7 +622,12 @@
     "phone": "ტელეფონი",
     "email": "ელფოსტა",
     "address": "მისამართი",
-    "relatedTreatments": "მსგავსი მკურნალობა"
+    "relatedTreatments": "მსგავსი მკურნალობა",
+    "atAGlance": "ერთ ხედვით",
+    "results": "შედეგები",
+    "downtime": "აღდგების დრო",
+    "youMightAlsoLike": "ასეთ მოგწონდებით",
+    "learnMore": "გაიგეთ მეტი"
   },
   "beforeAfterPage": {
     "title": "ნამდვილი შედეგები,",
@@ -737,7 +743,7 @@
       "downtimeQuestion": "არის თუ არა რაიმე აღდგენის პერიოდი?",
       "downtimeAnswer": "ჩვენი ბევრი მკურნალობა აქვს მინიმალური ან არანაირი აღდგენის პერიოდი. ზოგიერთმა მკურნალობამ შეიძლება გამოიწვიოს დროებითი შეშუპება, სიწითლე ან ჩალმულობა. ჩვენ მოგაწვდით დეტალურ ინსტრუქციებს მკურნალობის შემდგომი მოვლისა და რჩევებს სოციალური ვალდებულებების გარშემო მკურნალობების დაგეგმვის შესახებ.",
       "bookingQuestion": "როგორ დავჯავშნო ვიზიტი?",
-      "bookingAnswer": "თქვენ შეგიძლიათ დაჯავშნოთ ონლაინ ჩვენი ვებსაიტის საშუალებით, დაგვირეკოთ +995 599 123 456-ზე, ან გამოგვიგზავნოთ წერილი info@silkbeauty.ge-ზე. გირჩევთ კონსულტაციები წინასწარ დაჯავშნოთ, რადგან ხშირად გვაქვს მოლოდინის სია.",
+      "bookingAnswer": "თქვენ შეგიძლიათ დაჯავშნოთ ონლაინ ჩვენი ვებსაიტის საშუალებით, დაგვირეკოთ +995 599 123 456-ზე, ან გამოგვიგზავნოთ წერილი info@silkbeautysalon.online-ზე. გირჩევთ კონსულტაციები წინასწარ დაჯავშნოთ, რადგან ხშირად გვაქვს მოლოდინის სია.",
       "virtualQuestion": "თუ გვაქვს ვირტუალური კონსულტაციები?",
       "virtualAnswer": "დიახ, ჩვენ გვაქვს ვირტუალური კონსულტაციები იმ ადამიანებისთვის, ვინც თავდაპირველად ვერ ახერხებს სალონში ვიზიტს. თუმცა, ზუსტი შეფასების მკურნალობებისთვის რეკომენდებულია პირადი კონსულტაცია.",
       "brandsQuestion": "რა ბრენდების პროდუქტებს იყენებთ?",
@@ -1751,7 +1757,39 @@
     "emailPlaceholder": "john@example.com",
     "successTitle": "????????? ???????? ?????????",
     "successMessage": "???????? ????????? ?????????????. ???? ??????????????? ?????? ????????? ???????????????.",
-    "bookAnother": "????? ???? ??????? ????????"
+    "bookAnother": "????? ???? ??????? ????????",
+    "dialogTitle": "Book Appointment",
+    "dialogDescription": "Schedule your consultation with our expert practitioners",
+    "continue": "Continue",
+    "back": "Back",
+    "confirmBooking": "Confirm Booking",
+    "bookingStatus": "Booking...",
+    "booked": "(Booked)",
+    "slotConflict": "This time slot is already booked. Please select another time.",
+    "bookingFailed": "Failed to create booking",
+    "unexpectedError": "An unexpected error occurred. Please try again.",
+    "rateLimitMessage": "Too many submissions. Please wait 15 minutes.",
+    "bookingSummary": "Booking Summary",
+    "bookingConfirmed": "Booking Confirmed!",
+    "thankYou": "Thank you, {name}. Your appointment has been scheduled.",
+    "bookingDetails": "Booking Details",
+    "done": "Done",
+    "selectDate": "Select Date",
+    "selectTimeSlot": "Select Time Slot",
+    "service": "Service",
+    "date": "Date",
+    "time": "Time",
+    "message": "Message (Optional)",
+    "servicePlaceholder": "Choose a service",
+    "messagePlaceholder": "Any specific requirements or questions...",
+    "serviceConsultation": "Consultation",
+    "serviceBotox": "Botox Treatment",
+    "serviceFillers": "Dermal Fillers",
+    "serviceLaser": "Laser Hair Removal",
+    "serviceRejuvenation": "Skin Rejuvenation",
+    "servicePeel": "Chemical Peel",
+    "serviceMicroneedling": "Microneedling",
+    "serviceHydrafacial": "Hydrafacial"
   },
   "consent": {
     "title": "ქუქი-ფაილების პრეფერენციები",

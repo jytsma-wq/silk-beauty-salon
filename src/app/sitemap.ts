@@ -3,7 +3,7 @@ import { baseTreatmentCategories } from '@/data/treatments';
 import { locales } from '@/i18n';
 import { db } from '@/lib/db';
 
-const BASE = 'https://www.silkbeauty.ge';
+const BASE = 'https://www.silkbeautysalon.online';
 const LOCALES = [...locales];
 const PAGES = [
   '','/about','/treatments','/conditions',

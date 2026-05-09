@@ -187,7 +187,7 @@
     },
     "contact": {
       "title": "İletişim",
-      "description": "Zurab Gorgiladze Caddesi 63 numarada yer almaktayız, çalışma saatleri 10:00 - 19:00."
+      "description": "Zurab Gorgiladze Caddesi 63 numarada yer almaktayız, çalışma saatleri 10:00 - 22:00."
     },
     "team": {
       "title": "Ekibimiz",
@@ -256,7 +256,8 @@
     },
     "treatments": {
       "title": "Sunduğumuz Tedaviler",
-      "subtitle": "Her endişe için kapsamlı estetik çözümler."
+      "subtitle": "Her endişe için kapsamlı estetik çözümler.",
+      "explore": "Explore treatments ->"
     }
   },
   "booking": {
@@ -336,11 +337,11 @@
     "contact": "İletişim Bilgileri",
     "address": "Zurab Gorgiladze Cad. 63, Batumi 6000, Gürcistan",
     "phone": "Tel: +995 599 123 456",
-    "email": "info@silkbeauty.ge",
+    "email": "info@silkbeautysalon.online",
     "openingHours": "Çalışma Saatleri",
     "hours": {
-      "monFri": "Pzt-Cum: 10:00 - 19:00",
-      "satSun": "Cmt-Paz: 9:30 - 17:00"
+      "monFri": "Pzt-Cum: 10:00 - 22:00",
+      "satSun": "Cmt-Paz: 10:00 - 22:00"
     },
     "social": "Bizi Takip Edin",
     "faqDesc": "Klinik ve tedavilerimiz hakkında en sık sorulan soruları okuyun.",
@@ -386,7 +387,7 @@
       "address": "Zurab Gorgiladze Cad. 63",
       "city": "Batumi 6000, Gürcistan",
       "phone": "+995 599 123 456",
-      "email": "info@silkbeauty.ge"
+      "email": "info@silkbeautysalon.online"
     }
   },
   "faq": {
@@ -642,7 +643,12 @@
     "phone": "Telefon",
     "email": "E-posta",
     "address": "Adres",
-    "relatedTreatments": "Benzer Tedaviler"
+    "relatedTreatments": "Benzer Tedaviler",
+    "atAGlance": "Bir Bakışta",
+    "results": "Sonuçlar",
+    "downtime": "İyileşme Süresi",
+    "youMightAlsoLike": "Ayrıca Hoşlanabilirsiniz",
+    "learnMore": "Daha Fazla Öğrenin"
   },
   "conditionPage": {
     "title": "Cilt Sorunu",
@@ -737,7 +743,7 @@
       "downtimeQuestion": "Herhangi bir iyileşme süresi var mı?",
       "downtimeAnswer": "Tedavilerimizin çoğu minimal veya sıfır iyileşme süresine sahiptir. Bazı tedaviler geçici şişlik, kızarıklık veya morluklara neden olabilir. Tedavi sonrası bakım için ayrıntılı talimatlar ve sosyal taahhütler etrafında tedavilerin zamanlaması konusunda tavsiyeler sağlayacağız.",
       "bookingQuestion": "Randevu nasıl alınır?",
-      "bookingAnswer": "Web sitemiz üzerinden çevrimiçi rezervasyon yapabilir, bizi +995 599 123 456 numaradan arayabilir veya info@silkbeauty.ge adresine e-posta gönderebilirsiniz. Sıklıkla bekleme listemiz olduğu için konsültasyonları önceden ayırtmanızı öneririz.",
+      "bookingAnswer": "Web sitemiz üzerinden çevrimiçi rezervasyon yapabilir, bizi +995 599 123 456 numaradan arayabilir veya info@silkbeautysalon.online adresine e-posta gönderebilirsiniz. Sıklıkla bekleme listemiz olduğu için konsültasyonları önceden ayırtmanızı öneririz.",
       "virtualQuestion": "Sanal konsültasyon sunuyor musunuz?",
       "virtualAnswer": "Evet, başlangıçta salona gelemeyenler için sanal konsültasyonlar sunuyoruz. Ancak hassas değerlendirme gerektiren tedaviler için yüz yüze konsültasyon önerilir.",
       "brandsQuestion": "Hangi ürün markalarını kullanıyorsunuz?",
@@ -1818,7 +1824,39 @@
     "emailPlaceholder": "ahmet@example.com",
     "successTitle": "Rezervasyon talebi g?nderildi",
     "successMessage": "Rezervasyon talebiniz i?in te?ekk?r ederiz. Randevunuzu onaylamak i?in yak?nda sizinle ileti?ime ge?ece?iz.",
-    "bookAnother": "Ba?ka bir randevu al"
+    "bookAnother": "Ba?ka bir randevu al",
+    "dialogTitle": "Book Appointment",
+    "dialogDescription": "Schedule your consultation with our expert practitioners",
+    "continue": "Continue",
+    "back": "Back",
+    "confirmBooking": "Confirm Booking",
+    "bookingStatus": "Booking...",
+    "booked": "(Booked)",
+    "slotConflict": "This time slot is already booked. Please select another time.",
+    "bookingFailed": "Failed to create booking",
+    "unexpectedError": "An unexpected error occurred. Please try again.",
+    "rateLimitMessage": "Too many submissions. Please wait 15 minutes.",
+    "bookingSummary": "Booking Summary",
+    "bookingConfirmed": "Booking Confirmed!",
+    "thankYou": "Thank you, {name}. Your appointment has been scheduled.",
+    "bookingDetails": "Booking Details",
+    "done": "Done",
+    "selectDate": "Select Date",
+    "selectTimeSlot": "Select Time Slot",
+    "service": "Service",
+    "date": "Date",
+    "time": "Time",
+    "message": "Message (Optional)",
+    "servicePlaceholder": "Choose a service",
+    "messagePlaceholder": "Any specific requirements or questions...",
+    "serviceConsultation": "Consultation",
+    "serviceBotox": "Botox Treatment",
+    "serviceFillers": "Dermal Fillers",
+    "serviceLaser": "Laser Hair Removal",
+    "serviceRejuvenation": "Skin Rejuvenation",
+    "servicePeel": "Chemical Peel",
+    "serviceMicroneedling": "Microneedling",
+    "serviceHydrafacial": "Hydrafacial"
   },
   "accessibility": {
     "skipToContent": "Ana içeriğe geç",

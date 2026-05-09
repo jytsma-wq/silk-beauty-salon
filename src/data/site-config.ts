@@ -1,8 +1,8 @@
 export const siteConfig = {
   name: "Silk Beauty Salon",
   description: "Batumi's premier beauty salon on Zurab Gorgiladze Street. We bring together expert practitioners, cutting-edge treatments & luxury care to enhance your natural beauty with precision & confidence.",
-  url: "https://www.silkbeauty.ge",
-  bookingUrl: "https://www.silkbeauty.ge/book",
+  url: "https://www.silkbeautysalon.online",
+  bookingUrl: "https://www.silkbeautysalon.online/book",
   
   contact: {
     address: "Zurab Gorgiladze 63",
@@ -10,17 +10,17 @@ export const siteConfig = {
     postcode: "6000",
     country: "Georgia",
     phone: "+995 599 123 456",
-    email: "info@silkbeauty.ge"
+    email: "info@silkbeautysalon.online"
   },
   
   businessHours: {
-    monday: "10:00 - 19:00",
-    tuesday: "10:00 - 19:00",
-    wednesday: "10:00 - 20:00",
-    thursday: "10:00 - 20:00",
-    friday: "10:00 - 19:00",
-    saturday: "10:00 - 18:00",
-    sunday: "11:00 - 16:00"
+    monday: "10:00 - 22:00",
+    tuesday: "10:00 - 22:00",
+    wednesday: "10:00 - 22:00",
+    thursday: "10:00 - 22:00",
+    friday: "10:00 - 22:00",
+    saturday: "10:00 - 22:00",
+    sunday: "11:00 - 22:00"
   },
   
   social: {
@@ -170,7 +170,7 @@ export const siteConfig = {
     },
     {
       question: "How do I book an appointment?",
-      answer: "You can book online through our website, call us at +995 599 123 456, or email info@silkbeauty.ge. We recommend booking consultations in advance as we often have a waiting list."
+      answer: "You can book online through our website, call us at +995 599 123 456, or email info@silkbeautysalon.online. We recommend booking consultations in advance as we often have a waiting list."
     },
     {
       question: "Do you offer virtual consultations?",

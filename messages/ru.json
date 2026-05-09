@@ -264,7 +264,8 @@
     },
     "treatments": {
       "title": "Предлагаемые процедуры",
-      "subtitle": "Комплексные эстетические решения для любых задач."
+      "subtitle": "Комплексные эстетические решения для любых задач.",
+      "explore": "Explore treatments ->"
     }
   },
   "booking": {
@@ -336,11 +337,11 @@
     "contact": "Контакты",
     "address": "ул. Зураба Горгиладзе 63, Батуми 6000, Грузия",
     "phone": "Тел: +995 599 123 456",
-    "email": "info@silkbeauty.ge",
+    "email": "info@silkbeautysalon.online",
     "openingHours": "Часы работы",
     "hours": {
-      "monFri": "Пн-Пт: 10:00 - 19:00",
-      "satSun": "Сб-Вс: 9:30 - 17:00"
+      "monFri": "??-??: 10:00 - 22:00",
+      "satSun": "??-??: 10:00 - 22:00"
     },
     "social": "Подписывайтесь",
     "faqDesc": "Ознакомьтесь с наиболее часто задаваемыми вопросами о клинике и наших процедурах.",
@@ -386,7 +387,7 @@
       "address": "ул. Зураба Горгиладзе 63",
       "city": "Батуми 6000, Грузия",
       "phone": "+995 599 123 456",
-      "email": "info@silkbeauty.ge"
+      "email": "info@silkbeautysalon.online"
     }
   },
   "faq": {
@@ -642,7 +643,12 @@
     "phone": "Телефон",
     "email": "Email",
     "address": "Адрес",
-    "relatedTreatments": "Похожие процедуры"
+    "relatedTreatments": "Похожие процедуры",
+    "atAGlance": "За один взгляд",
+    "results": "Результаты",
+    "downtime": "Период восстановления",
+    "youMightAlsoLike": "Вам также может понравиться",
+    "learnMore": "Узнать больше"
   },
   "conditionPage": {
     "title": "Состояние",
@@ -737,7 +743,7 @@
       "downtimeQuestion": "Есть ли период восстановления?",
       "downtimeAnswer": "Многие из наших процедур имеют минимальный или нулевой период восстановления. Некоторые процедуры могут вызвать временное отек, покраснение или синяки. Мы предоставим подробные инструкции по уходу после процедуры и советы по планированию процедур вокруг социальных обязательств.",
       "bookingQuestion": "Как записаться на прием?",
-      "bookingAnswer": "Вы можете записаться онлайн через наш веб-сайт, позвонить нам по номеру +995 599 123 456 или отправить электронное письмо на info@silkbeauty.ge. Мы рекомендуем записываться на консультации заранее, так как у нас часто есть лист ожидания.",
+      "bookingAnswer": "Вы можете записаться онлайн через наш веб-сайт, позвонить нам по номеру +995 599 123 456 или отправить электронное письмо на info@silkbeautysalon.online. Мы рекомендуем записываться на консультации заранее, так как у нас часто есть лист ожидания.",
       "virtualQuestion": "Предлагаете ли вы виртуальные консультации?",
       "virtualAnswer": "Да, мы предлагаем виртуальные консультации для тех, кто не может посетить салон изначально. Однако для процедур, требующих точной оценки, рекомендуется очная консультация.",
       "brandsQuestion": "Какими брендами продуктов вы пользуетесь?",
@@ -1818,7 +1824,39 @@
     "emailPlaceholder": "ivan@example.com",
     "successTitle": "?????? ?? ?????? ?????????",
     "successMessage": "??????? ?? ??? ?????? ?? ??????. ?? ????? ???????? ? ????, ????? ??????????? ?????.",
-    "bookAnother": "???????? ??? ???? ?????"
+    "bookAnother": "???????? ??? ???? ?????",
+    "dialogTitle": "Book Appointment",
+    "dialogDescription": "Schedule your consultation with our expert practitioners",
+    "continue": "Continue",
+    "back": "Back",
+    "confirmBooking": "Confirm Booking",
+    "bookingStatus": "Booking...",
+    "booked": "(Booked)",
+    "slotConflict": "This time slot is already booked. Please select another time.",
+    "bookingFailed": "Failed to create booking",
+    "unexpectedError": "An unexpected error occurred. Please try again.",
+    "rateLimitMessage": "Too many submissions. Please wait 15 minutes.",
+    "bookingSummary": "Booking Summary",
+    "bookingConfirmed": "Booking Confirmed!",
+    "thankYou": "Thank you, {name}. Your appointment has been scheduled.",
+    "bookingDetails": "Booking Details",
+    "done": "Done",
+    "selectDate": "Select Date",
+    "selectTimeSlot": "Select Time Slot",
+    "service": "Service",
+    "date": "Date",
+    "time": "Time",
+    "message": "Message (Optional)",
+    "servicePlaceholder": "Choose a service",
+    "messagePlaceholder": "Any specific requirements or questions...",
+    "serviceConsultation": "Consultation",
+    "serviceBotox": "Botox Treatment",
+    "serviceFillers": "Dermal Fillers",
+    "serviceLaser": "Laser Hair Removal",
+    "serviceRejuvenation": "Skin Rejuvenation",
+    "servicePeel": "Chemical Peel",
+    "serviceMicroneedling": "Microneedling",
+    "serviceHydrafacial": "Hydrafacial"
   },
   "accessibility": {
     "skipToContent": "Перейти к основному содержанию",

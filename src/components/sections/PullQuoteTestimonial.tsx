@@ -24,6 +24,7 @@ export function PullQuoteTestimonial() {
               alt={t('imageAlt')}
               fill
               parallaxSpeed={0.15}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 50vw"
             />
           </motion.div>
 

@@ -1,77 +1,144 @@
-import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
+import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+import { Resend } from 'resend';
+import React from 'react';
+import { db } from '@/lib/db';
+import { verifyCsrfToken } from '@/lib/csrf';
 import { newsletterRateLimit } from '@/lib/rate-limit';
 import { logSecurityEvent } from '@/lib/security-logger';
+import { sanitizeEmail } from '@/lib/sanitize';
+import { senderAddress } from '@/lib/email-config';
+import { renderEmail } from '@/lib/render-email';
+import { NewsletterWelcomeEmail } from '@/emails/newsletter-welcome';
 
-const schema = z.object({ email: z.string().email() });
-
-// Initialize Resend only if API key is available
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
-export async function POST(request: Request) {
-  // Extract client IP
-  const headers = request.headers;
-  const forwarded = headers.get('x-forwarded-for');
-  const realIp = headers.get('x-real-ip');
-  const ip = forwarded?.split(',')[0].trim() || realIp || 'unknown';
+const newsletterSchema = z.object({
+  email: z.string().email('Please enter a valid email address'),
+  locale: z.string().default('en'),
+});
 
-  // Check rate limit (3 requests per minute per IP)
-  const rateLimitResult = await newsletterRateLimit(ip);
-  if (!rateLimitResult.allowed) {
-    await logSecurityEvent({
-      type: 'rate_limit',
-      ip,
-      path: '/api/newsletter',
-      userAgent: headers.get('user-agent') || undefined,
-      details: { reason: 'Newsletter signup rate limit exceeded' },
-    });
-    return NextResponse.json(
-      { error: 'Too many requests. Please try again later.' },
-      {
-        status: 429,
-        headers: {
-          'Retry-After': String(Math.ceil((rateLimitResult.resetTime - Date.now()) / 1000)),
-          'X-RateLimit-Limit': String(rateLimitResult.limit),
-          'X-RateLimit-Remaining': String(rateLimitResult.remaining),
-        },
+export async function POST(request: NextRequest) {
+  try {
+    const headers = request.headers;
+    const ip =
+      headers.get('x-forwarded-for')?.split(',')[0].trim() ||
+      headers.get('x-real-ip') ||
+      'unknown';
+
+    const csrfValid = await verifyCsrfToken(request);
+    if (!csrfValid) {
+      await logSecurityEvent({
+        type: 'csrf_fail',
+        ip,
+        path: '/api/newsletter',
+        userAgent: headers.get('user-agent') || undefined,
+        details: { reason: 'CSRF token invalid or missing' },
+      });
+      return NextResponse.json({ error: 'Invalid CSRF token' }, { status: 403 });
+    }
+
+    const rateResult = await newsletterRateLimit(ip);
+    if (!rateResult.allowed) {
+      await logSecurityEvent({
+        type: 'rate_limit',
+        ip,
+        path: '/api/newsletter',
+        userAgent: headers.get('user-agent') || undefined,
+        details: { reason: 'Newsletter signup rate limit exceeded' },
+      });
+      return NextResponse.json(
+        { error: 'Too many requests. Please try again later.' },
+        {
+          status: 429,
+          headers: {
+            'Retry-After': String(Math.ceil((rateResult.resetTime - Date.now()) / 1000)),
+          },
+        }
+      );
+    }
+
+    const body = await request.json();
+    const result = newsletterSchema.safeParse(body);
+    if (!result.success) {
+      return NextResponse.json(
+        { error: 'Invalid email', details: result.error.flatten() },
+        { status: 400 }
+      );
+    }
+
+    const { email, locale } = result.data;
+    const sanitizedEmail = sanitizeEmail(email) || email.toLowerCase().trim();
+
+    try {
+      await db.newsletterSubscriber.upsert({
+        where: { email: sanitizedEmail },
+        create: { email: sanitizedEmail, locale, status: 'ACTIVE' },
+        update: { status: 'ACTIVE', locale },
+      });
+    } catch (dbError) {
+      console.error('Newsletter database error:', dbError);
+      return NextResponse.json({ error: 'Failed to subscribe' }, { status: 500 });
+    }
+
+    const audienceId = process.env.RESEND_AUDIENCE_ID;
+    if (resend && audienceId) {
+      try {
+        await resend.contacts.create({
+          email: sanitizedEmail,
+          audienceId,
+          unsubscribed: false,
+        });
+      } catch (contactError) {
+        const message = contactError instanceof Error ? contactError.message : '';
+        if (!message.includes('already exists')) {
+          console.error('Resend audience error:', contactError);
+        }
       }
+    }
+
+    if (resend) {
+      const welcomeHtml = await renderEmail(
+        React.createElement(NewsletterWelcomeEmail, {
+          email: sanitizedEmail,
+          locale,
+        })
+      );
+
+      await resend.emails.send({
+        from: senderAddress(),
+        to: [sanitizedEmail],
+        subject: 'Welcome to Silk Beauty Salon',
+        html: welcomeHtml,
+      });
+    }
+
+    return NextResponse.json(
+      { success: true, message: 'Subscribed successfully!' },
+      { status: 201 }
     );
+  } catch (error) {
+    console.error('Newsletter subscription error:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+}
+
+export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const email = searchParams.get('unsubscribe');
+
+  if (!email) {
+    return NextResponse.json({ error: 'Missing email parameter' }, { status: 400 });
   }
 
-  // Parse request body
-  let body: unknown;
   try {
-    body = await request.json();
-  } catch {
-    return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
-  }
-
-  // Validate email using safeParse
-  const result = schema.safeParse(body);
-  if (!result.success) {
-    return NextResponse.json({ error: 'Invalid email' }, { status: 400 });
-  }
-
-  const { email } = result.data;
-
-  // If Resend is not configured, just log and return success
-  if (!resend || !process.env.RESEND_AUDIENCE_ID) {
-    console.warn('Newsletter signup (Resend not configured):', email);
-    return NextResponse.json({ success: true, message: 'Resend not configured' });
-  }
-
-  // Add to audience (create an audience in Resend dashboard first)
-  try {
-    await resend.contacts.create({
-      email,
-      audienceId: process.env.RESEND_AUDIENCE_ID,
-      unsubscribed: false,
+    await db.newsletterSubscriber.update({
+      where: { email: email.toLowerCase().trim() },
+      data: { status: 'UNSUBSCRIBED' },
     });
 
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error('Resend API error:', error);
-    return NextResponse.json({ error: 'Failed to subscribe. Please try again later.' }, { status: 500 });
+    return NextResponse.redirect(new URL('/newsletter/unsubscribed', request.url));
+  } catch {
+    return NextResponse.json({ error: 'Email not found' }, { status: 404 });
   }
 }

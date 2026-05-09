@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Calendar, Clock, User, Mail, Phone, MessageSquare, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { siteConfig } from '@/data/site-config';
+import { useClientCsrfToken } from '@/lib/csrf-client';
 
 interface BookingFormProps {
   consultationTypes: Array<{
@@ -19,16 +20,12 @@ interface BookingFormProps {
   }>;
 }
 
-function getCsrfToken(): string | null {
-  if (typeof window === 'undefined') return null;
-  const meta = document.querySelector('meta[name="csrf-token"]');
-  return meta?.getAttribute('content') || null;
-}
-
 export function BookingForm({ consultationTypes }: BookingFormProps) {
   const t = useTranslations('bookingPage');
   const tCommon = useTranslations('common');
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+  const [bookedSlots, setBookedSlots] = useState<string[]>([]);
+  const csrfToken = useClientCsrfToken();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -88,6 +85,26 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
     return `${year}-${month}-${day}`;
   };
 
+  useEffect(() => {
+    if (!selectedDate) {
+      return;
+    }
+
+    const dateStr = formatDateValue(selectedDate);
+    fetch(`/api/bookings?date=${dateStr}`)
+      .then((res) => res.json())
+      .then((data: { bookedSlots?: string[] }) => {
+        const nextBookedSlots = data.bookedSlots || [];
+        setBookedSlots(nextBookedSlots);
+        setFormData((prev) =>
+          prev.preferredTime && nextBookedSlots.some((slot) => slot.startsWith(prev.preferredTime))
+            ? { ...prev, preferredTime: '' }
+            : prev
+        );
+      })
+      .catch((err) => console.error('Error fetching slots:', err));
+  }, [selectedDate]);
+
   const formatDateLabel = (date: Date) =>
     new Intl.DateTimeFormat(document.documentElement.lang || 'en', {
       weekday: 'short',
@@ -102,15 +119,25 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
     setError(null);
 
     try {
-      const response = await fetch('/api/book', {
+      const dateStr = formData.preferredDate;
+      const startHour = formData.preferredTime;
+      const endHour = `${Number.parseInt(startHour, 10) + 1}:00`.padStart(5, '0');
+      const timeSlot = `${startHour} - ${endHour}`;
+
+      const response = await fetch('/api/bookings', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-CSRF-Token': getCsrfToken() || '',
+          'X-CSRF-Token': csrfToken || '',
         },
         body: JSON.stringify({
-          ...formData,
-          locale: document.documentElement.lang || 'en',
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          service: formData.service,
+          date: dateStr,
+          timeSlot,
+          message: formData.message,
         }),
       });
 
@@ -131,6 +158,7 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
         message: '',
       });
       setSelectedDate(undefined);
+      setBookedSlots([]);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
@@ -144,6 +172,7 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
 
   const handleDateSelect = (date: Date | undefined) => {
     setSelectedDate(date);
+    setBookedSlots([]);
     handleChange('preferredDate', date ? formatDateValue(date) : '');
     const nextSlots = buildTimeSlots(date);
     if (!nextSlots.some((slot) => slot.value === formData.preferredTime)) {
@@ -253,7 +282,7 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
         />
       </div>
 
-      <div className="grid gap-8 xl:grid-cols-2">
+      <div className="grid gap-8 md:grid-cols-[520px_minmax(0,1fr)] md:items-start">
         <div className="space-y-3">
           <Label className="flex items-center gap-2">
             <Calendar className="w-4 h-4 text-[#8d6f58]" />
@@ -292,21 +321,25 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
             <Clock className="w-4 h-4 text-[#8d6f58]" />
             {t('preferredTime', { defaultValue: 'Preferred Time' })}
           </Label>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-6">
+          <div className="grid grid-cols-2 gap-3">
             {timeSlots.map((slot) => {
               const isSelected = formData.preferredTime === slot.value;
+              const isBooked = bookedSlots.some((bookedSlot) => bookedSlot.startsWith(slot.value));
               return (
                 <button
                   key={slot.value}
                   type="button"
+                  disabled={isBooked}
                   onClick={() => handleChange('preferredTime', slot.value)}
-                  className={`inline-flex h-12 items-center justify-center rounded-md border text-sm transition-colors ${
+                  className={`inline-flex h-12 w-full min-w-0 items-center justify-center rounded-md border text-sm transition-colors ${
                     isSelected
                       ? 'border-[#241f1b] bg-[#241f1b] text-white'
+                      : isBooked
+                        ? 'cursor-not-allowed border-[#d8cbbb] bg-[#f7f2eb] text-[#7b7269] line-through opacity-50'
                       : 'border-[#d8cbbb] bg-[#f7f2eb] text-[#241f1b] hover:bg-[#ece3d7]'
                   }`}
                 >
-                  {slot.label}
+                  {slot.label} {isBooked && t('booked')}
                 </button>
               );
             })}
@@ -337,7 +370,7 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
 
       <Button
         type="submit"
-        disabled={isSubmitting}
+        disabled={isSubmitting || !formData.preferredDate || !formData.preferredTime}
         className="w-full rounded-md border border-[#d9cec1] bg-[#f7f2eb] px-6 py-4 text-xs font-medium uppercase tracking-widest text-[#241f1b] transition-colors hover:bg-[#241f1b] hover:text-white disabled:opacity-50"
       >
         {isSubmitting ? tCommon('submitting', { defaultValue: 'Submitting...' }) : t('requestBooking', { defaultValue: 'Request Booking' })}

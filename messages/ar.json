@@ -264,7 +264,8 @@
     },
     "treatments": {
       "title": "العلاجات التي نقدمها",
-      "subtitle": "حلول جمالية شاملة لكل اهتمام."
+      "subtitle": "حلول جمالية شاملة لكل اهتمام.",
+      "explore": "Explore treatments ->"
     }
   },
   "booking": {
@@ -336,11 +337,11 @@
     "contact": "معلومات الاتصال",
     "address": "شارع زوراب غورغيلادزه 63، باتومي 6000، جورجيا",
     "phone": "هاتف: +995 599 123 456",
-    "email": "info@silkbeauty.ge",
+    "email": "info@silkbeautysalon.online",
     "openingHours": "ساعات العمل",
     "hours": {
-      "monFri": "الإثنين-الجمعة: 10:00 - 19:00",
-      "satSun": "السبت-الأحد: 9:30 - 17:00"
+      "monFri": "???????-??????: 10:00 - 22:00",
+      "satSun": "?????-?????: 10:00 - 22:00"
     },
     "social": "تابعنا",
     "faqDesc": "اقرأ بعض الأسئلة الأكثر شيوعاً عن العيادة وعلاجاتنا.",
@@ -386,7 +387,7 @@
       "address": "شارع زوراب غورغيلادزه 63",
       "city": "باتومي 6000، جورجيا",
       "phone": "+995 599 123 456",
-      "email": "info@silkbeauty.ge"
+      "email": "info@silkbeautysalon.online"
     }
   },
   "faq": {
@@ -642,7 +643,12 @@
     "phone": "الهاتف",
     "email": "البريد الإلكتروني",
     "address": "العنوان",
-    "relatedTreatments": "علاجات مشابهة"
+    "relatedTreatments": "علاجات مشابهة",
+    "atAGlance": "لمحة سريعة",
+    "results": "النتائج",
+    "downtime": "فترة التعافي",
+    "youMightAlsoLike": "قد يعجبك أيضاً",
+    "learnMore": "اعرف المزيد"
   },
   "conditionPage": {
     "title": "الحالة",
@@ -737,7 +743,7 @@
       "downtimeQuestion": "هل هناك أي فترة استرداد؟",
       "downtimeAnswer": "العديد من علاجاتنا لها فترة استرداد بسيطة أو معدومة. قد تسبب بعض العلاجات تورماً مؤقتاً أو احمراراً أو كدمات. سنقدم تعليمات مفصلة للعناية بعد العلاج ونصائح حول توقيت العلاجات حول الالتزامات الاجتماعية.",
       "bookingQuestion": "كيف أحجز موعداً؟",
-      "bookingAnswer": "يمكنك الحجز عبر الإنترنت من خلال موقعنا الإلكتروني، أو الاتصال بنا على +995 599 123 456، أو إرسال بريد إلكتروني إلى info@silkbeauty.ge. نوصي بحجز الاستشارات مسبقاً حيث أنه لدينا غالباً قائمة انتظار.",
+      "bookingAnswer": "يمكنك الحجز عبر الإنترنت من خلال موقعنا الإلكتروني، أو الاتصال بنا على +995 599 123 456، أو إرسال بريد إلكتروني إلى info@silkbeautysalon.online. نوصي بحجز الاستشارات مسبقاً حيث أنه لدينا غالباً قائمة انتظار.",
       "virtualQuestion": "هل تقدمون استشارات افتراضية؟",
       "virtualAnswer": "نعم، نقدم استشارات افتراضية لأولئك الذين لا يمكنهم زيارة الصالون في البداية. ومع ذلك، بالنسبة للعلاجات التي تتطلب تقييماً دقيقاً، يوصى باستشارة شخصية.",
       "brandsQuestion": "ما هي العلامات التجارية التي تستخدمونها؟",
@@ -1818,7 +1824,39 @@
     "emailPlaceholder": "ahmed@example.com",
     "successTitle": "?? ????? ??? ?????",
     "successMessage": "????? ???? ?????. ??????? ??? ?????? ?????? ?????.",
-    "bookAnother": "???? ?????? ???"
+    "bookAnother": "???? ?????? ???",
+    "dialogTitle": "Book Appointment",
+    "dialogDescription": "Schedule your consultation with our expert practitioners",
+    "continue": "Continue",
+    "back": "Back",
+    "confirmBooking": "Confirm Booking",
+    "bookingStatus": "Booking...",
+    "booked": "(Booked)",
+    "slotConflict": "This time slot is already booked. Please select another time.",
+    "bookingFailed": "Failed to create booking",
+    "unexpectedError": "An unexpected error occurred. Please try again.",
+    "rateLimitMessage": "Too many submissions. Please wait 15 minutes.",
+    "bookingSummary": "Booking Summary",
+    "bookingConfirmed": "Booking Confirmed!",
+    "thankYou": "Thank you, {name}. Your appointment has been scheduled.",
+    "bookingDetails": "Booking Details",
+    "done": "Done",
+    "selectDate": "Select Date",
+    "selectTimeSlot": "Select Time Slot",
+    "service": "Service",
+    "date": "Date",
+    "time": "Time",
+    "message": "Message (Optional)",
+    "servicePlaceholder": "Choose a service",
+    "messagePlaceholder": "Any specific requirements or questions...",
+    "serviceConsultation": "Consultation",
+    "serviceBotox": "Botox Treatment",
+    "serviceFillers": "Dermal Fillers",
+    "serviceLaser": "Laser Hair Removal",
+    "serviceRejuvenation": "Skin Rejuvenation",
+    "servicePeel": "Chemical Peel",
+    "serviceMicroneedling": "Microneedling",
+    "serviceHydrafacial": "Hydrafacial"
   },
   "accessibility": {
     "skipToContent": "تخطى إلى المحتوى الرئيسي",
