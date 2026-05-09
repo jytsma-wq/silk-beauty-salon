@@ -1,157 +1,496 @@
-## PROMPT D15 — MOVEMENT: Add Scroll-Progress Reading Bar and Section Transitions
+, but its mode is set to "wait". This will lead to odd visual behaviour.
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+ GET /favicon.ico 200 in 548ms (next.js: 47ms, generate-params: 35ms, application-code: 501ms)
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour.
+ GET /en/treatments 200 in 651ms (next.js: 34ms, generate-params: 26ms, application-code: 618ms)
+ GET /favicon.ico 200 in 451ms (next.js: 41ms, generate-params: 29ms, application-code: 410ms)
+○ Compiling /[locale]/contact-us ...
+ GET /en/contact-us 200 in 22.3s (next.js: 22.2s, generate-params: 1245ms, application-code: 75ms)
+ GET /en/contact-us 200 in 193ms (next.js: 47ms, generate-params: 38ms, application-code: 146ms)
+ GET /en/about 200 in 3.4s (next.js: 3.3s, generate-params: 1037ms, application-code: 73ms)
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+[browser] Image with src "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=80" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)
+You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour.
+ GET /favicon.ico 200 in 475ms (next.js: 30ms, generate-params: 22ms, application-code: 445ms)
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+ GET /images/nana-gviniashvili.jpg 404 in 269ms (next.js: 36ms, application-code: 233ms)
+ GET /images/mariam-beridze.jpg 404 in 273ms (next.js: 91ms, application-code: 181ms)
+ GET /images/ana-kalandadze.jpg 404 in 276ms (next.js: 131ms, application-code: 145ms)
+⨯ The requested resource isn't a valid image for /images/ana-kalandadze.jpg received null
+⨯ The requested resource isn't a valid image for /images/nana-gviniashvili.jpg received null
+⨯ The requested resource isn't a valid image for /images/mariam-beridze.jpg received null
+✓ Finished filesystem cache database compaction in 12.1s
+✓ Finished filesystem cache database compaction in 11.0s
+ GET /images/elena-chikvaidze.jpg 404 in 133ms (next.js: 17ms, application-code: 116ms)
+⨯ The requested resource isn't a valid image for /images/elena-chikvaidze.jpg received null
+ GET /images/natia-tsiklauri.jpg 404 in 145ms (next.js: 60ms, application-code: 85ms)
+⨯ The requested resource isn't a valid image for /images/natia-tsiklauri.jpg received null
 
-**Problem:**
-There is no reading progress indicator. On a content-rich page with 15 sections
-(cinematic hero → treatments → statistics → testimonials → before/after → CTA),
-users have no sense of how far they've scrolled. Luxury editorial sites use
-a thin line along the top or left edge that fills as the user reads.
+ *  History restored 
 
-Additionally, transitions between sections on the home page are all abrupt —
-sections stack directly with no visual breath between them. A horizontal
-divider line that reveals on scroll, used consistently between alternating
-light and dark sections, would add editorial structure.
+PS E:\black sea digital\silkbeautysalon10-4> npn run dev
+npn : The term 'npn' is not recognized as the name of a cmdlet, 
+function, script file, or operable program. Check the spelling of 
+the name, or if a path was included, verify that the path is 
+correct and try again.
+At line:1 char:1
++ npn run dev
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (npn:String) [], Comm 
+   andNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+PS E:\black sea digital\silkbeautysalon10-4> npm run dev
 
-**Task:** Add a global scroll progress bar and systematic section dividers.
+> silk-beauty-salon@0.2.0 dev
+> next dev -p 3000 --turbopack --hostname 0.0.0.0
 
-Requirements:
-
-1. Create `src/components/ui/ScrollProgressBar.tsx`:
-
-```tsx
-'use client';
-
-import { useScroll, useSpring, motion } from 'framer-motion';
-
-interface ScrollProgressBarProps {
-  /** 'top' | 'left'. Default 'top' */
-  position?: 'top' | 'left';
-  color?: string;
-  thickness?: number;
+⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use 0.0.0.0:3000) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '0.0.0.0',
+  port: 3000
 }
 
-export function ScrollProgressBar({
-  position = 'top',
-  color = '#b5453a',
-  thickness = 2,
-}: ScrollProgressBarProps) {
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+PS E:\black sea digital\silkbeautysalon10-4> npm run dev
 
-  if (position === 'top') {
-    return (
-      <motion.div
-        className="fixed top-0 left-0 right-0 z-[100] origin-left pointer-events-none"
-        style={{
-          height: thickness,
-          backgroundColor: color,
-          scaleX,
-        }}
-      />
-    );
+> silk-beauty-salon@0.2.0 dev
+> next dev -p 3000 --turbopack --hostname 0.0.0.0
+
+⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use 0.0.0.0:3000) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '0.0.0.0',
+  port: 3000
+}
+
+PS E:\black sea digital\silkbeautysalon10-4> npm run dev
+
+> silk-beauty-salon@0.2.0 dev
+> next dev -p 3000 --turbopack --hostname 0.0.0.0
+
+▲ Next.js 16.2.4 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://0.0.0.0:3000
+- Environments: .env.local
+✓ Ready in 6.6s
+[@sentry/nextjs] DEPRECATION WARNING: disableLogger is deprecated and will be removed in a future version. Use webpack.treeshake.removeDebugLogging instead. (Not supported with Turbopack.)
+[@sentry/nextjs] DEPRECATION WARNING: automaticVercelMonitors is deprecated and will be removed in a future version. Use webpack.automaticVercelMonitors instead. (Not supported with Turbopack.)
+⚠ Slow filesystem detected. The benchmark took 282ms. If E:\black sea digital\silkbeautysalon10-4\.next/dev is a network drive, consider moving it to a local folder.
+See more: https://nextjs.org/docs/app/guides/local-development       
+○ Compiling middleware ...
+- Experiments (use with caution):
+  · clientTraceMetadata
+  · optimizePackageImports
+  ✓ scrollRestoration
+
+○ Compiling / ...
+ GET / 307 in 16.0s (next.js: 15.1s, application-code: 861ms)
+○ Compiling /[locale] ...
+You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour.
+ GET /en 200 in 15.4s (next.js: 13.9s, generate-params: 1340ms, application-code: 1413ms)
+You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour.
+ GET /favicon.ico 200 in 747ms (next.js: 127ms, generate-params: 56ms, application-code: 619ms)
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+[browser] Image with src "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1000&q=80" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)
+ GET /en/conditions 200 in 9.7s (next.js: 7.0s, generate-params: 4.4s, application-code: 2.7s)
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour.
+ GET /favicon.ico 200 in 3.8s (next.js: 481ms, generate-params: 390ms, application-code: 3.3s)
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+ GET /en/conditions/ageing-skin 200 in 10.0s (next.js: 9.2s, generate-params: 8.9s, application-code: 829ms)
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour.
+ GET /favicon.ico 200 in 1522ms (next.js: 120ms, generate-params: 57ms, application-code: 1402ms)
+[SECURITY] csrf_fail 127.0.0.1 /api/newsletter { reason: 'CSRF token invalid or missing' }
+[SECURITY] Failed to persist to Redis: TypeError: fetch failed
+    at async logSecurityEvent (src\lib\security-logger.ts:61:5)      
+    at async POST (src\app\api\newsletter\route.ts:31:7)
+  59 |
+  60 |     // Add to sorted set for time-based queries
+> 61 |     await redis.zadd(key, { score, member });
+     |     ^
+  62 |
+  63 |     // Expire after 7 days
+  64 |     await redis.expire(key, 7 * 24 * 60 * 60); {
+  [cause]: Error: getaddrinfo ENOTFOUND example.upstash.io
+      at ignore-listed frames {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'example.upstash.io'
   }
-
-  return (
-    <motion.div
-      className="fixed left-0 top-0 bottom-0 z-[100] origin-top pointer-events-none"
-      style={{
-        width: thickness,
-        backgroundColor: color,
-        scaleY: scaleX,
-      }}
-    />
-  );
 }
-```
-
-2. Add `<ScrollProgressBar />` to `src/app/[locale]/layout.tsx`:
-   ```tsx
-   import { ScrollProgressBar } from '@/components/ui/ScrollProgressBar';
-
-   // Inside the layout, above the <main>:
-   <ScrollProgressBar color="#b5453a" thickness={2} />
-   ```
-
-3. Create `src/components/ui/SectionDivider.tsx` — a full-width line with
-   a centered diamond or cross symbol that reveals on scroll:
-
-```tsx
-'use client';
-
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
-
-interface SectionDividerProps {
-  /** 'light' for dark-on-light, 'dark' for light-on-dark */
-  variant?: 'light' | 'dark';
-  symbol?: '✦' | '×' | '—' | '◆';
+ POST /api/newsletter 403 in 26.1s (next.js: 17.1s, application-code: 9.0s)
+Error: MISSING_MESSAGE: Could not resolve `treatmentPage.atAGlance` in messages for locale `en`.
+    at TreatmentPage (src\app\[locale]\treatments\[slug]\page.tsx:145:14)
+  143 |         <aside className="float-right ml-8 mb-8 w-full max...
+  144 |           <h3 className="mb-6 text-xs uppercase tracking-w...
+> 145 |             {t('atAGlance') || 'At a Glance'}
+      |              ^
+  146 |           </h3>
+  147 |           <dl className="space-y-4 text-sm">
+  148 |             {treatment.duration ? ( {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `treatmentPage.atAGlance` in messages for locale `en`.'
 }
-
-export function SectionDivider({
-  variant = 'light',
-  symbol = '✦',
-}: SectionDividerProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-40px' });
-
-  const lineColor = variant === 'light' ? '#e0e0e0' : 'rgba(255,255,255,0.12)';
-  const textColor = variant === 'light' ? '#b5453a' : 'rgba(181,69,58,0.7)';
-
-  return (
-    <div
-      ref={ref}
-      className="flex items-center gap-6 px-8 lg:px-0 max-w-7xl mx-auto py-2"
-      aria-hidden="true"
-    >
-      <motion.div
-        className="h-px flex-1 origin-left"
-        style={{ backgroundColor: lineColor }}
-        initial={{ scaleX: 0 }}
-        animate={isInView ? { scaleX: 1 } : {}}
-        transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-      />
-      <motion.span
-        className="text-xs flex-shrink-0"
-        style={{ color: textColor }}
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={isInView ? { opacity: 1, scale: 1 } : {}}
-        transition={{ duration: 0.5, delay: 0.4 }}
-      >
-        {symbol}
-      </motion.span>
-      <motion.div
-        className="h-px flex-1 origin-right"
-        style={{ backgroundColor: lineColor }}
-        initial={{ scaleX: 0 }}
-        animate={isInView ? { scaleX: 1 } : {}}
-        transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-      />
-    </div>
-  );
+Error: MISSING_MESSAGE: Could not resolve `treatmentPage.results` in messages for locale `en`.
+    at TreatmentPage (src\app\[locale]\treatments\[slug]\page.tsx:165:52)
+  163 | ...
+  164 | ...
+> 165 | ...ame="mb-1 text-stone-500">{t('results') || 'Results'}</dt>
+      |                               ^
+  166 | ...ame="font-serif text-stone-900">3-6 months</dd>
+  167 | ...
+  168 | ... {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `treatmentPage.results` in messages for locale `en`.'
 }
-```
+Error: MISSING_MESSAGE: Could not resolve `treatmentPage.downtime` in messages for locale `en`.
+    at TreatmentPage (src\app\[locale]\treatments\[slug]\page.tsx:169:52)
+  167 | ...
+  168 | ...
+> 169 | ...ame="mb-1 text-stone-500">{t('downtime') || 'Downtime'}...
+      |                               ^
+  170 | ...ame="font-serif text-stone-900">None to minimal</dd>      
+  171 | ...
+  172 | ... {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `treatmentPage.downtime` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `treatmentPage.youMightAlsoLike` in messages for locale `en`.
+    at TreatmentPage (src\app\[locale]\treatments\[slug]\page.tsx:268:16)
+  266 |           <div className="mx-auto max-w-7xl px-8 md:px-16">  
+  267 |             <p className="mb-8 text-xs uppercase tracking-...
+> 268 |               {t('youMightAlsoLike') || 'You Might Also Li...
+      |                ^
+  269 |             </p>
+  270 |             <div className="grid gap-8 md:grid-cols-3 md:g...
+  271 |               {relatedTreatments.map( {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `treatmentPage.youMightAlsoLike` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `treatmentPage.learnMore` in messages for locale `en`.
+    at <unknown> (src\app\[locale]\treatments\[slug]\page.tsx:295:26)
+    at Array.map (<anonymous>)
+    at TreatmentPage (src\app\[locale]\treatments\[slug]\page.tsx:271:34)
+  293 |                       </p>
+  294 |                       <span className="mt-4 inline-block t...
+> 295 |                         {t('learnMore') || 'Learn more'}     
+      |                          ^
+  296 |                       </span>
+  297 |                     </Link>
+  298 |                   </article> {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `treatmentPage.learnMore` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `treatmentPage.learnMore` in messages for locale `en`.
+    at <unknown> (src\app\[locale]\treatments\[slug]\page.tsx:295:26)
+    at Array.map (<anonymous>)
+    at TreatmentPage (src\app\[locale]\treatments\[slug]\page.tsx:271:34)
+  293 |                       </p>
+  294 |                       <span className="mt-4 inline-block t...
+> 295 |                         {t('learnMore') || 'Learn more'}     
+      |                          ^
+  296 |                       </span>
+  297 |                     </Link>
+  298 |                   </article> {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `treatmentPage.learnMore` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `treatmentPage.learnMore` in messages for locale `en`.
+    at <unknown> (src\app\[locale]\treatments\[slug]\page.tsx:295:26)
+    at Array.map (<anonymous>)
+    at TreatmentPage (src\app\[locale]\treatments\[slug]\page.tsx:271:34)
+  293 |                       </p>
+  294 |                       <span className="mt-4 inline-block t...
+> 295 |                         {t('learnMore') || 'Learn more'}     
+      |                          ^
+  296 |                       </span>
+  297 |                     </Link>
+  298 |                   </article> {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `treatmentPage.learnMore` in messages for locale `en`.'
+}
+ GET /en/treatments/hair-treatments 200 in 2.2s (next.js: 1802ms, generate-params: 1613ms, application-code: 447ms)
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour.
+[browser] Image with src "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=800&q=80" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)
+ GET /favicon.ico 200 in 1078ms (next.js: 96ms, generate-params: 53ms, application-code: 982ms)
+[browser] Image with src "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)
+[browser] Image with src "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=800&q=80" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)
+[browser] Image with src "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=800&q=80" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)
+Error: MISSING_MESSAGE: Could not resolve `treatmentPage.atAGlance` in messages for locale `en`.
+    at TreatmentPage (src\app\[locale]\treatments\[slug]\page.tsx:145:14)
+  143 |         <aside className="float-right ml-8 mb-8 w-full max...
+  144 |           <h3 className="mb-6 text-xs uppercase tracking-w...
+> 145 |             {t('atAGlance') || 'At a Glance'}
+      |              ^
+  146 |           </h3>
+  147 |           <dl className="space-y-4 text-sm">
+  148 |             {treatment.duration ? ( {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `treatmentPage.atAGlance` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `treatmentPage.results` in messages for locale `en`.
+    at TreatmentPage (src\app\[locale]\treatments\[slug]\page.tsx:165:52)
+  163 | ...
+  164 | ...
+> 165 | ...ame="mb-1 text-stone-500">{t('results') || 'Results'}</dt>
+      |                               ^
+  166 | ...ame="font-serif text-stone-900">3-6 months</dd>
+  167 | ...
+  168 | ... {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `treatmentPage.results` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `treatmentPage.downtime` in messages for locale `en`.
+    at TreatmentPage (src\app\[locale]\treatments\[slug]\page.tsx:169:52)
+  167 | ...
+  168 | ...
+> 169 | ...ame="mb-1 text-stone-500">{t('downtime') || 'Downtime'}...
+      |                               ^
+  170 | ...ame="font-serif text-stone-900">None to minimal</dd>      
+  171 | ...
+  172 | ... {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `treatmentPage.downtime` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `treatmentPage.youMightAlsoLike` in messages for locale `en`.
+    at TreatmentPage (src\app\[locale]\treatments\[slug]\page.tsx:268:16)
+  266 |           <div className="mx-auto max-w-7xl px-8 md:px-16">  
+  267 |             <p className="mb-8 text-xs uppercase tracking-...
+> 268 |               {t('youMightAlsoLike') || 'You Might Also Li...
+      |                ^
+  269 |             </p>
+  270 |             <div className="grid gap-8 md:grid-cols-3 md:g...
+  271 |               {relatedTreatments.map( {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `treatmentPage.youMightAlsoLike` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `treatmentPage.learnMore` in messages for locale `en`.
+    at <unknown> (src\app\[locale]\treatments\[slug]\page.tsx:295:26)
+    at Array.map (<anonymous>)
+    at TreatmentPage (src\app\[locale]\treatments\[slug]\page.tsx:271:34)
+  293 |                       </p>
+  294 |                       <span className="mt-4 inline-block t...
+> 295 |                         {t('learnMore') || 'Learn more'}     
+      |                          ^
+  296 |                       </span>
+  297 |                     </Link>
+  298 |                   </article> {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `treatmentPage.learnMore` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `treatmentPage.learnMore` in messages for locale `en`.
+    at <unknown> (src\app\[locale]\treatments\[slug]\page.tsx:295:26)
+    at Array.map (<anonymous>)
+    at TreatmentPage (src\app\[locale]\treatments\[slug]\page.tsx:271:34)
+  293 |                       </p>
+  294 |                       <span className="mt-4 inline-block t...
+> 295 |                         {t('learnMore') || 'Learn more'}     
+      |                          ^
+  296 |                       </span>
+  297 |                     </Link>
+  298 |                   </article> {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `treatmentPage.learnMore` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `treatmentPage.learnMore` in messages for locale `en`.
+    at <unknown> (src\app\[locale]\treatments\[slug]\page.tsx:295:26)
+    at Array.map (<anonymous>)
+    at TreatmentPage (src\app\[locale]\treatments\[slug]\page.tsx:271:34)
+  293 |                       </p>
+  294 |                       <span className="mt-4 inline-block t...
+> 295 |                         {t('learnMore') || 'Learn more'}     
+      |                          ^
+  296 |                       </span>
+  297 |                     </Link>
+  298 |                   </article> {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `treatmentPage.learnMore` in messages for locale `en`.'
+}
+ GET /en/treatments/hair-extensions 200 in 455ms (next.js: 68ms, generate-params: 55ms, application-code: 387ms)
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour.
+ GET /favicon.ico 200 in 1218ms (next.js: 188ms, generate-params: 158ms, application-code: 1030ms)
+Error: MISSING_MESSAGE: Could not resolve `treatmentPage.atAGlance` in messages for locale `en`.
+    at TreatmentPage (src\app\[locale]\treatments\[slug]\page.tsx:145:14)
+  143 |         <aside className="float-right ml-8 mb-8 w-full max...
+  144 |           <h3 className="mb-6 text-xs uppercase tracking-w...
+> 145 |             {t('atAGlance') || 'At a Glance'}
+      |              ^
+  146 |           </h3>
+  147 |           <dl className="space-y-4 text-sm">
+  148 |             {treatment.duration ? ( {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `treatmentPage.atAGlance` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `treatmentPage.results` in messages for locale `en`.
+    at TreatmentPage (src\app\[locale]\treatments\[slug]\page.tsx:165:52)
+  163 | ...
+  164 | ...
+> 165 | ...ame="mb-1 text-stone-500">{t('results') || 'Results'}</dt>
+      |                               ^
+  166 | ...ame="font-serif text-stone-900">3-6 months</dd>
+  167 | ...
+  168 | ... {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `treatmentPage.results` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `treatmentPage.downtime` in messages for locale `en`.
+    at TreatmentPage (src\app\[locale]\treatments\[slug]\page.tsx:169:52)
+  167 | ...
+  168 | ...
+> 169 | ...ame="mb-1 text-stone-500">{t('downtime') || 'Downtime'}...
+      |                               ^
+  170 | ...ame="font-serif text-stone-900">None to minimal</dd>      
+  171 | ...
+  172 | ... {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `treatmentPage.downtime` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `treatmentPage.youMightAlsoLike` in messages for locale `en`.
+    at TreatmentPage (src\app\[locale]\treatments\[slug]\page.tsx:268:16)
+  266 |           <div className="mx-auto max-w-7xl px-8 md:px-16">  
+  267 |             <p className="mb-8 text-xs uppercase tracking-...
+> 268 |               {t('youMightAlsoLike') || 'You Might Also Li...
+      |                ^
+  269 |             </p>
+  270 |             <div className="grid gap-8 md:grid-cols-3 md:g...
+  271 |               {relatedTreatments.map( {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `treatmentPage.youMightAlsoLike` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `treatmentPage.learnMore` in messages for locale `en`.
+    at <unknown> (src\app\[locale]\treatments\[slug]\page.tsx:295:26)
+    at Array.map (<anonymous>)
+    at TreatmentPage (src\app\[locale]\treatments\[slug]\page.tsx:271:34)
+  293 |                       </p>
+  294 |                       <span className="mt-4 inline-block t...
+> 295 |                         {t('learnMore') || 'Learn more'}     
+      |                          ^
+  296 |                       </span>
+  297 |                     </Link>
+  298 |                   </article> {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `treatmentPage.learnMore` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `treatmentPage.learnMore` in messages for locale `en`.
+    at <unknown> (src\app\[locale]\treatments\[slug]\page.tsx:295:26)
+    at Array.map (<anonymous>)
+    at TreatmentPage (src\app\[locale]\treatments\[slug]\page.tsx:271:34)
+  293 |                       </p>
+  294 |                       <span className="mt-4 inline-block t...
+> 295 |                         {t('learnMore') || 'Learn more'}     
+      |                          ^
+  296 |                       </span>
+  297 |                     </Link>
+  298 |                   </article> {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `treatmentPage.learnMore` in messages for locale `en`.'
+}
+Error: MISSING_MESSAGE: Could not resolve `treatmentPage.learnMore` in messages for locale `en`.
+    at <unknown> (src\app\[locale]\treatments\[slug]\page.tsx:295:26)
+    at Array.map (<anonymous>)
+    at TreatmentPage (src\app\[locale]\treatments\[slug]\page.tsx:271:34)
+  293 |                       </p>
+  294 |                       <span className="mt-4 inline-block t...
+> 295 |                         {t('learnMore') || 'Learn more'}     
+      |                          ^
+  296 |                       </span>
+  297 |                     </Link>
+  298 |                   </article> {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `treatmentPage.learnMore` in messages for locale `en`.'
+}
+ GET /en/treatments/lashes 200 in 359ms (next.js: 90ms, generate-params: 76ms, application-code: 268ms)
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+[browser] You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour. (file://E:/black sea digital/silkbeautysalon10-4/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2432:13)       
+You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour.
+ GET /favicon.ico 200 in 1324ms (next.js: 106ms, generate-params: 77ms, application-code: 1219ms)
+○ Compiling middleware ...
+ GET /en/treatments/lashes 200 in 73s (next.js: 70s, generate-params: 74ms, application-code: 2.8s)
+ GET /en/treatments/lashes 200 in 36.1s (next.js: 33.8s, generate-params: 45µs, application-code: 2.3s)
+ GET /en/treatments/lashes 200 in 13.8s (next.js: 11.7s, generate-params: 45µs, application-code: 2.1s)
+ GET /en/treatments/lashes 200 in 18.0s (next.js: 15.7s, generate-params: 56µs, application-code: 2.2s)
+ GET /en/treatments/lashes 200 in 318ms (next.js: 11ms, generate-params: 36µs, application-code: 307ms)
+ GET /en/treatments/lashes 200 in 909ms (next.js: 29ms, generate-params: 65µs, application-code: 879ms)
+ GET /en/treatments/lashes 200 in 953ms (next.js: 247ms, generate-params: 57µs, application-code: 707ms)
+ GET /en/treatments/lashes 200 in 1005ms (next.js: 142ms, generate-params: 35µs, application-code: 863ms)
+ GET /en/treatments/lashes 200 in 1003ms (next.js: 345ms, generate-params: 23µs, application-code: 658ms)
+  Reload env: .env.local
+⚠ Fast Refresh had to perform a full reload when ./node_modules/next/dist/client/image-component.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
 
-4. Insert `<SectionDivider>` in `src/app/[locale]/page.tsx` between each
-   major section transition:
+<--- Last few GCs --->
 
-```tsx
-// Between BrandManifestoSection and EditorialTreatmentsSection:
-<SectionDivider variant="light" symbol="✦" />
+[22616:000002B575672000]  4370129 ms: Mark-Compact 11545.1 (12344.1) -> 11469.7 (12333.5) MB, pooled: 0 MB, 8039.41 / 35.14 ms  (average mu = 0.193, current mu = 0.153) allocation failure; scavenge might not succeed
+[22616:000002B575672000]  4379292 ms: Mark-Compact 11554.8 (12353.6) -> 11482.8 (12344.5) MB, pooled: 0 MB, 7881.69 / 40.21 ms  (average mu = 0.168, current mu = 0.140) allocation failure; scavenge might not succeed
 
-// Between TreatmentsMarquee (dark bg) and StatisticsStrip (light bg):
-<SectionDivider variant="dark" symbol="◆" />
+FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
+----- Native stack trace -----
 
-// Between StatisticsStrip and PullQuoteTestimonial:
-<SectionDivider variant="light" symbol="—" />
+ 5: 00007FF768E76B1C v8::internal::StrongRootAllocatorBase::deallocate_impl+16604
+ 6: 00007FF768E7635B v8::internal::StrongRootAllocatorBase::deallocate_impl+14619
+ 5: 00007FF768E76B1C v8::internal::StrongRootAllocatorBase::deallocate_impl+16604
+ 6: 00007FF768E7635B v8::internal::StrongRootAllocatorBase::deallocate_impl+14619
+ 7: 00007FF76A2DEBED v8::base::UnsignedDivisionByConstant<unsigned __int64>+2791309
+ 8: 00007FF768E61940 v8::base::AddressSpaceReservation::AddressSpaceReservation+312544
+ 9: 00007FF768E7C1CA X509_STORE_set_cleanup+5098
+10: 00007FF768E88666 uv_timer_set_repeat+20694
+11: 00007FF768A5B6C7 v8::String::Utf8Value::~Utf8Value+143495        
+12: 000002B52FE7733A
 
-// Between PullQuoteTestimonial and BeforeAfterTeaser:
-<SectionDivider variant="light" symbol="✦" />
-```
+PS E:\black sea digital\silkbeautysalon10-4> npm run dev
 
-5. Run `npm run typecheck` — must pass.
+> silk-beauty-salon@0.2.0 dev
+> next dev -p 3000 --turbopack --hostname 0.0.0.0
 
-Files to create: `src/components/ui/ScrollProgressBar.tsx`,
-  `src/components/ui/SectionDivider.tsx`
-Files to modify: `src/app/[locale]/layout.tsx`,
-  `src/app/[locale]/page.tsx`
+▲ Next.js 16.2.4 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://0.0.0.0:3000
+- Environments: .env.local
+✓ Ready in 5.1s
+[@sentry/nextjs] DEPRECATION WARNING: disableLogger is deprecated and will be removed in a future version. Use webpack.treeshake.removeDebugLogging instead. (Not supported with Turbopack.)
+[@sentry/nextjs] DEPRECATION WARNING: automaticVercelMonitors is deprecated and will be removed in a future version. Use webpack.automaticVercelMonitors instead. (Not supported with Turbopack.)
+⚠ Slow filesystem detected. The benchmark took 503ms. If E:\black sea digital\silkbeautysalon10-4\.next/dev is a network drive, consider moving it to a local folder.
+See more: https://nextjs.org/docs/app/guides/local-development       
+○ Compiling middleware ...
+- Experiments (use with caution):
+  · clientTraceMetadata
+  · optimizePackageImports
+  ✓ scrollRestoration
 
----
+○ Compiling / ...
+ GET / 307 in 14.5s (next.js: 13.8s, application-code: 615ms)
+○ Compiling /[locale] ...
+ GET /en 200 in 23.2s (next.js: 22.0s, generate-params: 1144ms, application-code: 1159ms)
+ GET /favicon.ico 200 in 598ms (next.js: 54ms, generate-params: 30ms, application-code: 544ms)
+⨯ upstream image response failed for https://images.unsplash.com/photo-1606811841689-23dfddce2e95?w=900&q=85 404
