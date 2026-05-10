@@ -9,11 +9,19 @@
 import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
 
+const upstashUrl = process.env.UPSTASH_REDIS_REST_URL?.trim();
+const upstashToken = process.env.UPSTASH_REDIS_REST_TOKEN?.trim();
+
 // Upstash Redis client (same as middleware.ts)
 const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_REST_URL!,
-  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
+  url: upstashUrl || 'https://example.com',
+  token: upstashToken || 'placeholder_redis_token_for_local_dev',
 });
+
+const shouldBypassRateLimit =
+  process.env.PLAYWRIGHT === '1' ||
+  (process.env.NODE_ENV !== 'test' &&
+    (process.env.SKIP_ENV_VALIDATION === '1' || !upstashUrl || upstashUrl.includes('example.')));
 
 // Contact form: 5 requests per 15 minutes per IP
 const contactLimiter = new Ratelimit({
@@ -79,6 +87,10 @@ export interface RateLimitResult {
 }
 
 async function applyLimit(limiter: Ratelimit, ip: string): Promise<RateLimitResult> {
+  if (shouldBypassRateLimit) {
+    return { allowed: true, limit: 1_000, remaining: 999, resetTime: Date.now() + 60_000 };
+  }
+
   const { success, limit, remaining, reset } = await limiter.limit(ip);
   return { allowed: success, limit, remaining, resetTime: reset };
 }

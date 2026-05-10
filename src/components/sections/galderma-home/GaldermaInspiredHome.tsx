@@ -24,7 +24,7 @@ function SectionHeading({
 }) {
   return (
     <div className="max-w-3xl">
-      <p className="mb-4 text-[0.68rem] font-medium uppercase tracking-[0.28em] text-[#8d6f58]">
+      <p className="mb-4 text-[0.68rem] font-medium uppercase tracking-[0.28em] text-[#76563f]">
         {eyebrow}
       </p>
       <h2 className="font-sans text-[clamp(2.6rem,5vw,5.2rem)] font-light leading-[0.98] text-[#241f1b]">
@@ -104,7 +104,7 @@ function PortfolioSection() {
                 <p className="mt-4 text-sm leading-7 text-stone-600">
                   {item.description}
                 </p>
-                <span className="mt-7 inline-block text-[0.68rem] font-medium uppercase tracking-[0.2em] text-[#8d6f58]">
+                <span className="mt-7 inline-block text-[0.68rem] font-medium uppercase tracking-[0.2em] text-[#76563f]">
                   {t('portfolio.explore')}
                 </span>
               </div>
@@ -127,7 +127,7 @@ function StatsSection() {
             <p className="font-sans text-6xl font-light leading-none text-[#241f1b]">
               {stat.value}
             </p>
-            <p className="mt-4 text-[0.68rem] uppercase tracking-[0.22em] text-stone-500">
+            <p className="mt-4 text-[0.68rem] uppercase tracking-[0.22em] text-stone-600">
               {t(`stats.item${index + 1}.label`)}
             </p>
           </div>

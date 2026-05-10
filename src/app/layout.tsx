@@ -23,6 +23,18 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
+                const locale = window.location.pathname.split('/')[1] || '${locale}';
+                document.documentElement.lang = locale;
+                document.documentElement.dir = ${JSON.stringify(rtlLocales)}.includes(locale) ? 'rtl' : 'ltr';
+              })();
+            `,
+          }}
+        />
+        <script
+          nonce={nonce}
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
                 const theme = localStorage.getItem('theme');
                 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
                 if (theme === 'dark' || (!theme && prefersDark)) {

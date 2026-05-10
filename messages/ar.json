@@ -1919,7 +1919,9 @@
     "skipToMain": "Skip to main content",
     "skipToTreatments": "Skip to treatments",
     "skipToBooking": "Skip to booking",
-    "skipNavigation": "Skip links"
+    "skipNavigation": "Skip links",
+    "previousSlide": "Previous slide",
+    "nextSlide": "Next slide"
   },
   "errors": {
     "title": "حدث خطأ ما",
@@ -2017,7 +2019,146 @@
     "section2Title": "حالات البشرة",
     "section3Title": "مجموعة العلاجات",
     "section4Title": "حالات البشرة",
-    "section5Title": "مجموعة العلاجات"
+    "section5Title": "مجموعة العلاجات",
+    "carousel": {
+      "previousSlide": "Previous slide",
+      "nextSlide": "Next slide"
+    },
+    "heroSlides": {
+      "slide1": {
+        "eyebrow": "Medical aesthetics in Batumi",
+        "title": "Confidence in your skin starts with a precise consultation.",
+        "description": "Natural-looking injectables, skin quality treatments, and advanced device procedures planned around your anatomy, skin health, and lifestyle.",
+        "cta": "Book a consultation"
+      },
+      "slide2": {
+        "eyebrow": "Skin quality",
+        "title": "Real solutions for real skin concerns.",
+        "description": "From texture and pigmentation to hydration, firmness, and facial balance, every plan begins with a skin-first diagnosis.",
+        "cta": "Explore concerns"
+      },
+      "slide3": {
+        "eyebrow": "Injectables and contour",
+        "title": "Subtle volume. Considered contours. You, refreshed.",
+        "description": "Dermal fillers and anti-wrinkle treatments delivered with restraint, symmetry, and respect for natural expression.",
+        "cta": "View treatments"
+      }
+    },
+    "philosophy": {
+      "eyebrow": "Our approach",
+      "title": "A skin-first aesthetic practice.",
+      "description": "The Galderma-inspired direction is clean, clinical, and product-aware: fewer decorative effects, more trust, more education, and a calmer visual rhythm.",
+      "statement": "We study your skin, facial structure, and goals before recommending a treatment. The result should look considered, balanced, and quietly confident."
+    },
+    "concerns": {
+      "eyebrow": "Skin concerns",
+      "title": "Real solutions for real skin concerns.",
+      "description": "Explore common concerns and the treatment pathways that can support healthier, more confident skin."
+    },
+    "concernItems": {
+      "item1": {
+        "name": "Fine lines and wrinkles",
+        "description": "Soften expression lines while preserving natural movement."
+      },
+      "item2": {
+        "name": "Loss of firmness",
+        "description": "Support collagen, lift laxity, and refine facial structure."
+      },
+      "item3": {
+        "name": "Uneven tone",
+        "description": "Target pigmentation, dullness, and post-inflammatory marks."
+      },
+      "item4": {
+        "name": "Dry skin",
+        "description": "Restore hydration, barrier function, and lasting luminosity."
+      },
+      "item5": {
+        "name": "Acne and scarring",
+        "description": "Improve active breakouts, marks, and uneven texture."
+      }
+    },
+    "portfolio": {
+      "eyebrow": "Portfolio",
+      "title": "Holistic aesthetic treatments.",
+      "description": "A considered portfolio for facial balance, skin quality, and long-term confidence.",
+      "viewAll": "View all treatments",
+      "explore": "Explore",
+      "items": {
+        "item1": {
+          "title": "Dermal fillers",
+          "description": "Hyaluronic acid treatments for lips, cheeks, jawline, chin, under-eyes, and facial balancing."
+        },
+        "item2": {
+          "title": "Anti-wrinkle injectables",
+          "description": "Precise neuromodulator treatments for forehead lines, frown lines, crow's feet, masseter, and sweating."
+        },
+        "item3": {
+          "title": "Skin quality",
+          "description": "Medical facials, peels, boosters, microneedling, and laser-led plans for stronger, brighter skin."
+        }
+      }
+    },
+    "stats": {
+      "item1": {
+        "label": "Consultation-first plans"
+      },
+      "item2": {
+        "label": "Languages supported"
+      },
+      "item3": {
+        "label": "Skin and facial assessment"
+      }
+    },
+    "results": {
+      "eyebrow": "Real results",
+      "title": "The proof is in the plan.",
+      "description": "Before-and-after stories should be read as clinical examples, not promises. Your result depends on anatomy, product choice, dosage, and aftercare.",
+      "cta": "See results",
+      "before": "Before",
+      "after": "After",
+      "disclaimer": "Individual results vary. All treatment plans require clinical consultation."
+    },
+    "resultItems": {
+      "item1": {
+        "treatment": "Cheek and mid-face support",
+        "detail": "Restored volume with a soft, lifted contour."
+      },
+      "item2": {
+        "treatment": "Lip hydration and shape",
+        "detail": "Defined border, balanced volume, natural finish."
+      },
+      "item3": {
+        "treatment": "Skin radiance plan",
+        "detail": "Improved brightness, texture, and surface refinement."
+      }
+    },
+    "cta": {
+      "eyebrow": "Find your specialist",
+      "title": "Begin with a clinical consultation.",
+      "description": "Visit {clinicName} in Batumi for a structured assessment and a treatment plan tailored to your skin, anatomy, timing, and comfort.",
+      "bookNow": "Book now",
+      "contactUs": "Contact us"
+    },
+    "journal": {
+      "eyebrow": "Skin trends",
+      "title": "Aesthetic insight, without the noise.",
+      "description": "Educational notes for patients who want to understand treatment planning before they book.",
+      "cta": "Read journal"
+    },
+    "trendItems": {
+      "item1": {
+        "category": "Treatment planning",
+        "title": "How to plan injectables without looking overdone"
+      },
+      "item2": {
+        "category": "Skin health",
+        "title": "Skin quality is the new foundation"
+      },
+      "item3": {
+        "category": "Consultation",
+        "title": "What to know before a first filler consultation"
+      }
+    }
   },
   "homeEditorial": {
     "carousel": {

@@ -1919,7 +1919,9 @@
     "closeMenu": "Menüyü kapat",
     "required": "gerekli",
     "keyTab": "Tab",
-    "keyEscape": "Escape"
+    "keyEscape": "Escape",
+    "previousSlide": "?nceki slayt",
+    "nextSlide": "Sonraki slayt"
   },
   "errors": {
     "title": "Bir şeyler yanlış gitti",
@@ -2158,6 +2160,145 @@
     "section2Title": "Cilt Durumları",
     "section3Title": "Tedavi Portföyü",
     "section4Title": "Cilt Durumları",
-    "section5Title": "Tedavi Portföyü"
+    "section5Title": "Tedavi Portföyü",
+    "carousel": {
+      "previousSlide": "?nceki slayt",
+      "nextSlide": "Sonraki slayt"
+    },
+    "heroSlides": {
+      "slide1": {
+        "eyebrow": "Batum?da medikal estetik",
+        "title": "Cildinize duydu?unuz g?ven, hassas bir kons?ltasyonla ba?lar.",
+        "description": "Do?al g?r?n?ml? enjeksiyonlar, cilt kalitesi tedavileri ve ileri cihaz uygulamalar?; anatominiz, cilt sa?l???n?z ve ya?am tarz?n?za g?re planlan?r.",
+        "cta": "Kons?ltasyon randevusu al?n"
+      },
+      "slide2": {
+        "eyebrow": "Cilt kalitesi",
+        "title": "Ger?ek cilt sorunlar? i?in ger?ek ??z?mler.",
+        "description": "Dokudan pigmentasyona, nemden s?k?l??a ve y?z dengesine kadar her plan, cilt odakl? bir de?erlendirmeyle ba?lar.",
+        "cta": "Sorunlar? ke?fedin"
+      },
+      "slide3": {
+        "eyebrow": "Enjeksiyonlar ve kontur",
+        "title": "?nce hacim. D???n?lm?? konturlar. Daha taze siz.",
+        "description": "Dermal dolgular ve k?r???kl?k kar??t? tedaviler; ?l??l?l?k, simetri ve do?al ifadeye sayg?yla uygulan?r.",
+        "cta": "Tedavileri g?r?nt?le"
+      }
+    },
+    "philosophy": {
+      "eyebrow": "Yakla??m?m?z",
+      "title": "Cilt odakl? estetik bir yakla??m.",
+      "description": "Galderma?dan ilham alan bu y?n; temiz, klinik ve ?r?n bilinci y?ksek: daha az dekoratif etki, daha fazla g?ven, daha fazla e?itim ve daha sakin bir g?rsel ritim.",
+      "statement": "Bir tedavi ?nermeden ?nce cildinizi, y?z yap?n?z? ve hedeflerinizi inceliyoruz. Sonu?; d???n?lm??, dengeli ve sakin bir ?zg?ven ta??mal?."
+    },
+    "concerns": {
+      "eyebrow": "Cilt sorunlar?",
+      "title": "Ger?ek cilt sorunlar? i?in ger?ek ??z?mler.",
+      "description": "Daha sa?l?kl? ve daha ?zg?venli bir cildi destekleyebilecek yayg?n sorunlar? ve tedavi yollar?n? ke?fedin."
+    },
+    "concernItems": {
+      "item1": {
+        "name": "?nce ?izgiler ve k?r???kl?klar",
+        "description": "Do?al hareketi korurken mimik ?izgilerini yumu?at?n."
+      },
+      "item2": {
+        "name": "S?k?l?k kayb?",
+        "description": "Kolajeni destekleyin, gev?emeyi toparlay?n ve y?z yap?s?n? rafine edin."
+      },
+      "item3": {
+        "name": "D?zensiz ton",
+        "description": "Pigmentasyon, matl?k ve inflamasyon sonras? izleri hedefleyin."
+      },
+      "item4": {
+        "name": "Kuru cilt",
+        "description": "Nem, bariyer i?levi ve kal?c? ???lt?y? yeniden kazand?r?n."
+      },
+      "item5": {
+        "name": "Akne ve izler",
+        "description": "Aktif akneleri, lekeleri ve d?zensiz dokuyu iyile?tirin."
+      }
+    },
+    "portfolio": {
+      "eyebrow": "Portf?y",
+      "title": "B?t?nc?l estetik tedaviler.",
+      "description": "Y?z dengesi, cilt kalitesi ve uzun vadeli ?zg?ven i?in d???n?lm?? bir portf?y.",
+      "viewAll": "T?m tedavileri g?r?nt?le",
+      "explore": "Ke?fet",
+      "items": {
+        "item1": {
+          "title": "Dermal dolgular",
+          "description": "Dudaklar, yanaklar, ?ene hatt?, ?ene ucu, g?z alt? ve y?z dengesi i?in hyal?ronik asit temelli tedaviler."
+        },
+        "item2": {
+          "title": "K?r???kl?k kar??t? enjeksiyonlar",
+          "description": "Al?n ?izgileri, ka? aras?, g?z ?evresi, masseter ve terleme i?in hassas n?romod?lat?r uygulamalar?."
+        },
+        "item3": {
+          "title": "Cilt kalitesi",
+          "description": "Daha g??l? ve daha parlak bir cilt i?in medikal bak?mlar, peelingler, booster?lar, microneedling ve lazer odakl? planlar."
+        }
+      }
+    },
+    "stats": {
+      "item1": {
+        "label": "Kons?ltasyon odakl? planlar"
+      },
+      "item2": {
+        "label": "Desteklenen diller"
+      },
+      "item3": {
+        "label": "Cilt ve y?z de?erlendirmesi"
+      }
+    },
+    "results": {
+      "eyebrow": "Ger?ek sonu?lar",
+      "title": "Kan?t plandad?r.",
+      "description": "?ncesi ve sonras? hikayeleri vaat de?il, klinik ?rnekler olarak okunmal?d?r. Sonucunuz; anatominize, ?r?n se?imine, doza ve bak?m sonras? s?rece ba?l?d?r.",
+      "cta": "Sonu?lar? g?r?n",
+      "before": "?nce",
+      "after": "Sonra",
+      "disclaimer": "Bireysel sonu?lar de?i?ebilir. T?m tedavi planlar? klinik kons?ltasyon gerektirir."
+    },
+    "resultItems": {
+      "item1": {
+        "treatment": "Yanak ve orta y?z deste?i",
+        "detail": "Yumu?ak ve kalk?k bir konturla hacim geri kazand?r?ld?."
+      },
+      "item2": {
+        "treatment": "Dudak nemi ve ?ekli",
+        "detail": "Belirgin s?n?r, dengeli hacim, do?al biti?."
+      },
+      "item3": {
+        "treatment": "Cilt ???lt?s? plan?",
+        "detail": "Parlakl?k, doku ve y?zey p?r?zs?zl???nde iyile?me."
+      }
+    },
+    "cta": {
+      "eyebrow": "Uzman?n?z? bulun",
+      "title": "Klinik bir kons?ltasyonla ba?lay?n.",
+      "description": "{clinicName}?i Batum?da ziyaret ederek cildinize, anatominize, zamanlaman?za ve konforunuza g?re haz?rlanm?? yap?land?r?lm?? bir de?erlendirme ve tedavi plan? al?n.",
+      "bookNow": "Hemen rezervasyon yap",
+      "contactUs": "Bize ula??n"
+    },
+    "journal": {
+      "eyebrow": "Cilt trendleri",
+      "title": "G?r?lt?s?z estetik bak?? a??s?.",
+      "description": "Randevu almadan ?nce tedavi planlamas?n? anlamak isteyen hastalar i?in e?itici notlar.",
+      "cta": "Dergiyi oku"
+    },
+    "trendItems": {
+      "item1": {
+        "category": "Tedavi planlamas?",
+        "title": "Enjeksiyonlar abart?l? g?r?nmeden nas?l planlan?r?"
+      },
+      "item2": {
+        "category": "Cilt sa?l???",
+        "title": "Cilt kalitesi yeni temeldir"
+      },
+      "item3": {
+        "category": "Kons?ltasyon",
+        "title": "?lk dolgu kons?ltasyonundan ?nce bilinmesi gerekenler"
+      }
+    }
   }
 }

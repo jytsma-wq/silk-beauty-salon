@@ -20,8 +20,8 @@ export interface BookingServiceGroup {
 }
 
 const isPlaceholderBuild =
-  process.env.SKIP_ENV_VALIDATION === '1' &&
-  process.env.DATABASE_URL?.includes('build:build@localhost');
+  process.env.SKIP_ENV_VALIDATION?.trim() === '1' &&
+  process.env.DATABASE_URL?.trim().includes('build:build@localhost');
 
 // Cached function to get treatment categories by locale
 export const getTreatmentCategoriesByLocale = cache(async (locale: string) => {

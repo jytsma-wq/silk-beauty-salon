@@ -76,7 +76,7 @@ export function GaldermaFooter() {
         <div className="mb-20 max-w-3xl md:mb-32">
           <div className="mb-8 flex items-center gap-4">
             <div className="h-px w-12 bg-stone-300" />
-            <span className="text-xs uppercase tracking-[0.3em] text-stone-400">
+            <span className="text-xs uppercase tracking-[0.3em] text-stone-600">
               {t('stayConnected', { defaultValue: 'Stay Connected' })}
             </span>
           </div>
@@ -117,7 +117,7 @@ export function GaldermaFooter() {
 
         <div className="mb-16 grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-12 lg:grid-cols-6">
           <div className="col-span-2">
-            <h3 className="mb-6 text-xs uppercase tracking-[0.3em] text-stone-400">
+            <h3 className="mb-6 text-xs uppercase tracking-[0.3em] text-stone-600">
               {t('about', { defaultValue: 'About' })}
             </h3>
             <p className="max-w-xs text-sm leading-relaxed text-stone-600">{siteConfig.description}</p>
@@ -127,7 +127,7 @@ export function GaldermaFooter() {
                 href={siteConfig.social?.instagram ?? 'https://instagram.com/silkbeauty'}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-stone-400 transition-colors hover:text-[#8d6f58]"
+                className="text-stone-600 transition-colors hover:text-[#76563f]"
                 aria-label={t('instagram')}
               >
                 <Instagram className="h-[26px] w-[26px]" strokeWidth={1.8} />
@@ -136,7 +136,7 @@ export function GaldermaFooter() {
                 href={siteConfig.social?.facebook ?? 'https://facebook.com/silkbeauty'}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-stone-400 transition-colors hover:text-[#8d6f58]"
+                className="text-stone-600 transition-colors hover:text-[#76563f]"
                 aria-label={t('facebook')}
               >
                 <Facebook className="h-[26px] w-[26px]" strokeWidth={1.8} />
@@ -145,7 +145,7 @@ export function GaldermaFooter() {
           </div>
 
           <div>
-            <h3 className="mb-6 text-xs uppercase tracking-[0.3em] text-stone-400">
+            <h3 className="mb-6 text-xs uppercase tracking-[0.3em] text-stone-600">
               {t('treatments', { defaultValue: 'Treatments' })}
             </h3>
             <nav className="space-y-3">
@@ -162,7 +162,7 @@ export function GaldermaFooter() {
           </div>
 
           <div>
-            <h3 className="mb-6 text-xs uppercase tracking-[0.3em] text-stone-400">
+            <h3 className="mb-6 text-xs uppercase tracking-[0.3em] text-stone-600">
               {t('information', { defaultValue: 'Information' })}
             </h3>
             <nav className="space-y-3">
@@ -179,7 +179,7 @@ export function GaldermaFooter() {
           </div>
 
           <div className="col-span-2">
-            <h3 className="mb-6 text-xs uppercase tracking-[0.3em] text-stone-400">
+            <h3 className="mb-6 text-xs uppercase tracking-[0.3em] text-stone-600">
               {t('visitUs', { defaultValue: 'Visit Us' })}
             </h3>
             <address className="not-italic text-sm leading-relaxed text-stone-600">
