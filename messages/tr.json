@@ -38,8 +38,11 @@
     "menu": "Menü",
     "more": "Daha Fazla",
     "treatmentPortfolio": "Tedavi Portföyü",
-    "skinConditions": "Cilt Durumları"
-
+    "skinConditions": "Cilt Durumları",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "treatmentPortfolioDescription": "Explore our complete portfolio of advanced aesthetic treatments.",
+    "conditionsDescription": "Find treatment options by skin concern and goal."
   },
   "header": {
     "announcement": "Ödüllü | Batumi'nin En İyi Güzellik Salonu | Gürcistan Moda ve Güzellik Dergisi'nde yayınlandı"
@@ -268,7 +271,8 @@
       "title": "Sunduğumuz Tedaviler",
       "subtitle": "Her endişe için kapsamlı estetik çözümler.",
       "explore": "Explore treatments ->"
-    }
+    },
+    "bookImageAlt": "Konsültasyon rezervasyonu"
   },
   "booking": {
     "selectService": "Hizmet Seçin",
@@ -293,7 +297,7 @@
     "slotConflict": "Bu saat dilimi zaten rezerve edilmiş. Lütfen başka bir saat seçin.",
     "bookingFailed": "Rezervasyon oluşturulamadı",
     "unexpectedError": "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.",
-    "rateLimitMessage": "Çok fazla istek. Lütfen 15 dakika bekleyin.",
+    "rateLimitMessage": "?ok fazla istek. L?tfen 15 dakika bekleyin.",
     "bookingSummary": "Rezervasyon Özeti",
     "service": "Hizmet",
     "date": "Tarih",
@@ -309,23 +313,129 @@
     "serviceRejuvenation": "Cilt Gençleştirme",
     "servicePeel": "Kimyasal Peeling",
     "serviceMicroneedling": "Mikro İğneleme",
-    "serviceHydrafacial": "Hydrafacial",
-    "rateLimitMessage": "?ok fazla istek. L?tfen 15 dakika bekleyin."
+    "serviceHydrafacial": "Hydrafacial"
   },
   "bookingPage": {
-    "preferredDate": "Tercih Edilen Tarih",
-    "preferredTime": "Tercih Edilen Saat",
+    "preferredDate": "Tercih edilen tarih",
+    "preferredTime": "Tercih Edilen Zaman",
     "selectService": "Hizmet Seçin",
-    "selectServicePlaceholder": "Konsültasyon türünü seçin",
-    "fullName": "Tam Ad",
-    "namePlaceholder": "Tam adınızı girin",
-    "phoneNumber": "Telefon Numarası",
-    "phonePlaceholder": "+995 599 123 456",
-    "emailAddress": "E-posta Adresi",
-    "emailPlaceholder": "your@email.com",
-    "successTitle": "Rezervasyon Talebi Gönderildi",
-    "successMessage": "Rezervasyon talebiniz için teşekkürler. Yakında randevunuzu onaylamak için sizinle iletişime geçeceğiz.",
-    "bookAnother": "Başka Randevu Al"
+    "selectServicePlaceholder": "Bir kons?ltasyon t?r? se?in",
+    "fullName": "Ad Soyad",
+    "namePlaceholder": "Ahmet Yılmaz",
+    "phoneNumber": "Telefon (İsteğe Bağlı)",
+    "phonePlaceholder": "+90 555 123 4567",
+    "emailAddress": "E-posta",
+    "emailPlaceholder": "ahmet@example.com",
+    "successTitle": "Rezervasyon talebi g?nderildi",
+    "successMessage": "Rezervasyon talebiniz i?in te?ekk?r ederiz. Randevunuzu onaylamak i?in yak?nda sizinle ileti?ime ge?ece?iz.",
+    "bookAnother": "Ba?ka bir randevu al",
+    "title": "Randevu Al",
+    "subtitle": "Uzmanlarımızla konsültasyon veya tedavinizi planlayın",
+    "metadata": {
+      "title": "Randevu Al | Silk Beauty Salon",
+      "description": "Batumi, Gürcistan'daki Silk Beauty Salon'da konsültasyon veya tedavi randevunuzu ayarlayın."
+    },
+    "selectDateTime": "Tarih ve Saat Seçin",
+    "bookingNotConfigured": "Çevrimiçi Rezervasyon Yakında",
+    "bookingNotConfiguredDesc": "Çevrimiçi rezervasyon sistemimizi kuruyoruz. Bu arada, randevu almak için lütfen bizi arayın veya e-posta gönderin.",
+    "callToBook": "Arama ile Randevu Al",
+    "emailToBook": "E-posta ile Randevu Al",
+    "consultationTypes": "Konsültasyon Türleri",
+    "consultations": {
+      "facial": {
+        "title": "Yüz Konsültasyonu",
+        "duration": "30 dk",
+        "description": "Kırışıklık karşıtı tedavileri ve dermal dolguları tartışın"
+      },
+      "skin": {
+        "title": "Cilt Konsültasyonu",
+        "duration": "45 dk",
+        "description": "Kapsamlı cilt analizi ve tedavi planlaması"
+      },
+      "body": {
+        "title": "Vücut Konsültasyonu",
+        "duration": "30 dk",
+        "description": "Vücut şekillendirme ve cilt sıkılaştırma seçenekleri"
+      },
+      "virtual": {
+        "title": "Sanal Konsültasyon",
+        "duration": "20 dk",
+        "description": "Uzaktan müşteriler için çevrimiçi konsültasyon"
+      }
+    },
+    "whatToExpect": {
+      "title": "Beklentiler",
+      "step1": "Tıbbi anketimizi doldurun",
+      "step2": "Hedeflerinizi ve endişelerinizi tartışın",
+      "step3": "Kişiselleştirilmiş tedavi önerileri alın",
+      "step4": "Gizli maliyet olmayan net bir fiyat alın"
+    },
+    "needHelp": "Yardım mı Gerekiyor?",
+    "phone": "Telefon",
+    "email": "E-posta",
+    "address": "Adres",
+    "faq": {
+      "title": "Rezervasyon SSS",
+      "q1": "Bir konsültasyon ne kadar sürer?",
+      "a1": "İlk konsültasyonlar tipik olarak kapsamlı bir değerlendirme ve hedeflerinizin tartışılması için 30-45 dakika sürer.",
+      "q2": "Depozito gerekiyor mu?",
+      "a2": "Randevunuzu garanti altına almak için %20 depozito gerekir ve bu tedavi maliyetinizden düşülür.",
+      "q3": "İptal politikanız nedir?",
+      "a3": "İptaller için 48 saat önceden haber verilmesini gerektiriyoruz. Geç iptaller depozito kaybına neden olabilir.",
+      "q4": "Randevumu yeniden planlayabilir miyim?",
+      "a4": "Evet, randevunuzu planlanan saatten 24 saat önce yeniden planlayabilirsiniz. Lütfen yeni bir zaman ayarlamak için telefon veya e-posta ile bize ulaşın."
+    },
+    "selectTime": "Bir zaman aralığı seçin",
+    "morning": "Sabah",
+    "afternoon": "Öğleden sonra",
+    "evening": "Akşam",
+    "additionalNotes": "Ek Notlar",
+    "notesPlaceholder": "Bilmemiz gereken herhangi bir özel istek veya bilgi...",
+    "requestBooking": "Rezervasyon İste",
+    "bookingNote": "Randevunuzu 24 saat içinde onaylayacağız",
+    "eyebrow": "Kons?ltasyon rezervasyonu",
+    "heroImageAlt": "Salon i? mek?n?",
+    "dialogTitle": "Book Appointment",
+    "dialogDescription": "Schedule your consultation with our expert practitioners",
+    "continue": "Continue",
+    "back": "Back",
+    "confirmBooking": "Confirm Booking",
+    "bookingStatus": "Booking...",
+    "booked": "(Booked)",
+    "slotConflict": "This time slot is already booked. Please select another time.",
+    "bookingFailed": "Failed to create booking",
+    "unexpectedError": "An unexpected error occurred. Please try again.",
+    "rateLimitMessage": "Too many submissions. Please wait 15 minutes.",
+    "bookingSummary": "Booking Summary",
+    "bookingConfirmed": "Booking Confirmed!",
+    "thankYou": "Thank you, {name}. Your appointment has been scheduled.",
+    "bookingDetails": "Booking Details",
+    "done": "Done",
+    "selectDate": "Select Date",
+    "selectTimeSlot": "Select Time Slot",
+    "service": "Service",
+    "date": "Date",
+    "time": "Time",
+    "message": "Message (Optional)",
+    "servicePlaceholder": "Choose a service",
+    "messagePlaceholder": "Any specific requirements or questions...",
+    "serviceConsultation": "Consultation",
+    "serviceBotox": "Botox Treatment",
+    "serviceFillers": "Dermal Fillers",
+    "serviceLaser": "Laser Hair Removal",
+    "serviceRejuvenation": "Skin Rejuvenation",
+    "servicePeel": "Chemical Peel",
+    "serviceMicroneedling": "Microneedling",
+    "serviceHydrafacial": "Hydrafacial",
+    "imageAlt": "Salon içi",
+    "whatsappConfirm": "Merhaba! {date} tarihinde saat {time} için {service} randevusu oluşturdum. Adım {name}. Görüşmek üzere!",
+    "confirmViaWhatsApp": "WhatsApp ile onayla",
+    "serviceGroups": {
+      "consultations": "Consultations",
+      "injectables": "Injectables",
+      "skinTreatments": "Skin Treatments",
+      "bodyTreatments": "Body Treatments"
+    }
   },
   "statistics": {
     "years": "Yıllık Deneyim",
@@ -367,7 +477,9 @@
     "openingHours": "Çalışma Saatleri",
     "hours": {
       "monFri": "Pzt-Cum: 10:00 - 22:00",
-      "satSun": "Cmt-Paz: 10:00 - 22:00"
+      "satSun": "Cmt-Paz: 10:00 - 22:00",
+      "sat": "Cmt",
+      "sun": "Paz"
     },
     "social": "Bizi Takip Edin",
     "faqDesc": "Klinik ve tedavilerimiz hakkında en sık sorulan soruları okuyun.",
@@ -390,7 +502,9 @@
     "visitUs": "Bizi Ziyaret Edin",
     "designedIn": "Batumi'de Tasarlandı",
     "socialDescription": "Güncel haberler ve hasta hikayeleri için sosyal medyada bizi takip edin",
-    "disclaimer": "Her zaman ürünlerin kullanımıyla ilgili bireyselleştirilmiş tedavi önerileri ve önemli güvenlik bilgileri ile riskleri tartışmak için bir sağlık uzmanına danışın."
+    "disclaimer": "Her zaman ürünlerin kullanımıyla ilgili bireyselleştirilmiş tedavi önerileri ve önemli güvenlik bilgileri ile riskleri tartışmak için bir sağlık uzmanına danışın.",
+    "instagram": "Instagram",
+    "facebook": "Facebook"
   },
   "contact": {
     "title": "Bize Ulaşın",
@@ -486,7 +600,8 @@
     "listingSubtitle": "Cilt sorununuz ne olursa olsun, uzman uygulayıcılarımız kişiselleştirilmiş bir tedavi planı oluşturabilir",
     "ctaTitle": "Hangi Tedavinin Sizin İçin Doğru Olduğundan Emin Değil misiniz?",
     "ctaSubtitle": "Sorunlarınızı değerlendirecek ve en iyi tedavi seçeneklerini önerecek uzman pratisyenlerimizden biriyle konsültasyon randevusu alın",
-    "bookConsultation": "Konsültasyon Randevusu Al"
+    "bookConsultation": "Konsültasyon Randevusu Al",
+    "imageAlt": "Cilt Bakımı Tedavisi"
   },
   "aboutPage": {
     "title": "Hakkımızda",
@@ -528,7 +643,9 @@
     "featuredIn": "Georgian Fashion & Beauty Magazine'de yer aldı",
     "ctaTitle": "Yolculuğunuza Başlamaya Hazır mısınız?",
     "ctaSubtitle": "Bugün uzman uygulayıcılarımızdan biriyle konsültasyon randevusu alın",
-    "ctaButton": "Konsültasyon Randevusu Al"
+    "ctaButton": "Konsültasyon Randevusu Al",
+    "interiorAlt": "Silk Beauty Salon İç Mekan",
+    "clinicAlt": "Silk Beauty Salon Kliniği"
   },
   "contactPage": {
     "title": "Bize Ulaşın",
@@ -569,7 +686,9 @@
     "whatsapp": "WhatsApp",
     "viewOnMap": "Google Maps'te Görüntüle",
     "mapAddress": "Zurab Gorgiladze Caddesi 63",
-    "mapCity": "Batum, Gürcistan"
+    "mapCity": "Batum, Gürcistan",
+    "imageAlt": "Silk Beauty Salon ile İletişime Geçin",
+    "mapTitle": "Silk Beauty Salon Konumu"
   },
   "faqPage": {
     "title": "Sıkça Sorulan Sorular",
@@ -632,7 +751,8 @@
     "ctaTitle": "Bugün Tedavinizi Ayırtın",
     "ctaSubtitle": "Konsültasyon randevusu almak ve bu özel tekliflerden yararlanmak için bizimle iletişime geçin",
     "ctaButton": "Şimdi Ayırt",
-    "termsText": "Tüm teklifler stok durumuna göre değişir ve herhangi bir zamanda geri çekilebilir. Aksi belirtilmedikçe teklifler birleştirilemez. Lütfen rezervasyon yaparken tekliften bahsedin."
+    "termsText": "Tüm teklifler stok durumuna göre değişir ve herhangi bir zamanda geri çekilebilir. Aksi belirtilmedikçe teklifler birleştirilemez. Lütfen rezervasyon yaparken tekliften bahsedin.",
+    "imageAlt": "Özel Teklifler"
   },
   "blogPage": {
     "title": "Blogumuz",
@@ -649,7 +769,9 @@
     "readyToTransform": "Dönüşüme Hazır mısınız?",
     "bookConsultationDesc": "Estetik hedeflerinizi tartışmak için uzmanlarımızdan biriyle konsültasyon ayarlayın.",
     "relatedPosts": "İlgili Makaleler",
-    "readMore": "Devamını Oku"
+    "readMore": "Devamını Oku",
+    "postNotFound": "Gönderi bulunamadı",
+    "expertPractitioner": "Uzman Uygulayıcı"
   },
   "treatmentPage": {
     "bookNow": "Bu Tedaviyi Randevu Al",
@@ -674,7 +796,10 @@
     "results": "Sonuçlar",
     "downtime": "İyileşme Süresi",
     "youMightAlsoLike": "Ayrıca Hoşlanabilirsiniz",
-    "learnMore": "Daha Fazla Öğrenin"
+    "learnMore": "Daha Fazla Öğrenin",
+    "heroAlt": "Lüks Güzellik Salonu",
+    "durationResults": "3-6 ay",
+    "minimalDowntime": "Yoktan minimuma"
   },
   "conditionPage": {
     "title": "Cilt Sorunu",
@@ -727,7 +852,11 @@
     "whatsapp": "WhatsApp",
     "bookViaWhatsApp": "WhatsApp ile Randevu Al",
     "searchPlaceholder": "Tedavi ve cilt sorunları ara...",
-    "submitting": "G?nderiliyor..."
+    "submitting": "G?nderiliyor...",
+    "tryAgain": "Tekrar Dene",
+    "view": "Görüntüle",
+    "currentLanguageFlag": "Current language: {language}",
+    "languageFlag": "{language} flag"
   },
   "siteConfig": {
     "awards": {
@@ -1539,7 +1668,9 @@
     "otherInquiry": "Diğer sorular",
     "typicalReply": "Genellikle dakikalar içinde yanıt verir",
     "chatOnWhatsApp": "WhatsApp'ta Sohbet Et",
-    "close": "Kapat"
+    "close": "Kapat",
+    "prefillBooking": "Merhaba Silk Beauty! Randevu almak istiyorum. Lütfen uygun saatlerinizi bildirir misiniz? Teşekkürler!",
+    "prefillWithService": "Merhaba Silk Beauty! {service} için randevu almak istiyorum. Lütfen uygun saatlerinizi bildirir misiniz? Teşekkürler!"
   },
   "consent": {
     "title": "Çerez Tercihleri",
@@ -1771,125 +1902,24 @@
     "pricingDesc": "GEL ve USD'de şeffaf fiyatlandırma",
     "faqDesc": "Yaygın sorular yanıtlandı"
   },
-  "bookingPage": {
-    "title": "Randevu Al",
-    "subtitle": "Uzmanlarımızla konsültasyon veya tedavinizi planlayın",
-    "metadata": {
-      "title": "Randevu Al | Silk Beauty Salon",
-      "description": "Batumi, Gürcistan'daki Silk Beauty Salon'da konsültasyon veya tedavi randevunuzu ayarlayın."
-    },
-    "selectDateTime": "Tarih ve Saat Seçin",
-    "bookingNotConfigured": "Çevrimiçi Rezervasyon Yakında",
-    "bookingNotConfiguredDesc": "Çevrimiçi rezervasyon sistemimizi kuruyoruz. Bu arada, randevu almak için lütfen bizi arayın veya e-posta gönderin.",
-    "callToBook": "Arama ile Randevu Al",
-    "emailToBook": "E-posta ile Randevu Al",
-    "consultationTypes": "Konsültasyon Türleri",
-    "consultations": {
-      "facial": {
-        "title": "Yüz Konsültasyonu",
-        "duration": "30 dk",
-        "description": "Kırışıklık karşıtı tedavileri ve dermal dolguları tartışın"
-      },
-      "skin": {
-        "title": "Cilt Konsültasyonu",
-        "duration": "45 dk",
-        "description": "Kapsamlı cilt analizi ve tedavi planlaması"
-      },
-      "body": {
-        "title": "Vücut Konsültasyonu",
-        "duration": "30 dk",
-        "description": "Vücut şekillendirme ve cilt sıkılaştırma seçenekleri"
-      },
-      "virtual": {
-        "title": "Sanal Konsültasyon",
-        "duration": "20 dk",
-        "description": "Uzaktan müşteriler için çevrimiçi konsültasyon"
-      }
-    },
-    "whatToExpect": {
-      "title": "Beklentiler",
-      "step1": "Tıbbi anketimizi doldurun",
-      "step2": "Hedeflerinizi ve endişelerinizi tartışın",
-      "step3": "Kişiselleştirilmiş tedavi önerileri alın",
-      "step4": "Gizli maliyet olmayan net bir fiyat alın"
-    },
-    "needHelp": "Yardım mı Gerekiyor?",
-    "phone": "Telefon",
-    "email": "E-posta",
-    "address": "Adres",
-    "faq": {
-      "title": "Rezervasyon SSS",
-      "q1": "Bir konsültasyon ne kadar sürer?",
-      "a1": "İlk konsültasyonlar tipik olarak kapsamlı bir değerlendirme ve hedeflerinizin tartışılması için 30-45 dakika sürer.",
-      "q2": "Depozito gerekiyor mu?",
-      "a2": "Randevunuzu garanti altına almak için %20 depozito gerekir ve bu tedavi maliyetinizden düşülür.",
-      "q3": "İptal politikanız nedir?",
-      "a3": "İptaller için 48 saat önceden haber verilmesini gerektiriyoruz. Geç iptaller depozito kaybına neden olabilir.",
-      "q4": "Randevumu yeniden planlayabilir miyim?",
-      "a4": "Evet, randevunuzu planlanan saatten 24 saat önce yeniden planlayabilirsiniz. Lütfen yeni bir zaman ayarlamak için telefon veya e-posta ile bize ulaşın."
-    },
-    "preferredTime": "Tercih Edilen Zaman",
-    "selectTime": "Bir zaman aralığı seçin",
-    "morning": "Sabah",
-    "afternoon": "Öğleden sonra",
-    "evening": "Akşam",
-    "additionalNotes": "Ek Notlar",
-    "notesPlaceholder": "Bilmemiz gereken herhangi bir özel istek veya bilgi...",
-    "requestBooking": "Rezervasyon İste",
-    "bookingNote": "Randevunuzu 24 saat içinde onaylayacağız",
-    "eyebrow": "Kons?ltasyon rezervasyonu",
-    "heroImageAlt": "Salon i? mek?n?",
-    "preferredDate": "Tercih edilen tarih",
-    "selectService": "Hizmet Seçin",
-    "selectServicePlaceholder": "Bir kons?ltasyon t?r? se?in",
-    "fullName": "Ad Soyad",
-    "namePlaceholder": "Ahmet Yılmaz",
-    "phoneNumber": "Telefon (İsteğe Bağlı)",
-    "phonePlaceholder": "+90 555 123 4567",
-    "emailAddress": "E-posta",
-    "emailPlaceholder": "ahmet@example.com",
-    "successTitle": "Rezervasyon talebi g?nderildi",
-    "successMessage": "Rezervasyon talebiniz i?in te?ekk?r ederiz. Randevunuzu onaylamak i?in yak?nda sizinle ileti?ime ge?ece?iz.",
-    "bookAnother": "Ba?ka bir randevu al",
-    "dialogTitle": "Book Appointment",
-    "dialogDescription": "Schedule your consultation with our expert practitioners",
-    "continue": "Continue",
-    "back": "Back",
-    "confirmBooking": "Confirm Booking",
-    "bookingStatus": "Booking...",
-    "booked": "(Booked)",
-    "slotConflict": "This time slot is already booked. Please select another time.",
-    "bookingFailed": "Failed to create booking",
-    "unexpectedError": "An unexpected error occurred. Please try again.",
-    "rateLimitMessage": "Too many submissions. Please wait 15 minutes.",
-    "bookingSummary": "Booking Summary",
-    "bookingConfirmed": "Booking Confirmed!",
-    "thankYou": "Thank you, {name}. Your appointment has been scheduled.",
-    "bookingDetails": "Booking Details",
-    "done": "Done",
-    "selectDate": "Select Date",
-    "selectTimeSlot": "Select Time Slot",
-    "service": "Service",
-    "date": "Date",
-    "time": "Time",
-    "message": "Message (Optional)",
-    "servicePlaceholder": "Choose a service",
-    "messagePlaceholder": "Any specific requirements or questions...",
-    "serviceConsultation": "Consultation",
-    "serviceBotox": "Botox Treatment",
-    "serviceFillers": "Dermal Fillers",
-    "serviceLaser": "Laser Hair Removal",
-    "serviceRejuvenation": "Skin Rejuvenation",
-    "servicePeel": "Chemical Peel",
-    "serviceMicroneedling": "Microneedling",
-    "serviceHydrafacial": "Hydrafacial"
-  },
   "accessibility": {
     "skipToContent": "Ana içeriğe geç",
     "skipToMain": "Ana içeriğe geç",
     "skipToTreatments": "Tedavilere geç",
     "skipToBooking": "Rezervasyona geç",
-    "skipNavigation": "Gezinti Atla Bağlantıları"
+    "skipNavigation": "Gezinti Atla Bağlantıları",
+    "loadingThemeToggle": "Tema geçişi yükleniyor",
+    "closeVideo": "Videoyu kapat",
+    "toggleFullscreen": "Tam ekranı değiştir",
+    "closeGallery": "Galeriyi kapat",
+    "previousImage": "Önceki görüntü",
+    "nextImage": "Sonraki görüntü",
+    "skipLinks": "Bağlantıları atla",
+    "openMenu": "Menüyü aç",
+    "closeMenu": "Menüyü kapat",
+    "required": "gerekli",
+    "keyTab": "Tab",
+    "keyEscape": "Escape"
   },
   "errors": {
     "title": "Bir şeyler yanlış gitti",
@@ -2099,29 +2129,11 @@
       }
     }
   },
-  "common": {
-    "tryAgain": "Tekrar Dene",
-    "view": "Görüntüle"
-  },
   "errorPage": {
     "somethingWentWrong": "Bir Şey Yanlış Gitti",
     "apologyMessage": "Bu rahatsızlık için özür dileriz. Beklenmedik bir hata oluştu.",
     "tryAgain": "Tekrar Dene",
     "globalError": "Bir Şey Yanlış Gitti"
-  },
-  "accessibility": {
-    "loadingThemeToggle": "Tema geçişi yükleniyor",
-    "closeVideo": "Videoyu kapat",
-    "toggleFullscreen": "Tam ekranı değiştir",
-    "closeGallery": "Galeriyi kapat",
-    "previousImage": "Önceki görüntü",
-    "nextImage": "Sonraki görüntü",
-    "skipLinks": "Bağlantıları atla",
-    "openMenu": "Menüyü aç",
-    "closeMenu": "Menüyü kapat",
-    "required": "gerekli",
-    "keyTab": "Tab",
-    "keyEscape": "Escape"
   },
   "social": {
     "instagram": "Instagram",
@@ -2137,44 +2149,9 @@
     "bookConsultation": "Danışmanlık Rezervasyonu",
     "skinCareTreatment": "Cilt Bakım Tedavisi"
   },
-  "footer": {
-    "hours": {
-      "sat": "Cmt",
-      "sun": "Paz"
-    }
-  },
-  "blogPage": {
-    "postNotFound": "Gönderi bulunamadı",
-    "expertPractitioner": "Uzman Uygulayıcı"
-  },
-  "treatmentPage": {
-    "heroAlt": "Lüks Güzellik Salonu",
-    "durationResults": "3-6 ay",
-    "minimalDowntime": "Yoktan minimuma"
-  },
   "international": {
     "imageAlt": "Silk Beauty Salon",
     "teamAlt": "Nana Gviniashvili"
-  },
-  "contactPage": {
-    "imageAlt": "Silk Beauty Salon ile İletişime Geçin",
-    "mapTitle": "Silk Beauty Salon Konumu"
-  },
-  "consultation": {
-    "bookImageAlt": "Konsültasyon rezervasyonu"
-  },
-  "conditionsPage": {
-    "imageAlt": "Cilt Bakımı Tedavisi"
-  },
-  "offersPage": {
-    "imageAlt": "Özel Teklifler"
-  },
-  "bookingPage": {
-    "imageAlt": "Salon içi"
-  },
-  "aboutPage": {
-    "interiorAlt": "Silk Beauty Salon İç Mekan",
-    "clinicAlt": "Silk Beauty Salon Kliniği"
   },
   "home": {
     "section1Title": "Tedavi Portföyü",

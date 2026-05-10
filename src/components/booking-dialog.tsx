@@ -1,12 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { format } from "date-fns";
 import { useTranslations } from "next-intl";
-import { format, isBefore, isToday } from "date-fns";
 import { cn } from "@/lib/utils";
 import { Calendar } from "@/components/ui/calendar";
-import { apiPost, apiGet, API_ENDPOINTS, ApiError } from "@/lib/api-client";
-import { useClientCsrfToken } from "@/lib/csrf-client";
+import { useBookingForm, type BookingServiceGroup } from "@/hooks/use-booking-form";
 import { siteConfig } from "@/data/site-config";
 import {
   Dialog,
@@ -22,76 +21,65 @@ import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
+  SelectLabel,
+  SelectSeparator,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
 import {
   CalendarIcon,
-  Clock,
-  User,
-  Mail,
-  Phone,
-  MessageSquare,
   CheckCircle2,
-  Loader2,
   ChevronLeft,
   ChevronRight,
+  Clock,
+  Loader2,
+  Mail,
+  MessageCircle,
+  MessageSquare,
+  Phone,
+  User,
 } from "lucide-react";
 
 interface BookingDialogProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  renderMode?: "dialog" | "inline";
+  serviceGroups?: BookingServiceGroup[];
 }
 
-const CONSULTATION_KEYS = [
-  { key: "facial", bookingType: "facial-consultation" },
-  { key: "skin", bookingType: "skin-consultation" },
-  { key: "body", bookingType: "body-consultation" },
-  { key: "virtual", bookingType: "virtual-consultation" },
-] as const;
-
-const TREATMENT_KEYS = [
-  "serviceBotox",
-  "serviceFillers",
-  "serviceLaser",
-  "serviceRejuvenation",
-  "servicePeel",
-  "serviceMicroneedling",
-  "serviceHydrafacial",
-] as const;
-
-// Step indicator component
 function StepIndicator({ step }: { step: string }) {
   return (
-    <div className="flex items-center justify-center gap-4 mb-8">
+    <div className="mb-6 flex items-center justify-center gap-2 sm:mb-8 sm:gap-4">
       {[1, 2, 3].map((num) => (
         <div key={num} className="flex items-center">
           <div
             className={cn(
-              "w-10 h-10 rounded-full flex items-center justify-center font-medium transition-colors",
+              "flex h-8 w-8 items-center justify-center rounded-full text-sm font-medium transition-colors sm:h-10 sm:w-10 sm:text-base",
               step === "datetime" && num === 1 && "bg-[#b5453a] text-white",
               step === "details" && num === 1 && "bg-emerald-600 text-white",
               step === "details" && num === 2 && "bg-[#b5453a] text-white",
               step === "confirmation" && num <= 2 && "bg-emerald-600 text-white",
               step === "confirmation" && num === 3 && "bg-[#b5453a] text-white",
-              (step === "datetime" && num > 1) || (step === "details" && num === 3)
-                ? "bg-gray-200 text-gray-500"
-                : ""
+              ((step === "datetime" && num > 1) || (step === "details" && num === 3)) &&
+                "bg-gray-200 text-gray-500"
             )}
           >
-            {((step === "details" && num === 1) ||
-              (step === "confirmation" && num <= 2)) && <CheckCircle2 className="w-5 h-5" />}
+            {((step === "details" && num === 1) || (step === "confirmation" && num <= 2)) && (
+              <CheckCircle2 className="h-4 w-4 sm:h-5 sm:w-5" />
+            )}
             {((step === "datetime" && num === 1) ||
               (step === "details" && num === 2) ||
-              (step === "confirmation" && num === 3)) && num}
-            {step === "datetime" && num > 1 && num}
-            {step === "details" && num === 3 && num}
+              (step === "confirmation" && num === 3) ||
+              (step === "datetime" && num > 1) ||
+              (step === "details" && num === 3)) &&
+              num}
           </div>
           {num < 3 && (
             <div
               className={cn(
-                "w-12 h-0.5 mx-2",
+                "mx-1 h-0.5 w-8 sm:mx-2 sm:w-12",
                 (step === "details" && num === 1) || step === "confirmation"
                   ? "bg-emerald-600"
                   : "bg-gray-200"
@@ -104,42 +92,78 @@ function StepIndicator({ step }: { step: string }) {
   );
 }
 
-// Consolidated form state interface
-interface FormState {
-  step: "datetime" | "details" | "confirmation";
-  selectedService: string;
-  selectedDate: Date | undefined;
-  selectedTime: string;
-  bookedSlots: string[];
-  name: string;
-  email: string;
-  phone: string;
-  message: string;
-}
-
-const INITIAL_FORM_STATE: FormState = {
-  step: "datetime",
-  selectedService: "",
-  selectedDate: undefined,
-  selectedTime: "",
-  bookedSlots: [],
-  name: "",
-  email: "",
-  phone: "",
-  message: "",
-};
-
-export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
+function useFallbackServiceGroups(): BookingServiceGroup[] {
   const t = useTranslations("bookingPage");
 
-  // Consolidated form state
-  const [formState, setFormState] = useState<FormState>(INITIAL_FORM_STATE);
+  return [
+    {
+      label: t("serviceGroups.consultations"),
+      services: [
+        {
+          label: t("consultations.facial.title"),
+          value: t("consultations.facial.title"),
+          duration: t("consultations.facial.duration"),
+        },
+        {
+          label: t("consultations.skin.title"),
+          value: t("consultations.skin.title"),
+          duration: t("consultations.skin.duration"),
+        },
+        {
+          label: t("consultations.body.title"),
+          value: t("consultations.body.title"),
+          duration: t("consultations.body.duration"),
+        },
+        {
+          label: t("consultations.virtual.title"),
+          value: t("consultations.virtual.title"),
+          duration: t("consultations.virtual.duration"),
+        },
+      ],
+    },
+    {
+      label: t("serviceGroups.skinTreatments"),
+      services: [
+        { label: t("serviceLaser"), value: t("serviceLaser") },
+        { label: t("serviceRejuvenation"), value: t("serviceRejuvenation") },
+        { label: t("servicePeel"), value: t("servicePeel") },
+        { label: t("serviceMicroneedling"), value: t("serviceMicroneedling") },
+        { label: t("serviceHydrafacial"), value: t("serviceHydrafacial") },
+      ],
+    },
+    {
+      label: t("serviceGroups.injectables"),
+      services: [
+        { label: t("serviceBotox"), value: t("serviceBotox") },
+        { label: t("serviceFillers"), value: t("serviceFillers") },
+      ],
+    },
+  ];
+}
 
-  // UI state (separate as it's transient)
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+export function BookingDialog({
+  open = false,
+  onOpenChange,
+  renderMode = "dialog",
+  serviceGroups,
+}: BookingDialogProps) {
+  const t = useTranslations("bookingPage");
+  const fallbackServiceGroups = useFallbackServiceGroups();
+  const groups = serviceGroups?.length ? serviceGroups : fallbackServiceGroups;
+  const {
+    formState,
+    timeSlots,
+    isLoading,
+    error,
+    isDateDisabled,
+    updateField,
+    selectDate,
+    goToDetails,
+    goBack,
+    submit,
+    reset,
+  } = useBookingForm();
 
-  // Destructure for convenience
   const {
     step,
     selectedService,
@@ -152,232 +176,133 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
     message,
   } = formState;
 
-  // Reset state when dialog closes
   useEffect(() => {
-    if (!open) {
-      // Delay reset to allow close animation
-      const timer = setTimeout(() => {
-        setFormState(INITIAL_FORM_STATE);
-        setError("");
-      }, 300);
-      return () => clearTimeout(timer);
-    }
-  }, [open]);
+    if (renderMode !== "dialog" || open) return;
+    const timer = window.setTimeout(reset, 300);
+    return () => window.clearTimeout(timer);
+  }, [open, renderMode, reset]);
 
-  const csrfToken = useClientCsrfToken();
-
-  const getHoursForDate = (date?: Date) => {
-    switch (date?.getDay()) {
-      case 0:
-        return siteConfig.businessHours.sunday;
-      case 1:
-        return siteConfig.businessHours.monday;
-      case 2:
-        return siteConfig.businessHours.tuesday;
-      case 3:
-        return siteConfig.businessHours.wednesday;
-      case 4:
-        return siteConfig.businessHours.thursday;
-      case 5:
-        return siteConfig.businessHours.friday;
-      case 6:
-        return siteConfig.businessHours.saturday;
-      default:
-        return siteConfig.businessHours.monday;
-    }
-  };
-
-  const buildTimeSlots = (date?: Date) => {
-    const [start, end] = getHoursForDate(date).split(" - ");
-    const startHour = Number.parseInt(start.split(":")[0] ?? "10", 10);
-    const endHour = Number.parseInt(end.split(":")[0] ?? "22", 10);
-
-    return Array.from({ length: Math.max(endHour - startHour, 0) }, (_, index) => {
-      const hour = startHour + index;
-      const nextHour = hour + 1;
-      return `${`${hour}`.padStart(2, "0")}:00 - ${`${nextHour}`.padStart(2, "0")}:00`;
-    });
-  };
-
-  // Fetch booked slots when date changes
-  useEffect(() => {
-    if (!selectedDate) return;
-
-    const controller = new AbortController();
-    const dateStr = format(selectedDate, "yyyy-MM-dd");
-    apiGet<{ bookedSlots: string[] }>(`${API_ENDPOINTS.bookings}?date=${dateStr}`, {
-      signal: controller.signal,
-    })
-      .then((data) =>
-        setFormState((prev) => ({ ...prev, bookedSlots: data.bookedSlots || [] }))
-      )
-      .catch((err) => {
-        if (err instanceof Error && err.name === "AbortError") return;
-        console.error("Error fetching booked slots:", err);
-      });
-
-    return () => controller.abort();
-  }, [selectedDate]);
-
-  // Disable invalid dates (past dates and weekends)
-  const isDateDisabled = (date: Date) => {
-    if (isBefore(date, new Date()) && !isToday(date)) return true;
-    return false;
-  };
-
-  const timeSlots = buildTimeSlots(selectedDate);
-
-  const handleNext = () => {
-    if (step === "datetime" && selectedService && selectedDate && selectedTime) {
-      setFormState((prev) => ({ ...prev, step: "details" }));
-    } else if (step === "details" && name && email) {
-      handleSubmit();
-    }
-  };
-
-  const handleBack = () => {
-    if (step === "details") {
-      setFormState((prev) => ({ ...prev, step: "datetime" }));
-    }
-  };
-
-  const handleSubmit = async () => {
-    if (!selectedDate || !selectedService || !selectedTime) return;
-
-    setIsLoading(true);
-    setError("");
-
-    try {
-      await apiPost(API_ENDPOINTS.bookings, {
-        name,
-        email,
-        phone,
-        service: selectedService,
-        date: selectedDate ? format(selectedDate, "yyyy-MM-dd") : "",
-        timeSlot: selectedTime,
-        message,
-      }, { csrfToken });
-
-      setFormState((prev) => ({ ...prev, step: "confirmation" }));
-    } catch (err) {
-      if (err instanceof ApiError) {
-        if (err.status === 409) {
-          setError(t('slotConflict'));
-        } else if (err.isRateLimit()) {
-          setError(t('rateLimitMessage'));
-        } else {
-          setError(err.message || t('bookingFailed'));
-        }
-      } else {
-        setError(t('unexpectedError'));
-      }
-    } finally {
-      setIsLoading(false);
+  const handleDetailsSubmit = () => {
+    if (name && email && phone) {
+      void submit();
     }
   };
 
   const handleClose = () => {
-    onOpenChange(false);
+    if (renderMode === "dialog") {
+      onOpenChange?.(false);
+      return;
+    }
+    reset();
   };
 
-  return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader className="text-center">
-          <DialogTitle className="text-2xl font-serif">{t('dialogTitle')}</DialogTitle>
-          <DialogDescription>
-            {t('dialogDescription')}
-          </DialogDescription>
-        </DialogHeader>
+  const phoneNumber = siteConfig.contact.phone.replace(/\s/g, "").replace("+", "");
+  const confirmationDate = selectedDate ? format(selectedDate, "MMMM d, yyyy") : "";
+  const whatsappMessage = t("whatsappConfirm", {
+    service: selectedService,
+    date: confirmationDate,
+    time: selectedTime,
+    name,
+  });
+  const whatsappHref = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
+  const content = (
+    <div
+      className={cn(
+        "bg-white",
+        renderMode === "inline" && "rounded-md border border-[#e8e4df] p-4 shadow-sm sm:p-6"
+      )}
+    >
+      <div className="text-center">
+        <h2 className="font-serif text-2xl text-[#241f1b]">{t("dialogTitle")}</h2>
+        <p className="mt-2 text-sm text-stone-600">{t("dialogDescription")}</p>
+      </div>
+
+      <div className="mt-6">
         <StepIndicator step={step} />
 
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-sm mb-4">
+          <div className="mb-4 rounded-sm border border-red-200 bg-red-50 px-4 py-3 text-red-700">
             {error}
           </div>
         )}
 
-        {/* Step 1: Date & Time Selection */}
         {step === "datetime" && (
           <div className="space-y-6">
-            {/* Service Selection */}
             <div>
-              <Label className="flex items-center gap-2 mb-2">
-                <MessageSquare className="w-4 h-4 text-[#b5453a]" />
-                {t('selectService')}
+              <Label className="mb-2 flex items-center gap-2">
+                <MessageSquare className="h-4 w-4 text-[#b5453a]" />
+                {t("selectService")}
               </Label>
               <Select
                 value={selectedService}
-                onValueChange={(value) =>
-                  setFormState((prev) => ({ ...prev, selectedService: value }))
-                }
+                onValueChange={(value) => updateField("selectedService", value)}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder={t('servicePlaceholder')} />
+                  <SelectValue placeholder={t("servicePlaceholder")} />
                 </SelectTrigger>
                 <SelectContent>
-                  {CONSULTATION_KEYS.map(({ key }) => (
-                    <SelectItem key={key} value={t(`consultations.${key}.title`)}>
-                      {t(`consultations.${key}.title`)} - {t(`consultations.${key}.duration`)}
-                    </SelectItem>
-                  ))}
-                  {TREATMENT_KEYS.map((key) => (
-                    <SelectItem key={key} value={t(key)}>
-                      {t(key)}
-                    </SelectItem>
+                  {groups.map((group, groupIndex) => (
+                    <SelectGroup key={group.label}>
+                      {groupIndex > 0 && <SelectSeparator />}
+                      <SelectLabel>{group.label}</SelectLabel>
+                      {group.services.map((service) => (
+                        <SelectItem key={`${group.label}-${service.value}`} value={service.value}>
+                          {service.label}
+                          {service.duration ? ` - ${service.duration}` : ""}
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
                   ))}
                 </SelectContent>
               </Select>
             </div>
 
-            {/* Calendar */}
             <div>
-              <Label className="flex items-center gap-2 mb-2">
-                <CalendarIcon className="w-4 h-4 text-[#b5453a]" />
-                {t('selectDate')}
+              <Label className="mb-2 flex items-center gap-2">
+                <CalendarIcon className="h-4 w-4 text-[#b5453a]" />
+                {t("selectDate")}
               </Label>
-              <div className="border rounded-sm p-4 flex justify-center">
+              <div className="flex justify-center rounded-sm border p-2 sm:p-4">
                 <Calendar
                   mode="single"
                   selected={selectedDate}
-                  onSelect={(date) =>
-                    setFormState((prev) => ({ ...prev, selectedDate: date }))
-                  }
+                  onSelect={selectDate}
                   disabled={isDateDisabled}
                   className="rounded-md border-0"
+                  classNames={{
+                    day_button: "mx-auto h-12 w-12 rounded-md p-0 text-base font-medium text-[#2d2925] hover:bg-[#f3ece3] hover:text-[#241f1b] sm:h-10 sm:w-10",
+                  }}
                 />
               </div>
             </div>
 
-            {/* Time Slots */}
             {selectedDate && (
               <div>
-                <Label className="flex items-center gap-2 mb-2">
-                  <Clock className="w-4 h-4 text-[#b5453a]" />
-                  {t('selectTimeSlot')}
+                <Label className="mb-2 flex items-center gap-2">
+                  <Clock className="h-4 w-4 text-[#b5453a]" />
+                  {t("selectTimeSlot")}
                 </Label>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                   {timeSlots.map((slot) => {
                     const isBooked = bookedSlots.includes(slot);
                     const isSelected = selectedTime === slot;
                     return (
                       <button
                         key={slot}
+                        type="button"
                         disabled={isBooked}
-                        onClick={() =>
-                          setFormState((prev) => ({ ...prev, selectedTime: slot }))
-                        }
+                        onClick={() => updateField("selectedTime", slot)}
                         className={cn(
-                          "py-2 px-3 text-sm border rounded-sm transition-colors",
+                          "rounded-sm border px-3 py-3 text-sm transition-colors",
                           isSelected
-                            ? "bg-[#b5453a] text-white border-[#b5453a]"
+                            ? "border-[#b5453a] bg-[#b5453a] text-white"
                             : isBooked
-                            ? "bg-gray-100 text-gray-400 line-through cursor-not-allowed border-gray-200"
-                            : "bg-white hover:border-[#b5453a] border-gray-200"
+                              ? "cursor-not-allowed border-gray-200 bg-gray-100 text-gray-400 line-through"
+                              : "border-gray-200 bg-white hover:border-[#b5453a]"
                         )}
                       >
-                        {slot} {isBooked && t('booked')}
+                        {slot} {isBooked && t("booked")}
                       </button>
                     );
                   })}
@@ -386,155 +311,138 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
             )}
 
             <Button
-              onClick={handleNext}
+              type="button"
+              onClick={goToDetails}
               disabled={!selectedService || !selectedDate || !selectedTime}
-              className="w-full bg-[#b5453a] hover:bg-[#8e3229] text-white"
+              className="w-full bg-[#b5453a] text-white hover:bg-[#8e3229]"
             >
-              {t('continue')}
-              <ChevronRight className="w-4 h-4 ml-2" />
+              {t("continue")}
+              <ChevronRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
         )}
 
-        {/* Step 2: Contact Details */}
         {step === "details" && (
           <div className="space-y-6">
-            {/* Summary */}
-            <div className="bg-gray-50 p-4 rounded-sm">
-              <h4 className="font-medium text-gray-900 mb-2">{t('bookingSummary')}</h4>
-              <div className="text-sm text-gray-600 space-y-1">
+            <div className="rounded-sm bg-gray-50 p-4">
+              <h3 className="mb-2 font-medium text-gray-900">{t("bookingSummary")}</h3>
+              <div className="space-y-1 text-sm text-gray-600">
                 <p>
-                  <span className="font-medium">{t('service')}:</span> {selectedService}
+                  <span className="font-medium">{t("service")}:</span> {selectedService}
                 </p>
                 <p>
-                  <span className="font-medium">{t('date')}:</span>{" "}
-                  {selectedDate && format(selectedDate, "MMMM d, yyyy")}
+                  <span className="font-medium">{t("date")}:</span> {confirmationDate}
                 </p>
                 <p>
-                  <span className="font-medium">{t('time')}:</span> {selectedTime}
+                  <span className="font-medium">{t("time")}:</span> {selectedTime}
                 </p>
               </div>
             </div>
 
-            {/* Contact Form */}
             <div className="space-y-4">
               <div>
-                <Label className="flex items-center gap-2 mb-2">
-                  <User className="w-4 h-4 text-[#b5453a]" />
-                  {t('fullName')}
+                <Label className="mb-2 flex items-center gap-2">
+                  <User className="h-4 w-4 text-[#b5453a]" />
+                  {t("fullName")}
                 </Label>
                 <Input
                   value={name}
-                  onChange={(e) =>
-                    setFormState((prev) => ({ ...prev, name: e.target.value }))
-                  }
-                  placeholder={t('namePlaceholder')}
+                  onChange={(e) => updateField("name", e.target.value)}
+                  placeholder={t("namePlaceholder")}
                   required
                 />
               </div>
 
               <div>
-                <Label className="flex items-center gap-2 mb-2">
-                  <Mail className="w-4 h-4 text-[#b5453a]" />
-                  {t('email')}
+                <Label className="mb-2 flex items-center gap-2">
+                  <Mail className="h-4 w-4 text-[#b5453a]" />
+                  {t("email")}
                 </Label>
                 <Input
                   type="email"
                   value={email}
-                  onChange={(e) =>
-                    setFormState((prev) => ({ ...prev, email: e.target.value }))
-                  }
-                  placeholder={t('emailPlaceholder')}
+                  onChange={(e) => updateField("email", e.target.value)}
+                  placeholder={t("emailPlaceholder")}
                   required
                 />
               </div>
 
               <div>
-                <Label className="flex items-center gap-2 mb-2">
-                  <Phone className="w-4 h-4 text-[#b5453a]" />
-                  {t('phone')}
+                <Label className="mb-2 flex items-center gap-2">
+                  <Phone className="h-4 w-4 text-[#b5453a]" />
+                  {t("phone")}
                 </Label>
                 <Input
                   type="tel"
                   value={phone}
-                  onChange={(e) =>
-                    setFormState((prev) => ({ ...prev, phone: e.target.value }))
-                  }
-                  placeholder={t('phonePlaceholder')}
+                  onChange={(e) => updateField("phone", e.target.value)}
+                  placeholder={t("phonePlaceholder")}
+                  required
                 />
               </div>
 
               <div>
-                <Label className="flex items-center gap-2 mb-2">
-                  <MessageSquare className="w-4 h-4 text-[#b5453a]" />
-                  {t('message')}
+                <Label className="mb-2 flex items-center gap-2">
+                  <MessageSquare className="h-4 w-4 text-[#b5453a]" />
+                  {t("message")}
                 </Label>
                 <Textarea
                   value={message}
-                  onChange={(e) =>
-                    setFormState((prev) => ({ ...prev, message: e.target.value }))
-                  }
-                  placeholder={t('messagePlaceholder')}
+                  onChange={(e) => updateField("message", e.target.value)}
+                  placeholder={t("messagePlaceholder")}
                   rows={3}
                 />
               </div>
             </div>
 
             <div className="flex gap-3">
-              <Button
-                variant="outline"
-                onClick={handleBack}
-                className="flex-1"
-              >
-                <ChevronLeft className="w-4 h-4 mr-2" />
-                {t('back')}
+              <Button type="button" variant="outline" onClick={goBack} className="flex-1">
+                <ChevronLeft className="mr-2 h-4 w-4" />
+                {t("back")}
               </Button>
               <Button
-                onClick={handleNext}
-                disabled={!name || !email || isLoading}
-                className="flex-1 bg-[#b5453a] hover:bg-[#8e3229] text-white"
+                type="button"
+                onClick={handleDetailsSubmit}
+                disabled={!name || !email || !phone || isLoading}
+                className="flex-1 bg-[#b5453a] text-white hover:bg-[#8e3229]"
               >
                 {isLoading ? (
                   <>
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                    {t('bookingStatus')}
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    {t("bookingStatus")}
                   </>
                 ) : (
-                  t('confirmBooking')
+                  t("confirmBooking")
                 )}
               </Button>
             </div>
           </div>
         )}
 
-        {/* Step 3: Confirmation */}
         {step === "confirmation" && (
-          <div className="text-center space-y-6">
+          <div className="space-y-6 text-center">
             <div className="flex justify-center">
-              <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center">
-                <CheckCircle2 className="w-8 h-8 text-emerald-600" />
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100">
+                <CheckCircle2 className="h-8 w-8 text-emerald-600" />
               </div>
             </div>
 
             <div>
-              <h3 className="text-xl font-serif mb-2">{t('bookingConfirmed')}</h3>
-              <p className="text-gray-600">
-                {t('thankYou', { name })}
-              </p>
+              <h3 className="mb-2 font-serif text-xl">{t("bookingConfirmed")}</h3>
+              <p className="text-gray-600">{t("thankYou", { name })}</p>
             </div>
 
-            <div className="bg-gray-50 p-4 rounded-sm text-left">
-              <h4 className="font-medium text-gray-900 mb-3">{t('bookingDetails')}</h4>
-              <div className="text-sm text-gray-600 space-y-2">
+            <div className="rounded-sm bg-gray-50 p-4 text-left">
+              <h4 className="mb-3 font-medium text-gray-900">{t("bookingDetails")}</h4>
+              <div className="space-y-2 text-sm text-gray-600">
                 <p>
-                  <span className="font-medium">{t('service')}:</span> {selectedService}
+                  <span className="font-medium">{t("service")}:</span> {selectedService}
                 </p>
                 <p>
-                  <span className="font-medium">{t('date')}:</span>{" "}
-                  {selectedDate && format(selectedDate, "MMMM d, yyyy")}
+                  <span className="font-medium">{t("date")}:</span> {confirmationDate}
                 </p>
                 <p>
-                  <span className="font-medium">{t('time')}:</span> {selectedTime}
+                  <span className="font-medium">{t("time")}:</span> {selectedTime}
                 </p>
                 <p>
                   <span className="font-medium">Email:</span> {email}
@@ -542,14 +450,43 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
               </div>
             </div>
 
-            <Button
-              onClick={handleClose}
-              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
-            >
-              {t('done')}
-            </Button>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <Button
+                type="button"
+                asChild
+                className="bg-[#25D366] text-white hover:bg-[#20BD5A]"
+              >
+                <a href={whatsappHref} target="_blank" rel="noreferrer">
+                  <MessageCircle className="mr-2 h-4 w-4" />
+                  {t("confirmViaWhatsApp")}
+                </a>
+              </Button>
+              <Button
+                type="button"
+                onClick={handleClose}
+                className="bg-emerald-600 text-white hover:bg-emerald-700"
+              >
+                {t("done")}
+              </Button>
+            </div>
           </div>
         )}
+      </div>
+    </div>
+  );
+
+  if (renderMode === "inline") {
+    return content;
+  }
+
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="h-screen max-h-none overflow-y-auto rounded-none sm:h-auto sm:max-h-[90vh] sm:max-w-2xl sm:rounded-md">
+        <DialogHeader className="sr-only">
+          <DialogTitle>{t("dialogTitle")}</DialogTitle>
+          <DialogDescription>{t("dialogDescription")}</DialogDescription>
+        </DialogHeader>
+        {content}
       </DialogContent>
     </Dialog>
   );

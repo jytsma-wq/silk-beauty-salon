@@ -8,6 +8,17 @@ import { cache } from 'react';
 import { db } from '@/lib/db';
 import { baseTreatmentCategories } from '@/data/treatments';
 
+export interface BookingService {
+  label: string;
+  value: string;
+  duration?: string | null;
+}
+
+export interface BookingServiceGroup {
+  label: string;
+  services: BookingService[];
+}
+
 const isPlaceholderBuild =
   process.env.SKIP_ENV_VALIDATION === '1' &&
   process.env.DATABASE_URL?.includes('build:build@localhost');
@@ -74,6 +85,76 @@ export const getTreatmentCategoriesByLocale = cache(async (locale: string) => {
   } catch {
     // Fallback to static data when database is not available
     return getStaticCategories(locale);
+  }
+});
+
+const consultationBookingServices: BookingServiceGroup = {
+  label: 'Consultations',
+  services: [
+    { label: 'Facial Consultation', value: 'Facial Consultation', duration: '30 min' },
+    { label: 'Skin Consultation', value: 'Skin Consultation', duration: '45 min' },
+    { label: 'Body Consultation', value: 'Body Consultation', duration: '30 min' },
+    { label: 'Virtual Consultation', value: 'Virtual Consultation', duration: '20 min' },
+  ],
+};
+
+function bookingGroupForCategory(slug: string, name: string) {
+  if (slug === 'botox' || slug === 'dermal-fillers') return 'Injectables';
+  if (slug === 'body') return 'Body Treatments';
+  if (slug === 'hair') return 'Hair, Nails & Lashes';
+  return name || 'Skin Treatments';
+}
+
+function dedupeServices(services: BookingService[]) {
+  const seen = new Set<string>();
+  return services.filter((service) => {
+    const key = service.value.toLowerCase();
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+export const getBookingServices = cache(async (locale: string): Promise<BookingServiceGroup[]> => {
+  try {
+    const categories = await getTreatmentCategoriesByLocale(locale);
+    const grouped = new Map<string, BookingService[]>();
+
+    for (const category of categories) {
+      const groupLabel = bookingGroupForCategory(category.slug, category.name);
+      const services = grouped.get(groupLabel) ?? [];
+      services.push(
+        ...category.treatments.map((treatment) => ({
+          label: treatment.name,
+          value: treatment.name,
+          duration: treatment.duration,
+        }))
+      );
+      grouped.set(groupLabel, services);
+    }
+
+    const serviceGroups = Array.from(grouped.entries()).map(([label, services]) => ({
+      label,
+      services: dedupeServices(services),
+    }));
+
+    return [consultationBookingServices, ...serviceGroups].filter(
+      (group) => group.services.length > 0
+    );
+  } catch {
+    return [
+      consultationBookingServices,
+      ...baseTreatmentCategories.map((category) => ({
+        label: bookingGroupForCategory(category.slug, category.name),
+        services: dedupeServices(
+          category.treatments.map((treatment) => ({
+            label: treatment.name,
+            value: treatment.name,
+            duration: treatment.duration,
+          }))
+        ),
+      })),
+    ];
   }
 });
 

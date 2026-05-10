@@ -38,8 +38,11 @@
     "menu": "Меню",
     "more": "Ещё",
     "treatmentPortfolio": "Портфель процедур",
-    "skinConditions": "Состояния кожи"
-
+    "skinConditions": "Состояния кожи",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "treatmentPortfolioDescription": "Explore our complete portfolio of advanced aesthetic treatments.",
+    "conditionsDescription": "Find treatment options by skin concern and goal."
   },
   "header": {
     "announcement": "Награды | Лучший салон красоты Батуми | Публикации в грузинском журнале моды и красоты"
@@ -276,7 +279,8 @@
       "title": "Предлагаемые процедуры",
       "subtitle": "Комплексные эстетические решения для любых задач.",
       "explore": "Explore treatments ->"
-    }
+    },
+    "bookImageAlt": "Записаться на консультацию"
   },
   "booking": {
     "selectService": "Выберите услугу",
@@ -301,7 +305,7 @@
     "slotConflict": "Это время уже забронировано. Пожалуйста, выберите другое время.",
     "bookingFailed": "Не удалось создать бронирование",
     "unexpectedError": "Произошла непредвиденная ошибка. Пожалуйста, попробуйте снова.",
-    "rateLimitMessage": "Слишком много запросов. Пожалуйста, подождите 15 минут.",
+    "rateLimitMessage": "??????? ????? ????????. ??????????, ????????? 15 ?????.",
     "bookingSummary": "Сводка бронирования",
     "service": "Услуга",
     "date": "Дата",
@@ -317,23 +321,129 @@
     "serviceRejuvenation": "Омоложение кожи",
     "servicePeel": "Химический пилинг",
     "serviceMicroneedling": "Микронидлинг",
-    "serviceHydrafacial": "Гидрапилинг",
-    "rateLimitMessage": "??????? ????? ????????. ??????????, ????????? 15 ?????."
+    "serviceHydrafacial": "Гидрапилинг"
   },
   "bookingPage": {
-    "preferredDate": "Предпочитаемая дата",
-    "preferredTime": "Предпочитаемое время",
+    "preferredDate": "???????????????? ????",
+    "preferredTime": "Предпочтительное время",
     "selectService": "Выберите услугу",
-    "selectServicePlaceholder": "Выберите тип консультации",
+    "selectServicePlaceholder": "???????? ??? ????????????",
     "fullName": "Полное имя",
-    "namePlaceholder": "Введите ваше полное имя",
-    "phoneNumber": "Номер телефона",
-    "phonePlaceholder": "+995 599 123 456",
-    "emailAddress": "Адрес электронной почты",
-    "emailPlaceholder": "your@email.com",
-    "successTitle": "Запрос на бронирование отправлен",
-    "successMessage": "Спасибо за ваш запрос на бронирование. Мы свяжемся с вами в ближайшее время, чтобы подтвердить вашу запись.",
-    "bookAnother": "Записаться еще"
+    "namePlaceholder": "Иван Иванов",
+    "phoneNumber": "Телефон (необязательно)",
+    "phonePlaceholder": "+7 999 123 4567",
+    "emailAddress": "Email",
+    "emailPlaceholder": "ivan@example.com",
+    "successTitle": "?????? ?? ?????? ?????????",
+    "successMessage": "??????? ?? ??? ?????? ?? ??????. ?? ????? ???????? ? ????, ????? ??????????? ?????.",
+    "bookAnother": "???????? ??? ???? ?????",
+    "title": "Записаться на прием",
+    "subtitle": "Запланируйте консультацию или процедуру с нашими экспертами",
+    "metadata": {
+      "title": "Записаться на прием | Silk Beauty Salon",
+      "description": "Запишитесь на консультацию или прием в Silk Beauty Salon в Батуми, Грузия."
+    },
+    "selectDateTime": "Выберите дату и время",
+    "bookingNotConfigured": "Онлайн-запись скоро будет доступна",
+    "bookingNotConfiguredDesc": "Мы настраиваем систему онлайн-записи. А пока позвоните или напишите нам, чтобы записаться на прием.",
+    "callToBook": "Позвонить для записи",
+    "emailToBook": "Написать для записи",
+    "consultationTypes": "Типы консультаций",
+    "consultations": {
+      "facial": {
+        "title": "Консультация для лица",
+        "duration": "30 мин",
+        "description": "Обсуждение антивозрастных процедур и дермальных филлеров"
+      },
+      "skin": {
+        "title": "Консультация по коже",
+        "duration": "45 мин",
+        "description": "Комплексный анализ кожи и планирование лечения"
+      },
+      "body": {
+        "title": "Консультация для тела",
+        "duration": "30 мин",
+        "description": "Варианты контуринга тела и подтяжки кожи"
+      },
+      "virtual": {
+        "title": "Виртуальная консультация",
+        "duration": "20 мин",
+        "description": "Онлайн-консультация для удаленных клиентов"
+      }
+    },
+    "whatToExpect": {
+      "title": "Чего ожидать",
+      "step1": "Заполните наш медицинский опросник",
+      "step2": "Обсудите свои цели и проблемы",
+      "step3": "Получите персональные рекомендации",
+      "step4": "Получите четкую цену без скрытых расходов"
+    },
+    "needHelp": "Нужна помощь?",
+    "phone": "Телефон",
+    "email": "Email",
+    "address": "Адрес",
+    "faq": {
+      "title": "Частые вопросы о записи",
+      "q1": "Сколько длится консультация?",
+      "a1": "Первоначальные консультации обычно длятся 30-45 минут, что позволяет провести тщательную оценку и обсуждение ваших целей.",
+      "q2": "Требуется ли депозит?",
+      "a2": "Для подтверждения приема требуется депозит 20%, который вычитается из стоимости лечения.",
+      "q3": "Какая политика отмены?",
+      "a3": "Мы требуем уведомление за 48 часов для отмены. При поздней отмене депозит может быть утрачен.",
+      "q4": "Могу ли я перенести прием?",
+      "a4": "Да, вы можете перенести прием за 24 часа до назначенного времени. Пожалуйста, свяжитесь с нами по телефону или электронной почте, чтобы выбрать новое удобное время."
+    },
+    "selectTime": "Выберите временной интервал",
+    "morning": "Утро",
+    "afternoon": "День",
+    "evening": "Вечер",
+    "additionalNotes": "Дополнительные примечания",
+    "notesPlaceholder": "Любые особые пожелания или информация, которую нам следует знать...",
+    "requestBooking": "Запросить бронирование",
+    "bookingNote": "Мы подтвердим вашу запись в течение 24 часов",
+    "eyebrow": "?????? ?? ????????????",
+    "heroImageAlt": "???????? ??????",
+    "dialogTitle": "Book Appointment",
+    "dialogDescription": "Schedule your consultation with our expert practitioners",
+    "continue": "Continue",
+    "back": "Back",
+    "confirmBooking": "Confirm Booking",
+    "bookingStatus": "Booking...",
+    "booked": "(Booked)",
+    "slotConflict": "This time slot is already booked. Please select another time.",
+    "bookingFailed": "Failed to create booking",
+    "unexpectedError": "An unexpected error occurred. Please try again.",
+    "rateLimitMessage": "Too many submissions. Please wait 15 minutes.",
+    "bookingSummary": "Booking Summary",
+    "bookingConfirmed": "Booking Confirmed!",
+    "thankYou": "Thank you, {name}. Your appointment has been scheduled.",
+    "bookingDetails": "Booking Details",
+    "done": "Done",
+    "selectDate": "Select Date",
+    "selectTimeSlot": "Select Time Slot",
+    "service": "Service",
+    "date": "Date",
+    "time": "Time",
+    "message": "Message (Optional)",
+    "servicePlaceholder": "Choose a service",
+    "messagePlaceholder": "Any specific requirements or questions...",
+    "serviceConsultation": "Consultation",
+    "serviceBotox": "Botox Treatment",
+    "serviceFillers": "Dermal Fillers",
+    "serviceLaser": "Laser Hair Removal",
+    "serviceRejuvenation": "Skin Rejuvenation",
+    "servicePeel": "Chemical Peel",
+    "serviceMicroneedling": "Microneedling",
+    "serviceHydrafacial": "Hydrafacial",
+    "imageAlt": "Интерьер салона",
+    "whatsappConfirm": "Здравствуйте! Я только что записался(ась) на {service} {date} в {time}. Меня зовут {name}. До встречи!",
+    "confirmViaWhatsApp": "Подтвердить в WhatsApp",
+    "serviceGroups": {
+      "consultations": "Consultations",
+      "injectables": "Injectables",
+      "skinTreatments": "Skin Treatments",
+      "bodyTreatments": "Body Treatments"
+    }
   },
   "statistics": {
     "years": "Лет опыта",
@@ -367,7 +477,9 @@
     "openingHours": "Часы работы",
     "hours": {
       "monFri": "??-??: 10:00 - 22:00",
-      "satSun": "??-??: 10:00 - 22:00"
+      "satSun": "??-??: 10:00 - 22:00",
+      "sat": "Сб",
+      "sun": "Вс"
     },
     "social": "Подписывайтесь",
     "faqDesc": "Ознакомьтесь с наиболее часто задаваемыми вопросами о клинике и наших процедурах.",
@@ -390,7 +502,9 @@
     "visitUs": "Посетите нас",
     "designedIn": "Разработано в Батуми",
     "socialDescription": "Подписывайтесь на нас в социальных сетях, чтобы узнавать актуальные новости и истории пациентов",
-    "disclaimer": "Всегда консультируйтесь с медицинским работником для получения индивидуальных рекомендаций по лечению и обсуждения важной информации о безопасности и рисках, связанных с использованием продуктов."
+    "disclaimer": "Всегда консультируйтесь с медицинским работником для получения индивидуальных рекомендаций по лечению и обсуждения важной информации о безопасности и рисках, связанных с использованием продуктов.",
+    "instagram": "Instagram",
+    "facebook": "Facebook"
   },
   "contact": {
     "title": "Связаться с нами",
@@ -486,7 +600,8 @@
     "listingSubtitle": "Какая бы ни была ваша проблема с кожей, наши эксперты разработают персонализированный план лечения",
     "ctaTitle": "Не уверены, какая процедура вам нужна?",
     "ctaSubtitle": "Запишитесь на консультацию с нашими экспертами, которые оценят ваше состояние и порекомендуют лучшие варианты лечения",
-    "bookConsultation": "Записаться на консультацию"
+    "bookConsultation": "Записаться на консультацию",
+    "imageAlt": "Лечение кожи"
   },
   "aboutPage": {
     "title": "О нас",
@@ -528,7 +643,9 @@
     "featuredIn": "Упоминался в журнале Georgian Fashion & Beauty",
     "ctaTitle": "Готовы начать?",
     "ctaSubtitle": "Запишитесь на консультацию с нашими экспертами уже сегодня",
-    "ctaButton": "Записаться на консультацию"
+    "ctaButton": "Записаться на консультацию",
+    "interiorAlt": "Интерьер Silk Beauty Salon",
+    "clinicAlt": "Клиника Silk Beauty Salon"
   },
   "contactPage": {
     "title": "Свяжитесь с нами",
@@ -569,7 +686,9 @@
     "whatsapp": "WhatsApp",
     "viewOnMap": "Посмотреть на Google Maps",
     "mapAddress": "Зураб Горгиладзе 63",
-    "mapCity": "Батуми, Грузия"
+    "mapCity": "Батуми, Грузия",
+    "imageAlt": "Свяжитесь с Silk Beauty Salon",
+    "mapTitle": "Местоположение Silk Beauty Salon"
   },
   "faqPage": {
     "title": "Часто задаваемые вопросы",
@@ -632,7 +751,8 @@
     "ctaTitle": "Запишитесь на процедуру сегодня",
     "ctaSubtitle": "Свяжитесь с нами, чтобы записаться на консультацию и воспользоваться этими эксклюзивными предложениями",
     "ctaButton": "Записаться",
-    "termsText": "Все предложения зависят от наличия и могут быть отменены в любое время. Предложения не могут быть скомбинированы, если не указано иное. Пожалуйста, укажите предложение при бронировании."
+    "termsText": "Все предложения зависят от наличия и могут быть отменены в любое время. Предложения не могут быть скомбинированы, если не указано иное. Пожалуйста, укажите предложение при бронировании.",
+    "imageAlt": "Специальные предложения"
   },
   "blogPage": {
     "title": "Наш блог",
@@ -649,7 +769,9 @@
     "readyToTransform": "Готовы к преображению?",
     "bookConsultationDesc": "Запишитесь на консультацию с нашим экспертом для обсуждения ваших эстетических целей.",
     "relatedPosts": "Похожие статьи",
-    "readMore": "Читать далее"
+    "readMore": "Читать далее",
+    "postNotFound": "Запись не найдена",
+    "expertPractitioner": "Эксперт-практик"
   },
   "treatmentPage": {
     "bookNow": "Записаться на процедуру",
@@ -674,7 +796,10 @@
     "results": "Результаты",
     "downtime": "Период восстановления",
     "youMightAlsoLike": "Вам также может понравиться",
-    "learnMore": "Узнать больше"
+    "learnMore": "Узнать больше",
+    "heroAlt": "Роскошный салон красоты",
+    "durationResults": "3-6 месяцев",
+    "minimalDowntime": "Отсутствует до минимального"
   },
   "conditionPage": {
     "title": "Состояние",
@@ -727,7 +852,11 @@
     "whatsapp": "WhatsApp",
     "bookViaWhatsApp": "Запись через WhatsApp",
     "searchPlaceholder": "Поиск процедур, состояний...",
-    "submitting": "????????..."
+    "submitting": "????????...",
+    "tryAgain": "Попробовать снова",
+    "view": "Просмотр",
+    "currentLanguageFlag": "Current language: {language}",
+    "languageFlag": "{language} flag"
   },
   "siteConfig": {
     "awards": {
@@ -1539,7 +1668,9 @@
     "otherInquiry": "Другой вопрос",
     "typicalReply": "Обычно отвечает в течение минут",
     "chatOnWhatsApp": "Чат в WhatsApp",
-    "close": "Закрыть"
+    "close": "Закрыть",
+    "prefillBooking": "Здравствуйте, Silk Beauty! Я хочу записаться на прием. Пожалуйста, сообщите доступное время. Спасибо!",
+    "prefillWithService": "Здравствуйте, Silk Beauty! Я хочу записаться на {service}. Пожалуйста, сообщите доступное время. Спасибо!"
   },
   "consent": {
     "title": "Настройки cookie",
@@ -1771,125 +1902,24 @@
     "pricingDesc": "Прозрачные цены в GEL и USD",
     "faqDesc": "Ответы на общие вопросы"
   },
-  "bookingPage": {
-    "title": "Записаться на прием",
-    "subtitle": "Запланируйте консультацию или процедуру с нашими экспертами",
-    "metadata": {
-      "title": "Записаться на прием | Silk Beauty Salon",
-      "description": "Запишитесь на консультацию или прием в Silk Beauty Salon в Батуми, Грузия."
-    },
-    "selectDateTime": "Выберите дату и время",
-    "bookingNotConfigured": "Онлайн-запись скоро будет доступна",
-    "bookingNotConfiguredDesc": "Мы настраиваем систему онлайн-записи. А пока позвоните или напишите нам, чтобы записаться на прием.",
-    "callToBook": "Позвонить для записи",
-    "emailToBook": "Написать для записи",
-    "consultationTypes": "Типы консультаций",
-    "consultations": {
-      "facial": {
-        "title": "Консультация для лица",
-        "duration": "30 мин",
-        "description": "Обсуждение антивозрастных процедур и дермальных филлеров"
-      },
-      "skin": {
-        "title": "Консультация по коже",
-        "duration": "45 мин",
-        "description": "Комплексный анализ кожи и планирование лечения"
-      },
-      "body": {
-        "title": "Консультация для тела",
-        "duration": "30 мин",
-        "description": "Варианты контуринга тела и подтяжки кожи"
-      },
-      "virtual": {
-        "title": "Виртуальная консультация",
-        "duration": "20 мин",
-        "description": "Онлайн-консультация для удаленных клиентов"
-      }
-    },
-    "whatToExpect": {
-      "title": "Чего ожидать",
-      "step1": "Заполните наш медицинский опросник",
-      "step2": "Обсудите свои цели и проблемы",
-      "step3": "Получите персональные рекомендации",
-      "step4": "Получите четкую цену без скрытых расходов"
-    },
-    "needHelp": "Нужна помощь?",
-    "phone": "Телефон",
-    "email": "Email",
-    "address": "Адрес",
-    "faq": {
-      "title": "Частые вопросы о записи",
-      "q1": "Сколько длится консультация?",
-      "a1": "Первоначальные консультации обычно длятся 30-45 минут, что позволяет провести тщательную оценку и обсуждение ваших целей.",
-      "q2": "Требуется ли депозит?",
-      "a2": "Для подтверждения приема требуется депозит 20%, который вычитается из стоимости лечения.",
-      "q3": "Какая политика отмены?",
-      "a3": "Мы требуем уведомление за 48 часов для отмены. При поздней отмене депозит может быть утрачен.",
-      "q4": "Могу ли я перенести прием?",
-      "a4": "Да, вы можете перенести прием за 24 часа до назначенного времени. Пожалуйста, свяжитесь с нами по телефону или электронной почте, чтобы выбрать новое удобное время."
-    },
-    "preferredTime": "Предпочтительное время",
-    "selectTime": "Выберите временной интервал",
-    "morning": "Утро",
-    "afternoon": "День",
-    "evening": "Вечер",
-    "additionalNotes": "Дополнительные примечания",
-    "notesPlaceholder": "Любые особые пожелания или информация, которую нам следует знать...",
-    "requestBooking": "Запросить бронирование",
-    "bookingNote": "Мы подтвердим вашу запись в течение 24 часов",
-    "eyebrow": "?????? ?? ????????????",
-    "heroImageAlt": "???????? ??????",
-    "preferredDate": "???????????????? ????",
-    "selectService": "Выберите услугу",
-    "selectServicePlaceholder": "???????? ??? ????????????",
-    "fullName": "Полное имя",
-    "namePlaceholder": "Иван Иванов",
-    "phoneNumber": "Телефон (необязательно)",
-    "phonePlaceholder": "+7 999 123 4567",
-    "emailAddress": "Email",
-    "emailPlaceholder": "ivan@example.com",
-    "successTitle": "?????? ?? ?????? ?????????",
-    "successMessage": "??????? ?? ??? ?????? ?? ??????. ?? ????? ???????? ? ????, ????? ??????????? ?????.",
-    "bookAnother": "???????? ??? ???? ?????",
-    "dialogTitle": "Book Appointment",
-    "dialogDescription": "Schedule your consultation with our expert practitioners",
-    "continue": "Continue",
-    "back": "Back",
-    "confirmBooking": "Confirm Booking",
-    "bookingStatus": "Booking...",
-    "booked": "(Booked)",
-    "slotConflict": "This time slot is already booked. Please select another time.",
-    "bookingFailed": "Failed to create booking",
-    "unexpectedError": "An unexpected error occurred. Please try again.",
-    "rateLimitMessage": "Too many submissions. Please wait 15 minutes.",
-    "bookingSummary": "Booking Summary",
-    "bookingConfirmed": "Booking Confirmed!",
-    "thankYou": "Thank you, {name}. Your appointment has been scheduled.",
-    "bookingDetails": "Booking Details",
-    "done": "Done",
-    "selectDate": "Select Date",
-    "selectTimeSlot": "Select Time Slot",
-    "service": "Service",
-    "date": "Date",
-    "time": "Time",
-    "message": "Message (Optional)",
-    "servicePlaceholder": "Choose a service",
-    "messagePlaceholder": "Any specific requirements or questions...",
-    "serviceConsultation": "Consultation",
-    "serviceBotox": "Botox Treatment",
-    "serviceFillers": "Dermal Fillers",
-    "serviceLaser": "Laser Hair Removal",
-    "serviceRejuvenation": "Skin Rejuvenation",
-    "servicePeel": "Chemical Peel",
-    "serviceMicroneedling": "Microneedling",
-    "serviceHydrafacial": "Hydrafacial"
-  },
   "accessibility": {
     "skipToContent": "Перейти к основному содержанию",
     "skipToMain": "Перейти к основному содержанию",
     "skipToTreatments": "Перейти к процедурам",
     "skipToBooking": "Перейти к бронированию",
-    "skipNavigation": "Ссылки пропуска"
+    "skipNavigation": "Ссылки пропуска",
+    "loadingThemeToggle": "Загрузка переключения темы",
+    "closeVideo": "Закрыть видео",
+    "toggleFullscreen": "Переключить полноэкранный режим",
+    "closeGallery": "Закрыть галерею",
+    "previousImage": "Предыдущее изображение",
+    "nextImage": "Следующее изображение",
+    "skipLinks": "Пропустить ссылки",
+    "openMenu": "Открыть меню",
+    "closeMenu": "Закрыть меню",
+    "required": "обязательно",
+    "keyTab": "Tab",
+    "keyEscape": "Escape"
   },
   "errors": {
     "title": "Что-то пошло не так",
@@ -2099,29 +2129,11 @@
       }
     }
   },
-  "common": {
-    "tryAgain": "Попробовать снова",
-    "view": "Просмотр"
-  },
   "errorPage": {
     "somethingWentWrong": "Что-то пошло не так",
     "apologyMessage": "Приносим извинения за неудобства. Произошла непредвиденная ошибка.",
     "tryAgain": "Попробовать снова",
     "globalError": "Что-то пошло не так"
-  },
-  "accessibility": {
-    "loadingThemeToggle": "Загрузка переключения темы",
-    "closeVideo": "Закрыть видео",
-    "toggleFullscreen": "Переключить полноэкранный режим",
-    "closeGallery": "Закрыть галерею",
-    "previousImage": "Предыдущее изображение",
-    "nextImage": "Следующее изображение",
-    "skipLinks": "Пропустить ссылки",
-    "openMenu": "Открыть меню",
-    "closeMenu": "Закрыть меню",
-    "required": "обязательно",
-    "keyTab": "Tab",
-    "keyEscape": "Escape"
   },
   "social": {
     "instagram": "Инстаграм",
@@ -2137,44 +2149,9 @@
     "bookConsultation": "Забронировать консультацию",
     "skinCareTreatment": "Уход за кожей"
   },
-  "footer": {
-    "hours": {
-      "sat": "Сб",
-      "sun": "Вс"
-    }
-  },
-  "blogPage": {
-    "postNotFound": "Запись не найдена",
-    "expertPractitioner": "Эксперт-практик"
-  },
-  "treatmentPage": {
-    "heroAlt": "Роскошный салон красоты",
-    "durationResults": "3-6 месяцев",
-    "minimalDowntime": "Отсутствует до минимального"
-  },
   "international": {
     "imageAlt": "Silk Beauty Salon",
     "teamAlt": "Нана Гвиниашвили"
-  },
-  "contactPage": {
-    "imageAlt": "Свяжитесь с Silk Beauty Salon",
-    "mapTitle": "Местоположение Silk Beauty Salon"
-  },
-  "consultation": {
-    "bookImageAlt": "Записаться на консультацию"
-  },
-  "conditionsPage": {
-    "imageAlt": "Лечение кожи"
-  },
-  "offersPage": {
-    "imageAlt": "Специальные предложения"
-  },
-  "bookingPage": {
-    "imageAlt": "Интерьер салона"
-  },
-  "aboutPage": {
-    "interiorAlt": "Интерьер Silk Beauty Salon",
-    "clinicAlt": "Клиника Silk Beauty Salon"
   },
   "home": {
     "section1Title": "Портфель процедур",

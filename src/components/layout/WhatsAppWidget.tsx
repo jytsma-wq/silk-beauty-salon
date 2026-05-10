@@ -1,115 +1,165 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { MessageCircle, X, Send } from 'lucide-react';
-import { siteConfig } from '@/data/site-config';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { MessageCircle, Send } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { trackContactClick } from '@/lib/analytics';
+import { usePathname } from '@/i18n/routing';
 import { useConsent } from '@/components/providers/ConsentProvider';
+import { baseTreatmentCategories } from '@/data/treatments';
+import { siteConfig } from '@/data/site-config';
+import { trackContactClick } from '@/lib/analytics';
 import { cn } from '@/lib/utils';
+
+const HOLD_DELAY_MS = 500;
 
 export function WhatsAppWidget() {
   const t = useTranslations('whatsapp');
+  const pathname = usePathname();
   const { showBanner } = useConsent();
   const phoneNumber = siteConfig.contact.phone.replace(/\s/g, '').replace('+', '');
-  const [isOpen, setIsOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const holdTimer = useRef<number | null>(null);
+  const longPressTriggered = useRef(false);
+  const lastActivationAt = useRef(0);
 
-  const quickMessages = [
-    t('bookAppointment'),
-    t('serviceQuestion'),
-    t('pricingInfo'),
-    t('otherInquiry')
-  ];
+  const serviceName = useMemo(() => {
+    const treatmentMatch = pathname.match(/\/treatments\/([^/]+)/);
+    const slug = treatmentMatch?.[1];
+    if (!slug) return null;
 
-  const handleQuickMessage = (message: string) => {
+    for (const category of baseTreatmentCategories) {
+      const treatment = category.treatments.find((item) => item.slug === slug);
+      if (treatment) return treatment.name;
+    }
+
+    return slug
+      .split('-')
+      .filter(Boolean)
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+      .join(' ');
+  }, [pathname]);
+
+  const bookingMessage = serviceName
+    ? t('prefillWithService', { service: serviceName })
+    : t('prefillBooking');
+
+  const openWhatsApp = (message: string) => {
     trackContactClick('whatsapp');
-    const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
-    setIsOpen(false);
+    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+    setIsMenuOpen(false);
   };
 
-  // Close popup on Escape key
+  const clearHoldTimer = () => {
+    if (holdTimer.current) {
+      window.clearTimeout(holdTimer.current);
+      holdTimer.current = null;
+    }
+  };
+
+  const activatePrimary = () => {
+    if (longPressTriggered.current) {
+      longPressTriggered.current = false;
+      return;
+    }
+
+    const now = Date.now();
+    if (now - lastActivationAt.current < 300) return;
+    lastActivationAt.current = now;
+    openWhatsApp(bookingMessage);
+  };
+
+  const handlePointerDown = () => {
+    longPressTriggered.current = false;
+    clearHoldTimer();
+    holdTimer.current = window.setTimeout(() => {
+      longPressTriggered.current = true;
+      setIsMenuOpen(true);
+    }, HOLD_DELAY_MS);
+  };
+
+  const handlePointerUp = () => {
+    clearHoldTimer();
+    activatePrimary();
+  };
+
+  const handleContextMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    clearHoldTimer();
+    longPressTriggered.current = true;
+    setIsMenuOpen(true);
+  };
+
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) {
-        setIsOpen(false);
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsMenuOpen(false);
       }
     };
+
     document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen]);
+    return () => {
+      clearHoldTimer();
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
+  const secondaryMessages = [
+    t('serviceQuestion'),
+    t('pricingInfo'),
+    t('otherInquiry'),
+  ];
 
   return (
-    <div 
+    <div
       className={cn(
-        "fixed right-6 z-40 transition-all duration-300",
-        showBanner ? "bottom-32" : "bottom-6"
+        'fixed right-6 z-[60] transition-all duration-300',
+        showBanner ? 'bottom-52 sm:bottom-32' : 'bottom-6'
       )}
     >
-      {/* Chat Popup */}
-      {isOpen && (
-        <div className="absolute bottom-20 right-0 w-80 bg-background rounded-sm shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-2 duration-300">
-          {/* Header */}
-          <div className="bg-[#25D366] p-4 flex items-center gap-3">
-            <div className="relative">
-              <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
-                <MessageCircle className="w-6 h-6 text-white" />
-              </div>
-              <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-400 border-2 border-white rounded-full"></span>
-            </div>
-            <div className="flex-1">
-              <p className="font-semibold text-white">Silk Beauty Salon</p>
-              <p className="text-xs text-white/80">{t('typicalReply')}</p>
-            </div>
-            <button 
-              onClick={() => setIsOpen(false)} 
-              className="text-white/80 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/50 rounded p-1"
-              aria-label={t('close')}
+      {isMenuOpen && (
+        <div className="absolute bottom-20 right-0 w-72 rounded-sm border border-gray-200 bg-white p-2 shadow-2xl animate-in fade-in slide-in-from-bottom-2 duration-200">
+          {secondaryMessages.map((message) => (
+            <button
+              key={message}
+              type="button"
+              onClick={() => openWhatsApp(message)}
+              className="flex w-full items-center justify-between rounded-sm px-3 py-3 text-left text-sm text-gray-700 outline-none transition-colors hover:bg-gray-50 focus:bg-gray-50 focus:ring-2 focus:ring-[#25D366]/30"
             >
-              <X className="w-5 h-5" />
+              <span>{message}</span>
+              <Send className="h-4 w-4 text-[#25D366]" />
             </button>
-          </div>
-
-          {/* Welcome Message */}
-          <div className="p-4 bg-[#f8f9fa]">
-            <p className="text-sm text-gray-700 mb-4">
-              {t('greeting')}
-            </p>
-            
-            {/* Quick Reply Buttons */}
-            <div className="space-y-2">
-              {quickMessages.map((msg) => (
-                <button
-                  key={msg}
-                  onClick={() => handleQuickMessage(msg)}
-                  className="w-full text-left px-4 py-3 bg-white border border-gray-200 rounded-sm text-sm text-gray-700 hover:bg-gray-50 hover:border-[#25D366] focus:border-[#25D366] focus:ring-2 focus:ring-[#25D366]/20 transition-colors flex items-center justify-between group outline-none"
-                >
-                  {msg}
-                  <Send className="w-4 h-4 text-gray-400 group-hover:text-[#25D366]" />
-                </button>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
       )}
 
-      {/* WhatsApp Button */}
       <button
         type="button"
-        className="bg-[#25D366] hover:bg-[#20BD5A] text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-4 focus:ring-[#25D366]/30 group"
+        className="group relative rounded-full bg-[#25D366] p-4 text-white shadow-lg transition-all duration-300 hover:scale-110 hover:bg-[#20BD5A] hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-[#25D366]/30"
         aria-label={t('chatOnWhatsApp')}
-        onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isMenuOpen}
+        onPointerDown={handlePointerDown}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={clearHoldTimer}
+        onPointerLeave={clearHoldTimer}
+        onContextMenu={handleContextMenu}
+        onMouseUp={(event) => {
+          if (event.button === 0) activatePrimary();
+        }}
+        onClick={activatePrimary}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openWhatsApp(bookingMessage);
+          }
+        }}
       >
-        {isOpen ? (
-          <X className="w-7 h-7" />
-        ) : (
-          <>
-            <MessageCircle className="w-7 h-7" />
-            <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-gray-900 text-white text-sm px-3 py-1.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-              {t('chatOnWhatsApp')}
-            </span>
-          </>
-        )}
+        <MessageCircle className="h-7 w-7" />
+        <span className="absolute right-0 top-0 h-3 w-3 rounded-full bg-white">
+          <span className="absolute inset-0 rounded-full bg-white/80 animate-ping" />
+        </span>
+        <span className="absolute right-full top-1/2 mr-3 -translate-y-1/2 whitespace-nowrap rounded-md bg-gray-900 px-3 py-1.5 text-sm text-white opacity-0 transition-opacity group-hover:opacity-100">
+          {t('chatOnWhatsApp')}
+        </span>
       </button>
     </div>
   );
