@@ -149,7 +149,7 @@ export function GaldermaFooter() {
               {t('treatments', { defaultValue: 'Treatments' })}
             </h3>
             <nav className="space-y-3">
-              <Link href="/treatments" className="block text-sm text-stone-600 transition-colors hover:text-stone-900">
+              <Link href="/treatments/anti-wrinkle" className="block text-sm text-stone-600 transition-colors hover:text-stone-900">
                 {tNav('treatments')}
               </Link>
               <Link href="/conditions" className="block text-sm text-stone-600 transition-colors hover:text-stone-900">

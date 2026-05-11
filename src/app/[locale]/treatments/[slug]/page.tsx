@@ -76,7 +76,7 @@ export default async function TreatmentPage({ params }: Props) {
     category?.treatments
       .filter((item: { slug: string }) => item.slug !== treatment.slug)
       .slice(0, 3) || [];
-  const stickyMeta = [treatment.duration, treatment.price].filter(Boolean).join(' • ');
+  const stickyMeta = [treatment.duration, treatment.price].filter(Boolean).join(' - ');
 
   const detailLabels = {
     atAGlance: 'At a Glance',
@@ -105,9 +105,9 @@ export default async function TreatmentPage({ params }: Props) {
                   {tCommon('home')}
                 </Link>
                 <ChevronRight className="h-3.5 w-3.5" />
-                <Link href="/treatments" className="hover:text-[#241f1b]">
+                <span>
                   {tCommon('treatments')}
-                </Link>
+                </span>
                 <ChevronRight className="h-3.5 w-3.5" />
                 <span className="text-[#241f1b]">{treatment.name}</span>
               </nav>

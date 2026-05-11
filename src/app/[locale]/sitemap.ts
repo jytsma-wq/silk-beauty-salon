@@ -12,7 +12,6 @@ const defaultLocale = 'en';
 const STATIC_ROUTES = [
   '',
   '/about',
-  '/treatments',
   '/conditions',
   '/results',
   '/team',
@@ -65,7 +64,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       
       // Determine priority based on route depth and importance
       const priority = route === '' ? 1.0 :
-                      route === '/treatments' ? 0.9 :
                       route === '/about' ? 0.8 :
                       route === '/contact' ? 0.8 :
                       0.6;

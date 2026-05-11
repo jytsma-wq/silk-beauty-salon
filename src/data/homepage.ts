@@ -26,7 +26,7 @@ export const homeHeroSlides = [
       "Dermal fillers and anti-wrinkle treatments delivered with restraint, symmetry, and respect for natural expression.",
     image:
       "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=2200&q=85",
-    href: "/treatments",
+    href: "/treatments/lip-fillers",
     cta: "View treatments",
   },
 ];
@@ -73,7 +73,7 @@ export const portfolioHighlights = [
     title: "Dermal fillers",
     description:
       "Hyaluronic acid treatments for lips, cheeks, jawline, chin, under-eyes, and facial balancing.",
-    href: "/treatments#dermal-fillers",
+    href: "/treatments/lip-fillers",
     image:
       "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1200&q=85",
   },
@@ -81,7 +81,7 @@ export const portfolioHighlights = [
     title: "Anti-wrinkle injectables",
     description:
       "Precise neuromodulator treatments for forehead lines, frown lines, crow's feet, masseter, and sweating.",
-    href: "/treatments#botox",
+    href: "/treatments/anti-wrinkle",
     image:
       "https://images.unsplash.com/photo-1552693673-1bf958298935?w=1200&q=85",
   },
@@ -89,7 +89,7 @@ export const portfolioHighlights = [
     title: "Skin quality",
     description:
       "Medical facials, peels, boosters, microneedling, and laser-led plans for stronger, brighter skin.",
-    href: "/treatments#skin-treatments",
+    href: "/treatments/clear-brilliant",
     image:
       "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=85",
   },

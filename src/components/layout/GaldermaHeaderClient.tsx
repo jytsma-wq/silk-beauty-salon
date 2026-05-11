@@ -17,61 +17,64 @@ type MegaMenuItem = {
 
 function MegaMenuPanel({
   eyebrow,
-  title,
   overviewHref,
   overviewLabel,
-  description,
   image,
   items,
+  compact = false,
 }: {
   eyebrow: string;
-  title: string;
-  overviewHref: string;
-  overviewLabel: string;
-  description: string;
-  image: string;
+  overviewHref?: string;
+  overviewLabel?: string;
+  image?: string;
   items: MegaMenuItem[];
+  compact?: boolean;
 }) {
+  const columnCount = compact ? 6 : items.length > 14 ? 5 : 4;
+
   return (
     <div
-      className="absolute left-1/2 top-full z-50 w-[min(1120px,calc(100vw-3rem))] max-h-[80vh] -translate-x-1/2 pt-4 flex"
-      style={{ maxWidth: '100vw', overflow: 'visible' }}
+      className="absolute left-1/2 top-full z-50 w-screen -translate-x-1/2 pt-8"
+      style={{ maxWidth: '100vw' }}
     >
-      <div className="overflow-hidden rounded-xl border border-[#e8e4df] bg-[#fbf8f4] shadow-[0_24px_70px_rgba(36,31,27,0.12)] w-full max-h-[80vh] flex">
-        <div className="grid lg:grid-cols-[320px_1fr] w-full max-h-[80vh]">
-          <div className="border-r border-[#e8e4df] bg-white max-h-[80vh] overflow-hidden">
-            <div className="relative aspect-4/5 overflow-hidden">
-              <Image src={image} alt="" fill className="object-cover" sizes="320px" />
-            </div>
-            <div className="p-8">
-              <p className="mb-3 text-[0.68rem] uppercase tracking-[0.24em] text-[#8d6f58]">
-                {eyebrow}
-              </p>
-              <h3 className="font-serif text-4xl font-normal leading-[1.06] text-[#241f1b]">
-                {title}
-              </h3>
-              <p className="mt-4 text-sm leading-7 text-stone-600">{description}</p>
+      <div className="bg-white shadow-[0_18px_45px_rgba(36,31,27,0.08)]">
+        <div
+          className={`mx-auto grid max-w-7xl gap-8 px-6 lg:px-8 ${
+            compact ? 'py-7' : 'py-8 lg:grid-cols-[340px_1fr]'
+          }`}
+        >
+          {!compact && image && overviewHref && overviewLabel ? (
+            <div>
+              <div className="relative aspect-[1.65/1] overflow-hidden bg-stone-100">
+                <Image src={image} alt="" fill className="object-cover" sizes="340px" />
+              </div>
               <Link
                 href={overviewHref}
-                className="mt-8 inline-flex h-11 items-center rounded-md border border-[#d9cec1] bg-[#f7f2eb] px-6 text-[0.68rem] font-medium uppercase tracking-[0.18em] text-[#241f1b] transition-colors hover:bg-[#241f1b] hover:text-white"
+                className="mt-4 inline-flex items-center gap-3 font-serif text-xl font-normal leading-tight text-[#241f1b] transition-colors hover:text-[#76563f]"
               >
                 {overviewLabel}
+                <span aria-hidden="true" className="font-sans text-lg leading-none">&rsaquo;</span>
               </Link>
             </div>
-          </div>
+          ) : null}
 
-          <div className="p-8 md:p-10 overflow-y-auto max-h-[80vh]">
-            <div className="grid gap-x-8 gap-y-6 md:grid-cols-2 xl:grid-cols-3">
+          <div>
+            <p className="mb-5 text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-[#76563f]">
+              {eyebrow}
+            </p>
+            <div
+              className="grid gap-x-10 gap-y-5"
+              style={{ gridTemplateColumns: `repeat(${columnCount}, minmax(0, 1fr))` }}
+            >
               {items.map((item) => (
                 <Link
                   key={`${item.title}-${item.href}`}
                   href={item.href}
-                  className="group rounded-[6px] border border-transparent bg-white/70 p-5 transition-colors hover:border-[#e8e4df] hover:bg-white"
+                  className={`group block leading-snug text-[#241f1b] transition-colors hover:text-[#76563f] ${
+                    compact ? 'text-[0.82rem]' : 'text-[0.94rem]'
+                  }`}
                 >
-                  <h4 className="text-sm font-medium uppercase tracking-[0.16em] text-[#241f1b]">
-                    {item.title}
-                  </h4>
-                  <p className="mt-3 text-sm leading-6 text-stone-600">{item.description}</p>
+                  {item.title}
                 </Link>
               ))}
             </div>
@@ -234,22 +237,16 @@ export function GaldermaHeaderClient({
               {activeMegaMenu === 'treatments' ? (
                 <MegaMenuPanel
                   eyebrow={t('treatments')}
-                  title={t('treatmentPortfolio')}
-                  overviewHref="/treatments"
-                  overviewLabel={t('allTreatments')}
-                  description={t('treatmentPortfolioDescription')}
-                  image="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=1000&q=80"
                   items={treatmentMegaMenuItems}
+                  compact
                 />
               ) : null}
 
               {activeMegaMenu === 'conditions' ? (
                 <MegaMenuPanel
                   eyebrow={t('skinConcerns')}
-                  title={t('skinConditions')}
                   overviewHref="/conditions"
                   overviewLabel={t('allConditions')}
-                  description={t('conditionsDescription')}
                   image="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1000&q=80"
                   items={skinConditionMegaMenuItems}
                 />
@@ -306,7 +303,7 @@ export function GaldermaHeaderClient({
               <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-20">
                 <nav className="space-y-6">
                   <span className="mb-6 block text-xs uppercase tracking-[0.4em] text-stone-400">{t('menu')}</span>
-                  <Link href="/treatments" onClick={() => setIsMenuOpen(false)} className="block text-3xl font-serif font-normal text-stone-900 transition-colors hover:text-[#8d6f58]">
+                  <Link href="/treatments/anti-wrinkle" onClick={() => setIsMenuOpen(false)} className="block text-3xl font-serif font-normal text-stone-900 transition-colors hover:text-[#8d6f58]">
                     {t('treatments', { defaultValue: 'Treatments' })}
                   </Link>
                   <Link href="/conditions" onClick={() => setIsMenuOpen(false)} className="block text-3xl font-serif font-normal text-stone-900 transition-colors hover:text-[#8d6f58]">

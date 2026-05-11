@@ -94,10 +94,10 @@ function PortfolioSection() {
             description={t('portfolio.description')}
           />
           <Link
-            href="/treatments"
+            href="/treatments/anti-wrinkle"
             className="inline-flex h-12 items-center self-start border border-[#241f1b] px-7 text-xs font-medium uppercase tracking-[0.18em] text-[#241f1b] transition-colors hover:bg-[#241f1b] hover:text-white"
           >
-            {t('portfolio.viewAll')}
+            {t('portfolio.explore')}
           </Link>
         </div>
 
