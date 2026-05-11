@@ -129,7 +129,7 @@ const galleryData: BeforeAfterItem[] = [
     age: 37,
     treatment: 'Frown Lines',
     treatmentDetails: 'Botulinum toxin 15 units glabella',
-    beforeImage: 'https://images.unsplash.com/photo-1496440543078-eff95d7b8e25?w=600&q=80',
+    beforeImage: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80',
     afterImage: 'https://images.unsplash.com/photo-1447069387593-a5de0862481e?w=600&q=80',
     duration: '4 months',
     sessions: 1,

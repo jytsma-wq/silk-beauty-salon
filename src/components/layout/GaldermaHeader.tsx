@@ -14,6 +14,27 @@ const treatmentMegaMenuItems = [
     href: `/treatments#${category.slug}`,
     description: category.description,
   })),
+  // Add missing direct links for specific treatments
+  {
+    title: 'Hair Treatments',
+    href: '/treatments/hair-treatments',
+    description: 'Advanced hair restoration and scalp treatments.',
+  },
+  {
+    title: 'Hair Extensions',
+    href: '/treatments/hair-extensions',
+    description: 'Color-matched extensions for fuller, longer, natural-looking hair.',
+  },
+  {
+    title: 'Nails',
+    href: '/treatments/nails',
+    description: 'Manicure, pedicure, and nail finishing services with detailed care.',
+  },
+  {
+    title: 'Lashes',
+    href: '/treatments/lashes',
+    description: 'Lash lift, styling, and finishing services shaped around your eyes.',
+  },
 ];
 
 const skinConditionMegaMenuItems = [

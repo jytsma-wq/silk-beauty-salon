@@ -106,7 +106,7 @@ export const laserTreatments: NavCategory = {
   name: "Laser & Energy",
   slug: "laser-energy",
   href: "/treatments#laser",
-  image: "https://images.unsplash.com/photo-1631217868264-b78de6a33f31?w=800&q=80",
+  image: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&q=80",
   items: [
     { name: "Laser Hair Removal", slug: "laser-hair-removal", href: "/treatments/bbl-hero", description: "Permanent hair reduction" },
     { name: "Laser Skin Resurfacing", slug: "laser-resurfacing", href: "/treatments/cutera-c02-laser", description: "Smooth skin texture" },

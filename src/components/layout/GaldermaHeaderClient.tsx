@@ -34,10 +34,13 @@ function MegaMenuPanel({
   items: MegaMenuItem[];
 }) {
   return (
-    <div className="absolute left-1/2 top-full z-50 w-[min(1120px,calc(100vw-3rem))] -translate-x-1/2 pt-4">
-      <div className="overflow-hidden rounded-xl border border-[#e8e4df] bg-[#fbf8f4] shadow-[0_24px_70px_rgba(36,31,27,0.12)]">
-        <div className="grid lg:grid-cols-[320px_1fr]">
-          <div className="border-r border-[#e8e4df] bg-white">
+    <div
+      className="absolute left-1/2 top-full z-50 w-[min(1120px,calc(100vw-3rem))] max-h-[80vh] -translate-x-1/2 pt-4 flex"
+      style={{ maxWidth: '100vw', overflow: 'visible' }}
+    >
+      <div className="overflow-hidden rounded-xl border border-[#e8e4df] bg-[#fbf8f4] shadow-[0_24px_70px_rgba(36,31,27,0.12)] w-full max-h-[80vh] flex">
+        <div className="grid lg:grid-cols-[320px_1fr] w-full max-h-[80vh]">
+          <div className="border-r border-[#e8e4df] bg-white max-h-[80vh] overflow-hidden">
             <div className="relative aspect-4/5 overflow-hidden">
               <Image src={image} alt="" fill className="object-cover" sizes="320px" />
             </div>
@@ -58,7 +61,7 @@ function MegaMenuPanel({
             </div>
           </div>
 
-          <div className="p-8 md:p-10">
+          <div className="p-8 md:p-10 overflow-y-auto max-h-[80vh]">
             <div className="grid gap-x-8 gap-y-6 md:grid-cols-2 xl:grid-cols-3">
               {items.map((item) => (
                 <Link
@@ -223,7 +226,7 @@ export function GaldermaHeaderClient({
                   overviewHref="/conditions"
                   overviewLabel={t('allConditions')}
                   description={t('conditionsDescription')}
-                  image="https://images.unsplash.com/photo-1570172619644-dfd40ed531fb?w=1000&q=80"
+                  image="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1000&q=80"
                   items={skinConditionMegaMenuItems}
                 />
               ) : null}
