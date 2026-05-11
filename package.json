@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "set NODE_OPTIONS=--max-old-space-size=4096 && next dev -p 3000 --turbopack --hostname 0.0.0.0",
     "dev:alt": "next dev -p 3001",
-    "build": "prisma generate && node -e \"const {spawnSync}=require('child_process'); const fs=require('fs'); const env={...process.env, BUILD_TIMESTAMP:new Date().toISOString(), SKIP_ENV_VALIDATION:process.env.SKIP_ENV_VALIDATION||'1', DATABASE_URL:process.env.DATABASE_URL||'postgresql://build:build@localhost:5432/build', UPSTASH_REDIS_REST_URL:process.env.UPSTASH_REDIS_REST_URL||'https://example.com', UPSTASH_REDIS_REST_TOKEN:process.env.UPSTASH_REDIS_REST_TOKEN||'build_placeholder_redis_token'}; const result=spawnSync(process.execPath,[require.resolve('next/dist/bin/next'),'build'],{stdio:'inherit',env}); if(result.status!==0) process.exit(result.status||1); [['static','standalone/.next/static'],['public','standalone/public']].forEach(([src,dest])=>{try{fs.cpSync(src,dest,{recursive:true})}catch{}});\"",
+    "build": "dotenv -c -- prisma generate && node -e \"const {spawnSync}=require('child_process'); const fs=require('fs'); const env={...process.env, BUILD_TIMESTAMP:new Date().toISOString(), SKIP_ENV_VALIDATION:process.env.SKIP_ENV_VALIDATION||'1', DATABASE_URL:process.env.DATABASE_URL||'postgresql://build:build@localhost:5432/build', UPSTASH_REDIS_REST_URL:process.env.UPSTASH_REDIS_REST_URL||'https://example.com', UPSTASH_REDIS_REST_TOKEN:process.env.UPSTASH_REDIS_REST_TOKEN||'build_placeholder_redis_token'}; const result=spawnSync(process.execPath,[require.resolve('next/dist/bin/next'),'build'],{stdio:'inherit',env}); if(result.status!==0) process.exit(result.status||1); [['static','standalone/.next/static'],['public','standalone/public']].forEach(([src,dest])=>{try{fs.cpSync(src,dest,{recursive:true})}catch{}});\"",
     "start": "NODE_ENV=production bun .next/standalone/server.js 2>&1 | tee server.log",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
@@ -19,15 +19,15 @@
     "test:a11y": "playwright test e2e/accessibility.spec.ts",
     "validate:i18n": "tsx scripts/validate-translations.ts",
     "security:audit": "tsx scripts/security-audit.ts",
-    "db:generate": "prisma generate",
-    "db:migrate:dev": "prisma migrate dev",
-    "db:migrate": "prisma migrate deploy",
-    "db:studio": "prisma studio",
-    "db:migrate:sqlite-to-postgres": "tsx scripts/migrate-to-postgres.ts",
-    "db:backup": "tsx scripts/db-backup.ts full",
+    "db:generate": "dotenv -c -- prisma generate",
+    "db:migrate:dev": "dotenv -c -- prisma migrate dev",
+    "db:migrate": "dotenv -c -- prisma migrate deploy",
+    "db:studio": "dotenv -c -- prisma studio",
+    "db:validate": "dotenv -c -- prisma validate",
+    "db:backup": "dotenv -c -- tsx scripts/db-backup.ts full",
     "db:backup:list": "tsx scripts/db-backup.ts list",
     "db:backup:verify": "tsx scripts/backup-verify.ts",
-    "db:restore": "tsx scripts/db-restore.ts restore",
+    "db:restore": "dotenv -c -- tsx scripts/db-restore.ts restore",
     "db:docker:up": "docker-compose up -d postgres pgbouncer",
     "db:docker:down": "docker-compose down",
     "db:docker:logs": "docker-compose logs -f postgres",
@@ -105,7 +105,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "eslint --fix --max-warnings 0",
+      "eslint --fix",
       "node -e \"require('child_process').execFileSync(process.execPath, [require.resolve('typescript/bin/tsc'), '--noEmit', '--skipLibCheck'], { stdio: 'inherit' })\""
     ]
   },

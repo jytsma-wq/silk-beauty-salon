@@ -73,6 +73,7 @@ prisma/*.db
 # Database backups (never commit)
 backups/
 *.sql
+!prisma/migrations/**/*.sql
 *.dump
 
 # Internal documents

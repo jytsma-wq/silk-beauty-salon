@@ -5,13 +5,26 @@ import { z } from 'zod';
  * Parses all env vars at module load time and throws on any invalid/missing
  */
 
+const postgresConnectionString = (name: string) =>
+  z
+    .string()
+    .url(`${name} must be a valid URL`)
+    .refine((value) => {
+      try {
+        const protocol = new URL(value).protocol;
+        return protocol === 'postgresql:' || protocol === 'postgres:';
+      } catch {
+        return false;
+      }
+    }, `${name} must start with postgresql:// or postgres://`);
+
 // ============================================================================
 // SERVER-SIDE ENVIRONMENT VARIABLES (never exposed to client)
 // ============================================================================
 const serverEnvSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
 
-  DATABASE_URL: z.string().url('DATABASE_URL must be a valid URL'),
+  DATABASE_URL: postgresConnectionString('DATABASE_URL'),
 
   RESEND_API_KEY: z.string().min(20, 'RESEND_API_KEY must be at least 20 characters'),
 

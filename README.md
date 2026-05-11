@@ -184,7 +184,6 @@ silkbeautysalon.online {
 Ensure all [REQUIRED] variables in `.env.example` are set:
 
 - `DATABASE_URL` - PostgreSQL connection string
-- `DIRECT_DATABASE_URL` - Direct PostgreSQL connection (for migrations, bypasses PgBouncer)
 - `RESEND_API_KEY` - For email functionality
 - `RESEND_AUDIENCE_ID` - Newsletter audience
 - `CONTACT_EMAIL` - Contact form recipient
