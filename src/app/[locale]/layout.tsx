@@ -9,7 +9,6 @@ import { GaldermaFooter } from "@/components/layout/GaldermaFooter";
 import { ConsentProvider } from "@/components/providers/ConsentProvider";
 import { WhatsAppWidget } from "@/components/layout/WhatsAppWidget";
 import { SkipLink } from "@/components/layout/SkipLink";
-import { ThemeProvider } from "@/components/providers/theme-provider";
 import { siteConfig } from '@/data/site-config';
 
 export async function generateMetadata({
@@ -57,21 +56,19 @@ export default async function LocaleLayout({
 
   
   return (
-    <ThemeProvider>
-      <NextIntlClientProvider messages={messages}>
-        <ConsentProvider>
-          <AnnouncerProvider>
-            <SkipLink />
-            <GaldermaHeader />
-            <main id="main-content" className="pt-35">
-              {children}
-            </main>
-            <GaldermaFooter />
-            <WhatsAppWidget />
-            <Toaster />
-          </AnnouncerProvider>
-        </ConsentProvider>
-      </NextIntlClientProvider>
-    </ThemeProvider>
+    <NextIntlClientProvider messages={messages}>
+      <ConsentProvider>
+        <AnnouncerProvider>
+          <SkipLink />
+          <GaldermaHeader />
+          <main id="main-content" className="pt-35">
+            {children}
+          </main>
+          <GaldermaFooter />
+          <WhatsAppWidget />
+          <Toaster />
+        </AnnouncerProvider>
+      </ConsentProvider>
+    </NextIntlClientProvider>
   );
 }

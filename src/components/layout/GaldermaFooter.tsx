@@ -81,7 +81,7 @@ export function GaldermaFooter() {
             </span>
           </div>
 
-          <h2 className="mb-6 font-sans text-4xl font-light text-stone-900 md:text-5xl lg:text-6xl">
+          <h2 className="mb-6 font-serif text-4xl font-normal text-stone-900 md:text-5xl lg:text-6xl">
             {t('newsletterTitle', { defaultValue: 'Join Our World' })}
           </h2>
 

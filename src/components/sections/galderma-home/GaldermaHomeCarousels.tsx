@@ -89,6 +89,7 @@ export function ClinicalHeroCarousel() {
   }));
   const {
     emblaRef,
+    emblaApi,
     scrollPrev,
     scrollNext,
     canScrollPrev,
@@ -96,42 +97,52 @@ export function ClinicalHeroCarousel() {
     selectedIndex,
   } = useCarouselControls();
 
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    const autoplay = window.setInterval(() => {
+      emblaApi.scrollNext();
+    }, 6200);
+
+    return () => window.clearInterval(autoplay);
+  }, [emblaApi]);
+
   return (
-    <section className="relative bg-[#f7f2eb] pt-42.5 md:pt-47">
-      <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex">
+    <section className="relative -mt-[8.75rem] h-[88svh] min-h-[760px] max-h-[820px] overflow-hidden bg-[#050505] md:min-h-[620px]">
+      <div className="h-full overflow-hidden" ref={emblaRef}>
+        <div className="flex h-full">
           {slides.map((slide, index) => (
-            <article key={slide.title} className="min-w-0 flex-[0_0_100%]">
-              <div className="grid min-h-[calc(100svh-152px)] grid-cols-1 lg:grid-cols-[46%_54%]">
-                <div className="order-2 flex items-center px-6 py-14 md:px-12 md:py-16 lg:order-1 lg:px-16 xl:px-24">
-                  <div className="max-w-xl">
-                    <p className="mb-5 text-[0.68rem] font-medium uppercase tracking-[0.28em] text-[#76563f]">
+            <article key={slide.title} className="h-full min-w-0 flex-[0_0_100%]">
+              <div className="relative h-full">
+                <Image
+                  src={slide.image}
+                  alt=""
+                  fill
+                  priority={index === 0}
+                  className="object-cover"
+                  sizes="100vw"
+                />
+                <div className="absolute inset-0 bg-[#050505]/52" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#050505]/72 via-[#050505]/18 to-transparent" />
+
+                <div className="relative z-10 flex h-full items-end px-6 pb-24 pt-48 md:px-12 lg:px-16 xl:px-24">
+                  <div className="max-w-[34rem]">
+                    <p className="mb-5 text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-white/65">
                       {slide.eyebrow}
                     </p>
-                    <h1 className="font-sans text-[clamp(2.75rem,5.4vw,5.4rem)] font-light leading-[1.02] text-[#241f1b]">
+                    <h1 className="font-serif text-[clamp(2.45rem,4.2vw,4.75rem)] font-normal leading-[1.08] text-white/75">
                       {slide.title}
                     </h1>
-                    <p className="mt-7 max-w-md text-base leading-8 text-stone-700 md:text-lg">
+                    <p className="mt-7 max-w-md text-base leading-8 text-white/70 md:text-lg">
                       {slide.description}
                     </p>
                     <Link
                       href={slide.href}
-                      className="mt-10 inline-flex h-12 items-center border border-[#241f1b] px-7 text-xs font-medium uppercase tracking-[0.18em] text-[#241f1b] transition-colors hover:bg-[#241f1b] hover:text-white"
+                      className="mt-10 inline-flex h-12 items-center border border-white/45 px-7 text-xs font-semibold uppercase tracking-[0.18em] text-white/75 transition-colors hover:border-white hover:bg-white hover:text-[#241f1b]"
                     >
                       {slide.cta}
                     </Link>
                   </div>
-                </div>
-                <div className="relative order-1 min-h-[48svh] overflow-hidden lg:order-2 lg:min-h-0">
-                  <Image
-                    src={slide.image}
-                    alt=""
-                    fill
-                    priority={index === 0}
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 55vw"
-                  />
-                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-black/20 to-transparent" />
                 </div>
               </div>
             </article>
@@ -139,7 +150,7 @@ export function ClinicalHeroCarousel() {
         </div>
       </div>
 
-      <div className="absolute bottom-6 right-6 flex items-center gap-3 md:bottom-10 md:right-10">
+      <div className="absolute bottom-6 right-6 hidden items-center gap-3 md:bottom-10 md:right-10 md:flex">
         <CarouselButton
           direction="previous"
           onClick={scrollPrev}
@@ -151,12 +162,12 @@ export function ClinicalHeroCarousel() {
           disabled={!canScrollNext}
                   />
       </div>
-      <div className="absolute bottom-8 left-6 flex gap-2 md:left-12 lg:left-16 xl:left-24">
+      <div className="absolute bottom-10 right-6 hidden gap-2 md:right-12 md:flex lg:right-16 xl:right-24">
         {slides.map((slide, index) => (
           <span
             key={slide.title}
             className={`h-px transition-all ${
-              selectedIndex === index ? 'w-12 bg-[#241f1b]' : 'w-5 bg-stone-400'
+              selectedIndex === index ? 'w-12 bg-white' : 'w-8 bg-white/40'
             }`}
           />
         ))}
@@ -217,7 +228,7 @@ export function ConcernCarousel() {
                   />
                 </div>
                 <div className="border-b border-stone-200 py-6">
-                  <h3 className="font-sans text-3xl font-light text-[#241f1b]">
+                  <h3 className="font-serif text-3xl font-normal text-[#241f1b]">
                     {item.name}
                   </h3>
                   <p className="mt-3 max-w-sm text-sm leading-6 text-stone-600">
@@ -295,7 +306,7 @@ export function ResultsCarousel() {
                 </div>
               </div>
               <div className="pt-5">
-                <h3 className="font-sans text-2xl font-light text-[#241f1b]">
+                <h3 className="font-serif text-2xl font-normal text-[#241f1b]">
                   {item.treatment}
                 </h3>
                 <p className="mt-2 text-sm leading-6 text-stone-600">{item.detail}</p>
@@ -355,7 +366,7 @@ export function TrendsCarousel() {
                 <p className="mt-5 text-[0.68rem] uppercase tracking-[0.22em] text-[#76563f]">
                   {article.category}
                 </p>
-                <h3 className="mt-3 font-sans text-3xl font-light leading-tight text-[#241f1b]">
+                <h3 className="mt-3 font-serif text-3xl font-normal leading-tight text-[#241f1b]">
                   {article.title}
                 </h3>
               </Link>

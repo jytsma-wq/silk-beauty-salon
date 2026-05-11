@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40" role="img" aria-label="Hebrew">
+  <rect width="60" height="40" fill="#fff"/>
+  <rect width="60" height="5" y="5" fill="#0038b8"/>
+  <rect width="60" height="5" y="30" fill="#0038b8"/>
+  <path d="M30 12l9 16H21z" fill="none" stroke="#0038b8" stroke-width="2"/>
+  <path d="M30 28l9-16H21z" fill="none" stroke="#0038b8" stroke-width="2"/>
+</svg>

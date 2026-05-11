@@ -5,7 +5,7 @@ export const homeHeroSlides = [
     description:
       "Natural-looking injectables, skin quality treatments, and advanced device procedures planned around your anatomy, skin health, and lifestyle.",
     image:
-      "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=2200&q=85",
+      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=2200&q=85",
     href: "/book",
     cta: "Book a consultation",
   },
@@ -15,7 +15,7 @@ export const homeHeroSlides = [
     description:
       "From texture and pigmentation to hydration, firmness, and facial balance, every plan begins with a skin-first diagnosis.",
     image:
-      "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=2200&q=85",
+      "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=2200&q=85",
     href: "/conditions",
     cta: "Explore concerns",
   },
