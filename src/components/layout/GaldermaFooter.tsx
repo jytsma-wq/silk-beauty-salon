@@ -221,11 +221,10 @@ export function GaldermaFooter() {
 
         <div className="border-t border-stone-200 pt-8">
           <div className="flex flex-col gap-6 text-[0.68rem] font-medium uppercase tracking-[0.28em] text-stone-500 lg:flex-row lg:items-center lg:justify-between">
-            <span className="text-[#241f1b]">&copy; {currentYear} {siteConfig.name}</span>
+            <span>
+              &copy; {currentYear} Black Sea Digital Solutions
+            </span>
             <div className="flex flex-wrap gap-x-8 gap-y-3">
-              <Link href="/book" className="transition-colors hover:text-[#241f1b]">
-                {tNav('findSpecialist', { defaultValue: 'Find a Specialist' })}
-              </Link>
               <Link href="/terms-conditions" className="transition-colors hover:text-[#241f1b]">
                 {t('terms', { defaultValue: 'Terms of Use' })}
               </Link>
