@@ -307,6 +307,13 @@ export default async function middleware(request: NextRequest) {
     }
   }
 
+  if (pathname === '/admin' || pathname.startsWith('/admin/')) {
+    const response = NextResponse.next();
+    response.headers.set('x-request-id', requestId);
+    response.headers.set('x-pathname', pathname);
+    return response;
+  }
+
   // Pass to i18n middleware for locale routing
   const response = i18nMiddleware(request);
 

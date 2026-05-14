@@ -89,9 +89,9 @@ export default async function TreatmentCollectionPage({ params }: Props) {
                   Home
                 </Link>
                 <ChevronRight className="h-3.5 w-3.5" />
-                <Link href="/treatments" className="hover:text-[#241f1b]">
+                <span>
                   Treatments
-                </Link>
+                </span>
                 <ChevronRight className="h-3.5 w-3.5" />
                 <span className="text-[#241f1b]">{collection.title}</span>
               </nav>

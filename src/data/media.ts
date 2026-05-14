@@ -190,8 +190,8 @@ export const imageGalleries: ImageGallery[] = [
     images: [
       'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=1200&q=80',
       'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200&q=80',
-      'https://images.unsplash.com/photo-1606811841689-23dfddce2e95?w=1200&q=80',
-      'https://images.unsplash.com/photo-1576091160550-e2173dba999ef?w=1200&q=80',
+      'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=1200&q=80',
+      'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=80',
       'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1200&q=80',
       'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1200&q=80',
       'https://images.unsplash.com/photo-1552693673-1bf958298935?w=1200&q=80',

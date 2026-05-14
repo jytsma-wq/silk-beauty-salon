@@ -1,4 +1,4 @@
-import { Link } from '@/i18n/routing';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { routing } from '@/i18n/routing';
 

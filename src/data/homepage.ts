@@ -5,7 +5,7 @@ export const homeHeroSlides = [
     description:
       "Natural-looking injectables, skin quality treatments, and advanced device procedures planned around your anatomy, skin health, and lifestyle.",
     image:
-      "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=2200&q=85",
+      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=2200&q=85",
     href: "/book",
     cta: "Book a consultation",
   },
@@ -15,7 +15,7 @@ export const homeHeroSlides = [
     description:
       "From texture and pigmentation to hydration, firmness, and facial balance, every plan begins with a skin-first diagnosis.",
     image:
-      "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=2200&q=85",
+      "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=2200&q=85",
     href: "/conditions",
     cta: "Explore concerns",
   },
@@ -26,7 +26,7 @@ export const homeHeroSlides = [
       "Dermal fillers and anti-wrinkle treatments delivered with restraint, symmetry, and respect for natural expression.",
     image:
       "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=2200&q=85",
-    href: "/treatments",
+    href: "/treatments/lip-fillers",
     cta: "View treatments",
   },
 ];
@@ -64,7 +64,7 @@ export const skinConcernHighlights = [
     name: "Acne and scarring",
     description: "Improve active breakouts, marks, and uneven texture.",
     href: "/conditions/acne-scarring",
-    image: "https://images.unsplash.com/photo-1560066984-138dadb4c3f9?w=900&q=85",
+    image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=900&q=85",
   },
 ];
 
@@ -73,7 +73,7 @@ export const portfolioHighlights = [
     title: "Dermal fillers",
     description:
       "Hyaluronic acid treatments for lips, cheeks, jawline, chin, under-eyes, and facial balancing.",
-    href: "/treatments#dermal-fillers",
+    href: "/treatments/lip-fillers",
     image:
       "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1200&q=85",
   },
@@ -81,7 +81,7 @@ export const portfolioHighlights = [
     title: "Anti-wrinkle injectables",
     description:
       "Precise neuromodulator treatments for forehead lines, frown lines, crow's feet, masseter, and sweating.",
-    href: "/treatments#botox",
+    href: "/treatments/anti-wrinkle",
     image:
       "https://images.unsplash.com/photo-1552693673-1bf958298935?w=1200&q=85",
   },
@@ -89,7 +89,7 @@ export const portfolioHighlights = [
     title: "Skin quality",
     description:
       "Medical facials, peels, boosters, microneedling, and laser-led plans for stronger, brighter skin.",
-    href: "/treatments#skin-treatments",
+    href: "/treatments/clear-brilliant",
     image:
       "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=85",
   },

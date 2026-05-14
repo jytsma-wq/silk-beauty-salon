@@ -13,7 +13,7 @@ You are a senior full-stack engineer performing a complete, systematic audit of 
 
 ## PROJECT CONTEXT
 
-- **Stack:** Next.js 16, React 19, TypeScript strict, Tailwind CSS v4, next-intl v4, Prisma 5 (SQLite), Resend, ioredis, Zod v4, Vitest, Playwright, Framer Motion, Bun runtime
+- **Stack:** Next.js 16, React 19, TypeScript strict, Tailwind CSS v4, next-intl v4, Prisma 5 (PostgreSQL), Resend, ioredis, Zod v4, Vitest, Playwright, Framer Motion, Bun runtime
 - **Locales:** en (default), ka, ru, tr, ar, he — all with localePrefix: 'always'
 - **RTL locales:** ar, he
 - **Pages:** 20 pages under src/app/[locale]/
@@ -329,7 +329,7 @@ git commit -m "chore: remove committed databases and dev artifacts"
 ### SECTION 15 — PRISMA & DATABASE
 **File:** `prisma/schema.prisma`
 
-- [ ] 15.1 Is `provider = "sqlite"` set (not "postgresql")?
+- [ ] 15.1 Is `provider = "postgresql"` set?
 - [ ] 15.2 Is `DATABASE_URL` using `env("DATABASE_URL")`?
 - [ ] 15.3 Are these models defined: `ContactSubmission`, `NewsletterSubscriber`, `BlogPost`, `TreatmentCategory`, `Treatment`, `TreatmentTranslation`, `TreatmentBenefit`, `TreatmentFAQ`?
 - [ ] 15.4 Are the boilerplate `User` and `Post` models NOT present?

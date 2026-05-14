@@ -5,20 +5,12 @@ import { Link } from '@/i18n/routing';
 import { ChevronRight, Calendar } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 import { siteConfig } from '@/data/site-config';
-import { BookingForm } from './booking-form';
-import { ConsultationTypeButtons } from './consultation-type-buttons';
+import { BookingDialog } from '@/components/booking-dialog';
+import { getBookingServices } from '@/lib/treatments-db';
 
 interface Props {
   params: Promise<{ locale: string }>;
 }
-
-// Hoisted static data - defined once at module level
-const CONSULTATION_TYPE_KEYS = [
-  { key: 'facial', bookingType: 'facial-consultation' },
-  { key: 'skin', bookingType: 'skin-consultation' },
-  { key: 'body', bookingType: 'body-consultation' },
-  { key: 'virtual', bookingType: 'virtual-consultation' },
-] as const;
 
 const JSON_LD_BASE = {
   '@context': 'https://schema.org',
@@ -46,29 +38,7 @@ export default async function BookingPage({ params }: Props) {
   const t = await getTranslations({ locale, namespace: 'bookingPage' });
   const tCommon = await getTranslations({ locale, namespace: 'common' });
   const tNav = await getTranslations({ locale, namespace: 'nav' });
-
-  // Build consultation types from translation keys
-  const consultationTypes = CONSULTATION_TYPE_KEYS.map(({ key, bookingType }) => ({
-    title: {
-      facial: 'Facial Consultation',
-      skin: 'Skin Consultation',
-      body: 'Body Treatment Consultation',
-      virtual: 'Virtual Consultation',
-    }[key],
-    duration: {
-      facial: '45 min',
-      skin: '45 min',
-      body: '45 min',
-      virtual: '30 min',
-    }[key],
-    description: {
-      facial: 'A short in-clinic consultation focused on your facial goals.',
-      skin: 'Assess skin concerns and build a treatment plan.',
-      body: 'Discuss body contouring and treatment options.',
-      virtual: 'A remote consultation from anywhere.',
-    }[key],
-    bookingType,
-  }));
+  const bookingServices = await getBookingServices(locale);
 
   // Build JSON-LD with dynamic address data
   const jsonLd = {
@@ -143,45 +113,7 @@ export default async function BookingPage({ params }: Props) {
                 </div>
 
                 <div className="rounded-md bg-[#f7f4f0] p-4 md:p-8">
-                  <BookingForm consultationTypes={consultationTypes} />
-                </div>
-              </div>
-            </div>
-
-            {/* Sidebar */}
-            <div className="lg:col-span-1">
-              <div className="border-t border-[#e8e4df] py-8">
-                <h3 className="mb-4 font-sans text-lg font-light text-[#241f1b]">
-                  {t('needHelp')}
-                </h3>
-                <div className="space-y-3 text-sm">
-                  <div>
-                  <span className="text-muted-foreground">{t('phone')}:</span>
-                  <br />
-                  <a 
-                    href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`}
-                    className="text-primary hover:text-[#b5453a]"
-                  >
-                    {siteConfig.contact.phone}
-                  </a>
-                </div>
-                <div>
-                  <span className="text-muted-foreground">{t('email')}:</span>
-                  <br />
-                  <a 
-                    href={`mailto:${siteConfig.contact.email}`}
-                    className="text-primary hover:text-[#b5453a]"
-                  >
-                    {siteConfig.contact.email}
-                  </a>
-                </div>
-                <div>
-                  <span className="text-muted-foreground">{t('address')}:</span>
-                  <br />
-                  <span className="text-primary">
-                    {siteConfig.contact.address}, {siteConfig.contact.city}
-                  </span>
-                </div>
+                  <BookingDialog renderMode="inline" serviceGroups={bookingServices} />
                 </div>
               </div>
             </div>
@@ -191,9 +123,27 @@ export default async function BookingPage({ params }: Props) {
               {/* Consultation Types */}
               <div className="border-t border-[#e8e4df] py-8">
                 <h3 className="mb-4 font-sans text-lg font-light text-[#241f1b]">
-                  Consultation Types
+                  {t('consultationTypes')}
                 </h3>
-                <ConsultationTypeButtons types={consultationTypes} />
+                <div className="space-y-4">
+                  {bookingServices.slice(0, 4).map((group) => (
+                    <div key={group.label}>
+                      <p className="mb-2 text-xs font-medium uppercase tracking-[0.16em] text-[#8d6f58]">
+                        {group.label}
+                      </p>
+                      <ul className="space-y-2 text-sm text-stone-600">
+                        {group.services.slice(0, 4).map((service) => (
+                          <li key={service.value} className="flex items-start justify-between gap-3">
+                            <span>{service.label}</span>
+                            {service.duration ? (
+                              <span className="shrink-0 text-xs text-stone-500">{service.duration}</span>
+                            ) : null}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               {/* What to Expect */}
@@ -204,19 +154,19 @@ export default async function BookingPage({ params }: Props) {
                 <ul className="space-y-3 text-sm">
                   <li className="flex items-start gap-2 text-muted-foreground">
                     <span className="text-[#b5453a] text-xs tracking-[0.15em] uppercase">01</span>
-                    <span>Choose the consultation type that fits your needs.</span>
+                    <span>{t('whatToExpect.step1')}</span>
                   </li>
                   <li className="flex items-start gap-2 text-muted-foreground">
                     <span className="text-[#b5453a] text-xs tracking-[0.15em] uppercase">02</span>
-                    <span>Select your preferred date and time.</span>
+                    <span>{t('whatToExpect.step2')}</span>
                   </li>
                   <li className="flex items-start gap-2 text-muted-foreground">
                     <span className="text-[#b5453a] text-xs tracking-[0.15em] uppercase">03</span>
-                    <span>Enter your contact details and notes.</span>
+                    <span>{t('whatToExpect.step3')}</span>
                   </li>
                   <li className="flex items-start gap-2 text-muted-foreground">
                     <span className="text-[#b5453a] text-xs tracking-[0.15em] uppercase">04</span>
-                    <span>We confirm your appointment and follow up promptly.</span>
+                    <span>{t('whatToExpect.step4')}</span>
                   </li>
                 </ul>
               </div>
@@ -269,10 +219,10 @@ export default async function BookingPage({ params }: Props) {
           </h2>
           <div className="max-w-2xl mx-auto space-y-4">
             {[
-              { q: 'How do I book?', a: 'Select a consultation type and choose a time.' },
-              { q: 'Can I reschedule?', a: 'Yes, contact us and we will help adjust your booking.' },
-              { q: 'Do I need a deposit?', a: 'Some consultations may require a deposit depending on the service.' },
-              { q: 'Can I book online?', a: 'Yes, the booking form is available on this page.' },
+              { q: t('faq.q1'), a: t('faq.a1') },
+              { q: t('faq.q2'), a: t('faq.a2') },
+              { q: t('faq.q3'), a: t('faq.a3') },
+              { q: t('faq.q4'), a: t('faq.a4') },
             ].map((faq, index) => (
               <div key={index} className="py-6 border-t border-[#e8e4df]">
                 <h3 className="font-semibold text-primary mb-2">{faq.q}</h3>

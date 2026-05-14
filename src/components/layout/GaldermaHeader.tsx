@@ -4,16 +4,13 @@ import { baseConditions } from '@/data/conditions';
 import { GaldermaHeaderClient } from './GaldermaHeaderClient';
 
 const treatmentMegaMenuItems = [
-  {
-    title: 'All Treatments',
-    href: '/treatments',
-    description: 'View the full treatment portfolio and browse every category.',
-  },
-  ...baseTreatmentCategories.map((category) => ({
-    title: category.name,
-    href: `/treatments#${category.slug}`,
-    description: category.description,
-  })),
+  ...baseTreatmentCategories.flatMap((category) =>
+    category.treatments.map((treatment) => ({
+      title: treatment.name,
+      href: `/treatments/${treatment.slug}`,
+      description: treatment.shortDescription,
+    }))
+  ),
 ];
 
 const skinConditionMegaMenuItems = [

@@ -1,11 +1,10 @@
 # Database Documentation
 
-This document provides comprehensive information about the PostgreSQL database setup for Silk Beauty Salon, including migration from SQLite, local development, production configuration, and maintenance procedures.
+This document provides comprehensive information about the PostgreSQL database setup for Silk Beauty Salon, including local development, production configuration, and maintenance procedures.
 
 ## Table of Contents
 
 - [Overview](#overview)
-- [Migration from SQLite](#migration-from-sqlite)
 - [Local Development Setup](#local-development-setup)
 - [Production Configuration](#production-configuration)
 - [Database Schema](#database-schema)
@@ -16,61 +15,14 @@ This document provides comprehensive information about the PostgreSQL database s
 
 ## Overview
 
-The application has been migrated from SQLite to PostgreSQL for production scalability. Key features include:
+The application uses PostgreSQL as its single database. Key features include:
 
 - **PostgreSQL 16** as the primary database
-- **UUID primary keys** (replacing CUIDs)
+- **UUID primary keys**
 - **PostgreSQL Enums** for status fields
 - **PgBouncer** for connection pooling
 - **Health check endpoint** for monitoring
 - **Backup/restore scripts** for data safety
-
-## Migration from SQLite
-
-### Prerequisites
-
-- PostgreSQL 16+ installed locally or via Docker
-- Node.js and npm/yarn
-- Existing SQLite database (`prisma/dev.db`)
-
-### Migration Steps
-
-1. **Start PostgreSQL locally:**
-   ```bash
-   docker-compose up -d postgres
-   ```
-
-2. **Update environment variables:**
-   ```bash
-   cp .env.example .env.local
-   # Edit .env.local with your PostgreSQL connection strings
-   ```
-
-3. **Run Prisma migrations:**
-   ```bash
-   npx prisma migrate dev --name init_postgres
-   ```
-
-4. **Migrate data from SQLite:**
-   ```bash
-   npx tsx scripts/migrate-to-postgres.ts
-   ```
-
-5. **Verify migration:**
-   ```bash
-   npx tsx scripts/migrate-to-postgres.ts list
-   ```
-
-### Migration Script Features
-
-The migration script (`scripts/migrate-to-postgres.ts`) automatically:
-
-- Creates a pre-migration backup of SQLite data
-- Converts CUIDs to UUIDs
-- Maps string status fields to PostgreSQL enums
-- Preserves all relationships between tables
-- Provides detailed migration statistics
-- Supports rollback if needed
 
 ## Local Development Setup
 
@@ -106,11 +58,7 @@ docker-compose up -d postgres
 Update `.env.local` with development settings:
 
 ```env
-# Direct connection for Prisma Client
 DATABASE_URL="postgresql://silkbeauty:silkbeauty_dev_password@localhost:5432/silkbeauty?schema=public&connection_limit=20&pool_timeout=30"
-
-# Direct connection for migrations (bypasses PgBouncer)
-DIRECT_DATABASE_URL="postgresql://silkbeauty:silkbeauty_dev_password@localhost:5432/silkbeauty?schema=public"
 
 # With PgBouncer (for testing)
 # DATABASE_URL="postgresql://silkbeauty:silkbeauty_dev_password@localhost:6432/silkbeauty?schema=public&pgbouncer=true"
@@ -143,12 +91,7 @@ SERVER_IDLE_TIMEOUT=600
 
 ### Database URLs
 
-**For Prisma Client (with PgBouncer):**
-```
-postgresql://user:password@host:6432/db?schema=public&pgbouncer=true
-```
-
-**For Migrations (direct connection):**
+**Single database URL:**
 ```
 postgresql://user:password@host:5432/db?schema=public
 ```
@@ -412,9 +355,9 @@ const getTreatments = unstable_cache(
 **Symptom:** `prisma migrate dev` fails
 
 **Solution:**
-1. Use direct URL for migrations:
+1. Confirm `DATABASE_URL` points at the PostgreSQL database:
    ```bash
-   DIRECT_DATABASE_URL=postgresql://... npx prisma migrate dev
+   npx prisma migrate dev
    ```
 2. Check database permissions
 3. Verify PostgreSQL version (16+ required)
@@ -429,16 +372,16 @@ npx prisma --version
 npx prisma format
 
 # Validate schema
-npx prisma validate
+npm run db:validate
 
 # Generate Prisma Client
-npx prisma generate
+npm run db:generate
 
 # Database console
-npx prisma studio
+npm run db:studio
 
 # View migrations
-npx prisma migrate status
+npx dotenv -c -- prisma migrate status
 ```
 
 ### Emergency Procedures

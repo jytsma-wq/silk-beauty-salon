@@ -21,7 +21,7 @@ export function buildCSPHeader(nonce: string): string {
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https: blob:",
     "media-src 'self' https://cdn.coverr.co https://storage.googleapis.com blob:",
-    "font-src 'self'",
+    "font-src 'self' https://www.galdermaaesthetics.com",
     "connect-src 'self' https://www.google-analytics.com https://vitals.vercel-insights.com https://cdn.coverr.co",
     "frame-src 'self' https://cal.com https://*.cal.com",
     "object-src 'none'",

@@ -76,12 +76,12 @@ export function GaldermaFooter() {
         <div className="mb-20 max-w-3xl md:mb-32">
           <div className="mb-8 flex items-center gap-4">
             <div className="h-px w-12 bg-stone-300" />
-            <span className="text-xs uppercase tracking-[0.3em] text-stone-400">
+            <span className="text-xs uppercase tracking-[0.3em] text-stone-600">
               {t('stayConnected', { defaultValue: 'Stay Connected' })}
             </span>
           </div>
 
-          <h2 className="mb-6 font-sans text-4xl font-light text-stone-900 md:text-5xl lg:text-6xl">
+          <h2 className="mb-6 font-serif text-4xl font-normal text-stone-900 md:text-5xl lg:text-6xl">
             {t('newsletterTitle', { defaultValue: 'Join Our World' })}
           </h2>
 
@@ -117,7 +117,7 @@ export function GaldermaFooter() {
 
         <div className="mb-16 grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-12 lg:grid-cols-6">
           <div className="col-span-2">
-            <h3 className="mb-6 text-xs uppercase tracking-[0.3em] text-stone-400">
+            <h3 className="mb-6 text-xs uppercase tracking-[0.3em] text-stone-600">
               {t('about', { defaultValue: 'About' })}
             </h3>
             <p className="max-w-xs text-sm leading-relaxed text-stone-600">{siteConfig.description}</p>
@@ -127,7 +127,7 @@ export function GaldermaFooter() {
                 href={siteConfig.social?.instagram ?? 'https://instagram.com/silkbeauty'}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-stone-400 transition-colors hover:text-[#8d6f58]"
+                className="text-stone-600 transition-colors hover:text-[#76563f]"
                 aria-label={t('instagram')}
               >
                 <Instagram className="h-[26px] w-[26px]" strokeWidth={1.8} />
@@ -136,7 +136,7 @@ export function GaldermaFooter() {
                 href={siteConfig.social?.facebook ?? 'https://facebook.com/silkbeauty'}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-stone-400 transition-colors hover:text-[#8d6f58]"
+                className="text-stone-600 transition-colors hover:text-[#76563f]"
                 aria-label={t('facebook')}
               >
                 <Facebook className="h-[26px] w-[26px]" strokeWidth={1.8} />
@@ -145,11 +145,11 @@ export function GaldermaFooter() {
           </div>
 
           <div>
-            <h3 className="mb-6 text-xs uppercase tracking-[0.3em] text-stone-400">
+            <h3 className="mb-6 text-xs uppercase tracking-[0.3em] text-stone-600">
               {t('treatments', { defaultValue: 'Treatments' })}
             </h3>
             <nav className="space-y-3">
-              <Link href="/treatments" className="block text-sm text-stone-600 transition-colors hover:text-stone-900">
+              <Link href="/treatments/anti-wrinkle" className="block text-sm text-stone-600 transition-colors hover:text-stone-900">
                 {tNav('treatments')}
               </Link>
               <Link href="/conditions" className="block text-sm text-stone-600 transition-colors hover:text-stone-900">
@@ -162,7 +162,7 @@ export function GaldermaFooter() {
           </div>
 
           <div>
-            <h3 className="mb-6 text-xs uppercase tracking-[0.3em] text-stone-400">
+            <h3 className="mb-6 text-xs uppercase tracking-[0.3em] text-stone-600">
               {t('information', { defaultValue: 'Information' })}
             </h3>
             <nav className="space-y-3">
@@ -179,7 +179,7 @@ export function GaldermaFooter() {
           </div>
 
           <div className="col-span-2">
-            <h3 className="mb-6 text-xs uppercase tracking-[0.3em] text-stone-400">
+            <h3 className="mb-6 text-xs uppercase tracking-[0.3em] text-stone-600">
               {t('visitUs', { defaultValue: 'Visit Us' })}
             </h3>
             <address className="not-italic text-sm leading-relaxed text-stone-600">
@@ -221,11 +221,10 @@ export function GaldermaFooter() {
 
         <div className="border-t border-stone-200 pt-8">
           <div className="flex flex-col gap-6 text-[0.68rem] font-medium uppercase tracking-[0.28em] text-stone-500 lg:flex-row lg:items-center lg:justify-between">
-            <span className="text-[#241f1b]">&copy; {currentYear} {siteConfig.name}</span>
+            <span>
+              &copy; {currentYear} Black Sea Digital Solutions
+            </span>
             <div className="flex flex-wrap gap-x-8 gap-y-3">
-              <Link href="/book" className="transition-colors hover:text-[#241f1b]">
-                {tNav('findSpecialist', { defaultValue: 'Find a Specialist' })}
-              </Link>
               <Link href="/terms-conditions" className="transition-colors hover:text-[#241f1b]">
                 {t('terms', { defaultValue: 'Terms of Use' })}
               </Link>

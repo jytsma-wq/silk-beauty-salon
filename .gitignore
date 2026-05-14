@@ -12,6 +12,8 @@ node_modules
 
 # testing
 /coverage
+/playwright-report/
+/test-results/
 
 # next.js
 /.next/
@@ -71,6 +73,7 @@ prisma/*.db
 # Database backups (never commit)
 backups/
 *.sql
+!prisma/migrations/**/*.sql
 *.dump
 
 # Internal documents
@@ -90,6 +93,7 @@ file.txt
 text.txt
 package-lock.json
 jasper.txt
+jasper
 lint-output.txt
 temp.log
 dev-log.txt

@@ -1,26 +1,24 @@
 'use client';
 
+import { useSyncExternalStore } from 'react';
 import { Sun, Moon } from 'lucide-react';
 import { useTheme } from '@/components/providers/theme-provider';
 import { Button } from '@/components/ui/button';
 import { useTranslations } from 'next-intl';
 
+function subscribeToHydration(callback: () => void) {
+  callback();
+  return () => {};
+}
+
 export function ThemeToggle() {
   const t = useTranslations('accessibility');
-  // Handle case where ThemeProvider context might not be available during SSR
-  let theme = 'light' as 'light' | 'dark';
-  let setTheme = (_theme: 'light' | 'dark') => {};
-  let mounted = false;
-
-  try {
-    const context = useTheme();
-    theme = context.theme;
-    setTheme = context.setTheme;
-    mounted = true;
-  } catch {
-    // Context not available during SSR, use defaults
-    mounted = false;
-  }
+  const mounted = useSyncExternalStore(
+    subscribeToHydration,
+    () => true,
+    () => false,
+  );
+  const { theme, setTheme } = useTheme();
 
   // Don't render interactive button until mounted to prevent hydration mismatch
   if (!mounted) {
