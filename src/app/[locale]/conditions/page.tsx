@@ -3,8 +3,6 @@ import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { ChevronRight } from 'lucide-react';
 import { getLocalizedConditions } from '@/data/conditions';
-import { siteConfig } from '@/data/site-config';
-import { Button } from '@/components/ui/button';
 import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -38,10 +36,11 @@ export default async function ConditionsPage({
       <section className="relative w-full h-[60vh] md:h-[80vh]">
         <Image
           src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1920&q=80"
-          alt={t('skinCareTreatment')}
+          alt={t('imageAlt')}
           fill
           className="object-cover"
           priority
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-[#1c1c1c]/40" />
         <div className="absolute inset-0 flex items-center justify-center">
@@ -110,11 +109,12 @@ export default async function ConditionsPage({
           <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
             {t('ctaSubtitle')}
           </p>
-          <Button asChild className="btn-gold">
-            <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
-              {t('bookConsultation')}
-            </a>
-          </Button>
+          <Link
+            href="/book"
+            className="btn-gold inline-flex h-9 items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors"
+          >
+            {t('bookConsultation')}
+          </Link>
         </div>
       </section>
     </>

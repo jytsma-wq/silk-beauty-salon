@@ -1,18 +1,26 @@
 import { defineConfig, devices } from '@playwright/test';
 
+const isCI = !!process.env.CI;
+const e2ePort = Number(process.env.E2E_PORT ?? 3100);
+const e2eHost = process.env.E2E_HOST ?? '127.0.0.1';
+const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? `http://${e2eHost}:${e2ePort}`;
+const webServerEnv = Object.fromEntries(
+  Object.entries(process.env).filter((entry): entry is [string, string] => typeof entry[1] === 'string')
+);
+
 export default defineConfig({
   testDir: './e2e',
   fullyParallel: true,
-  forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  forbidOnly: isCI,
+  retries: isCI ? 2 : 0,
+  workers: isCI ? 1 : undefined,
   reporter: [
     ['html', { outputFolder: 'playwright-report/', open: 'never' }],
     ['junit', { outputFile: 'playwright-report/results.xml' }],
     ['list'],
   ],
   use: {
-    baseURL: 'http://localhost:3000',
+    baseURL,
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
   },
@@ -38,14 +46,20 @@ export default defineConfig({
       use: { ...devices['iPhone 12'] },
     },
   ],
-  webServer: {
-    command: process.env.CI
+  webServer: process.env.PLAYWRIGHT_BASE_URL ? undefined : {
+    command: isCI
       ? 'npm run build && npm start'
-      : 'npm run dev',
-    url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
-    timeout: process.env.CI ? 180_000 : 60_000,
+      : `npx next dev -p ${e2ePort} --turbopack --hostname ${e2eHost}`,
+    url: baseURL,
+    reuseExistingServer: false,
+    timeout: isCI ? 180_000 : 60_000,
     stdout: 'pipe',
     stderr: 'pipe',
+    env: {
+      ...webServerEnv,
+      SKIP_ENV_VALIDATION: webServerEnv.SKIP_ENV_VALIDATION ?? '1',
+      PORT: String(e2ePort),
+      HOSTNAME: e2eHost,
+    },
   },
 });

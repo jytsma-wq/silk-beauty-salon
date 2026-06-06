@@ -28,24 +28,16 @@ export function LanguageSwitcher() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="gap-2 px-2">
+        <Button variant="ghost" size="sm" className="gap-2 px-2" data-testid="language-switcher">
           <Image
             src={localeNames[locale]?.flag || '/flags/en.svg'}
             alt={t('currentLanguageFlag', { language: localeNames[locale]?.name || locale })}
             width={24}
             height={16}
+            loading="eager"
             className="h-4 w-6 rounded-sm"
           />
           <span className="hidden sm:inline">{localeNames[locale]?.nativeName || locale.toUpperCase()}</span>
-          <span className="sm:hidden">
-            <Image
-              src={localeNames[locale]?.flag || '/flags/en.svg'}
-              alt={t('currentLanguageFlag', { language: localeNames[locale]?.name || locale })}
-              width={24}
-              height={16}
-              className="h-4 w-6 rounded-sm"
-            />
-          </span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-40">

@@ -167,7 +167,7 @@ export function ContactForm({ onSuccess }: ContactFormProps): React.JSX.Element 
 
       <Button 
         type="submit" 
-        disabled={isSubmitting || !consent}
+        disabled={isSubmitting || !consent || !csrfToken}
         className="w-full md:w-auto"
       >
         {isSubmitting ? (

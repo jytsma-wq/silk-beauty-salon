@@ -64,7 +64,7 @@ export const skinConcernHighlights = [
     name: "Acne and scarring",
     description: "Improve active breakouts, marks, and uneven texture.",
     href: "/conditions/acne-scarring",
-    image: "https://images.unsplash.com/photo-1560066984-138dadb4c3f9?w=900&q=85",
+    image: "/images/hero-poster.jpg",
   },
 ];
 

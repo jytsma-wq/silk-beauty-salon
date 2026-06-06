@@ -3,10 +3,10 @@
   "version": "0.2.0",
   "private": true,
   "scripts": {
-    "dev": "set NODE_OPTIONS=--max-old-space-size=4096 && next dev -p 3000 --turbopack --hostname 0.0.0.0",
+    "dev": "next dev -p 3000 --turbopack --hostname 0.0.0.0",
     "dev:alt": "next dev -p 3001",
-    "build": "node -e \"const {spawnSync}=require('child_process'); const fs=require('fs'); const env={...process.env, BUILD_TIMESTAMP:new Date().toISOString(), SKIP_ENV_VALIDATION:process.env.SKIP_ENV_VALIDATION||'1', DATABASE_URL:process.env.DATABASE_URL||'postgresql://build:build@localhost:5432/build', UPSTASH_REDIS_REST_URL:process.env.UPSTASH_REDIS_REST_URL||'https://example.com', UPSTASH_REDIS_REST_TOKEN:process.env.UPSTASH_REDIS_REST_TOKEN||'build_placeholder_redis_token'}; const result=spawnSync(process.execPath,[require.resolve('next/dist/bin/next'),'build'],{stdio:'inherit',env}); if(result.status!==0) process.exit(result.status||1); [['static','standalone/.next/static'],['public','standalone/public']].forEach(([src,dest])=>{try{fs.cpSync(src,dest,{recursive:true})}catch{}});\"",
-    "start": "NODE_ENV=production bun .next/standalone/server.js 2>&1 | tee server.log",
+    "build": "node -e \"const {spawnSync}=require('child_process'); const fs=require('fs'); const databaseUrl=process.env.DATABASE_URL||'postgresql://build:build@localhost:5432/build'; const env={...process.env, BUILD_TIMESTAMP:new Date().toISOString(), SKIP_ENV_VALIDATION:process.env.SKIP_ENV_VALIDATION||'1', DATABASE_URL:databaseUrl, DIRECT_DATABASE_URL:process.env.DIRECT_DATABASE_URL||databaseUrl, UPSTASH_REDIS_REST_URL:process.env.UPSTASH_REDIS_REST_URL||'https://example.com', UPSTASH_REDIS_REST_TOKEN:process.env.UPSTASH_REDIS_REST_TOKEN||'build_placeholder_redis_token'}; const result=spawnSync(process.execPath,[require.resolve('next/dist/bin/next'),'build'],{stdio:'inherit',env}); if(result.status!==0) process.exit(result.status||1); [['.next/static','.next/standalone/.next/static'],['public','.next/standalone/public']].forEach(([src,dest])=>{fs.cpSync(src,dest,{recursive:true})});\"",
+    "start": "node .next/standalone/server.js",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "prepare": "husky",
@@ -83,7 +83,6 @@
     "@types/react-dom": "^19",
     "@vitest/coverage-v8": "^4.1.5",
     "axe-playwright": "^2.2.2",
-    "bun-types": "^1.3.4",
     "dotenv-cli": "^11.0.0",
     "eslint": "^9",
     "eslint-config-next": "^16.1.1",
@@ -104,7 +103,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "eslint --fix --max-warnings 0",
+      "eslint --fix --max-warnings 0 --no-warn-ignored",
       "node -e \"require('child_process').execFileSync(process.execPath, [require.resolve('typescript/bin/tsc'), '--noEmit', '--skipLibCheck'], { stdio: 'inherit' })\""
     ]
   },

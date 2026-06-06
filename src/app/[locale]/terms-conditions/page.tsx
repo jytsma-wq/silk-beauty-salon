@@ -148,7 +148,7 @@ export default async function TermsConditionsPage({
                 {t('contactTitle')}
               </h2>
               <p className="text-base leading-8 text-stone-700">
-                {t('contactText')} info@silkbeautysalon.ge
+                {t('contactText')} info@silkbeautysalon.online
               </p>
             </div>
           </div>

@@ -105,14 +105,15 @@ export async function POST(request: NextRequest) {
 
 **Client-side:**
 ```typescript
-const token = document.querySelector('meta[name="csrf-token"]')?.content;
+const csrfResponse = await fetch('/api/csrf');
+const { token } = await csrfResponse.json();
 
 fetch('/api/submit', {
   method: 'POST',
   headers: {
-    'X-CSRF-Token': token,
+    'x-csrf-token': token,
   },
-  body: formData,
+  body: JSON.stringify({ ...payload, _csrf: token }),
 });
 ```
 

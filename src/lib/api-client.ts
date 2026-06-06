@@ -7,7 +7,6 @@ const API_BASE = '/api';
 
 export const API_ENDPOINTS = {
   contact: `${API_BASE}/contact`,
-  booking: `${API_BASE}/book`,
   bookings: `${API_BASE}/bookings`,
   newsletter: `${API_BASE}/newsletter`,
 } as const;

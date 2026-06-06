@@ -22,6 +22,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
 
   return {
     locale,
+    timeZone: 'Asia/Tbilisi',
     messages: (await import(`../../messages/${locale}.json`)).default,
     onError(error: { code: string }) {
       if (error.code !== 'MISSING_MESSAGE') {

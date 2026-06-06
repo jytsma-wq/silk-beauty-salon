@@ -39,7 +39,6 @@
     "more": "עוד",
     "treatmentPortfolio": "תיק טיפולים",
     "skinConditions": "מצבי עור"
-
   },
   "header": {
     "announcement": "זוכת פרסים | סלון היופי הטוב בבתומי | פורסם במגזין האופנה והיופי הגיאורגי"
@@ -276,7 +275,8 @@
       "title": "טיפולים שאנו מציעים",
       "subtitle": "פתרונות אסתטיים מקיפים לכל חשש.",
       "explore": "Explore treatments ->"
-    }
+    },
+    "bookImageAlt": "הזמן ייעוץ"
   },
   "booking": {
     "selectService": "בחר שירות",
@@ -301,7 +301,7 @@
     "slotConflict": "השעה הזו כבר תפוסה. אנא בחר שעה אחרת.",
     "bookingFailed": "נכשל ביצירת ההזמנה",
     "unexpectedError": "אירעה שגיאה בלתי צפויה. אנא נסה שוב.",
-    "rateLimitMessage": "יותר מדי פניות. אנא המתן 15 דקות.",
+    "rateLimitMessage": "Too many submissions. Please wait 15 minutes.",
     "bookingSummary": "סיכום הזמנה",
     "service": "שירות",
     "date": "תאריך",
@@ -317,8 +317,7 @@
     "serviceRejuvenation": "חידוש העור",
     "servicePeel": "פילינג כימי",
     "serviceMicroneedling": "מיקרונידלינג",
-    "serviceHydrafacial": "הידרה פישיאל",
-    "rateLimitMessage": "???? ??? ?????. ??? ???? 15 ????."
+    "serviceHydrafacial": "הידרה פישיאל"
   },
   "bookingPage": {
     "preferredDate": "תאריך מועדף",
@@ -338,7 +337,106 @@
     "emailPlaceholder": "your@email.com",
     "successTitle": "בקשת התור נשלחה",
     "successMessage": "תודה על בקשת התור שלך. נחזור אליך בקרוב כדי לאשר את התור שלך.",
-    "bookAnother": "קבע תור נוסף"
+    "bookAnother": "קבע תור נוסף",
+    "title": "קביעת תור",
+    "subtitle": "תזמן ייעוץ או טיפול עם המומחים שלנו",
+    "metadata": {
+      "title": "קביעת תור | Silk Beauty Salon",
+      "description": "קבעו ייעוץ או תור טיפול ב-Silk Beauty Salon בבתומי, גאורגיה."
+    },
+    "selectDateTime": "בחר תאריך ושעה",
+    "bookingNotConfigured": "הזמנה אונליין בקרוב",
+    "bookingNotConfiguredDesc": "אנחנו מגדירים את מערכת ההזמנה האונליין שלנו. בינתיים, אנא התקשרו או שלחו מייל לקביעת תור.",
+    "callToBook": "התקשר לקביעת תור",
+    "emailToBook": "שלח מייל לקביעת תור",
+    "consultationTypes": "סוגי ייעוץ",
+    "consultations": {
+      "facial": {
+        "title": "ייעוץ פנים",
+        "duration": "30 דקות",
+        "description": "דון טיפולי אנטי-אייג'ינג ומילוי דרמלי"
+      },
+      "skin": {
+        "title": "ייעוץ עור",
+        "duration": "45 דקות",
+        "description": "ניתוח עור מקיף ותכנון טיפול"
+      },
+      "body": {
+        "title": "ייעוץ גוף",
+        "duration": "30 דקות",
+        "description": "אפשרויות עיצוב גוף והידוק עור"
+      },
+      "virtual": {
+        "title": "ייעוץ וירטואלי",
+        "duration": "20 דקות",
+        "description": "ייעוץ אונליין ללקוחות מרוחקים"
+      }
+    },
+    "whatToExpect": {
+      "title": "מה לצפות",
+      "step1": "מלא את השאלון הרפואי שלנו",
+      "step2": "דון במטרות ובחששות שלך",
+      "step3": "קבל המלצות טיפול מותאמות אישית",
+      "step4": "קבל מחיר ברור ללא עלויות נסתרות"
+    },
+    "needHelp": "צריך עזרה?",
+    "phone": "טלפון",
+    "email": "אימייל",
+    "address": "כתובת",
+    "faq": {
+      "title": "שאלות נפוצות על קביעת תור",
+      "q1": "כמה זמן נמשך ייעוץ?",
+      "a1": "ייעוצים ראשוניים נמשכים בדרך כלל 30-45 דקות, המאפשרים הערכה יסודית ודיון במטרות שלך.",
+      "q2": "האם נדרש פיקדון?",
+      "a2": "נדרש פיקדון של 20% כדי לאשר את התור שלך, שמופחת מעלות הטיפול.",
+      "q3": "מהי מדיניות הביטול?",
+      "a3": "אנחנו דורשים הודעה מראש של 48 שעות לביטולים. ביטולים מאוחרים עלולים לאבד את הפיקדון.",
+      "q4": "האם אני יכול לשנות את התור שלי?",
+      "a4": "כן, אתה יכול לשנות את התור שלך עד 24 שעות לפני הזמן המתוכנן. אנא צור איתנו קשר בטלפון או באימייל כדי לקבוע זמן חדש שיתאים לך."
+    },
+    "selectTime": "בחר חלון זמן",
+    "morning": "בוקר",
+    "afternoon": "אחר הצהריים",
+    "evening": "ערב",
+    "additionalNotes": "הערות נוספות",
+    "notesPlaceholder": "כל בקשות מיוחדות או מידע שאנחנו צריכים לדעת...",
+    "requestBooking": "בקש תור",
+    "bookingNote": "נאשר את התור שלך תוך 24 שעות",
+    "eyebrow": "Consultation booking",
+    "heroImageAlt": "Salon interior",
+    "dialogTitle": "Book Appointment",
+    "dialogDescription": "Schedule your consultation with our expert practitioners",
+    "continue": "Continue",
+    "back": "Back",
+    "confirmBooking": "Confirm Booking",
+    "bookingStatus": "Booking...",
+    "booked": "(Booked)",
+    "slotConflict": "This time slot is already booked. Please select another time.",
+    "bookingFailed": "Failed to create booking",
+    "unexpectedError": "An unexpected error occurred. Please try again.",
+    "rateLimitMessage": "Too many submissions. Please wait 15 minutes.",
+    "bookingSummary": "Booking Summary",
+    "bookingConfirmed": "Booking Confirmed!",
+    "thankYou": "Thank you, {name}. Your appointment has been scheduled.",
+    "bookingDetails": "Booking Details",
+    "done": "Done",
+    "selectDate": "Select Date",
+    "selectTimeSlot": "Select Time Slot",
+    "service": "Service",
+    "date": "Date",
+    "time": "Time",
+    "message": "Message (Optional)",
+    "servicePlaceholder": "Choose a service",
+    "messagePlaceholder": "Any specific requirements or questions...",
+    "serviceConsultation": "Consultation",
+    "serviceBotox": "Botox Treatment",
+    "serviceFillers": "Dermal Fillers",
+    "serviceLaser": "Laser Hair Removal",
+    "serviceRejuvenation": "Skin Rejuvenation",
+    "servicePeel": "Chemical Peel",
+    "serviceMicroneedling": "Microneedling",
+    "serviceHydrafacial": "Hydrafacial",
+    "imageAlt": "פנימי הסלון"
   },
   "statistics": {
     "years": "שנות ניסיון",
@@ -371,8 +469,10 @@
     "email": "info@silkbeautysalon.online",
     "openingHours": "שעות פתיחה",
     "hours": {
-      "monFri": "??-????: 10:00 - 22:00",
-      "satSun": "??-??: 10:00 - 22:00"
+      "monFri": "Mon-Fri: 10:00 - 22:00",
+      "satSun": "Sat-Sun: 10:00 - 22:00",
+      "sat": "שבת",
+      "sun": "ראשון"
     },
     "social": "עקבו אחרינו",
     "faqDesc": "קראו את השאלות הנפוצות ביותר על המרפאה והטיפולים שלנו.",
@@ -491,7 +591,8 @@
     "listingSubtitle": "מה שתהיה דאגת העור שלך, המומחים שלנו יכולים ליצור תכנית טיפול אישית",
     "ctaTitle": "לא בטוח איזה טיפול מתאים לך?",
     "ctaSubtitle": "קבע ייעוץ עם אחד המומחים שלנו שיאבחנו את מצבך וייציעו את אפשרויות הטיפול הטובות ביותר",
-    "bookConsultation": "קבע ייעוץ"
+    "bookConsultation": "קבע ייעוץ",
+    "imageAlt": "טיפול טיפול עור"
   },
   "aboutPage": {
     "title": "אודותינו",
@@ -533,7 +634,9 @@
     "featuredIn": "כפי שפורסם במגזין Georgian Fashion & Beauty",
     "ctaTitle": "מוכן להתחיל?",
     "ctaSubtitle": "קבע ייעוץ עם אחד המומחים שלנו היום",
-    "ctaButton": "קבע ייעוץ"
+    "ctaButton": "קבע ייעוץ",
+    "interiorAlt": "פנימי סלון Silk Beauty Salon",
+    "clinicAlt": "מרפאת סלון Silk Beauty Salon"
   },
   "contactPage": {
     "title": "צור קשר",
@@ -574,7 +677,9 @@
     "whatsapp": "WhatsApp",
     "viewOnMap": "צפה ב-Google Maps",
     "mapAddress": "זוראב גורגילדזה 63",
-    "mapCity": "בתומי, גאורגיה"
+    "mapCity": "בתומי, גאורגיה",
+    "imageAlt": "צור קשר עם Silk Beauty Salon",
+    "mapTitle": "מיקום Silk Beauty Salon"
   },
   "faqPage": {
     "title": "שאלות נפוצות",
@@ -637,7 +742,8 @@
     "ctaTitle": "קבע את הטיפול שלך היום",
     "ctaSubtitle": "צור קשר לקביעת ייעוץ ונצל את ההצעות הבלעדיות האלה",
     "ctaButton": "קבע תור",
-    "termsText": "כל ההצעות כפופות לזמינות ועשויות להיסגר בכל עת. לא ניתן לשלב הצעות אלא אם כן צוין אחרת. אנא ציין את ההצעה בעת ההזמנה."
+    "termsText": "כל ההצעות כפופות לזמינות ועשויות להיסגר בכל עת. לא ניתן לשלב הצעות אלא אם כן צוין אחרת. אנא ציין את ההצעה בעת ההזמנה.",
+    "imageAlt": "הצעות מיוחדות"
   },
   "blogPage": {
     "title": "הבלוג שלנו",
@@ -654,7 +760,9 @@
     "readyToTransform": "מוכנים להשתנות?",
     "bookConsultationDesc": "קבעו ייעוץ עם אחד המומחים שלנו לדיון במטרות האסתטיות שלכם.",
     "relatedPosts": "מאמרים קשורים",
-    "readMore": "קרא עוד"
+    "readMore": "קרא עוד",
+    "postNotFound": "פוסט לא נמצא",
+    "expertPractitioner": "מומחה מוסמך"
   },
   "treatmentPage": {
     "bookNow": "קבע תור לטיפול זה",
@@ -679,7 +787,10 @@
     "results": "תוצאות",
     "downtime": "זמן התאושה",
     "youMightAlsoLike": "אולי תאהב גם",
-    "learnMore": "למד עוד"
+    "learnMore": "למד עוד",
+    "heroAlt": "סלון יופי יוקרתי",
+    "durationResults": "3-6 חודשים",
+    "minimalDowntime": "ללא למינימלי"
   },
   "conditionPage": {
     "title": "מצב",
@@ -732,7 +843,9 @@
     "whatsapp": "וואטסאפ",
     "bookViaWhatsApp": "הזמן דרך וואטסאפ",
     "searchPlaceholder": "חפש טיפולים, מצבים...",
-    "submitting": "????..."
+    "submitting": "Submitting...",
+    "tryAgain": "נסה שוב",
+    "view": "צפה"
   },
   "siteConfig": {
     "awards": {
@@ -1776,125 +1889,24 @@
     "pricingDesc": "תמחור שקוף ב-GEL ו-USD",
     "faqDesc": "תשובות לשאלות נפוצות"
   },
-  "bookingPage": {
-    "title": "קביעת תור",
-    "subtitle": "תזמן ייעוץ או טיפול עם המומחים שלנו",
-    "metadata": {
-      "title": "קביעת תור | Silk Beauty Salon",
-      "description": "קבעו ייעוץ או תור טיפול ב-Silk Beauty Salon בבתומי, גאורגיה."
-    },
-    "selectDateTime": "בחר תאריך ושעה",
-    "bookingNotConfigured": "הזמנה אונליין בקרוב",
-    "bookingNotConfiguredDesc": "אנחנו מגדירים את מערכת ההזמנה האונליין שלנו. בינתיים, אנא התקשרו או שלחו מייל לקביעת תור.",
-    "callToBook": "התקשר לקביעת תור",
-    "emailToBook": "שלח מייל לקביעת תור",
-    "consultationTypes": "סוגי ייעוץ",
-    "consultations": {
-      "facial": {
-        "title": "ייעוץ פנים",
-        "duration": "30 דקות",
-        "description": "דון טיפולי אנטי-אייג'ינג ומילוי דרמלי"
-      },
-      "skin": {
-        "title": "ייעוץ עור",
-        "duration": "45 דקות",
-        "description": "ניתוח עור מקיף ותכנון טיפול"
-      },
-      "body": {
-        "title": "ייעוץ גוף",
-        "duration": "30 דקות",
-        "description": "אפשרויות עיצוב גוף והידוק עור"
-      },
-      "virtual": {
-        "title": "ייעוץ וירטואלי",
-        "duration": "20 דקות",
-        "description": "ייעוץ אונליין ללקוחות מרוחקים"
-      }
-    },
-    "whatToExpect": {
-      "title": "מה לצפות",
-      "step1": "מלא את השאלון הרפואי שלנו",
-      "step2": "דון במטרות ובחששות שלך",
-      "step3": "קבל המלצות טיפול מותאמות אישית",
-      "step4": "קבל מחיר ברור ללא עלויות נסתרות"
-    },
-    "needHelp": "צריך עזרה?",
-    "phone": "טלפון",
-    "email": "אימייל",
-    "address": "כתובת",
-    "faq": {
-      "title": "שאלות נפוצות על קביעת תור",
-      "q1": "כמה זמן נמשך ייעוץ?",
-      "a1": "ייעוצים ראשוניים נמשכים בדרך כלל 30-45 דקות, המאפשרים הערכה יסודית ודיון במטרות שלך.",
-      "q2": "האם נדרש פיקדון?",
-      "a2": "נדרש פיקדון של 20% כדי לאשר את התור שלך, שמופחת מעלות הטיפול.",
-      "q3": "מהי מדיניות הביטול?",
-      "a3": "אנחנו דורשים הודעה מראש של 48 שעות לביטולים. ביטולים מאוחרים עלולים לאבד את הפיקדון.",
-      "q4": "האם אני יכול לשנות את התור שלי?",
-      "a4": "כן, אתה יכול לשנות את התור שלך עד 24 שעות לפני הזמן המתוכנן. אנא צור איתנו קשר בטלפון או באימייל כדי לקבוע זמן חדש שיתאים לך."
-    },
-    "preferredTime": "זמן מועדף",
-    "selectTime": "בחר חלון זמן",
-    "morning": "בוקר",
-    "afternoon": "אחר הצהריים",
-    "evening": "ערב",
-    "additionalNotes": "הערות נוספות",
-    "notesPlaceholder": "כל בקשות מיוחדות או מידע שאנחנו צריכים לדעת...",
-    "requestBooking": "בקש תור",
-    "bookingNote": "נאשר את התור שלך תוך 24 שעות",
-    "eyebrow": "????? ?????",
-    "heroImageAlt": "???? ?????",
-    "preferredDate": "????? ?????",
-    "selectService": "בחר שירות",
-    "selectServicePlaceholder": "??? ??? ?????",
-    "fullName": "שם מלא",
-    "namePlaceholder": "ישראל ישראלי",
-    "phoneNumber": "טלפון (אופציונלי)",
-    "phonePlaceholder": "+972 50 123 4567",
-    "emailAddress": "אימייל",
-    "emailPlaceholder": "israel@example.com",
-    "successTitle": "???? ???? ?????",
-    "successMessage": "???? ?? ???? ???? ???. ????? ???? ??? ????? ??? ???? ?? ?????.",
-    "bookAnother": "??? ??? ????",
-    "dialogTitle": "Book Appointment",
-    "dialogDescription": "Schedule your consultation with our expert practitioners",
-    "continue": "Continue",
-    "back": "Back",
-    "confirmBooking": "Confirm Booking",
-    "bookingStatus": "Booking...",
-    "booked": "(Booked)",
-    "slotConflict": "This time slot is already booked. Please select another time.",
-    "bookingFailed": "Failed to create booking",
-    "unexpectedError": "An unexpected error occurred. Please try again.",
-    "rateLimitMessage": "Too many submissions. Please wait 15 minutes.",
-    "bookingSummary": "Booking Summary",
-    "bookingConfirmed": "Booking Confirmed!",
-    "thankYou": "Thank you, {name}. Your appointment has been scheduled.",
-    "bookingDetails": "Booking Details",
-    "done": "Done",
-    "selectDate": "Select Date",
-    "selectTimeSlot": "Select Time Slot",
-    "service": "Service",
-    "date": "Date",
-    "time": "Time",
-    "message": "Message (Optional)",
-    "servicePlaceholder": "Choose a service",
-    "messagePlaceholder": "Any specific requirements or questions...",
-    "serviceConsultation": "Consultation",
-    "serviceBotox": "Botox Treatment",
-    "serviceFillers": "Dermal Fillers",
-    "serviceLaser": "Laser Hair Removal",
-    "serviceRejuvenation": "Skin Rejuvenation",
-    "servicePeel": "Chemical Peel",
-    "serviceMicroneedling": "Microneedling",
-    "serviceHydrafacial": "Hydrafacial"
-  },
   "accessibility": {
     "skipToContent": "דלג לתוכן העיקרי",
     "skipToMain": "דלג לתוכן העיקרי",
     "skipToTreatments": "דלג לטיפולים",
     "skipToBooking": "דלג להזמנת תור",
-    "skipNavigation": "דילוג על קישורים"
+    "skipNavigation": "דילוג על קישורים",
+    "loadingThemeToggle": "טעינת ערכתת נושא",
+    "closeVideo": "סגור וידאו",
+    "toggleFullscreen": "החלף מסך מלא מסך",
+    "closeGallery": "סגור גלריה",
+    "previousImage": "תמונה קודמת",
+    "nextImage": "תמונה הבאה",
+    "skipLinks": "דלג על קישורים",
+    "openMenu": "פתח תפריט",
+    "closeMenu": "סגור תפריט",
+    "required": "נדרש",
+    "keyTab": "Tab",
+    "keyEscape": "Escape"
   },
   "errors": {
     "title": "משהו השתבש",
@@ -1965,168 +1977,150 @@
   },
   "homeEditorial": {
     "carousel": {
-      "previousSlide": "??????? ??????",
-      "nextSlide": "??????? ????"
+      "previousSlide": "Previous slide",
+      "nextSlide": "Next slide"
     },
     "heroSlides": {
       "slide1": {
-        "eyebrow": "??????? ?????? ??????",
-        "title": "?????? ???? ??? ????? ?????? ?????.",
-        "description": "?????? ?? ???? ????, ??????? ?????? ????? ???? ?????????? ??????? ??????, ????????? ??? ???????? ???, ?????? ???? ????? ?????.",
-        "cta": "???? ?????"
+        "eyebrow": "Medical aesthetics in Batumi",
+        "title": "Confidence in your skin starts with a precise consultation.",
+        "description": "Natural-looking injectables, skin quality treatments, and advanced device procedures planned around your anatomy, skin health, and lifestyle.",
+        "cta": "Book a consultation"
       },
       "slide2": {
-        "eyebrow": "????? ????",
-        "title": "??????? ??????? ?????? ??? ???????.",
-        "description": "???????? ?????????? ??? ????, ????? ?????? ????, ?? ?????? ?????? ?????? ?????? ?? ???? ?????.",
-        "cta": "??? ????? ???"
+        "eyebrow": "Skin quality",
+        "title": "Real solutions for real skin concerns.",
+        "description": "From texture and pigmentation to hydration, firmness, and facial balance, every plan begins with a skin-first diagnosis.",
+        "cta": "Explore concerns"
       },
       "slide3": {
-        "eyebrow": "?????? ???????",
-        "title": "??? ????. ???? ???? ???????. ??, ????? ????.",
-        "description": "?????? ??????? ???????? ??? ????? ??????? ??????, ??????? ????? ????? ??????.",
-        "cta": "??? ????????"
+        "eyebrow": "Injectables and contour",
+        "title": "Subtle volume. Considered contours. You, refreshed.",
+        "description": "Dermal fillers and anti-wrinkle treatments delivered with restraint, symmetry, and respect for natural expression.",
+        "cta": "View treatments"
       }
     },
     "philosophy": {
-      "eyebrow": "????? ????",
-      "title": "??????? ?????? ??????? ????.",
-      "description": "?????? ?????? Galderma ???, ????? ????? ?????: ???? ?????? ??????????, ???? ????, ???? ??? ???? ????? ???? ????.",
-      "statement": "????? ?????? ?? ???? ???, ???? ????? ??????? ??? ???? ?????? ??????? ?? ?????. ?????? ????? ??????? ??????, ?????? ?????? ????."
+      "eyebrow": "Our approach",
+      "title": "A skin-first aesthetic practice.",
+      "description": "The Galderma-inspired direction is clean, clinical, and product-aware: fewer decorative effects, more trust, more education, and a calmer visual rhythm.",
+      "statement": "We study your skin, facial structure, and goals before recommending a treatment. The result should look considered, balanced, and quietly confident."
     },
     "concerns": {
-      "eyebrow": "????? ???",
-      "title": "??????? ??????? ?????? ??? ???????.",
-      "description": "??? ????? ?????? ??????? ????? ??????? ????? ???? ???? ????? ????."
+      "eyebrow": "Skin concerns",
+      "title": "Real solutions for real skin concerns.",
+      "description": "Explore common concerns and the treatment pathways that can support healthier, more confident skin."
     },
     "concernItems": {
       "item1": {
-        "name": "??????? ??????",
-        "description": "???? ???? ???? ??? ????? ?? ????? ?????."
+        "name": "Fine lines and wrinkles",
+        "description": "Soften expression lines while preserving natural movement."
       },
       "item2": {
-        "name": "????? ??????",
-        "description": "???? ??????, ????? ????? ????? ?? ???? ?????."
+        "name": "Loss of firmness",
+        "description": "Support collagen, lift laxity, and refine facial structure."
       },
       "item3": {
-        "name": "???? ?? ????",
-        "description": "???? ??????????, ?????? ??????? ????? ????."
+        "name": "Uneven tone",
+        "description": "Target pigmentation, dullness, and post-inflammatory marks."
       },
       "item4": {
-        "name": "??? ???",
-        "description": "????? ????, ????? ????? ????? ?????."
+        "name": "Dry skin",
+        "description": "Restore hydration, barrier function, and lasting luminosity."
       },
       "item5": {
-        "name": "???? ??????",
-        "description": "???? ????????? ??????, ?????? ????? ?? ????."
+        "name": "Acne and scarring",
+        "description": "Improve active breakouts, marks, and uneven texture."
       }
     },
     "portfolio": {
-      "eyebrow": "?????????",
-      "title": "??????? ??????? ?????????.",
-      "description": "????????? ????? ?????? ?????, ????? ???? ??????? ????? ????.",
-      "viewAll": "??? ??? ????????",
-      "explore": "???",
+      "eyebrow": "Portfolio",
+      "title": "Holistic aesthetic treatments.",
+      "description": "A considered portfolio for facial balance, skin quality, and long-term confidence.",
+      "viewAll": "View all treatments",
+      "explore": "Explore",
       "items": {
         "item1": {
-          "title": "?????? ???????",
-          "description": "?????? ????? ?????????? ???????, ?????, ?? ????, ????, ???? ???? ??????? ?????? ?????."
+          "title": "Dermal fillers",
+          "description": "Hyaluronic acid treatments for lips, cheeks, jawline, chin, under-eyes, and facial balancing."
         },
         "item2": {
-          "title": "?????? ??? ?????",
-          "description": "?????? ????????????? ??????? ????, ??? ?????, ??? ???????, ???? ????? ???."
+          "title": "Anti-wrinkle injectables",
+          "description": "Precise neuromodulator treatments for forehead lines, frown lines, crow's feet, masseter, and sweating."
         },
         "item3": {
-          "title": "????? ????",
-          "description": "??????? ???????, ????????, ???????, ???????????? ???????? ??????? ????? ???? ??? ????? ????."
+          "title": "Skin quality",
+          "description": "Medical facials, peels, boosters, microneedling, and laser-led plans for stronger, brighter skin."
         }
       }
     },
     "stats": {
       "item1": {
-        "label": "??????? ???????? ??????"
+        "label": "Consultation-first plans"
       },
       "item2": {
-        "label": "???? ??????"
+        "label": "Languages supported"
       },
       "item3": {
-        "label": "????? ??? ?????"
+        "label": "Skin and facial assessment"
       }
     },
     "results": {
-      "eyebrow": "?????? ???????",
-      "title": "?????? ????? ???????.",
-      "description": "?? ????? ?????? ???? ????? ???????? ???????, ?? ???????. ?????? ??? ????? ????????, ?????? ?????, ?????? ??????? ????? ???.",
-      "cta": "??? ??????",
-      "before": "????",
-      "after": "????",
-      "disclaimer": "??????? ??????? ??????. ?? ?????? ????? ????? ????? ?????."
+      "eyebrow": "Real results",
+      "title": "The proof is in the plan.",
+      "description": "Before-and-after stories should be read as clinical examples, not promises. Your result depends on anatomy, product choice, dosage, and aftercare.",
+      "cta": "See results",
+      "before": "Before",
+      "after": "After",
+      "disclaimer": "Individual results vary. All treatment plans require clinical consultation."
     },
     "resultItems": {
       "item1": {
-        "treatment": "????? ?????? ?????? ?????",
-        "detail": "??? ????? ?? ?????? ?? ?????."
+        "treatment": "Cheek and mid-face support",
+        "detail": "Restored volume with a soft, lifted contour."
       },
       "item2": {
-        "treatment": "???? ????? ??????",
-        "detail": "???? ?????, ??? ????? ?????? ????."
+        "treatment": "Lip hydration and shape",
+        "detail": "Defined border, balanced volume, natural finish."
       },
       "item3": {
-        "treatment": "?????? ???? ????",
-        "detail": "????? ???????, ????? ??????? ??? ????."
+        "treatment": "Skin radiance plan",
+        "detail": "Improved brightness, texture, and surface refinement."
       }
     },
     "cta": {
-      "eyebrow": "???? ?? ?????? ????",
-      "title": "?????? ?????? ?????.",
-      "description": "???? ?-{clinicName} ?????? ?????? ?????? ???????? ????? ??????? ????, ????????, ???? ??????? ????.",
-      "bookNow": "???? ?????",
-      "contactUs": "??? ???"
+      "eyebrow": "Find your specialist",
+      "title": "Begin with a clinical consultation.",
+      "description": "Visit {clinicName} in Batumi for a structured assessment and a treatment plan tailored to your skin, anatomy, timing, and comfort.",
+      "bookNow": "Book now",
+      "contactUs": "Contact us"
     },
     "journal": {
-      "eyebrow": "????? ???",
-      "title": "????? ??????, ??? ??? ?????.",
-      "description": "????? ???????? ???????? ?????? ????? ?? ????? ?????? ???? ??? ?????? ???.",
-      "cta": "??? ?? ??????"
+      "eyebrow": "Skin trends",
+      "title": "Aesthetic insight, without the noise.",
+      "description": "Educational notes for patients who want to understand treatment planning before they book.",
+      "cta": "Read journal"
     },
     "trendItems": {
       "item1": {
-        "category": "????? ?????",
-        "title": "??? ????? ?????? ??? ??????? ?????"
+        "category": "Treatment planning",
+        "title": "How to plan injectables without looking overdone"
       },
       "item2": {
-        "category": "?????? ????",
-        "title": "????? ???? ??? ????? ????"
+        "category": "Skin health",
+        "title": "Skin quality is the new foundation"
       },
       "item3": {
-        "category": "?????",
-        "title": "?? ???? ???? ???? ????? ???? ?????"
+        "category": "Consultation",
+        "title": "What to know before a first filler consultation"
       }
     }
-  },
-  "common": {
-    "tryAgain": "נסה שוב",
-    "view": "צפה"
   },
   "errorPage": {
     "somethingWentWrong": "משה השתבש",
     "apologyMessage": "אנו מתנצלים על האי נוחות. אירעה שגיאה בלת צפויה.",
     "tryAgain": "נסה שוב",
     "globalError": "משה השתבש"
-  },
-  "accessibility": {
-    "loadingThemeToggle": "טעינת ערכתת נושא",
-    "closeVideo": "סגור וידאו",
-    "toggleFullscreen": "החלף מסך מלא מסך",
-    "closeGallery": "סגור גלריה",
-    "previousImage": "תמונה קודמת",
-    "nextImage": "תמונה הבאה",
-    "skipLinks": "דלג על קישורים",
-    "openMenu": "פתח תפריט",
-    "closeMenu": "סגור תפריט",
-    "required": "נדרש",
-    "keyTab": "Tab",
-    "keyEscape": "Escape"
   },
   "social": {
     "instagram": "אינסטגרם",
@@ -2142,44 +2136,9 @@
     "bookConsultation": "הזמן ייעוצ",
     "skinCareTreatment": "טיפול עור אכילה"
   },
-  "footer": {
-    "hours": {
-      "sat": "שבת",
-      "sun": "ראשון"
-    }
-  },
-  "blogPage": {
-    "postNotFound": "פוסט לא נמצא",
-    "expertPractitioner": "מומחה מוסמך"
-  },
-  "treatmentPage": {
-    "heroAlt": "סלון יופי יוקרתי",
-    "durationResults": "3-6 חודשים",
-    "minimalDowntime": "ללא למינימלי"
-  },
   "international": {
     "imageAlt": "Silk Beauty Salon",
     "teamAlt": "נאנה גויניאשווילי"
-  },
-  "contactPage": {
-    "imageAlt": "צור קשר עם Silk Beauty Salon",
-    "mapTitle": "מיקום Silk Beauty Salon"
-  },
-  "consultation": {
-    "bookImageAlt": "הזמן ייעוץ"
-  },
-  "conditionsPage": {
-    "imageAlt": "טיפול טיפול עור"
-  },
-  "offersPage": {
-    "imageAlt": "הצעות מיוחדות"
-  },
-  "bookingPage": {
-    "imageAlt": "פנימי הסלון"
-  },
-  "aboutPage": {
-    "interiorAlt": "פנימי סלון Silk Beauty Salon",
-    "clinicAlt": "מרפאת סלון Silk Beauty Salon"
   },
   "home": {
     "section1Title": "תיק טיפולים",

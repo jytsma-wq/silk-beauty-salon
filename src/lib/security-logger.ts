@@ -7,10 +7,22 @@
 
 import { Redis } from '@upstash/redis';
 
-const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_REST_URL!,
-  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
-});
+const UPSTASH_REDIS_REST_URL = process.env.UPSTASH_REDIS_REST_URL;
+const UPSTASH_REDIS_REST_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN;
+const hasRedisConfig = !!UPSTASH_REDIS_REST_URL && !!UPSTASH_REDIS_REST_TOKEN;
+
+if (!hasRedisConfig && process.env.NODE_ENV === 'production' && process.env.SKIP_ENV_VALIDATION !== '1') {
+  throw new Error(
+    'Missing Upstash Redis credentials. Please set UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN environment variables.'
+  );
+}
+
+const redis = hasRedisConfig
+  ? new Redis({
+      url: UPSTASH_REDIS_REST_URL,
+      token: UPSTASH_REDIS_REST_TOKEN,
+    })
+  : null;
 
 interface SecurityEvent {
   type: 'rate_limit' | 'csrf_fail' | 'auth_fail' | 'xss_attempt' | 'sql_injection' | 'nosql_injection' | 'validation_fail';
@@ -52,6 +64,8 @@ export async function logSecurityEvent(event: Omit<SecurityEvent, 'timestamp'>):
   }
 
   // Persist to Redis
+  if (!redis) return;
+
   try {
     const key = `security:events:${event.ip}`;
     const score = Date.now();
@@ -83,6 +97,10 @@ export async function getSecurityMetrics(timeWindowHours: number = 24): Promise<
 
   // Try Redis first
   try {
+    if (!redis) {
+      throw new Error('Redis is not configured');
+    }
+
     const metrics: SecurityMetrics = {
       totalEvents: 0,
       byType: {},
@@ -132,6 +150,8 @@ export async function getSecurityMetrics(timeWindowHours: number = 24): Promise<
  * Check if IP is blocked due to suspicious activity
  */
 export async function isIpBlocked(ip: string): Promise<boolean> {
+  if (!redis) return false;
+
   try {
     const blocked = await redis.get(`security:block:${ip}`);
     return blocked === 'true';
@@ -144,6 +164,8 @@ export async function isIpBlocked(ip: string): Promise<boolean> {
  * Check if IP should trigger an alert due to high event volume
  */
 async function checkForAlerts(ip: string, type: string): Promise<void> {
+  if (!redis) return;
+
   try {
     const key = `security:events:${ip}`;
     const fiveMinutesAgo = Date.now() - 5 * 60 * 1000;
@@ -165,6 +187,8 @@ async function checkForAlerts(ip: string, type: string): Promise<void> {
  * Get active security alerts
  */
 export async function getActiveAlerts(limit: number = 50): Promise<Array<{ type: string; ip: string; count: number; timestamp: number }>> {
+  if (!redis) return [];
+
   try {
     const members = await redis.lrange('security:recent', 0, limit - 1);
     return members.map((member: string) => {

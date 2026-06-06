@@ -31,7 +31,7 @@ describe('api-client', () => {
         json: () => Promise.resolve(mockResponse),
       } as Response);
 
-      const result = await apiPost(API_ENDPOINTS.booking, { name: 'Test' });
+      const result = await apiPost(API_ENDPOINTS.bookings, { name: 'Test' });
       expect(result).toEqual(mockResponse);
     });
 
@@ -213,10 +213,6 @@ describe('api-client', () => {
   describe('API_ENDPOINTS', () => {
     it('has correct contact endpoint', () => {
       expect(API_ENDPOINTS.contact).toBe('/api/contact');
-    });
-
-    it('has correct booking endpoint', () => {
-      expect(API_ENDPOINTS.booking).toBe('/api/book');
     });
 
     it('has correct bookings endpoint', () => {

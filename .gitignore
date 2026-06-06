@@ -12,6 +12,8 @@ node_modules
 
 # testing
 /coverage
+/playwright-report/
+/test-results/
 
 # next.js
 /.next/
@@ -19,6 +21,7 @@ node_modules
 
 # production
 /build
+/standalone/
 
 # misc
 .DS_Store
@@ -46,7 +49,7 @@ local-*
 *.log
 dev.log
 dev.out.log
-test
+/test/
 
 prompts
 prompts.txt
@@ -88,7 +91,6 @@ text.txt
 design.txt
 file.txt
 text.txt
-package-lock.json
 jasper.txt
 lint-output.txt
 temp.log

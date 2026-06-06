@@ -6,6 +6,7 @@ import { routing } from './src/i18n/routing';
 import { locales } from './src/i18n';
 import { structuredLog } from './src/lib/logger';
 import { isIpBlocked } from './src/lib/security-logger';
+import { buildCSPHeader, generateNonce } from './src/lib/csp';
 
 // Path check result type
 interface PathCheckResult {
@@ -16,23 +17,26 @@ interface PathCheckResult {
 // Upstash Redis rate limiting configuration
 const UPSTASH_REDIS_REST_URL = process.env.UPSTASH_REDIS_REST_URL;
 const UPSTASH_REDIS_REST_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN;
+const hasRedisConfig = !!UPSTASH_REDIS_REST_URL && !!UPSTASH_REDIS_REST_TOKEN;
 
 // Validate environment variables at startup
-if (!UPSTASH_REDIS_REST_URL || !UPSTASH_REDIS_REST_TOKEN) {
+if (!hasRedisConfig && process.env.NODE_ENV === 'production' && process.env.SKIP_ENV_VALIDATION !== '1') {
   throw new Error(
     'Missing Upstash Redis credentials. Please set UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN environment variables.'
   );
 }
 
 // Create singleton Ratelimit client with sliding window (100 requests per 60 seconds)
-const ratelimit = new Ratelimit({
-  redis: new Redis({
-    url: UPSTASH_REDIS_REST_URL,
-    token: UPSTASH_REDIS_REST_TOKEN,
-  }),
-  limiter: Ratelimit.slidingWindow(100, '60 s'),
-  analytics: true,
-});
+const ratelimit = hasRedisConfig
+  ? new Ratelimit({
+      redis: new Redis({
+        url: UPSTASH_REDIS_REST_URL,
+        token: UPSTASH_REDIS_REST_TOKEN,
+      }),
+      limiter: Ratelimit.slidingWindow(100, '60 s'),
+      analytics: true,
+    })
+  : null;
 
 // Always allow these search engine bots
 const ALWAYS_ALLOW_UA = [/googlebot/i, /bingbot/i, /twitterbot/i, /facebookexternalhit/i];
@@ -235,6 +239,12 @@ export default async function middleware(request: NextRequest) {
 
   // Generate request ID for tracing
   const requestId = crypto.randomUUID();
+  const nonce = generateNonce();
+  const cspHeader = buildCSPHeader(nonce);
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set('x-nonce', nonce);
+  requestHeaders.set('x-pathname', pathname);
+  requestHeaders.set('Content-Security-Policy', cspHeader);
 
   // Check if IP is on the security block list
   const blocked = await isIpBlocked(ip);
@@ -288,7 +298,7 @@ export default async function middleware(request: NextRequest) {
   }
 
   // Apply rate limiting to non-static requests
-  if (!pathname.startsWith('/_next') && !pathname.includes('.')) {
+  if (ratelimit && !pathname.startsWith('/_next') && !pathname.includes('.')) {
     const rateLimitKey = `rl:${ip}`;
     const { success, reset } = await ratelimit.limit(rateLimitKey);
 
@@ -309,10 +319,23 @@ export default async function middleware(request: NextRequest) {
 
   // Pass to i18n middleware for locale routing
   const response = i18nMiddleware(request);
+  const requestHeaderResponse = NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
+  });
+
+  requestHeaderResponse.headers.forEach((value, key) => {
+    if (key === 'x-middleware-override-headers' || key.startsWith('x-middleware-request-')) {
+      response.headers.set(key, value);
+    }
+  });
 
   // Add essential headers
   response.headers.set('x-request-id', requestId);
   response.headers.set('x-pathname', pathname);
+  response.headers.set('x-nonce', nonce);
+  response.headers.set('Content-Security-Policy', cspHeader);
 
   return response;
 }

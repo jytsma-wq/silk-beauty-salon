@@ -87,7 +87,7 @@ jobs:
     needs: [build-image]
     environment:
       name: staging
-      url: https://staging.silkbeautysalon.com
+      url: https://staging.silkbeautysalon.online
     if: github.ref == 'refs/heads/main' || inputs.environment == 'staging'
     steps:
       - name: Checkout code
@@ -126,8 +126,8 @@ jobs:
       - name: Run smoke tests
         run: |
           sleep 30
-          curl -f https://staging.silkbeautysalon.com/api/health
-          curl -f https://staging.silkbeautysalon.com
+          curl -f https://staging.silkbeautysalon.online/api/health
+          curl -f https://staging.silkbeautysalon.online
 
       - name: Notify Slack - Success
         if: success()
@@ -176,7 +176,7 @@ jobs:
     needs: [deploy-staging]
     environment:
       name: production
-      url: https://silkbeautysalon.com
+      url: https://silkbeautysalon.online
     if: github.ref == 'refs/heads/main'
     steps:
       - name: Wait for manual approval
@@ -191,7 +191,7 @@ jobs:
     needs: [production-approval, build-image]
     environment:
       name: production
-      url: https://silkbeautysalon.com
+      url: https://silkbeautysalon.online
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -248,8 +248,8 @@ jobs:
       - name: Run production smoke tests
         run: |
           sleep 30
-          curl -f https://silkbeautysalon.com/api/health
-          curl -f https://silkbeautysalon.com
+          curl -f https://silkbeautysalon.online/api/health
+          curl -f https://silkbeautysalon.online
 
       - name: Notify Slack - Production Success
         if: success()

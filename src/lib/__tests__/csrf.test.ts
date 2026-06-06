@@ -5,7 +5,6 @@ import {
   getCsrfToken,
   verifyCsrfToken,
   csrfMiddleware,
-  useCsrfToken,
   setCsrfTokenInResponse,
 } from '../csrf';
 
@@ -277,34 +276,4 @@ describe('csrf', () => {
     });
   });
 
-  describe('useCsrfToken', () => {
-    it('returns null on server-side', () => {
-      expect(useCsrfToken()).toBeNull();
-    });
-
-    it('returns token from meta tag on client-side', () => {
-      // Mock document
-      const meta = document.createElement('meta');
-      meta.name = 'csrf-token';
-      meta.content = 'meta-token';
-      document.head.appendChild(meta);
-
-      // @ts-expect-error - mocking window
-      global.window = {};
-
-      const token = useCsrfToken();
-      expect(token).toBe('meta-token');
-
-      // Cleanup
-      document.head.removeChild(meta);
-    });
-
-    it('returns null when no meta tag exists', () => {
-      // @ts-expect-error - mocking window
-      global.window = {};
-
-      const token = useCsrfToken();
-      expect(token).toBeNull();
-    });
-  });
 });

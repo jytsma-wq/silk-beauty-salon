@@ -129,10 +129,10 @@ export default function AccessibilityPage(): React.JSX.Element {
           {t('feedbackText')}
         </p>
         <a
-          href="mailto:accessibility@silkbeautysalon.com"
+          href="mailto:accessibility@silkbeautysalon.online"
           className="text-primary hover:underline font-medium"
         >
-          accessibility@silkbeautysalon.com
+          accessibility@silkbeautysalon.online
         </a>
       </section>
 

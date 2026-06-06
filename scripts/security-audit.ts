@@ -4,7 +4,6 @@
  * Run this to check security configuration
  */
 
-import { execSync } from 'child_process';
 import { existsSync, readFileSync } from 'fs';
 import { resolve } from 'path';
 
@@ -36,27 +35,49 @@ function warn(name: string, condition: boolean, msg: string): void {
 
 console.log('🔒 Running security audit...\n');
 
+const strictAudit = process.env.SECURITY_AUDIT_STRICT === 'true' || process.env.NODE_ENV === 'production';
+
 // Check 1: Environment variables
-check(
-  'UPSTASH_REDIS_REST_URL configured',
-  !!process.env.UPSTASH_REDIS_REST_URL,
-  'Upstash Redis URL is configured',
-  'UPSTASH_REDIS_REST_URL not set — rate limiting and security logging will fail'
-);
+if (strictAudit) {
+  check(
+    'UPSTASH_REDIS_REST_URL configured',
+    !!process.env.UPSTASH_REDIS_REST_URL,
+    'Upstash Redis URL is configured',
+    'UPSTASH_REDIS_REST_URL not set — rate limiting and security logging will fail'
+  );
 
-check(
-  'UPSTASH_REDIS_REST_TOKEN configured',
-  !!process.env.UPSTASH_REDIS_REST_TOKEN,
-  'Upstash Redis token is configured',
-  'UPSTASH_REDIS_REST_TOKEN not set — Redis connection will fail'
-);
+  check(
+    'UPSTASH_REDIS_REST_TOKEN configured',
+    !!process.env.UPSTASH_REDIS_REST_TOKEN,
+    'Upstash Redis token is configured',
+    'UPSTASH_REDIS_REST_TOKEN not set — Redis connection will fail'
+  );
 
-check(
-  'NODE_ENV is production',
-  process.env.NODE_ENV === 'production',
-  'Running in production mode',
-  'NODE_ENV should be "production" in production'
-);
+  check(
+    'NODE_ENV is production',
+    process.env.NODE_ENV === 'production',
+    'Running in production mode',
+    'NODE_ENV should be "production" in production'
+  );
+} else {
+  warn(
+    'UPSTASH_REDIS_REST_URL configured',
+    !process.env.UPSTASH_REDIS_REST_URL,
+    'UPSTASH_REDIS_REST_URL not set - acceptable locally; required for production rate limiting'
+  );
+
+  warn(
+    'UPSTASH_REDIS_REST_TOKEN configured',
+    !process.env.UPSTASH_REDIS_REST_TOKEN,
+    'UPSTASH_REDIS_REST_TOKEN not set - acceptable locally; required for production Redis access'
+  );
+
+  warn(
+    'NODE_ENV is production',
+    process.env.NODE_ENV !== 'production',
+    'NODE_ENV is not production - acceptable locally; set SECURITY_AUDIT_STRICT=true for deployment checks'
+  );
+}
 
 // Check 2: Security headers in next.config.js
 const nextConfigPath = resolve(process.cwd(), 'next.config.ts');

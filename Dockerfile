@@ -27,7 +27,9 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
 
 # Generate Prisma client
-RUN npx prisma generate
+RUN DATABASE_URL="postgresql://build:build@localhost:5432/build" \
+    DIRECT_DATABASE_URL="postgresql://build:build@localhost:5432/build" \
+    npx prisma generate
 
 # Build the application
 RUN npm run build

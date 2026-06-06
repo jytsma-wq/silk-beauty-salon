@@ -150,22 +150,3 @@ export async function csrfMiddleware(
   
   return handler();
 }
-
-/**
- * Hook for client-side CSRF token management
- * Returns token to include in requests
- */
-export function useCsrfToken(): string | null {
-  // Client-side only
-  if (typeof window === 'undefined') {
-    return null;
-  }
-  
-  // Get from meta tag if available
-  const metaToken = document.querySelector('meta[name="csrf-token"]');
-  if (metaToken) {
-    return metaToken.getAttribute('content') || null;
-  }
-  
-  return null;
-}

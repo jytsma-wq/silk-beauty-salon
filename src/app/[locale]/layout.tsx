@@ -1,4 +1,3 @@
-import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale, getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import type { Metadata } from "next";
@@ -10,6 +9,8 @@ import { ConsentProvider } from "@/components/providers/ConsentProvider";
 import { WhatsAppWidget } from "@/components/layout/WhatsAppWidget";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { ClientIntlProvider } from "@/components/providers/ClientIntlProvider";
+import { DocumentLocale } from "@/components/providers/DocumentLocale";
 import { siteConfig } from '@/data/site-config';
 
 export async function generateMetadata({
@@ -58,7 +59,8 @@ export default async function LocaleLayout({
   
   return (
     <ThemeProvider>
-      <NextIntlClientProvider messages={messages}>
+      <ClientIntlProvider locale={validLocale} messages={messages}>
+        <DocumentLocale locale={validLocale} />
         <ConsentProvider>
           <AnnouncerProvider>
             <SkipLink />
@@ -71,7 +73,7 @@ export default async function LocaleLayout({
             <Toaster />
           </AnnouncerProvider>
         </ConsentProvider>
-      </NextIntlClientProvider>
+      </ClientIntlProvider>
     </ThemeProvider>
   );
 }

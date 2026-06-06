@@ -1,11 +1,10 @@
-import { getLocale, getTranslations } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import { StickySplitSection } from '@/components/sections/StickySplitSection';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 
 export async function ConsultationCTA() {
   const t = await getTranslations('consultation');
-  const locale = await getLocale();
 
   return (
     <StickySplitSection
@@ -31,7 +30,7 @@ export async function ConsultationCTA() {
       {/* CTA Button */}
       <MagneticButton strength={0.4} radius={90}>
         <Link
-          href={`/${locale}/book`}
+          href="/book"
           className="inline-flex items-center justify-center rounded-md border border-[#d9cec1] bg-[#f7f2eb] px-8 py-4 text-sm uppercase tracking-widest text-[#241f1b] transition-colors hover:bg-[#241f1b] hover:text-white"
         >
           {t('cta.button')}

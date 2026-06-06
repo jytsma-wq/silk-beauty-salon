@@ -261,7 +261,7 @@ Dynamic sitemap at `src/app/[locale]/sitemap.ts`:
 The default locale (en) is marked as `x-default` for language-agnostic matching:
 
 ```xml
-<link rel="alternate" hreflang="x-default" href="https://silkbeautysalon.com/en" />
+<link rel="alternate" hreflang="x-default" href="https://silkbeautysalon.online/en" />
 ```
 
 ## Performance Optimization

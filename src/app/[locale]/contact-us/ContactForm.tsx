@@ -209,7 +209,7 @@ export default function ContactForm() {
                       </span>
                     )}
                   </div>
-                  <Button type="submit" className="btn-gold w-full sm:w-auto" disabled={loading}>
+                  <Button type="submit" className="btn-gold w-full sm:w-auto" disabled={loading || !csrfToken}>
                     {loading ? (
                       <>
                         <Loader2 className="w-4 h-4 mr-2 animate-spin" />

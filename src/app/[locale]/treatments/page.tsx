@@ -2,8 +2,6 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import { ChevronRight } from 'lucide-react';
 import { getTreatmentCategoriesByLocale, getAllCategorySlugs } from '@/lib/treatments-db';
-import { siteConfig } from '@/data/site-config';
-import { Button } from '@/components/ui/button';
 import { Link } from '@/i18n/routing';
 import { getTranslations } from 'next-intl/server';
 
@@ -56,6 +54,7 @@ export default async function TreatmentsPage({
           fill
           className="object-cover"
           priority
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-[#1c1c1c]/40" />
         <div className="absolute inset-0 flex items-center justify-center">
@@ -76,7 +75,7 @@ export default async function TreatmentsPage({
       <div className="bg-secondary py-4">
         <div className="container-custom">
           <nav className="flex items-center gap-2 text-sm">
-            <Link href={`/${locale}`} className="text-muted-foreground hover:text-gold">
+            <Link href="/" className="text-muted-foreground hover:text-gold">
               {tCommon('home')}
             </Link>
             <ChevronRight className="w-4 h-4 text-muted-foreground" />
@@ -140,11 +139,12 @@ export default async function TreatmentsPage({
           <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
             {t('ctaSubtitle')}
           </p>
-          <Button asChild className="btn-gold">
-            <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
-              {t('ctaButton')}
-            </a>
-          </Button>
+          <Link
+            href="/book"
+            className="btn-gold inline-flex h-9 items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors"
+          >
+            {t('ctaButton')}
+          </Link>
         </div>
       </section>
     </>
