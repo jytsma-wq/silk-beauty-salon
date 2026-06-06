@@ -1,5 +1,4 @@
 import { Link } from '@/i18n/routing';
-import { Button } from '@/components/ui/button';
 import { routing } from '@/i18n/routing';
 
 export default function NotFound() {
@@ -19,16 +18,18 @@ export default function NotFound() {
           Sorry, we couldn&apos;t find the page you&apos;re looking for. It might have been moved or deleted.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button asChild className="btn-gold">
-            <Link href={`/${locale}`}>
-              Go Home
-            </Link>
-          </Button>
-          <Button asChild variant="outline">
-            <Link href={`/${locale}/contact-us`}>
-              Contact Us
-            </Link>
-          </Button>
+          <Link
+            href={`/${locale}`}
+            className="btn-gold inline-flex h-9 items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          >
+            Go Home
+          </Link>
+          <Link
+            href={`/${locale}/contact-us`}
+            className="inline-flex h-9 items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          >
+            Contact Us
+          </Link>
         </div>
       </div>
     </div>

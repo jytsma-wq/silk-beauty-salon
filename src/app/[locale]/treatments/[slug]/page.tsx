@@ -149,6 +149,7 @@ export default async function TreatmentPage({ params }: Props) {
               alt={treatment.name}
               fill
               className="object-cover"
+              sizes="(min-width: 1024px) 56vw, 100vw"
               priority
             />
           </div>
@@ -295,6 +296,7 @@ export default async function TreatmentPage({ params }: Props) {
                           alt={related.name}
                           fill
                           className="object-cover transition-transform duration-700 group-hover:scale-105"
+                          sizes="(min-width: 768px) 33vw, 100vw"
                         />
                       </div>
                       <h3 className="mb-3 font-serif text-xl font-light text-stone-900 transition-colors group-hover:text-[#8d6f58] md:text-2xl">

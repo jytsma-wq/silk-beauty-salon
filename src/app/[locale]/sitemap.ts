@@ -39,7 +39,7 @@ interface SitemapEntry {
  * Generate sitemap entries for all locales
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://silkbeautysalon.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://silkbeautysalon.online';
   const entries: MetadataRoute.Sitemap = [];
 
   // Generate entries for each static route in each locale

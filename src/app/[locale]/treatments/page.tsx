@@ -56,6 +56,7 @@ export default async function TreatmentsPage({
           fill
           className="object-cover"
           priority
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-[#1c1c1c]/40" />
         <div className="absolute inset-0 flex items-center justify-center">

@@ -7,6 +7,11 @@ declare global {
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
+vi.hoisted(() => {
+  process.env.UPSTASH_REDIS_REST_URL = 'https://test-upstash-url.upstash.io';
+  process.env.UPSTASH_REDIS_REST_TOKEN = 'token12345678901234567890';
+});
+
 // Mock @upstash/ratelimit - completely self-contained factory
 vi.mock('@upstash/ratelimit', () => {
   const mockFn = vi.fn;

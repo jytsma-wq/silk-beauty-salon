@@ -158,7 +158,7 @@ export function GaldermaHeaderClient({
         transition={{ duration: 0.3 }}
       >
         <div className="mx-auto max-w-7xl px-6 py-4 lg:px-8">
-          <div className="mb-4 flex justify-center">
+          <div className="mb-4 hidden justify-center md:flex">
             <Link href="/" className="font-serif text-2xl tracking-tight text-[#1c1c1c] transition-colors hover:text-[#8d6f58]">
               {siteConfig.name}
             </Link>

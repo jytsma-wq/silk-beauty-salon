@@ -7,6 +7,39 @@ import { Button } from '@/components/ui/button';
 import { siteConfig } from '@/data/site-config';
 import ContactFormClient from './ContactForm';
 
+type TranslationFunction = {
+  (key: string): string;
+  has(key: string): boolean;
+};
+
+const contactCopy = {
+  title: 'Contact Us',
+  subtitle: 'Get in touch with our team to plan your visit or ask a question.',
+  contactSilkBeautySalon: 'Contact Silk Beauty Salon',
+  formTitle: 'Send us a message',
+  getInTouch: 'Get in touch',
+  address: 'Address',
+  phone: 'Phone',
+  email: 'Email',
+  openingHours: 'Opening Hours',
+  monTue: 'Mon - Tue',
+  wedThu: 'Wed - Thu',
+  friday: 'Friday',
+  satSun: 'Sat - Sun',
+  social: 'Social',
+  instagram: 'Instagram',
+  facebook: 'Facebook',
+  tiktok: 'TikTok',
+  readyToBook: 'Ready to book?',
+  bookOnlineDesc: 'Request a consultation and our team will confirm your appointment.',
+  bookAppointment: 'Book Appointment',
+  mapTitle: 'Silk Beauty Salon location',
+} as const;
+
+function contactText(t: TranslationFunction, key: string, fallback: string) {
+  return t.has(key) ? t(key) : fallback;
+}
+
 function TikTokIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -42,24 +75,25 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
               {tCommon('home')}
             </Link>
             <ChevronRight className="h-3.5 w-3.5" />
-            <span className="text-[#241f1b]">{t('title')}</span>
+            <span className="text-[#241f1b]">{contactText(t, 'title', contactCopy.title)}</span>
           </nav>
 
           <div className="grid items-center gap-12 lg:grid-cols-[48%_52%]">
             <div className="max-w-3xl">
-              <p className="mb-5 text-[0.68rem] font-medium uppercase tracking-[0.28em] text-[#8d6f58]">{tNav('contact')}</p>
+              <p className="mb-5 text-[0.68rem] font-medium uppercase tracking-[0.28em] text-[#765946]">{tNav('contact')}</p>
               <h1 className="mb-6 font-sans text-[clamp(2.9rem,5.6vw,5.8rem)] font-light leading-[1.02] text-[#241f1b]">
-                {t('title')}
+                {contactText(t, 'title', contactCopy.title)}
               </h1>
-              <p className="text-lg leading-8 text-stone-700">{t('subtitle')}</p>
+              <p className="text-lg leading-8 text-stone-700">{contactText(t, 'subtitle', contactCopy.subtitle)}</p>
             </div>
             <div className="relative aspect-4/3 overflow-hidden rounded-xl">
               <Image
                 src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1920&q=80"
-                alt={t('contactSilkBeautySalon')}
+                alt={contactText(t, 'contactSilkBeautySalon', contactCopy.contactSilkBeautySalon)}
                 fill
                 className="object-cover"
                 priority
+                sizes="(max-width: 1024px) 100vw, 52vw"
               />
             </div>
           </div>
@@ -70,20 +104,20 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
         <div className="container-custom">
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
-              <h2 className="mb-6 font-sans text-2xl font-light text-[#241f1b] md:text-3xl">{t('formTitle')}</h2>
+              <h2 className="mb-6 font-sans text-2xl font-light text-[#241f1b] md:text-3xl">{contactText(t, 'formTitle', contactCopy.formTitle)}</h2>
               <ContactFormClient />
             </div>
 
             <div>
-              <h2 className="mb-6 font-sans text-2xl font-light text-[#241f1b] md:text-3xl">{t('getInTouch')}</h2>
+              <h2 className="mb-6 font-sans text-2xl font-light text-[#241f1b] md:text-3xl">{contactText(t, 'getInTouch', contactCopy.getInTouch)}</h2>
 
               <div className="mb-8 space-y-6">
                 <div className="flex items-start gap-4">
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondary">
-                    <MapPin className="h-6 w-6 text-[#8d6f58]" />
+                    <MapPin className="h-6 w-6 text-[#765946]" />
                   </div>
                   <div>
-                    <h3 className="mb-1 font-medium text-primary">{t('address')}</h3>
+                    <h3 className="mb-1 font-medium text-primary">{contactText(t, 'address', contactCopy.address)}</h3>
                     <p className="text-muted-foreground">
                       {siteConfig.contact.address}
                       <br />
@@ -94,10 +128,10 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
 
                 <div className="flex items-start gap-4">
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondary">
-                    <Phone className="h-6 w-6 text-[#8d6f58]" />
+                    <Phone className="h-6 w-6 text-[#765946]" />
                   </div>
                   <div>
-                    <h3 className="mb-1 font-medium text-primary">{t('phone')}</h3>
+                    <h3 className="mb-1 font-medium text-primary">{contactText(t, 'phone', contactCopy.phone)}</h3>
                     <a
                       href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`}
                       className="text-muted-foreground transition-colors hover:text-[#241f1b]"
@@ -109,10 +143,10 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
 
                 <div className="flex items-start gap-4">
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondary">
-                    <Mail className="h-6 w-6 text-[#8d6f58]" />
+                    <Mail className="h-6 w-6 text-[#765946]" />
                   </div>
                   <div>
-                    <h3 className="mb-1 font-medium text-primary">{t('email')}</h3>
+                    <h3 className="mb-1 font-medium text-primary">{contactText(t, 'email', contactCopy.email)}</h3>
                     <a
                       href={`mailto:${siteConfig.contact.email}`}
                       className="text-muted-foreground transition-colors hover:text-[#241f1b]"
@@ -125,38 +159,40 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
 
               <div className="border-t border-[#e8e4df] py-8">
                 <div className="mb-4 flex items-center gap-2">
-                  <Clock className="h-5 w-5 text-[#8d6f58]" />
-                  <h3 className="font-medium text-primary">{t('openingHours')}</h3>
+                  <Clock className="h-5 w-5 text-[#765946]" />
+                  <h3 className="font-medium text-primary">{contactText(t, 'openingHours', contactCopy.openingHours)}</h3>
                 </div>
                 <ul className="space-y-2 text-sm">
                   <li className="flex justify-between">
-                    <span className="text-muted-foreground">{t('monTue')}</span>
+                    <span className="text-muted-foreground">{contactText(t, 'monTue', contactCopy.monTue)}</span>
                     <span>{siteConfig.businessHours.monday}</span>
                   </li>
                   <li className="flex justify-between">
-                    <span className="text-muted-foreground">{t('wedThu')}</span>
+                    <span className="text-muted-foreground">{contactText(t, 'wedThu', contactCopy.wedThu)}</span>
                     <span>{siteConfig.businessHours.wednesday}</span>
                   </li>
                   <li className="flex justify-between">
-                    <span className="text-muted-foreground">{t('friday')}</span>
+                    <span className="text-muted-foreground">{contactText(t, 'friday', contactCopy.friday)}</span>
                     <span>{siteConfig.businessHours.friday}</span>
                   </li>
                   <li className="flex justify-between">
-                    <span className="text-muted-foreground">{t('satSun')}</span>
+                    <span className="text-muted-foreground">{contactText(t, 'satSun', contactCopy.satSun)}</span>
                     <span>{siteConfig.businessHours.saturday}</span>
                   </li>
                 </ul>
               </div>
 
               <div className="mt-6">
-                <h3 className="mb-4 font-medium text-primary">{tCommon('social')}</h3>
+                <h3 className="mb-4 font-medium text-primary">
+                  {tCommon.has('social') ? tCommon('social') : contactCopy.social}
+                </h3>
                 <div className="flex items-center gap-4">
                   <a
                     href={siteConfig.social.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#8d6f58] transition-opacity hover:opacity-80"
-                    aria-label={t('instagram')}
+                    className="text-[#765946] transition-opacity hover:opacity-80"
+                    aria-label={contactText(t, 'instagram', contactCopy.instagram)}
                   >
                     <Instagram className="h-6 w-6" />
                   </a>
@@ -164,8 +200,8 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                     href={siteConfig.social.facebook}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#8d6f58] transition-opacity hover:opacity-80"
-                    aria-label={t('facebook')}
+                    className="text-[#765946] transition-opacity hover:opacity-80"
+                    aria-label={contactText(t, 'facebook', contactCopy.facebook)}
                   >
                     <Facebook className="h-6 w-6" />
                   </a>
@@ -174,7 +210,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary transition-opacity hover:opacity-80"
-                    aria-label={t('tiktok')}
+                    aria-label={contactText(t, 'tiktok', contactCopy.tiktok)}
                   >
                     <TikTokIcon className="h-6 w-6" />
                   </a>
@@ -182,10 +218,10 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
               </div>
 
               <div className="mt-8 border-t border-[#e8e4df] py-8 text-center">
-                <h3 className="mb-2 font-sans text-xl font-light text-[#241f1b]">{t('readyToBook')}</h3>
-                <p className="mb-4 text-sm text-muted-foreground">{t('bookOnlineDesc')}</p>
+                <h3 className="mb-2 font-sans text-xl font-light text-[#241f1b]">{contactText(t, 'readyToBook', contactCopy.readyToBook)}</h3>
+                <p className="mb-4 text-sm text-muted-foreground">{contactText(t, 'bookOnlineDesc', contactCopy.bookOnlineDesc)}</p>
                 <Button asChild className="btn-gold">
-                  <Link href="/book">{t('bookAppointment')}</Link>
+                  <Link href="/book">{contactText(t, 'bookAppointment', contactCopy.bookAppointment)}</Link>
                 </Button>
               </div>
             </div>
@@ -202,7 +238,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          title={tNav('locationTitle')}
+          title={tNav.has('locationTitle') ? tNav('locationTitle') : contactCopy.mapTitle}
         />
       </section>
     </>

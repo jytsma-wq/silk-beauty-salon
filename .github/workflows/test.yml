@@ -14,17 +14,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
 
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        run: npm ci
 
       - name: Run ESLint
-        run: bun run lint
+        run: npm run lint
 
       - name: Run TypeScript type check
-        run: bun run typecheck
+        run: npm run typecheck
 
   unit-tests:
     name: Unit Tests
@@ -34,14 +37,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
 
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        run: npm ci
 
       - name: Run Vitest tests with coverage
-        run: bun run test:coverage
+        run: npm run test:coverage
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
@@ -59,17 +65,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
 
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        run: npm ci
 
       - name: Build application
-        run: bun run build
+        run: npm run build
         env:
           NODE_ENV: production
-          DATABASE_URL: ${{ secrets.DATABASE_URL || 'file:./dev.db' }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL || 'postgresql://build:build@localhost:5432/build' }}
+          DIRECT_DATABASE_URL: ${{ secrets.DIRECT_DATABASE_URL || secrets.DATABASE_URL || 'postgresql://build:build@localhost:5432/build' }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY || 'test-key' }}
           RESEND_AUDIENCE_ID: ${{ secrets.RESEND_AUDIENCE_ID || 'test-audience' }}
           CONTACT_EMAIL: ${{ secrets.CONTACT_EMAIL || 'test@example.com' }}
@@ -84,27 +94,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
 
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        run: npm ci
 
       - name: Install Playwright browsers
-        run: bunx playwright install --with-deps chromium firefox webkit
+        run: npx playwright install --with-deps chromium firefox webkit
 
       - name: Build application
-        run: bun run build
+        run: npm run build
         env:
           NODE_ENV: production
-          DATABASE_URL: ${{ secrets.DATABASE_URL || 'file:./dev.db' }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL || 'postgresql://build:build@localhost:5432/build' }}
+          DIRECT_DATABASE_URL: ${{ secrets.DIRECT_DATABASE_URL || secrets.DATABASE_URL || 'postgresql://build:build@localhost:5432/build' }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY || 'test-key' }}
           RESEND_AUDIENCE_ID: ${{ secrets.RESEND_AUDIENCE_ID || 'test-audience' }}
           CONTACT_EMAIL: ${{ secrets.CONTACT_EMAIL || 'test@example.com' }}
           API_SECRET_KEY: ${{ secrets.API_SECRET_KEY || 'test-secret' }}
 
       - name: Run Playwright tests
-        run: bun run test:e2e
+        run: npm run test:e2e
         env:
           CI: true
 
@@ -124,39 +138,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
 
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        run: npm ci
 
       - name: Run tests with coverage
-        run: bun run test:coverage
+        run: npm run test:coverage
 
       - name: Check coverage thresholds
-        run: |
-          # Extract coverage percentages from coverage-summary.json
-          COVERAGE=$(cat coverage/coverage-summary.json | jq '.total.statements.pct')
-          BRANCHES=$(cat coverage/coverage-summary.json | jq '.total.branches.pct')
-          FUNCTIONS=$(cat coverage/coverage-summary.json | jq '.total.functions.pct')
-          LINES=$(cat coverage/coverage-summary.json | jq '.total.lines.pct')
-          
-          echo "Statement coverage: $COVERAGE%"
-          echo "Branch coverage: $BRANCHES%"
-          echo "Function coverage: $FUNCTIONS%"
-          echo "Line coverage: $LINES%"
-          
-          if (( $(echo "$COVERAGE < 80" | bc -l) )); then
-            echo "Coverage dropped below 80% threshold!"
-            exit 1
-          fi
-          
-          if (( $(echo "$BRANCHES < 75" | bc -l) )); then
-            echo "Branch coverage dropped below 75% threshold!"
-            exit 1
-          fi
-          
-          echo "Coverage check passed!"
+        run: node -e "const summary=require('./coverage/coverage-summary.json'); const total=summary.total; console.log('Statement coverage: '+total.statements.pct+'%'); console.log('Branch coverage: '+total.branches.pct+'%'); console.log('Function coverage: '+total.functions.pct+'%'); console.log('Line coverage: '+total.lines.pct+'%'); if (total.statements.pct < 80) { console.error('Coverage dropped below 80% threshold!'); process.exit(1); } if (total.branches.pct < 75) { console.error('Branch coverage dropped below 75% threshold!'); process.exit(1); } console.log('Coverage check passed!');"
 
   lighthouse-ci:
     name: Lighthouse CI
@@ -166,20 +161,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
 
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        run: npm ci
 
       - name: Install Lighthouse CI
-        run: bun add -g @lhci/cli
+        run: npm install -g @lhci/cli
 
       - name: Build application
-        run: bun run build
+        run: npm run build
         env:
           NODE_ENV: production
-          DATABASE_URL: ${{ secrets.DATABASE_URL || 'file:./dev.db' }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL || 'postgresql://build:build@localhost:5432/build' }}
+          DIRECT_DATABASE_URL: ${{ secrets.DIRECT_DATABASE_URL || secrets.DATABASE_URL || 'postgresql://build:build@localhost:5432/build' }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY || 'test-key' }}
           RESEND_AUDIENCE_ID: ${{ secrets.RESEND_AUDIENCE_ID || 'test-audience' }}
           CONTACT_EMAIL: ${{ secrets.CONTACT_EMAIL || 'test@example.com' }}
@@ -198,26 +197,30 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
 
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        run: npm ci
 
       - name: Install Playwright browsers
-        run: bunx playwright install --with-deps chromium
+        run: npx playwright install --with-deps chromium
 
       - name: Build application
-        run: bun run build
+        run: npm run build
         env:
           NODE_ENV: production
-          DATABASE_URL: ${{ secrets.DATABASE_URL || 'file:./dev.db' }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL || 'postgresql://build:build@localhost:5432/build' }}
+          DIRECT_DATABASE_URL: ${{ secrets.DIRECT_DATABASE_URL || secrets.DATABASE_URL || 'postgresql://build:build@localhost:5432/build' }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY || 'test-key' }}
           RESEND_AUDIENCE_ID: ${{ secrets.RESEND_AUDIENCE_ID || 'test-audience' }}
           CONTACT_EMAIL: ${{ secrets.CONTACT_EMAIL || 'test@example.com' }}
           API_SECRET_KEY: ${{ secrets.API_SECRET_KEY || 'test-secret' }}
 
       - name: Run accessibility tests
-        run: bun run test:e2e --grep "accessibility"
+        run: npm run test:e2e -- --grep "accessibility"
         env:
           CI: true

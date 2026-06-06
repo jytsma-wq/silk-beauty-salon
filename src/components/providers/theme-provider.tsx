@@ -12,19 +12,30 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>(() => {
-    if (typeof window === 'undefined') return 'light';
-
-    const storedTheme = localStorage.getItem('theme') as Theme | null;
-    if (storedTheme) return storedTheme;
-
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    return prefersDark ? 'dark' : 'light';
-  });
+  const [theme, setThemeState] = useState<Theme>('light');
+  const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    // Sync theme to localStorage and DOM
-    localStorage.setItem('theme', theme);
+    let isActive = true;
+
+    queueMicrotask(() => {
+      if (!isActive) return;
+
+      const storedTheme = localStorage.getItem('theme') as Theme | null;
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initialTheme = storedTheme || (prefersDark ? 'dark' : 'light');
+
+      setThemeState(initialTheme);
+      setIsInitialized(true);
+    });
+
+    return () => {
+      isActive = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isInitialized) return;
 
     const root = document.documentElement;
     if (theme === 'dark') {
@@ -32,7 +43,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     } else {
       root.classList.remove('dark');
     }
-  }, [theme]);
+
+    localStorage.setItem('theme', theme);
+  }, [isInitialized, theme]);
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);

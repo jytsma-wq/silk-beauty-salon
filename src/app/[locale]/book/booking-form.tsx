@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { format, isBefore, isToday } from 'date-fns';
 import { Calendar, Clock, User, Mail, Phone, MessageSquare, CheckCircle } from 'lucide-react';
@@ -11,6 +11,8 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { siteConfig } from '@/data/site-config';
 import { useClientCsrfToken } from '@/lib/csrf-client';
+import { useBookingStore } from '@/stores/booking-store';
+import { bookingCopy, bookingText } from './booking-copy';
 
 interface BookingFormProps {
   consultationTypes: Array<{
@@ -24,19 +26,17 @@ interface BookingFormProps {
 export function BookingForm({ consultationTypes }: BookingFormProps) {
   const t = useTranslations('bookingPage');
   const tCommon = useTranslations('common');
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>();
-  const [bookedSlots, setBookedSlots] = useState<string[]>([]);
   const csrfToken = useClientCsrfToken();
-
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    service: '',
-    preferredDate: '',
-    preferredTime: '',
-    message: '',
-  });
+  const {
+    draft: formData,
+    bookedSlots,
+    lastSaved,
+    updateField,
+    setBookedSlots,
+    setLoadingSlots,
+    completeBooking,
+    clearDraft,
+  } = useBookingStore();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -69,17 +69,26 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
     const endHour = Number.parseInt(end.split(':')[0] ?? '19', 10);
 
     return Array.from({ length: Math.max(endHour - startHour, 0) }, (_, index) => {
-      const hour = `${startHour + index}`.padStart(2, '0');
+      const slotStart = startHour + index;
+      const slotEnd = slotStart + 1;
+      const hour = `${slotStart}`.padStart(2, '0');
+      const nextHour = `${slotEnd}`.padStart(2, '0');
       return {
         value: `${hour}:00`,
-        label: `${hour}:00`,
+        label: `${hour}:00 - ${nextHour}:00`,
       };
     });
   };
 
-  const timeSlots = buildTimeSlots(selectedDate);
-
   const formatDateValue = (date: Date) => format(date, 'yyyy-MM-dd');
+
+  const selectedDate = useMemo(() => {
+    if (!formData.preferredDate) return undefined;
+    const restoredDate = new Date(`${formData.preferredDate}T00:00:00`);
+    return Number.isNaN(restoredDate.getTime()) ? undefined : restoredDate;
+  }, [formData.preferredDate]);
+
+  const timeSlots = buildTimeSlots(selectedDate);
 
   useEffect(() => {
     if (!selectedDate) {
@@ -88,25 +97,30 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
 
     const dateStr = formatDateValue(selectedDate);
     const controller = new AbortController();
+    setLoadingSlots(true);
 
     fetch(`/api/bookings?date=${dateStr}`, { signal: controller.signal })
       .then((res) => res.json())
       .then((data: { bookedSlots?: string[] }) => {
         const nextBookedSlots = data.bookedSlots || [];
         setBookedSlots(nextBookedSlots);
-        setFormData((prev) =>
-          prev.preferredTime && nextBookedSlots.some((slot) => slot.startsWith(prev.preferredTime))
-            ? { ...prev, preferredTime: '' }
-            : prev
-        );
+        if (
+          formData.preferredTime &&
+          nextBookedSlots.some((slot) => slot.startsWith(formData.preferredTime))
+        ) {
+          updateField('preferredTime', '');
+        }
       })
       .catch((err) => {
         if (err instanceof Error && err.name === 'AbortError') return;
         console.error('Error fetching slots:', err);
+      })
+      .finally(() => {
+        setLoadingSlots(false);
       });
 
     return () => controller.abort();
-  }, [selectedDate]);
+  }, [formData.preferredTime, selectedDate, setBookedSlots, setLoadingSlots, updateField]);
 
   const formatDateLabel = (date: Date) => format(date, 'EEEE, MMMM d, yyyy');
 
@@ -152,17 +166,8 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
         throw new Error(data.error || 'Failed to submit booking request');
       }
 
+      completeBooking(typeof data.id === 'string' ? data.id : undefined);
       setIsSuccess(true);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        service: '',
-        preferredDate: '',
-        preferredTime: '',
-        message: '',
-      });
-      setSelectedDate(undefined);
       setBookedSlots([]);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
@@ -171,12 +176,11 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
     }
   };
 
-  const handleChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
+  const handleChange = (field: keyof typeof formData, value: string) => {
+    updateField(field, value);
   };
 
   const handleDateSelect = (date: Date | undefined) => {
-    setSelectedDate(date);
     setBookedSlots([]);
     handleChange('preferredDate', date ? formatDateValue(date) : '');
     const nextSlots = buildTimeSlots(date);
@@ -192,16 +196,19 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
           <CheckCircle className="h-8 w-8 text-[#8d6f58]" />
         </div>
         <h3 className="font-serif text-2xl text-primary mb-4">
-          {t('successTitle', { defaultValue: 'Booking Request Submitted' })}
+          {bookingText(t, 'successTitle', bookingCopy.successTitle)}
         </h3>
         <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-          {t('successMessage', { defaultValue: 'Thank you for your booking request. We will contact you shortly to confirm your appointment.' })}
+          {bookingText(t, 'successMessage', bookingCopy.successMessage)}
         </p>
         <Button
-          onClick={() => setIsSuccess(false)}
+          onClick={() => {
+            setIsSuccess(false);
+            clearDraft();
+          }}
           className="rounded-md border border-[#d9cec1] bg-[#f7f2eb] px-6 py-3 text-xs uppercase tracking-widest text-[#241f1b] transition-colors hover:bg-[#241f1b] hover:text-white"
         >
-          {t('bookAnother', { defaultValue: 'Book Another Appointment' })}
+          {bookingText(t, 'bookAnother', bookingCopy.bookAnother)}
         </Button>
       </div>
     );
@@ -215,18 +222,25 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
         </div>
       )}
 
+      {lastSaved && !isSubmitting ? (
+        <p className="text-xs text-stone-500">
+          Draft saved {format(new Date(lastSaved), 'MMM d, HH:mm')}
+        </p>
+      ) : null}
+
       <div className="space-y-2">
         <Label htmlFor="service" className="flex items-center gap-2">
           <Calendar className="w-4 h-4 text-[#b5453a]" />
-          {t('selectService', { defaultValue: 'Select Service' })}
+          {bookingText(t, 'selectService', bookingCopy.selectService)}
         </Label>
         <select
+          id="service"
           value={formData.service}
           onChange={(e) => handleChange('service', e.target.value)}
           required
           className="w-full h-10 px-3 py-2 bg-white border border-border rounded-none text-sm focus:outline-none focus:ring-2 focus:ring-[#b5453a]/20 focus:border-[#b5453a]"
         >
-          <option value="">{t('selectServicePlaceholder', { defaultValue: 'Choose a consultation type' })}</option>
+          <option value="">{bookingText(t, 'selectServicePlaceholder', bookingCopy.selectServicePlaceholder)}</option>
           {consultationTypes.map((type) => (
             <option key={type.bookingType} value={type.title}>
               {type.title} — {type.duration}
@@ -239,7 +253,7 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
         <div className="space-y-2">
           <Label htmlFor="name" className="flex items-center gap-2">
             <User className="w-4 h-4 text-[#b5453a]" />
-            {t('fullName', { defaultValue: 'Full Name' })}
+            {bookingText(t, 'fullName', bookingCopy.fullName)}
           </Label>
           <Input
             id="name"
@@ -249,14 +263,14 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
             required
             minLength={2}
             className="rounded-none border-border"
-            placeholder={t('namePlaceholder', { defaultValue: 'Enter your full name' })}
+            placeholder={bookingText(t, 'namePlaceholder', bookingCopy.namePlaceholder)}
           />
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="phone" className="flex items-center gap-2">
             <Phone className="w-4 h-4 text-[#b5453a]" />
-            {t('phoneNumber', { defaultValue: 'Phone Number' })}
+            {bookingText(t, 'phoneNumber', bookingCopy.phoneNumber)}
           </Label>
           <Input
             id="phone"
@@ -266,7 +280,7 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
             required
             minLength={5}
             className="rounded-none border-border"
-            placeholder={t('phonePlaceholder', { defaultValue: '+995 599 123 456' })}
+            placeholder={bookingText(t, 'phonePlaceholder', bookingCopy.phonePlaceholder)}
           />
         </div>
       </div>
@@ -274,7 +288,7 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
       <div className="space-y-2">
         <Label htmlFor="email" className="flex items-center gap-2">
           <Mail className="w-4 h-4 text-[#b5453a]" />
-          {t('emailAddress', { defaultValue: 'Email Address' })}
+          {bookingText(t, 'emailAddress', bookingCopy.emailAddress)}
         </Label>
         <Input
           id="email"
@@ -283,7 +297,7 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
           onChange={(e) => handleChange('email', e.target.value)}
           required
           className="rounded-none border-border"
-          placeholder={t('emailPlaceholder', { defaultValue: 'your@email.com' })}
+          placeholder={bookingText(t, 'emailPlaceholder', bookingCopy.emailPlaceholder)}
         />
       </div>
 
@@ -291,7 +305,7 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
         <div className="space-y-3">
           <Label className="flex items-center gap-2">
             <Calendar className="w-4 h-4 text-[#8d6f58]" />
-            {t('preferredDate', { defaultValue: 'Preferred Date' })}
+            {bookingText(t, 'preferredDate', bookingCopy.preferredDate)}
           </Label>
           <div className="aspect-square w-full max-w-[520px] rounded-md border border-[#e8e4df] bg-white p-3">
             <DatePicker
@@ -314,7 +328,7 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
             <p className="text-sm text-stone-600">{formatDateLabel(selectedDate)}</p>
           ) : (
             <p className="text-sm text-stone-500">
-              {t('selectDateTime', { defaultValue: 'Select Date & Time' })}
+              {bookingText(t, 'selectDateTime', bookingCopy.selectDateTime)}
             </p>
           )}
         </div>
@@ -322,7 +336,7 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
         <div className="space-y-3">
           <Label className="flex items-center gap-2">
             <Clock className="w-4 h-4 text-[#8d6f58]" />
-            {t('preferredTime', { defaultValue: 'Preferred Time' })}
+            {bookingText(t, 'preferredTime', bookingCopy.preferredTime)}
           </Label>
           <div className="grid grid-cols-2 gap-3">
             {timeSlots.map((slot) => {
@@ -342,7 +356,7 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
                       : 'border-[#d8cbbb] bg-[#f7f2eb] text-[#241f1b] hover:bg-[#ece3d7]'
                   }`}
                 >
-                  {slot.label} {isBooked && t('booked')}
+                  {slot.label} {isBooked && bookingText(t, 'booked', bookingCopy.booked)}
                 </button>
               );
             })}
@@ -350,8 +364,8 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
           <input type="hidden" name="preferredTime" value={formData.preferredTime} />
           <p className="text-sm text-stone-500">
             {formData.preferredTime
-              ? `${t('preferredTime', { defaultValue: 'Preferred Time' })}: ${formData.preferredTime}`
-              : t('selectTime', { defaultValue: 'Select time' })}
+              ? `${bookingText(t, 'preferredTime', bookingCopy.preferredTime)}: ${formData.preferredTime}`
+              : bookingText(t, 'selectTime', bookingCopy.selectTime)}
           </p>
         </div>
       </div>
@@ -359,7 +373,7 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
       <div className="space-y-2">
         <Label htmlFor="message" className="flex items-center gap-2">
           <MessageSquare className="w-4 h-4 text-[#b5453a]" />
-          {t('additionalNotes', { defaultValue: 'Additional Notes' })}
+          {bookingText(t, 'additionalNotes', bookingCopy.additionalNotes)}
         </Label>
         <Textarea
           id="message"
@@ -367,20 +381,22 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
           onChange={(e) => handleChange('message', e.target.value)}
           rows={4}
           className="rounded-none border-border resize-none"
-          placeholder={t('notesPlaceholder', { defaultValue: 'Any specific requirements or questions...' })}
+          placeholder={bookingText(t, 'notesPlaceholder', bookingCopy.notesPlaceholder)}
         />
       </div>
 
       <Button
         type="submit"
-        disabled={isSubmitting}
+        disabled={isSubmitting || !csrfToken}
         className="w-full rounded-md border border-[#d9cec1] bg-[#f7f2eb] px-6 py-4 text-xs font-medium uppercase tracking-widest text-[#241f1b] transition-colors hover:bg-[#241f1b] hover:text-white disabled:opacity-50"
       >
-        {isSubmitting ? tCommon('submitting', { defaultValue: 'Submitting...' }) : t('requestBooking', { defaultValue: 'Request Booking' })}
+        {isSubmitting
+          ? tCommon.has('submitting') ? tCommon('submitting') : bookingCopy.submitting
+          : bookingText(t, 'requestBooking', bookingCopy.requestBooking)}
       </Button>
 
       <p className="text-xs text-muted-foreground text-center">
-        {t('bookingNote', { defaultValue: 'We will contact you to confirm your appointment within 24 hours.' })}
+        {bookingText(t, 'bookingNote', bookingCopy.bookingNote)}
       </p>
     </form>
   );

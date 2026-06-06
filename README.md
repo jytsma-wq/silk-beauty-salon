@@ -14,22 +14,20 @@ A modern, multilingual Next.js website for Silk Beauty Salon in Batumi, Georgia.
 
 ## Prerequisites
 
-- Node.js 18+ or Bun
+- Node.js 20+
 - Git
 
 ## Setup Instructions
 
 1. **Clone the repository**
    ```bash
-   git clone <repo-url>
+   git clone https://github.com/jytsma-wq/silk-beauty-salon.git
    cd silk-beauty-salon
    ```
 
 2. **Install dependencies**
    ```bash
-   npm install
-   # or
-   bun install
+   npm ci
    ```
 
 3. **Set up environment variables**
@@ -51,8 +49,6 @@ A modern, multilingual Next.js website for Silk Beauty Salon in Batumi, Georgia.
 5. **Run the development server**
    ```bash
    npm run dev
-   # or
-   bun dev
    ```
 
    Open [http://localhost:3000](http://localhost:3000) to view the site.
@@ -149,8 +145,8 @@ npm run build
 
 This creates a standalone build in `.next/standalone/` with:
 - Server code and dependencies
-- Static files copied to `standalone/public/`
-- Next.js static assets in `standalone/.next/static/`
+- Static files copied to `.next/standalone/public/`
+- Next.js static assets in `.next/standalone/.next/static/`
 
 ### Start Production Server
 
@@ -158,9 +154,9 @@ This creates a standalone build in `.next/standalone/` with:
 npm run start
 ```
 
-Or manually with Bun:
+Or manually with Node:
 ```bash
-NODE_ENV=production bun .next/standalone/server.js
+NODE_ENV=production node .next/standalone/server.js
 ```
 
 ### Caddy Configuration

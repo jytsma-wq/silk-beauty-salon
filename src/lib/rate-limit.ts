@@ -9,67 +9,58 @@
 import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
 
+const UPSTASH_REDIS_REST_URL = process.env.UPSTASH_REDIS_REST_URL;
+const UPSTASH_REDIS_REST_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN;
+const hasRedisConfig = !!UPSTASH_REDIS_REST_URL && !!UPSTASH_REDIS_REST_TOKEN;
+
+if (!hasRedisConfig && process.env.NODE_ENV === 'production' && process.env.SKIP_ENV_VALIDATION !== '1') {
+  throw new Error(
+    'Missing Upstash Redis credentials. Please set UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN environment variables.'
+  );
+}
+
 // Upstash Redis client (same as middleware.ts)
-const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_REST_URL!,
-  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
-});
+const redis = hasRedisConfig
+  ? new Redis({
+      url: UPSTASH_REDIS_REST_URL,
+      token: UPSTASH_REDIS_REST_TOKEN,
+    })
+  : null;
+
+function createLimiter(
+  limiter: ReturnType<typeof Ratelimit.fixedWindow> | ReturnType<typeof Ratelimit.slidingWindow>,
+  prefix: string
+) {
+  return redis
+    ? new Ratelimit({
+        redis,
+        limiter,
+        analytics: true,
+        prefix,
+      })
+    : null;
+}
 
 // Contact form: 5 requests per 15 minutes per IP
-const contactLimiter = new Ratelimit({
-  redis,
-  limiter: Ratelimit.fixedWindow(5, '15 m'),
-  analytics: true,
-  prefix: 'contact-rl',
-});
+const contactLimiter = createLimiter(Ratelimit.fixedWindow(5, '15 m'), 'contact-rl');
 
 // Booking form: 5 requests per 15 minutes per IP
-const bookLimiter = new Ratelimit({
-  redis,
-  limiter: Ratelimit.fixedWindow(5, '15 m'),
-  analytics: true,
-  prefix: 'book-rl',
-});
+const bookLimiter = createLimiter(Ratelimit.fixedWindow(5, '15 m'), 'book-rl');
 
 // Newsletter: 3 requests per 15 minutes per IP
-const newsletterLimiter = new Ratelimit({
-  redis,
-  limiter: Ratelimit.fixedWindow(3, '15 m'),
-  analytics: true,
-  prefix: 'newsletter-rl',
-});
+const newsletterLimiter = createLimiter(Ratelimit.fixedWindow(3, '15 m'), 'newsletter-rl');
 
 // CSRF endpoint: 20 requests per minute per IP
-const csrfLimiter = new Ratelimit({
-  redis,
-  limiter: Ratelimit.slidingWindow(20, '60 s'),
-  analytics: true,
-  prefix: 'csrf-rl',
-});
+const csrfLimiter = createLimiter(Ratelimit.slidingWindow(20, '60 s'), 'csrf-rl');
 
 // Bookings API: 10 requests per minute per IP
-const bookingsApiLimiter = new Ratelimit({
-  redis,
-  limiter: Ratelimit.slidingWindow(10, '60 s'),
-  analytics: true,
-  prefix: 'bookings-rl',
-});
+const bookingsApiLimiter = createLimiter(Ratelimit.slidingWindow(10, '60 s'), 'bookings-rl');
 
 // Generic API limiter: 30 requests per minute per IP
-const apiLimiter = new Ratelimit({
-  redis,
-  limiter: Ratelimit.slidingWindow(30, '60 s'),
-  analytics: true,
-  prefix: 'api-rl',
-});
+const apiLimiter = createLimiter(Ratelimit.slidingWindow(30, '60 s'), 'api-rl');
 
 // Strict limiter: 5 requests per 15 minutes per IP
-const strictLimiter = new Ratelimit({
-  redis,
-  limiter: Ratelimit.fixedWindow(5, '15 m'),
-  analytics: true,
-  prefix: 'strict-rl',
-});
+const strictLimiter = createLimiter(Ratelimit.fixedWindow(5, '15 m'), 'strict-rl');
 
 export interface RateLimitResult {
   allowed: boolean;
@@ -78,7 +69,11 @@ export interface RateLimitResult {
   resetTime: number;
 }
 
-async function applyLimit(limiter: Ratelimit, ip: string): Promise<RateLimitResult> {
+async function applyLimit(limiter: Ratelimit | null, ip: string): Promise<RateLimitResult> {
+  if (!limiter) {
+    return { allowed: true, limit: 0, remaining: 0, resetTime: Date.now() + 60_000 };
+  }
+
   const { success, limit, remaining, reset } = await limiter.limit(ip);
   return { allowed: success, limit, remaining, resetTime: reset };
 }

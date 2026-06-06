@@ -105,7 +105,7 @@ export function ClinicalHeroCarousel() {
               <div className="grid min-h-[calc(100svh-152px)] grid-cols-1 lg:grid-cols-[46%_54%]">
                 <div className="order-2 flex items-center px-6 py-14 md:px-12 md:py-16 lg:order-1 lg:px-16 xl:px-24">
                   <div className="max-w-xl">
-                    <p className="mb-5 text-[0.68rem] font-medium uppercase tracking-[0.28em] text-[#8d6f58]">
+                    <p className="mb-5 text-[0.68rem] font-medium uppercase tracking-[0.28em] text-[#765946]">
                       {slide.eyebrow}
                     </p>
                     <h1 className="font-sans text-[clamp(2.75rem,5.4vw,5.4rem)] font-light leading-[1.02] text-[#241f1b]">
@@ -288,7 +288,7 @@ export function ResultsCarousel() {
                       className="object-cover object-top"
                       sizes="(max-width: 768px) 46vw, 24vw"
                     />
-                    <span className="absolute bottom-0 left-0 bg-[#8d6f58] px-4 py-2 text-[0.62rem] uppercase tracking-[0.18em] text-white">
+                    <span className="absolute bottom-0 left-0 bg-[#765946] px-4 py-2 text-[0.62rem] uppercase tracking-[0.18em] text-white">
                       {t('results.after')}
                     </span>
                   </div>
@@ -304,7 +304,7 @@ export function ResultsCarousel() {
           ))}
         </div>
       </div>
-      <p className="mt-8 text-center text-[0.68rem] uppercase tracking-[0.16em] text-stone-500">
+      <p className="mt-8 text-center text-[0.68rem] uppercase tracking-[0.16em] text-stone-700">
         {t('results.disclaimer')}
       </p>
     </div>
@@ -352,7 +352,7 @@ export function TrendsCarousel() {
                     sizes="(max-width: 768px) 88vw, 32vw"
                   />
                 </div>
-                <p className="mt-5 text-[0.68rem] uppercase tracking-[0.22em] text-[#8d6f58]">
+                <p className="mt-5 text-[0.68rem] uppercase tracking-[0.22em] text-[#765946]">
                   {article.category}
                 </p>
                 <h3 className="mt-3 font-sans text-3xl font-light leading-tight text-[#241f1b]">

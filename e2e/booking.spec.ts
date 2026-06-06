@@ -1,126 +1,76 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Booking Flow', () => {
+test.describe('Appointment booking page', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/en');
-    await page.waitForLoadState('networkidle');
+    await page.route('**/api/csrf', async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ token: 'test-csrf-token' }),
+      });
+    });
+
+    await page.route('**/api/bookings?date=*', async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ bookedSlots: [] }),
+      });
+    });
   });
 
-  test('can open booking dialog from homepage', async ({ page }) => {
-    // Click the booking button
-    const bookingButton = page.getByRole('button', { name: /book appointment/i });
-    await expect(bookingButton).toBeVisible();
-    await bookingButton.click();
+  test('renders the appointment app as the booking entry point', async ({ page }) => {
+    await page.goto('/en/book');
 
-    // Verify booking dialog opens
-    const dialog = page.getByRole('dialog');
-    await expect(dialog).toBeVisible();
-    await expect(dialog).toContainText(/book your appointment/i);
+    await expect(page.getByRole('heading', { name: /book an appointment/i })).toBeVisible();
+    await expect(page.getByLabel(/select service/i)).toBeVisible();
+    await expect(page.getByLabel(/full name/i)).toBeVisible();
+    await expect(page.getByLabel(/phone number/i)).toBeVisible();
+    await expect(page.getByLabel(/email address/i)).toBeVisible();
+    await expect(page.getByText(/consultation types/i)).toBeVisible();
   });
 
-  test('booking form has all required fields', async ({ page }) => {
-    await page.getByRole('button', { name: /book appointment/i }).click();
-    
-    const dialog = page.getByRole('dialog');
-    
-    // Check form fields exist
-    await expect(dialog.getByLabel(/full name/i)).toBeVisible();
-    await expect(dialog.getByLabel(/email address/i)).toBeVisible();
-    await expect(dialog.getByLabel(/phone number/i)).toBeVisible();
-    await expect(dialog.getByLabel(/select service/i)).toBeVisible();
-    await expect(dialog.getByLabel(/preferred date/i)).toBeVisible();
+  test('sidebar consultation cards prefill the service draft', async ({ page }) => {
+    await page.goto('/en/book');
+
+    await page.getByRole('button', { name: /facial consultation/i }).first().click();
+
+    await expect(page.getByLabel(/select service/i)).toHaveValue('Facial Consultation');
   });
 
-  test('shows validation errors for empty form submission', async ({ page }) => {
-    await page.getByRole('button', { name: /book appointment/i }).click();
-    
-    const dialog = page.getByRole('dialog');
-    
-    // Try to submit empty form
-    await dialog.getByRole('button', { name: /confirm booking/i }).click();
-    
-    // Check validation messages
-    await expect(dialog.getByText(/name must be at least 2 characters/i)).toBeVisible();
-    await expect(dialog.getByText(/please enter a valid email/i)).toBeVisible();
-  });
+  test('submits an appointment request through the slot-based API', async ({ page }) => {
+    let postedBody: Record<string, unknown> | undefined;
 
-  test('can select a treatment from dropdown', async ({ page }) => {
-    await page.getByRole('button', { name: /book appointment/i }).click();
-    
-    const dialog = page.getByRole('dialog');
-    
-    // Open service dropdown
-    await dialog.getByLabel(/select service/i).click();
-    
-    // Select a treatment
-    await page.getByRole('option', { name: /botox/i }).first().click();
-    
-    // Verify selection
-    await expect(dialog.getByLabel(/select service/i)).toContainText(/botox/i);
-  });
+    await page.route('**/api/bookings', async (route) => {
+      postedBody = route.request().postDataJSON();
+      await route.fulfill({
+        status: 201,
+        contentType: 'application/json',
+        body: JSON.stringify({ id: 'booking-123', status: 'PENDING' }),
+      });
+    });
 
-  test('can navigate calendar to select date', async ({ page }) => {
-    await page.getByRole('button', { name: /book appointment/i }).click();
-    
-    const dialog = page.getByRole('dialog');
-    
-    // Open date picker
-    await dialog.getByLabel(/preferred date/i).click();
-    
-    // Navigate to next month
-    await page.getByRole('button', { name: /go to next month/i }).click();
-    
-    // Select a date
-    await page.getByRole('gridcell').filter({ hasNot: page.locator('[aria-disabled="true"]') }).first().click();
-    
-    // Verify date is selected (dialog closes)
-    await expect(page.getByRole('grid')).not.toBeVisible();
-  });
+    await page.goto('/en/book');
+    await page.getByLabel(/select service/i).selectOption('Facial Consultation');
+    await page.getByLabel(/full name/i).fill('Test User');
+    await page.getByLabel(/phone number/i).fill('+995 599 123 456');
+    await page.getByLabel(/email address/i).fill('test@example.com');
 
-  test('submits booking form successfully', async ({ page }) => {
-    await page.getByRole('button', { name: /book appointment/i }).click();
-    
-    const dialog = page.getByRole('dialog');
-    
-    // Fill form
-    await dialog.getByLabel(/full name/i).fill('Test User');
-    await dialog.getByLabel(/email address/i).fill('test@example.com');
-    await dialog.getByLabel(/phone number/i).fill('+995 599 123 456');
-    
-    // Select service
-    await dialog.getByLabel(/select service/i).click();
-    await page.getByRole('option').first().click();
-    
-    // Select date
-    await dialog.getByLabel(/preferred date/i).click();
-    await page.getByRole('gridcell').filter({ hasNot: page.locator('[aria-disabled="true"]') }).first().click();
-    
-    // Select time
-    await dialog.getByLabel(/preferred time/i).click();
-    await page.getByRole('option').first().click();
-    
-    // Submit form
-    await dialog.getByRole('button', { name: /confirm booking/i }).click();
-    
-    // Wait for success message
-    await expect(dialog.getByText(/booking confirmed/i)).toBeVisible({ timeout: 10000 });
-  });
-});
+    await page.locator('[role="gridcell"] button:not([disabled])').first().click();
 
-test.describe('Mobile Booking', () => {
-  test.use({ viewport: { width: 375, height: 667 } });
-  
-  test('booking dialog is responsive on mobile', async ({ page }) => {
-    // Set mobile viewport
-    await page.setViewportSize({ width: 375, height: 667 });
-    
-    await page.getByRole('button', { name: /book appointment/i }).click();
-    
-    const dialog = page.getByRole('dialog');
-    await expect(dialog).toBeVisible();
-    
-    // Check dialog fits within viewport
-    const box = await dialog.boundingBox();
-    expect(box?.width).toBeLessThanOrEqual(375);
+    const firstSlot = page.locator('button').filter({ hasText: /\d{2}:00 - \d{2}:00/ }).first();
+    const selectedSlot = (await firstSlot.textContent())?.trim() ?? '';
+    await firstSlot.click();
+    await page.getByRole('button', { name: /request booking/i }).click();
+
+    await expect(page.getByText(/booking request submitted/i)).toBeVisible();
+    expect(postedBody).toMatchObject({
+      name: 'Test User',
+      email: 'test@example.com',
+      phone: '+995 599 123 456',
+      service: 'Facial Consultation',
+      timeSlot: selectedSlot,
+      message: '',
+    });
   });
 });
