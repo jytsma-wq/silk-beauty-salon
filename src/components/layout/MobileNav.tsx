@@ -279,14 +279,13 @@ export function MobileNav({ onClose, treatmentCategories, conditions }: MobileNa
 
       {/* Footer */}
       <div className="p-4 border-t bg-secondary">
-        <Button
-          asChild
-          className="w-full rounded-md border border-[#d9cec1] bg-[#f7f2eb] px-6 py-3 text-xs font-medium uppercase tracking-widest text-[#241f1b] transition-colors hover:bg-[#241f1b] hover:text-white"
+        <Link
+          href="/book"
+          onClick={onClose}
+          className="flex w-full items-center justify-center rounded-md border border-[#d9cec1] bg-[#f7f2eb] px-6 py-3 text-xs font-medium uppercase tracking-widest text-[#241f1b] transition-colors hover:bg-[#241f1b] hover:text-white"
         >
-          <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
-            {t('bookAppointment')}
-          </a>
-        </Button>
+          {t('bookAppointment')}
+        </Link>
         <div className="mt-4 text-center">
           <a
             href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`}
