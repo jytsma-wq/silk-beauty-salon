@@ -24,6 +24,7 @@ function MegaMenuPanel({
   description,
   image,
   items,
+  onNavigate,
 }: {
   eyebrow: string;
   title: string;
@@ -32,6 +33,7 @@ function MegaMenuPanel({
   description: string;
   image: string;
   items: MegaMenuItem[];
+  onNavigate: () => void;
 }) {
   return (
     <div className="absolute left-1/2 top-full z-50 w-[min(1120px,calc(100vw-3rem))] -translate-x-1/2 pt-4">
@@ -51,6 +53,7 @@ function MegaMenuPanel({
               <p className="mt-4 text-sm leading-7 text-stone-600">{description}</p>
               <Link
                 href={overviewHref}
+                onClick={onNavigate}
                 className="mt-8 inline-flex h-11 items-center rounded-md border border-[#d9cec1] bg-[#f7f2eb] px-6 text-[0.68rem] font-medium uppercase tracking-[0.18em] text-[#241f1b] transition-colors hover:bg-[#241f1b] hover:text-white"
               >
                 {overviewLabel}
@@ -64,6 +67,7 @@ function MegaMenuPanel({
                 <Link
                   key={`${item.title}-${item.href}`}
                   href={item.href}
+                  onClick={onNavigate}
                   className="group rounded-[6px] border border-transparent bg-white/70 p-5 transition-colors hover:border-[#e8e4df] hover:bg-white"
                 >
                   <h4 className="text-sm font-medium uppercase tracking-[0.16em] text-[#241f1b]">
@@ -92,6 +96,7 @@ export function GaldermaHeaderClient({
   const [lastScrollY, setLastScrollY] = useState(0);
   const [activeMegaMenu, setActiveMegaMenu] = useState<'treatments' | 'conditions' | null>(null);
   const t = useTranslations('nav');
+  const closeMegaMenu = () => setActiveMegaMenu(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -173,25 +178,31 @@ export function GaldermaHeaderClient({
               onMouseLeave={() => setActiveMegaMenu(null)}
             >
               <div onMouseEnter={() => setActiveMegaMenu('treatments')}>
-                <button
-                  type="button"
+                <Link
+                  href="/treatments"
+                  onClick={closeMegaMenu}
+                  onFocus={() => setActiveMegaMenu('treatments')}
                   className="flex items-center gap-1 text-xs uppercase tracking-[0.2em] text-stone-700 transition-colors hover:text-[#8d6f58] outline-none"
+                  aria-haspopup="true"
                   aria-expanded={activeMegaMenu === 'treatments'}
                 >
                   {t('treatments', { defaultValue: 'Treatments' })}
                   <ChevronDown className="h-3 w-3" />
-                </button>
+                </Link>
               </div>
 
               <div onMouseEnter={() => setActiveMegaMenu('conditions')}>
-                <button
-                  type="button"
+                <Link
+                  href="/conditions"
+                  onClick={closeMegaMenu}
+                  onFocus={() => setActiveMegaMenu('conditions')}
                   className="flex items-center gap-1 text-xs uppercase tracking-[0.2em] text-stone-700 transition-colors hover:text-[#8d6f58] outline-none"
+                  aria-haspopup="true"
                   aria-expanded={activeMegaMenu === 'conditions'}
                 >
                   {t('conditions', { defaultValue: 'Skin Conditions' })}
                   <ChevronDown className="h-3 w-3" />
-                </button>
+                </Link>
               </div>
 
               <Link href="/pricelist" className="text-xs uppercase tracking-[0.2em] text-stone-700 transition-colors hover:text-[#8d6f58]">
@@ -213,6 +224,7 @@ export function GaldermaHeaderClient({
                   description={t('treatmentPortfolioDescription')}
                   image="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=1000&q=80"
                   items={treatmentMegaMenuItems}
+                  onNavigate={closeMegaMenu}
                 />
               ) : null}
 
@@ -225,6 +237,7 @@ export function GaldermaHeaderClient({
                   description={t('conditionsDescription')}
                   image="https://images.unsplash.com/photo-1570172619644-dfd40ed531fb?w=1000&q=80"
                   items={skinConditionMegaMenuItems}
+                  onNavigate={closeMegaMenu}
                 />
               ) : null}
             </nav>
