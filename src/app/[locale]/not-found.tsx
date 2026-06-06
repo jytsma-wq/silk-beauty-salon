@@ -21,13 +21,13 @@ export default async function NotFound() {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
-            href={`/${locale}`}
+            href="/"
             className="btn-gold inline-flex h-9 items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           >
             {t('goHome', { defaultValue: 'Go Home' })}
           </Link>
           <Link
-            href={`/${locale}/contact-us`}
+            href="/contact-us"
             className="inline-flex h-9 items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           >
             {t('contactUs', { defaultValue: 'Contact Us' })}

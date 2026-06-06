@@ -77,7 +77,7 @@ export default async function TreatmentsPage({
       <div className="bg-secondary py-4">
         <div className="container-custom">
           <nav className="flex items-center gap-2 text-sm">
-            <Link href={`/${locale}`} className="text-muted-foreground hover:text-gold">
+            <Link href="/" className="text-muted-foreground hover:text-gold">
               {tCommon('home')}
             </Link>
             <ChevronRight className="w-4 h-4 text-muted-foreground" />

@@ -98,7 +98,7 @@ export function GaldermaFooter() {
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               placeholder={tNewsletter('placeholder', { defaultValue: 'Your email address' })}
-              aria-label={tNewsletter('placeholder', { defaultValue: 'Your email address' })}
+              aria-label="Newsletter signup"
               required
               className="flex-1 border-b-2 border-stone-300 bg-transparent px-0 py-4 text-base outline-none transition-colors placeholder:text-stone-600 focus:border-[#765946]"
             />

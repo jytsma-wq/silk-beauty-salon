@@ -1,10 +1,6 @@
 import { Link } from '@/i18n/routing';
-import { routing } from '@/i18n/routing';
 
 export default function NotFound() {
-  // Root not-found should redirect to default locale
-  const locale = routing.defaultLocale;
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-background">
       <div className="text-center max-w-md px-4">
@@ -19,13 +15,13 @@ export default function NotFound() {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
-            href={`/${locale}`}
+            href="/"
             className="btn-gold inline-flex h-9 items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           >
             Go Home
           </Link>
           <Link
-            href={`/${locale}/contact-us`}
+            href="/contact-us"
             className="inline-flex h-9 items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           >
             Contact Us

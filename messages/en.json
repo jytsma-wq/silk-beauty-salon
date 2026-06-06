@@ -236,7 +236,9 @@
     "openingHours": "Opening Hours",
     "hours": {
       "monFri": "Mon-Fri: 10:00 - 22:00",
-      "satSun": "Sat-Sun: 10:00 - 22:00"
+      "satSun": "Sat-Sun: 10:00 - 22:00",
+      "sat": "Sat",
+      "sun": "Sun"
     },
     "social": "Follow Us",
     "faqDesc": "Read some of the most frequently asked questions about the clinic and our treatments.",
@@ -355,7 +357,8 @@
     "listingSubtitle": "Whatever your skin concern, our expert practitioners can create a personalized treatment plan",
     "ctaTitle": "Not Sure Which Treatment Is Right for You?",
     "ctaSubtitle": "Book a consultation with one of our expert practitioners who will assess your concerns and recommend the best treatment options",
-    "bookConsultation": "Book a Consultation"
+    "bookConsultation": "Book a Consultation",
+    "imageAlt": "Skin Care Treatment"
   },
   "consultation": {
     "title": "Request a Consultation",
@@ -416,7 +419,8 @@
       "title": "Treatments We Offer",
       "subtitle": "Comprehensive aesthetic solutions for every concern.",
       "explore": "Explore treatments ->"
-    }
+    },
+    "bookImageAlt": "Book consultation"
   },
   "booking": {
     "selectService": "Select Service",
@@ -459,7 +463,7 @@
     "serviceMicroneedling": "Microneedling",
     "serviceHydrafacial": "Hydrafacial"
   },
-    "statistics": {
+  "statistics": {
     "years": "Years Experience",
     "clients": "Happy Clients",
     "satisfaction": "Satisfaction Rate",
@@ -511,7 +515,9 @@
     "featuredIn": "As featured in Georgian Fashion & Beauty Magazine",
     "ctaTitle": "Ready to Start Your Journey?",
     "ctaSubtitle": "Book a consultation with one of our expert practitioners today",
-    "ctaButton": "Book a Consultation"
+    "ctaButton": "Book a Consultation",
+    "interiorAlt": "Silk Beauty Salon Interior",
+    "clinicAlt": "Silk Beauty Salon Clinic"
   },
   "contactPage": {
     "title": "Contact Us",
@@ -552,7 +558,9 @@
     "whatsapp": "WhatsApp",
     "viewOnMap": "View on Google Maps",
     "mapAddress": "63 Zurab Gorgiladze Street",
-    "mapCity": "Batumi, Georgia"
+    "mapCity": "Batumi, Georgia",
+    "imageAlt": "Contact Silk Beauty Salon",
+    "mapTitle": "Silk Beauty Salon Location"
   },
   "faqPage": {
     "title": "Frequently Asked Questions",
@@ -615,7 +623,8 @@
     "ctaTitle": "Book Your Treatment Today",
     "ctaSubtitle": "Contact us to book your consultation and take advantage of these exclusive offers",
     "ctaButton": "Book Now",
-    "termsText": "All offers are subject to availability and may be withdrawn at any time. Offers cannot be combined unless otherwise stated. Please mention the offer when booking."
+    "termsText": "All offers are subject to availability and may be withdrawn at any time. Offers cannot be combined unless otherwise stated. Please mention the offer when booking.",
+    "imageAlt": "Special Offers"
   },
   "blogPage": {
     "title": "Our Blog",
@@ -632,7 +641,9 @@
     "readyToTransform": "Ready to Transform?",
     "bookConsultationDesc": "Book a consultation with one of our expert practitioners to discuss your aesthetic goals.",
     "relatedPosts": "Related Posts",
-    "readMore": "Read More"
+    "readMore": "Read More",
+    "postNotFound": "Post not found",
+    "expertPractitioner": "Expert Practitioner"
   },
   "treatmentPage": {
     "bookNow": "Book This Treatment",
@@ -657,7 +668,10 @@
     "results": "Results",
     "downtime": "Downtime",
     "youMightAlsoLike": "You Might Also Like",
-    "learnMore": "Learn more"
+    "learnMore": "Learn more",
+    "heroAlt": "Luxury Beauty Salon",
+    "durationResults": "3-6 months",
+    "minimalDowntime": "None to minimal"
   },
   "conditionPage": {
     "title": "Condition",
@@ -710,7 +724,9 @@
     "notFound": "Not Found",
     "social": "Follow Us",
     "searchPlaceholder": "Search treatments, conditions...",
-    "submitting": "Submitting..."
+    "submitting": "Submitting...",
+    "tryAgain": "Try Again",
+    "view": "View"
   },
   "siteConfig": {
     "awards": {
@@ -1968,7 +1984,8 @@
     "serviceRejuvenation": "Skin Rejuvenation",
     "servicePeel": "Chemical Peel",
     "serviceMicroneedling": "Microneedling",
-    "serviceHydrafacial": "Hydrafacial"
+    "serviceHydrafacial": "Hydrafacial",
+    "imageAlt": "Salon interior"
   },
   "consent": {
     "title": "Cookie Preferences",
@@ -1999,7 +2016,19 @@
     "skipToMain": "Skip to main content",
     "skipToTreatments": "Skip to treatments",
     "skipToBooking": "Skip to booking",
-    "skipNavigation": "Skip links"
+    "skipNavigation": "Skip links",
+    "loadingThemeToggle": "Loading theme toggle",
+    "closeVideo": "Close video",
+    "toggleFullscreen": "Toggle fullscreen",
+    "closeGallery": "Close gallery",
+    "previousImage": "Previous image",
+    "nextImage": "Next image",
+    "skipLinks": "Skip links",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "required": "required",
+    "keyTab": "Tab",
+    "keyEscape": "Escape"
   },
   "whatsapp": {
     "chatOnWhatsApp": "Chat on WhatsApp",
@@ -2082,29 +2111,11 @@
       "duration": "Duration: 2:00"
     }
   },
-  "common": {
-    "tryAgain": "Try Again",
-    "view": "View"
-  },
   "errorPage": {
     "somethingWentWrong": "Something Went Wrong",
     "apologyMessage": "We apologize for the inconvenience. An unexpected error has occurred.",
     "tryAgain": "Try Again",
     "globalError": "Something went wrong"
-  },
-  "accessibility": {
-    "loadingThemeToggle": "Loading theme toggle",
-    "closeVideo": "Close video",
-    "toggleFullscreen": "Toggle fullscreen",
-    "closeGallery": "Close gallery",
-    "previousImage": "Previous image",
-    "nextImage": "Next image",
-    "skipLinks": "Skip links",
-    "openMenu": "Open menu",
-    "closeMenu": "Close menu",
-    "required": "required",
-    "keyTab": "Tab",
-    "keyEscape": "Escape"
   },
   "social": {
     "instagram": "Instagram",
@@ -2120,44 +2131,9 @@
     "skinCareTreatment": "Skin Care Treatment",
     "salonInterior": "Salon interior"
   },
-  "footer": {
-    "hours": {
-      "sat": "Sat",
-      "sun": "Sun"
-    }
-  },
-  "blogPage": {
-    "postNotFound": "Post not found",
-    "expertPractitioner": "Expert Practitioner"
-  },
-  "treatmentPage": {
-    "heroAlt": "Luxury Beauty Salon",
-    "durationResults": "3-6 months",
-    "minimalDowntime": "None to minimal"
-  },
   "international": {
     "imageAlt": "Silk Beauty Salon",
     "teamAlt": "Nana Gviniashvili"
-  },
-  "contactPage": {
-    "imageAlt": "Contact Silk Beauty Salon",
-    "mapTitle": "Silk Beauty Salon Location"
-  },
-  "consultation": {
-    "bookImageAlt": "Book consultation"
-  },
-  "conditionsPage": {
-    "imageAlt": "Skin Care Treatment"
-  },
-  "offersPage": {
-    "imageAlt": "Special Offers"
-  },
-  "bookingPage": {
-    "imageAlt": "Salon interior"
-  },
-  "aboutPage": {
-    "interiorAlt": "Silk Beauty Salon Interior",
-    "clinicAlt": "Silk Beauty Salon Clinic"
   },
   "home": {
     "section1Title": "Treatment portfolio",

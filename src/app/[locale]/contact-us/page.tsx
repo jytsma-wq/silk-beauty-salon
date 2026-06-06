@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { MapPin, Phone, Mail, Clock, ChevronRight, Instagram, Facebook } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
-import { Button } from '@/components/ui/button';
 import { siteConfig } from '@/data/site-config';
 import ContactFormClient from './ContactForm';
 
@@ -220,9 +219,12 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
               <div className="mt-8 border-t border-[#e8e4df] py-8 text-center">
                 <h3 className="mb-2 font-sans text-xl font-light text-[#241f1b]">{contactText(t, 'readyToBook', contactCopy.readyToBook)}</h3>
                 <p className="mb-4 text-sm text-muted-foreground">{contactText(t, 'bookOnlineDesc', contactCopy.bookOnlineDesc)}</p>
-                <Button asChild className="btn-gold">
-                  <Link href="/book">{contactText(t, 'bookAppointment', contactCopy.bookAppointment)}</Link>
-                </Button>
+                <Link
+                  href="/book"
+                  className="btn-gold inline-flex h-9 items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors"
+                >
+                  {contactText(t, 'bookAppointment', contactCopy.bookAppointment)}
+                </Link>
               </div>
             </div>
           </div>

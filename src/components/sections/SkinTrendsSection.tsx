@@ -38,7 +38,7 @@ export async function SkinTrendsSection({
           </div>
           {showAllLink && (
             <Link
-              href={`/${locale}/blog`}
+              href="/blog"
               className="inline-flex items-center gap-2 text-[#b5453a] font-medium hover:underline mt-4 md:mt-0"
             >
               {t('viewAll', { defaultValue: 'More skin trends' })}
@@ -55,7 +55,7 @@ export async function SkinTrendsSection({
               className="group overflow-hidden transition-opacity hover:opacity-80"
             >
               {/* Image */}
-              <Link href={`/${locale}/blog/${article.slug}`} className="block relative aspect-4/3 overflow-hidden">
+              <Link href={`/blog/${article.slug}`} className="block relative aspect-4/3 overflow-hidden">
                 <Image
                   src={article.image}
                   alt={article.title}
@@ -73,7 +73,7 @@ export async function SkinTrendsSection({
               {/* Content */}
               <div className="p-6">
                 <h3 className="font-serif text-lg font-semibold text-primary mb-3 line-clamp-2 group-hover:text-[#b5453a] transition-colors">
-                  <Link href={`/${locale}/blog/${article.slug}`}>
+                  <Link href={`/blog/${article.slug}`}>
                     {article.title}
                   </Link>
                 </h3>

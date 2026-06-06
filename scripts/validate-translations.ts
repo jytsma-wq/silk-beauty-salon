@@ -18,6 +18,7 @@ interface ValidationResult {
   structureIssues: string[];
   lengthIssues: string[];
   encodingIssues: string[];
+  duplicateKeyIssues: string[];
   coverage: number;
   qualityScore: number;
 }
@@ -70,6 +71,56 @@ function getValueAtPath(obj: unknown, path: string): unknown {
 }
 
 /**
+ * Detect duplicated top-level JSON namespaces before JSON.parse drops them.
+ */
+function findDuplicateTopLevelKeys(content: string): string[] {
+  const keys = new Map<string, number[]>();
+  let depth = 0;
+  let inString = false;
+  let escaped = false;
+  let stringStart = -1;
+
+  for (let i = 0; i < content.length; i++) {
+    const char = content[i];
+
+    if (inString) {
+      if (escaped) {
+        escaped = false;
+      } else if (char === '\\') {
+        escaped = true;
+      } else if (char === '"') {
+        inString = false;
+
+        if (depth === 1) {
+          let cursor = i + 1;
+          while (/\s/.test(content[cursor] ?? '')) cursor++;
+
+          if (content[cursor] === ':') {
+            const key = content.slice(stringStart + 1, i);
+            const line = content.slice(0, stringStart).split(/\r?\n/).length;
+            keys.set(key, [...(keys.get(key) ?? []), line]);
+          }
+        }
+      }
+      continue;
+    }
+
+    if (char === '"') {
+      inString = true;
+      stringStart = i;
+    } else if (char === '{') {
+      depth++;
+    } else if (char === '}') {
+      depth--;
+    }
+  }
+
+  return [...keys.entries()]
+    .filter(([, lines]) => lines.length > 1)
+    .map(([key, lines]) => `${key} duplicated at lines ${lines.join(', ')}`);
+}
+
+/**
  * Compare interpolation variables between source and target
  */
 function validateInterpolation(
@@ -110,6 +161,15 @@ function checkEncoding(value: string, key: string): string | null {
   if (problematicChars.test(value)) {
     return `${key} - contains control characters`;
   }
+  const mojibakePatterns = [
+    /\?{2,}/,
+    /�/,
+    /[A-Za-zÀ-ž]\?[A-Za-zÀ-ž]/u,
+    /\?[A-Za-zÀ-ž]/u,
+  ];
+  if (mojibakePatterns.some((pattern) => pattern.test(value))) {
+    return `${key} - contains visible replacement characters`;
+  }
   return null;
 }
 
@@ -127,7 +187,12 @@ function checkLength(sourceValue: string, targetValue: string, key: string): str
 /**
  * Validate a single translation file against source
  */
-function validateFile(source: unknown, target: unknown, fileName: string): ValidationResult {
+function validateFile(
+  source: unknown,
+  target: unknown,
+  fileName: string,
+  duplicateKeyIssues: string[] = []
+): ValidationResult {
   const sourceKeys = new Set(getAllKeys(source));
   const targetKeys = new Set(getAllKeys(target));
   
@@ -188,12 +253,12 @@ function validateFile(source: unknown, target: unknown, fileName: string): Valid
     : 100;
   
   // Calculate quality score (0-100)
-  const totalIssues = interpolationIssues.length + structureIssues.length + lengthIssues.length + encodingIssues.length;
+  const totalIssues = interpolationIssues.length + structureIssues.length + lengthIssues.length + encodingIssues.length + duplicateKeyIssues.length;
   const qualityScore = Math.max(0, 100 - (totalIssues * 2));
   
   return {
     file: fileName,
-    valid: missingKeys.length === 0 && interpolationIssues.length === 0 && structureIssues.length === 0,
+    valid: missingKeys.length === 0 && interpolationIssues.length === 0 && structureIssues.length === 0 && encodingIssues.length === 0 && duplicateKeyIssues.length === 0,
     missingKeys,
     extraKeys,
     unusedKeys,
@@ -201,6 +266,7 @@ function validateFile(source: unknown, target: unknown, fileName: string): Valid
     structureIssues,
     lengthIssues,
     encodingIssues,
+    duplicateKeyIssues,
     coverage,
     qualityScore,
   };
@@ -264,7 +330,21 @@ function printResults(results: ValidationResult[]): void {
     
     if (result.encodingIssues.length > 0) {
       console.log(`   Encoding issues: ${result.encodingIssues.length}`);
+      for (const issue of result.encodingIssues.slice(0, 5)) {
+        console.log(`     - ${issue}`);
+      }
+      if (result.encodingIssues.length > 5) {
+        console.log(`     ... and ${result.encodingIssues.length - 5} more`);
+      }
       totalIssues += result.encodingIssues.length;
+    }
+
+    if (result.duplicateKeyIssues.length > 0) {
+      console.log(`   Duplicate top-level keys: ${result.duplicateKeyIssues.length}`);
+      for (const issue of result.duplicateKeyIssues) {
+        console.log(`     - ${issue}`);
+      }
+      totalIssues += result.duplicateKeyIssues.length;
     }
     
     console.log('');
@@ -296,6 +376,12 @@ function printCISummary(results: ValidationResult[]): void {
     for (const issue of result.structureIssues) {
       console.log(`::error file=${result.file},title=Structure Issue::${issue}`);
     }
+    for (const issue of result.encodingIssues) {
+      console.log(`::error file=${result.file},title=Encoding Issue::${issue}`);
+    }
+    for (const issue of result.duplicateKeyIssues) {
+      console.log(`::error file=${result.file},title=Duplicate Key::${issue}`);
+    }
   }
   
   console.log('::endgroup::');
@@ -322,8 +408,18 @@ function main(): void {
   }
   
   let source: unknown;
+  const sourceContent = fs.readFileSync(sourcePath, 'utf-8');
+  const sourceDuplicateIssues = findDuplicateTopLevelKeys(sourceContent);
+  if (sourceDuplicateIssues.length > 0) {
+    console.error(`Error: ${sourceFile} has duplicate top-level keys:`);
+    for (const issue of sourceDuplicateIssues) {
+      console.error(`  - ${issue}`);
+    }
+    process.exit(1);
+  }
+
   try {
-    source = JSON.parse(fs.readFileSync(sourcePath, 'utf-8'));
+    source = JSON.parse(sourceContent);
   } catch (error) {
     console.error(`Error: Failed to parse ${sourceFile}: ${error}`);
     process.exit(1);
@@ -345,8 +441,9 @@ function main(): void {
     const filePath = path.join(messagesDir, file);
     try {
       const content = fs.readFileSync(filePath, 'utf-8');
+      const duplicateKeyIssues = findDuplicateTopLevelKeys(content);
       const target = JSON.parse(content);
-      const result = validateFile(source, target, file);
+      const result = validateFile(source, target, file, duplicateKeyIssues);
       results.push(result);
     } catch (error) {
       console.error(`Error validating ${file}: ${error}`);
@@ -360,6 +457,7 @@ function main(): void {
         structureIssues: [`Failed to parse: ${error}`],
         lengthIssues: [],
         encodingIssues: [],
+        duplicateKeyIssues: [],
         coverage: 0,
         qualityScore: 0,
       });
@@ -376,7 +474,7 @@ function main(): void {
   
   // Exit with error if any file has missing keys or structure issues
   const hasCriticalIssues = results.some(
-    r => r.missingKeys.length > 0 || r.structureIssues.length > 0
+    r => r.missingKeys.length > 0 || r.structureIssues.length > 0 || r.encodingIssues.length > 0 || r.duplicateKeyIssues.length > 0
   );
   
   if (hasCriticalIssues) {

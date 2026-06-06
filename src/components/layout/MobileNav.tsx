@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import { X, ChevronDown, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -45,7 +45,6 @@ export function MobileNav({ onClose, treatmentCategories, conditions }: MobileNa
   const t = useTranslations('nav');
   const tInternational = useTranslations('internationalNav');
   const tSite = useTranslations('site');
-  const locale = useLocale();
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
 
   return (
@@ -108,7 +107,7 @@ export function MobileNav({ onClose, treatmentCategories, conditions }: MobileNa
                         {category.treatments.map((treatment) => (
                           <li key={treatment.slug}>
                             <Link
-                              href={`/${locale}/treatments/${treatment.slug}`}
+                              href={`/treatments/${treatment.slug}`}
                               onClick={onClose}
                               className="block py-1 text-sm text-stone-500 hover:text-stone-900 transition-colors"
                             >
@@ -153,7 +152,7 @@ export function MobileNav({ onClose, treatmentCategories, conditions }: MobileNa
                     {conditions.map((condition) => (
                       <li key={condition.slug}>
                         <Link
-                          href={`/${locale}/conditions/${condition.slug}`}
+                          href={`/conditions/${condition.slug}`}
                           onClick={onClose}
                           className="block py-2 text-sm text-stone-500 hover:text-stone-900 transition-colors"
                         >
@@ -198,7 +197,7 @@ export function MobileNav({ onClose, treatmentCategories, conditions }: MobileNa
                   <ul className="space-y-1">
                     <li>
                       <Link
-                        href={`/${locale}/international-clients`}
+                        href="/international-clients"
                         onClick={onClose}
                         className="block py-2 text-sm text-stone-500 hover:text-stone-900 transition-colors"
                       >
@@ -207,7 +206,7 @@ export function MobileNav({ onClose, treatmentCategories, conditions }: MobileNa
                     </li>
                     <li>
                       <Link
-                        href={`/${locale}/international-clients#packages`}
+                        href="/international-clients#packages"
                         onClick={onClose}
                         className="block py-2 text-sm text-stone-500 hover:text-stone-900 transition-colors"
                       >
@@ -216,7 +215,7 @@ export function MobileNav({ onClose, treatmentCategories, conditions }: MobileNa
                     </li>
                     <li>
                       <Link
-                        href={`/${locale}/international-clients#pricing`}
+                        href="/international-clients#pricing"
                         onClick={onClose}
                         className="block py-2 text-sm text-stone-500 hover:text-stone-900 transition-colors"
                       >
@@ -225,7 +224,7 @@ export function MobileNav({ onClose, treatmentCategories, conditions }: MobileNa
                     </li>
                     <li>
                       <Link
-                        href={`/${locale}/international-clients#faq`}
+                        href="/international-clients#faq"
                         onClick={onClose}
                         className="block py-2 text-sm text-stone-500 hover:text-stone-900 transition-colors"
                       >
@@ -242,7 +241,7 @@ export function MobileNav({ onClose, treatmentCategories, conditions }: MobileNa
         {/* Simple Links */}
         <motion.div variants={itemVariants}>
           <Link
-            href={`/${locale}/pricelist`}
+            href="/pricelist"
             onClick={onClose}
             className="block p-4 font-medium hover:bg-stone-50 transition-colors border-b"
           >
@@ -251,7 +250,7 @@ export function MobileNav({ onClose, treatmentCategories, conditions }: MobileNa
         </motion.div>
         <motion.div variants={itemVariants}>
           <Link
-            href={`/${locale}/offers`}
+            href="/offers"
             onClick={onClose}
             className="block p-4 font-medium hover:bg-stone-50 transition-colors border-b"
           >
@@ -260,7 +259,7 @@ export function MobileNav({ onClose, treatmentCategories, conditions }: MobileNa
         </motion.div>
         <motion.div variants={itemVariants}>
           <Link
-            href={`/${locale}/contact-us`}
+            href="/contact-us"
             onClick={onClose}
             className="block p-4 font-medium hover:bg-stone-50 transition-colors border-b"
           >
@@ -269,7 +268,7 @@ export function MobileNav({ onClose, treatmentCategories, conditions }: MobileNa
         </motion.div>
         <motion.div variants={itemVariants}>
           <Link
-            href={`/${locale}/faq`}
+            href="/faq"
             onClick={onClose}
             className="block p-4 font-medium hover:bg-stone-50 transition-colors border-b"
           >

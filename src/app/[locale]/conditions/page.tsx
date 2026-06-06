@@ -38,10 +38,11 @@ export default async function ConditionsPage({
       <section className="relative w-full h-[60vh] md:h-[80vh]">
         <Image
           src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1920&q=80"
-          alt={t('skinCareTreatment')}
+          alt={t('imageAlt')}
           fill
           className="object-cover"
           priority
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-[#1c1c1c]/40" />
         <div className="absolute inset-0 flex items-center justify-center">
