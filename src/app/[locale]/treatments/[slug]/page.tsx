@@ -151,6 +151,8 @@ export default async function TreatmentPage({ params }: Props) {
               className="object-cover"
               sizes="(min-width: 1024px) 56vw, 100vw"
               priority
+              loading="eager"
+              fetchPriority="high"
             />
           </div>
         </div>

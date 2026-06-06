@@ -108,9 +108,15 @@ export function ClinicalHeroCarousel() {
                     <p className="mb-5 text-[0.68rem] font-medium uppercase tracking-[0.28em] text-[#765946]">
                       {slide.eyebrow}
                     </p>
-                    <h1 className="font-sans text-[clamp(2.75rem,5.4vw,5.4rem)] font-light leading-[1.02] text-[#241f1b]">
-                      {slide.title}
-                    </h1>
+                    {index === 0 ? (
+                      <h1 className="font-sans text-[clamp(2.75rem,5.4vw,5.4rem)] font-light leading-[1.02] text-[#241f1b]">
+                        {slide.title}
+                      </h1>
+                    ) : (
+                      <h2 className="font-sans text-[clamp(2.75rem,5.4vw,5.4rem)] font-light leading-[1.02] text-[#241f1b]">
+                        {slide.title}
+                      </h2>
+                    )}
                     <p className="mt-7 max-w-md text-base leading-8 text-stone-700 md:text-lg">
                       {slide.description}
                     </p>

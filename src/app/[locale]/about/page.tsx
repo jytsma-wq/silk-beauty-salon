@@ -48,7 +48,7 @@ export default async function AboutPage({
             <span className="text-[#241f1b]">{t('title')}</span>
           </nav>
 
-          <div className="grid items-center gap-12 lg:grid-cols-[48%_52%]">
+          <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1fr)]">
             <div className="max-w-3xl">
               <p className="mb-5 text-[0.68rem] font-medium uppercase tracking-[0.28em] text-[#8d6f58]">
                 About the clinic
@@ -65,6 +65,7 @@ export default async function AboutPage({
                 fill
                 className="object-cover"
                 priority
+                sizes="(max-width: 1024px) 100vw, 52vw"
               />
             </div>
           </div>

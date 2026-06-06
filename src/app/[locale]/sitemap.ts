@@ -5,6 +5,7 @@
 
 import { MetadataRoute } from 'next';
 import { locales } from '@/i18n';
+import { siteConfig } from '@/data/site-config';
 
 const defaultLocale = 'en';
 
@@ -14,15 +15,20 @@ const STATIC_ROUTES = [
   '/about',
   '/treatments',
   '/conditions',
-  '/results',
-  '/team',
-  '/contact',
+  '/pricelist',
+  '/offers',
+  '/before-after',
+  '/contact-us',
+  '/book',
+  '/consultation',
+  '/international-clients',
   '/faq',
-  '/press',
   '/blog',
   '/accessibility',
-  '/privacy',
-  '/terms',
+  '/privacy-policy',
+  '/terms-conditions',
+  '/careers',
+  '/media-press',
 ];
 
 interface SitemapEntry {
@@ -39,7 +45,7 @@ interface SitemapEntry {
  * Generate sitemap entries for all locales
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://silkbeautysalon.online';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || siteConfig.url;
   const entries: MetadataRoute.Sitemap = [];
 
   // Generate entries for each static route in each locale
@@ -66,8 +72,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       // Determine priority based on route depth and importance
       const priority = route === '' ? 1.0 :
                       route === '/treatments' ? 0.9 :
+                      route === '/book' ? 0.9 :
                       route === '/about' ? 0.8 :
-                      route === '/contact' ? 0.8 :
+                      route === '/contact-us' ? 0.8 :
                       0.6;
 
       const entry: SitemapEntry = {

@@ -44,7 +44,7 @@ export interface BookingServiceGroup {
 }
 
 interface BookingFormProps {
-  serviceGroups: BookingServiceGroup[];
+  serviceGroups?: BookingServiceGroup[];
 }
 
 type BookingStage = 'services' | 'staff' | 'datetime';
@@ -74,7 +74,7 @@ function initials(name: string) {
     .toUpperCase();
 }
 
-export function BookingForm({ serviceGroups }: BookingFormProps) {
+export function BookingForm({ serviceGroups = [] }: BookingFormProps) {
   const t = useTranslations('bookingPage');
   const tCommon = useTranslations('common');
   const csrfToken = useClientCsrfToken();
@@ -549,6 +549,7 @@ function ServicesStage({
 }) {
   return (
     <main className="bg-[#f3f5f7] px-4 py-5 md:px-8 md:py-7">
+      <h1 className="sr-only">Book an appointment</h1>
       <div className="mb-5 bg-white p-3 shadow-[0_3px_10px_rgba(27,31,35,0.06)]">
         <SegmentTabs active="services" onServices={() => undefined} onStaff={onBook} />
       </div>
@@ -558,6 +559,7 @@ function ServicesStage({
         <Input
           value={serviceSearch}
           onChange={(event) => onSearch(event.target.value)}
+          aria-label="Search for service"
           placeholder="Search for service"
           className="h-14 rounded-md border-[#d5dbe4] bg-white pl-16 text-base text-[#20262d] shadow-none placeholder:text-[#c4ccd8] focus-visible:ring-[#17191b]/20 dark:bg-white dark:text-[#20262d] dark:placeholder:text-[#c4ccd8]"
         />
@@ -700,6 +702,7 @@ function StaffStage({
         <Input
           value={staffSearch}
           onChange={(event) => onSearch(event.target.value)}
+          aria-label="Search for staff member"
           placeholder="Search for staff member"
           className="h-16 rounded-md border-[#d5dbe4] bg-white pl-16 text-base text-[#20262d] shadow-none placeholder:text-[#c4ccd8] focus-visible:ring-[#17191b]/20 dark:bg-white dark:text-[#20262d] dark:placeholder:text-[#c4ccd8]"
         />
