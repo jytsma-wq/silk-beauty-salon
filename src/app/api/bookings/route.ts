@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { Resend } from "resend";
 import React from "react";
 import { db } from "@/lib/db";
 import { verifyCsrfToken } from "@/lib/csrf";
@@ -9,10 +8,12 @@ import { logSecurityEvent } from "@/lib/security-logger";
 import { sanitizeText, sanitizeEmail, sanitizeName } from "@/lib/sanitize";
 import { AdminNotificationEmail } from "@/emails/admin-notification";
 import { BookingConfirmationEmail } from "@/emails/booking-confirmation";
-import { senderAddress, emailConfig } from "@/lib/email-config";
+import { emailConfig } from "@/lib/email-config";
 import { renderEmail } from "@/lib/render-email";
+import { sendMail } from "@/lib/mailer";
+import { siteConfig } from "@/data/site-config";
 
-const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+export const runtime = "nodejs";
 
 // Zod schema for booking validation
 const bookingSchema = z.object({
@@ -26,12 +27,104 @@ const bookingSchema = z.object({
 });
 
 const dateOnlySchema = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
+const SALON_TIME_ZONE = "Asia/Tbilisi";
+
+function parseBookingDate(date: string): Date | null {
+  const start = new Date(`${date}T00:00:00.000Z`);
+  if (Number.isNaN(start.getTime())) {
+    return null;
+  }
+
+  if (start.toISOString().slice(0, 10) !== date) {
+    return null;
+  }
+
+  return start;
+}
 
 function getBookingDateRange(date: string) {
-  const start = new Date(`${date}T00:00:00.000Z`);
+  const start = parseBookingDate(date);
+  if (!start) {
+    return null;
+  }
+
   const end = new Date(start);
   end.setUTCDate(end.getUTCDate() + 1);
   return { start, end };
+}
+
+function todayInSalonTimeZone(): string {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: SALON_TIME_ZONE,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(new Date());
+
+  const year = parts.find((part) => part.type === "year")?.value;
+  const month = parts.find((part) => part.type === "month")?.value;
+  const day = parts.find((part) => part.type === "day")?.value;
+
+  return `${year}-${month}-${day}`;
+}
+
+function getHoursForDate(date: Date): string {
+  switch (date.getUTCDay()) {
+    case 0:
+      return siteConfig.businessHours.sunday;
+    case 1:
+      return siteConfig.businessHours.monday;
+    case 2:
+      return siteConfig.businessHours.tuesday;
+    case 3:
+      return siteConfig.businessHours.wednesday;
+    case 4:
+      return siteConfig.businessHours.thursday;
+    case 5:
+      return siteConfig.businessHours.friday;
+    case 6:
+      return siteConfig.businessHours.saturday;
+    default:
+      return siteConfig.businessHours.monday;
+  }
+}
+
+function parseClockTime(value: string): number | null {
+  const match = /^(\d{2}):(\d{2})$/.exec(value.trim());
+  if (!match) {
+    return null;
+  }
+
+  const hour = Number(match[1]);
+  const minute = Number(match[2]);
+  if (hour < 0 || hour > 23 || minute < 0 || minute > 59) {
+    return null;
+  }
+
+  return hour * 60 + minute;
+}
+
+function isTimeSlotWithinOpeningHours(date: Date, timeSlot: string): boolean {
+  const [startTime, endTime] = timeSlot.split(/\s*-\s*/);
+  if (!startTime || !endTime) {
+    return false;
+  }
+
+  const slotStart = parseClockTime(startTime);
+  const slotEnd = parseClockTime(endTime);
+  const [openTime, closeTime] = getHoursForDate(date).split(" - ");
+  const open = openTime ? parseClockTime(openTime) : null;
+  const close = closeTime ? parseClockTime(closeTime) : null;
+
+  if (slotStart === null || slotEnd === null || open === null || close === null) {
+    return false;
+  }
+
+  return slotEnd > slotStart && slotEnd - slotStart === 60 && slotStart >= open && slotEnd <= close;
+}
+
+function isUniqueConstraintError(error: unknown): boolean {
+  return typeof error === "object" && error !== null && "code" in error && error.code === "P2002";
 }
 
 // GET handler - returns booked slots for a date or all bookings
@@ -49,7 +142,15 @@ export async function GET(request: NextRequest) {
         );
       }
 
-      const { start, end } = getBookingDateRange(dateResult.data);
+      const bookingDateRange = getBookingDateRange(dateResult.data);
+      if (!bookingDateRange) {
+        return NextResponse.json(
+          { error: "Invalid booking date" },
+          { status: 400 }
+        );
+      }
+
+      const { start, end } = bookingDateRange;
 
       // Return booked time slots for the specified date
       const bookings = await db.booking.findMany({
@@ -155,7 +256,35 @@ export async function POST(request: NextRequest) {
       timeSlot: sanitizeText(timeSlot),
       message: message ? sanitizeText(message) : null,
     };
+    const parsedDate = parseBookingDate(sanitized.date);
+    if (!parsedDate) {
+      return NextResponse.json(
+        { error: "Invalid booking date" },
+        { status: 400 }
+      );
+    }
+
+    if (sanitized.date < todayInSalonTimeZone()) {
+      return NextResponse.json(
+        { error: "Booking date must be today or later" },
+        { status: 400 }
+      );
+    }
+
+    if (!isTimeSlotWithinOpeningHours(parsedDate, sanitized.timeSlot)) {
+      return NextResponse.json(
+        { error: "Selected time is outside salon opening hours" },
+        { status: 400 }
+      );
+    }
+
     const bookingDateRange = getBookingDateRange(sanitized.date);
+    if (!bookingDateRange) {
+      return NextResponse.json(
+        { error: "Invalid booking date" },
+        { status: 400 }
+      );
+    }
 
     // Check for time slot conflicts
     const existingBooking = await db.booking.findFirst({
@@ -192,7 +321,7 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    if (resend) {
+    try {
       const patientHtml = await renderEmail(
         React.createElement(BookingConfirmationEmail, {
           patientName: sanitized.name,
@@ -202,8 +331,7 @@ export async function POST(request: NextRequest) {
         })
       );
 
-      await resend.emails.send({
-        from: senderAddress(),
+      await sendMail({
         to: [sanitized.email],
         subject: "Your Booking Confirmation - Silk Beauty Salon",
         html: patientHtml,
@@ -224,17 +352,25 @@ export async function POST(request: NextRequest) {
         })
       );
 
-      await resend.emails.send({
-        from: senderAddress(),
+      await sendMail({
         to: [emailConfig.adminTo],
         replyTo: sanitized.email,
         subject: `New Booking Request from ${sanitized.name}`,
         html: adminHtml,
       });
+    } catch (emailError) {
+      console.error("Hostinger booking email error:", emailError);
     }
 
     return NextResponse.json(booking, { status: 201 });
   } catch (error) {
+    if (isUniqueConstraintError(error)) {
+      return NextResponse.json(
+        { error: "This time slot is already booked" },
+        { status: 409 }
+      );
+    }
+
     console.error("Error creating booking:", error);
     return NextResponse.json(
       { error: "Failed to create booking" },

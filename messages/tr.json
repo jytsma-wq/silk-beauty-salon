@@ -38,8 +38,9 @@
     "menu": "Menü",
     "more": "Daha Fazla",
     "treatmentPortfolio": "Tedavi Portföyü",
-    "skinConditions": "Cilt Durumları"
-
+    "skinConditions": "Cilt Durumları",
+    "downloadApp": "Uygulamayı indir",
+    "openMenu": "Menüyü aç"
   },
   "header": {
     "announcement": "Ödüllü | Batumi'nin En İyi Güzellik Salonu | Gürcistan Moda ve Güzellik Dergisi'nde yayınlandı"
@@ -209,67 +210,6 @@
     },
     "learnMore": "Daha Fazla Bilgi"
   },
-  "consultation": {
-    "title": "Danışmanlık Talep Edin",
-    "imageAlt": "Estetik uzmanıyla konsültasyon",
-    "metaTitle": "Uzman Bul | Silk Beauty Salon",
-    "metaDescription": "Uzman estetik pratisyenlerimizle konsültasyon rezervasyonu yapın. Geliştirilmiş doğal güzellik yolculuğunuza başlayın.",
-    "label": "Kişiselleştirilmiş Bakım",
-    "headline": "Bugün Konsültasyonunuzu Ayırtın",
-    "body": "Estetik hedeflerinizi tartışmak ve sizin için özel bir tedavi planı oluşturmak için uzman pratisyenlerimizle kişiselleştirilmiş bir konsültasyon planlayın.",
-    "cta": {
-      "title": "Yolculuğunuza Başlamaya Hazır mısınız?",
-      "description": "Bugün konsültasyonunuzu rezerve edin ve geliştirilmiş doğal güzelliğe doğru ilk adımı atın.",
-      "button": "Uzman Bul"
-    },
-    "hero": {
-      "title": "Tedavi konsültasyonu ile olanakları keşfedin",
-      "description": "Tedavinin önemli bir parçası olan estetik konsültasyon, yolculuğunuzun başladığı yerdir. İhtiyaçlarınızı ve arzularınızı ne kadar iyi anlarsak, istediğiniz sonuçlara ulaşma olasılığınız o kadar artar.",
-      "cta": "Konsültasyon Rezervasyonu",
-      "call": "Bizi Arayın"
-    },
-    "features": {
-      "expert": {
-        "title": "Uzman Pratisyenler",
-        "description": "Ekibimiz kapsamlı deneyime sahip sertifikalı estetik doktorları ve hemşireleri içerir."
-      },
-      "personalized": {
-        "title": "Kişiselleştirilmiş Yaklaşım",
-        "description": "Her tedavi planı benzersiz yüz anatominize ve estetik hedeflerinize göre uyarlanır."
-      },
-      "convenient": {
-        "title": "Uygun Konum",
-        "description": "Merkezi Batumi'de konforlu, özel tedavi odalarıyla kolay erişim."
-      }
-    },
-    "journey": {
-      "title": "Estetik Yolculuğunuz",
-      "subtitle": "Konsültasyondan sonuçlara kadar, dönüşümünüzün her adımında size rehberlik ediyoruz."
-    },
-    "steps": {
-      "consultation": {
-        "title": "İlk Konsültasyon",
-        "description": "Uzmanımızla endişelerinizi, hedeflerinizi ve tıbbi geçmişinizi tartışın."
-      },
-      "assessment": {
-        "title": "Yüz Değerlendirmesi",
-        "description": "Yüz yapınızın ve cilt durumunuzun kapsamlı analizi."
-      },
-      "plan": {
-        "title": "Tedavi Planı",
-        "description": "Öneriler ve fiyatlandırma ile kişiselleştirilmiş bir tedavi planı alın."
-      },
-      "treatment": {
-        "title": "Tedavi",
-        "description": "İlgili ekibimizle tedavinizi uygun zamanda planlayın."
-      }
-    },
-    "treatments": {
-      "title": "Sunduğumuz Tedaviler",
-      "subtitle": "Her endişe için kapsamlı estetik çözümler.",
-      "explore": "Explore treatments ->"
-    }
-  },
   "booking": {
     "selectService": "Hizmet Seçin",
     "selectDate": "Tarih Seçin",
@@ -293,7 +233,7 @@
     "slotConflict": "Bu saat dilimi zaten rezerve edilmiş. Lütfen başka bir saat seçin.",
     "bookingFailed": "Rezervasyon oluşturulamadı",
     "unexpectedError": "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.",
-    "rateLimitMessage": "Çok fazla istek. Lütfen 15 dakika bekleyin.",
+    "rateLimitMessage": "?ok fazla istek. L?tfen 15 dakika bekleyin.",
     "bookingSummary": "Rezervasyon Özeti",
     "service": "Hizmet",
     "date": "Tarih",
@@ -309,23 +249,7 @@
     "serviceRejuvenation": "Cilt Gençleştirme",
     "servicePeel": "Kimyasal Peeling",
     "serviceMicroneedling": "Mikro İğneleme",
-    "serviceHydrafacial": "Hydrafacial",
-    "rateLimitMessage": "?ok fazla istek. L?tfen 15 dakika bekleyin."
-  },
-  "bookingPage": {
-    "preferredDate": "Tercih Edilen Tarih",
-    "preferredTime": "Tercih Edilen Saat",
-    "selectService": "Hizmet Seçin",
-    "selectServicePlaceholder": "Konsültasyon türünü seçin",
-    "fullName": "Tam Ad",
-    "namePlaceholder": "Tam adınızı girin",
-    "phoneNumber": "Telefon Numarası",
-    "phonePlaceholder": "+995 599 123 456",
-    "emailAddress": "E-posta Adresi",
-    "emailPlaceholder": "your@email.com",
-    "successTitle": "Rezervasyon Talebi Gönderildi",
-    "successMessage": "Rezervasyon talebiniz için teşekkürler. Yakında randevunuzu onaylamak için sizinle iletişime geçeceğiz.",
-    "bookAnother": "Başka Randevu Al"
+    "serviceHydrafacial": "Hydrafacial"
   },
   "statistics": {
     "years": "Yıllık Deneyim",
@@ -354,43 +278,6 @@
     "subscribe": "Abone Ol",
     "success": "Abone olduğunuz için teşekkürler!",
     "privacy": "Gizliliğinize saygı duyuyoruz. İstediğiniz zaman aboneliği iptal edin."
-  },
-  "footer": {
-    "description": "Zurab Gorgiladze Caddesi'ndeki Batumi'nin premium güzellik salonu.",
-    "quickLinks": "Hızlı Linkler",
-    "treatments": "Tedaviler",
-    "conditions": "Cilt Sorunları",
-    "contact": "İletişim Bilgileri",
-    "address": "Zurab Gorgiladze Cad. 63, Batumi 6000, Gürcistan",
-    "phone": "Tel: +995 599 123 456",
-    "email": "info@silkbeautysalon.online",
-    "openingHours": "Çalışma Saatleri",
-    "hours": {
-      "monFri": "Pzt-Cum: 10:00 - 22:00",
-      "satSun": "Cmt-Paz: 10:00 - 22:00"
-    },
-    "social": "Bizi Takip Edin",
-    "faqDesc": "Klinik ve tedavilerimiz hakkında en sık sorulan soruları okuyun.",
-    "clinicTitle": "Klinik",
-    "clinicDesc": "Zurab Gorgiladze Caddesi'nde yer almaktadır, çalışma saatleri 10:00–19:00.",
-    "teamTitle": "Ekibimiz",
-    "teamDesc": "Nitelikli personelimiz hakkında daha fazla bilgi edinin.",
-    "pressTitle": "Medya ve Basın",
-    "pressDesc": "En son basın yayınlarımıza göz atın.",
-    "copyright": "© 2024 Silk Beauty Salon. Tüm hakları saklıdır.",
-    "privacy": "Gizlilik",
-    "terms": "Kullanım Koşulları",
-    "cookieNotice": "Çerez Bildirimi",
-    "stayConnected": "Bağlı kalın",
-    "newsletterTitle": "Dünyamıza Katılın",
-    "emailPlaceholder": "E-posta adresiniz",
-    "subscribe": "Abone Ol",
-    "about": "Hakkımızda",
-    "information": "Bilgi",
-    "visitUs": "Bizi Ziyaret Edin",
-    "designedIn": "Batumi'de Tasarlandı",
-    "socialDescription": "Güncel haberler ve hasta hikayeleri için sosyal medyada bizi takip edin",
-    "disclaimer": "Her zaman ürünlerin kullanımıyla ilgili bireyselleştirilmiş tedavi önerileri ve önemli güvenlik bilgileri ile riskleri tartışmak için bir sağlık uzmanına danışın."
   },
   "contact": {
     "title": "Bize Ulaşın",
@@ -478,99 +365,6 @@
     "ctaText": "Tedavi hedeflerinizi tartışmak için uzman pratisyenlerimizden biriyle konsültasyon randevusu alın",
     "bookNow": "Randevu Al"
   },
-  "conditionsPage": {
-    "title": "Cilt Sorunları",
-    "metaTitle": "Tedavi Ettiğimiz Cilt Sorunları | Silk Beauty Salon",
-    "metaDescription": "Yaşlanan cilt, akne izleri, pigmentasyon, rozasea ve daha fazlası dahil olmak üzere tedavi ettiğimiz çeşitli cilt sorunları hakkında bilgi edinin. Batum estetik kliniğimizde.",
-    "listingTitle": "Tedavi Ettiğimiz Cilt Sorunları",
-    "listingSubtitle": "Cilt sorununuz ne olursa olsun, uzman uygulayıcılarımız kişiselleştirilmiş bir tedavi planı oluşturabilir",
-    "ctaTitle": "Hangi Tedavinin Sizin İçin Doğru Olduğundan Emin Değil misiniz?",
-    "ctaSubtitle": "Sorunlarınızı değerlendirecek ve en iyi tedavi seçeneklerini önerecek uzman pratisyenlerimizden biriyle konsültasyon randevusu alın",
-    "bookConsultation": "Konsültasyon Randevusu Al"
-  },
-  "aboutPage": {
-    "title": "Hakkımızda",
-    "subtitle": "Dünya standartlarında uygulayıcıları ve son teknolojiyi bir araya getiren Batum'nin önde gelen cerrahi olmayan estetik kliniği",
-    "ourStory": "Hikayemiz",
-    "storyP1": "Silk Beauty Salon, lüks ve davetkar bir ortamda en kaliteli estetik tedavileri sunma vizyonuyla kuruldu. Batum'deki Zurab Gorgiladze Caddesi'nde konumlanan kliniğimiz, Gürcistan'ın en yetenekli estetik uygulayıcılarından bazılarını bir araya getiriyor.",
-    "storyP2": "Herkesin kendinden emin ve güzel hissetmeyi hak ettiğine inanıyoruz. Yaklaşımımız, sizi değiştirmek yerine doğal özelliklerinizi geliştirmeye odaklanır. En iyi versiyonunuz gibi görünmenize yardımcı olan incelikli, rafine sonuçlarımızla gurur duyuyoruz.",
-    "storyP3": "Kliniğimize adım attığınız andan itibaren farkı hissedeceksiniz. Mükemmelliğe olan bağlılığımız, tedavilerimizin ötesine geçerek lüks klinik alanımızdan sıcak, dikkatli ekibimize kadar ziyaretinizin her yönünü kapsar.",
-    "ourValues": "Değerlerimiz",
-    "values": {
-      "patientCare": "Hasta Öncelikli Bakım",
-      "patientCareDesc": "Konforunuz, güvenliğiniz ve memnuniyetiniz en üst önceliğimizdir.",
-      "excellence": "Mükemmellik",
-      "excellenceDesc": "Optimal sonuçlar için sadece premium ürünler ve en son teknikler kullanıyoruz.",
-      "safety": "Güvenlik",
-      "safetyDesc": "Tüm tedaviler nitelikli tıp profesyonelleri tarafından gerçekleştirilir.",
-      "naturalResults": "Doğal Sonuçlar",
-      "naturalResultsDesc": "Doğal güzelliğinizi incelikli, rafine tedavilerle artırıyoruz."
-    },
-    "meetTeam": "Ekibimizle Tanışın",
-    "teamSubtitle": "Uzman uygulayıcılarımız yılların deneyimini ve mükemmelliğe olan tutkuyu getiriyor",
-    "team": {
-      "ninoRole": "Kurucu ve Baş Uygulayıcı",
-      "ninoBio": "Nino, Silk Beauty Salon'un kurucusu ve güzellik sektöründe 15 yılı aşkın deneyime sahip ünlü bir estetik uygulayıcısıdır. Doğal görünümlü sonuçları ve titiz detaylara verdiği önemle tanınır.",
-      "ketevanRole": "Kıdemli Estetik Uygulayıcısı",
-      "ketevanBio": "Ketevan, dermal dolgu ve cilt tedavilerinde uzmanlaşmış yüksek vasıflı bir estetik uygulayıcısıdır. Nazik yaklaşımı ve sanatsal bakış açısı, her müşteri için güzel, doğal sonuçlar sağlar.",
-      "mariamRole": "Estetik Uygulayıcı",
-      "mariamBio": "Mariam, gelişmiş cilt tedavileri ve lazer tedavisi konusunda zengin bilgi birikimi getiriyor. Kişiselleştirilmiş tedavi planları aracılığıyla müşterilerinin cilt hedeflerine ulaşmalarına yardımcı olmaya tutkuyla bağlıdır.",
-      "sophiaRole": "Estetik Uygulayıcı",
-      "sophiaBio": "Sophia, cerrahi olmayan yüz gençleştirmede uzmanlaşmıştır ve kırışıklık karşıtı tedaviler ile dermal dolgu konusunda kapsamlı deneyime sahiptir. Müşterileri onun doğal, taze yaklaşımını seviyor."
-    },
-    "awards": {
-      "title": "Ödüller ve Tanınma",
-      "awardWinning": "Ödüllü",
-      "premierSalon": "Batum'un Premier Güzellik Salonu",
-      "featuredIn": "Georgian Fashion & Beauty Magazine'de yer aldı"
-    },
-    "featuredInVogue": "Vogue, Grazia, Vanity Fair ve Tatler'da yer aldı",
-    "featuredIn": "Georgian Fashion & Beauty Magazine'de yer aldı",
-    "ctaTitle": "Yolculuğunuza Başlamaya Hazır mısınız?",
-    "ctaSubtitle": "Bugün uzman uygulayıcılarımızdan biriyle konsültasyon randevusu alın",
-    "ctaButton": "Konsültasyon Randevusu Al"
-  },
-  "contactPage": {
-    "title": "Bize Ulaşın",
-    "subtitle": "Konsültasyon randevusu almak veya herhangi bir soru sormak için ekibimizle iletişime geçin",
-    "formTitle": "Bize Mesaj Gönderin",
-    "thankYou": "Teşekkürler!",
-    "messageSent": "Mesajınız başarıyla gönderildi. Kısa süre içinde size geri döneceğiz.",
-    "fullName": "Ad Soyad",
-    "namePlaceholder": "Adınızı girin",
-    "nameRequired": "Lütfen adınızı girin",
-    "emailAddress": "E-posta Adresi",
-    "emailRequired": "Lütfen e-posta adresinizi girin",
-    "emailInvalid": "Lütfen geçerli bir e-posta adresi girin",
-    "emailPlaceholder": "E-postanızı girin",
-    "phoneNumber": "Telefon Numarası",
-    "phonePlaceholder": "Telefonunuzu girin",
-    "phoneOptional": "isteğe bağlı",
-    "message": "Mesaj",
-    "messagePlaceholder": "Size nasıl yardımcı olabiliriz?",
-    "messageRequired": "Lütfen bir mesaj girin",
-    "sending": "Gönderiliyor...",
-    "sendMessage": "Mesaj Gönder",
-    "getInTouch": "İletişime Geçin",
-    "address": "Adres",
-    "phone": "Telefon",
-    "email": "E-posta",
-    "openingHours": "Çalışma Saatleri",
-    "monTue": "Pazartesi - Salı",
-    "wedThu": "Çarşamba - Perşembe",
-    "friday": "Cuma",
-    "satSun": "Cumartesi - Pazar",
-    "readyToBook": "Randevu Almaya Hazır mısınız?",
-    "bookOnlineDesc": "Rezervasyon sistemimiz üzerinden çevrimiçi randevu alın",
-    "bookAppointment": "Randevu Al",
-    "bookOnline": "Online Randevu",
-    "scheduleAppointment": "Randevunuzu planlayın",
-    "bookViaWhatsApp": "WhatsApp ile Randevu",
-    "whatsapp": "WhatsApp",
-    "viewOnMap": "Google Maps'te Görüntüle",
-    "mapAddress": "Zurab Gorgiladze Caddesi 63",
-    "mapCity": "Batum, Gürcistan"
-  },
   "faqPage": {
     "title": "Sıkça Sorulan Sorular",
     "subtitle": "Kliniğimiz, tedavilerimiz ve rezervasyon sürecimiz hakkında sık sorulan soruların yanıtlarını bulun",
@@ -592,89 +386,6 @@
     "ctaTitle": "Randevu Almaya Hazır mısınız?",
     "ctaSubtitle": "Tedavi hedeflerinizi tartışmak ve kişiselleştirilmiş bir teklif almak için konsültasyon randevusu alın",
     "ctaButton": "Konsültasyon Randevusu Al"
-  },
-  "offersPage": {
-    "title": "Özel Teklifler",
-    "subtitle": "Özel promosyonlarımızdan ve özel tekliflerimizden yararlanın",
-    "breadcrumb": "Teklifler",
-    "offers": {
-      "newClient": {
-        "title": "Yeni Müşteri Özel",
-        "description": "İlk konsültasyonunuzu ayırtın ve ilk tedavinizde %20 indirim kazanın.",
-        "terms": "Sadece yeni müşteriler için geçerlidir. Diğer tekliflerle birleştirilemez."
-      },
-      "antiWrinkle": {
-        "title": "Kırışıklık Karşıtı Paket",
-        "description": "3 bölge kırışıklık karşıtı tedavi ayırtın ve tasarruf edin.",
-        "terms": "Aynı seansta tedavi edilen 3 bölge için geçerlidir."
-      },
-      "dermalFiller": {
-        "title": "Dermal Dolgu Paketi",
-        "description": "2ml veya daha fazla dermal dolgu ayırtın ve ücretsiz cilt güçlendirici kazanın.",
-        "terms": "Süreli teklif. Stok durumuna göre değişir."
-      },
-      "referral": {
-        "title": "Referans Ödülü",
-        "description": "Bir arkadaşınızı davet edin ve ikiniz de bir sonraki tedaviniz için ₾50 kredi kazanın.",
-        "terms": "Davet edilen arkadaş tedaviyi tamamlamalıdır."
-      },
-      "seasonal": {
-        "title": "Mevsimsel Cilt Yenileme",
-        "description": "Herhangi bir lazer tedavisini tıbbi yüz bakımıyla birleştirin ve ikisinde de %15 indirim kazanın.",
-        "terms": "Her iki tedavi de aynı ay içinde ayırtılmalıdır."
-      },
-      "loyalty": {
-        "title": "Sadakat Programı",
-        "description": "Sadakat programımıza katılın ve her tedavide puan kazanın.",
-        "terms": "Puanlar gelecekteki tedaviler için kullanılabilir."
-      }
-    },
-    "ctaTitle": "Bugün Tedavinizi Ayırtın",
-    "ctaSubtitle": "Konsültasyon randevusu almak ve bu özel tekliflerden yararlanmak için bizimle iletişime geçin",
-    "ctaButton": "Şimdi Ayırt",
-    "termsText": "Tüm teklifler stok durumuna göre değişir ve herhangi bir zamanda geri çekilebilir. Aksi belirtilmedikçe teklifler birleştirilemez. Lütfen rezervasyon yaparken tekliften bahsedin."
-  },
-  "blogPage": {
-    "title": "Blogumuz",
-    "metaTitle": "Blog | Silk Beauty Salon",
-    "metaDescription": "Uzman içgörüleri, tedavi rehberleri ve estetik dünyasından son haberler",
-    "subtitle": "Uzman içgörüleri, tedavi rehberleri ve estetik dünyasından son haberler",
-    "breadcrumb": "Blog",
-    "stayUpdated": "Güncel Kalın",
-    "newsletterDesc": "En son makaleler, ipuçları ve özel teklifler için bültenimize abone olun",
-    "subscribeButton": "Bültene Abone Ol",
-    "backToBlog": "Bloga Dön",
-    "shareArticle": "Makaleyi Paylaş",
-    "aboutAuthor": "Yazar Hakkında",
-    "readyToTransform": "Dönüşüme Hazır mısınız?",
-    "bookConsultationDesc": "Estetik hedeflerinizi tartışmak için uzmanlarımızdan biriyle konsültasyon ayarlayın.",
-    "relatedPosts": "İlgili Makaleler",
-    "readMore": "Devamını Oku"
-  },
-  "treatmentPage": {
-    "bookNow": "Bu Tedaviyi Randevu Al",
-    "backTo": "Tedavilere Dön",
-    "aboutTreatment": "Bu Tedavi Hakkında",
-    "benefits": "Faydalar",
-    "howItWorks": "Nasıl Çalışır",
-    "aftercare": "Sonrası Bakım",
-    "faqs": "Sıkça Sorulan Sorular",
-    "price": "Fiyat",
-    "duration": "Süre",
-    "readyToStart": "Başlamaya Hazır mısınız?",
-    "bookConsultation": "Konsültasyon Randevusu Al",
-    "bookConsultationDesc": "Uzmanlarımızdan biriyle konsültasyon randevusu alın",
-    "bookNowBtn": "Randevu Al",
-    "contactUs": "Bize Ulaşın",
-    "phone": "Telefon",
-    "email": "E-posta",
-    "address": "Adres",
-    "relatedTreatments": "Benzer Tedaviler",
-    "atAGlance": "Bir Bakışta",
-    "results": "Sonuçlar",
-    "downtime": "İyileşme Süresi",
-    "youMightAlsoLike": "Ayrıca Hoşlanabilirsiniz",
-    "learnMore": "Daha Fazla Öğrenin"
   },
   "conditionPage": {
     "title": "Cilt Sorunu",
@@ -705,29 +416,6 @@
     "description": "Üzgünüz, aradığınız sayfayı bulamadık. Taşınmış veya silinmiş olabilir.",
     "goHome": "Ana Sayfaya Dön",
     "contactUs": "Bize Ulaşın"
-  },
-  "common": {
-    "loading": "Yükleniyor...",
-    "error": "Bir hata oluştu",
-    "close": "Kapat",
-    "next": "Sonraki",
-    "previous": "Önceki",
-    "viewAll": "Tümünü Gör",
-    "learnMore": "Daha Fazla Bilgi",
-    "home": "Ana Sayfa",
-    "readMore": "Devamını Oku",
-    "bookNow": "Randevu Al",
-    "bookConsultation": "Konsültasyon Randevusu Al",
-    "treatments": "Tedaviler",
-    "conditions": "Cilt Sorunları",
-    "notFound": "Bulunamadı",
-    "social": "Bizi Takip Edin",
-    "bookOnline": "Çevrimiçi Randevu Al",
-    "scheduleAppointment": "Randevunuzu planlayın",
-    "whatsapp": "WhatsApp",
-    "bookViaWhatsApp": "WhatsApp ile Randevu Al",
-    "searchPlaceholder": "Tedavi ve cilt sorunları ara...",
-    "submitting": "G?nderiliyor..."
   },
   "siteConfig": {
     "awards": {
@@ -1882,14 +1570,9 @@
     "serviceRejuvenation": "Skin Rejuvenation",
     "servicePeel": "Chemical Peel",
     "serviceMicroneedling": "Microneedling",
-    "serviceHydrafacial": "Hydrafacial"
-  },
-  "accessibility": {
-    "skipToContent": "Ana içeriğe geç",
-    "skipToMain": "Ana içeriğe geç",
-    "skipToTreatments": "Tedavilere geç",
-    "skipToBooking": "Rezervasyona geç",
-    "skipNavigation": "Gezinti Atla Bağlantıları"
+    "serviceHydrafacial": "Hydrafacial",
+    "personalInfo": "Kişisel Bilgiler",
+    "formNotReady": "Rezervasyon formu hâlâ hazırlanıyor. Lütfen birazdan tekrar deneyin."
   },
   "errors": {
     "title": "Bir şeyler yanlış gitti",
@@ -2100,8 +1783,31 @@
     }
   },
   "common": {
+    "loading": "Yükleniyor...",
+    "error": "Bir hata oluştu",
+    "close": "Kapat",
+    "next": "Sonraki",
+    "previous": "Önceki",
+    "viewAll": "Tümünü Gör",
+    "learnMore": "Daha Fazla Bilgi",
+    "home": "Ana Sayfa",
+    "readMore": "Devamını Oku",
+    "bookNow": "Randevu Al",
+    "bookConsultation": "Konsültasyon Randevusu Al",
+    "treatments": "Tedaviler",
+    "conditions": "Cilt Sorunları",
+    "notFound": "Bulunamadı",
+    "social": "Bizi Takip Edin",
+    "bookOnline": "Çevrimiçi Randevu Al",
+    "scheduleAppointment": "Randevunuzu planlayın",
+    "whatsapp": "WhatsApp",
+    "bookViaWhatsApp": "WhatsApp ile Randevu Al",
+    "searchPlaceholder": "Tedavi ve cilt sorunları ara...",
+    "submitting": "G?nderiliyor...",
     "tryAgain": "Tekrar Dene",
-    "view": "Görüntüle"
+    "view": "Görüntüle",
+    "currentLanguageFlag": "{language} bayrağı",
+    "languageFlag": "{language} bayrağı"
   },
   "errorPage": {
     "somethingWentWrong": "Bir Şey Yanlış Gitti",
@@ -2110,6 +1816,11 @@
     "globalError": "Bir Şey Yanlış Gitti"
   },
   "accessibility": {
+    "skipToContent": "Ana içeriğe geç",
+    "skipToMain": "Ana içeriğe geç",
+    "skipToTreatments": "Tedavilere geç",
+    "skipToBooking": "Rezervasyona geç",
+    "skipNavigation": "Gezinti Atla Bağlantıları",
     "loadingThemeToggle": "Tema geçişi yükleniyor",
     "closeVideo": "Videoyu kapat",
     "toggleFullscreen": "Tam ekranı değiştir",
@@ -2138,16 +1849,89 @@
     "skinCareTreatment": "Cilt Bakım Tedavisi"
   },
   "footer": {
+    "description": "Zurab Gorgiladze Caddesi'ndeki Batumi'nin premium güzellik salonu.",
+    "quickLinks": "Hızlı Linkler",
+    "treatments": "Tedaviler",
+    "conditions": "Cilt Sorunları",
+    "contact": "İletişim Bilgileri",
+    "address": "Zurab Gorgiladze Cad. 63, Batumi 6000, Gürcistan",
+    "phone": "Tel: +995 599 123 456",
+    "email": "info@silkbeautysalon.online",
+    "openingHours": "Çalışma Saatleri",
     "hours": {
+      "monFri": "Pzt-Cum: 10:00 - 22:00",
+      "satSun": "Cmt-Paz: 10:00 - 22:00",
       "sat": "Cmt",
       "sun": "Paz"
-    }
+    },
+    "social": "Bizi Takip Edin",
+    "faqDesc": "Klinik ve tedavilerimiz hakkında en sık sorulan soruları okuyun.",
+    "clinicTitle": "Klinik",
+    "clinicDesc": "Zurab Gorgiladze Caddesi'nde yer almaktadır, çalışma saatleri 10:00–19:00.",
+    "teamTitle": "Ekibimiz",
+    "teamDesc": "Nitelikli personelimiz hakkında daha fazla bilgi edinin.",
+    "pressTitle": "Medya ve Basın",
+    "pressDesc": "En son basın yayınlarımıza göz atın.",
+    "copyright": "© 2024 Silk Beauty Salon. Tüm hakları saklıdır.",
+    "privacy": "Gizlilik",
+    "terms": "Kullanım Koşulları",
+    "cookieNotice": "Çerez Bildirimi",
+    "stayConnected": "Bağlı kalın",
+    "newsletterTitle": "Dünyamıza Katılın",
+    "emailPlaceholder": "E-posta adresiniz",
+    "subscribe": "Abone Ol",
+    "about": "Hakkımızda",
+    "information": "Bilgi",
+    "visitUs": "Bizi Ziyaret Edin",
+    "designedIn": "Batumi'de Tasarlandı",
+    "socialDescription": "Güncel haberler ve hasta hikayeleri için sosyal medyada bizi takip edin",
+    "disclaimer": "Her zaman ürünlerin kullanımıyla ilgili bireyselleştirilmiş tedavi önerileri ve önemli güvenlik bilgileri ile riskleri tartışmak için bir sağlık uzmanına danışın.",
+    "instagram": "Instagram",
+    "facebook": "Facebook"
   },
   "blogPage": {
+    "title": "Blogumuz",
+    "metaTitle": "Blog | Silk Beauty Salon",
+    "metaDescription": "Uzman içgörüleri, tedavi rehberleri ve estetik dünyasından son haberler",
+    "subtitle": "Uzman içgörüleri, tedavi rehberleri ve estetik dünyasından son haberler",
+    "breadcrumb": "Blog",
+    "stayUpdated": "Güncel Kalın",
+    "newsletterDesc": "En son makaleler, ipuçları ve özel teklifler için bültenimize abone olun",
+    "subscribeButton": "Bültene Abone Ol",
+    "backToBlog": "Bloga Dön",
+    "shareArticle": "Makaleyi Paylaş",
+    "aboutAuthor": "Yazar Hakkında",
+    "readyToTransform": "Dönüşüme Hazır mısınız?",
+    "bookConsultationDesc": "Estetik hedeflerinizi tartışmak için uzmanlarımızdan biriyle konsültasyon ayarlayın.",
+    "relatedPosts": "İlgili Makaleler",
+    "readMore": "Devamını Oku",
     "postNotFound": "Gönderi bulunamadı",
     "expertPractitioner": "Uzman Uygulayıcı"
   },
   "treatmentPage": {
+    "bookNow": "Bu Tedaviyi Randevu Al",
+    "backTo": "Tedavilere Dön",
+    "aboutTreatment": "Bu Tedavi Hakkında",
+    "benefits": "Faydalar",
+    "howItWorks": "Nasıl Çalışır",
+    "aftercare": "Sonrası Bakım",
+    "faqs": "Sıkça Sorulan Sorular",
+    "price": "Fiyat",
+    "duration": "Süre",
+    "readyToStart": "Başlamaya Hazır mısınız?",
+    "bookConsultation": "Konsültasyon Randevusu Al",
+    "bookConsultationDesc": "Uzmanlarımızdan biriyle konsültasyon randevusu alın",
+    "bookNowBtn": "Randevu Al",
+    "contactUs": "Bize Ulaşın",
+    "phone": "Telefon",
+    "email": "E-posta",
+    "address": "Adres",
+    "relatedTreatments": "Benzer Tedaviler",
+    "atAGlance": "Bir Bakışta",
+    "results": "Sonuçlar",
+    "downtime": "İyileşme Süresi",
+    "youMightAlsoLike": "Ayrıca Hoşlanabilirsiniz",
+    "learnMore": "Daha Fazla Öğrenin",
     "heroAlt": "Lüks Güzellik Salonu",
     "durationResults": "3-6 ay",
     "minimalDowntime": "Yoktan minimuma"
@@ -2157,22 +1941,204 @@
     "teamAlt": "Nana Gviniashvili"
   },
   "contactPage": {
+    "title": "Bize Ulaşın",
+    "subtitle": "Konsültasyon randevusu almak veya herhangi bir soru sormak için ekibimizle iletişime geçin",
+    "formTitle": "Bize Mesaj Gönderin",
+    "thankYou": "Teşekkürler!",
+    "messageSent": "Mesajınız başarıyla gönderildi. Kısa süre içinde size geri döneceğiz.",
+    "fullName": "Ad Soyad",
+    "namePlaceholder": "Adınızı girin",
+    "nameRequired": "Lütfen adınızı girin",
+    "emailAddress": "E-posta Adresi",
+    "emailRequired": "Lütfen e-posta adresinizi girin",
+    "emailInvalid": "Lütfen geçerli bir e-posta adresi girin",
+    "emailPlaceholder": "E-postanızı girin",
+    "phoneNumber": "Telefon Numarası",
+    "phonePlaceholder": "Telefonunuzu girin",
+    "phoneOptional": "isteğe bağlı",
+    "message": "Mesaj",
+    "messagePlaceholder": "Size nasıl yardımcı olabiliriz?",
+    "messageRequired": "Lütfen bir mesaj girin",
+    "sending": "Gönderiliyor...",
+    "sendMessage": "Mesaj Gönder",
+    "getInTouch": "İletişime Geçin",
+    "address": "Adres",
+    "phone": "Telefon",
+    "email": "E-posta",
+    "openingHours": "Çalışma Saatleri",
+    "monTue": "Pazartesi - Salı",
+    "wedThu": "Çarşamba - Perşembe",
+    "friday": "Cuma",
+    "satSun": "Cumartesi - Pazar",
+    "readyToBook": "Randevu Almaya Hazır mısınız?",
+    "bookOnlineDesc": "Rezervasyon sistemimiz üzerinden çevrimiçi randevu alın",
+    "bookAppointment": "Randevu Al",
+    "bookOnline": "Online Randevu",
+    "scheduleAppointment": "Randevunuzu planlayın",
+    "bookViaWhatsApp": "WhatsApp ile Randevu",
+    "whatsapp": "WhatsApp",
+    "viewOnMap": "Google Maps'te Görüntüle",
+    "mapAddress": "Zurab Gorgiladze Caddesi 63",
+    "mapCity": "Batum, Gürcistan",
     "imageAlt": "Silk Beauty Salon ile İletişime Geçin",
     "mapTitle": "Silk Beauty Salon Konumu"
   },
   "consultation": {
+    "title": "Danışmanlık Talep Edin",
+    "imageAlt": "Estetik uzmanıyla konsültasyon",
+    "metaTitle": "Uzman Bul | Silk Beauty Salon",
+    "metaDescription": "Uzman estetik pratisyenlerimizle konsültasyon rezervasyonu yapın. Geliştirilmiş doğal güzellik yolculuğunuza başlayın.",
+    "label": "Kişiselleştirilmiş Bakım",
+    "headline": "Bugün Konsültasyonunuzu Ayırtın",
+    "body": "Estetik hedeflerinizi tartışmak ve sizin için özel bir tedavi planı oluşturmak için uzman pratisyenlerimizle kişiselleştirilmiş bir konsültasyon planlayın.",
+    "cta": {
+      "title": "Yolculuğunuza Başlamaya Hazır mısınız?",
+      "description": "Bugün konsültasyonunuzu rezerve edin ve geliştirilmiş doğal güzelliğe doğru ilk adımı atın.",
+      "button": "Uzman Bul"
+    },
+    "hero": {
+      "title": "Tedavi konsültasyonu ile olanakları keşfedin",
+      "description": "Tedavinin önemli bir parçası olan estetik konsültasyon, yolculuğunuzun başladığı yerdir. İhtiyaçlarınızı ve arzularınızı ne kadar iyi anlarsak, istediğiniz sonuçlara ulaşma olasılığınız o kadar artar.",
+      "cta": "Konsültasyon Rezervasyonu",
+      "call": "Bizi Arayın"
+    },
+    "features": {
+      "expert": {
+        "title": "Uzman Pratisyenler",
+        "description": "Ekibimiz kapsamlı deneyime sahip sertifikalı estetik doktorları ve hemşireleri içerir."
+      },
+      "personalized": {
+        "title": "Kişiselleştirilmiş Yaklaşım",
+        "description": "Her tedavi planı benzersiz yüz anatominize ve estetik hedeflerinize göre uyarlanır."
+      },
+      "convenient": {
+        "title": "Uygun Konum",
+        "description": "Merkezi Batumi'de konforlu, özel tedavi odalarıyla kolay erişim."
+      }
+    },
+    "journey": {
+      "title": "Estetik Yolculuğunuz",
+      "subtitle": "Konsültasyondan sonuçlara kadar, dönüşümünüzün her adımında size rehberlik ediyoruz."
+    },
+    "steps": {
+      "consultation": {
+        "title": "İlk Konsültasyon",
+        "description": "Uzmanımızla endişelerinizi, hedeflerinizi ve tıbbi geçmişinizi tartışın."
+      },
+      "assessment": {
+        "title": "Yüz Değerlendirmesi",
+        "description": "Yüz yapınızın ve cilt durumunuzun kapsamlı analizi."
+      },
+      "plan": {
+        "title": "Tedavi Planı",
+        "description": "Öneriler ve fiyatlandırma ile kişiselleştirilmiş bir tedavi planı alın."
+      },
+      "treatment": {
+        "title": "Tedavi",
+        "description": "İlgili ekibimizle tedavinizi uygun zamanda planlayın."
+      }
+    },
+    "treatments": {
+      "title": "Sunduğumuz Tedaviler",
+      "subtitle": "Her endişe için kapsamlı estetik çözümler.",
+      "explore": "Explore treatments ->"
+    },
     "bookImageAlt": "Konsültasyon rezervasyonu"
   },
   "conditionsPage": {
+    "title": "Cilt Sorunları",
+    "metaTitle": "Tedavi Ettiğimiz Cilt Sorunları | Silk Beauty Salon",
+    "metaDescription": "Yaşlanan cilt, akne izleri, pigmentasyon, rozasea ve daha fazlası dahil olmak üzere tedavi ettiğimiz çeşitli cilt sorunları hakkında bilgi edinin. Batum estetik kliniğimizde.",
+    "listingTitle": "Tedavi Ettiğimiz Cilt Sorunları",
+    "listingSubtitle": "Cilt sorununuz ne olursa olsun, uzman uygulayıcılarımız kişiselleştirilmiş bir tedavi planı oluşturabilir",
+    "ctaTitle": "Hangi Tedavinin Sizin İçin Doğru Olduğundan Emin Değil misiniz?",
+    "ctaSubtitle": "Sorunlarınızı değerlendirecek ve en iyi tedavi seçeneklerini önerecek uzman pratisyenlerimizden biriyle konsültasyon randevusu alın",
+    "bookConsultation": "Konsültasyon Randevusu Al",
     "imageAlt": "Cilt Bakımı Tedavisi"
   },
   "offersPage": {
+    "title": "Özel Teklifler",
+    "subtitle": "Özel promosyonlarımızdan ve özel tekliflerimizden yararlanın",
+    "breadcrumb": "Teklifler",
+    "offers": {
+      "newClient": {
+        "title": "Yeni Müşteri Özel",
+        "description": "İlk konsültasyonunuzu ayırtın ve ilk tedavinizde %20 indirim kazanın.",
+        "terms": "Sadece yeni müşteriler için geçerlidir. Diğer tekliflerle birleştirilemez."
+      },
+      "antiWrinkle": {
+        "title": "Kırışıklık Karşıtı Paket",
+        "description": "3 bölge kırışıklık karşıtı tedavi ayırtın ve tasarruf edin.",
+        "terms": "Aynı seansta tedavi edilen 3 bölge için geçerlidir."
+      },
+      "dermalFiller": {
+        "title": "Dermal Dolgu Paketi",
+        "description": "2ml veya daha fazla dermal dolgu ayırtın ve ücretsiz cilt güçlendirici kazanın.",
+        "terms": "Süreli teklif. Stok durumuna göre değişir."
+      },
+      "referral": {
+        "title": "Referans Ödülü",
+        "description": "Bir arkadaşınızı davet edin ve ikiniz de bir sonraki tedaviniz için ₾50 kredi kazanın.",
+        "terms": "Davet edilen arkadaş tedaviyi tamamlamalıdır."
+      },
+      "seasonal": {
+        "title": "Mevsimsel Cilt Yenileme",
+        "description": "Herhangi bir lazer tedavisini tıbbi yüz bakımıyla birleştirin ve ikisinde de %15 indirim kazanın.",
+        "terms": "Her iki tedavi de aynı ay içinde ayırtılmalıdır."
+      },
+      "loyalty": {
+        "title": "Sadakat Programı",
+        "description": "Sadakat programımıza katılın ve her tedavide puan kazanın.",
+        "terms": "Puanlar gelecekteki tedaviler için kullanılabilir."
+      }
+    },
+    "ctaTitle": "Bugün Tedavinizi Ayırtın",
+    "ctaSubtitle": "Konsültasyon randevusu almak ve bu özel tekliflerden yararlanmak için bizimle iletişime geçin",
+    "ctaButton": "Şimdi Ayırt",
+    "termsText": "Tüm teklifler stok durumuna göre değişir ve herhangi bir zamanda geri çekilebilir. Aksi belirtilmedikçe teklifler birleştirilemez. Lütfen rezervasyon yaparken tekliften bahsedin.",
     "imageAlt": "Özel Teklifler"
   },
-  "bookingPage": {
-    "imageAlt": "Salon içi"
-  },
   "aboutPage": {
+    "title": "Hakkımızda",
+    "subtitle": "Dünya standartlarında uygulayıcıları ve son teknolojiyi bir araya getiren Batum'nin önde gelen cerrahi olmayan estetik kliniği",
+    "ourStory": "Hikayemiz",
+    "storyP1": "Silk Beauty Salon, lüks ve davetkar bir ortamda en kaliteli estetik tedavileri sunma vizyonuyla kuruldu. Batum'deki Zurab Gorgiladze Caddesi'nde konumlanan kliniğimiz, Gürcistan'ın en yetenekli estetik uygulayıcılarından bazılarını bir araya getiriyor.",
+    "storyP2": "Herkesin kendinden emin ve güzel hissetmeyi hak ettiğine inanıyoruz. Yaklaşımımız, sizi değiştirmek yerine doğal özelliklerinizi geliştirmeye odaklanır. En iyi versiyonunuz gibi görünmenize yardımcı olan incelikli, rafine sonuçlarımızla gurur duyuyoruz.",
+    "storyP3": "Kliniğimize adım attığınız andan itibaren farkı hissedeceksiniz. Mükemmelliğe olan bağlılığımız, tedavilerimizin ötesine geçerek lüks klinik alanımızdan sıcak, dikkatli ekibimize kadar ziyaretinizin her yönünü kapsar.",
+    "ourValues": "Değerlerimiz",
+    "values": {
+      "patientCare": "Hasta Öncelikli Bakım",
+      "patientCareDesc": "Konforunuz, güvenliğiniz ve memnuniyetiniz en üst önceliğimizdir.",
+      "excellence": "Mükemmellik",
+      "excellenceDesc": "Optimal sonuçlar için sadece premium ürünler ve en son teknikler kullanıyoruz.",
+      "safety": "Güvenlik",
+      "safetyDesc": "Tüm tedaviler nitelikli tıp profesyonelleri tarafından gerçekleştirilir.",
+      "naturalResults": "Doğal Sonuçlar",
+      "naturalResultsDesc": "Doğal güzelliğinizi incelikli, rafine tedavilerle artırıyoruz."
+    },
+    "meetTeam": "Ekibimizle Tanışın",
+    "teamSubtitle": "Uzman uygulayıcılarımız yılların deneyimini ve mükemmelliğe olan tutkuyu getiriyor",
+    "team": {
+      "ninoRole": "Kurucu ve Baş Uygulayıcı",
+      "ninoBio": "Nino, Silk Beauty Salon'un kurucusu ve güzellik sektöründe 15 yılı aşkın deneyime sahip ünlü bir estetik uygulayıcısıdır. Doğal görünümlü sonuçları ve titiz detaylara verdiği önemle tanınır.",
+      "ketevanRole": "Kıdemli Estetik Uygulayıcısı",
+      "ketevanBio": "Ketevan, dermal dolgu ve cilt tedavilerinde uzmanlaşmış yüksek vasıflı bir estetik uygulayıcısıdır. Nazik yaklaşımı ve sanatsal bakış açısı, her müşteri için güzel, doğal sonuçlar sağlar.",
+      "mariamRole": "Estetik Uygulayıcı",
+      "mariamBio": "Mariam, gelişmiş cilt tedavileri ve lazer tedavisi konusunda zengin bilgi birikimi getiriyor. Kişiselleştirilmiş tedavi planları aracılığıyla müşterilerinin cilt hedeflerine ulaşmalarına yardımcı olmaya tutkuyla bağlıdır.",
+      "sophiaRole": "Estetik Uygulayıcı",
+      "sophiaBio": "Sophia, cerrahi olmayan yüz gençleştirmede uzmanlaşmıştır ve kırışıklık karşıtı tedaviler ile dermal dolgu konusunda kapsamlı deneyime sahiptir. Müşterileri onun doğal, taze yaklaşımını seviyor."
+    },
+    "awards": {
+      "title": "Ödüller ve Tanınma",
+      "awardWinning": "Ödüllü",
+      "premierSalon": "Batum'un Premier Güzellik Salonu",
+      "featuredIn": "Georgian Fashion & Beauty Magazine'de yer aldı"
+    },
+    "featuredInVogue": "Vogue, Grazia, Vanity Fair ve Tatler'da yer aldı",
+    "featuredIn": "Georgian Fashion & Beauty Magazine'de yer aldı",
+    "ctaTitle": "Yolculuğunuza Başlamaya Hazır mısınız?",
+    "ctaSubtitle": "Bugün uzman uygulayıcılarımızdan biriyle konsültasyon randevusu alın",
+    "ctaButton": "Konsültasyon Randevusu Al",
     "interiorAlt": "Silk Beauty Salon İç Mekan",
     "clinicAlt": "Silk Beauty Salon Kliniği"
   },

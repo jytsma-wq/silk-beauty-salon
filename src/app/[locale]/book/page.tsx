@@ -117,7 +117,7 @@ export default async function BookingPage({ params }: Props) {
             <div className="relative aspect-4/3 overflow-hidden rounded-xl">
               <Image
                 src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=1920&q=80"
-                alt={t('salonInterior')}
+                alt={t('heroImageAlt')}
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 52vw"

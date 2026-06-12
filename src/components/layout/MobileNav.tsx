@@ -284,9 +284,9 @@ export function MobileNav({ onClose, treatmentCategories, conditions }: MobileNa
           asChild
           className="w-full rounded-md border border-[#d9cec1] bg-[#f7f2eb] px-6 py-3 text-xs font-medium uppercase tracking-widest text-[#241f1b] transition-colors hover:bg-[#241f1b] hover:text-white"
         >
-          <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
+          <Link href={`/${locale}/book`} onClick={onClose}>
             {t('bookAppointment')}
-          </a>
+          </Link>
         </Button>
         <div className="mt-4 text-center">
           <a

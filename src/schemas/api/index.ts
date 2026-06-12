@@ -135,7 +135,6 @@ export const HealthCheckResponseSchema = z.object({
   version: z.string(),
   checks: z.object({
     database: z.enum(['ok', 'error']),
-    redis: z.enum(['ok', 'error']).optional(),
   }),
 });
 

@@ -1,17 +1,16 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
-import { Resend } from 'resend';
 import React from 'react';
 import { db } from '@/lib/db';
 import { contactRateLimit } from '@/lib/rate-limit';
 import { logSecurityEvent } from '@/lib/security-logger';
 import { verifyCsrfToken } from '@/lib/csrf';
 import { AdminNotificationEmail } from '@/emails/admin-notification';
-import { emailConfig, senderAddress } from '@/lib/email-config';
+import { emailConfig } from '@/lib/email-config';
 import { renderEmail } from '@/lib/render-email';
+import { sendMail } from '@/lib/mailer';
 
-// Initialize Resend only if API key is available
-const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+export const runtime = 'nodejs';
 
 const contactFormSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters').max(100),
@@ -89,8 +88,7 @@ export async function POST(request: Request) {
       message: message.trim(),
     };
 
-    // Send email to admin (if Resend is configured)
-    if (resend) {
+    try {
       const adminHtml = await renderEmail(
         React.createElement(AdminNotificationEmail, {
           type: 'contact',
@@ -103,15 +101,14 @@ export async function POST(request: Request) {
         })
       );
 
-      await resend.emails.send({
-        from: senderAddress(),
+      await sendMail({
         to: [emailConfig.adminTo],
         replyTo: sanitized.email,
         subject: `New enquiry from ${sanitized.name}`,
         html: adminHtml,
       });
-    } else {
-      console.warn('Contact form submission (Resend not configured):', sanitized);
+    } catch (emailError) {
+      console.error('Hostinger contact email error:', emailError);
     }
 
     // Save to database

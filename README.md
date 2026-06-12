@@ -1,6 +1,6 @@
 # Silk Beauty Salon
 
-A modern, multilingual Next.js website for Silk Beauty Salon in Batumi, Georgia. Features cutting-edge aesthetic treatment information, online booking integration, and full internationalization support.
+A modern, multilingual Next.js website for Silk Beauty Salon in Batumi, Georgia. Features cutting-edge aesthetic treatment information, a self-built booking agent, Hostinger mailbox email delivery, and full internationalization support.
 
 ## Tech Stack
 
@@ -9,7 +9,7 @@ A modern, multilingual Next.js website for Silk Beauty Salon in Batumi, Georgia.
 - **Styling**: Tailwind CSS + shadcn/ui components
 - **Internationalization**: next-intl (6 locales: EN, KA, RU, TR, AR, HE)
 - **Database**: Prisma ORM with PostgreSQL
-- **Email**: Resend API
+- **Email**: Hostinger Email via SMTP
 - **Deployment**: Hostinger managed Node.js hosting with Next.js standalone output
 
 ## Prerequisites
@@ -164,9 +164,9 @@ Use Hostinger managed Node.js hosting for production:
 
 1. Connect the GitHub repository in Hostinger.
 2. Set the app root to the repository root.
-3. Use `npm ci` as the install command.
+3. Use `npm install` as the install command.
 4. Use `npm run build` as the build command.
-5. Use `node .next/standalone/server.js` as the start command.
+5. Use `npm start` as the start command.
 6. Point `silkbeautysalon.online` and `www.silkbeautysalon.online` at the Hostinger Node.js app.
 
 ### Performance Optimizations
@@ -181,9 +181,13 @@ Ensure all [REQUIRED] variables in `.env.example` are set:
 
 - `DATABASE_URL` - PostgreSQL connection string
 - `DIRECT_DATABASE_URL` - Direct PostgreSQL connection (for migrations, bypasses PgBouncer)
-- `RESEND_API_KEY` - For email functionality
-- `RESEND_AUDIENCE_ID` - Newsletter audience
 - `CONTACT_EMAIL` - Contact form recipient
+- `SMTP_HOST` - SMTP server, defaults to `smtp.hostinger.com`
+- `SMTP_PORT` - SMTP port, defaults to `465`
+- `SMTP_SECURE` - Use SSL/TLS, defaults to `true`
+- `SMTP_USER` - Full Hostinger mailbox address, e.g. `info@silkbeautysalon.online`
+- `SMTP_PASSWORD` - Hostinger mailbox password
+- `SMTP_FROM` - Sender mailbox, e.g. `info@silkbeautysalon.online`
 - `API_SECRET_KEY` - Secure random string
 - `NEXT_PUBLIC_ANDROID_APK_URL` - Optional Android APK URL override; defaults to `/apk/silk-beauty-salon.apk`
 

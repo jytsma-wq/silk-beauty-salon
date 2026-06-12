@@ -1,75 +1,20 @@
 /**
- * Unified Rate Limiting with Upstash Redis
+ * In-process rate limiting.
  *
- * This module consolidates all rate limiting onto Upstash Redis,
- * using the same Redis instance as middleware.ts for consistency.
- * The previous ioredis-based implementation has been removed.
+ * This keeps public forms protected without requiring an external service.
+ * Limits are best-effort per running Node.js process.
  */
 
-import { Ratelimit } from '@upstash/ratelimit';
-import { Redis } from '@upstash/redis';
+interface RateLimitEntry {
+  count: number;
+  resetTime: number;
+}
 
-// Upstash Redis client (same as middleware.ts)
-const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_REST_URL!,
-  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
-});
-
-// Contact form: 5 requests per 15 minutes per IP
-const contactLimiter = new Ratelimit({
-  redis,
-  limiter: Ratelimit.fixedWindow(5, '15 m'),
-  analytics: true,
-  prefix: 'contact-rl',
-});
-
-// Booking form: 5 requests per 15 minutes per IP
-const bookLimiter = new Ratelimit({
-  redis,
-  limiter: Ratelimit.fixedWindow(5, '15 m'),
-  analytics: true,
-  prefix: 'book-rl',
-});
-
-// Newsletter: 3 requests per 15 minutes per IP
-const newsletterLimiter = new Ratelimit({
-  redis,
-  limiter: Ratelimit.fixedWindow(3, '15 m'),
-  analytics: true,
-  prefix: 'newsletter-rl',
-});
-
-// CSRF endpoint: 20 requests per minute per IP
-const csrfLimiter = new Ratelimit({
-  redis,
-  limiter: Ratelimit.slidingWindow(20, '60 s'),
-  analytics: true,
-  prefix: 'csrf-rl',
-});
-
-// Bookings API: 10 requests per minute per IP
-const bookingsApiLimiter = new Ratelimit({
-  redis,
-  limiter: Ratelimit.slidingWindow(10, '60 s'),
-  analytics: true,
-  prefix: 'bookings-rl',
-});
-
-// Generic API limiter: 30 requests per minute per IP
-const apiLimiter = new Ratelimit({
-  redis,
-  limiter: Ratelimit.slidingWindow(30, '60 s'),
-  analytics: true,
-  prefix: 'api-rl',
-});
-
-// Strict limiter: 5 requests per 15 minutes per IP
-const strictLimiter = new Ratelimit({
-  redis,
-  limiter: Ratelimit.fixedWindow(5, '15 m'),
-  analytics: true,
-  prefix: 'strict-rl',
-});
+interface RateLimitConfig {
+  limit: number;
+  windowMs: number;
+  prefix: string;
+}
 
 export interface RateLimitResult {
   allowed: boolean;
@@ -78,30 +23,93 @@ export interface RateLimitResult {
   resetTime: number;
 }
 
-async function applyLimit(limiter: Ratelimit, ip: string): Promise<RateLimitResult> {
-  const { success, limit, remaining, reset } = await limiter.limit(ip);
-  return { allowed: success, limit, remaining, resetTime: reset };
+const store = new Map<string, RateLimitEntry>();
+
+function cleanupExpiredEntries(now: number): void {
+  for (const [key, entry] of store.entries()) {
+    if (entry.resetTime <= now) {
+      store.delete(key);
+    }
+  }
 }
 
-// Export preconfigured rate limiters
-export const contactRateLimit = (ip: string) => applyLimit(contactLimiter, ip);
-export const bookRateLimit = (ip: string) => applyLimit(bookLimiter, ip);
-export const newsletterRateLimit = (ip: string) => applyLimit(newsletterLimiter, ip);
-export const csrfRateLimit = (ip: string) => applyLimit(csrfLimiter, ip);
-export const strictRateLimit = (ip: string) => applyLimit(strictLimiter, ip);
-export const apiRateLimit = (ip: string) => applyLimit(apiLimiter, ip);
-export const bookingsApiRateLimit = (ip: string) => applyLimit(bookingsApiLimiter, ip);
+function applyLimit(ip: string, config: RateLimitConfig): RateLimitResult {
+  const now = Date.now();
+  const key = `${config.prefix}:${ip}`;
 
-// Legacy exports for backward compatibility (deprecated)
-/** @deprecated Use limiters directly instead */
+  cleanupExpiredEntries(now);
+
+  let entry = store.get(key);
+  if (!entry || entry.resetTime <= now) {
+    entry = {
+      count: 0,
+      resetTime: now + config.windowMs,
+    };
+  }
+
+  entry.count += 1;
+  store.set(key, entry);
+
+  const remaining = Math.max(config.limit - entry.count, 0);
+
+  return {
+    allowed: entry.count <= config.limit,
+    limit: config.limit,
+    remaining,
+    resetTime: entry.resetTime,
+  };
+}
+
+export const contactRateLimit = (ip: string) => applyLimit(ip, {
+  limit: 5,
+  windowMs: 15 * 60 * 1000,
+  prefix: 'contact',
+});
+
+export const bookRateLimit = (ip: string) => applyLimit(ip, {
+  limit: 5,
+  windowMs: 15 * 60 * 1000,
+  prefix: 'book',
+});
+
+export const newsletterRateLimit = (ip: string) => applyLimit(ip, {
+  limit: 3,
+  windowMs: 15 * 60 * 1000,
+  prefix: 'newsletter',
+});
+
+export const csrfRateLimit = (ip: string) => applyLimit(ip, {
+  limit: 20,
+  windowMs: 60 * 1000,
+  prefix: 'csrf',
+});
+
+export const strictRateLimit = (ip: string) => applyLimit(ip, {
+  limit: 5,
+  windowMs: 15 * 60 * 1000,
+  prefix: 'strict',
+});
+
+export const apiRateLimit = (ip: string) => applyLimit(ip, {
+  limit: 30,
+  windowMs: 60 * 1000,
+  prefix: 'api',
+});
+
+export const bookingsApiRateLimit = (ip: string) => applyLimit(ip, {
+  limit: 10,
+  windowMs: 60 * 1000,
+  prefix: 'bookings',
+});
+
+/** @deprecated Use specific limiters like contactRateLimit(), apiRateLimit(), etc. */
 export async function rateLimit(
-  _identifier: string,
-  _config: { windowMs: number; maxRequests: number; keyPrefix?: string }
+  identifier: string,
+  config: { windowMs: number; maxRequests: number; keyPrefix?: string }
 ): Promise<RateLimitResult> {
-  throw new Error('rateLimit() is deprecated. Use specific limiters like contactRateLimit(), apiRateLimit(), etc.');
-}
-
-/** @deprecated No longer needed with Upstash */
-export function getRedisClient(): null {
-  return null;
+  return applyLimit(identifier, {
+    limit: config.maxRequests,
+    windowMs: config.windowMs,
+    prefix: config.keyPrefix || 'generic',
+  });
 }

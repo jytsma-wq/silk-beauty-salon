@@ -135,7 +135,7 @@ interface RateLimitInfo {
   retryAfter?: number;
 }
 
-// In-memory store (use Redis in production)
+// In-memory store for route-level API throttling.
 const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
 
 /**

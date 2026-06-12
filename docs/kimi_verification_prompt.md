@@ -13,7 +13,7 @@ You are a senior full-stack engineer performing a complete, systematic audit of 
 
 ## PROJECT CONTEXT
 
-- **Stack:** Next.js 16, React 19, TypeScript strict, Tailwind CSS v4, next-intl v4, Prisma 5 (SQLite), Resend, ioredis, Zod v4, Vitest, Playwright, Framer Motion, Bun runtime
+- **Stack:** Next.js 16, React 19, TypeScript strict, Tailwind CSS v4, next-intl v4, Prisma 5 (SQLite), Hostinger SMTP email, Zod v4, Vitest, Playwright, Framer Motion, Bun runtime
 - **Locales:** en (default), ka, ru, tr, ar, he — all with localePrefix: 'always'
 - **RTL locales:** ar, he
 - **Pages:** 20 pages under src/app/[locale]/
@@ -96,7 +96,7 @@ Work through every section. Read the actual file content — do not guess.
 - [ ] 4.6 Does it set a `Content-Security-Policy`?
 - [ ] 4.7 Does the CSP `script-src` include `'unsafe-inline'` (required for framer-motion)?
 - [ ] 4.8 Does the CSP `style-src` include `'unsafe-inline'` (required for framer-motion style injection)?
-- [ ] 4.9 Does the CSP `frame-src` include `https://cal.com https://*.cal.com`?
+- [ ] 4.9 Does the CSP `frame-src` exclude external booking frames?
 - [ ] 4.10 Does the CSP `img-src` include `https://picsum.photos` and `https://flagcdn.com` (used in dev)?
 - [ ] 4.11 Is `output: 'standalone'` set?
 - [ ] 4.12 Is `reactStrictMode: true` set?
@@ -147,7 +147,7 @@ Run this verification logic mentally (or via the validate:i18n script):
 
 - [ ] 6.10 Is `apiRateLimit` (or equivalent) called?
 - [ ] 6.11 Does it use `safeParse` (not `parse`) so validation errors are caught gracefully?
-- [ ] 6.12 Does a Resend API failure return 500 with a user-friendly message (NOT "Invalid email")?
+- [ ] 6.12 Does Hostinger SMTP failure get logged without exposing internals to the client?
 
 **File:** `src/app/api/csrf/route.ts`
 
@@ -160,17 +160,17 @@ Run this verification logic mentally (or via the validate:i18n script):
 
 **File:** `src/lib/rate-limit.ts`
 
-- [ ] 6.16 Is there a primary Redis implementation using `ioredis`?
-- [ ] 6.17 Is there an in-memory Map fallback when Redis is unavailable?
-- [ ] 6.18 Is `REDIS_URL` read from `process.env` (not hardcoded)?
+- [ ] 6.16 Does `src/lib/rate-limit.ts` use an in-process Map-based limiter?
+- [ ] 6.17 Are route/action limits scoped by a distinct key prefix?
+- [ ] 6.18 Are no external rate-limit service credentials required?
 - [ ] 6.19 Is there a `strictRateLimit` preset (5 req / 15 min) for contact form?
 - [ ] 6.20 Is there an `apiRateLimit` preset (30 req / 1 min) for newsletter?
 
 **File:** `src/lib/env.ts`
 
-- [ ] 6.21 Is `REDIS_URL` validated as `z.string().url().optional()`?
+- [ ] 6.21 Is the env schema free of unused rate-limit service variables?
 - [ ] 6.22 Is there a prod/dev split (strict for production, lenient for development)?
-- [ ] 6.23 Does the prod schema require `RESEND_API_KEY`?
+- [ ] 6.23 Does the prod schema require Hostinger SMTP mailbox credentials?
 
 ---
 

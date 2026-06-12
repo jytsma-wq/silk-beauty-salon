@@ -1,17 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { Resend } from 'resend';
 import React from 'react';
 import { db } from '@/lib/db';
 import { verifyCsrfToken } from '@/lib/csrf';
 import { newsletterRateLimit } from '@/lib/rate-limit';
 import { logSecurityEvent } from '@/lib/security-logger';
 import { sanitizeEmail } from '@/lib/sanitize';
-import { senderAddress } from '@/lib/email-config';
 import { renderEmail } from '@/lib/render-email';
 import { NewsletterWelcomeEmail } from '@/emails/newsletter-welcome';
+import { sendMail } from '@/lib/mailer';
 
-const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+export const runtime = 'nodejs';
 
 const newsletterSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -81,23 +80,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Failed to subscribe' }, { status: 500 });
     }
 
-    const audienceId = process.env.RESEND_AUDIENCE_ID;
-    if (resend && audienceId) {
-      try {
-        await resend.contacts.create({
-          email: sanitizedEmail,
-          audienceId,
-          unsubscribed: false,
-        });
-      } catch (contactError) {
-        const message = contactError instanceof Error ? contactError.message : '';
-        if (!message.includes('already exists')) {
-          console.error('Resend audience error:', contactError);
-        }
-      }
-    }
-
-    if (resend) {
+    try {
       const welcomeHtml = await renderEmail(
         React.createElement(NewsletterWelcomeEmail, {
           email: sanitizedEmail,
@@ -105,12 +88,13 @@ export async function POST(request: NextRequest) {
         })
       );
 
-      await resend.emails.send({
-        from: senderAddress(),
+      await sendMail({
         to: [sanitizedEmail],
         subject: 'Welcome to Silk Beauty Salon',
         html: welcomeHtml,
       });
+    } catch (emailError) {
+      console.error('Hostinger newsletter email error:', emailError);
     }
 
     return NextResponse.json(

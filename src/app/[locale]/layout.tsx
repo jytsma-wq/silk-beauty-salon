@@ -8,6 +8,7 @@ import { GaldermaHeader } from "@/components/layout/GaldermaHeader";
 import { GaldermaFooter } from "@/components/layout/GaldermaFooter";
 import { ConsentProvider } from "@/components/providers/ConsentProvider";
 import { WhatsAppWidget } from "@/components/layout/WhatsAppWidget";
+import { ChatbotWidget } from "@/components/layout/ChatbotWidget";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { siteConfig } from '@/data/site-config';
@@ -67,6 +68,7 @@ export default async function LocaleLayout({
               {children}
             </main>
             <GaldermaFooter />
+            <ChatbotWidget />
             <WhatsAppWidget />
             <Toaster />
           </AnnouncerProvider>

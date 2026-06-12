@@ -328,7 +328,7 @@ const optimizedUrl = getCloudinaryUrl('treatment-photo', {
 
 1. Add database indexes
 2. Implement query caching
-3. Use Redis for session/data storage
+3. Cache repeated read-heavy responses where appropriate
 4. Add response caching headers
 
 ## Resources

@@ -41,6 +41,16 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const canSubmit = Boolean(
+    formData.service.trim() &&
+    formData.name.trim() &&
+    formData.email.trim() &&
+    formData.phone.trim() &&
+    formData.preferredDate &&
+    formData.preferredTime &&
+    csrfToken &&
+    !isSubmitting
+  );
 
   const getHoursForDate = (date?: Date) => {
     switch (date?.getDay()) {
@@ -116,6 +126,14 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
     setError(null);
 
     try {
+      if (!csrfToken) {
+        throw new Error(t('formNotReady', { defaultValue: 'The booking form is still preparing. Please try again in a moment.' }));
+      }
+
+      if (!formData.preferredDate || !formData.preferredTime) {
+        throw new Error(t('selectDateTime', { defaultValue: 'Select Date & Time' }));
+      }
+
       const dateStr = formData.preferredDate;
       const startHour = formData.preferredTime;
       const endHour = `${Number.parseInt(startHour, 10) + 1}:00`.padStart(5, '0');
@@ -210,7 +228,7 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
   return (
     <form id="booking-embed" onSubmit={handleSubmit} className="space-y-8">
       {error && (
-        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-sm">
+        <div role="alert" className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-sm">
           {error}
         </div>
       )}
@@ -373,7 +391,7 @@ export function BookingForm({ consultationTypes }: BookingFormProps) {
 
       <Button
         type="submit"
-        disabled={isSubmitting}
+        disabled={!canSubmit}
         className="w-full rounded-md border border-[#d9cec1] bg-[#f7f2eb] px-6 py-4 text-xs font-medium uppercase tracking-widest text-[#241f1b] transition-colors hover:bg-[#241f1b] hover:text-white disabled:opacity-50"
       >
         {isSubmitting ? tCommon('submitting', { defaultValue: 'Submitting...' }) : t('requestBooking', { defaultValue: 'Request Booking' })}

@@ -8,9 +8,9 @@ Use Hostinger managed Node.js hosting:
 
 1. Connect the GitHub repository to the Hostinger app.
 2. Set the app root to the repository root.
-3. Set the install command to `npm ci`.
+3. Set the install command to `npm install`.
 4. Set the build command to `npm run build`.
-5. Set the start command to `node .next/standalone/server.js`.
+5. Set the start command to `npm start`.
 6. Set the production domain to `silkbeautysalon.online`.
 7. Add required environment variables in Hostinger before deploying.
 
@@ -19,12 +19,14 @@ Use Hostinger managed Node.js hosting:
 ```env
 DATABASE_URL="postgresql://..."
 DIRECT_DATABASE_URL="postgresql://..."
-RESEND_API_KEY="..."
-RESEND_AUDIENCE_ID="..."
 CONTACT_EMAIL="info@silkbeautysalon.online"
+SMTP_HOST="smtp.hostinger.com"
+SMTP_PORT="465"
+SMTP_SECURE="true"
+SMTP_USER="info@silkbeautysalon.online"
+SMTP_PASSWORD="..."
+SMTP_FROM="info@silkbeautysalon.online"
 API_SECRET_KEY="..."
-UPSTASH_REDIS_REST_URL="..."
-UPSTASH_REDIS_REST_TOKEN="..."
 NEXT_PUBLIC_SITE_URL="https://silkbeautysalon.online"
 NEXT_PUBLIC_ANDROID_APK_URL="/apk/silk-beauty-salon.apk"
 ```

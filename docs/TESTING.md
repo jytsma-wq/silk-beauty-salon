@@ -354,11 +354,9 @@ src/
 ### Mocking Guidelines
 
 ```typescript
-// Mock external services
-vi.mock('resend', () => ({
-  Resend: vi.fn(() => ({
-    emails: { send: vi.fn().mockResolvedValue({ id: 'test' }) }
-  }))
+// Mock SMTP delivery
+vi.mock('@/lib/mailer', () => ({
+  sendMail: vi.fn().mockResolvedValue({ skipped: false })
 }));
 
 // Mock database

@@ -7,7 +7,7 @@ describe('Environment Validation', () => {
       // Test that the schema is properly defined
       expect(fullEnvSchema).toBeDefined()
       expect(fullEnvSchema.shape.DATABASE_URL).toBeDefined()
-      expect(fullEnvSchema.shape.RESEND_API_KEY).toBeDefined()
+      expect(fullEnvSchema.shape.SMTP_USER).toBeDefined()
     })
 
     it('serverEnvSchema requires all server variables', () => {
@@ -31,12 +31,10 @@ describe('Environment Validation', () => {
       const invalidEmail = {
         NODE_ENV: 'production',
         DATABASE_URL: 'postgresql://user:pass@localhost/db',
-        RESEND_API_KEY: 're_test12345678901234567890',
-        RESEND_AUDIENCE_ID: '550e8400-e29b-41d4-a716-446655440000',
         CONTACT_EMAIL: 'invalid-email',
+        SMTP_USER: 'info@silkbeautysalon.online',
+        SMTP_PASSWORD: 'hostinger-mailbox-password',
         API_SECRET_KEY: 'secret123456789012345678901234567890',
-        UPSTASH_REDIS_REST_URL: 'https://test-upstash-url.upstash.io',
-        UPSTASH_REDIS_REST_TOKEN: 'token12345678901234567890',
       }
       const result = serverEnvSchema.safeParse(invalidEmail)
       expect(result.success).toBe(false)
@@ -46,12 +44,10 @@ describe('Environment Validation', () => {
       const invalidUrl = {
         NODE_ENV: 'production',
         DATABASE_URL: 'not-a-url',
-        RESEND_API_KEY: 're_test12345678901234567890',
-        RESEND_AUDIENCE_ID: '550e8400-e29b-41d4-a716-446655440000',
         CONTACT_EMAIL: 'test@silkbeautysalon.online',
+        SMTP_USER: 'info@silkbeautysalon.online',
+        SMTP_PASSWORD: 'hostinger-mailbox-password',
         API_SECRET_KEY: 'secret123456789012345678901234567890',
-        UPSTASH_REDIS_REST_URL: 'https://test-upstash-url.upstash.io',
-        UPSTASH_REDIS_REST_TOKEN: 'token12345678901234567890',
       }
       const result = serverEnvSchema.safeParse(invalidUrl)
       expect(result.success).toBe(false)

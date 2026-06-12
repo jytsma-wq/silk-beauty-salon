@@ -38,7 +38,9 @@
     "menu": "Menu",
     "more": "More",
     "treatmentPortfolio": "Treatment portfolio",
-    "skinConditions": "Skin conditions"
+    "skinConditions": "Skin conditions",
+    "downloadApp": "Download App",
+    "openMenu": "Open menu"
   },
   "header": {
     "announcement": "Award Winning | Batumi's Premier Beauty Salon | Featured in Georgian Fashion & Beauty Magazine"
@@ -224,43 +226,6 @@
     "success": "Thank you for subscribing!",
     "privacy": "We respect your privacy. Unsubscribe at any time."
   },
-  "footer": {
-    "description": "Batumi's premier beauty salon on Zurab Gorgiladze Street.",
-    "quickLinks": "Quick Links",
-    "treatments": "Treatments",
-    "conditions": "Skin Conditions",
-    "contact": "Contact Info",
-    "address": "Zurab Gorgiladze 63, Batumi 6000, Georgia",
-    "phone": "Tel: +995 599 123 456",
-    "email": "info@silkbeautysalon.online",
-    "openingHours": "Opening Hours",
-    "hours": {
-      "monFri": "Mon-Fri: 10:00 - 22:00",
-      "satSun": "Sat-Sun: 10:00 - 22:00"
-    },
-    "social": "Follow Us",
-    "faqDesc": "Read some of the most frequently asked questions about the clinic and our treatments.",
-    "clinicTitle": "The Clinic",
-    "clinicDesc": "Located on Zurab Gorgiladze Street, opening hours are 10am–7pm.",
-    "teamTitle": "The Team",
-    "teamDesc": "Find out more about our skilled members of staff and how they can best help you.",
-    "pressTitle": "Media & Press",
-    "pressDesc": "Why not take a look at our most recent Press features and see what they're saying about us.",
-    "copyright": "© 2024 Silk Beauty Salon. All rights reserved.",
-    "privacy": "Privacy",
-    "terms": "Terms of Use",
-    "cookieNotice": "Cookie Notice",
-    "stayConnected": "Stay connected",
-    "newsletterTitle": "Join Our World",
-    "emailPlaceholder": "Your email address",
-    "subscribe": "Subscribe",
-    "about": "About",
-    "information": "Information",
-    "visitUs": "Visit Us",
-    "designedIn": "Designed in Batumi",
-    "socialDescription": "Follow us on Social Media for current news and patients stories",
-    "disclaimer": "Always consult a healthcare professional for individualized treatment recommendations and to discuss important safety information and risks associated with the use of the products."
-  },
   "contact": {
     "title": "Contact Us",
     "subtitle": "Get in touch with our team",
@@ -347,77 +312,6 @@
     "ctaText": "Book a consultation with one of our expert practitioners to discuss your treatment goals",
     "bookNow": "Book Now"
   },
-  "conditionsPage": {
-    "title": "Conditions",
-    "metaTitle": "Conditions We Treat | Silk Beauty Salon",
-    "metaDescription": "Learn about the various skin conditions we treat including ageing skin, acne scarring, pigmentation, rosacea and more at our Batumi aesthetic clinic.",
-    "listingTitle": "Conditions We Treat",
-    "listingSubtitle": "Whatever your skin concern, our expert practitioners can create a personalized treatment plan",
-    "ctaTitle": "Not Sure Which Treatment Is Right for You?",
-    "ctaSubtitle": "Book a consultation with one of our expert practitioners who will assess your concerns and recommend the best treatment options",
-    "bookConsultation": "Book a Consultation"
-  },
-  "consultation": {
-    "title": "Request a Consultation",
-    "imageAlt": "Consultation with aesthetic specialist",
-    "metaTitle": "Find a Specialist | Silk Beauty Salon",
-    "metaDescription": "Book a consultation with our expert aesthetic practitioners. Start your journey to enhanced natural beauty.",
-    "label": "Personalized Care",
-    "headline": "Book Your Consultation Today",
-    "body": "Schedule a personalized consultation with our expert practitioners to discuss your aesthetic goals and create a tailored treatment plan just for you.",
-    "cta": {
-      "title": "Ready to Start Your Journey?",
-      "description": "Book your consultation today and take the first step towards enhanced natural beauty.",
-      "button": "Find a Specialist"
-    },
-    "hero": {
-      "title": "Explore the possibilities with a treatment consultation",
-      "description": "An essential part of treatment, the aesthetic consultation is where your journey begins. The better we understand your needs and desires, the more likely you will achieve the results you want.",
-      "cta": "Book Consultation",
-      "call": "Call Us"
-    },
-    "features": {
-      "expert": {
-        "title": "Expert Practitioners",
-        "description": "Our team includes certified aesthetic doctors and nurses with extensive experience."
-      },
-      "personalized": {
-        "title": "Personalized Approach",
-        "description": "Every treatment plan is tailored to your unique facial anatomy and aesthetic goals."
-      },
-      "convenient": {
-        "title": "Convenient Location",
-        "description": "Easy access in central Batumi with comfortable, private treatment rooms."
-      }
-    },
-    "journey": {
-      "title": "Your Aesthetic Journey",
-      "subtitle": "From consultation to results, we guide you through every step of your transformation."
-    },
-    "steps": {
-      "consultation": {
-        "title": "Initial Consultation",
-        "description": "Discuss your concerns, goals, and medical history with our specialist."
-      },
-      "assessment": {
-        "title": "Facial Assessment",
-        "description": "Comprehensive analysis of your facial structure and skin condition."
-      },
-      "plan": {
-        "title": "Treatment Plan",
-        "description": "Receive a personalized treatment plan with recommendations and pricing."
-      },
-      "treatment": {
-        "title": "Treatment",
-        "description": "Schedule your treatment at your convenience with our caring team."
-      }
-    },
-    "treatments": {
-      "title": "Treatments We Offer",
-      "subtitle": "Comprehensive aesthetic solutions for every concern.",
-      "explore": "Explore treatments ->"
-    }
-  },
   "booking": {
     "selectService": "Select Service",
     "selectDate": "Select Date",
@@ -459,7 +353,7 @@
     "serviceMicroneedling": "Microneedling",
     "serviceHydrafacial": "Hydrafacial"
   },
-    "statistics": {
+  "statistics": {
     "years": "Years Experience",
     "clients": "Happy Clients",
     "satisfaction": "Satisfaction Rate",
@@ -470,89 +364,6 @@
     "name": "Sarah Mitchell",
     "location": "Batumi, Georgia",
     "imageAlt": "Happy client testimonial portrait"
-  },
-  "aboutPage": {
-    "title": "About Us",
-    "subtitle": "Batumi's leading non-surgical aesthetic clinic, bringing together world-class practitioners and cutting-edge treatments",
-    "ourStory": "Our Story",
-    "storyP1": "Silk Beauty Salon was founded with a simple vision: to provide the highest quality aesthetic treatments in a luxurious, welcoming environment. Located on Zurab Gorgiladze Street in Batumi, our clinic brings together some of Georgia's most talented aesthetic practitioners.",
-    "storyP2": "We believe that everyone deserves to feel confident and beautiful. Our approach focuses on enhancing your natural features rather than changing who you are. We take pride in our subtle, refined results that help you look like the best version of yourself.",
-    "storyP3": "From the moment you step into our clinic, you'll experience the difference. Our commitment to excellence extends beyond our treatments to every aspect of your visit, from our luxurious clinic space to our warm, attentive team.",
-    "ourValues": "Our Values",
-    "values": {
-      "patientCare": "Patient-First Care",
-      "patientCareDesc": "Your comfort, safety, and satisfaction are our top priorities.",
-      "excellence": "Excellence",
-      "excellenceDesc": "We use only premium products and the latest techniques for optimal results.",
-      "safety": "Safety",
-      "safetyDesc": "All treatments are performed by qualified medical professionals.",
-      "naturalResults": "Natural Results",
-      "naturalResultsDesc": "We enhance your natural beauty with subtle, refined treatments."
-    },
-    "meetTeam": "Meet Our Team",
-    "teamSubtitle": "Our expert practitioners bring years of experience and a passion for excellence",
-    "team": {
-      "ninoRole": "Founder & Lead Practitioner",
-      "ninoBio": "Nino is the founder of Silk Beauty Salon and a renowned aesthetic practitioner with over 15 years of experience in the beauty industry. She is known for her natural-looking results and meticulous attention to detail.",
-      "ketevanRole": "Senior Aesthetic Practitioner",
-      "ketevanBio": "Ketevan is a highly skilled aesthetic practitioner specializing in dermal fillers and skin treatments. Her gentle approach and artistic eye ensure beautiful, natural results for every client.",
-      "mariamRole": "Aesthetic Practitioner",
-      "mariamBio": "Mariam brings a wealth of knowledge in advanced skin treatments and laser therapy. She is passionate about helping clients achieve their skin goals through personalized treatment plans.",
-      "sophiaRole": "Aesthetic Practitioner",
-      "sophiaBio": "Sophia specializes in non-surgical facial rejuvenation and has extensive experience in anti-wrinkle treatments and dermal fillers. Her clients love her natural, fresh approach."
-    },
-    "awards": {
-      "title": "Awards & Recognition",
-      "awardWinning": "Award Winning",
-      "premierSalon": "Batumi's Premier Beauty Salon",
-      "featuredIn": "As featured in Georgian Fashion & Beauty Magazine"
-    },
-    "featuredInVogue": "Featured in Vogue, Grazia, Vanity Fair, and Tatler",
-    "featuredIn": "As featured in Georgian Fashion & Beauty Magazine",
-    "ctaTitle": "Ready to Start Your Journey?",
-    "ctaSubtitle": "Book a consultation with one of our expert practitioners today",
-    "ctaButton": "Book a Consultation"
-  },
-  "contactPage": {
-    "title": "Contact Us",
-    "subtitle": "Get in touch with our team to book a consultation or ask any questions",
-    "formTitle": "Send Us a Message",
-    "thankYou": "Thank You!",
-    "messageSent": "Your message has been sent successfully. We'll get back to you shortly.",
-    "fullName": "Full Name",
-    "namePlaceholder": "Enter your name",
-    "nameRequired": "Please enter your name",
-    "emailAddress": "Email Address",
-    "emailPlaceholder": "Enter your email",
-    "emailRequired": "Please enter your email address",
-    "emailInvalid": "Please enter a valid email address",
-    "phoneNumber": "Phone Number",
-    "phonePlaceholder": "Enter your phone",
-    "phoneOptional": "Optional",
-    "message": "Message",
-    "messagePlaceholder": "How can we help you?",
-    "messageRequired": "Please enter a message",
-    "sending": "Sending...",
-    "sendMessage": "Send Message",
-    "getInTouch": "Get in Touch",
-    "address": "Address",
-    "phone": "Phone",
-    "email": "Email",
-    "openingHours": "Opening Hours",
-    "monTue": "Monday - Tuesday",
-    "wedThu": "Wednesday - Thursday",
-    "friday": "Friday",
-    "satSun": "Saturday - Sunday",
-    "readyToBook": "Ready to Book?",
-    "bookOnlineDesc": "Book your appointment online through our booking system",
-    "bookAppointment": "Book Appointment",
-    "bookOnline": "Book Online",
-    "scheduleAppointment": "Schedule your appointment",
-    "bookViaWhatsApp": "Book via WhatsApp",
-    "whatsapp": "WhatsApp",
-    "viewOnMap": "View on Google Maps",
-    "mapAddress": "63 Zurab Gorgiladze Street",
-    "mapCity": "Batumi, Georgia"
   },
   "faqPage": {
     "title": "Frequently Asked Questions",
@@ -575,89 +386,6 @@
     "ctaTitle": "Ready to Book?",
     "ctaSubtitle": "Book a consultation to discuss your treatment goals and receive a personalized quote",
     "ctaButton": "Book a Consultation"
-  },
-  "offersPage": {
-    "title": "Special Offers",
-    "subtitle": "Take advantage of our exclusive promotions and special offers",
-    "breadcrumb": "Offers",
-    "offers": {
-      "newClient": {
-        "title": "New Client Special",
-        "description": "Book your first consultation and receive 20% off your first treatment.",
-        "terms": "Valid for new clients only. Cannot be combined with other offers."
-      },
-      "antiWrinkle": {
-        "title": "Anti-Wrinkle Package",
-        "description": "Book 3 areas of anti-wrinkle treatment and save.",
-        "terms": "Valid for 3 areas treated in the same session."
-      },
-      "dermalFiller": {
-        "title": "Dermal Filler Bundle",
-        "description": "Book 2ml or more of dermal filler and receive complimentary skin booster.",
-        "terms": "Limited time offer. Subject to availability."
-      },
-      "referral": {
-        "title": "Referral Reward",
-        "description": "Refer a friend and you both receive ₾50 credit towards your next treatment.",
-        "terms": "Referred friend must complete a treatment."
-      },
-      "seasonal": {
-        "title": "Seasonal Skin Refresh",
-        "description": "Combine any laser treatment with a medical facial for 15% off both.",
-        "terms": "Both treatments must be booked in the same month."
-      },
-      "loyalty": {
-        "title": "Loyalty Programme",
-        "description": "Join our loyalty programme and earn points on every treatment.",
-        "terms": "Points can be redeemed towards future treatments."
-      }
-    },
-    "ctaTitle": "Book Your Treatment Today",
-    "ctaSubtitle": "Contact us to book your consultation and take advantage of these exclusive offers",
-    "ctaButton": "Book Now",
-    "termsText": "All offers are subject to availability and may be withdrawn at any time. Offers cannot be combined unless otherwise stated. Please mention the offer when booking."
-  },
-  "blogPage": {
-    "title": "Our Blog",
-    "metaTitle": "Blog | Silk Beauty Salon",
-    "metaDescription": "Expert insights, treatment guides, and the latest from the world of aesthetics",
-    "subtitle": "Expert insights, treatment guides, and the latest from the world of aesthetics",
-    "breadcrumb": "Blog",
-    "stayUpdated": "Stay Updated",
-    "newsletterDesc": "Subscribe to our newsletter for the latest articles, tips, and exclusive offers",
-    "subscribeButton": "Subscribe to Newsletter",
-    "backToBlog": "Back to Blog",
-    "shareArticle": "Share this article",
-    "aboutAuthor": "About the Author",
-    "readyToTransform": "Ready to Transform?",
-    "bookConsultationDesc": "Book a consultation with one of our expert practitioners to discuss your aesthetic goals.",
-    "relatedPosts": "Related Posts",
-    "readMore": "Read More"
-  },
-  "treatmentPage": {
-    "bookNow": "Book This Treatment",
-    "backTo": "Back to Treatments",
-    "aboutTreatment": "About This Treatment",
-    "benefits": "Benefits",
-    "howItWorks": "How It Works",
-    "aftercare": "Aftercare",
-    "faqs": "Frequently Asked Questions",
-    "price": "Price from",
-    "duration": "Duration",
-    "readyToStart": "Ready to get started?",
-    "bookConsultation": "Book a Consultation",
-    "bookConsultationDesc": "Book a consultation with one of our expert practitioners",
-    "bookNowBtn": "Book Now",
-    "contactUs": "Contact Us",
-    "phone": "Phone",
-    "email": "Email",
-    "address": "Address",
-    "relatedTreatments": "Related Treatments",
-    "atAGlance": "At a Glance",
-    "results": "Results",
-    "downtime": "Downtime",
-    "youMightAlsoLike": "You Might Also Like",
-    "learnMore": "Learn more"
   },
   "conditionPage": {
     "title": "Condition",
@@ -688,29 +416,6 @@
     "description": "Sorry, we couldn't find the page you're looking for. It might have been moved or deleted.",
     "goHome": "Go Home",
     "contactUs": "Contact Us"
-  },
-  "common": {
-    "loading": "Loading...",
-    "error": "An error occurred",
-    "close": "Close",
-    "next": "Next",
-    "previous": "Previous",
-    "viewAll": "View All",
-    "learnMore": "Learn More",
-    "home": "Home",
-    "readMore": "Read More",
-    "bookNow": "Book Now",
-    "bookConsultation": "Book a Consultation",
-    "bookOnline": "Book Online",
-    "scheduleAppointment": "Schedule your appointment",
-    "whatsapp": "WhatsApp",
-    "bookViaWhatsApp": "Book via WhatsApp",
-    "treatments": "Treatments",
-    "conditions": "Conditions",
-    "notFound": "Not Found",
-    "social": "Follow Us",
-    "searchPlaceholder": "Search treatments, conditions...",
-    "submitting": "Submitting..."
   },
   "siteConfig": {
     "awards": {
@@ -1968,7 +1673,9 @@
     "serviceRejuvenation": "Skin Rejuvenation",
     "servicePeel": "Chemical Peel",
     "serviceMicroneedling": "Microneedling",
-    "serviceHydrafacial": "Hydrafacial"
+    "serviceHydrafacial": "Hydrafacial",
+    "personalInfo": "Personal information",
+    "formNotReady": "The booking form is still preparing. Please try again in a moment."
   },
   "consent": {
     "title": "Cookie Preferences",
@@ -1993,13 +1700,6 @@
     "functional": "Functional",
     "functionalDesc": "Enable enhanced functionality and personalization.",
     "required": "Required"
-  },
-  "accessibility": {
-    "skipToContent": "Skip to main content",
-    "skipToMain": "Skip to main content",
-    "skipToTreatments": "Skip to treatments",
-    "skipToBooking": "Skip to booking",
-    "skipNavigation": "Skip links"
   },
   "whatsapp": {
     "chatOnWhatsApp": "Chat on WhatsApp",
@@ -2083,8 +1783,31 @@
     }
   },
   "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "close": "Close",
+    "next": "Next",
+    "previous": "Previous",
+    "viewAll": "View All",
+    "learnMore": "Learn More",
+    "home": "Home",
+    "readMore": "Read More",
+    "bookNow": "Book Now",
+    "bookConsultation": "Book a Consultation",
+    "bookOnline": "Book Online",
+    "scheduleAppointment": "Schedule your appointment",
+    "whatsapp": "WhatsApp",
+    "bookViaWhatsApp": "Book via WhatsApp",
+    "treatments": "Treatments",
+    "conditions": "Conditions",
+    "notFound": "Not Found",
+    "social": "Follow Us",
+    "searchPlaceholder": "Search treatments, conditions...",
+    "submitting": "Submitting...",
     "tryAgain": "Try Again",
-    "view": "View"
+    "view": "View",
+    "currentLanguageFlag": "{language} flag",
+    "languageFlag": "{language} flag"
   },
   "errorPage": {
     "somethingWentWrong": "Something Went Wrong",
@@ -2093,6 +1816,11 @@
     "globalError": "Something went wrong"
   },
   "accessibility": {
+    "skipToContent": "Skip to main content",
+    "skipToMain": "Skip to main content",
+    "skipToTreatments": "Skip to treatments",
+    "skipToBooking": "Skip to booking",
+    "skipNavigation": "Skip links",
     "loadingThemeToggle": "Loading theme toggle",
     "closeVideo": "Close video",
     "toggleFullscreen": "Toggle fullscreen",
@@ -2121,16 +1849,89 @@
     "salonInterior": "Salon interior"
   },
   "footer": {
+    "description": "Batumi's premier beauty salon on Zurab Gorgiladze Street.",
+    "quickLinks": "Quick Links",
+    "treatments": "Treatments",
+    "conditions": "Skin Conditions",
+    "contact": "Contact Info",
+    "address": "Zurab Gorgiladze 63, Batumi 6000, Georgia",
+    "phone": "Tel: +995 599 123 456",
+    "email": "info@silkbeautysalon.online",
+    "openingHours": "Opening Hours",
     "hours": {
+      "monFri": "Mon-Fri: 10:00 - 22:00",
+      "satSun": "Sat-Sun: 10:00 - 22:00",
       "sat": "Sat",
       "sun": "Sun"
-    }
+    },
+    "social": "Follow Us",
+    "faqDesc": "Read some of the most frequently asked questions about the clinic and our treatments.",
+    "clinicTitle": "The Clinic",
+    "clinicDesc": "Located on Zurab Gorgiladze Street, opening hours are 10am–7pm.",
+    "teamTitle": "The Team",
+    "teamDesc": "Find out more about our skilled members of staff and how they can best help you.",
+    "pressTitle": "Media & Press",
+    "pressDesc": "Why not take a look at our most recent Press features and see what they're saying about us.",
+    "copyright": "© 2024 Silk Beauty Salon. All rights reserved.",
+    "privacy": "Privacy",
+    "terms": "Terms of Use",
+    "cookieNotice": "Cookie Notice",
+    "stayConnected": "Stay connected",
+    "newsletterTitle": "Join Our World",
+    "emailPlaceholder": "Your email address",
+    "subscribe": "Subscribe",
+    "about": "About",
+    "information": "Information",
+    "visitUs": "Visit Us",
+    "designedIn": "Designed in Batumi",
+    "socialDescription": "Follow us on Social Media for current news and patients stories",
+    "disclaimer": "Always consult a healthcare professional for individualized treatment recommendations and to discuss important safety information and risks associated with the use of the products.",
+    "instagram": "Instagram",
+    "facebook": "Facebook"
   },
   "blogPage": {
+    "title": "Our Blog",
+    "metaTitle": "Blog | Silk Beauty Salon",
+    "metaDescription": "Expert insights, treatment guides, and the latest from the world of aesthetics",
+    "subtitle": "Expert insights, treatment guides, and the latest from the world of aesthetics",
+    "breadcrumb": "Blog",
+    "stayUpdated": "Stay Updated",
+    "newsletterDesc": "Subscribe to our newsletter for the latest articles, tips, and exclusive offers",
+    "subscribeButton": "Subscribe to Newsletter",
+    "backToBlog": "Back to Blog",
+    "shareArticle": "Share this article",
+    "aboutAuthor": "About the Author",
+    "readyToTransform": "Ready to Transform?",
+    "bookConsultationDesc": "Book a consultation with one of our expert practitioners to discuss your aesthetic goals.",
+    "relatedPosts": "Related Posts",
+    "readMore": "Read More",
     "postNotFound": "Post not found",
     "expertPractitioner": "Expert Practitioner"
   },
   "treatmentPage": {
+    "bookNow": "Book This Treatment",
+    "backTo": "Back to Treatments",
+    "aboutTreatment": "About This Treatment",
+    "benefits": "Benefits",
+    "howItWorks": "How It Works",
+    "aftercare": "Aftercare",
+    "faqs": "Frequently Asked Questions",
+    "price": "Price from",
+    "duration": "Duration",
+    "readyToStart": "Ready to get started?",
+    "bookConsultation": "Book a Consultation",
+    "bookConsultationDesc": "Book a consultation with one of our expert practitioners",
+    "bookNowBtn": "Book Now",
+    "contactUs": "Contact Us",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "relatedTreatments": "Related Treatments",
+    "atAGlance": "At a Glance",
+    "results": "Results",
+    "downtime": "Downtime",
+    "youMightAlsoLike": "You Might Also Like",
+    "learnMore": "Learn more",
     "heroAlt": "Luxury Beauty Salon",
     "durationResults": "3-6 months",
     "minimalDowntime": "None to minimal"
@@ -2140,22 +1941,204 @@
     "teamAlt": "Nana Gviniashvili"
   },
   "contactPage": {
+    "title": "Contact Us",
+    "subtitle": "Get in touch with our team to book a consultation or ask any questions",
+    "formTitle": "Send Us a Message",
+    "thankYou": "Thank You!",
+    "messageSent": "Your message has been sent successfully. We'll get back to you shortly.",
+    "fullName": "Full Name",
+    "namePlaceholder": "Enter your name",
+    "nameRequired": "Please enter your name",
+    "emailAddress": "Email Address",
+    "emailPlaceholder": "Enter your email",
+    "emailRequired": "Please enter your email address",
+    "emailInvalid": "Please enter a valid email address",
+    "phoneNumber": "Phone Number",
+    "phonePlaceholder": "Enter your phone",
+    "phoneOptional": "Optional",
+    "message": "Message",
+    "messagePlaceholder": "How can we help you?",
+    "messageRequired": "Please enter a message",
+    "sending": "Sending...",
+    "sendMessage": "Send Message",
+    "getInTouch": "Get in Touch",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "openingHours": "Opening Hours",
+    "monTue": "Monday - Tuesday",
+    "wedThu": "Wednesday - Thursday",
+    "friday": "Friday",
+    "satSun": "Saturday - Sunday",
+    "readyToBook": "Ready to Book?",
+    "bookOnlineDesc": "Book your appointment online through our booking system",
+    "bookAppointment": "Book Appointment",
+    "bookOnline": "Book Online",
+    "scheduleAppointment": "Schedule your appointment",
+    "bookViaWhatsApp": "Book via WhatsApp",
+    "whatsapp": "WhatsApp",
+    "viewOnMap": "View on Google Maps",
+    "mapAddress": "63 Zurab Gorgiladze Street",
+    "mapCity": "Batumi, Georgia",
     "imageAlt": "Contact Silk Beauty Salon",
     "mapTitle": "Silk Beauty Salon Location"
   },
   "consultation": {
+    "title": "Request a Consultation",
+    "imageAlt": "Consultation with aesthetic specialist",
+    "metaTitle": "Find a Specialist | Silk Beauty Salon",
+    "metaDescription": "Book a consultation with our expert aesthetic practitioners. Start your journey to enhanced natural beauty.",
+    "label": "Personalized Care",
+    "headline": "Book Your Consultation Today",
+    "body": "Schedule a personalized consultation with our expert practitioners to discuss your aesthetic goals and create a tailored treatment plan just for you.",
+    "cta": {
+      "title": "Ready to Start Your Journey?",
+      "description": "Book your consultation today and take the first step towards enhanced natural beauty.",
+      "button": "Find a Specialist"
+    },
+    "hero": {
+      "title": "Explore the possibilities with a treatment consultation",
+      "description": "An essential part of treatment, the aesthetic consultation is where your journey begins. The better we understand your needs and desires, the more likely you will achieve the results you want.",
+      "cta": "Book Consultation",
+      "call": "Call Us"
+    },
+    "features": {
+      "expert": {
+        "title": "Expert Practitioners",
+        "description": "Our team includes certified aesthetic doctors and nurses with extensive experience."
+      },
+      "personalized": {
+        "title": "Personalized Approach",
+        "description": "Every treatment plan is tailored to your unique facial anatomy and aesthetic goals."
+      },
+      "convenient": {
+        "title": "Convenient Location",
+        "description": "Easy access in central Batumi with comfortable, private treatment rooms."
+      }
+    },
+    "journey": {
+      "title": "Your Aesthetic Journey",
+      "subtitle": "From consultation to results, we guide you through every step of your transformation."
+    },
+    "steps": {
+      "consultation": {
+        "title": "Initial Consultation",
+        "description": "Discuss your concerns, goals, and medical history with our specialist."
+      },
+      "assessment": {
+        "title": "Facial Assessment",
+        "description": "Comprehensive analysis of your facial structure and skin condition."
+      },
+      "plan": {
+        "title": "Treatment Plan",
+        "description": "Receive a personalized treatment plan with recommendations and pricing."
+      },
+      "treatment": {
+        "title": "Treatment",
+        "description": "Schedule your treatment at your convenience with our caring team."
+      }
+    },
+    "treatments": {
+      "title": "Treatments We Offer",
+      "subtitle": "Comprehensive aesthetic solutions for every concern.",
+      "explore": "Explore treatments ->"
+    },
     "bookImageAlt": "Book consultation"
   },
   "conditionsPage": {
+    "title": "Conditions",
+    "metaTitle": "Conditions We Treat | Silk Beauty Salon",
+    "metaDescription": "Learn about the various skin conditions we treat including ageing skin, acne scarring, pigmentation, rosacea and more at our Batumi aesthetic clinic.",
+    "listingTitle": "Conditions We Treat",
+    "listingSubtitle": "Whatever your skin concern, our expert practitioners can create a personalized treatment plan",
+    "ctaTitle": "Not Sure Which Treatment Is Right for You?",
+    "ctaSubtitle": "Book a consultation with one of our expert practitioners who will assess your concerns and recommend the best treatment options",
+    "bookConsultation": "Book a Consultation",
     "imageAlt": "Skin Care Treatment"
   },
   "offersPage": {
+    "title": "Special Offers",
+    "subtitle": "Take advantage of our exclusive promotions and special offers",
+    "breadcrumb": "Offers",
+    "offers": {
+      "newClient": {
+        "title": "New Client Special",
+        "description": "Book your first consultation and receive 20% off your first treatment.",
+        "terms": "Valid for new clients only. Cannot be combined with other offers."
+      },
+      "antiWrinkle": {
+        "title": "Anti-Wrinkle Package",
+        "description": "Book 3 areas of anti-wrinkle treatment and save.",
+        "terms": "Valid for 3 areas treated in the same session."
+      },
+      "dermalFiller": {
+        "title": "Dermal Filler Bundle",
+        "description": "Book 2ml or more of dermal filler and receive complimentary skin booster.",
+        "terms": "Limited time offer. Subject to availability."
+      },
+      "referral": {
+        "title": "Referral Reward",
+        "description": "Refer a friend and you both receive ₾50 credit towards your next treatment.",
+        "terms": "Referred friend must complete a treatment."
+      },
+      "seasonal": {
+        "title": "Seasonal Skin Refresh",
+        "description": "Combine any laser treatment with a medical facial for 15% off both.",
+        "terms": "Both treatments must be booked in the same month."
+      },
+      "loyalty": {
+        "title": "Loyalty Programme",
+        "description": "Join our loyalty programme and earn points on every treatment.",
+        "terms": "Points can be redeemed towards future treatments."
+      }
+    },
+    "ctaTitle": "Book Your Treatment Today",
+    "ctaSubtitle": "Contact us to book your consultation and take advantage of these exclusive offers",
+    "ctaButton": "Book Now",
+    "termsText": "All offers are subject to availability and may be withdrawn at any time. Offers cannot be combined unless otherwise stated. Please mention the offer when booking.",
     "imageAlt": "Special Offers"
   },
-  "bookingPage": {
-    "imageAlt": "Salon interior"
-  },
   "aboutPage": {
+    "title": "About Us",
+    "subtitle": "Batumi's leading non-surgical aesthetic clinic, bringing together world-class practitioners and cutting-edge treatments",
+    "ourStory": "Our Story",
+    "storyP1": "Silk Beauty Salon was founded with a simple vision: to provide the highest quality aesthetic treatments in a luxurious, welcoming environment. Located on Zurab Gorgiladze Street in Batumi, our clinic brings together some of Georgia's most talented aesthetic practitioners.",
+    "storyP2": "We believe that everyone deserves to feel confident and beautiful. Our approach focuses on enhancing your natural features rather than changing who you are. We take pride in our subtle, refined results that help you look like the best version of yourself.",
+    "storyP3": "From the moment you step into our clinic, you'll experience the difference. Our commitment to excellence extends beyond our treatments to every aspect of your visit, from our luxurious clinic space to our warm, attentive team.",
+    "ourValues": "Our Values",
+    "values": {
+      "patientCare": "Patient-First Care",
+      "patientCareDesc": "Your comfort, safety, and satisfaction are our top priorities.",
+      "excellence": "Excellence",
+      "excellenceDesc": "We use only premium products and the latest techniques for optimal results.",
+      "safety": "Safety",
+      "safetyDesc": "All treatments are performed by qualified medical professionals.",
+      "naturalResults": "Natural Results",
+      "naturalResultsDesc": "We enhance your natural beauty with subtle, refined treatments."
+    },
+    "meetTeam": "Meet Our Team",
+    "teamSubtitle": "Our expert practitioners bring years of experience and a passion for excellence",
+    "team": {
+      "ninoRole": "Founder & Lead Practitioner",
+      "ninoBio": "Nino is the founder of Silk Beauty Salon and a renowned aesthetic practitioner with over 15 years of experience in the beauty industry. She is known for her natural-looking results and meticulous attention to detail.",
+      "ketevanRole": "Senior Aesthetic Practitioner",
+      "ketevanBio": "Ketevan is a highly skilled aesthetic practitioner specializing in dermal fillers and skin treatments. Her gentle approach and artistic eye ensure beautiful, natural results for every client.",
+      "mariamRole": "Aesthetic Practitioner",
+      "mariamBio": "Mariam brings a wealth of knowledge in advanced skin treatments and laser therapy. She is passionate about helping clients achieve their skin goals through personalized treatment plans.",
+      "sophiaRole": "Aesthetic Practitioner",
+      "sophiaBio": "Sophia specializes in non-surgical facial rejuvenation and has extensive experience in anti-wrinkle treatments and dermal fillers. Her clients love her natural, fresh approach."
+    },
+    "awards": {
+      "title": "Awards & Recognition",
+      "awardWinning": "Award Winning",
+      "premierSalon": "Batumi's Premier Beauty Salon",
+      "featuredIn": "As featured in Georgian Fashion & Beauty Magazine"
+    },
+    "featuredInVogue": "Featured in Vogue, Grazia, Vanity Fair, and Tatler",
+    "featuredIn": "As featured in Georgian Fashion & Beauty Magazine",
+    "ctaTitle": "Ready to Start Your Journey?",
+    "ctaSubtitle": "Book a consultation with one of our expert practitioners today",
+    "ctaButton": "Book a Consultation",
     "interiorAlt": "Silk Beauty Salon Interior",
     "clinicAlt": "Silk Beauty Salon Clinic"
   },

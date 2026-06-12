@@ -1,7 +1,5 @@
 import createMiddleware from 'next-intl/middleware';
 import { NextRequest, NextResponse } from 'next/server';
-import { Ratelimit } from '@upstash/ratelimit';
-import { Redis } from '@upstash/redis';
 import { routing } from './src/i18n/routing';
 import { locales } from './src/i18n';
 import { structuredLog } from './src/lib/logger';
@@ -13,26 +11,41 @@ interface PathCheckResult {
   suspicious: boolean;
 }
 
-// Upstash Redis rate limiting configuration
-const UPSTASH_REDIS_REST_URL = process.env.UPSTASH_REDIS_REST_URL;
-const UPSTASH_REDIS_REST_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN;
-
-// Validate environment variables at startup
-if (!UPSTASH_REDIS_REST_URL || !UPSTASH_REDIS_REST_TOKEN) {
-  throw new Error(
-    'Missing Upstash Redis credentials. Please set UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN environment variables.'
-  );
+interface MiddlewareRateLimitEntry {
+  count: number;
+  resetTime: number;
 }
 
-// Create singleton Ratelimit client with sliding window (100 requests per 60 seconds)
-const ratelimit = new Ratelimit({
-  redis: new Redis({
-    url: UPSTASH_REDIS_REST_URL,
-    token: UPSTASH_REDIS_REST_TOKEN,
-  }),
-  limiter: Ratelimit.slidingWindow(100, '60 s'),
-  analytics: true,
-});
+const middlewareRateLimitStore = new Map<string, MiddlewareRateLimitEntry>();
+const MIDDLEWARE_RATE_LIMIT = 100;
+const MIDDLEWARE_RATE_WINDOW_MS = 60 * 1000;
+
+function checkMiddlewareRateLimit(ip: string): { success: boolean; reset: number } {
+  const now = Date.now();
+  const key = `mw:${ip}`;
+
+  for (const [storeKey, entry] of middlewareRateLimitStore.entries()) {
+    if (entry.resetTime <= now) {
+      middlewareRateLimitStore.delete(storeKey);
+    }
+  }
+
+  let entry = middlewareRateLimitStore.get(key);
+  if (!entry || entry.resetTime <= now) {
+    entry = {
+      count: 0,
+      resetTime: now + MIDDLEWARE_RATE_WINDOW_MS,
+    };
+  }
+
+  entry.count += 1;
+  middlewareRateLimitStore.set(key, entry);
+
+  return {
+    success: entry.count <= MIDDLEWARE_RATE_LIMIT,
+    reset: entry.resetTime,
+  };
+}
 
 // Always allow these search engine bots
 const ALWAYS_ALLOW_UA = [/googlebot/i, /bingbot/i, /twitterbot/i, /facebookexternalhit/i];
@@ -287,10 +300,9 @@ export default async function middleware(request: NextRequest) {
     logSuspicious(request, 'SUSPICIOUS_PATH', requestId);
   }
 
-  // Apply rate limiting to non-static requests
+  // Apply in-process rate limiting to non-static requests
   if (!pathname.startsWith('/_next') && !pathname.includes('.')) {
-    const rateLimitKey = `rl:${ip}`;
-    const { success, reset } = await ratelimit.limit(rateLimitKey);
+    const { success, reset } = checkMiddlewareRateLimit(ip);
 
     if (!success) {
       logSuspicious(request, 'RATE_LIMITED', requestId);
@@ -298,13 +310,22 @@ export default async function middleware(request: NextRequest) {
         status: 429,
         headers: {
           'Retry-After': String(Math.ceil((reset - Date.now()) / 1000)),
-          'X-RateLimit-Limit': '100',
+          'X-RateLimit-Limit': String(MIDDLEWARE_RATE_LIMIT),
           'X-RateLimit-Remaining': '0',
           'x-request-id': requestId,
         }
       });
       return response;
     }
+  }
+
+  // API routes are not localized pages; keep security checks above, then let
+  // the route handler execute directly.
+  if (pathname.startsWith('/api')) {
+    const response = NextResponse.next();
+    response.headers.set('x-request-id', requestId);
+    response.headers.set('x-pathname', pathname);
+    return response;
   }
 
   // Pass to i18n middleware for locale routing

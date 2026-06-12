@@ -38,20 +38,6 @@ console.log('🔒 Running security audit...\n');
 
 // Check 1: Environment variables
 check(
-  'UPSTASH_REDIS_REST_URL configured',
-  !!process.env.UPSTASH_REDIS_REST_URL,
-  'Upstash Redis URL is configured',
-  'UPSTASH_REDIS_REST_URL not set — rate limiting and security logging will fail'
-);
-
-check(
-  'UPSTASH_REDIS_REST_TOKEN configured',
-  !!process.env.UPSTASH_REDIS_REST_TOKEN,
-  'Upstash Redis token is configured',
-  'UPSTASH_REDIS_REST_TOKEN not set — Redis connection will fail'
-);
-
-check(
   'NODE_ENV is production',
   process.env.NODE_ENV === 'production',
   'Running in production mode',
@@ -124,13 +110,6 @@ check(
 try {
   const packageJson = JSON.parse(readFileSync(resolve(process.cwd(), 'package.json'), 'utf8'));
   const deps = { ...packageJson.dependencies, ...packageJson.devDependencies };
-  
-  check(
-    '@upstash/redis installed',
-    !!deps['@upstash/redis'],
-    '@upstash/redis is installed for Redis support',
-    '@upstash/redis not installed - npm install @upstash/redis'
-  );
   
   check(
     'isomorphic-dompurify installed',

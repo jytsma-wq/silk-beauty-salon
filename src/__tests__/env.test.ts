@@ -11,12 +11,14 @@ describe('Environment Variable Validation', () => {
   const validServerEnv = {
     NODE_ENV: 'production' as const,
     DATABASE_URL: 'postgresql://user:pass@localhost:5432/db',
-    RESEND_API_KEY: 're_abcdefghijklmnopqrstuvwxyz123',
-    RESEND_AUDIENCE_ID: '550e8400-e29b-41d4-a716-446655440000',
     CONTACT_EMAIL: 'info@silkbeautysalon.online',
+    SMTP_HOST: 'smtp.hostinger.com',
+    SMTP_PORT: '465',
+    SMTP_SECURE: 'true' as const,
+    SMTP_USER: 'info@silkbeautysalon.online',
+    SMTP_PASSWORD: 'hostinger-mailbox-password',
+    SMTP_FROM: 'info@silkbeautysalon.online',
     API_SECRET_KEY: 'a'.repeat(32),
-    UPSTASH_REDIS_REST_URL: 'https://upstash-url.upstash.io',
-    UPSTASH_REDIS_REST_TOKEN: 'token-with-at-least-20-chars',
   };
 
   const validPublicEnv = {
@@ -24,7 +26,6 @@ describe('Environment Variable Validation', () => {
     NEXT_PUBLIC_GA_MEASUREMENT_ID: 'G-XXXXXXXXXX',
     NEXT_PUBLIC_GTM_ID: 'GTM-XXXXXXX',
     NEXT_PUBLIC_FB_PIXEL_ID: '1234567890',
-    NEXT_PUBLIC_CALCOM_USERNAME: 'silkbeauty',
   };
 
   const validFullEnv = { ...validServerEnv, ...validPublicEnv };
@@ -35,14 +36,14 @@ describe('Environment Variable Validation', () => {
       expect(result.success).toBe(true);
     });
 
-    it('should throw when RESEND_API_KEY is missing', () => {
-      const invalidEnv = { ...validServerEnv, RESEND_API_KEY: undefined };
+    it('should throw when SMTP_PASSWORD is missing', () => {
+      const invalidEnv = { ...validServerEnv, SMTP_PASSWORD: undefined };
       const result = serverEnvSchema.safeParse(invalidEnv);
 
       expect(result.success).toBe(false);
       if (!result.success) {
         const errorPaths = result.error.issues.map((issue: z.ZodIssue) => issue.path.join('.'));
-        expect(errorPaths).toContain('RESEND_API_KEY');
+        expect(errorPaths).toContain('SMTP_PASSWORD');
       }
     });
 
@@ -79,36 +80,14 @@ describe('Environment Variable Validation', () => {
       }
     });
 
-    it('should throw when RESEND_AUDIENCE_ID is not a valid UUID', () => {
-      const invalidEnv = { ...validServerEnv, RESEND_AUDIENCE_ID: 'not-a-uuid' };
+    it('should throw when SMTP_USER is not a valid email address', () => {
+      const invalidEnv = { ...validServerEnv, SMTP_USER: 'not-a-mailbox' };
       const result = serverEnvSchema.safeParse(invalidEnv);
 
       expect(result.success).toBe(false);
       if (!result.success) {
         const errorMessages = result.error.issues.map((issue: z.ZodIssue) => issue.message).join(' ');
-        expect(errorMessages).toContain('RESEND_AUDIENCE_ID');
-      }
-    });
-
-    it('should throw when UPSTASH_REDIS_REST_URL is not a valid URL', () => {
-      const invalidEnv = { ...validServerEnv, UPSTASH_REDIS_REST_URL: 'invalid-url' };
-      const result = serverEnvSchema.safeParse(invalidEnv);
-
-      expect(result.success).toBe(false);
-      if (!result.success) {
-        const errorPaths = result.error.issues.map((issue: z.ZodIssue) => issue.path.join('.'));
-        expect(errorPaths).toContain('UPSTASH_REDIS_REST_URL');
-      }
-    });
-
-    it('should throw when UPSTASH_REDIS_REST_TOKEN is less than 20 characters', () => {
-      const invalidEnv = { ...validServerEnv, UPSTASH_REDIS_REST_TOKEN: 'short' };
-      const result = serverEnvSchema.safeParse(invalidEnv);
-
-      expect(result.success).toBe(false);
-      if (!result.success) {
-        const errorMessages = result.error.issues.map((issue: z.ZodIssue) => issue.message).join(' ');
-        expect(errorMessages).toContain('UPSTASH_REDIS_REST_TOKEN');
+        expect(errorMessages).toContain('SMTP_USER');
       }
     });
 
@@ -185,7 +164,7 @@ describe('Environment Variable Validation', () => {
     it('should report ALL errors, not just the first one', () => {
       const invalidEnv = {
         ...validFullEnv,
-        RESEND_API_KEY: undefined,
+        SMTP_PASSWORD: undefined,
         CONTACT_EMAIL: 'not-an-email',
         DATABASE_URL: 'not-a-url',
       };
@@ -198,7 +177,7 @@ describe('Environment Variable Validation', () => {
         expect(result.error.issues.length).toBeGreaterThanOrEqual(3);
 
         const errorPaths = result.error.issues.map((issue: z.ZodIssue) => issue.path.join('.'));
-        expect(errorPaths).toContain('RESEND_API_KEY');
+        expect(errorPaths).toContain('SMTP_PASSWORD');
         expect(errorPaths).toContain('CONTACT_EMAIL');
         expect(errorPaths).toContain('DATABASE_URL');
       }
@@ -220,9 +199,9 @@ describe('Environment Variable Validation', () => {
         }).join('\n');
 
         expect(formattedErrors).toContain('DATABASE_URL');
-        expect(formattedErrors).toContain('RESEND_API_KEY');
-        expect(formattedErrors).toContain('RESEND_AUDIENCE_ID');
         expect(formattedErrors).toContain('CONTACT_EMAIL');
+        expect(formattedErrors).toContain('SMTP_USER');
+        expect(formattedErrors).toContain('SMTP_PASSWORD');
         expect(formattedErrors).toContain('API_SECRET_KEY');
       }
     });
@@ -231,16 +210,19 @@ describe('Environment Variable Validation', () => {
   describe('Type exports', () => {
     it('should export ServerEnv type', () => {
       // TypeScript compilation test - if this compiles, types are correct
+      const parsed = serverEnvSchema.parse(validServerEnv);
       const serverEnvCheck: {
         NODE_ENV: 'development' | 'test' | 'production';
         DATABASE_URL: string;
-        RESEND_API_KEY: string;
-        RESEND_AUDIENCE_ID: string;
         CONTACT_EMAIL: string;
+        SMTP_HOST: string;
+        SMTP_PORT: number;
+        SMTP_SECURE: boolean;
+        SMTP_USER: string;
+        SMTP_PASSWORD: string;
+        SMTP_FROM: string;
         API_SECRET_KEY: string;
-        UPSTASH_REDIS_REST_URL: string;
-        UPSTASH_REDIS_REST_TOKEN: string;
-      } = validServerEnv;
+      } = parsed;
 
       expect(serverEnvCheck).toBeDefined();
     });
@@ -251,7 +233,6 @@ describe('Environment Variable Validation', () => {
         NEXT_PUBLIC_GA_MEASUREMENT_ID?: string;
         NEXT_PUBLIC_GTM_ID?: string;
         NEXT_PUBLIC_FB_PIXEL_ID?: string;
-        NEXT_PUBLIC_CALCOM_USERNAME?: string;
       } = validPublicEnv;
 
       expect(publicEnvCheck).toBeDefined();

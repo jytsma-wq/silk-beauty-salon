@@ -605,7 +605,7 @@ select:focus-visible,
 .editorial-card:hover {
   border-color: transparent;  /* was: #b5453a */
   box-shadow: none;           /* was: 0 4px 20px ... */
-  border-left: 2px solid #b5453a;  /* ADD: crisp left accent on hover */
+  border-left: 2px solid #b5453a;  /* ADD: sharp left accent on hover */
   padding-left: 1rem;
 }
 .testimonial-card {

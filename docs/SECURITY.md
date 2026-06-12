@@ -7,7 +7,7 @@ This document outlines the security measures implemented in the Silk Beauty Salo
 The application implements defense in depth with multiple layers of security controls:
 
 1. **Content Security Policy (CSP)** - Nonce-based CSP via middleware
-2. **Rate Limiting** - Redis-backed rate limiting with in-memory fallback
+2. **Rate Limiting** - In-process rate limiting for forms and API routes
 3. **CSRF Protection** - Double-submit cookie pattern
 4. **Input Sanitization** - XSS and injection attack prevention
 5. **Security Monitoring** - Event logging and alerting
@@ -53,7 +53,7 @@ upgrade-insecure-requests;
 
 - **API Rate Limit**: 30 requests per minute per IP
 - **Strict Rate Limit** (forms): 5 requests per 15 minutes per IP
-- **Storage**: Redis (with in-memory fallback)
+- **Storage**: In-process memory
 
 ### Implementation
 
@@ -159,7 +159,7 @@ const text = validateInput(userInput, 'text');    // Plain text sanitization
 
 ### Event Logging
 
-Security events are logged to Redis (when available):
+Security events are logged to an in-memory event buffer:
 
 ```typescript
 import { logSecurityEvent } from '@/lib/security-logger';
@@ -213,9 +213,8 @@ This checks:
 ### Production Requirements
 
 - [ ] `NODE_ENV=production`
-- [ ] `REDIS_URL` configured (Upstash recommended)
 - [ ] `API_SECRET_KEY` set to random string
-- [ ] `RESEND_API_KEY` and `RESEND_AUDIENCE_ID` set
+- [ ] Hostinger SMTP variables set for `info@silkbeautysalon.online`
 - [ ] All security modules in place
 
 ### Security Headers Verification
@@ -237,7 +236,7 @@ for i in {1..35}; do curl -s https://yourdomain.com/api/contact; done
 
 ## Incident Response
 
-1. **Check logs**: Review Vercel logs or `security:events` in Redis
+1. **Check logs**: Review application logs and `getActiveAlerts()` output
 2. **Block IP**: Add IP to manual block list if needed
 3. **Review alerts**: Check `getActiveAlerts()` for patterns
 4. **Update rules**: Add new patterns to SQL/NoSQL detection

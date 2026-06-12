@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import { Link } from '@/i18n/routing';
 import { ChevronRight } from 'lucide-react';
 import { getLocalizedTreatmentCategories } from '@/data/treatments';
-import { siteConfig } from '@/data/site-config';
 import { Button } from '@/components/ui/button';
 import { getTranslations } from 'next-intl/server';
 
@@ -129,9 +128,9 @@ export default async function PriceListPage({
               {t('ctaSubtitle')}
             </p>
             <Button asChild className="btn-gold">
-              <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
+              <Link href="/book">
                 {t('ctaButton')}
-              </a>
+              </Link>
             </Button>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { afterEach, describe, it, expect, vi, beforeEach } from 'vitest';
 
 // Mock the modules before importing the route
 vi.mock('@/lib/db', () => {
@@ -12,12 +12,8 @@ vi.mock('@/lib/db', () => {
   };
 });
 
-vi.mock('resend', () => ({
-  Resend: vi.fn().mockImplementation(() => ({
-    emails: {
-      send: vi.fn().mockResolvedValue({ id: 'email-123' }),
-    },
-  })),
+vi.mock('@/lib/mailer', () => ({
+  sendMail: vi.fn().mockResolvedValue({ skipped: false }),
 }));
 
 vi.mock('@/lib/csrf', () => ({
@@ -41,9 +37,15 @@ import { db } from '@/lib/db';
 describe('Contact API', () => {
   // Get reference to the mocked function
   const mockCreate = db.contactSubmission.create as ReturnType<typeof vi.fn>;
+  let consoleErrorSpy: ReturnType<typeof vi.spyOn>;
 
   beforeEach(() => {
     vi.clearAllMocks();
+    consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+  });
+
+  afterEach(() => {
+    consoleErrorSpy.mockRestore();
   });
 
   describe('POST /api/contact', () => {

@@ -12,23 +12,7 @@ const TEST_API_SECRET = 'test-api-secret-key-12345-minimum-length-32chars';
 // Set up environment BEFORE any imports
 beforeAll(() => {
   process.env.API_SECRET_KEY = TEST_API_SECRET;
-  process.env.UPSTASH_REDIS_REST_URL = 'https://test.upstash.io';
-  process.env.UPSTASH_REDIS_REST_TOKEN = 'test-token-12345';
 });
-
-// Mock Upstash modules
-vi.mock('@upstash/ratelimit', () => ({
-  Ratelimit: class MockRatelimit {
-    constructor() {}
-    limit = vi.fn().mockResolvedValue({ success: true, reset: Date.now() + 60000 });
-  },
-}));
-
-vi.mock('@upstash/redis', () => ({
-  Redis: class MockRedis {
-    constructor() {}
-  },
-}));
 
 // Mock the logger to avoid console noise
 vi.mock('../lib/logger', () => ({

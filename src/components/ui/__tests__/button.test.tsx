@@ -18,7 +18,8 @@ describe('Button', () => {
 
   it('renders with different variants', () => {
     const { rerender } = render(<Button variant="default">Default</Button>);
-    expect(screen.getByRole('button')).toHaveClass('bg-[#b5453a]');
+    expect(screen.getByRole('button')).toHaveClass('bg-[#f7f2eb]');
+    expect(screen.getByRole('button')).toHaveClass('rounded-md');
 
     rerender(<Button variant="outline">Outline</Button>);
     expect(screen.getByRole('button')).toHaveClass('border');
@@ -80,8 +81,8 @@ describe('Button', () => {
   it('supports galderma variant', () => {
     render(<Button variant="galderma">Galderma</Button>);
     const button = screen.getByRole('button');
-    expect(button).toHaveClass('bg-[#b5453a]');
-    expect(button).toHaveClass('rounded-none');
+    expect(button).toHaveClass('bg-[#f7f2eb]');
+    expect(button).toHaveClass('rounded-md');
   });
 
   it('supports focus interactions', () => {

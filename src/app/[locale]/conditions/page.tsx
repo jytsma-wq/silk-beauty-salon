@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { ChevronRight } from 'lucide-react';
 import { getLocalizedConditions } from '@/data/conditions';
-import { siteConfig } from '@/data/site-config';
 import { Button } from '@/components/ui/button';
 import { getTranslations } from 'next-intl/server';
 
@@ -111,9 +110,9 @@ export default async function ConditionsPage({
             {t('ctaSubtitle')}
           </p>
           <Button asChild className="btn-gold">
-            <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
+            <Link href="/book">
               {t('bookConsultation')}
-            </a>
+            </Link>
           </Button>
         </div>
       </section>
