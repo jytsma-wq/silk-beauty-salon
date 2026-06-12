@@ -175,6 +175,9 @@ export function GaldermaFooter() {
               <Link href="/blog" className="block text-sm text-stone-600 transition-colors hover:text-stone-900">
                 {tNav('blog')}
               </Link>
+              <Link href="/download" className="block text-sm text-stone-600 transition-colors hover:text-stone-900">
+                {tNav('downloadApp', { defaultValue: 'Download App' })}
+              </Link>
             </nav>
           </div>
 
