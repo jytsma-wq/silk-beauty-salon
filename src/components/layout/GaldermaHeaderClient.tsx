@@ -200,6 +200,9 @@ export function GaldermaHeaderClient({
               <Link href="/offers" className="text-xs uppercase tracking-[0.2em] text-stone-700 transition-colors hover:text-[#8d6f58]">
                 {t('offers', { defaultValue: 'Offers' })}
               </Link>
+              <Link href="/download" className="text-xs uppercase tracking-[0.2em] text-stone-700 transition-colors hover:text-[#8d6f58]">
+                {t('downloadApp', { defaultValue: 'Download App' })}
+              </Link>
               <Link href="/international-clients" className="text-xs uppercase tracking-[0.2em] text-stone-700 transition-colors hover:text-[#8d6f58]">
                 {t('international', { defaultValue: 'International Clients' })}
               </Link>
@@ -286,6 +289,9 @@ export function GaldermaHeaderClient({
                   </Link>
                   <Link href="/offers" onClick={() => setIsMenuOpen(false)} className="block text-3xl font-serif font-light text-stone-900 transition-colors hover:text-[#8d6f58]">
                     {t('offers', { defaultValue: 'Offers' })}
+                  </Link>
+                  <Link href="/download" onClick={() => setIsMenuOpen(false)} className="block text-3xl font-serif font-light text-stone-900 transition-colors hover:text-[#8d6f58]">
+                    {t('downloadApp', { defaultValue: 'Download App' })}
                   </Link>
                   <Link href="/international-clients" onClick={() => setIsMenuOpen(false)} className="block text-3xl font-serif font-light text-stone-900 transition-colors hover:text-[#8d6f58]">
                     {t('international', { defaultValue: 'International Clients' })}
