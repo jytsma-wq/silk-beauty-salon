@@ -115,28 +115,15 @@ backup_database() {
         export PGPASSWORD="$DB_PASSWORD"
     fi
     
-    # Check if running in Docker
-    if docker ps | grep -q "silk-beauty-postgres"; then
-        echo -e "${BLUE}Using Docker PostgreSQL container...${NC}"
-        docker exec silk-beauty-postgres pg_dump \
-            -U "$DB_USER" \
-            -d "$DB_NAME" \
-            --verbose \
-            --no-owner \
-            --no-acl \
-            2>/dev/null | gzip > "$backup_file"
-    else
-        # Direct PostgreSQL connection
-        pg_dump \
-            -h "$DB_HOST" \
-            -p "$DB_PORT" \
-            -U "$DB_USER" \
-            -d "$DB_NAME" \
-            --verbose \
-            --no-owner \
-            --no-acl \
-            2>/dev/null | gzip > "$backup_file"
-    fi
+    pg_dump \
+        -h "$DB_HOST" \
+        -p "$DB_PORT" \
+        -U "$DB_USER" \
+        -d "$DB_NAME" \
+        --verbose \
+        --no-owner \
+        --no-acl \
+        2>/dev/null | gzip > "$backup_file"
     
     if [[ $? -eq 0 ]]; then
         local size=$(du -h "$backup_file" | cut -f1)
@@ -242,19 +229,11 @@ restore_backup() {
         fi
         
         echo -e "${BLUE}Dropping existing database...${NC}"
-        if docker ps | grep -q "silk-beauty-postgres"; then
-            docker exec silk-beauty-postgres dropdb -U "$DB_USER" --if-exists "$DB_NAME"
-            docker exec silk-beauty-postgres createdb -U "$DB_USER" "$DB_NAME"
-            
-            echo -e "${BLUE}Restoring database...${NC}"
-            gunzip -c "$RESTORE_FILE" | docker exec -i silk-beauty-postgres psql -U "$DB_USER" -d "$DB_NAME"
-        else
-            dropdb -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USER" --if-exists "$DB_NAME"
-            createdb -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USER" "$DB_NAME"
-            
-            echo -e "${BLUE}Restoring database...${NC}"
-            gunzip -c "$RESTORE_FILE" | psql -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USER" -d "$DB_NAME"
-        fi
+        dropdb -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USER" --if-exists "$DB_NAME"
+        createdb -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USER" "$DB_NAME"
+        
+        echo -e "${BLUE}Restoring database...${NC}"
+        gunzip -c "$RESTORE_FILE" | psql -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USER" -d "$DB_NAME"
         
         if [[ $? -eq 0 ]]; then
             echo -e "${GREEN}Database restore completed!${NC}"

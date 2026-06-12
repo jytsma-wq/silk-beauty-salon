@@ -92,7 +92,7 @@ const nextConfig: NextConfig = {
   turbopack: {
     resolveExtensions: ['.mdx', '.tsx', '.ts', '.jsx', '.js', '.mjs', '.json'],
   },
-  // Security headers are handled by reverse proxy (Caddyfile) and middleware.ts (CSP only)
+  // CSP is handled by middleware.ts; static security headers are defined above.
 };
 
 const sentryBuildOptions = {

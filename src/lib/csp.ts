@@ -11,7 +11,7 @@
 
 /**
  * Build Content Security Policy header with nonce
- * Note: Other security headers are handled by reverse proxy (Caddyfile)
+ * Note: Other security headers are handled by Next.js headers and middleware
  * Note: 'unsafe-inline' is removed from script-src because nonce makes it redundant and weaker
  */
 export function buildCSPHeader(nonce: string): string {

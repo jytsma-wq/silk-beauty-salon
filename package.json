@@ -27,9 +27,6 @@
     "db:backup:list": "tsx scripts/db-backup.ts list",
     "db:backup:verify": "tsx scripts/backup-verify.ts",
     "db:restore": "tsx scripts/db-restore.ts restore",
-    "db:docker:up": "docker-compose up -d postgres pgbouncer",
-    "db:docker:down": "docker-compose down",
-    "db:docker:logs": "docker-compose logs -f postgres",
     "db:health": "curl -s http://localhost:3000/api/health/db | head -c 500",
     "test:lighthouse": "lhci autorun",
     "analyze": "BUNDLE_ANALYZE=true npm run build"

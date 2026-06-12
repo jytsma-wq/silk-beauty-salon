@@ -341,17 +341,14 @@ git commit -m "chore: remove committed databases and dev artifacts"
 
 ---
 
-### SECTION 16 — CADDYFILE (PRODUCTION PROXY)
-**File:** `Caddyfile`
+### SECTION 16 — HOSTINGER DEPLOYMENT
+**Files:** `README.md`, `docs/DEVOPS.md`
 
-- [ ] 16.1 Does it bind to the production domain (`silkbeautysalon.online` or configured domain)?
-- [ ] 16.2 Is HTTPS automatic via Let's Encrypt?
-- [ ] 16.3 Is www→non-www redirect in place?
-- [ ] 16.4 Is gzip or zstd compression enabled?
-- [ ] 16.5 Is the `Server` header removed (`-Server`)?
-- [ ] 16.6 Is `HSTS` header set?
-- [ ] 16.7 Does it reverse-proxy to `localhost:3000`?
-- [ ] 16.8 Are `X-Forwarded-For` and `X-Forwarded-Proto` headers passed upstream?
+- [ ] 16.1 Does the deployment documentation target `silkbeautysalon.online`?
+- [ ] 16.2 Does it use managed Node.js deployment rather than a custom proxy?
+- [ ] 16.3 Are install, build, and start commands documented?
+- [ ] 16.4 Are production environment variables documented?
+- [ ] 16.5 Is the Android APK path included in deployment verification?
 
 ---
 

@@ -10,7 +10,7 @@ A modern, multilingual Next.js website for Silk Beauty Salon in Batumi, Georgia.
 - **Internationalization**: next-intl (6 locales: EN, KA, RU, TR, AR, HE)
 - **Database**: Prisma ORM with PostgreSQL
 - **Email**: Resend API
-- **Deployment**: Standalone output with Caddy reverse proxy
+- **Deployment**: Hostinger managed Node.js hosting with Next.js standalone output
 
 ## Prerequisites
 
@@ -40,11 +40,8 @@ A modern, multilingual Next.js website for Silk Beauty Salon in Batumi, Georgia.
    Edit `.env.local` and fill in your values. See `.env.example` for detailed comments on each variable.
 
 4. **Set up the database**
+   Configure a PostgreSQL database and set `DATABASE_URL` plus `DIRECT_DATABASE_URL` in `.env.local`, then run:
    ```bash
-   # Start PostgreSQL with Docker
-   docker-compose up -d postgres
-
-   # Run migrations
    npm run db:migrate:dev
    ```
 
@@ -69,8 +66,6 @@ A modern, multilingual Next.js website for Silk Beauty Salon in Batumi, Georgia.
 | `npm run db:migrate:dev` | Run Prisma migrations in development |
 | `npm run db:migrate` | Deploy Prisma migrations in production |
 | `npm run db:studio` | Open Prisma Studio database GUI |
-| `npm run db:docker:up` | Start PostgreSQL container |
-| `npm run db:docker:down` | Stop PostgreSQL container |
 
 ## Project Structure
 
@@ -141,7 +136,7 @@ The site supports 6 languages with full RTL support for Arabic and Hebrew.
 
 ### Build for Production
 
-The project uses `output: 'standalone'` for optimized Docker/container deployment.
+The project uses `output: 'standalone'` for optimized managed Node.js deployment.
 
 ```bash
 npm run build
@@ -158,20 +153,21 @@ This creates a standalone build in `.next/standalone/` with:
 npm run start
 ```
 
-Or manually with Bun:
+Or manually with Node:
 ```bash
-NODE_ENV=production bun .next/standalone/server.js
+NODE_ENV=production node .next/standalone/server.js
 ```
 
-### Caddy Configuration
+### Hostinger Deployment
 
-A sample `Caddyfile` is included for production deployment:
+Use Hostinger managed Node.js hosting for production:
 
-```caddyfile
-silkbeautysalon.online {
-    reverse_proxy localhost:3000
-}
-```
+1. Connect the GitHub repository in Hostinger.
+2. Set the app root to the repository root.
+3. Use `npm ci` as the install command.
+4. Use `npm run build` as the build command.
+5. Use `node .next/standalone/server.js` as the start command.
+6. Point `silkbeautysalon.online` and `www.silkbeautysalon.online` at the Hostinger Node.js app.
 
 ### Performance Optimizations
 
@@ -189,6 +185,7 @@ Ensure all [REQUIRED] variables in `.env.example` are set:
 - `RESEND_AUDIENCE_ID` - Newsletter audience
 - `CONTACT_EMAIL` - Contact form recipient
 - `API_SECRET_KEY` - Secure random string
+- `NEXT_PUBLIC_ANDROID_APK_URL` - Optional Android APK URL override; defaults to `/apk/silk-beauty-salon.apk`
 
 ## Database Backup & Recovery
 
