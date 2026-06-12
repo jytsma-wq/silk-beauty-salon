@@ -319,7 +319,11 @@ article p {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-main { animation: fadeSlideUp 0.5s ease-out; }
+main {
+  animation: none;
+  opacity: 1;
+  transform: none;
+}
 
 /* ─── Input overrides ────────────────────────────────── */
 input, select, textarea { 

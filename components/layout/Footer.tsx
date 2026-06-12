@@ -11,6 +11,7 @@ export default function Footer() {
     { href: '/legal/terms', label: 'TERMS OF USE' },
     { href: '/legal/privacy', label: 'PRIVACY' },
     { href: '/legal/cookies', label: 'COOKIE NOTICE' },
+    { href: '/download', label: 'DOWNLOAD APP' },
   ];
 
   return (

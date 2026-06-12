@@ -45,6 +45,7 @@ export default function Header() {
     { href: '/specialists', label: t('specialists') },
     { href: '/about', label: t('about') },
     { href: '/international', label: t('international') },
+    { href: '/download', label: 'Download App' },
     { href: '/contact', label: t('contact') },
   ];
 
