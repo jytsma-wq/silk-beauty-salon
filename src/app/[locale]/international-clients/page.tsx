@@ -20,43 +20,6 @@ export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-const pricingData = [
-  { treatment: 'Botox (1 area)', priceGEL: '250-350', priceUSD: '$90-125' },
-  { treatment: 'Botox (3 areas)', priceGEL: '600-800', priceUSD: '$215-290' },
-  { treatment: 'Lip Filler (1ml)', priceGEL: '500-800', priceUSD: '$180-290' },
-  { treatment: 'Cheek Filler (1ml)', priceGEL: '600-900', priceUSD: '$215-325' },
-  { treatment: 'Under-eye Filler (1ml)', priceGEL: '600-900', priceUSD: '$215-325' },
-  { treatment: 'Skin Booster', priceGEL: '400-600', priceUSD: '$145-215' },
-  { treatment: 'PRP Facial', priceGEL: '400-600', priceUSD: '$145-215' },
-  { treatment: 'Chemical Peel', priceGEL: '200-400', priceUSD: '$70-145' },
-];
-
-const timingData = [
-  { treatment: 'Botox', minStay: 'Same day OK', reason: 'No visible downtime' },
-  { treatment: 'Fillers', minStay: '24-48 hours', reason: 'Allow swelling to subside' },
-  { treatment: 'Chemical Peel (medium)', minStay: '5-7 days', reason: 'Peeling phase visible' },
-  { treatment: 'PRP/Microneedling', minStay: '48 hours', reason: 'Redness, possible bruising' },
-  { treatment: 'Combination treatments', minStay: '3-5 days', reason: 'Multiple recovery phases' },
-];
-
-const packagesData = [
-  { name: 'Fresh Face', includes: 'Botox (3 areas) + Lip Filler', savings: '15% off' },
-  { name: 'Total Rejuvenation', includes: 'Full face Botox + Cheek Filler + Skin Booster', savings: '20% off' },
-  { name: 'Non-Surgical Lift', includes: '8-point lift (strategic filler placement)', savings: 'Special pricing' },
-  { name: 'Vacation Glow', includes: 'Skin booster + Light chemical peel', savings: '10% off' },
-];
-
-const faqData = [
-  { q: 'Is it safe to have treatments while traveling?', a: 'Yes, many treatments have minimal downtime. We provide detailed aftercare instructions and are available for follow-up support via WhatsApp or video call.' },
-  { q: 'What languages does Nana speak?', a: 'Nana speaks Georgian, English, and Russian fluently, ensuring clear communication with international clients.' },
-  { q: 'How do I book before arriving?', a: 'Contact us via WhatsApp for a free virtual consultation. We\'ll discuss your goals, provide a quote, and schedule your appointment.' },
-  { q: 'Can I have treatment the day before a flight?', a: 'Botox treatments are fine for same-day travel. For fillers, we recommend 24-48 hours before flying to allow swelling to subside.' },
-  { q: 'What if I have a reaction after I return home?', a: 'We provide 24/7 emergency contact and offer virtual follow-up consultations. For dermal fillers, we can provide guidance to local practitioners if needed.' },
-  { q: 'Do you use authentic products?', a: 'Absolutely. We use only Allergan (Juvederm), Galderma (Restylane), and Merz products. You can see the packaging and lot numbers during your treatment.' },
-  { q: 'What payment methods do you accept?', a: 'We accept cash (GEL, USD, EUR), Visa, Mastercard, and contactless payments including Apple Pay and Google Pay.' },
-  { q: 'Do you offer virtual follow-ups?', a: 'Yes, we offer complimentary virtual follow-up consultations for all international clients at 2 weeks post-treatment.' },
-];
-
 export default async function InternationalClientsPage({
   params,
 }: {
@@ -65,7 +28,37 @@ export default async function InternationalClientsPage({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'internationalPage' });
   const tCommon = await getTranslations({ locale, namespace: 'common' });
+  const tInternational = await getTranslations({ locale, namespace: 'international' });
+  const tSocial = await getTranslations({ locale, namespace: 'social' });
+  const tTreatment = await getTranslations({ locale, namespace: 'treatmentContent' });
   const team = siteConfig.team[0];
+  const pricingData = [
+    { treatment: `${t('services.botox.title')} (${t('pricing.oneArea')})`, priceGEL: '250-350', priceUSD: '$90-125' },
+    { treatment: `${t('services.botox.title')} (${t('pricing.threeAreas')})`, priceGEL: '600-800', priceUSD: '$215-290' },
+    { treatment: `${tTreatment('dermal-fillers.treatments.lip-fillers.name')} (1 ml)`, priceGEL: '500-800', priceUSD: '$180-290' },
+    { treatment: `${tTreatment('dermal-fillers.treatments.cheek-fillers.name')} (1 ml)`, priceGEL: '600-900', priceUSD: '$215-325' },
+    { treatment: `${tTreatment('tear-trough.name')} (1 ml)`, priceGEL: '600-900', priceUSD: '$215-325' },
+    { treatment: tTreatment('skin-treatments.treatments.skin-boosters.name'), priceGEL: '400-600', priceUSD: '$145-215' },
+    { treatment: tTreatment('skin-treatments.treatments.prp-therapy.name'), priceGEL: '400-600', priceUSD: '$145-215' },
+    { treatment: tTreatment('skin-treatments.treatments.chemical-peels.name'), priceGEL: '200-400', priceUSD: '$70-145' },
+  ];
+  const timingData = [
+    { treatment: t('services.botox.title'), minStay: t('timing.botoxStay'), reason: t('timing.botoxReason') },
+    { treatment: t('services.fillers.title'), minStay: t('timing.fillersStay'), reason: t('timing.fillersReason') },
+    { treatment: tTreatment('skin-treatments.treatments.chemical-peels.name'), minStay: t('timing.peelStay'), reason: t('timing.peelReason') },
+    { treatment: `${tTreatment('skin-treatments.treatments.prp-therapy.name')} / ${tTreatment('skin-treatments.treatments.microneedling.name')}`, minStay: t('timing.prpStay'), reason: t('timing.prpReason') },
+    { treatment: t('timing.combinationTreatments'), minStay: t('timing.comboStay'), reason: t('timing.comboReason') },
+  ];
+  const packagesData = [
+    { name: t('packages.freshFace'), includes: t('packages.freshFaceDesc'), savings: '15%' },
+    { name: t('packages.totalRejuvenation'), includes: t('packages.totalRejuvenationDesc'), savings: '20%' },
+    { name: t('packages.nonSurgicalLift'), includes: t('packages.nonSurgicalLiftDesc'), savings: t('packages.savings') },
+    { name: t('packages.vacationGlow'), includes: t('packages.vacationGlowDesc'), savings: '10%' },
+  ];
+  const faqData = Array.from({ length: 8 }, (_, index) => ({
+    q: t(`faq.q${index + 1}`),
+    a: t(`faq.a${index + 1}`),
+  }));
 
   return (
     <>
@@ -74,7 +67,7 @@ export default async function InternationalClientsPage({
         <div className="absolute inset-0">
           <Image
             src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=80"
-            alt={t('silkBeautySalon')}
+            alt={tInternational('imageAlt')}
             fill
             className="object-cover"
             priority
@@ -163,7 +156,7 @@ export default async function InternationalClientsPage({
               <div className="aspect-4/5 overflow-hidden relative bg-[#f7f4f0]">
                 <Image
                   src={team?.image || "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80"}
-                  alt={t('teamMember', { name: team?.name || 'Team Member' })}
+                  alt={team?.name || tSocial('silkBeautySalon')}
                   fill
                   className="object-cover object-top"
                   sizes="(max-width: 1024px) 100vw, 50vw"

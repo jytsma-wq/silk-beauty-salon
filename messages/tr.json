@@ -40,7 +40,8 @@
     "treatmentPortfolio": "Tedavi Portföyü",
     "skinConditions": "Cilt Durumları",
     "downloadApp": "Uygulamayı indir",
-    "openMenu": "Menüyü aç"
+    "openMenu": "Menüyü aç",
+    "closeMenu": "Menüyü kapat"
   },
   "header": {
     "announcement": "Ödüllü | Batumi'nin En İyi Güzellik Salonu | Gürcistan Moda ve Güzellik Dergisi'nde yayınlandı"
@@ -233,7 +234,7 @@
     "slotConflict": "Bu saat dilimi zaten rezerve edilmiş. Lütfen başka bir saat seçin.",
     "bookingFailed": "Rezervasyon oluşturulamadı",
     "unexpectedError": "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.",
-    "rateLimitMessage": "?ok fazla istek. L?tfen 15 dakika bekleyin.",
+    "rateLimitMessage": "Çok fazla gönderim. Lütfen 15 dakika bekleyin.",
     "bookingSummary": "Rezervasyon Özeti",
     "service": "Hizmet",
     "date": "Tarih",
@@ -349,6 +350,7 @@
     "realPeople": "Gerçek İnsanlar",
     "subtitle": "Tedavilerimizin gerçek sonuçlarını görün. Uzman estetik tedavilerimizle görünümünüzü dönüştürün.",
     "sectionLabel": "Gerçek Sonuçlar",
+    "startJourney": "Yolculuğunuza başlayın",
     "before": "Öncesi",
     "after": "Sonrası",
     "disclaimer": "Bireysel sonuçlar değişiklik gösterebilir. Tüm fotoğraflar gerçek müşterilerin izniyle gösterilmiştir.",
@@ -619,7 +621,7 @@
           "benefits": [
             "İnce çizgileri ve kırışıklıkları azaltır",
             "Yeni kırışıklıkların oluşumunu önler",
-            "Minimal downtime ile hızlı tedavi",
+            "Minimum iyileşme süresiyle hızlı uygulama",
             "Doğal görünümlü sonuçlar",
             "Uzun süreli etkiler (3-6 ay)"
           ],
@@ -839,7 +841,7 @@
             "Pigmentasyonu tedavi eder",
             "Güneş hasarını azaltır",
             "Cilt tonunu iyileştirir",
-            "Minimal downtime"
+            "Minimum iyileşme süresi"
           ]
         },
         "laser-vein": {
@@ -865,7 +867,7 @@
           "description": "CoolSculpting, cerrahi olmadan inatçı yağ hücrelerini dondurur ve ortadan kaldırır.",
           "benefits": [
             "Cerrahi olmayan",
-            "Downtime yok",
+            "İyileşme süresi yok",
             "Kalıcı yağ azaltma",
             "Doğal sonuçlar"
           ]
@@ -878,7 +880,7 @@
             "Selüliti azaltır",
             "Cilt dokusunu iyileştirir",
             "Cildi sıkılaştırır",
-            "Downtime yok"
+            "İyileşme süresi yok"
           ]
         },
         "skin-tightening": {
@@ -889,7 +891,7 @@
             "Daha sıkı cilt",
             "Azalmış sarkma",
             "Cerrahi olmayan",
-            "Downtime yok"
+            "İyileşme süresi yok"
           ]
         }
       }
@@ -962,7 +964,7 @@
             "Büyümeyi uyarır",
             "Daha kalın saç",
             "Doğal tedavi",
-            "Downtime yok"
+            "İyileşme süresi yok"
           ]
         },
         "mesotherapy-hair": {
@@ -977,34 +979,374 @@
           ]
         }
       }
+    },
+    "diagnostic": {
+      "name": "Diagnostik",
+      "description": "Kişisel tedavi planı için gelişmiş cilt analizi ve tanı araçları."
+    },
+    "tear-trough": {
+      "name": "Göz Altı Dolgusu",
+      "shortDescription": "Doğal denge için enjeksiyon tedavisi.",
+      "description": "Göz Altı Dolgusu: Konsültasyon sonrası yüz harmonisi ve doğal sonuç hedefiyle planlanır.",
+      "benefits": [
+        "Doğal sonuç",
+        "Kişisel plan",
+        "Minimum iyileşme",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
+    },
+    "non-surgical-rhinoplasty": {
+      "name": "Ameliyatsız Burun Estetiği",
+      "shortDescription": "Doğal denge için enjeksiyon tedavisi.",
+      "description": "Ameliyatsız Burun Estetiği: Konsültasyon sonrası yüz harmonisi ve doğal sonuç hedefiyle planlanır.",
+      "benefits": [
+        "Doğal sonuç",
+        "Kişisel plan",
+        "Minimum iyileşme",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
+    },
+    "marionette-lines": {
+      "name": "Marionette Çizgileri",
+      "shortDescription": "Doğal denge için enjeksiyon tedavisi.",
+      "description": "Marionette Çizgileri: Konsültasyon sonrası yüz harmonisi ve doğal sonuç hedefiyle planlanır.",
+      "benefits": [
+        "Doğal sonuç",
+        "Kişisel plan",
+        "Minimum iyileşme",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
+    },
+    "nasolabial-folds": {
+      "name": "Nazolabial Kıvrımlar",
+      "shortDescription": "Doğal denge için enjeksiyon tedavisi.",
+      "description": "Nazolabial Kıvrımlar: Konsültasyon sonrası yüz harmonisi ve doğal sonuç hedefiyle planlanır.",
+      "benefits": [
+        "Doğal sonuç",
+        "Kişisel plan",
+        "Minimum iyileşme",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
+    },
+    "neck-rejuvenation": {
+      "name": "Boyun Gençleştirme",
+      "shortDescription": "Doğal denge için enjeksiyon tedavisi.",
+      "description": "Boyun Gençleştirme: Konsültasyon sonrası yüz harmonisi ve doğal sonuç hedefiyle planlanır.",
+      "benefits": [
+        "Doğal sonuç",
+        "Kişisel plan",
+        "Minimum iyileşme",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
+    },
+    "decolletage-treatment": {
+      "name": "Dekolte Tedavisi",
+      "shortDescription": "Doğal denge için enjeksiyon tedavisi.",
+      "description": "Dekolte Tedavisi: Konsültasyon sonrası yüz harmonisi ve doğal sonuç hedefiyle planlanır.",
+      "benefits": [
+        "Doğal sonuç",
+        "Kişisel plan",
+        "Minimum iyileşme",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
+    },
+    "hand-rejuvenation": {
+      "name": "El Gençleştirme",
+      "shortDescription": "Doğal denge için enjeksiyon tedavisi.",
+      "description": "El Gençleştirme: Konsültasyon sonrası yüz harmonisi ve doğal sonuç hedefiyle planlanır.",
+      "benefits": [
+        "Doğal sonuç",
+        "Kişisel plan",
+        "Minimum iyileşme",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
+    },
+    "clear-brilliant": {
+      "name": "Clear + Brilliant",
+      "shortDescription": "Cilt tonu ve dokusunu iyileştiren lazer tedavisi.",
+      "description": "Clear + Brilliant: Gelişmiş lazer teknolojisi cilt tonu, doku ve kaliteyi destekler.",
+      "benefits": [
+        "Ton iyileşmesi",
+        "Doku iyileşmesi",
+        "Profesyonel bakım",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
+    },
+    "cutera-aviclear": {
+      "name": "Cutera AviClear",
+      "shortDescription": "Cilt tonu ve dokusunu iyileştiren lazer tedavisi.",
+      "description": "Cutera AviClear: Gelişmiş lazer teknolojisi cilt tonu, doku ve kaliteyi destekler.",
+      "benefits": [
+        "Ton iyileşmesi",
+        "Doku iyileşmesi",
+        "Profesyonel bakım",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
+    },
+    "cutera-c02-laser": {
+      "name": "Cutera CO2 Lazer",
+      "shortDescription": "Cilt tonu ve dokusunu iyileştiren lazer tedavisi.",
+      "description": "Cutera CO2 Lazer: Gelişmiş lazer teknolojisi cilt tonu, doku ve kaliteyi destekler.",
+      "benefits": [
+        "Ton iyileşmesi",
+        "Doku iyileşmesi",
+        "Profesyonel bakım",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
+    },
+    "cutera-secret-pro-rf-microneedling": {
+      "name": "Cutera Secret PRO RF Mikro İğneleme",
+      "shortDescription": "Cilt tonu ve dokusunu iyileştiren lazer tedavisi.",
+      "description": "Cutera Secret PRO RF Mikro İğneleme: Gelişmiş lazer teknolojisi cilt tonu, doku ve kaliteyi destekler.",
+      "benefits": [
+        "Ton iyileşmesi",
+        "Doku iyileşmesi",
+        "Profesyonel bakım",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
+    },
+    "cutera-excel-v-ipl": {
+      "name": "Cutera Excel V+ IPL",
+      "shortDescription": "Cilt tonu ve dokusunu iyileştiren lazer tedavisi.",
+      "description": "Cutera Excel V+ IPL: Gelişmiş lazer teknolojisi cilt tonu, doku ve kaliteyi destekler.",
+      "benefits": [
+        "Ton iyileşmesi",
+        "Doku iyileşmesi",
+        "Profesyonel bakım",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
+    },
+    "candela-vbeam-laser": {
+      "name": "Candela VBeam Lazer",
+      "shortDescription": "Cilt tonu ve dokusunu iyileştiren lazer tedavisi.",
+      "description": "Candela VBeam Lazer: Gelişmiş lazer teknolojisi cilt tonu, doku ve kaliteyi destekler.",
+      "benefits": [
+        "Ton iyileşmesi",
+        "Doku iyileşmesi",
+        "Profesyonel bakım",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
+    },
+    "bbl-hero": {
+      "name": "BBL HERO",
+      "shortDescription": "Cilt tonu ve dokusunu iyileştiren lazer tedavisi.",
+      "description": "BBL HERO: Gelişmiş lazer teknolojisi cilt tonu, doku ve kaliteyi destekler.",
+      "benefits": [
+        "Ton iyileşmesi",
+        "Doku iyileşmesi",
+        "Profesyonel bakım",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
+    },
+    "moxi-laser": {
+      "name": "MOXI Lazer",
+      "shortDescription": "Cilt tonu ve dokusunu iyileştiren lazer tedavisi.",
+      "description": "MOXI Lazer: Gelişmiş lazer teknolojisi cilt tonu, doku ve kaliteyi destekler.",
+      "benefits": [
+        "Ton iyileşmesi",
+        "Doku iyileşmesi",
+        "Profesyonel bakım",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
+    },
+    "moxi-and-bbl": {
+      "name": "MOXI ve BBL",
+      "shortDescription": "Cilt tonu ve dokusunu iyileştiren lazer tedavisi.",
+      "description": "MOXI ve BBL: Gelişmiş lazer teknolojisi cilt tonu, doku ve kaliteyi destekler.",
+      "benefits": [
+        "Ton iyileşmesi",
+        "Doku iyileşmesi",
+        "Profesyonel bakım",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
+    },
+    "endolift": {
+      "name": "Endolift",
+      "shortDescription": "Cilt tonu ve dokusunu iyileştiren lazer tedavisi.",
+      "description": "Endolift: Gelişmiş lazer teknolojisi cilt tonu, doku ve kaliteyi destekler.",
+      "benefits": [
+        "Ton iyileşmesi",
+        "Doku iyileşmesi",
+        "Profesyonel bakım",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
+    },
+    "is-clinical-fire-ice-peel": {
+      "name": "iS Clinical Fire & Ice Peel",
+      "shortDescription": "Sağlıklı ve parlak görünüm için cilt kalitesi tedavisi.",
+      "description": "iS Clinical Fire & Ice Peel: Profesyonel cilt tedavisi, konsültasyon sonrası cildinizin ihtiyaçlarına göre seçilir.",
+      "benefits": [
+        "Parlak görünüm",
+        "Doku iyileşmesi",
+        "Kişisel bakım",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
+    },
+    "mesoestetic-cosmelan-peel": {
+      "name": "Mesoestetic Cosmelan Peel",
+      "shortDescription": "Sağlıklı ve parlak görünüm için cilt kalitesi tedavisi.",
+      "description": "Mesoestetic Cosmelan Peel: Profesyonel cilt tedavisi, konsültasyon sonrası cildinizin ihtiyaçlarına göre seçilir.",
+      "benefits": [
+        "Parlak görünüm",
+        "Doku iyileşmesi",
+        "Kişisel bakım",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
+    },
+    "obagi-blue-radiance-peel": {
+      "name": "Obagi Blue Radiance Peel",
+      "shortDescription": "Sağlıklı ve parlak görünüm için cilt kalitesi tedavisi.",
+      "description": "Obagi Blue Radiance Peel: Profesyonel cilt tedavisi, konsültasyon sonrası cildinizin ihtiyaçlarına göre seçilir.",
+      "benefits": [
+        "Parlak görünüm",
+        "Doku iyileşmesi",
+        "Kişisel bakım",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
+    },
+    "obagi-nu-derm": {
+      "name": "Obagi Nu-Derm",
+      "shortDescription": "Sağlıklı ve parlak görünüm için cilt kalitesi tedavisi.",
+      "description": "Obagi Nu-Derm: Profesyonel cilt tedavisi, konsültasyon sonrası cildinizin ihtiyaçlarına göre seçilir.",
+      "benefits": [
+        "Parlak görünüm",
+        "Doku iyileşmesi",
+        "Kişisel bakım",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
+    },
+    "skinpen-microneedling": {
+      "name": "SkinPen Mikro İğneleme",
+      "shortDescription": "Sağlıklı ve parlak görünüm için cilt kalitesi tedavisi.",
+      "description": "SkinPen Mikro İğneleme: Profesyonel cilt tedavisi, konsültasyon sonrası cildinizin ihtiyaçlarına göre seçilir.",
+      "benefits": [
+        "Parlak görünüm",
+        "Doku iyileşmesi",
+        "Kişisel bakım",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
+    },
+    "dermamelan-intimate-peel": {
+      "name": "Dermamelan Intimate Peel",
+      "shortDescription": "İntim bölge için gizlilik odaklı tedavi.",
+      "description": "Dermamelan Intimate Peel: Tedavi maksimum konfor, gizlilik ve profesyonel yaklaşımla uygulanır.",
+      "benefits": [
+        "Gizlilik",
+        "Konfor",
+        "Profesyonel bakım",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
+    },
+    "intimate-laser-hair-removal": {
+      "name": "İntim Lazer Epilasyon",
+      "shortDescription": "İntim bölge için gizlilik odaklı tedavi.",
+      "description": "İntim Lazer Epilasyon: Tedavi maksimum konfor, gizlilik ve profesyonel yaklaşımla uygulanır.",
+      "benefits": [
+        "Gizlilik",
+        "Konfor",
+        "Profesyonel bakım",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
+    },
+    "observe-skin-scanner": {
+      "name": "Observe Cilt Tarayıcı",
+      "shortDescription": "Kişisel plan için gelişmiş cilt analizi.",
+      "description": "Observe Cilt Tarayıcı: Diagnostik analiz, cilt durumunu değerlendirmeye ve doğru tedaviyi seçmeye yardımcı olur.",
+      "benefits": [
+        "Derin analiz",
+        "Kişisel plan",
+        "İlerleme takibi",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
+    },
+    "hair-extensions": {
+      "name": "Saç Kaynak",
+      "shortDescription": "Bakımlı ve doğal sonuç için salon hizmeti.",
+      "description": "Saç Kaynak: Hizmet, stiliniz, konforunuz ve istediğiniz sonuca göre planlanır.",
+      "benefits": [
+        "Kişisel plan",
+        "Salon bitişi",
+        "Bakımlı görünüm",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
+    },
+    "nails": {
+      "name": "Tırnaklar",
+      "shortDescription": "Bakımlı ve doğal sonuç için salon hizmeti.",
+      "description": "Tırnaklar: Hizmet, stiliniz, konforunuz ve istediğiniz sonuca göre planlanır.",
+      "benefits": [
+        "Kişisel plan",
+        "Salon bitişi",
+        "Bakımlı görünüm",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
+    },
+    "lashes": {
+      "name": "Kirpikler",
+      "shortDescription": "Bakımlı ve doğal sonuç için salon hizmeti.",
+      "description": "Kirpikler: Hizmet, stiliniz, konforunuz ve istediğiniz sonuca göre planlanır.",
+      "benefits": [
+        "Kişisel plan",
+        "Salon bitişi",
+        "Bakımlı görünüm",
+        "Konsültasyon odaklı yaklaşım",
+        "Profesyonel salon sonucu"
+      ]
     }
   },
   "conditionContent": {
     "ageing-skin": {
       "name": "Yaşlanan Cilt",
-      "shortDescription": "Anti-ageing tedavilerimizle ince çizgileri, kırışıklıkları ve elastikiyet kaybını giderin.",
+      "shortDescription": "İnce çizgi, kırışıklık ve elastikiyet kaybını hedefleyen tedaviler.",
       "description": "Yaşlanan cilt, ince çizgilerin, kırışıklıkların, elastikiyet kaybının ve cilt dokusu ve tonundaki değişikliklerin gelişmesiyle karakterize edilen doğal bir süreçtir.",
       "symptoms": [
-        "İnce çizgiler ve kırışıklıklar",
-        "Cilt elastikiyeti kaybı",
-        "Sarkık cilt",
+        "Ciltte görünür değişiklikler",
+        "Doku veya tonda düzensizlik",
+        "Nem veya sıkılık azalması",
         "Yanaklarda hacim kaybı",
-        "Derin nazolabial kıvrımlar",
-        "Kukla çizgileri"
+        "Müşteriyi rahatsız eden estetik belirtiler",
+        "Konsültasyonda değerlendirilecek ek belirti"
       ],
       "causes": [
-        "Kolajen üretiminin doğal azalması",
+        "Güneş maruziyeti",
         "Güneş hasarı",
         "Yüz yağı ve hacim kaybı",
-        "Cilt hidrasyonunun azalması",
-        "Tekrarlayan yüz ifadeleri"
+        "Genetik yatkınlık",
+        "Yaşam tarzı ve çevresel faktörler"
       ],
       "treatments": [
         "Kırışıklık enjeksiyonları",
         "Dermal dolgular",
         "Cilt sıkılaştırma tedavileri",
         "Lazer yenileme",
-        "Tıbbi sınıf cilt bakımı"
+        "Kişisel ev bakımı önerileri"
       ]
     },
     "acne": {
@@ -1346,7 +1688,9 @@
       "priceGEL": "Fiyat (GEL)",
       "priceUSD": "Yaklaşık USD",
       "note": "Batı Avrupa veya İngiltere'de aynı tedaviler 2-3 kat daha pahalıdır. Gürcistan fiyatlarına premium sonuçlar alın.",
-      "finalNote": "Nihai fiyatlandırma, bireysel ihtiyaçlara göre konsültasyon sırasında belirlenir"
+      "finalNote": "Nihai fiyatlandırma, bireysel ihtiyaçlara göre konsültasyon sırasında belirlenir",
+      "oneArea": "1 bölge",
+      "threeAreas": "3 bölge"
     },
     "journey": {
       "title": "Uluslararası Müşteri Yolculuğunuz",
@@ -1384,6 +1728,7 @@
       "prpReason": "Kızarıklık, morarma olabilir",
       "comboStay": "3-5 gün",
       "comboReason": "Birden fazla iyileşme fazı",
+      "combinationTreatments": "Kombine uygulamalar",
       "seaWarning": "Enfeksiyon riskini önlemek için tedaviden sonra 48 saat boyunca Karadeniz'de yüzmekten kaçının."
     },
     "trust": {
@@ -1431,7 +1776,7 @@
       "instagramDesc": "Çalışmalarımızı görün ve DM atın",
       "videoConsult": "Video Konsültasyon",
       "videoConsultDesc": "Ücretsiz varış öncesi konsültasyon",
-      "email": "Email",
+      "email": "E-posta",
       "emailDesc": "Detaylı sorular için",
       "responseTime": "Mesai saatleri içinde uluslararası sorulara 2 saat içinde yanıt veriyoruz."
     },
@@ -1461,10 +1806,10 @@
   },
   "bookingPage": {
     "title": "Randevu Al",
-    "subtitle": "Uzmanlarımızla konsültasyon veya tedavinizi planlayın",
+    "subtitle": "Konsültasyon türünü ve uygun saati seçip talebinizi gönderin.",
     "metadata": {
-      "title": "Randevu Al | Silk Beauty Salon",
-      "description": "Batumi, Gürcistan'daki Silk Beauty Salon'da konsültasyon veya tedavi randevunuzu ayarlayın."
+      "title": "Konsültasyonunuzu Ayırtın | Silk Beauty Salon",
+      "description": "Bir konsültasyon türü seçin ve randevunuzu ayırtın."
     },
     "selectDateTime": "Tarih ve Saat Seçin",
     "bookingNotConfigured": "Çevrimiçi Rezervasyon Yakında",
@@ -1475,46 +1820,46 @@
     "consultations": {
       "facial": {
         "title": "Yüz Konsültasyonu",
-        "duration": "30 dk",
-        "description": "Kırışıklık karşıtı tedavileri ve dermal dolguları tartışın"
+        "duration": "45 dk",
+        "description": "Yüz bölgesine yönelik hedeflerinize odaklanan kısa bir salon içi konsültasyon."
       },
       "skin": {
         "title": "Cilt Konsültasyonu",
         "duration": "45 dk",
-        "description": "Kapsamlı cilt analizi ve tedavi planlaması"
+        "description": "Cilt sorunlarını değerlendirin ve bir uygulama planı oluşturun."
       },
       "body": {
-        "title": "Vücut Konsültasyonu",
-        "duration": "30 dk",
-        "description": "Vücut şekillendirme ve cilt sıkılaştırma seçenekleri"
+        "title": "Vücut Uygulamaları Konsültasyonu",
+        "duration": "45 dk",
+        "description": "Vücut şekillendirme ve uygulama seçeneklerini görüşün."
       },
       "virtual": {
         "title": "Sanal Konsültasyon",
-        "duration": "20 dk",
-        "description": "Uzaktan müşteriler için çevrimiçi konsültasyon"
+        "duration": "30 dk",
+        "description": "Bulunduğunuz yerden uzaktan konsültasyon."
       }
     },
     "whatToExpect": {
       "title": "Beklentiler",
-      "step1": "Tıbbi anketimizi doldurun",
-      "step2": "Hedeflerinizi ve endişelerinizi tartışın",
-      "step3": "Kişiselleştirilmiş tedavi önerileri alın",
-      "step4": "Gizli maliyet olmayan net bir fiyat alın"
+      "step1": "İhtiyaçlarınıza uygun konsültasyon türünü seçin.",
+      "step2": "Tercih ettiğiniz tarih ve saati seçin.",
+      "step3": "İletişim bilgilerinizi ve notlarınızı girin.",
+      "step4": "Randevunuzu onaylayıp kısa sürede sizinle iletişime geçeriz."
     },
     "needHelp": "Yardım mı Gerekiyor?",
     "phone": "Telefon",
     "email": "E-posta",
     "address": "Adres",
     "faq": {
-      "title": "Rezervasyon SSS",
-      "q1": "Bir konsültasyon ne kadar sürer?",
-      "a1": "İlk konsültasyonlar tipik olarak kapsamlı bir değerlendirme ve hedeflerinizin tartışılması için 30-45 dakika sürer.",
-      "q2": "Depozito gerekiyor mu?",
-      "a2": "Randevunuzu garanti altına almak için %20 depozito gerekir ve bu tedavi maliyetinizden düşülür.",
-      "q3": "İptal politikanız nedir?",
-      "a3": "İptaller için 48 saat önceden haber verilmesini gerektiriyoruz. Geç iptaller depozito kaybına neden olabilir.",
-      "q4": "Randevumu yeniden planlayabilir miyim?",
-      "a4": "Evet, randevunuzu planlanan saatten 24 saat önce yeniden planlayabilirsiniz. Lütfen yeni bir zaman ayarlamak için telefon veya e-posta ile bize ulaşın."
+      "title": "Sık Sorulan Sorular",
+      "q1": "Nasıl randevu alırım?",
+      "a1": "Bir konsültasyon türü ve uygun bir saat seçin.",
+      "q2": "Randevumu değiştirebilir miyim?",
+      "a2": "Evet, bizimle iletişime geçin; randevunuzu değiştirmeye yardımcı olalım.",
+      "q3": "Depozito gerekiyor mu?",
+      "a3": "Hizmete bağlı olarak bazı konsültasyonlar için depozito gerekebilir.",
+      "q4": "Çevrimiçi randevu alabilir miyim?",
+      "a4": "Evet, rezervasyon formu bu sayfada mevcuttur."
     },
     "preferredTime": "Tercih Edilen Zaman",
     "selectTime": "Bir zaman aralığı seçin",
@@ -1523,53 +1868,53 @@
     "evening": "Akşam",
     "additionalNotes": "Ek Notlar",
     "notesPlaceholder": "Bilmemiz gereken herhangi bir özel istek veya bilgi...",
-    "requestBooking": "Rezervasyon İste",
+    "requestBooking": "Randevu talebi gönder",
     "bookingNote": "Randevunuzu 24 saat içinde onaylayacağız",
-    "eyebrow": "Kons?ltasyon rezervasyonu",
-    "heroImageAlt": "Salon i? mek?n?",
+    "eyebrow": "Konsültasyon randevusu",
+    "heroImageAlt": "Salon iç mekanı",
     "preferredDate": "Tercih edilen tarih",
     "selectService": "Hizmet Seçin",
-    "selectServicePlaceholder": "Bir kons?ltasyon t?r? se?in",
+    "selectServicePlaceholder": "Bir danışmanlık türü seçin",
     "fullName": "Ad Soyad",
     "namePlaceholder": "Ahmet Yılmaz",
     "phoneNumber": "Telefon (İsteğe Bağlı)",
     "phonePlaceholder": "+90 555 123 4567",
     "emailAddress": "E-posta",
     "emailPlaceholder": "ahmet@example.com",
-    "successTitle": "Rezervasyon talebi g?nderildi",
-    "successMessage": "Rezervasyon talebiniz i?in te?ekk?r ederiz. Randevunuzu onaylamak i?in yak?nda sizinle ileti?ime ge?ece?iz.",
-    "bookAnother": "Ba?ka bir randevu al",
-    "dialogTitle": "Book Appointment",
-    "dialogDescription": "Schedule your consultation with our expert practitioners",
-    "continue": "Continue",
-    "back": "Back",
-    "confirmBooking": "Confirm Booking",
-    "bookingStatus": "Booking...",
-    "booked": "(Booked)",
-    "slotConflict": "This time slot is already booked. Please select another time.",
-    "bookingFailed": "Failed to create booking",
-    "unexpectedError": "An unexpected error occurred. Please try again.",
-    "rateLimitMessage": "Too many submissions. Please wait 15 minutes.",
-    "bookingSummary": "Booking Summary",
-    "bookingConfirmed": "Booking Confirmed!",
-    "thankYou": "Thank you, {name}. Your appointment has been scheduled.",
-    "bookingDetails": "Booking Details",
-    "done": "Done",
-    "selectDate": "Select Date",
-    "selectTimeSlot": "Select Time Slot",
-    "service": "Service",
-    "date": "Date",
-    "time": "Time",
-    "message": "Message (Optional)",
-    "servicePlaceholder": "Choose a service",
-    "messagePlaceholder": "Any specific requirements or questions...",
-    "serviceConsultation": "Consultation",
-    "serviceBotox": "Botox Treatment",
-    "serviceFillers": "Dermal Fillers",
-    "serviceLaser": "Laser Hair Removal",
-    "serviceRejuvenation": "Skin Rejuvenation",
-    "servicePeel": "Chemical Peel",
-    "serviceMicroneedling": "Microneedling",
+    "successTitle": "Randevu talebi gönderildi",
+    "successMessage": "Randevu talebiniz için teşekkür ederiz. Randevunuzu onaylamak için kısa süre içinde sizinle iletişime geçeceğiz.",
+    "bookAnother": "Başka bir randevu al",
+    "dialogTitle": "Randevu Al",
+    "dialogDescription": "Uzmanlarımızla konsültasyonunuzu planlayın",
+    "continue": "Devam et",
+    "back": "Geri",
+    "confirmBooking": "Randevuyu onayla",
+    "bookingStatus": "Randevu oluşturuluyor...",
+    "booked": "(Dolu)",
+    "slotConflict": "Bu saat aralığı zaten dolu. Lütfen başka bir saat seçin.",
+    "bookingFailed": "Randevu oluşturulamadı",
+    "unexpectedError": "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.",
+    "rateLimitMessage": "Çok fazla gönderim. Lütfen 15 dakika bekleyin.",
+    "bookingSummary": "Randevu özeti",
+    "bookingConfirmed": "Randevu onaylandı!",
+    "thankYou": "Teşekkürler, {name}. Randevunuz planlandı.",
+    "bookingDetails": "Randevu detayları",
+    "done": "Tamam",
+    "selectDate": "Tarih seçin",
+    "selectTimeSlot": "Saat seçin",
+    "service": "Hizmet",
+    "date": "Tarih",
+    "time": "Saat",
+    "message": "Mesaj (isteğe bağlı)",
+    "servicePlaceholder": "Bir hizmet seçin",
+    "messagePlaceholder": "Özel istekler veya sorular...",
+    "serviceConsultation": "Konsültasyon",
+    "serviceBotox": "Botoks uygulaması",
+    "serviceFillers": "Dermal dolgular",
+    "serviceLaser": "Lazer epilasyon",
+    "serviceRejuvenation": "Cilt gençleştirme",
+    "servicePeel": "Kimyasal peeling",
+    "serviceMicroneedling": "Mikro iğneleme",
     "serviceHydrafacial": "Hydrafacial",
     "personalInfo": "Kişisel Bilgiler",
     "formNotReady": "Rezervasyon formu hâlâ hazırlanıyor. Lütfen birazdan tekrar deneyin."
@@ -1643,142 +1988,142 @@
   },
   "homeEditorial": {
     "carousel": {
-      "previousSlide": "?nceki slayt",
+      "previousSlide": "Önceki slayt",
       "nextSlide": "Sonraki slayt"
     },
     "heroSlides": {
       "slide1": {
-        "eyebrow": "Batum?da medikal estetik",
-        "title": "Cildinize duydu?unuz g?ven, hassas bir kons?ltasyonla ba?lar.",
-        "description": "Do?al g?r?n?ml? enjeksiyonlar, cilt kalitesi tedavileri ve ileri cihaz uygulamalar?; anatominiz, cilt sa?l???n?z ve ya?am tarz?n?za g?re planlan?r.",
-        "cta": "Kons?ltasyon randevusu al?n"
+        "eyebrow": "Batum'da medikal estetik",
+        "title": "Cildinize duyduğunuz güven, doğru bir danışmanlıkla başlar.",
+        "description": "Doğal görünümlü enjeksiyonlar, cilt kalitesi uygulamaları ve gelişmiş cihaz prosedürleri; anatominiz, cilt sağlığınız ve yaşam tarzınız dikkate alınarak planlanır.",
+        "cta": "Danışmanlık randevusu alın"
       },
       "slide2": {
         "eyebrow": "Cilt kalitesi",
-        "title": "Ger?ek cilt sorunlar? i?in ger?ek ??z?mler.",
-        "description": "Dokudan pigmentasyona, nemden s?k?l??a ve y?z dengesine kadar her plan, cilt odakl? bir de?erlendirmeyle ba?lar.",
-        "cta": "Sorunlar? ke?fedin"
+        "title": "Gerçek cilt sorunlarına gerçek çözümler.",
+        "description": "Doku ve pigmentasyondan neme, sıkılığa ve yüz dengesine kadar her plan, cilt odaklı bir değerlendirmeyle başlar.",
+        "cta": "Sorunları keşfet"
       },
       "slide3": {
         "eyebrow": "Enjeksiyonlar ve kontur",
-        "title": "?nce hacim. D???n?lm?? konturlar. Daha taze siz.",
-        "description": "Dermal dolgular ve k?r???kl?k kar??t? tedaviler; ?l??l?l?k, simetri ve do?al ifadeye sayg?yla uygulan?r.",
-        "cta": "Tedavileri g?r?nt?le"
+        "title": "Zarif hacim. Düşünülmüş konturlar. Yenilenmiş siz.",
+        "description": "Dermal dolgular ve kırışıklık karşıtı uygulamalar; ölçülülük, simetri ve doğal ifadeye saygıyla gerçekleştirilir.",
+        "cta": "Tedavileri görüntüle"
       }
     },
     "philosophy": {
-      "eyebrow": "Yakla??m?m?z",
-      "title": "Cilt odakl? estetik bir yakla??m.",
-      "description": "Galderma?dan ilham alan bu y?n; temiz, klinik ve ?r?n bilinci y?ksek: daha az dekoratif etki, daha fazla g?ven, daha fazla e?itim ve daha sakin bir g?rsel ritim.",
-      "statement": "Bir tedavi ?nermeden ?nce cildinizi, y?z yap?n?z? ve hedeflerinizi inceliyoruz. Sonu?; d???n?lm??, dengeli ve sakin bir ?zg?ven ta??mal?."
+      "eyebrow": "Yaklaşımımız",
+      "title": "Cildi önceliklendiren estetik bir yaklaşım.",
+      "description": "Galderma'dan ilham alan yaklaşım sade, klinik ve ürün bilincine dayalıdır: daha az dekorasyon, daha fazla güven, bilgi ve sakin bir görsel ritim.",
+      "statement": "Bir uygulama önermeden önce cildinizi, yüz yapınızı ve hedeflerinizi inceleriz. Sonuç düşünülmüş, dengeli ve doğal bir özgüven yansıtmalıdır."
     },
     "concerns": {
-      "eyebrow": "Cilt sorunlar?",
-      "title": "Ger?ek cilt sorunlar? i?in ger?ek ??z?mler.",
-      "description": "Daha sa?l?kl? ve daha ?zg?venli bir cildi destekleyebilecek yayg?n sorunlar? ve tedavi yollar?n? ke?fedin."
+      "eyebrow": "Cilt sorunları",
+      "title": "Gerçek cilt sorunlarına gerçek çözümler.",
+      "description": "Daha sağlıklı ve özgüvenli bir cildi destekleyebilecek yaygın sorunları ve uygulama seçeneklerini keşfedin."
     },
     "concernItems": {
       "item1": {
-        "name": "?nce ?izgiler ve k?r???kl?klar",
-        "description": "Do?al hareketi korurken mimik ?izgilerini yumu?at?n."
+        "name": "İnce çizgiler ve kırışıklıklar",
+        "description": "Doğal hareketi korurken mimik çizgilerini yumuşatın."
       },
       "item2": {
-        "name": "S?k?l?k kayb?",
-        "description": "Kolajeni destekleyin, gev?emeyi toparlay?n ve y?z yap?s?n? rafine edin."
+        "name": "Sıkılık kaybı",
+        "description": "Kolajeni destekleyin, gevşemeyi toparlayın ve yüz yapısını rafine edin."
       },
       "item3": {
-        "name": "D?zensiz ton",
-        "description": "Pigmentasyon, matl?k ve inflamasyon sonras? izleri hedefleyin."
+        "name": "Düzensiz ton",
+        "description": "Pigmentasyon, matlık ve inflamasyon sonrası izleri hedefleyin."
       },
       "item4": {
         "name": "Kuru cilt",
-        "description": "Nem, bariyer i?levi ve kal?c? ???lt?y? yeniden kazand?r?n."
+        "description": "Nem, bariyer işlevi ve kalıcı ışıltıyı yeniden kazandırın."
       },
       "item5": {
         "name": "Akne ve izler",
-        "description": "Aktif akneleri, lekeleri ve d?zensiz dokuyu iyile?tirin."
+        "description": "Aktif akneleri, lekeleri ve düzensiz dokuyu iyileştirin."
       }
     },
     "portfolio": {
-      "eyebrow": "Portf?y",
-      "title": "B?t?nc?l estetik tedaviler.",
-      "description": "Y?z dengesi, cilt kalitesi ve uzun vadeli ?zg?ven i?in d???n?lm?? bir portf?y.",
-      "viewAll": "T?m tedavileri g?r?nt?le",
-      "explore": "Ke?fet",
+      "eyebrow": "Portföy",
+      "title": "Bütüncül estetik tedaviler.",
+      "description": "Yüz dengesi, cilt kalitesi ve uzun vadeli özgüven için özenle seçilmiş bir portföy.",
+      "viewAll": "Tüm uygulamaları görüntüleyin",
+      "explore": "Keşfet",
       "items": {
         "item1": {
           "title": "Dermal dolgular",
-          "description": "Dudaklar, yanaklar, ?ene hatt?, ?ene ucu, g?z alt? ve y?z dengesi i?in hyal?ronik asit temelli tedaviler."
+          "description": "Dudak, yanak, çene hattı, çene ucu, göz altı ve yüz dengesi için hyalüronik asit tedavileri."
         },
         "item2": {
-          "title": "K?r???kl?k kar??t? enjeksiyonlar",
-          "description": "Al?n ?izgileri, ka? aras?, g?z ?evresi, masseter ve terleme i?in hassas n?romod?lat?r uygulamalar?."
+          "title": "Kırışıklık karşıtı enjeksiyonlar",
+          "description": "Alın çizgileri, kaş arası, göz çevresi, masseter ve terleme için hassas nöromodülatör tedaviler."
         },
         "item3": {
           "title": "Cilt kalitesi",
-          "description": "Daha g??l? ve daha parlak bir cilt i?in medikal bak?mlar, peelingler, booster?lar, microneedling ve lazer odakl? planlar."
+          "description": "Daha güçlü ve parlak bir cilt için medikal cilt bakımları, peelingler, cilt destekleyiciler, mikroiğneleme ve lazer odaklı planlar."
         }
       }
     },
     "stats": {
       "item1": {
-        "label": "Kons?ltasyon odakl? planlar"
+        "label": "Danışmanlıkla başlayan planlar"
       },
       "item2": {
         "label": "Desteklenen diller"
       },
       "item3": {
-        "label": "Cilt ve y?z de?erlendirmesi"
+        "label": "Cilt ve yüz değerlendirmesi"
       }
     },
     "results": {
-      "eyebrow": "Ger?ek sonu?lar",
-      "title": "Kan?t plandad?r.",
-      "description": "?ncesi ve sonras? hikayeleri vaat de?il, klinik ?rnekler olarak okunmal?d?r. Sonucunuz; anatominize, ?r?n se?imine, doza ve bak?m sonras? s?rece ba?l?d?r.",
-      "cta": "Sonu?lar? g?r?n",
-      "before": "?nce",
+      "eyebrow": "Gerçek sonuçlar",
+      "title": "Kanıt plandadır.",
+      "description": "Öncesi ve sonrası hikayeleri vaat değil, klinik örnekler olarak okunmalıdır. Sonucunuz anatomi, ürün seçimi, doz ve bakım sonrası sürece bağlıdır.",
+      "cta": "Sonuçları gör",
+      "before": "Önce",
       "after": "Sonra",
-      "disclaimer": "Bireysel sonu?lar de?i?ebilir. T?m tedavi planlar? klinik kons?ltasyon gerektirir."
+      "disclaimer": "Bireysel sonuçlar değişebilir. Tüm tedavi planları klinik konsültasyon gerektirir."
     },
     "resultItems": {
       "item1": {
-        "treatment": "Yanak ve orta y?z deste?i",
-        "detail": "Yumu?ak ve kalk?k bir konturla hacim geri kazand?r?ld?."
+        "treatment": "Yanak ve orta yüz desteği",
+        "detail": "Yumuşak, kalkık bir konturla hacim geri kazandırıldı."
       },
       "item2": {
-        "treatment": "Dudak nemi ve ?ekli",
-        "detail": "Belirgin s?n?r, dengeli hacim, do?al biti?."
+        "treatment": "Dudak nemi ve şekli",
+        "detail": "Belirgin sınır, dengeli hacim, doğal bitiş."
       },
       "item3": {
-        "treatment": "Cilt ???lt?s? plan?",
-        "detail": "Parlakl?k, doku ve y?zey p?r?zs?zl???nde iyile?me."
+        "treatment": "Cilt ışıltısı planı",
+        "detail": "Parlaklık, doku ve yüzey pürüzsüzlüğünde iyileşme."
       }
     },
     "cta": {
-      "eyebrow": "Uzman?n?z? bulun",
-      "title": "Klinik bir kons?ltasyonla ba?lay?n.",
-      "description": "{clinicName}?i Batum?da ziyaret ederek cildinize, anatominize, zamanlaman?za ve konforunuza g?re haz?rlanm?? yap?land?r?lm?? bir de?erlendirme ve tedavi plan? al?n.",
-      "bookNow": "Hemen rezervasyon yap",
-      "contactUs": "Bize ula??n"
+      "eyebrow": "Uzmanınızı bulun",
+      "title": "Klinik danışmanlıkla başlayın.",
+      "description": "Cildinize, anatominize, zamanlamanıza ve konforunuza göre hazırlanmış kapsamlı bir değerlendirme ve uygulama planı için Batum'daki {clinicName}'i ziyaret edin.",
+      "bookNow": "Şimdi randevu al",
+      "contactUs": "Bize ulaşın"
     },
     "journal": {
       "eyebrow": "Cilt trendleri",
-      "title": "G?r?lt?s?z estetik bak?? a??s?.",
-      "description": "Randevu almadan ?nce tedavi planlamas?n? anlamak isteyen hastalar i?in e?itici notlar.",
-      "cta": "Dergiyi oku"
+      "title": "Gürültüsüz estetik içgörü.",
+      "description": "Randevu almadan önce uygulama planlamasını anlamak isteyen danışanlar için bilgilendirici notlar.",
+      "cta": "Günlüğü oku"
     },
     "trendItems": {
       "item1": {
-        "category": "Tedavi planlamas?",
-        "title": "Enjeksiyonlar abart?l? g?r?nmeden nas?l planlan?r?"
+        "category": "Tedavi planlaması",
+        "title": "Enjeksiyonlar abartılı görünmeden nasıl planlanır"
       },
       "item2": {
-        "category": "Cilt sa?l???",
+        "category": "Cilt sağlığı",
         "title": "Cilt kalitesi yeni temeldir"
       },
       "item3": {
-        "category": "Kons?ltasyon",
-        "title": "?lk dolgu kons?ltasyonundan ?nce bilinmesi gerekenler"
+        "category": "Konsültasyon",
+        "title": "İlk dolgu konsültasyonundan önce bilinmesi gerekenler"
       }
     }
   },
@@ -1803,7 +2148,7 @@
     "whatsapp": "WhatsApp",
     "bookViaWhatsApp": "WhatsApp ile Randevu Al",
     "searchPlaceholder": "Tedavi ve cilt sorunları ara...",
-    "submitting": "G?nderiliyor...",
+    "submitting": "Gönderiliyor...",
     "tryAgain": "Tekrar Dene",
     "view": "Görüntüle",
     "currentLanguageFlag": "{language} bayrağı",
@@ -1819,7 +2164,7 @@
     "skipToContent": "Ana içeriğe geç",
     "skipToMain": "Ana içeriğe geç",
     "skipToTreatments": "Tedavilere geç",
-    "skipToBooking": "Rezervasyona geç",
+    "skipToBooking": "Randevu bölümüne geç",
     "skipNavigation": "Gezinti Atla Bağlantıları",
     "loadingThemeToggle": "Tema geçişi yükleniyor",
     "closeVideo": "Videoyu kapat",
@@ -1860,7 +2205,7 @@
     "openingHours": "Çalışma Saatleri",
     "hours": {
       "monFri": "Pzt-Cum: 10:00 - 22:00",
-      "satSun": "Cmt-Paz: 10:00 - 22:00",
+      "satSun": "Cumartesi-Pazar: 10:00 - 22:00",
       "sat": "Cmt",
       "sun": "Paz"
     },
@@ -1934,7 +2279,7 @@
     "learnMore": "Daha Fazla Öğrenin",
     "heroAlt": "Lüks Güzellik Salonu",
     "durationResults": "3-6 ay",
-    "minimalDowntime": "Yoktan minimuma"
+    "minimalDowntime": "Yok veya çok az"
   },
   "international": {
     "imageAlt": "Silk Beauty Salon",
@@ -2041,7 +2386,7 @@
     "treatments": {
       "title": "Sunduğumuz Tedaviler",
       "subtitle": "Her endişe için kapsamlı estetik çözümler.",
-      "explore": "Explore treatments ->"
+      "explore": "Tedavileri keşfet →"
     },
     "bookImageAlt": "Konsültasyon rezervasyonu"
   },

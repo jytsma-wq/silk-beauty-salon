@@ -15,10 +15,11 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
   const { locale, slug } = await params;
+  const t = await getTranslations({ locale, namespace: 'blogPage' });
   const post = await getBlogPostBySlug(slug, locale);
   
   if (!post) {
-    return { title: 'Post Not Found' };
+    return { title: t('postNotFound') };
   }
 
   return {
@@ -56,9 +57,9 @@ export default async function BlogPostPage({
   if (!post) {
     return (
       <div className="section-spacing text-center">
-        <h1 className="text-2xl font-serif text-primary">Post not found</h1>
+        <h1 className="text-2xl font-serif text-primary">{t('postNotFound')}</h1>
         <Link href="/blog" className="text-gold hover:underline mt-4 inline-block">
-          Back to Blog
+          {t('backToBlog')}
         </Link>
       </div>
     );

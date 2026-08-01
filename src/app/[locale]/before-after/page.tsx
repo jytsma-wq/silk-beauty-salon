@@ -29,22 +29,22 @@ export default async function BeforeAfterPage({
           <div className="flex items-center gap-6 mb-8">
             <div className="w-16 h-px bg-stone-300" />
             <span className="text-xs tracking-[0.4em] uppercase text-stone-400">
-              {t('sectionLabel', { defaultValue: 'Portfolio' })}
+              {t('sectionLabel')}
             </span>
           </div>
 
           {/* Magazine Headline */}
           <h1 className="text-[clamp(3rem,7vw,6rem)] font-serif font-light leading-[0.95] text-stone-900 mb-8 max-w-4xl">
-            {t('title', { defaultValue: 'Real Results,' })}
+            {t('title')}
             <br />
             <em className="italic text-[#b5453a]">
-              {t('realPeople', { defaultValue: 'Real People' })}
+              {t('realPeople')}
             </em>
           </h1>
 
           {/* Intro text */}
           <p className="text-lg md:text-xl leading-relaxed text-stone-600 max-w-2xl">
-            {t('subtitle', { defaultValue: 'Every face tells a story. Browse our curated collection of treatment results, each representing a journey to renewed confidence.' })}
+            {t('subtitle')}
           </p>
         </div>
       </header>
@@ -62,15 +62,15 @@ export default async function BeforeAfterPage({
           {/* Decorative line */}
           <div className="flex items-center justify-center gap-4 mb-8">
             <div className="w-12 h-px bg-stone-300" />
-            <span className="text-xs tracking-[0.3em] uppercase text-stone-400">{t('startJourney', { defaultValue: 'Start Your Journey' })}</span>
+            <span className="text-xs tracking-[0.3em] uppercase text-stone-400">{t('startJourney')}</span>
             <div className="w-12 h-px bg-stone-300" />
           </div>
 
           <h2 className="font-serif text-3xl md:text-4xl font-light text-stone-900 mb-6">
-            {t('ctaTitle', { defaultValue: 'Ready to Transform?' })}
+            {t('ctaTitle')}
           </h2>
           <p className="text-stone-500 mb-10 max-w-xl mx-auto leading-relaxed">
-            {t('ctaText', { defaultValue: 'Book a consultation with one of our expert practitioners to discuss your aesthetic goals.' })}
+            {t('ctaText')}
           </p>
           <a
             href={`https://www.silkbeautysalon.online/book`}
@@ -78,7 +78,7 @@ export default async function BeforeAfterPage({
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-10 py-4 bg-stone-900 text-stone-50 text-sm uppercase tracking-widest hover:bg-[#b5453a] transition-colors duration-300"
           >
-            {t('bookNow', { defaultValue: 'Book Now' })}
+            {t('bookNow')}
             <span className="text-lg">→</span>
           </a>
         </div>

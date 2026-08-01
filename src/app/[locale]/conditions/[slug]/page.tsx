@@ -98,7 +98,7 @@ export default async function ConditionPage({ params }: Props) {
                 className="rounded-md border border-[#241f1b] bg-transparent text-[#241f1b] hover:bg-[#241f1b] hover:text-white"
               >
                 <Link href="/book">
-                  {t('bookConsultation') || 'Book a Consultation'}
+                  {t('bookConsultation')}
                 </Link>
               </Button>
             </div>
@@ -137,7 +137,7 @@ export default async function ConditionPage({ params }: Props) {
               {condition.symptoms && condition.symptoms.length > 0 && (
                 <div className="mb-12">
                   <h2 className="mb-6 font-sans text-2xl font-light text-[#241f1b] md:text-3xl">
-                    {t('symptoms') || 'Common Signs & Symptoms'}
+                    {t('symptoms')}
                   </h2>
                   <div className="grid sm:grid-cols-2 gap-3">
                     {condition.symptoms.map((symptom, index) => (
@@ -154,7 +154,7 @@ export default async function ConditionPage({ params }: Props) {
               {condition.causes && condition.causes.length > 0 && (
                 <div className="mb-12">
                   <h2 className="mb-6 font-sans text-2xl font-light text-[#241f1b] md:text-3xl">
-                    {t('causes') || 'Common Causes'}
+                    {t('causes')}
                   </h2>
                   <ul className="space-y-2">
                     {condition.causes.map((cause, index) => (
@@ -171,7 +171,7 @@ export default async function ConditionPage({ params }: Props) {
               {condition.treatments && condition.treatments.length > 0 && (
                 <div className="mb-12">
                   <h2 className="mb-6 font-sans text-2xl font-light text-[#241f1b] md:text-3xl">
-                    {t('treatments') || 'Treatment Options'}
+                    {t('treatments')}
                   </h2>
                   <div className="grid sm:grid-cols-2 gap-3">
                     {condition.treatments.map((treatment, index) => (
@@ -190,17 +190,17 @@ export default async function ConditionPage({ params }: Props) {
               {/* Book CTA */}
               <div className="border-t border-[#e8e4df] py-8 text-center mb-8">
                 <h3 className="mb-4 font-sans text-xl font-light text-[#241f1b]">
-                  {t('needHelp') || 'Need Help?'}
+                  {t('needHelp')}
                 </h3>
                 <p className="text-muted-foreground text-sm mb-4">
-                  {t('bookConsultationDesc') || 'Book a consultation with one of our expert practitioners'}
+                  {t('bookConsultationDesc')}
                 </p>
                 <Button
                   asChild
                   className="w-full rounded-md border border-[#241f1b] bg-transparent text-[#241f1b] hover:bg-[#241f1b] hover:text-white"
                 >
                   <Link href="/book">
-                    {t('bookNow') || 'Book Now'}
+                    {t('bookNow')}
                   </Link>
                 </Button>
               </div>
@@ -208,7 +208,7 @@ export default async function ConditionPage({ params }: Props) {
               {/* Other Conditions */}
               <div className="border-t border-[#e8e4df] py-8">
                 <h3 className="mb-4 font-sans text-lg font-light text-[#241f1b]">
-                  {t('otherConditions') || 'Other Conditions'}
+                  {t('otherConditions')}
                 </h3>
                 <ul className="space-y-2">
                   {(await getAllConditions(resolvedParams.locale)).filter(c => c.slug !== condition.slug).slice(0, 5).map((other) => (
@@ -226,7 +226,7 @@ export default async function ConditionPage({ params }: Props) {
                   href="/conditions"
                   className="mt-4 inline-block text-[0.68rem] font-medium uppercase tracking-[0.18em] text-[#8d6f58] transition-colors hover:text-[#241f1b]"
                 >
-                  {t('viewAllConditions') || 'View All Conditions'} →
+                  {t('viewAllConditions')} →
                 </Link>
               </div>
             </div>
@@ -239,7 +239,7 @@ export default async function ConditionPage({ params }: Props) {
         <section className="section-spacing bg-[#f7f4f0]">
           <div className="container-custom">
             <h2 className="mb-8 font-sans text-2xl font-light text-[#241f1b] md:text-3xl">
-              {t('recommendedTreatments') || 'Recommended Treatments'}
+              {t('recommendedTreatments')}
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {relatedTreatments.map((item) => item && (

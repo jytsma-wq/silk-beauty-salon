@@ -1,6 +1,6 @@
 {
   "site": {
-    "title": "صالون الجميل الرائد في باتومي | Silk Beauty Salon",
+    "title": "صالون التجميل الرائد في باتومي | Silk Beauty Salon",
     "description": "صالون التجميل الرائد في باتومي في شارع زوراب غورغيلادزه. أخصائيون خبراء، علاجات متطورة و رعاية فاخرة.",
     "brandName": "Silk Beauty Salon",
     "brandShort": "Silk Beauty"
@@ -40,7 +40,8 @@
     "treatmentPortfolio": "مجموعة العلاجات",
     "skinConditions": "حالات البشرة",
     "downloadApp": "تحميل التطبيق",
-    "openMenu": "فتح القائمة"
+    "openMenu": "فتح القائمة",
+    "closeMenu": "إغلاق القائمة"
   },
   "header": {
     "announcement": "حائزة على جوائز | أفضل صالون تجميل في باتومي | نُشرت في مجلة الجمال والموضة الجورجية"
@@ -220,64 +221,64 @@
   },
   "consultation": {
     "bookImageAlt": "احجز استشارة",
-    "title": "Request a Consultation",
-    "imageAlt": "Consultation with aesthetic specialist",
-    "metaTitle": "Find a Specialist | Silk Beauty Salon",
-    "metaDescription": "Book a consultation with our expert aesthetic practitioners. Start your journey to enhanced natural beauty.",
-    "label": "Personalized Care",
-    "headline": "Book Your Consultation Today",
-    "body": "Schedule a personalized consultation with our expert practitioners to discuss your aesthetic goals and create a tailored treatment plan just for you.",
+    "title": "اطلب استشارة",
+    "imageAlt": "استشارة مع أخصائي تجميل",
+    "metaTitle": "اعثري على أخصائية | Silk Beauty Salon",
+    "metaDescription": "احجز استشارة مع ممارسي التجميل الخبراء لدينا. ابدأ رحلتك نحو جمال طبيعي محسن.",
+    "label": "رعاية مخصصة",
+    "headline": "احجز استشارتك اليوم",
+    "body": "جدولة استشارة مخصصة مع ممارسينا الخبراء لمناقشة أهدافك الجمالية وإنشاء خطة علاج مخصصة لك.",
     "cta": {
-      "title": "Ready to Start Your Journey?",
-      "description": "Book your consultation today and take the first step towards enhanced natural beauty.",
-      "button": "Find a Specialist"
+      "title": "هل أنت مستعد لبدء رحلتك؟",
+      "description": "احجز استشارتك اليوم واتخذ الخطوة الأولى نحو جمال طبيعي محسن.",
+      "button": "العثور على أخصائي"
     },
     "hero": {
-      "title": "Explore the possibilities with a treatment consultation",
-      "description": "An essential part of treatment, the aesthetic consultation is where your journey begins. The better we understand your needs and desires, the more likely you will achieve the results you want.",
-      "cta": "Book Consultation",
-      "call": "Call Us"
+      "title": "استكشف الإمكانيات مع استشارة العلاج",
+      "description": "جزء لا يتجزأ من العلاج، الاستشارة الجمالية هي حيث تبدأ رحلتك. كلما فهمنا احتياجاتك ورغباتك بشكل أفضل، زادت احتمالية تحقيق النتائج التي تريدها.",
+      "cta": "احجز استشارة",
+      "call": "اتصل بنا"
     },
     "features": {
       "expert": {
-        "title": "Expert Practitioners",
-        "description": "Our team includes certified aesthetic doctors and nurses with extensive experience."
+        "title": "ممارسون خبراء",
+        "description": "يتضمن فريقنا أطباء وممرضات تجميل معتمدين بخبرة واسعة."
       },
       "personalized": {
-        "title": "Personalized Approach",
-        "description": "Every treatment plan is tailored to your unique facial anatomy and aesthetic goals."
+        "title": "نهج شخصي",
+        "description": "تُصمم كل خطة علاج وفقاً لتشريح وجهك الفريد وأهدافك الجمالية."
       },
       "convenient": {
-        "title": "Convenient Location",
-        "description": "Easy access in central Batumi with comfortable, private treatment rooms."
+        "title": "موقع مريح",
+        "description": "وصول سهل في وسط باتومي مع غرف علاج مريحة وخاصة."
       }
     },
     "journey": {
-      "title": "Your Aesthetic Journey",
-      "subtitle": "From consultation to results, we guide you through every step of your transformation."
+      "title": "رحلتك الجمالية",
+      "subtitle": "من الاستشارة إلى النتائج، نرشدك في كل خطوة من تحولك."
     },
     "steps": {
       "consultation": {
-        "title": "Initial Consultation",
-        "description": "Discuss your concerns, goals, and medical history with our specialist."
+        "title": "الاستشارة الأولية",
+        "description": "ناقش مخاوفك وأهدافك وتاريخك الطبي مع متخصصنا."
       },
       "assessment": {
-        "title": "Facial Assessment",
-        "description": "Comprehensive analysis of your facial structure and skin condition."
+        "title": "تقييم الوجه",
+        "description": "تحليل شامل لبنية وجهك وحالة بشرتك."
       },
       "plan": {
-        "title": "Treatment Plan",
-        "description": "Receive a personalized treatment plan with recommendations and pricing."
+        "title": "خطة العلاج",
+        "description": "احصل على خطة علاج مخصصة مع التوصيات والأسعار."
       },
       "treatment": {
-        "title": "Treatment",
-        "description": "Schedule your treatment at your convenience with our caring team."
+        "title": "العلاج",
+        "description": "جدول علاجك في الوقت الذي يناسبك مع فريقنا المتفاني."
       }
     },
     "treatments": {
-      "title": "Treatments We Offer",
-      "subtitle": "Comprehensive aesthetic solutions for every concern.",
-      "explore": "Explore treatments ->"
+      "title": "العلاجات التي نقدمها",
+      "subtitle": "حلول جمالية شاملة لكل اهتمام.",
+      "explore": "استكشفي العلاجات ←"
     }
   },
   "booking": {
@@ -303,7 +304,7 @@
     "slotConflict": "هذا الوقت محجوز بالفعل. يرجى اختيار وقت آخر.",
     "bookingFailed": "فشل في إنشاء الحجز",
     "unexpectedError": "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.",
-    "rateLimitMessage": "????? ????? ????. ????? ???????? 15 ?????.",
+    "rateLimitMessage": "عدد كبير جدًا من الطلبات. يرجى الانتظار 15 دقيقة.",
     "bookingSummary": "ملخص الحجز",
     "service": "الخدمة",
     "date": "التاريخ",
@@ -322,116 +323,116 @@
     "serviceHydrafacial": "هايدرافيشل"
   },
   "bookingPage": {
-    "title": "Book an Appointment",
-    "subtitle": "Schedule your consultation or treatment with our expert practitioners",
+    "title": "احجز موعداً",
+    "subtitle": "اختر نوع الاستشارة والوقت المناسب، ثم أرسل طلبك.",
     "metadata": {
-      "title": "Book an Appointment | Silk Beauty Salon",
-      "description": "Book your consultation or treatment appointment at Silk Beauty Salon in Batumi, Georgia."
+      "title": "احجز استشارتك | Silk Beauty Salon",
+      "description": "اختر نوع الاستشارة واحجز موعدك."
     },
-    "eyebrow": "Consultation booking",
+    "eyebrow": "حجز الاستشارة",
     "heroImageAlt": "داخل الصالون",
-    "selectDateTime": "Select Date & Time",
-    "bookingNotConfigured": "Online Booking Coming Soon",
-    "bookingNotConfiguredDesc": "We're setting up our online booking system. In the meantime, please call or email us to schedule your appointment.",
-    "callToBook": "Call to Book",
-    "emailToBook": "Email to Book",
-    "consultationTypes": "Consultation Types",
+    "selectDateTime": "اختر التاريخ والوقت",
+    "bookingNotConfigured": "الحجز عبر الإنترنت قريباً",
+    "bookingNotConfiguredDesc": "نحن نجهز نظام الحجز عبر الإنترنت. في غضون ذلك، يرجى الاتصال بنا أو إرسال بريد إلكتروني لحجز موعد.",
+    "callToBook": "اتصل للحجز",
+    "emailToBook": "أرسل بريداً للحجز",
+    "consultationTypes": "أنواع الاستشارات",
     "consultations": {
       "facial": {
-        "title": "Facial Consultation",
-        "duration": "30 min",
-        "description": "Discuss anti-wrinkle treatments and dermal fillers"
+        "title": "استشارة للوجه",
+        "duration": "45 دقيقة",
+        "description": "استشارة قصيرة داخل الصالون تركز على أهدافك الجمالية للوجه."
       },
       "skin": {
-        "title": "Skin Consultation",
-        "duration": "45 min",
-        "description": "Comprehensive skin analysis and treatment planning"
+        "title": "استشارة البشرة",
+        "duration": "45 دقيقة",
+        "description": "تقييم مشكلات البشرة ووضع خطة للعلاج."
       },
       "body": {
-        "title": "Body Consultation",
-        "duration": "30 min",
-        "description": "Body contouring and skin tightening options"
+        "title": "استشارة علاجات الجسم",
+        "duration": "45 دقيقة",
+        "description": "مناقشة نحت الجسم وخيارات العلاج."
       },
       "virtual": {
-        "title": "Virtual Consultation",
-        "duration": "20 min",
-        "description": "Online consultation for remote clients"
+        "title": "استشارة افتراضية",
+        "duration": "30 دقيقة",
+        "description": "استشارة عن بُعد من أي مكان."
       }
     },
     "whatToExpect": {
-      "title": "What to Expect",
-      "step1": "Complete our medical questionnaire",
-      "step2": "Discuss your goals and concerns",
-      "step3": "Receive personalized treatment recommendations",
-      "step4": "Get a clear quote with no hidden costs"
+      "title": "ما يمكن توقعه",
+      "step1": "اختر نوع الاستشارة الذي يناسب احتياجاتك.",
+      "step2": "اختر التاريخ والوقت المفضلين لديك.",
+      "step3": "أدخل بيانات الاتصال وملاحظاتك.",
+      "step4": "نؤكد موعدك ونتواصل معك سريعاً."
     },
-    "needHelp": "Need Help?",
-    "phone": "Phone",
-    "email": "Email",
-    "address": "Address",
+    "needHelp": "تحتاج مساعدة؟",
+    "phone": "الهاتف",
+    "email": "البريد الإلكتروني",
+    "address": "العنوان",
     "faq": {
-      "title": "Booking FAQs",
-      "q1": "How long is a consultation?",
-      "a1": "Initial consultations typically last 30-45 minutes, allowing time for a thorough assessment and discussion of your goals.",
-      "q2": "Is there a deposit required?",
-      "a2": "A 20% deposit is required to secure your appointment, which is deducted from your treatment cost.",
-      "q3": "What is your cancellation policy?",
-      "a3": "We require 48 hours notice for cancellations. Late cancellations may forfeit the deposit.",
-      "q4": "Can I reschedule my appointment?",
-      "a4": "Yes, you can reschedule your appointment up to 24 hours before your scheduled time. Please contact us by phone or email to arrange a new time that works for you."
+      "title": "الأسئلة الشائعة",
+      "q1": "كيف أحجز موعداً؟",
+      "a1": "اختر نوع الاستشارة وحدد الوقت المناسب.",
+      "q2": "هل يمكنني تغيير الموعد؟",
+      "a2": "نعم، تواصل معنا وسنساعدك في تعديل موعدك.",
+      "q3": "هل أحتاج إلى عربون؟",
+      "a3": "قد تتطلب بعض الاستشارات عربوناً حسب الخدمة.",
+      "q4": "هل يمكنني الحجز عبر الإنترنت؟",
+      "a4": "نعم، نموذج الحجز متاح في هذه الصفحة."
     },
-    "preferredDate": "Preferred Date",
-    "preferredTime": "Preferred Time",
-    "selectTime": "Select a time slot",
-    "morning": "Morning",
-    "afternoon": "Afternoon",
-    "evening": "Evening",
-    "selectService": "Select Service",
-    "selectServicePlaceholder": "Choose a consultation type",
-    "fullName": "Full Name",
-    "namePlaceholder": "Enter your full name",
-    "phoneNumber": "Phone Number",
+    "preferredDate": "التاريخ المفضل",
+    "preferredTime": "الوقت المفضل",
+    "selectTime": "اختر وقتًا",
+    "morning": "صباح",
+    "afternoon": "بعد الظهر",
+    "evening": "مساء",
+    "selectService": "اختر الخدمة",
+    "selectServicePlaceholder": "اختر نوع الاستشارة",
+    "fullName": "الاسم الكامل",
+    "namePlaceholder": "أدخلي اسمك الكامل",
+    "phoneNumber": "رقم الهاتف",
     "phonePlaceholder": "+995 599 123 456",
-    "emailAddress": "Email Address",
-    "emailPlaceholder": "your@email.com",
-    "successTitle": "Booking Request Submitted",
-    "successMessage": "Thank you for your booking request. We will contact you shortly to confirm your appointment.",
-    "bookAnother": "Book Another Appointment",
-    "additionalNotes": "Additional Notes",
-    "notesPlaceholder": "Any special requests or information we should know...",
-    "requestBooking": "Request Booking",
-    "bookingNote": "We'll confirm your appointment within 24 hours",
-    "dialogTitle": "Book Appointment",
-    "dialogDescription": "Schedule your consultation with our expert practitioners",
-    "continue": "Continue",
-    "back": "Back",
-    "confirmBooking": "Confirm Booking",
-    "bookingStatus": "Booking...",
-    "booked": "(Booked)",
-    "slotConflict": "This time slot is already booked. Please select another time.",
-    "bookingFailed": "Failed to create booking",
-    "unexpectedError": "An unexpected error occurred. Please try again.",
-    "rateLimitMessage": "Too many submissions. Please wait 15 minutes.",
-    "bookingSummary": "Booking Summary",
-    "bookingConfirmed": "Booking Confirmed!",
-    "thankYou": "Thank you, {name}. Your appointment has been scheduled.",
-    "bookingDetails": "Booking Details",
-    "done": "Done",
-    "selectDate": "Select Date",
-    "selectTimeSlot": "Select Time Slot",
-    "service": "Service",
-    "date": "Date",
-    "time": "Time",
-    "message": "Message (Optional)",
-    "servicePlaceholder": "Choose a service",
-    "messagePlaceholder": "Any specific requirements or questions...",
-    "serviceConsultation": "Consultation",
-    "serviceBotox": "Botox Treatment",
-    "serviceFillers": "Dermal Fillers",
-    "serviceLaser": "Laser Hair Removal",
-    "serviceRejuvenation": "Skin Rejuvenation",
-    "servicePeel": "Chemical Peel",
-    "serviceMicroneedling": "Microneedling",
+    "emailAddress": "عنوان البريد الإلكتروني",
+    "emailPlaceholder": "name@example.com",
+    "successTitle": "تم إرسال طلب الحجز",
+    "successMessage": "شكرًا لطلب الحجز. سنتواصل معك قريبًا لتأكيد الموعد.",
+    "bookAnother": "احجزي موعدًا آخر",
+    "additionalNotes": "ملاحظات إضافية",
+    "notesPlaceholder": "أي طلبات خاصة أو معلومات يجب أن نعرفها...",
+    "requestBooking": "طلب حجز",
+    "bookingNote": "سنؤكد موعدك في غضون 24 ساعة",
+    "dialogTitle": "حجز موعد",
+    "dialogDescription": "حددي موعد استشارتك مع خبرائنا",
+    "continue": "متابعة",
+    "back": "رجوع",
+    "confirmBooking": "تأكيد الحجز",
+    "bookingStatus": "جارٍ الحجز...",
+    "booked": "(محجوز)",
+    "slotConflict": "هذا الوقت محجوز بالفعل. يرجى اختيار وقت آخر.",
+    "bookingFailed": "تعذر إنشاء الحجز",
+    "unexpectedError": "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.",
+    "rateLimitMessage": "عدد كبير جدًا من الطلبات. يرجى الانتظار 15 دقيقة.",
+    "bookingSummary": "ملخص الحجز",
+    "bookingConfirmed": "تم تأكيد الحجز!",
+    "thankYou": "شكرًا، {name}. تم تحديد موعدك.",
+    "bookingDetails": "تفاصيل الحجز",
+    "done": "تم",
+    "selectDate": "اختيار التاريخ",
+    "selectTimeSlot": "اختيار الوقت",
+    "service": "الخدمة",
+    "date": "التاريخ",
+    "time": "الوقت",
+    "message": "رسالة (اختياري)",
+    "servicePlaceholder": "اختر خدمة",
+    "messagePlaceholder": "أي متطلبات أو أسئلة خاصة...",
+    "serviceConsultation": "استشارة",
+    "serviceBotox": "علاج البوتوكس",
+    "serviceFillers": "فيلر جلدي",
+    "serviceLaser": "إزالة الشعر بالليزر",
+    "serviceRejuvenation": "تجديد البشرة",
+    "servicePeel": "تقشير كيميائي",
+    "serviceMicroneedling": "مايكرونيدلينغ",
     "serviceHydrafacial": "Hydrafacial",
     "personalInfo": "المعلومات الشخصية",
     "formNotReady": "لا يزال نموذج الحجز قيد التحضير. يرجى المحاولة مرة أخرى بعد لحظات."
@@ -460,40 +461,40 @@
     "hours": {
       "sat": "السبت",
       "sun": "الأحد",
-      "monFri": "Mon-Fri: 10:00 - 22:00",
-      "satSun": "Sat-Sun: 10:00 - 22:00"
+      "monFri": "الإثنين-الجمعة: 10:00 - 22:00",
+      "satSun": "السبت-الأحد: 10:00 - 22:00"
     },
-    "description": "Batumi's premier beauty salon on Zurab Gorgiladze Street.",
-    "quickLinks": "Quick Links",
-    "treatments": "Treatments",
-    "conditions": "Skin Conditions",
-    "contact": "Contact Info",
-    "address": "Zurab Gorgiladze 63, Batumi 6000, Georgia",
-    "phone": "Tel: +995 599 123 456",
+    "description": "صالون تجميل فاخر في باتومي في شارع زوراب غورغيلادزه.",
+    "quickLinks": "روابط سريعة",
+    "treatments": "العلاجات",
+    "conditions": "حالات البشرة",
+    "contact": "معلومات الاتصال",
+    "address": "شارع زوراب غورغيلادزه 63، باتومي 6000، جورجيا",
+    "phone": "هاتف: +995 599 123 456",
     "email": "info@silkbeautysalon.online",
-    "openingHours": "Opening Hours",
-    "social": "Follow Us",
-    "faqDesc": "Read some of the most frequently asked questions about the clinic and our treatments.",
-    "clinicTitle": "The Clinic",
-    "clinicDesc": "Located on Zurab Gorgiladze Street, opening hours are 10am–7pm.",
-    "teamTitle": "The Team",
-    "teamDesc": "Find out more about our skilled members of staff and how they can best help you.",
-    "pressTitle": "Media & Press",
-    "pressDesc": "Why not take a look at our most recent Press features and see what they're saying about us.",
-    "copyright": "© 2024 Silk Beauty Salon. All rights reserved.",
-    "privacy": "Privacy",
-    "terms": "Terms of Use",
-    "cookieNotice": "Cookie Notice",
-    "stayConnected": "Stay connected",
-    "newsletterTitle": "Join Our World",
-    "emailPlaceholder": "Your email address",
-    "subscribe": "Subscribe",
-    "about": "About",
-    "information": "Information",
-    "visitUs": "Visit Us",
-    "designedIn": "Designed in Batumi",
-    "socialDescription": "Follow us on Social Media for current news and patients stories",
-    "disclaimer": "Always consult a healthcare professional for individualized treatment recommendations and to discuss important safety information and risks associated with the use of the products.",
+    "openingHours": "ساعات العمل",
+    "social": "تابعينا",
+    "faqDesc": "اقرأ بعض الأسئلة الأكثر شيوعاً عن العيادة وعلاجاتنا.",
+    "clinicTitle": "العيادة",
+    "clinicDesc": "يقع الصالون في شارع زوراب غورغيلادزه، وساعات العمل من 10 صباحًا حتى 7 مساءً.",
+    "teamTitle": "الفريق",
+    "teamDesc": "تعرف على المزيد عن موظفينا المهرة.",
+    "pressTitle": "الإعلام والصحافة",
+    "pressDesc": "اطلع على أحدث مقالاتنا الصحفية.",
+    "copyright": "© 2024 Silk Beauty Salon. جميع الحقوق محفوظة.",
+    "privacy": "الخصوصية",
+    "terms": "شروط الاستخدام",
+    "cookieNotice": "إشعار ملفات تعريف الارتباط",
+    "stayConnected": "ابق على اتصال",
+    "newsletterTitle": "انضم إلى عالمنا",
+    "emailPlaceholder": "بريدك الإلكتروني",
+    "subscribe": "اشتراك",
+    "about": "من نحن",
+    "information": "معلومات",
+    "visitUs": "زورونا",
+    "designedIn": "مصمم في باتومي",
+    "socialDescription": "تابعنا على وسائل التواصل الاجتماعي للأخبار الحالية وقصص المرضى",
+    "disclaimer": "استشر دائماً أخصائي رعاية صحية للحصول على توصيات علاج مخصصة ومناقشة معلومات السلامة المهمة والمخاطر المرتبطة باستخدام المنتجات.",
     "instagram": "Instagram",
     "facebook": "Facebook"
   },
@@ -567,6 +568,7 @@
     "realPeople": "أشخاص حقيقيون",
     "subtitle": "شاهد النتائج الحقيقية من علاجاتنا. حول مظهرك مع علاجاتنا التجميلية الخبيرة.",
     "sectionLabel": "نتائج حقيقية",
+    "startJourney": "ابدأ رحلتك",
     "before": "قبل",
     "after": "بعد",
     "disclaimer": "قد تختلف النتائج الفردية. جميع الصور لعملاء حقيقيين بموافقتهم.",
@@ -585,101 +587,101 @@
   },
   "conditionsPage": {
     "imageAlt": "علاج العناية بالبشرة",
-    "title": "Conditions",
-    "metaTitle": "Conditions We Treat | Silk Beauty Salon",
-    "metaDescription": "Learn about the various skin conditions we treat including ageing skin, acne scarring, pigmentation, rosacea and more at our Batumi aesthetic clinic.",
-    "listingTitle": "Conditions We Treat",
-    "listingSubtitle": "Whatever your skin concern, our expert practitioners can create a personalized treatment plan",
-    "ctaTitle": "Not Sure Which Treatment Is Right for You?",
-    "ctaSubtitle": "Book a consultation with one of our expert practitioners who will assess your concerns and recommend the best treatment options",
-    "bookConsultation": "Book a Consultation"
+    "title": "الحالات",
+    "metaTitle": "الحالات التي نعالجها | Silk Beauty Salon",
+    "metaDescription": "تعرف على الحالات الجلدية المختلفة التي نعالجها بما في ذلك شيخوخة الجلد وندبات حب الشباب والتصبغات والوردية والمزيد في عيادة باتومي التجميلية.",
+    "listingTitle": "الحالات التي نعالجها",
+    "listingSubtitle": "مهما كانت مشكلة بشرتك، يمكن لخبرائنا إنشاء خطة علاج شخصية",
+    "ctaTitle": "غير متأكد من العلاج المناسب لك؟",
+    "ctaSubtitle": "احجز استشارة مع أحد خبرائنا الذين سيقيمون حالتك ويوصون بأفضل خيارات العلاج",
+    "bookConsultation": "احجز استشارة"
   },
   "aboutPage": {
     "interiorAlt": "داخل صالون سيلك بيوتي",
     "clinicAlt": "عيادة صالون سيلك بيوتي",
-    "title": "About Us",
-    "subtitle": "Batumi's leading non-surgical aesthetic clinic, bringing together world-class practitioners and cutting-edge treatments",
-    "ourStory": "Our Story",
-    "storyP1": "Silk Beauty Salon was founded with a simple vision: to provide the highest quality aesthetic treatments in a luxurious, welcoming environment. Located on Zurab Gorgiladze Street in Batumi, our clinic brings together some of Georgia's most talented aesthetic practitioners.",
-    "storyP2": "We believe that everyone deserves to feel confident and beautiful. Our approach focuses on enhancing your natural features rather than changing who you are. We take pride in our subtle, refined results that help you look like the best version of yourself.",
-    "storyP3": "From the moment you step into our clinic, you'll experience the difference. Our commitment to excellence extends beyond our treatments to every aspect of your visit, from our luxurious clinic space to our warm, attentive team.",
-    "ourValues": "Our Values",
+    "title": "معلومات عنا",
+    "subtitle": "عيادة باتومي الرائدة في التجميل غير الجراحي، تجمع بين المتخصصين من الطراز العالمي وأحدث التقنيات",
+    "ourStory": "قصتنا",
+    "storyP1": "تأسس Silk Beauty Salon برؤية بسيطة: تقديم علاجات تجميلية عالية الجودة في بيئة فاخرة ومرحبة. يقع الصالون في شارع زوراب غورغيلادزه في باتومي ويجمع نخبة من أخصائيات التجميل الموهوبات في جورجيا.",
+    "storyP2": "نؤمن أن الجميع يستحق الشعور بالثقة والجمال. يركز نهجنا على تعزيز ملامحك الطبيعية بدلاً من تغيير ما أنت عليه. نحن فخورون بنتائجنا الدقيقة والمتقنة التي تساعدك على الظهور بأفضل صورة.",
+    "storyP3": "من اللحظة التي تخطو فيها إلى عيادتنا، ستشعر بالفرق. يمتد التزامنا بالتميز إلى ما وراء علاجاتنا إلى كل جانب من جوانب زيارتك، من المساحة الفاخرة في عيادتنا إلى فريقنا الدافئ والمتيقظ.",
+    "ourValues": "قيمنا",
     "values": {
-      "patientCare": "Patient-First Care",
-      "patientCareDesc": "Your comfort, safety, and satisfaction are our top priorities.",
-      "excellence": "Excellence",
-      "excellenceDesc": "We use only premium products and the latest techniques for optimal results.",
-      "safety": "Safety",
-      "safetyDesc": "All treatments are performed by qualified medical professionals.",
-      "naturalResults": "Natural Results",
-      "naturalResultsDesc": "We enhance your natural beauty with subtle, refined treatments."
+      "patientCare": "رعاية المريض أولاً",
+      "patientCareDesc": "راحتك وسلامتك ورضاك هي أولوياتنا القصوى.",
+      "excellence": "التميز",
+      "excellenceDesc": "نستخدم فقط منتجات فاخرة وأحدث التقنيات للحصول على أفضل النتائج.",
+      "safety": "السلامة",
+      "safetyDesc": "تتم جميع العلاجات على يد متخصصين طبيين مؤهلين.",
+      "naturalResults": "نتائج طبيعية",
+      "naturalResultsDesc": "نعزز جمالك الطبيعي بعلاجات دقيقة ومتقنة."
     },
-    "meetTeam": "Meet Our Team",
-    "teamSubtitle": "Our expert practitioners bring years of experience and a passion for excellence",
+    "meetTeam": "تعرف على فريقنا",
+    "teamSubtitle": "خبراؤنا يتمتعون بسنوات من الخبرة وشغف للتميز",
     "team": {
-      "ninoRole": "Founder & Lead Practitioner",
-      "ninoBio": "Nino is the founder of Silk Beauty Salon and a renowned aesthetic practitioner with over 15 years of experience in the beauty industry. She is known for her natural-looking results and meticulous attention to detail.",
-      "ketevanRole": "Senior Aesthetic Practitioner",
-      "ketevanBio": "Ketevan is a highly skilled aesthetic practitioner specializing in dermal fillers and skin treatments. Her gentle approach and artistic eye ensure beautiful, natural results for every client.",
-      "mariamRole": "Aesthetic Practitioner",
-      "mariamBio": "Mariam brings a wealth of knowledge in advanced skin treatments and laser therapy. She is passionate about helping clients achieve their skin goals through personalized treatment plans.",
-      "sophiaRole": "Aesthetic Practitioner",
-      "sophiaBio": "Sophia specializes in non-surgical facial rejuvenation and has extensive experience in anti-wrinkle treatments and dermal fillers. Her clients love her natural, fresh approach."
+      "ninoRole": "المؤسس والممارس الرئيسي",
+      "ninoBio": "نينو هي مؤسسة Silk Beauty Salon وأخصائية تجميل معروفة تتمتع بخبرة تزيد على 15 عاماً في مجال الجمال. تشتهر بنتائجها الطبيعية واهتمامها الدقيق بالتفاصيل.",
+      "ketevanRole": "ممارس جمالي أول",
+      "ketevanBio": "كيتيفان هي ممارسة جمالية ماهرة متخصصة في الحشوات الجلدية وعلاجات البشرة. نهجها اللطيف وعينها الفنية يضمنان نتائج جميلة وطبيعية لكل عميل.",
+      "mariamRole": "ممارس جمالي",
+      "mariamBio": "ماريام تجلب ثروة من المعرفة في علاجات البشرة المتقدمة والعلاج بالليزر. إنها شغوفة بمساعدة العملاء على تحقيق أهداف بشرتهم من خلال خطط علاج شخصية.",
+      "sophiaRole": "ممارس جمالي",
+      "sophiaBio": "تتخصص صوفيا في تجديد شباب الوجه من دون جراحة، ولديها خبرة واسعة في علاجات التجاعيد والفيلر. وتقدّر عميلاتها نهجها الطبيعي والمنعش."
     },
     "awards": {
-      "title": "Awards & Recognition",
-      "awardWinning": "Award Winning",
-      "premierSalon": "Batumi's Premier Beauty Salon",
-      "featuredIn": "As featured in Georgian Fashion & Beauty Magazine"
+      "title": "الجوائز والتقدير",
+      "awardWinning": "حائز على جوائز",
+      "premierSalon": "صالون التجميل الرائد في باتومي",
+      "featuredIn": "كما ظهر في مجلة Georgian Fashion & Beauty"
     },
-    "featuredInVogue": "Featured in Vogue, Grazia, Vanity Fair, and Tatler",
-    "featuredIn": "As featured in Georgian Fashion & Beauty Magazine",
-    "ctaTitle": "Ready to Start Your Journey?",
-    "ctaSubtitle": "Book a consultation with one of our expert practitioners today",
-    "ctaButton": "Book a Consultation"
+    "featuredInVogue": "كما ظهر في Vogue وGrazia وVanity Fair وTatler",
+    "featuredIn": "كما ظهر في مجلة Georgian Fashion & Beauty",
+    "ctaTitle": "مستعد للبدء؟",
+    "ctaSubtitle": "احجز استشارة مع أحد خبرائنا اليوم",
+    "ctaButton": "احجز استشارة"
   },
   "contactPage": {
     "imageAlt": "اتصل بصالون سيلك بيوتي",
     "mapTitle": "موقع صالون سيلك بيوتي",
-    "title": "Contact Us",
-    "subtitle": "Get in touch with our team to book a consultation or ask any questions",
-    "formTitle": "Send Us a Message",
-    "thankYou": "Thank You!",
-    "messageSent": "Your message has been sent successfully. We'll get back to you shortly.",
-    "fullName": "Full Name",
-    "namePlaceholder": "Enter your name",
-    "nameRequired": "Please enter your name",
-    "emailAddress": "Email Address",
-    "emailPlaceholder": "Enter your email",
-    "emailRequired": "Please enter your email address",
-    "emailInvalid": "Please enter a valid email address",
-    "phoneNumber": "Phone Number",
-    "phonePlaceholder": "Enter your phone",
-    "phoneOptional": "Optional",
-    "message": "Message",
-    "messagePlaceholder": "How can we help you?",
-    "messageRequired": "Please enter a message",
-    "sending": "Sending...",
-    "sendMessage": "Send Message",
-    "getInTouch": "Get in Touch",
-    "address": "Address",
-    "phone": "Phone",
-    "email": "Email",
-    "openingHours": "Opening Hours",
-    "monTue": "Monday - Tuesday",
-    "wedThu": "Wednesday - Thursday",
-    "friday": "Friday",
-    "satSun": "Saturday - Sunday",
-    "readyToBook": "Ready to Book?",
-    "bookOnlineDesc": "Book your appointment online through our booking system",
-    "bookAppointment": "Book Appointment",
-    "bookOnline": "Book Online",
-    "scheduleAppointment": "Schedule your appointment",
-    "bookViaWhatsApp": "Book via WhatsApp",
+    "title": "اتصل بنا",
+    "subtitle": "تواصل مع فريقنا لحجز استشارة أو طرح أي أسئلة",
+    "formTitle": "أرسل لنا رسالة",
+    "thankYou": "شكراً لك!",
+    "messageSent": "تم إرسال رسالتك بنجاح. سنتواصل معك قريباً.",
+    "fullName": "الاسم الكامل",
+    "namePlaceholder": "أدخل اسمك",
+    "nameRequired": "الرجاء إدخال اسمك",
+    "emailAddress": "عنوان البريد الإلكتروني",
+    "emailPlaceholder": "أدخلي بريدك الإلكتروني",
+    "emailRequired": "الرجاء إدخال عنوان البريد الإلكتروني",
+    "emailInvalid": "الرجاء إدخال عنوان بريد إلكتروني صالح",
+    "phoneNumber": "رقم الهاتف",
+    "phonePlaceholder": "أدخلي رقم هاتفك",
+    "phoneOptional": "اختياري",
+    "message": "الرسالة",
+    "messagePlaceholder": "كيف يمكننا مساعدتك؟",
+    "messageRequired": "الرجاء إدخال رسالتك",
+    "sending": "جاري الإرسال...",
+    "sendMessage": "إرسال الرسالة",
+    "getInTouch": "تواصل معنا",
+    "address": "العنوان",
+    "phone": "الهاتف",
+    "email": "البريد الإلكتروني",
+    "openingHours": "ساعات العمل",
+    "monTue": "الإثنين - الثلاثاء",
+    "wedThu": "الأربعاء - الخميس",
+    "friday": "الجمعة",
+    "satSun": "السبت - الأحد",
+    "readyToBook": "مستعد للحجز؟",
+    "bookOnlineDesc": "احجز موعدك عبر الإنترنت من خلال نظام الحجز لدينا",
+    "bookAppointment": "احجز موعد",
+    "bookOnline": "احجز أونلاين",
+    "scheduleAppointment": "حدد موعدك",
+    "bookViaWhatsApp": "احجزي عبر واتساب",
     "whatsapp": "WhatsApp",
-    "viewOnMap": "View on Google Maps",
-    "mapAddress": "63 Zurab Gorgiladze Street",
-    "mapCity": "Batumi, Georgia"
+    "viewOnMap": "عرض على خرائط Google",
+    "mapAddress": "شارع زوراب جورجيلادز 63",
+    "mapCity": "باتومي، جورجيا"
   },
   "faqPage": {
     "title": "الأسئلة الشائعة",
@@ -705,92 +707,92 @@
   },
   "offersPage": {
     "imageAlt": "عروض خاصة",
-    "title": "Special Offers",
-    "subtitle": "Take advantage of our exclusive promotions and special offers",
-    "breadcrumb": "Offers",
+    "title": "عروض خاصة",
+    "subtitle": "استفد من عروضنا الترويجية الحصرية والعروض الخاصة",
+    "breadcrumb": "العروض",
     "offers": {
       "newClient": {
-        "title": "New Client Special",
-        "description": "Book your first consultation and receive 20% off your first treatment.",
-        "terms": "Valid for new clients only. Cannot be combined with other offers."
+        "title": "عرض خاص للعملاء الجدد",
+        "description": "احجز استشارتك الأولى واحصل على خصم 20% على علاجك الأول.",
+        "terms": "صالح للعملاء الجدد فقط. لا يمكن الجمع مع عروض أخرى."
       },
       "antiWrinkle": {
-        "title": "Anti-Wrinkle Package",
-        "description": "Book 3 areas of anti-wrinkle treatment and save.",
-        "terms": "Valid for 3 areas treated in the same session."
+        "title": "باقة مكافحة التجاعيد",
+        "description": "احجز 3 مناطق لعلاج مكافحة التجاعيد ووفر المال.",
+        "terms": "صالح لـ 3 مناطق تتم معالجتها في نفس الجلسة."
       },
       "dermalFiller": {
-        "title": "Dermal Filler Bundle",
-        "description": "Book 2ml or more of dermal filler and receive complimentary skin booster.",
-        "terms": "Limited time offer. Subject to availability."
+        "title": "باقة الفيلر الجلدي",
+        "description": "احجز 2 مل أو أكثر من الفيلر الجلدي واحصل على معزز مجاني للبشرة.",
+        "terms": "عرض محدود الوقت. تخضع للتوفر."
       },
       "referral": {
-        "title": "Referral Reward",
-        "description": "Refer a friend and you both receive ₾50 credit towards your next treatment.",
-        "terms": "Referred friend must complete a treatment."
+        "title": "مكافأة الإحالة",
+        "description": "أحل صديقاً وستحصلان كلاهما على رصيد ₾50 لعلاجكما القادم.",
+        "terms": "يجب أن يكمل الصديق المحال العلاج."
       },
       "seasonal": {
-        "title": "Seasonal Skin Refresh",
-        "description": "Combine any laser treatment with a medical facial for 15% off both.",
-        "terms": "Both treatments must be booked in the same month."
+        "title": "تجديد البشرة الموسمي",
+        "description": "اجمع بين أي علاج بالليزر وجلسة طبية للوجه واحصل على خصم 15% على كليهما.",
+        "terms": "يجب حجز كلا العلاجين في نفس الشهر."
       },
       "loyalty": {
-        "title": "Loyalty Programme",
-        "description": "Join our loyalty programme and earn points on every treatment.",
-        "terms": "Points can be redeemed towards future treatments."
+        "title": "برنامج الولاء",
+        "description": "انضم إلى برنامج الولاء الخاص بنا واكسب نقاطاً على كل علاج.",
+        "terms": "يمكن استبدال النقاط بعلاجات مستقبلية."
       }
     },
-    "ctaTitle": "Book Your Treatment Today",
-    "ctaSubtitle": "Contact us to book your consultation and take advantage of these exclusive offers",
-    "ctaButton": "Book Now",
-    "termsText": "All offers are subject to availability and may be withdrawn at any time. Offers cannot be combined unless otherwise stated. Please mention the offer when booking."
+    "ctaTitle": "احجز علاجك اليوم",
+    "ctaSubtitle": "تواصل معنا لحجز استشارة والاستفادة من هذه العروض الحصرية",
+    "ctaButton": "احجز الآن",
+    "termsText": "جميع العروض تخضع للتوفر ويمكن سحبها في أي وقت. لا يمكن الجمع بين العروض ما لم يذكر خلاف ذلك. يرجى ذكر العرض عند الحجز."
   },
   "blogPage": {
     "postNotFound": "لم يتم العثور على المشاركة",
     "expertPractitioner": "أخصائي خبراء",
-    "title": "Our Blog",
-    "metaTitle": "Blog | Silk Beauty Salon",
-    "metaDescription": "Expert insights, treatment guides, and the latest from the world of aesthetics",
-    "subtitle": "Expert insights, treatment guides, and the latest from the world of aesthetics",
-    "breadcrumb": "Blog",
-    "stayUpdated": "Stay Updated",
-    "newsletterDesc": "Subscribe to our newsletter for the latest articles, tips, and exclusive offers",
-    "subscribeButton": "Subscribe to Newsletter",
-    "backToBlog": "Back to Blog",
-    "shareArticle": "Share this article",
-    "aboutAuthor": "About the Author",
-    "readyToTransform": "Ready to Transform?",
-    "bookConsultationDesc": "Book a consultation with one of our expert practitioners to discuss your aesthetic goals.",
-    "relatedPosts": "Related Posts",
-    "readMore": "Read More"
+    "title": "مدونتنا",
+    "metaTitle": "المدونة | Silk Beauty Salon",
+    "metaDescription": "رؤى الخبراء وأدلة العلاجات وآخر المستجدات في عالم التجميل",
+    "subtitle": "رؤى الخبراء وأدلة العلاجات وآخر المستجدات في عالم التجميل",
+    "breadcrumb": "المدونة",
+    "stayUpdated": "ابق على اطلاع",
+    "newsletterDesc": "اشترك في نشرتنا الإخبارية للحصول على أحدث المقالات والنصائح والعروض الحصرية",
+    "subscribeButton": "اشترك في النشرة الإخبارية",
+    "backToBlog": "العودة إلى المدونة",
+    "shareArticle": "مشاركة المقال",
+    "aboutAuthor": "عن الكاتب",
+    "readyToTransform": "هل أنت مستعد للتغيير؟",
+    "bookConsultationDesc": "احجز استشارة مع أحد خبرائنا لمناقشة أهدافك الجمالية.",
+    "relatedPosts": "مقالات ذات صلة",
+    "readMore": "اقرأ المزيد"
   },
   "treatmentPage": {
     "heroAlt": "صالون تجميل فاخر",
     "durationResults": "3-6 أشهر",
-    "minimalDowntime": "لا شيء إلى الحد الأدنى",
-    "bookNow": "Book This Treatment",
-    "backTo": "Back to Treatments",
-    "aboutTreatment": "About This Treatment",
-    "benefits": "Benefits",
-    "howItWorks": "How It Works",
-    "aftercare": "Aftercare",
-    "faqs": "Frequently Asked Questions",
-    "price": "Price from",
-    "duration": "Duration",
-    "readyToStart": "Ready to get started?",
-    "bookConsultation": "Book a Consultation",
-    "bookConsultationDesc": "Book a consultation with one of our expert practitioners",
-    "bookNowBtn": "Book Now",
-    "contactUs": "Contact Us",
-    "phone": "Phone",
-    "email": "Email",
-    "address": "Address",
-    "relatedTreatments": "Related Treatments",
-    "atAGlance": "At a Glance",
-    "results": "Results",
-    "downtime": "Downtime",
-    "youMightAlsoLike": "You Might Also Like",
-    "learnMore": "Learn more"
+    "minimalDowntime": "معدومة أو بسيطة",
+    "bookNow": "احجز هذا العلاج",
+    "backTo": "العودة للعلاجات",
+    "aboutTreatment": "عن هذا العلاج",
+    "benefits": "الفوائد",
+    "howItWorks": "كيف يعمل",
+    "aftercare": "العناية بعد العلاج",
+    "faqs": "الأسئلة الشائعة",
+    "price": "السعر من",
+    "duration": "المدة",
+    "readyToStart": "هل أنت مستعد للبدء؟",
+    "bookConsultation": "حجز استشارة",
+    "bookConsultationDesc": "احجز استشارة مع أحد ممارسينا الخبراء",
+    "bookNowBtn": "احجز الآن",
+    "contactUs": "اتصل بنا",
+    "phone": "الهاتف",
+    "email": "البريد الإلكتروني",
+    "address": "العنوان",
+    "relatedTreatments": "علاجات مشابهة",
+    "atAGlance": "نظرة سريعة",
+    "results": "النتائج",
+    "downtime": "فترة التعافي",
+    "youMightAlsoLike": "قد يعجبك أيضًا",
+    "learnMore": "اعرفي المزيد"
   },
   "conditionPage": {
     "title": "الحالة",
@@ -825,27 +827,27 @@
   "common": {
     "tryAgain": "حاول مرة أخرى",
     "view": "عرض",
-    "loading": "Loading...",
-    "error": "An error occurred",
-    "close": "Close",
-    "next": "Next",
-    "previous": "Previous",
-    "viewAll": "View All",
-    "learnMore": "Learn More",
-    "home": "Home",
-    "readMore": "Read More",
-    "bookNow": "Book Now",
-    "bookConsultation": "Book a Consultation",
-    "bookOnline": "Book Online",
-    "scheduleAppointment": "Schedule your appointment",
+    "loading": "جاري التحميل...",
+    "error": "حدث خطأ",
+    "close": "إغلاق",
+    "next": "التالي",
+    "previous": "السابق",
+    "viewAll": "عرض الكل",
+    "learnMore": "اعرف المزيد",
+    "home": "الرئيسية",
+    "readMore": "قراءة المزيد",
+    "bookNow": "احجز الآن",
+    "bookConsultation": "احجز استشارة",
+    "bookOnline": "احجز عبر الإنترنت",
+    "scheduleAppointment": "جدول موعدك",
     "whatsapp": "WhatsApp",
-    "bookViaWhatsApp": "Book via WhatsApp",
-    "treatments": "Treatments",
-    "conditions": "Conditions",
-    "notFound": "Not Found",
-    "social": "Follow Us",
-    "searchPlaceholder": "Search treatments, conditions...",
-    "submitting": "Submitting...",
+    "bookViaWhatsApp": "احجزي عبر واتساب",
+    "treatments": "العلاجات",
+    "conditions": "الحالات",
+    "notFound": "غير موجود",
+    "social": "تابعينا",
+    "searchPlaceholder": "البحث عن العلاجات والحالات...",
+    "submitting": "جارٍ الإرسال...",
     "currentLanguageFlag": "علم {language}",
     "languageFlag": "علم {language}"
   },
@@ -886,8 +888,8 @@
       "painAnswer": "تتضمن معظم العلاجات عدم راحة بسيطة. نستخدم كريم مخدر موضعي حيثما يكون ذلك مناسباً، والعديد من حشواتنا الجلدية تحتوي على مخدر موضعي مدمج. ممارسونا ماهرون في جعل العلاجات مريحة قدر الإمكان.",
       "resultsQuestion": "كم تستمر النتائج؟",
       "resultsAnswer": "هذا يعتمد على العلاج. حقن مكافحة التجاعيد عادة ما تستمر 3-6 أشهر، والحشوات الجلدية 6-18 شهراً حسب المنتج والمنطقة المعالجة، وعلاجات شد الجلد يمكن أن توفر نتائج تستمر 1-2 سنة. سنناقش المدة المتوقعة خلال استشارتك.",
-      "downtimeQuestion": "هل هناك أي فترة استرداد؟",
-      "downtimeAnswer": "العديد من علاجاتنا لها فترة استرداد بسيطة أو معدومة. قد تسبب بعض العلاجات تورماً مؤقتاً أو احمراراً أو كدمات. سنقدم تعليمات مفصلة للعناية بعد العلاج ونصائح حول توقيت العلاجات حول الالتزامات الاجتماعية.",
+      "downtimeQuestion": "هل توجد فترة تعافٍ؟",
+      "downtimeAnswer": "لا تتطلب العديد من علاجاتنا فترة تعافٍ أو تتطلب فترة قصيرة جدًا. قد تسبب بعض العلاجات تورمًا مؤقتًا أو احمرارًا أو كدمات. سنقدم تعليمات مفصلة للعناية بعد العلاج ونصائح لتنسيق موعد العلاج مع التزاماتك الاجتماعية.",
       "bookingQuestion": "كيف أحجز موعداً؟",
       "bookingAnswer": "يمكنك الحجز عبر الإنترنت من خلال موقعنا الإلكتروني، أو الاتصال بنا على +995 599 123 456، أو إرسال بريد إلكتروني إلى info@silkbeautysalon.online. نوصي بحجز الاستشارات مسبقاً حيث أنه لدينا غالباً قائمة انتظار.",
       "virtualQuestion": "هل تقدمون استشارات افتراضية؟",
@@ -1271,7 +1273,7 @@
             "يعالج التصبغ",
             "يقلل أضرار الشمس",
             "يحسن التون",
-            "شفاءminimal"
+            "تعافٍ سريع"
           ]
         },
         "laser-vein": {
@@ -1400,7 +1402,7 @@
         "mesotherapy-hair": {
           "name": "ميزوثيرابي الشعر",
           "shortDescription": "حقن غنية بالمغذيات لفروة الرأس.",
-          "description": "الميزوثيرابي delivers المغذيات مباشرة لفروة الرأس.",
+          "description": "يوصل الميزوثيرابي العناصر المغذية مباشرة إلى فروة الرأس.",
           "benefits": [
             " يغذي فروة الرأس",
             "يحفز النمو",
@@ -1409,34 +1411,374 @@
           ]
         }
       }
+    },
+    "diagnostic": {
+      "name": "التشخيص",
+      "description": "تحليل متقدم للبشرة وأدوات تشخيص لتخصيص خطة العلاج."
+    },
+    "tear-trough": {
+      "name": "فيلر تحت العين",
+      "shortDescription": "إجراء حقن لتوازن طبيعي.",
+      "description": "فيلر تحت العين: يتم التخطيط بعد الاستشارة مع الحفاظ على تناسق الوجه والنتيجة الطبيعية.",
+      "benefits": [
+        "نتيجة طبيعية",
+        "خطة شخصية",
+        "تعاف بسيط",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
+    },
+    "non-surgical-rhinoplasty": {
+      "name": "تجميل الأنف بدون جراحة",
+      "shortDescription": "إجراء حقن لتوازن طبيعي.",
+      "description": "تجميل الأنف بدون جراحة: يتم التخطيط بعد الاستشارة مع الحفاظ على تناسق الوجه والنتيجة الطبيعية.",
+      "benefits": [
+        "نتيجة طبيعية",
+        "خطة شخصية",
+        "تعاف بسيط",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
+    },
+    "marionette-lines": {
+      "name": "خطوط الماريونيت",
+      "shortDescription": "إجراء حقن لتوازن طبيعي.",
+      "description": "خطوط الماريونيت: يتم التخطيط بعد الاستشارة مع الحفاظ على تناسق الوجه والنتيجة الطبيعية.",
+      "benefits": [
+        "نتيجة طبيعية",
+        "خطة شخصية",
+        "تعاف بسيط",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
+    },
+    "nasolabial-folds": {
+      "name": "الطيات الأنفية الشفوية",
+      "shortDescription": "إجراء حقن لتوازن طبيعي.",
+      "description": "الطيات الأنفية الشفوية: يتم التخطيط بعد الاستشارة مع الحفاظ على تناسق الوجه والنتيجة الطبيعية.",
+      "benefits": [
+        "نتيجة طبيعية",
+        "خطة شخصية",
+        "تعاف بسيط",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
+    },
+    "neck-rejuvenation": {
+      "name": "تجديد الرقبة",
+      "shortDescription": "إجراء حقن لتوازن طبيعي.",
+      "description": "تجديد الرقبة: يتم التخطيط بعد الاستشارة مع الحفاظ على تناسق الوجه والنتيجة الطبيعية.",
+      "benefits": [
+        "نتيجة طبيعية",
+        "خطة شخصية",
+        "تعاف بسيط",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
+    },
+    "decolletage-treatment": {
+      "name": "علاج الديكولتيه",
+      "shortDescription": "إجراء حقن لتوازن طبيعي.",
+      "description": "علاج الديكولتيه: يتم التخطيط بعد الاستشارة مع الحفاظ على تناسق الوجه والنتيجة الطبيعية.",
+      "benefits": [
+        "نتيجة طبيعية",
+        "خطة شخصية",
+        "تعاف بسيط",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
+    },
+    "hand-rejuvenation": {
+      "name": "تجديد اليدين",
+      "shortDescription": "إجراء حقن لتوازن طبيعي.",
+      "description": "تجديد اليدين: يتم التخطيط بعد الاستشارة مع الحفاظ على تناسق الوجه والنتيجة الطبيعية.",
+      "benefits": [
+        "نتيجة طبيعية",
+        "خطة شخصية",
+        "تعاف بسيط",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
+    },
+    "clear-brilliant": {
+      "name": "Clear + Brilliant",
+      "shortDescription": "علاج ليزر لتحسين لون وملمس البشرة.",
+      "description": "Clear + Brilliant: تساعد تقنية الليزر المتقدمة على تحسين لون البشرة وملمسها وجودتها.",
+      "benefits": [
+        "تحسين اللون",
+        "تحسين الملمس",
+        "عناية احترافية",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
+    },
+    "cutera-aviclear": {
+      "name": "Cutera AviClear",
+      "shortDescription": "علاج ليزر لتحسين لون وملمس البشرة.",
+      "description": "Cutera AviClear: تساعد تقنية الليزر المتقدمة على تحسين لون البشرة وملمسها وجودتها.",
+      "benefits": [
+        "تحسين اللون",
+        "تحسين الملمس",
+        "عناية احترافية",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
+    },
+    "cutera-c02-laser": {
+      "name": "ليزر Cutera CO2",
+      "shortDescription": "علاج ليزر لتحسين لون وملمس البشرة.",
+      "description": "ليزر Cutera CO2: تساعد تقنية الليزر المتقدمة على تحسين لون البشرة وملمسها وجودتها.",
+      "benefits": [
+        "تحسين اللون",
+        "تحسين الملمس",
+        "عناية احترافية",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
+    },
+    "cutera-secret-pro-rf-microneedling": {
+      "name": "Cutera Secret PRO RF Microneedling",
+      "shortDescription": "علاج ليزر لتحسين لون وملمس البشرة.",
+      "description": "Cutera Secret PRO RF Microneedling: تساعد تقنية الليزر المتقدمة على تحسين لون البشرة وملمسها وجودتها.",
+      "benefits": [
+        "تحسين اللون",
+        "تحسين الملمس",
+        "عناية احترافية",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
+    },
+    "cutera-excel-v-ipl": {
+      "name": "Cutera Excel V+ IPL",
+      "shortDescription": "علاج ليزر لتحسين لون وملمس البشرة.",
+      "description": "Cutera Excel V+ IPL: تساعد تقنية الليزر المتقدمة على تحسين لون البشرة وملمسها وجودتها.",
+      "benefits": [
+        "تحسين اللون",
+        "تحسين الملمس",
+        "عناية احترافية",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
+    },
+    "candela-vbeam-laser": {
+      "name": "ليزر Candela VBeam",
+      "shortDescription": "علاج ليزر لتحسين لون وملمس البشرة.",
+      "description": "ليزر Candela VBeam: تساعد تقنية الليزر المتقدمة على تحسين لون البشرة وملمسها وجودتها.",
+      "benefits": [
+        "تحسين اللون",
+        "تحسين الملمس",
+        "عناية احترافية",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
+    },
+    "bbl-hero": {
+      "name": "BBL HERO",
+      "shortDescription": "علاج ليزر لتحسين لون وملمس البشرة.",
+      "description": "BBL HERO: تساعد تقنية الليزر المتقدمة على تحسين لون البشرة وملمسها وجودتها.",
+      "benefits": [
+        "تحسين اللون",
+        "تحسين الملمس",
+        "عناية احترافية",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
+    },
+    "moxi-laser": {
+      "name": "ليزر MOXI",
+      "shortDescription": "علاج ليزر لتحسين لون وملمس البشرة.",
+      "description": "ليزر MOXI: تساعد تقنية الليزر المتقدمة على تحسين لون البشرة وملمسها وجودتها.",
+      "benefits": [
+        "تحسين اللون",
+        "تحسين الملمس",
+        "عناية احترافية",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
+    },
+    "moxi-and-bbl": {
+      "name": "MOXI و BBL",
+      "shortDescription": "علاج ليزر لتحسين لون وملمس البشرة.",
+      "description": "MOXI و BBL: تساعد تقنية الليزر المتقدمة على تحسين لون البشرة وملمسها وجودتها.",
+      "benefits": [
+        "تحسين اللون",
+        "تحسين الملمس",
+        "عناية احترافية",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
+    },
+    "endolift": {
+      "name": "Endolift",
+      "shortDescription": "علاج ليزر لتحسين لون وملمس البشرة.",
+      "description": "Endolift: تساعد تقنية الليزر المتقدمة على تحسين لون البشرة وملمسها وجودتها.",
+      "benefits": [
+        "تحسين اللون",
+        "تحسين الملمس",
+        "عناية احترافية",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
+    },
+    "is-clinical-fire-ice-peel": {
+      "name": "iS Clinical Fire & Ice Peel",
+      "shortDescription": "علاج جودة البشرة لمظهر صحي ومشرق.",
+      "description": "iS Clinical Fire & Ice Peel: يتم اختيار علاج البشرة الاحترافي بعد الاستشارة حسب احتياجات بشرتك.",
+      "benefits": [
+        "مظهر مشرق",
+        "تحسين الملمس",
+        "عناية شخصية",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
+    },
+    "mesoestetic-cosmelan-peel": {
+      "name": "Mesoestetic Cosmelan Peel",
+      "shortDescription": "علاج جودة البشرة لمظهر صحي ومشرق.",
+      "description": "Mesoestetic Cosmelan Peel: يتم اختيار علاج البشرة الاحترافي بعد الاستشارة حسب احتياجات بشرتك.",
+      "benefits": [
+        "مظهر مشرق",
+        "تحسين الملمس",
+        "عناية شخصية",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
+    },
+    "obagi-blue-radiance-peel": {
+      "name": "Obagi Blue Radiance Peel",
+      "shortDescription": "علاج جودة البشرة لمظهر صحي ومشرق.",
+      "description": "Obagi Blue Radiance Peel: يتم اختيار علاج البشرة الاحترافي بعد الاستشارة حسب احتياجات بشرتك.",
+      "benefits": [
+        "مظهر مشرق",
+        "تحسين الملمس",
+        "عناية شخصية",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
+    },
+    "obagi-nu-derm": {
+      "name": "Obagi Nu-Derm",
+      "shortDescription": "علاج جودة البشرة لمظهر صحي ومشرق.",
+      "description": "Obagi Nu-Derm: يتم اختيار علاج البشرة الاحترافي بعد الاستشارة حسب احتياجات بشرتك.",
+      "benefits": [
+        "مظهر مشرق",
+        "تحسين الملمس",
+        "عناية شخصية",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
+    },
+    "skinpen-microneedling": {
+      "name": "SkinPen Microneedling",
+      "shortDescription": "علاج جودة البشرة لمظهر صحي ومشرق.",
+      "description": "SkinPen Microneedling: يتم اختيار علاج البشرة الاحترافي بعد الاستشارة حسب احتياجات بشرتك.",
+      "benefits": [
+        "مظهر مشرق",
+        "تحسين الملمس",
+        "عناية شخصية",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
+    },
+    "dermamelan-intimate-peel": {
+      "name": "Dermamelan Intimate Peel",
+      "shortDescription": "علاج خاص للمناطق الحساسة بخصوصية كاملة.",
+      "description": "Dermamelan Intimate Peel: يتم الإجراء براحة وخصوصية وبنهج احترافي.",
+      "benefits": [
+        "خصوصية",
+        "راحة",
+        "عناية احترافية",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
+    },
+    "intimate-laser-hair-removal": {
+      "name": "إزالة الشعر بالليزر للمناطق الحساسة",
+      "shortDescription": "علاج خاص للمناطق الحساسة بخصوصية كاملة.",
+      "description": "إزالة الشعر بالليزر للمناطق الحساسة: يتم الإجراء براحة وخصوصية وبنهج احترافي.",
+      "benefits": [
+        "خصوصية",
+        "راحة",
+        "عناية احترافية",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
+    },
+    "observe-skin-scanner": {
+      "name": "جهاز Observe لتحليل البشرة",
+      "shortDescription": "تحليل متقدم للبشرة لخطة شخصية.",
+      "description": "جهاز Observe لتحليل البشرة: يساعد التشخيص على تقييم حالة البشرة بدقة واختيار العلاج المناسب.",
+      "benefits": [
+        "تحليل عميق",
+        "خطة شخصية",
+        "متابعة التقدم",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
+    },
+    "hair-extensions": {
+      "name": "تمديدات الشعر",
+      "shortDescription": "خدمة صالون لنتيجة طبيعية ومعتنى بها.",
+      "description": "تمديدات الشعر: يتم التخطيط للخدمة حسب أسلوبك وراحتك والنتيجة المطلوبة.",
+      "benefits": [
+        "خطة شخصية",
+        "إنهاء صالون",
+        "مظهر معتنى به",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
+    },
+    "nails": {
+      "name": "الأظافر",
+      "shortDescription": "خدمة صالون لنتيجة طبيعية ومعتنى بها.",
+      "description": "الأظافر: يتم التخطيط للخدمة حسب أسلوبك وراحتك والنتيجة المطلوبة.",
+      "benefits": [
+        "خطة شخصية",
+        "إنهاء صالون",
+        "مظهر معتنى به",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
+    },
+    "lashes": {
+      "name": "الرموش",
+      "shortDescription": "خدمة صالون لنتيجة طبيعية ومعتنى بها.",
+      "description": "الرموش: يتم التخطيط للخدمة حسب أسلوبك وراحتك والنتيجة المطلوبة.",
+      "benefits": [
+        "خطة شخصية",
+        "إنهاء صالون",
+        "مظهر معتنى به",
+        "نهج مبني على الاستشارة",
+        "نتيجة صالون احترافية"
+      ]
     }
   },
   "conditionContent": {
     "ageing-skin": {
-      "name": "الجلد الشيخي",
-      "shortDescription": "عالج الخطوط الدقيقة والتجاعيد وفقدان المرونة.",
+      "name": "شيخوخة البشرة",
+      "shortDescription": "تحسين الخطوط الرفيعة والتجاعيد وفقدان المرونة.",
       "description": "الشيخوخة الطبيعية للجلد.",
       "symptoms": [
-        "الخطوط الدقيقة والتجاعيد",
-        "فقدان مرونة الجلد",
-        "ترهل الجلد",
+        "تغيرات ظاهرة في البشرة",
+        "عدم تجانس في الملمس أو اللون",
+        "انخفاض الترطيب أو التماسك",
         "فقدان الحجم في الخدين",
-        "ثنايا nasolabial العميقة",
-        "خطوط الدمى"
+        "علامات جمالية تزعج العميلة",
+        "علامة إضافية يتم تقييمها في الاستشارة"
       ],
       "causes": [
-        "انخفاض إنتاج الكولاجين الطبيعي",
+        "التعرض للشمس",
         "أضرار الشمس",
         "فقدان الدهون في الوجه",
-        "انخفاض ترطيب الجلد",
-        "تعبيرات الوجه المتكررة"
+        "استعداد وراثي",
+        "عوامل نمط الحياة والبيئة"
       ],
       "treatments": [
         "حقن مضادة للتجاعيد",
         "الحشوات الجلدية",
         "علاجات شد الجلد",
         "تقشير البشرة بالليزر",
-        "منتجات العناية بالبشرة الطبية"
+        "توصيات عناية منزلية مخصصة"
       ]
     },
     "acne": {
@@ -1778,7 +2120,9 @@
       "priceGEL": "السعر (GEL)",
       "priceUSD": "تقريباً USD",
       "note": "نفس العلاجات في أوروبا الغربية أو المملكة المتحدة يمكن أن تكلف 2-3 أضعاف أكثر. احصل على نتائج بريميوم بأسعار جورجية.",
-      "finalNote": "التسعير النهائي يُحدد خلال الاستشارة بناءً على الاحتياجات الفردية"
+      "finalNote": "التسعير النهائي يُحدد خلال الاستشارة بناءً على الاحتياجات الفردية",
+      "oneArea": "منطقة واحدة",
+      "threeAreas": "3 مناطق"
     },
     "journey": {
       "title": "رحلة العميل الدولي",
@@ -1816,6 +2160,7 @@
       "prpReason": "احمرار، كدمات محتملة",
       "comboStay": "3-5 أيام",
       "comboReason": "عدة مراحل تعافٍ",
+      "combinationTreatments": "علاجات مركبة",
       "seaWarning": "تجنب السباحة في البحر الأسود لمدة 48 ساعة بعد العلاج لمنع العدوى."
     },
     "trust": {
@@ -1904,11 +2249,11 @@
     "required": "مطلوب",
     "keyTab": "Tab",
     "keyEscape": "Escape",
-    "skipToContent": "Skip to main content",
-    "skipToMain": "Skip to main content",
-    "skipToTreatments": "Skip to treatments",
-    "skipToBooking": "Skip to booking",
-    "skipNavigation": "Skip links"
+    "skipToContent": "تخطى إلى المحتوى الرئيسي",
+    "skipToMain": "تخطى إلى المحتوى الرئيسي",
+    "skipToTreatments": "تخطى إلى العلاجات",
+    "skipToBooking": "تخطى إلى الحجز",
+    "skipNavigation": "روابط التخطي"
   },
   "errors": {
     "title": "حدث خطأ ما",
@@ -2010,142 +2355,142 @@
   },
   "homeEditorial": {
     "carousel": {
-      "previousSlide": "Previous slide",
-      "nextSlide": "Next slide"
+      "previousSlide": "الشريحة السابقة",
+      "nextSlide": "الشريحة التالية"
     },
     "heroSlides": {
       "slide1": {
-        "eyebrow": "Medical aesthetics in Batumi",
-        "title": "Confidence in your skin starts with a precise consultation.",
-        "description": "Natural-looking injectables, skin quality treatments, and advanced device procedures planned around your anatomy, skin health, and lifestyle.",
-        "cta": "Book a consultation"
+        "eyebrow": "الطب التجميلي في باتومي",
+        "title": "الثقة ببشرتك تبدأ باستشارة دقيقة.",
+        "description": "حقن بنتائج طبيعية، وعلاجات لتحسين جودة البشرة، وإجراءات متقدمة بالأجهزة تُخطط وفق تشريحك وصحة بشرتك ونمط حياتك.",
+        "cta": "احجز استشارة"
       },
       "slide2": {
-        "eyebrow": "Skin quality",
-        "title": "Real solutions for real skin concerns.",
-        "description": "From texture and pigmentation to hydration, firmness, and facial balance, every plan begins with a skin-first diagnosis.",
-        "cta": "Explore concerns"
+        "eyebrow": "جودة البشرة",
+        "title": "حلول حقيقية لمشكلات البشرة الحقيقية.",
+        "description": "من الملمس والتصبغات إلى الترطيب والتماسك وتوازن ملامح الوجه، تبدأ كل خطة بتقييم يضع صحة البشرة أولًا.",
+        "cta": "استكشفي مشكلات البشرة"
       },
       "slide3": {
-        "eyebrow": "Injectables and contour",
-        "title": "Subtle volume. Considered contours. You, refreshed.",
-        "description": "Dermal fillers and anti-wrinkle treatments delivered with restraint, symmetry, and respect for natural expression.",
-        "cta": "View treatments"
+        "eyebrow": "الحقن وتحديد الملامح",
+        "title": "حجم ناعم. ملامح مدروسة. إطلالة متجددة.",
+        "description": "تُجرى علاجات الفيلر ومكافحة التجاعيد باعتدال وتناظر، مع احترام تعابير الوجه الطبيعية.",
+        "cta": "شاهدي العلاجات"
       }
     },
     "philosophy": {
-      "eyebrow": "Our approach",
-      "title": "A skin-first aesthetic practice.",
-      "description": "The Galderma-inspired direction is clean, clinical, and product-aware: fewer decorative effects, more trust, more education, and a calmer visual rhythm.",
-      "statement": "We study your skin, facial structure, and goals before recommending a treatment. The result should look considered, balanced, and quietly confident."
+      "eyebrow": "نهجنا",
+      "title": "نهج تجميلي يبدأ بصحة البشرة.",
+      "description": "اتجاه مستوحى من Galderma، نظيف وسريري وواعٍ بالمنتجات: زخارف أقل، وثقة ومعرفة أكبر، وإيقاع بصري أكثر هدوءًا.",
+      "statement": "ندرس بشرتك وبنية وجهك وأهدافك قبل أن نوصي بأي علاج. يجب أن تبدو النتيجة مدروسة ومتوازنة وواثقة بطبيعتها."
     },
     "concerns": {
-      "eyebrow": "Skin concerns",
-      "title": "Real solutions for real skin concerns.",
-      "description": "Explore common concerns and the treatment pathways that can support healthier, more confident skin."
+      "eyebrow": "مشكلات البشرة",
+      "title": "حلول حقيقية لمشكلات البشرة الحقيقية.",
+      "description": "تعرّف على المشكلات الشائعة ومسارات العلاج التي تدعم بشرة أكثر صحة وثقة."
     },
     "concernItems": {
       "item1": {
-        "name": "Fine lines and wrinkles",
-        "description": "Soften expression lines while preserving natural movement."
+        "name": "الخطوط الرفيعة والتجاعيد",
+        "description": "تخفيف خطوط التعبير مع الحفاظ على الحركة الطبيعية."
       },
       "item2": {
-        "name": "Loss of firmness",
-        "description": "Support collagen, lift laxity, and refine facial structure."
+        "name": "فقدان الشد",
+        "description": "دعم الكولاجين، تحسين الترهل وتنقية بنية الوجه."
       },
       "item3": {
-        "name": "Uneven tone",
-        "description": "Target pigmentation, dullness, and post-inflammatory marks."
+        "name": "لون غير موحد",
+        "description": "استهداف التصبغات والبهتان وآثار الالتهاب."
       },
       "item4": {
-        "name": "Dry skin",
-        "description": "Restore hydration, barrier function, and lasting luminosity."
+        "name": "البشرة الجافة",
+        "description": "استعادة الترطيب ووظيفة الحاجز والإشراقة الدائمة."
       },
       "item5": {
-        "name": "Acne and scarring",
-        "description": "Improve active breakouts, marks, and uneven texture."
+        "name": "حب الشباب والندبات",
+        "description": "تحسين البثور النشطة والآثار والملمس غير المتجانس."
       }
     },
     "portfolio": {
-      "eyebrow": "Portfolio",
-      "title": "Holistic aesthetic treatments.",
-      "description": "A considered portfolio for facial balance, skin quality, and long-term confidence.",
-      "viewAll": "View all treatments",
-      "explore": "Explore",
+      "eyebrow": "مجموعة العلاجات",
+      "title": "علاجات تجميلية شاملة.",
+      "description": "مجموعة مدروسة لتحقيق توازن الوجه وتحسين جودة البشرة وتعزيز الثقة على المدى الطويل.",
+      "viewAll": "عرض جميع العلاجات",
+      "explore": "استكشفي",
       "items": {
         "item1": {
-          "title": "Dermal fillers",
-          "description": "Hyaluronic acid treatments for lips, cheeks, jawline, chin, under-eyes, and facial balancing."
+          "title": "الفيلر الجلدي",
+          "description": "علاجات حمض الهيالورونيك للشفاه والخدود وخط الفك والذقن وتحت العينين وتوازن الوجه."
         },
         "item2": {
-          "title": "Anti-wrinkle injectables",
-          "description": "Precise neuromodulator treatments for forehead lines, frown lines, crow's feet, masseter, and sweating."
+          "title": "حقن مضادة للتجاعيد",
+          "description": "علاجات دقيقة بالنيورومودوليتر لخطوط الجبهة وبين الحاجبين وحول العينين والعضلة الماضغة والتعرق."
         },
         "item3": {
-          "title": "Skin quality",
-          "description": "Medical facials, peels, boosters, microneedling, and laser-led plans for stronger, brighter skin."
+          "title": "جودة البشرة",
+          "description": "جلسات طبية للوجه، وتقشير، ومحفزات للبشرة، ووخز دقيق، وخطط قائمة على الليزر لبشرة أقوى وأكثر إشراقًا."
         }
       }
     },
     "stats": {
       "item1": {
-        "label": "Consultation-first plans"
+        "label": "خطط تبدأ بالاستشارة"
       },
       "item2": {
-        "label": "Languages supported"
+        "label": "اللغات المدعومة"
       },
       "item3": {
-        "label": "Skin and facial assessment"
+        "label": "تقييم البشرة والوجه"
       }
     },
     "results": {
-      "eyebrow": "Real results",
-      "title": "The proof is in the plan.",
-      "description": "Before-and-after stories should be read as clinical examples, not promises. Your result depends on anatomy, product choice, dosage, and aftercare.",
-      "cta": "See results",
-      "before": "Before",
-      "after": "After",
-      "disclaimer": "Individual results vary. All treatment plans require clinical consultation."
+      "eyebrow": "نتائج حقيقية",
+      "title": "الدليل في الخطة.",
+      "description": "يجب قراءة قصص قبل وبعد كأمثلة سريرية وليست وعودًا. تعتمد نتيجتك على التشريح واختيار المنتج والجرعة والعناية اللاحقة.",
+      "cta": "شاهدي النتائج",
+      "before": "قبل",
+      "after": "بعد",
+      "disclaimer": "تختلف النتائج من شخص لآخر. كل خطط العلاج تتطلب استشارة سريرية."
     },
     "resultItems": {
       "item1": {
-        "treatment": "Cheek and mid-face support",
-        "detail": "Restored volume with a soft, lifted contour."
+        "treatment": "دعم الخد ومنتصف الوجه",
+        "detail": "استعادة الحجم مع محيط ناعم ومرفوع."
       },
       "item2": {
-        "treatment": "Lip hydration and shape",
-        "detail": "Defined border, balanced volume, natural finish."
+        "treatment": "ترطيب الشفاه وشكلها",
+        "detail": "حدود واضحة، حجم متوازن ولمسة نهائية طبيعية."
       },
       "item3": {
-        "treatment": "Skin radiance plan",
-        "detail": "Improved brightness, texture, and surface refinement."
+        "treatment": "خطة إشراقة البشرة",
+        "detail": "تحسن في الإشراق والملمس ونعومة السطح."
       }
     },
     "cta": {
-      "eyebrow": "Find your specialist",
-      "title": "Begin with a clinical consultation.",
-      "description": "Visit {clinicName} in Batumi for a structured assessment and a treatment plan tailored to your skin, anatomy, timing, and comfort.",
-      "bookNow": "Book now",
-      "contactUs": "Contact us"
+      "eyebrow": "اعثر على أخصائيك",
+      "title": "ابدأ باستشارة سريرية.",
+      "description": "زُر {clinicName} في باتومي للحصول على تقييم منظم وخطة علاج مصممة وفق بشرتك وتشريحك وتوقيتك وراحتك.",
+      "bookNow": "احجزي الآن",
+      "contactUs": "تواصلي معنا"
     },
     "journal": {
-      "eyebrow": "Skin trends",
-      "title": "Aesthetic insight, without the noise.",
-      "description": "Educational notes for patients who want to understand treatment planning before they book.",
-      "cta": "Read journal"
+      "eyebrow": "اتجاهات البشرة",
+      "title": "رؤية جمالية بلا ضجيج.",
+      "description": "ملاحظات تثقيفية لمن يرغبون في فهم تخطيط العلاج قبل حجز موعدهم.",
+      "cta": "اقرئي المجلة"
     },
     "trendItems": {
       "item1": {
-        "category": "Treatment planning",
-        "title": "How to plan injectables without looking overdone"
+        "category": "تخطيط العلاج",
+        "title": "كيفية تخطيط الحقن من دون مظهر مبالغ فيه"
       },
       "item2": {
-        "category": "Skin health",
-        "title": "Skin quality is the new foundation"
+        "category": "صحة البشرة",
+        "title": "جودة البشرة هي الأساس الجديد"
       },
       "item3": {
-        "category": "Consultation",
-        "title": "What to know before a first filler consultation"
+        "category": "استشارة",
+        "title": "ما يجب معرفته قبل أول استشارة فيلر"
       }
     }
   }

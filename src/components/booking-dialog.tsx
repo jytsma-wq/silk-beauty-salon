@@ -537,7 +537,7 @@ export function BookingDialog({ open, onOpenChange }: BookingDialogProps) {
                   <span className="font-medium">{t('time')}:</span> {selectedTime}
                 </p>
                 <p>
-                  <span className="font-medium">Email:</span> {email}
+                  <span className="font-medium">{t('email')}:</span> {email}
                 </p>
               </div>
             </div>

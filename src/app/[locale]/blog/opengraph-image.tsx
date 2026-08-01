@@ -1,10 +1,8 @@
 import { ImageResponse } from 'next/og';
 import { routing } from '@/i18n/routing';
+import { getOpenGraphFonts } from '@/lib/opengraph-fonts';
 
 export const runtime = 'nodejs';
-
-const fontRegular = fetch(new URL('https://fonts.gstatic.com/s/cormorantgaramond/v16/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYrEtFmS.woff2')).then((res) => res.arrayBuffer());
-const fontBold = fetch(new URL('https://fonts.gstatic.com/s/cormorantgaramond/v16/co3YmX5slCNuHLi8bLeY9MK7whWMhyjYqEfFmw.woff2')).then((res) => res.arrayBuffer());
 
 export const alt = 'Blog - Silk Beauty Salon';
 export const size = {
@@ -16,26 +14,25 @@ export const contentType = 'image/png';
 export default async function Image({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const resolvedLocale = routing.locales.includes(locale as typeof routing.locales[number]) ? (locale as typeof routing.locales[number]) : 'en';
+  const fonts = await getOpenGraphFonts(resolvedLocale);
   
   const titles: Record<string, string> = {
     en: 'Blog',
-    ka: 'Blog',
-    ru: 'Blog',
+    ka: 'ბლოგი',
+    ru: 'Блог',
     tr: 'Blog',
-    ar: 'Blog',
-    he: 'Blog',
+    ar: 'المدونة',
+    he: 'בלוג',
   };
   
   const subtitles: Record<string, string> = {
     en: 'Latest News & Beauty Tips from Batumi',
-    ka: 'Latest News & Beauty Tips from Batumi',
-    ru: 'Latest News & Beauty Tips from Batumi',
-    tr: 'Latest News & Beauty Tips from Batumi',
-    ar: 'Latest News & Beauty Tips from Batumi',
-    he: 'Latest News & Beauty Tips from Batumi',
+    ka: 'სიახლეები და სილამაზის რჩევები ბათუმიდან',
+    ru: 'Новости и советы о красоте из Батуми',
+    tr: 'Batum’dan güzellik haberleri ve önerileri',
+    ar: 'أخبار ونصائح الجمال من باتومي',
+    he: 'חדשות וטיפים ליופי מבטומי',
   };
-
-  const [fontRegularData, fontBoldData] = await Promise.all([fontRegular, fontBold]);
 
   return new ImageResponse(
     (
@@ -126,7 +123,7 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
               color: '#1a1a2e',
               fontSize: '28px',
               fontWeight: 700,
-              fontFamily: 'Cormorant Garamond',
+              fontFamily: 'OpenGraphFont',
             }}
           >
             S
@@ -138,7 +135,7 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
             color: '#ffffff',
             fontSize: '72px',
             fontWeight: 700,
-            fontFamily: 'Cormorant Garamond',
+            fontFamily: 'OpenGraphFont',
             letterSpacing: '0.05em',
             textAlign: 'center',
             marginBottom: '16px',
@@ -153,7 +150,7 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
             color: '#c9a962',
             fontSize: '24px',
             fontWeight: 400,
-            fontFamily: 'Cormorant Garamond',
+            fontFamily: 'OpenGraphFont',
             letterSpacing: '0.1em',
             textAlign: 'center',
           }}
@@ -173,20 +170,7 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
     ),
     {
       ...size,
-      fonts: [
-        {
-          name: 'Cormorant Garamond',
-          data: fontRegularData,
-          weight: 400,
-          style: 'normal',
-        },
-        {
-          name: 'Cormorant Garamond',
-          data: fontBoldData,
-          weight: 700,
-          style: 'normal',
-        },
-      ],
+      fonts,
     }
   );
 }
