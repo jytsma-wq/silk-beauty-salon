@@ -79,19 +79,19 @@ export default async function TreatmentPage({ params }: Props) {
   const stickyMeta = [treatment.duration, treatment.price].filter(Boolean).join(' • ');
 
   const detailLabels = {
-    atAGlance: 'At a Glance',
-    procedureTime: 'Procedure Time',
-    priceFrom: 'Price From',
-    results: 'Results',
-    downtime: 'Downtime',
-    howItWorks: 'How It Works',
-    benefits: 'Benefits',
-    aftercare: 'Aftercare',
-    questions: 'Questions & Answers',
-    youMightAlsoLike: 'You Might Also Like',
-    learnMore: 'Learn more',
-    bookNow: 'Book Now',
-    bookThisTreatment: 'Book This Treatment',
+    atAGlance: tTreatmentPage('atAGlance'),
+    procedureTime: tTreatmentPage('duration'),
+    priceFrom: tTreatmentPage('price'),
+    results: tTreatmentPage('results'),
+    downtime: tTreatmentPage('downtime'),
+    howItWorks: tTreatmentPage('howItWorks'),
+    benefits: tTreatmentPage('benefits'),
+    aftercare: tTreatmentPage('aftercare'),
+    questions: tTreatmentPage('faqs'),
+    youMightAlsoLike: tTreatmentPage('youMightAlsoLike'),
+    learnMore: tTreatmentPage('learnMore'),
+    bookNow: tTreatmentPage('bookNowBtn'),
+    bookThisTreatment: tTreatmentPage('bookNow'),
   };
 
   return (
@@ -113,7 +113,7 @@ export default async function TreatmentPage({ params }: Props) {
               </nav>
 
               <p className="mb-5 text-[0.68rem] font-medium uppercase tracking-[0.28em] text-[#8d6f58]">
-                {category?.name || 'Treatment'}
+                {category?.name || tCommon('treatments')}
               </p>
               <h1 className="mb-6 font-sans text-[clamp(2.9rem,5.6vw,5.8rem)] font-light leading-[1.02] text-[#241f1b]">
                 {treatment.name}
@@ -126,7 +126,7 @@ export default async function TreatmentPage({ params }: Props) {
                 {treatment.duration ? (
                   <div>
                     <span className="mb-1 block text-xs uppercase tracking-wider text-stone-500">
-                      Duration
+                      {detailLabels.procedureTime}
                     </span>
                     <span className="text-[#241f1b]">{treatment.duration}</span>
                   </div>
@@ -134,7 +134,7 @@ export default async function TreatmentPage({ params }: Props) {
                 {treatment.price ? (
                   <div>
                     <span className="mb-1 block text-xs uppercase tracking-wider text-stone-500">
-                      Price from
+                      {detailLabels.priceFrom}
                     </span>
                     <span className="text-[#241f1b]">{treatment.price}</span>
                   </div>

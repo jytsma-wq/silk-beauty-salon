@@ -1,10 +1,8 @@
 import { ImageResponse } from 'next/og';
 import { routing } from '@/i18n/routing';
+import { getOpenGraphFonts } from '@/lib/opengraph-fonts';
 
 export const runtime = 'nodejs';
-
-const fontRegular = fetch(new URL('https://fonts.gstatic.com/s/cormorantgaramond/v16/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYrEtFmS.woff2')).then((res) => res.arrayBuffer());
-const fontBold = fetch(new URL('https://fonts.gstatic.com/s/cormorantgaramond/v16/co3YmX5slCNuHLi8bLeY9MK7whWMhyjYqEfFmw.woff2')).then((res) => res.arrayBuffer());
 
 export const alt = 'Before & After - Silk Beauty Salon';
 export const size = {
@@ -16,26 +14,25 @@ export const contentType = 'image/png';
 export default async function Image({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const resolvedLocale = routing.locales.includes(locale as typeof routing.locales[number]) ? (locale as typeof routing.locales[number]) : 'en';
+  const fonts = await getOpenGraphFonts(resolvedLocale);
   
   const titles: Record<string, string> = {
     en: 'Before & After',
-    ka: 'Before & After',
-    ru: 'Before & After',
-    tr: 'Before & After',
-    ar: 'Before & After',
-    he: 'Before & After',
+    ka: 'მანამდე და შემდეგ',
+    ru: 'До и после',
+    tr: 'Öncesi ve sonrası',
+    ar: 'قبل وبعد',
+    he: 'לפני ואחרי',
   };
   
   const subtitles: Record<string, string> = {
     en: 'Real Results from Our Medical Aesthetic Treatments',
-    ka: 'Real Results from Our Medical Aesthetic Treatments',
-    ru: 'Real Results from Our Medical Aesthetic Treatments',
-    tr: 'Real Results from Our Medical Aesthetic Treatments',
-    ar: 'Real Results from Our Medical Aesthetic Treatments',
-    he: 'Real Results from Our Medical Aesthetic Treatments',
+    ka: 'ჩვენი სამედიცინო-ესთეტიკური პროცედურების რეალური შედეგები',
+    ru: 'Реальные результаты наших медицинских эстетических процедур',
+    tr: 'Medikal estetik uygulamalarımızdan gerçek sonuçlar',
+    ar: 'نتائج حقيقية لعلاجاتنا التجميلية الطبية',
+    he: 'תוצאות אמיתיות של טיפולי האסתטיקה הרפואית שלנו',
   };
-
-  const [fontRegularData, fontBoldData] = await Promise.all([fontRegular, fontBold]);
 
   return new ImageResponse(
     (
@@ -126,7 +123,7 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
               color: '#1a1a2e',
               fontSize: '28px',
               fontWeight: 700,
-              fontFamily: 'Cormorant Garamond',
+              fontFamily: 'OpenGraphFont',
             }}
           >
             S
@@ -138,7 +135,7 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
             color: '#ffffff',
             fontSize: '72px',
             fontWeight: 700,
-            fontFamily: 'Cormorant Garamond',
+            fontFamily: 'OpenGraphFont',
             letterSpacing: '0.05em',
             textAlign: 'center',
             marginBottom: '16px',
@@ -153,7 +150,7 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
             color: '#c9a962',
             fontSize: '24px',
             fontWeight: 400,
-            fontFamily: 'Cormorant Garamond',
+            fontFamily: 'OpenGraphFont',
             letterSpacing: '0.1em',
             textAlign: 'center',
           }}
@@ -173,20 +170,7 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
     ),
     {
       ...size,
-      fonts: [
-        {
-          name: 'Cormorant Garamond',
-          data: fontRegularData,
-          weight: 400,
-          style: 'normal',
-        },
-        {
-          name: 'Cormorant Garamond',
-          data: fontBoldData,
-          weight: 700,
-          style: 'normal',
-        },
-      ],
+      fonts,
     }
   );
 }

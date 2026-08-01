@@ -1117,25 +1117,624 @@ async function getTreatmentTranslations(locale: string) {
   }
 }
 
+type TreatmentLocale = 'en' | 'ka' | 'ru' | 'tr' | 'ar' | 'he';
+
+const supportedTreatmentLocales = new Set<TreatmentLocale>([
+  'en',
+  'ka',
+  'ru',
+  'tr',
+  'ar',
+  'he',
+]);
+
+const treatmentContentCategoryAliases: Record<string, string> = {
+  'body-contouring': 'body-treatments',
+  laser: 'laser-treatments',
+  skin: 'skin-treatments',
+  'skin-laxity': 'skin-treatments',
+  body: 'body-treatments',
+  intimate: 'intimate-treatments',
+  hair: 'hair-treatments',
+};
+
+const categoryNames: Record<Exclude<TreatmentLocale, 'en'>, Record<string, string>> = {
+  ka: {
+    botox: 'ბოტოქსის ინექციები',
+    'dermal-fillers': 'დერმალური ფილერები',
+    'body-contouring': 'სხეულის კონტურირება',
+    laser: 'ლაზერული პროცედურები',
+    skin: 'კანის პროცედურები',
+    'skin-laxity': 'კანის მოდუნება',
+    body: 'სხეულის პროცედურები',
+    intimate: 'ინტიმური ზონის პროცედურები',
+    'medical-facials': 'სამედიცინო სახის მოვლა',
+    diagnostic: 'დიაგნოსტიკა',
+    hair: 'თმის პროცედურები',
+  },
+  ru: {
+    botox: 'Инъекционные процедуры с ботоксом',
+    'dermal-fillers': 'Дермальные филлеры',
+    'body-contouring': 'Контурирование тела',
+    laser: 'Лазерные процедуры',
+    skin: 'Процедуры для кожи',
+    'skin-laxity': 'Дряблость кожи',
+    body: 'Процедуры для тела',
+    intimate: 'Интимные процедуры',
+    'medical-facials': 'Медицинские уходы за лицом',
+    diagnostic: 'Диагностика',
+    hair: 'Процедуры для волос',
+  },
+  tr: {
+    botox: 'Botoks uygulamaları',
+    'dermal-fillers': 'Dermal dolgular',
+    'body-contouring': 'Vücut şekillendirme',
+    laser: 'Lazer uygulamaları',
+    skin: 'Cilt uygulamaları',
+    'skin-laxity': 'Cilt gevşekliği',
+    body: 'Vücut uygulamaları',
+    intimate: 'İntim bölge uygulamaları',
+    'medical-facials': 'Medikal cilt bakımları',
+    diagnostic: 'Cilt analizi',
+    hair: 'Saç uygulamaları',
+  },
+  ar: {
+    botox: 'حقن البوتوكس',
+    'dermal-fillers': 'الفيلر الجلدي',
+    'body-contouring': 'نحت الجسم',
+    laser: 'علاجات الليزر',
+    skin: 'علاجات البشرة',
+    'skin-laxity': 'ترهل البشرة',
+    body: 'علاجات الجسم',
+    intimate: 'علاجات المنطقة الحميمة',
+    'medical-facials': 'جلسات طبية للوجه',
+    diagnostic: 'تشخيص البشرة',
+    hair: 'علاجات الشعر',
+  },
+  he: {
+    botox: 'הזרקות בוטוקס',
+    'dermal-fillers': 'פילרים דרמליים',
+    'body-contouring': 'עיצוב הגוף',
+    laser: 'טיפולי לייזר',
+    skin: 'טיפולי עור',
+    'skin-laxity': 'רפיון העור',
+    body: 'טיפולי גוף',
+    intimate: 'טיפולים אינטימיים',
+    'medical-facials': 'טיפולי פנים רפואיים',
+    diagnostic: 'אבחון עור',
+    hair: 'טיפולי שיער',
+  },
+};
+
+const genericTreatmentNames: Record<Exclude<TreatmentLocale, 'en'>, Record<string, string>> = {
+  ka: {
+    'body-skin-tightening': 'სხეულის კანის დაჭიმვა',
+    'hair-treatments': 'თმის პროცედურები',
+  },
+  ru: {
+    'body-skin-tightening': 'Подтяжка кожи тела',
+    'hair-treatments': 'Процедуры для волос',
+  },
+  tr: {
+    'body-skin-tightening': 'Vücut cildi sıkılaştırma',
+    'hair-treatments': 'Saç uygulamaları',
+  },
+  ar: {
+    'body-skin-tightening': 'شد بشرة الجسم',
+    'hair-treatments': 'علاجات الشعر',
+  },
+  he: {
+    'body-skin-tightening': 'מיצוק עור הגוף',
+    'hair-treatments': 'טיפולי שיער',
+  },
+};
+
+type SupplementalTreatmentTranslation = {
+  name: string;
+  description: string;
+};
+
+const supplementalTreatmentTranslations: Record<
+  Exclude<TreatmentLocale, 'en'>,
+  Record<string, SupplementalTreatmentTranslation>
+> = {
+  ka: {
+    'endolift-body': {
+      name: 'ენდოლიფტი სხეულისთვის',
+      description: 'მინიმალურად ინვაზიური ლაზერული პროცედურა ლოკალური ცხიმის შესამცირებლად და სხეულის კანის დასაჭიმად.',
+    },
+    'body-skin-tightening': {
+      name: 'სხეულის კანის დაჭიმვა',
+      description: 'არაინვაზიური პროცედურა რადიოსიხშირისა და ულტრაბგერის გამოყენებით, რომელიც ასტიმულირებს კოლაგენს და ამკვრივებს მოდუნებულ კანს.',
+    },
+    emface: {
+      name: 'Emface',
+      description: 'სახის კუნთების ტონუსისა და კანის დაჭიმვის არაინვაზიური პროცედურა რადიოსიხშირისა და HIFES™ ტექნოლოგიით.',
+    },
+    'exion-face-body': {
+      name: 'Exion სახისა და სხეულისთვის',
+      description: 'ხელოვნური ინტელექტით მართული რადიოსიხშირული პროცედურა სახისა და სხეულის კანის დასაჭიმად და კონტურების გასაუმჯობესებლად.',
+    },
+    'hifu-treatment': {
+      name: 'HIFU პროცედურა',
+      description: 'ფოკუსირებული ულტრაბგერითი ლიფტინგი, რომელიც ხელს უწყობს კოლაგენის წარმოქმნას და კანის თანდათანობით დაჭიმვას ოპერაციის გარეშე.',
+    },
+    'mint-pdo-thread-lift': {
+      name: 'MINT PDO ძაფებით ლიფტინგი',
+      description: 'მინიმალურად ინვაზიური ლიფტინგი შთანთქმადი PDO ძაფებით, რომელიც კანს მყისიერად სწევს და კოლაგენის წარმოქმნას ასტიმულირებს.',
+    },
+    'morpheus-8-treatment': {
+      name: 'Morpheus8',
+      description: 'ფრაქციული RF მიკრონიდლინგი კანის განახლების, დაჭიმვისა და ტექსტურის გასაუმჯობესებლად.',
+    },
+    nanothreads: {
+      name: 'ნანოძაფები',
+      description: 'ულტრა თხელი PDO ძაფები კანის ნაზი განახლების, წვრილი ხაზების შემცირებისა და ტექსტურის გასაუმჯობესებლად.',
+    },
+    'neogen-plasma': {
+      name: 'Neogen Plasma',
+      description: 'აზოტის პლაზმის ენერგიაზე დაფუძნებული პროცედურა კანის განახლებისა და კოლაგენის წარმოქმნის სტიმულირებისთვის.',
+    },
+    'thermage-flx': {
+      name: 'Thermage FLX',
+      description: 'თანამედროვე რადიოსიხშირული პროცედურა კანის ხანგრძლივი დაჭიმვისა და კოლაგენის სტიმულირებისთვის.',
+    },
+    'profhilo-body': {
+      name: 'Profhilo Body',
+      description: 'ჰიალურონის მჟავაზე დაფუძნებული საინექციო პროცედურა სხეულის კანის დატენიანების, სიმკვრივისა და ელასტიკურობის გასაუმჯობესებლად.',
+    },
+    'morpheus8-body': {
+      name: 'Morpheus8 Body',
+      description: 'ფრაქციული RF მიკრონიდლინგი სხეულის კანის დასაჭიმად, ტექსტურის გასაუმჯობესებლად და კონტურების გამოსაკვეთად.',
+    },
+    'exion-body': {
+      name: 'Exion Body',
+      description: 'ხელოვნური ინტელექტით მართული რადიოსიხშირული პროცედურა სხეულის კონტურირებისა და კანის დაჭიმვისთვის.',
+    },
+    'thermage-body': {
+      name: 'Thermage Body',
+      description: 'არაინვაზიური რადიოსიხშირული პროცედურა სხეულის კანის დასაჭიმად და გასაგლუვებლად.',
+    },
+    'ultraformer-hifu-body': {
+      name: 'Ultraformer HIFU Body',
+      description: 'ფოკუსირებული ულტრაბგერითი პროცედურა სხეულის კონტურების გასაუმჯობესებლად და კანის დასაჭიმად ოპერაციის გარეშე.',
+    },
+    'filter-facial': {
+      name: 'Filter Facial',
+      description: 'მრავალსაფეხურიანი სახის მოვლა კანის ტექსტურის, ფორების იერსახისა და ბუნებრივი ბზინვარების გასაუმჯობესებლად.',
+    },
+    'caviar-peel': {
+      name: 'ხიზილალის პილინგი',
+      description: 'დელიკატური ამქერცლავი პროცედურა ხიზილალის ექსტრაქტით, რომელიც კანს კვებავს, ატენიანებს და სიგლუვეს მატებს.',
+    },
+  },
+  ru: {
+    'endolift-body': {
+      name: 'Endolift для тела',
+      description: 'Малоинвазивная лазерная процедура для уменьшения локальных жировых отложений и подтяжки кожи тела.',
+    },
+    'body-skin-tightening': {
+      name: 'Подтяжка кожи тела',
+      description: 'Неинвазивная процедура с применением радиочастотной и ультразвуковой энергии для стимуляции коллагена и уплотнения кожи.',
+    },
+    emface: {
+      name: 'Emface',
+      description: 'Неинвазивная процедура для повышения тонуса мышц лица и подтяжки кожи с помощью радиочастотной энергии и технологии HIFES™.',
+    },
+    'exion-face-body': {
+      name: 'Exion для лица и тела',
+      description: 'Радиочастотная процедура с интеллектуальной настройкой для подтяжки кожи и улучшения контуров лица и тела.',
+    },
+    'hifu-treatment': {
+      name: 'HIFU-лифтинг',
+      description: 'Безоперационный ультразвуковой лифтинг, который стимулирует выработку коллагена и постепенно подтягивает кожу.',
+    },
+    'mint-pdo-thread-lift': {
+      name: 'Лифтинг нитями MINT PDO',
+      description: 'Малоинвазивная подтяжка рассасывающимися PDO-нитями с немедленным лифтинг-эффектом и стимуляцией коллагена.',
+    },
+    'morpheus-8-treatment': {
+      name: 'Morpheus8',
+      description: 'Фракционный радиочастотный микронидлинг для обновления, подтяжки и улучшения текстуры кожи.',
+    },
+    nanothreads: {
+      name: 'Нанонити',
+      description: 'Ультратонкие PDO-нити для деликатного обновления кожи, уменьшения мелких морщин и улучшения текстуры.',
+    },
+    'neogen-plasma': {
+      name: 'Neogen Plasma',
+      description: 'Процедура на основе энергии азотной плазмы для обновления кожи и стимуляции выработки коллагена.',
+    },
+    'thermage-flx': {
+      name: 'Thermage FLX',
+      description: 'Современная радиочастотная процедура для длительной подтяжки кожи и стимуляции коллагена.',
+    },
+    'profhilo-body': {
+      name: 'Profhilo Body',
+      description: 'Инъекционная процедура с гиалуроновой кислотой для улучшения увлажнённости, плотности и эластичности кожи тела.',
+    },
+    'morpheus8-body': {
+      name: 'Morpheus8 Body',
+      description: 'Фракционный радиочастотный микронидлинг для подтяжки кожи тела, улучшения текстуры и контуров.',
+    },
+    'exion-body': {
+      name: 'Exion Body',
+      description: 'Радиочастотная процедура с интеллектуальной настройкой для контурирования тела и подтяжки кожи.',
+    },
+    'thermage-body': {
+      name: 'Thermage Body',
+      description: 'Неинвазивная радиочастотная процедура для подтяжки и разглаживания кожи тела.',
+    },
+    'ultraformer-hifu-body': {
+      name: 'Ultraformer HIFU Body',
+      description: 'Сфокусированная ультразвуковая процедура для улучшения контуров тела и подтяжки кожи без операции.',
+    },
+    'filter-facial': {
+      name: 'Filter Facial',
+      description: 'Многоэтапный уход за лицом для улучшения текстуры кожи, уменьшения видимости пор и придания естественного сияния.',
+    },
+    'caviar-peel': {
+      name: 'Икорный пилинг',
+      description: 'Деликатная отшелушивающая процедура с экстрактом икры, которая питает, увлажняет и разглаживает кожу.',
+    },
+  },
+  tr: {
+    'endolift-body': {
+      name: 'Vücut için Endolift',
+      description: 'Bölgesel yağları azaltmaya ve vücut cildini sıkılaştırmaya yönelik minimal invaziv lazer uygulaması.',
+    },
+    'body-skin-tightening': {
+      name: 'Vücut cildi sıkılaştırma',
+      description: 'Kolajen üretimini desteklemek ve gevşek cildi sıkılaştırmak için radyo frekans ve ultrason kullanan cerrahi olmayan uygulama.',
+    },
+    emface: {
+      name: 'Emface',
+      description: 'Radyo frekans ve HIFES™ teknolojisiyle yüz kaslarını çalıştıran ve cildi sıkılaştıran cerrahi olmayan uygulama.',
+    },
+    'exion-face-body': {
+      name: 'Yüz ve vücut için Exion',
+      description: 'Yüz ve vücutta cilt sıkılaştırma ile kontur iyileştirmeye yönelik akıllı radyo frekans uygulaması.',
+    },
+    'hifu-treatment': {
+      name: 'HIFU uygulaması',
+      description: 'Kolajen üretimini destekleyen ve cildi zamanla sıkılaştıran cerrahi olmayan odaklı ultrason uygulaması.',
+    },
+    'mint-pdo-thread-lift': {
+      name: 'MINT PDO iple yüz germe',
+      description: 'Emilebilir PDO iplerle anında kaldırma etkisi sağlayan ve kolajen üretimini destekleyen minimal invaziv uygulama.',
+    },
+    'morpheus-8-treatment': {
+      name: 'Morpheus8',
+      description: 'Cildin yenilenmesine, sıkılaşmasına ve dokusunun iyileşmesine yönelik fraksiyonel RF mikroiğneleme uygulaması.',
+    },
+    nanothreads: {
+      name: 'Nano ipler',
+      description: 'Cildi nazikçe yenilemek, ince çizgileri azaltmak ve dokuyu iyileştirmek için kullanılan çok ince PDO ipler.',
+    },
+    'neogen-plasma': {
+      name: 'Neogen Plasma',
+      description: 'Cilt yenilenmesini ve kolajen üretimini desteklemek için azot plazma enerjisi kullanan uygulama.',
+    },
+    'thermage-flx': {
+      name: 'Thermage FLX',
+      description: 'Uzun süreli cilt sıkılaştırma ve kolajen desteği için gelişmiş radyo frekans uygulaması.',
+    },
+    'profhilo-body': {
+      name: 'Profhilo Body',
+      description: 'Vücut cildinin nemini, sıkılığını ve elastikiyetini iyileştirmeye yönelik hyalüronik asit enjeksiyonu.',
+    },
+    'morpheus8-body': {
+      name: 'Morpheus8 Body',
+      description: 'Vücut cildini sıkılaştırmaya, dokuyu iyileştirmeye ve konturları belirginleştirmeye yönelik fraksiyonel RF mikroiğneleme.',
+    },
+    'exion-body': {
+      name: 'Exion Body',
+      description: 'Vücut şekillendirme ve cilt sıkılaştırmaya yönelik akıllı radyo frekans uygulaması.',
+    },
+    'thermage-body': {
+      name: 'Thermage Body',
+      description: 'Vücut cildini sıkılaştırmaya ve pürüzsüzleştirmeye yönelik cerrahi olmayan radyo frekans uygulaması.',
+    },
+    'ultraformer-hifu-body': {
+      name: 'Ultraformer HIFU Body',
+      description: 'Cerrahi gerektirmeden vücut hatlarını iyileştirmeye ve cildi sıkılaştırmaya yönelik odaklı ultrason uygulaması.',
+    },
+    'filter-facial': {
+      name: 'Filter Facial',
+      description: 'Cilt dokusunu, gözenek görünümünü ve doğal ışıltıyı iyileştirmeye yönelik çok aşamalı yüz bakımı.',
+    },
+    'caviar-peel': {
+      name: 'Havyar peelingi',
+      description: 'Havyar özüyle cildi besleyen, nemlendiren ve pürüzsüzleştiren nazik arındırıcı bakım.',
+    },
+  },
+  ar: {
+    'endolift-body': {
+      name: 'Endolift للجسم',
+      description: 'علاج ليزر طفيف التوغل لتقليل الدهون الموضعية وشد بشرة الجسم.',
+    },
+    'body-skin-tightening': {
+      name: 'شد بشرة الجسم',
+      description: 'علاج غير جراحي بالترددات الراديوية والموجات فوق الصوتية لتحفيز الكولاجين وشد البشرة المترهلة.',
+    },
+    emface: {
+      name: 'Emface',
+      description: 'علاج غير جراحي لتنشيط عضلات الوجه وشد البشرة باستخدام الترددات الراديوية وتقنية HIFES™.',
+    },
+    'exion-face-body': {
+      name: 'Exion للوجه والجسم',
+      description: 'علاج ذكي بالترددات الراديوية لشد البشرة وتحسين ملامح الوجه والجسم.',
+    },
+    'hifu-treatment': {
+      name: 'علاج HIFU',
+      description: 'شد غير جراحي بالموجات فوق الصوتية المركزة لتحفيز الكولاجين وشد البشرة تدريجياً.',
+    },
+    'mint-pdo-thread-lift': {
+      name: 'شد بخيوط MINT PDO',
+      description: 'شد طفيف التوغل بخيوط PDO القابلة للامتصاص لرفع البشرة فوراً وتحفيز إنتاج الكولاجين.',
+    },
+    'morpheus-8-treatment': {
+      name: 'Morpheus8',
+      description: 'وخز دقيق مجزأ بالترددات الراديوية لتجديد البشرة وشدها وتحسين ملمسها.',
+    },
+    nanothreads: {
+      name: 'الخيوط النانوية',
+      description: 'خيوط PDO فائقة الدقة لتجديد البشرة بلطف وتقليل الخطوط الدقيقة وتحسين الملمس.',
+    },
+    'neogen-plasma': {
+      name: 'Neogen Plasma',
+      description: 'علاج بطاقة بلازما النيتروجين لتجديد البشرة وتحفيز إنتاج الكولاجين.',
+    },
+    'thermage-flx': {
+      name: 'Thermage FLX',
+      description: 'علاج متقدم بالترددات الراديوية لشد البشرة بنتائج طويلة الأمد وتحفيز الكولاجين.',
+    },
+    'profhilo-body': {
+      name: 'Profhilo Body',
+      description: 'حقن بحمض الهيالورونيك لتحسين ترطيب بشرة الجسم وتماسكها ومرونتها.',
+    },
+    'morpheus8-body': {
+      name: 'Morpheus8 Body',
+      description: 'وخز دقيق مجزأ بالترددات الراديوية لشد بشرة الجسم وتحسين ملمسها وتحديد القوام.',
+    },
+    'exion-body': {
+      name: 'Exion Body',
+      description: 'علاج ذكي بالترددات الراديوية لنحت الجسم وشد البشرة.',
+    },
+    'thermage-body': {
+      name: 'Thermage Body',
+      description: 'علاج غير جراحي بالترددات الراديوية لشد بشرة الجسم وتنعيمها.',
+    },
+    'ultraformer-hifu-body': {
+      name: 'Ultraformer HIFU Body',
+      description: 'علاج بالموجات فوق الصوتية المركزة لتحسين قوام الجسم وشد البشرة دون جراحة.',
+    },
+    'filter-facial': {
+      name: 'Filter Facial',
+      description: 'عناية متعددة الخطوات لتحسين ملمس البشرة ومظهر المسام ومنح الوجه إشراقة طبيعية.',
+    },
+    'caviar-peel': {
+      name: 'تقشير الكافيار',
+      description: 'علاج تقشير لطيف بخلاصة الكافيار يغذي البشرة ويرطبها ويمنحها ملمساً أكثر نعومة.',
+    },
+  },
+  he: {
+    'endolift-body': {
+      name: 'Endolift לגוף',
+      description: 'טיפול לייזר זעיר־פולשני להפחתת שומן מקומי ולמיצוק עור הגוף.',
+    },
+    'body-skin-tightening': {
+      name: 'מיצוק עור הגוף',
+      description: 'טיפול לא פולשני בגלי רדיו ובאולטרסאונד לעידוד קולגן ולמיצוק עור רפוי.',
+    },
+    emface: {
+      name: 'Emface',
+      description: 'טיפול לא פולשני לחיזוק שרירי הפנים ולמיצוק העור באמצעות גלי רדיו וטכנולוגיית HIFES™.',
+    },
+    'exion-face-body': {
+      name: 'Exion לפנים ולגוף',
+      description: 'טיפול חכם בגלי רדיו למיצוק העור ולשיפור קווי המתאר של הפנים והגוף.',
+    },
+    'hifu-treatment': {
+      name: 'טיפול HIFU',
+      description: 'הרמה לא ניתוחית באולטרסאונד ממוקד המעודדת יצירת קולגן וממצקת את העור בהדרגה.',
+    },
+    'mint-pdo-thread-lift': {
+      name: 'הרמה בחוטי MINT PDO',
+      description: 'הרמה זעיר־פולשנית בחוטי PDO נספגים להשפעת הרמה מיידית ולעידוד יצירת קולגן.',
+    },
+    'morpheus-8-treatment': {
+      name: 'Morpheus8',
+      description: 'מיקרונידלינג חלקי בגלי רדיו לחידוש העור, למיצוקו ולשיפור המרקם.',
+    },
+    nanothreads: {
+      name: 'ננו־חוטים',
+      description: 'חוטי PDO דקיקים לחידוש עדין של העור, להפחתת קמטוטים ולשיפור המרקם.',
+    },
+    'neogen-plasma': {
+      name: 'Neogen Plasma',
+      description: 'טיפול באנרגיית פלזמת חנקן לחידוש העור ולעידוד יצירת קולגן.',
+    },
+    'thermage-flx': {
+      name: 'Thermage FLX',
+      description: 'טיפול מתקדם בגלי רדיו למיצוק ממושך של העור ולעידוד קולגן.',
+    },
+    'profhilo-body': {
+      name: 'Profhilo Body',
+      description: 'טיפול הזרקה בחומצה היאלורונית לשיפור הלחות, המוצקות והגמישות של עור הגוף.',
+    },
+    'morpheus8-body': {
+      name: 'Morpheus8 Body',
+      description: 'מיקרונידלינג חלקי בגלי רדיו למיצוק עור הגוף, לשיפור המרקם ולהדגשת קווי המתאר.',
+    },
+    'exion-body': {
+      name: 'Exion Body',
+      description: 'טיפול חכם בגלי רדיו לעיצוב הגוף ולמיצוק העור.',
+    },
+    'thermage-body': {
+      name: 'Thermage Body',
+      description: 'טיפול לא פולשני בגלי רדיו למיצוק ולהחלקת עור הגוף.',
+    },
+    'ultraformer-hifu-body': {
+      name: 'Ultraformer HIFU Body',
+      description: 'טיפול אולטרסאונד ממוקד לשיפור קווי המתאר של הגוף ולמיצוק העור ללא ניתוח.',
+    },
+    'filter-facial': {
+      name: 'Filter Facial',
+      description: 'טיפול פנים רב־שלבי לשיפור מרקם העור, מראה הנקבוביות והזוהר הטבעי.',
+    },
+    'caviar-peel': {
+      name: 'פילינג קוויאר',
+      description: 'טיפול פילינג עדין בתמצית קוויאר המזין את העור, מעניק לחות ומשפר את החלקות.',
+    },
+  },
+};
+
+const durationLabels: Record<Exclude<TreatmentLocale, 'en'>, {
+  minutes: string;
+  initialTreatment: (minutes: string) => string;
+  weekProgram: (weeks: string) => string;
+}> = {
+  ka: {
+    minutes: 'წუთი',
+    initialTreatment: (minutes) => `პირველი პროცედურა — ${minutes} წუთი`,
+    weekProgram: (weeks) => `${weeks}-კვირიანი პროგრამა`,
+  },
+  ru: {
+    minutes: 'минут',
+    initialTreatment: (minutes) => `Первая процедура — ${minutes} минут`,
+    weekProgram: (weeks) => `Программа на ${weeks} недель`,
+  },
+  tr: {
+    minutes: 'dakika',
+    initialTreatment: (minutes) => `İlk uygulama — ${minutes} dakika`,
+    weekProgram: (weeks) => `${weeks} haftalık program`,
+  },
+  ar: {
+    minutes: 'دقيقة',
+    initialTreatment: (minutes) => `العلاج الأول — ${minutes} دقيقة`,
+    weekProgram: (weeks) => `برنامج لمدة ${weeks} أسبوعاً`,
+  },
+  he: {
+    minutes: 'דקות',
+    initialTreatment: (minutes) => `טיפול ראשון — ${minutes} דקות`,
+    weekProgram: (weeks) => `תוכנית של ${weeks} שבועות`,
+  },
+};
+
+function normalizeTreatmentLocale(locale: string): TreatmentLocale {
+  return supportedTreatmentLocales.has(locale as TreatmentLocale)
+    ? (locale as TreatmentLocale)
+    : 'en';
+}
+
+function localizeTreatmentPrice(price: string | undefined, locale: string): string | undefined {
+  if (!price) return price;
+  const normalizedLocale = normalizeTreatmentLocale(locale);
+  if (normalizedLocale === 'en') return price;
+
+  if (price === 'Consultation required') {
+    return {
+      ka: 'საჭიროა კონსულტაცია',
+      ru: 'Требуется консультация',
+      tr: 'Konsültasyon gerekli',
+      ar: 'تتطلب استشارة',
+      he: 'נדרש ייעוץ',
+    }[normalizedLocale];
+  }
+
+  const fromMatch = price.match(/^From\s+(.+)$/);
+  if (!fromMatch) return price;
+  const amount = fromMatch[1];
+  return {
+    ka: `${amount}-დან`,
+    ru: `От ${amount}`,
+    tr: `Başlangıç: ${amount}`,
+    ar: `ابتداءً من ${amount}`,
+    he: `החל מ-${amount}`,
+  }[normalizedLocale];
+}
+
+function localizeTreatmentDuration(duration: string | undefined, locale: string): string | undefined {
+  if (!duration) return duration;
+  const normalizedLocale = normalizeTreatmentLocale(locale);
+  if (normalizedLocale === 'en') return duration;
+
+  const labels = durationLabels[normalizedLocale];
+  const minutesMatch = duration.match(/^(\d+(?:-\d+)?) minutes$/);
+  if (minutesMatch) return `${minutesMatch[1]} ${labels.minutes}`;
+
+  const initialTreatmentMatch = duration.match(/^Initial treatment (\d+) minutes$/);
+  if (initialTreatmentMatch) return labels.initialTreatment(initialTreatmentMatch[1]);
+
+  const weekProgramMatch = duration.match(/^(\d+(?:-\d+)?) week program$/);
+  if (weekProgramMatch) return labels.weekProgram(weekProgramMatch[1]);
+
+  return duration;
+}
+
 // Merge base data with translations
 export async function getLocalizedTreatmentCategories(locale: string): Promise<TreatmentCategory[]> {
   const translations = await getTreatmentTranslations(locale);
-  
-  return baseTreatmentCategories.map(category => ({
-    ...category,
-    name: translations[category.slug]?.name || category.name,
-    description: translations[category.slug]?.description || category.description,
-    treatments: category.treatments.map(treatment => ({
-      ...treatment,
-      name: translations[treatment.slug]?.name || treatment.name,
-      description: translations[treatment.slug]?.description || treatment.description,
-      shortDescription: translations[treatment.slug]?.shortDescription || treatment.shortDescription,
-      benefits: translations[treatment.slug]?.benefits || treatment.benefits,
-      howItWorks: translations[treatment.slug]?.howItWorks || treatment.howItWorks,
-      aftercare: translations[treatment.slug]?.aftercare || treatment.aftercare,
-      faqs: translations[treatment.slug]?.faqs || treatment.faqs,
-    }))
-  }));
+  const normalizedLocale = normalizeTreatmentLocale(locale);
+  const useEnglishFallback = normalizedLocale === 'en';
+
+  return baseTreatmentCategories.map(category => {
+    const categoryKey = treatmentContentCategoryAliases[category.slug] || category.slug;
+    const categoryTranslation = translations[categoryKey];
+
+    return {
+      ...category,
+      name:
+        categoryTranslation?.name
+        || (useEnglishFallback ? category.name : categoryNames[normalizedLocale][category.slug])
+        || category.name,
+      description:
+        categoryTranslation?.description
+        || (useEnglishFallback ? category.description : ''),
+      treatments: category.treatments.map(treatment => {
+        const treatmentTranslation =
+          categoryTranslation?.treatments?.[treatment.slug]
+          || translations[treatment.slug];
+        const supplementalTranslation = useEnglishFallback
+          ? undefined
+          : supplementalTreatmentTranslations[normalizedLocale][treatment.slug];
+
+        return {
+          ...treatment,
+          name:
+            treatmentTranslation?.name
+            || supplementalTranslation?.name
+            || (useEnglishFallback ? treatment.name : genericTreatmentNames[normalizedLocale][treatment.slug])
+            || treatment.name,
+          description:
+            treatmentTranslation?.description
+            || treatmentTranslation?.shortDescription
+            || supplementalTranslation?.description
+            || (useEnglishFallback ? treatment.description : ''),
+          shortDescription:
+            treatmentTranslation?.shortDescription
+            || treatmentTranslation?.description
+            || supplementalTranslation?.description
+            || (useEnglishFallback ? treatment.shortDescription : ''),
+          price: localizeTreatmentPrice(treatment.price, locale),
+          duration: localizeTreatmentDuration(treatment.duration, locale),
+          benefits:
+            treatmentTranslation?.benefits
+            || (useEnglishFallback ? treatment.benefits : []),
+          howItWorks:
+            treatmentTranslation?.howItWorks
+            || (useEnglishFallback ? treatment.howItWorks : undefined),
+          aftercare:
+            treatmentTranslation?.aftercare
+            || (useEnglishFallback ? treatment.aftercare : undefined),
+          faqs:
+            treatmentTranslation?.faqs
+            || (useEnglishFallback ? treatment.faqs : []),
+        };
+      }),
+    };
+  });
 }
 
 export async function getAllTreatments(locale: string = 'en'): Promise<Treatment[]> {
