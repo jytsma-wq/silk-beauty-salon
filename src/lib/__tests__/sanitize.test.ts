@@ -75,6 +75,15 @@ describe('sanitize', () => {
     it('handles plain text', () => {
       expect(sanitizeText('Plain text')).toBe('Plain text');
     });
+
+    it('does not recreate executable tags from nested malformed markup', () => {
+      const output = sanitizeText(
+        '<scr<script>ipt><img src=x onerror=alert(1)>Safe</scr</script>ipt>'
+      );
+
+      expect(output).not.toMatch(/<\s*(script|img)\b/i);
+      expect(output).not.toContain('onerror');
+    });
   });
 
   describe('isValidEmail', () => {

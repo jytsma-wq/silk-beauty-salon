@@ -45,6 +45,10 @@ export default defineConfig({
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
     timeout: process.env.CI ? 180_000 : 60_000,
+    env: {
+      SKIP_ENV_VALIDATION: '1',
+      DATABASE_URL: 'postgresql://build:build@localhost:5432/build',
+    },
     stdout: 'pipe',
     stderr: 'pipe',
   },
