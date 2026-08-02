@@ -76,6 +76,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -91,12 +93,9 @@ jobs:
         run: npm run security:audit:ci
 
       - name: Check for verified secrets
-        uses: trufflesecurity/trufflehog@main
-        continue-on-error: true
+        uses: trufflesecurity/trufflehog@27b0417c16317ca9a472a9a8092acce143b49c55 # v3.95.9
         with:
-          path: ./
-          base: main
-          head: HEAD
+          version: 3.95.9
           extra_args: --debug --only-verified
 
   backup:
