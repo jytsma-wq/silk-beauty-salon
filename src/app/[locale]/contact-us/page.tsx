@@ -58,6 +58,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                 src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1920&q=80"
                 alt={t('contactSilkBeautySalon')}
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
                 priority
               />

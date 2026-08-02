@@ -1,12 +1,12 @@
 import type { ReactNode } from 'react';
 import { headers } from 'next/headers';
+import { getLocale } from 'next-intl/server';
 import { rtlLocales } from '@/i18n';
 import './globals.css';
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   const headersList = await headers();
-  const pathname = headersList.get('x-pathname') || '';
-  const locale = pathname.split('/')[1] || 'en';
+  const locale = await getLocale();
   const isRtl = rtlLocales.includes(locale as 'ar' | 'he');
   const nonce = headersList.get('x-nonce') || '';
   const csrfToken = headersList.get('X-CSRF-Token') || '';
