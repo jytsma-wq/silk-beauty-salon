@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  NODE_VERSION: '20'
+  NODE_VERSION: '24'
   NEXT_TELEMETRY_DISABLED: 1
   DATABASE_URL: postgresql://build:build@localhost:5432/build
   DIRECT_DATABASE_URL: postgresql://build:build@localhost:5432/build
@@ -39,6 +39,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: npm
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
         run: npm ci
@@ -66,6 +67,7 @@ jobs:
             .next/standalone
             .next/static
             public/apk/silk-beauty-salon.apk
+          include-hidden-files: true
           retention-days: 7
 
   security:
@@ -80,13 +82,13 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: npm
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Run npm audit
-        run: npm audit --audit-level=moderate
-        continue-on-error: true
+      - name: Enforce dependency audit policy
+        run: npm run security:audit:ci
 
       - name: Check for verified secrets
         uses: trufflesecurity/trufflehog@main
@@ -117,6 +119,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: npm
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
         run: npm ci
