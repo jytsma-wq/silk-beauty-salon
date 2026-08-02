@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "set NODE_OPTIONS=--max-old-space-size=4096 && next dev -p 3000 --turbopack --hostname 0.0.0.0",
     "dev:alt": "next dev -p 3001",
-    "build": "node -e \"const {spawnSync}=require('child_process'); const fs=require('fs'); const env={...process.env, BUILD_TIMESTAMP:new Date().toISOString(), SKIP_ENV_VALIDATION:process.env.SKIP_ENV_VALIDATION||'1', DATABASE_URL:process.env.DATABASE_URL||'postgresql://build:build@localhost:5432/build'}; const result=spawnSync(process.execPath,[require.resolve('next/dist/bin/next'),'build'],{stdio:'inherit',env}); if(result.status!==0) process.exit(result.status||1); [['.next/static','.next/standalone/.next/static'],['public','.next/standalone/public']].forEach(([src,dest])=>{try{fs.cpSync(src,dest,{recursive:true})}catch{}});\"",
+    "build": "prisma generate && node -e \"const {spawnSync}=require('child_process'); const fs=require('fs'); const env={...process.env, BUILD_TIMESTAMP:new Date().toISOString(), SKIP_ENV_VALIDATION:process.env.SKIP_ENV_VALIDATION||'1', DATABASE_URL:process.env.DATABASE_URL||'postgresql://build:build@localhost:5432/build'}; const result=spawnSync(process.execPath,[require.resolve('next/dist/bin/next'),'build'],{stdio:'inherit',env}); if(result.status!==0) process.exit(result.status||1); [['.next/static','.next/standalone/.next/static'],['public','.next/standalone/public']].forEach(([src,dest])=>{try{fs.cpSync(src,dest,{recursive:true})}catch{}});\"",
     "start": "node .next/standalone/server.js",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
